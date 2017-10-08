@@ -61,7 +61,7 @@ class USER_MODEL extends Users
 
 		$fields['User_Type'] = function ($model) {
 			/* @var $model USER_MODEL */
-			return $model->userType->Type_Name;
+			return UserType::findOne($model->User_Type)->Type_Name;
 		};
 		unset($fields['Password']); //remove the password field
 		return $fields;
