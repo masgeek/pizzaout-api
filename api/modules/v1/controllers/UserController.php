@@ -83,7 +83,6 @@ class UserController extends ActiveController
 		}
 		$request = ['USER_MODEL' => Yii::$app->request->post()];
 
-		return $request;
 		$plain_pass = Yii::$app->request->post('Password');
 		$user = new USER_MODEL();
 		$user->setScenario(USER_MODEL::SCENARIO_CREATE);
