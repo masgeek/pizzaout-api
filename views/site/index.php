@@ -1,8 +1,6 @@
 <?php
 
 /* @var $this yii\web\View */
-
-$this->title = 'SPA Administration';
 ?>
 <div class="site-index">
 
