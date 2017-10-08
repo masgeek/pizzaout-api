@@ -21,6 +21,7 @@ User_Type
 
  */
 use app\models\Users;
+use app\models\UserType;
 
 class USER_MODEL extends Users
 {
