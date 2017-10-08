@@ -7,20 +7,13 @@ use Yii;
 /**
  * This is the model class for table "payments".
  *
- * @property int $PAYMENT_ID
- * @property int $RESERVATION_ID
- * @property string $BOOKING_AMOUNT
- * @property string $FINAL_AMOUNT
- * @property string $DATE_PAID
- * @property string $TIME_PAID
- * @property string $PAYMENT_REF
- * @property int $PAYMENT_STATUS
- * @property string $BALANCE
- * @property string $MPESA_REF
- * @property string $COMMENTS
- *
- * @property Reservations $rESERVATION
- * @property PaymentStatus $pAYMENTSTATUS
+ * @property int $payment_id
+ * @property int $order_id
+ * @property string $payment_ref
+ * @property string $payment_channel
+ * @property double $payment_amount
+ * @property string $payment_date
+ * @property string $payment_status
  */
 class Payments extends \yii\db\ActiveRecord
 {
@@ -38,15 +31,13 @@ class Payments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['RESERVATION_ID', 'BOOKING_AMOUNT', 'DATE_PAID', 'PAYMENT_REF', 'BALANCE', 'MPESA_REF'], 'required'],
-            [['RESERVATION_ID', 'PAYMENT_STATUS'], 'integer'],
-            [['BOOKING_AMOUNT', 'FINAL_AMOUNT', 'BALANCE'], 'number'],
-            [['DATE_PAID', 'TIME_PAID'], 'safe'],
-            [['COMMENTS'], 'string'],
-            [['PAYMENT_REF'], 'string', 'max' => 50],
-            [['MPESA_REF'], 'string', 'max' => 25],
-            [['RESERVATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Reservations::className(), 'targetAttribute' => ['RESERVATION_ID' => 'RESERVATION_ID']],
-            [['PAYMENT_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentStatus::className(), 'targetAttribute' => ['PAYMENT_STATUS' => 'PAYMENT_STATUS_ID']],
+            [['order_id', 'payment_ref', 'payment_channel', 'payment_amount', 'payment_date', 'payment_status'], 'required'],
+            [['order_id'], 'integer'],
+            [['payment_amount'], 'number'],
+            [['payment_date'], 'safe'],
+            [['payment_ref'], 'string', 'max' => 255],
+            [['payment_channel'], 'string', 'max' => 10],
+            [['payment_status'], 'string', 'max' => 50],
         ];
     }
 
@@ -56,33 +47,13 @@ class Payments extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'PAYMENT_ID' => 'Payment  ID',
-            'RESERVATION_ID' => 'Reservation  ID',
-            'BOOKING_AMOUNT' => 'Booking  Amount',
-            'FINAL_AMOUNT' => 'Final  Amount',
-            'DATE_PAID' => 'Date  Paid',
-            'TIME_PAID' => 'Time  Paid',
-            'PAYMENT_REF' => 'Payment  Ref',
-            'PAYMENT_STATUS' => 'Payment  Status',
-            'BALANCE' => 'Balance',
-            'MPESA_REF' => 'Mpesa  Ref',
-            'COMMENTS' => 'Comments',
+            'payment_id' => 'Payment ID',
+            'order_id' => 'Order ID',
+            'payment_ref' => 'Payment Ref',
+            'payment_channel' => 'Payment Channel',
+            'payment_amount' => 'Payment Amount',
+            'payment_date' => 'Payment Date',
+            'payment_status' => 'Payment Status',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRESERVATION()
-    {
-        return $this->hasOne(Reservations::className(), ['RESERVATION_ID' => 'RESERVATION_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPAYMENTSTATUS()
-    {
-        return $this->hasOne(PaymentStatus::className(), ['PAYMENT_STATUS_ID' => 'PAYMENT_STATUS']);
     }
 }

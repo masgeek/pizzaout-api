@@ -8,52 +8,62 @@
 
 namespace app\api\modules\v1\models;
 
+/*
+ * User_ID
+Surname
+Other_Names
+Mobile
+Email
+Location_ID
+User_Name
+Password
+User_Type
 
-use app\models\User;
+ */
+use app\models\Users;
 
-class USER_MODEL extends User
+class USER_MODEL extends Users
 {
-    public $CHANGE_PASSWORD;
+	public $CHANGE_PASSWORD;
 
-    const SCENARIO_CREATE = 'create';
-    const SCENARIO_UPDATE = 'update';
+	const SCENARIO_CREATE = 'create';
+	const SCENARIO_UPDATE = 'update';
 
 
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_CREATE] = ['SURNAME', 'EMAIL', 'MOBILE_NO', 'PASSWORD', 'ACCOUNT_TYPE_ID', 'ACCOUNT_STATUS', 'ACCOUNT_TYPE_ID'];
-        $scenarios[self::SCENARIO_UPDATE] = ['SURNAME', 'EMAIL', 'MOBILE_NO', 'PASSWORD', 'ACCOUNT_TYPE_ID', 'ACCOUNT_TYPE_ID'];
+	public function scenarios()
+	{
+		$scenarios = parent::scenarios();
+		$scenarios[self::SCENARIO_CREATE] = ['Surname', 'Other_Names', 'Mobile', 'Email', 'Location_ID', 'User_Name', 'Password', 'User_Type'];
+		$scenarios[self::SCENARIO_UPDATE] = ['Surname', 'Other_Names', 'Mobile', 'Email', 'Location_ID', 'User_Name', 'Password', 'User_Type'];
 
-        return $scenarios;
-    }
+		return $scenarios;
+	}
 
-    public function rules()
-    {
-        $rules = parent::rules();
+	public function rules()
+	{
+		$rules = parent::rules();
 
-        $rules[] = [['EMAIL'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
-        $rules[] = [['PASSWORD'], 'string', 'min' => 1,'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
-        //$rules[] = [['EMAIL'], 'email', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
-        return $rules;
-    }
+		$rules[] = [['Email'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
+		$rules[] = [['Password'], 'string', 'min' => 1, 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
+		return $rules;
+	}
 
-    public function attributeLabels()
-    {
-        $labels = parent::attributeLabels();
+	public function attributeLabels()
+	{
+		$labels = parent::attributeLabels();
 
-        return $labels;
-    }
+		return $labels;
+	}
 
-    public function fields()
-    {
-        $fields = parent::fields();
+	public function fields()
+	{
+		$fields = parent::fields();
 
-        $fields['ACCOUNT_TYPE'] = function ($model) {
-            /* @var $model USER_MODEL */
-            return $model->aCCOUNTTYPE->ACCOUNT_NAME;
-        };
-        unset($fields['PASSWORD']); //remove the password field
-        return $fields;
-    }
+		$fields['User_Type'] = function ($model) {
+			/* @var $model USER_MODEL */
+			return $model->userType->Type_Name;
+		};
+		unset($fields['Password']); //remove the password field
+		return $fields;
+	}
 }
