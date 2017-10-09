@@ -50,9 +50,9 @@ class UserController extends ActiveController
 		$username = $request->user_name;
 		$password = sha1($request->password);
 
-		$user = USER_MODEL::findOne(['User_Name' => $username, 'Password' => $password]);
+		$user = USER_MODEL::findOne(['USER_NAME' => $username, 'PASSWORD' => $password]);
 		if ($user == null) {//search based on email address
-			$user = USER_MODEL::findOne(['Email' => $username, 'Password' => $password]);
+			$user = USER_MODEL::findOne(['EMAIL' => $username, 'PASSWORD' => $password]);
 		}
 
 		if ($user != null) {
@@ -88,7 +88,7 @@ class UserController extends ActiveController
 		$user->setScenario(USER_MODEL::SCENARIO_CREATE);
 		$user->load($request);
 		if ($user->validate()) {
-			$user->Password = sha1($plain_pass);
+			$user->PASSWORD = sha1($plain_pass);
 			if ($user->save()) {
 				$message = [$user];
 			}
@@ -120,13 +120,13 @@ class UserController extends ActiveController
 
 
 		$user->setScenario(USER_MODEL::SCENARIO_UPDATE);
-		$request = (object)Yii::$app->request->bodyParams;
-		$user->Surname = isset($request->Surname) ? $request->Surname : $user->Surname;
-		$user->Email = isset($request->Email) ? $request->Email : $user->Email;
-		$user->Mobile = isset($request->Mobile) ? $request->Mobile : $user->Mobile;
-		$user->Other_Names = isset($request->Other_Names) ? $request->Other_Names : $user->Other_Names;
+		$request = (OBJECT)YII::$APP->REQUEST->BODYPARAMS;
+		$user->SURNAME = ISSET($request->SURNAME) ? $request->SURNAME : $user->SURNAME;
+		$user->EMAIL = ISSET($request->EMAIL) ? $request->EMAIL : $user->EMAIL;
+		$user->MOBILE = ISSET($request->MOBILE) ? $request->MOBILE : $user->MOBILE;
+		$user->OTHER_NAMES = ISSET($request->OTHER_NAMES) ? $request->OTHER_NAMES : $user->OTHER_NAMES;
 		if (isset($request->CHANGE_PASSWORD)) {
-			$user->Password = sha1($request->Password);
+			$user->PASSWORD = sha1($request->PASSWORD);
 		}
 
 		if ($user->validate() && $user->save()) {
@@ -147,7 +147,7 @@ class UserController extends ActiveController
 	public function actionAccountType()
 	{
 		return [
-			'CUSTOMER', 'VENDOR'
+			'CUSTOMER', 'RIDER'
 		];
 	}
 }

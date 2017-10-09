@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "user_type".
  *
- * @property string $Type_ID
- * @property string $Type_Name
+ * @property int $USER_TYPE_ID
+ * @property string $USER_TYPE_NAME
  *
  * @property Users[] $users
  */
@@ -28,8 +28,8 @@ class UserType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Type_Name'], 'required'],
-            [['Type_Name'], 'string', 'max' => 255],
+            [['USER_TYPE_NAME'], 'required'],
+            [['USER_TYPE_NAME'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,8 +39,8 @@ class UserType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Type_ID' => 'Type  ID',
-            'Type_Name' => 'Type  Name',
+            'USER_TYPE_ID' => 'User  Type  ID',
+            'USER_TYPE_NAME' => 'User  Type  Name',
         ];
     }
 
@@ -49,6 +49,6 @@ class UserType extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(Users::className(), ['User_Type' => 'Type_ID']);
+        return $this->hasMany(Users::className(), ['USER_TYPE' => 'USER_TYPE_ID']);
     }
 }

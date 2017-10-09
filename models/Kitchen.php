@@ -7,12 +7,14 @@ use Yii;
 /**
  * This is the model class for table "kitchen".
  *
- * @property string $Kitchen_ID
- * @property string $Kitchen_Name
- * @property string $City_ID
+ * @property int $KITCHEN_ID
+ * @property string $KITCHEN_NAME
+ * @property int $CITY_ID
+ * @property string $OPENING_TIME
+ * @property string $CLOSING_TIME
  *
  * @property Chef[] $chefs
- * @property City $city
+ * @property City $cITY
  */
 class Kitchen extends \yii\db\ActiveRecord
 {
@@ -30,10 +32,11 @@ class Kitchen extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Kitchen_Name', 'City_ID'], 'required'],
-            [['City_ID'], 'integer'],
-            [['Kitchen_Name'], 'string', 'max' => 100],
-            [['City_ID'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['City_ID' => 'City_ID']],
+            [['KITCHEN_NAME', 'CITY_ID'], 'required'],
+            [['CITY_ID'], 'integer'],
+            [['OPENING_TIME', 'CLOSING_TIME'], 'safe'],
+            [['KITCHEN_NAME'], 'string', 'max' => 100],
+            [['CITY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['CITY_ID' => 'CITY_ID']],
         ];
     }
 
@@ -43,9 +46,11 @@ class Kitchen extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Kitchen_ID' => 'Kitchen  ID',
-            'Kitchen_Name' => 'Kitchen  Name',
-            'City_ID' => 'City  ID',
+            'KITCHEN_ID' => 'Kitchen  ID',
+            'KITCHEN_NAME' => 'Kitchen  Name',
+            'CITY_ID' => 'City  ID',
+            'OPENING_TIME' => 'Opening  Time',
+            'CLOSING_TIME' => 'Closing  Time',
         ];
     }
 
@@ -54,14 +59,14 @@ class Kitchen extends \yii\db\ActiveRecord
      */
     public function getChefs()
     {
-        return $this->hasMany(Chef::className(), ['Kitchen_ID' => 'Kitchen_ID']);
+        return $this->hasMany(Chef::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCity()
+    public function getCITY()
     {
-        return $this->hasOne(City::className(), ['City_ID' => 'City_ID']);
+        return $this->hasOne(City::className(), ['CITY_ID' => 'CITY_ID']);
     }
 }

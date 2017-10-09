@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "city".
  *
- * @property string $City_ID
- * @property string $City_Name
- * @property string $Country_ID
+ * @property int $CITY_ID
+ * @property string $CITY_NAME
+ * @property int $COUNTRY_ID
  *
- * @property Country $country
+ * @property Country $cOUNTRY
  * @property Kitchen[] $kitchens
  */
 class City extends \yii\db\ActiveRecord
@@ -30,10 +30,10 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['City_Name', 'Country_ID'], 'required'],
-            [['Country_ID'], 'integer'],
-            [['City_Name'], 'string', 'max' => 100],
-            [['Country_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['Country_ID' => 'Country_ID']],
+            [['CITY_NAME', 'COUNTRY_ID'], 'required'],
+            [['COUNTRY_ID'], 'integer'],
+            [['CITY_NAME'], 'string', 'max' => 100],
+            [['COUNTRY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['COUNTRY_ID' => 'COUNRY_ID']],
         ];
     }
 
@@ -43,18 +43,18 @@ class City extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'City_ID' => 'City  ID',
-            'City_Name' => 'City  Name',
-            'Country_ID' => 'Country  ID',
+            'CITY_ID' => 'City  ID',
+            'CITY_NAME' => 'City  Name',
+            'COUNTRY_ID' => 'Country  ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCountry()
+    public function getCOUNTRY()
     {
-        return $this->hasOne(Country::className(), ['Country_ID' => 'Country_ID']);
+        return $this->hasOne(Country::className(), ['COUNRY_ID' => 'COUNTRY_ID']);
     }
 
     /**
@@ -62,6 +62,6 @@ class City extends \yii\db\ActiveRecord
      */
     public function getKitchens()
     {
-        return $this->hasMany(Kitchen::className(), ['City_ID' => 'City_ID']);
+        return $this->hasMany(Kitchen::className(), ['CITY_ID' => 'CITY_ID']);
     }
 }

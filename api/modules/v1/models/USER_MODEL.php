@@ -34,8 +34,8 @@ class USER_MODEL extends Users
 	public function scenarios()
 	{
 		$scenarios = parent::scenarios();
-		$scenarios[self::SCENARIO_CREATE] = ['Surname', 'Other_Names', 'Mobile', 'Email', 'Location_ID', 'User_Name', 'Password', 'User_Type'];
-		$scenarios[self::SCENARIO_UPDATE] = ['Surname', 'Other_Names', 'Mobile', 'Email', 'Location_ID', 'User_Name', 'Password', 'User_Type'];
+		$scenarios[SELF::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
+		$scenarios[SELF::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
 
 		return $scenarios;
 	}
@@ -44,8 +44,8 @@ class USER_MODEL extends Users
 	{
 		$rules = parent::rules();
 
-		$rules[] = [['Email'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
-		$rules[] = [['Password'], 'string', 'min' => 1, 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
+		$rules[] = [['EMAIL'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
+		$rules[] = [['PASSWORD'], 'string', 'min' => 1, 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
 		return $rules;
 	}
 
@@ -60,11 +60,11 @@ class USER_MODEL extends Users
 	{
 		$fields = parent::fields();
 
-		$fields['User_Type'] = function ($model) {
+		$fields['USER_TYPE'] = function ($model) {
 			/* @var $model USER_MODEL */
-			return UserType::findOne($model->User_Type)->Type_Name;
+			return UserType::findOne($model->USER_TYPE)->TYPE_NAME;
 		};
-		unset($fields['Password']); //remove the password field
+		unset($fields['PASSWORD']); //remove the password field
 		return $fields;
 	}
 }

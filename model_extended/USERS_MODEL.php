@@ -16,9 +16,6 @@ use yii\web\IdentityInterface;
 
 class USERS_MODEL extends Users implements IdentityInterface
 {
-
-	//public $LOGIN_ID;
-	//public $EMAIL_ADDRESS;
 	public $ACCOUNT_AUTH_KEY;
 	public $PASSWORD_RESET_TOKEN;
 
@@ -69,17 +66,17 @@ class USERS_MODEL extends Users implements IdentityInterface
 		$account_found = null;
 		//$userModel = UserProfile::findOne(['USER_NAME' => $username, 'EMAIL_ADDRESS'=>$username]);
 		$userModel = self::find()
-			->select(['User_ID', 'Email'])//select only specific fields
-			->where(['Email' => $username])
+			->select(['USER_ID', 'EMAIL'])//select only specific fields
+			->where(['EMAIL' => $username])
 			->one();
 		if ($userModel == null) {
 			$userModel = self::find()
-				->select(['User_ID', 'Email'])//select only specific fields
-				->where(['User_Name' => $username])
+				->select(['USER_ID', 'EMAIL'])//select only specific fields
+				->where(['USER_NAME' => $username])
 				->one();
 		}
 		if ($userModel != null) {
-			$account_found = static::findOne(['User_ID' => $userModel->User_ID]);
+			$account_found = static::findOne(['USER_ID' => $userModel->User_ID]);
 		}
 		return $account_found;
 	}
@@ -91,17 +88,17 @@ class USERS_MODEL extends Users implements IdentityInterface
 	 */
 	public function validatePassword($password)
 	{
-		return $this->Password === sha1($password);
+		return $this->PASSWORD === sha1($password);
 	}
 
 	public function setPassword($password)
 	{
-		$this->Password = Security::generatePasswordHash($password);
+		$this->PASSWORD = Security::generatePasswordHash($password);
 	}
 
 	public function getPassword()
 	{
-		return $this->Password;
+		return $this->PASSWORD;
 	}
 
 	/**
@@ -123,21 +120,21 @@ class USERS_MODEL extends Users implements IdentityInterface
 	//fields to return common stuff
 	public function getUsername()
 	{
-		return $this->Surname;
+		return $this->SURNAME;
 	}
 
 	public function getFullNames()
 	{
-		return $this->Surname . ', ' . $this->Other_Names;
+		return $this->SURNAME . ', ' . $this->OTHER_NAMES;
 	}
 
 	public function getEmailAddress()
 	{
-		return $this->Email;
+		return $this->EMAIL;
 	}
 
 	public function getUserType()
 	{
-		return UserType::findOne($this->User_Type)->Type_Name;
+		return UserType::findOne($this->USER_TYPE)->TYPE_NAME;
 	}
 }

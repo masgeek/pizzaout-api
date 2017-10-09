@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "chef".
  *
- * @property string $Chef_ID
- * @property string $Chef_Name
- * @property string $Kitchen_ID
+ * @property int $CHEF_ID
+ * @property string $CHEF_NAME
+ * @property int $KITCHEN_ID
  *
- * @property Kitchen $kitchen
+ * @property Kitchen $kITCHEN
  */
 class Chef extends \yii\db\ActiveRecord
 {
@@ -29,10 +29,10 @@ class Chef extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Chef_Name', 'Kitchen_ID'], 'required'],
-            [['Kitchen_ID'], 'integer'],
-            [['Chef_Name'], 'string', 'max' => 100],
-            [['Kitchen_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Kitchen::className(), 'targetAttribute' => ['Kitchen_ID' => 'Kitchen_ID']],
+            [['CHEF_NAME', 'KITCHEN_ID'], 'required'],
+            [['KITCHEN_ID'], 'integer'],
+            [['CHEF_NAME'], 'string', 'max' => 100],
+            [['KITCHEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Kitchen::className(), 'targetAttribute' => ['KITCHEN_ID' => 'KITCHEN_ID']],
         ];
     }
 
@@ -42,17 +42,17 @@ class Chef extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Chef_ID' => 'Chef  ID',
-            'Chef_Name' => 'Chef  Name',
-            'Kitchen_ID' => 'Kitchen  ID',
+            'CHEF_ID' => 'Chef  ID',
+            'CHEF_NAME' => 'Chef  Name',
+            'KITCHEN_ID' => 'Kitchen  ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getKitchen()
+    public function getKITCHEN()
     {
-        return $this->hasOne(Kitchen::className(), ['Kitchen_ID' => 'Kitchen_ID']);
+        return $this->hasOne(Kitchen::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
     }
 }

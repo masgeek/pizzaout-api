@@ -9,7 +9,7 @@ return [
     //'dsn' => 'dblib:host=localhost;dbname=mydatabase', // MS SQL Server, dblib driver
     //'dsn' => 'mssql:host=localhost;dbname=mydatabase', // MS SQL Server, mssql driver
     //'dsn' => 'oci:dbname=//localhost:1521/mydatabase', // Oracle
-    //'tablePrefix'=>'tb_',
+    'tablePrefix'=>'tb_',
     'username' => 'tsobucok_pizza',
     'password' => 'Cyberhopper123',
     'charset' => 'utf8',

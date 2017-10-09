@@ -7,8 +7,10 @@ use Yii;
 /**
  * This is the model class for table "riders".
  *
- * @property string $Rider_ID
- * @property string $Rider_Name
+ * @property int $RIDER_ID
+ * @property string $RIDER_NAME
+ * @property string $RIDER_MOBILE
+ * @property int $RIDER_STATUS
  */
 class Riders extends \yii\db\ActiveRecord
 {
@@ -26,8 +28,10 @@ class Riders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Rider_Name'], 'required'],
-            [['Rider_Name'], 'string', 'max' => 100],
+            [['RIDER_NAME'], 'required'],
+            [['RIDER_STATUS'], 'integer'],
+            [['RIDER_NAME'], 'string', 'max' => 100],
+            [['RIDER_MOBILE'], 'string', 'max' => 255],
         ];
     }
 
@@ -37,8 +41,10 @@ class Riders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Rider_ID' => 'Rider  ID',
-            'Rider_Name' => 'Rider  Name',
+            'RIDER_ID' => 'Rider  ID',
+            'RIDER_NAME' => 'Rider  Name',
+            'RIDER_MOBILE' => 'Rider  Mobile',
+            'RIDER_STATUS' => 'Rider  Status',
         ];
     }
 }
