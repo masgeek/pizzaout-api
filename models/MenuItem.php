@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $MENU_ITEM_ID
  * @property int $MENU_CAT_ID
+ * @property string $MENU_ITEM_NAME
  * @property string $MENU_ITEM_PRICE
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
@@ -33,10 +34,10 @@ class MenuItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['MENU_CAT_ID', 'MENU_ITEM_PRICE', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'required'],
+            [['MENU_CAT_ID', 'MENU_ITEM_NAME', 'MENU_ITEM_PRICE', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'required'],
             [['MENU_CAT_ID', 'HOT_DEAL'], 'integer'],
             [['MENU_ITEM_PRICE'], 'number'],
-            [['MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'string', 'max' => 255],
+            [['MENU_ITEM_NAME', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'string', 'max' => 255],
             [['MENU_CAT_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuCategory::className(), 'targetAttribute' => ['MENU_CAT_ID' => 'MENU_CAT_ID']],
         ];
     }
@@ -49,6 +50,7 @@ class MenuItem extends \yii\db\ActiveRecord
         return [
             'MENU_ITEM_ID' => 'Menu  Item  ID',
             'MENU_CAT_ID' => 'Menu  Cat  ID',
+            'MENU_ITEM_NAME' => 'Menu  Item  Name',
             'MENU_ITEM_PRICE' => 'Menu  Item  Price',
             'MENU_ITEM_DESC' => 'Menu  Item  Desc',
             'MENU_ITEM_IMAGE' => 'Menu  Item  Image',
