@@ -26,12 +26,12 @@ use app\api\modules\v1\models\RESERVED_SERVICE_MODEL;
 use app\api\modules\v1\models\USER_MODEL;
 use app\api\modules\v1\models\RESERVATION_MODEL;
 
-class ReservationController extends ActiveController
+class OrderController extends ActiveController
 {
 	/**
 	 * @var object
 	 */
-	public $modelClass = 'app\api\modules\v1\models\RESERVATION_MODEL';
+	public $modelClass = 'app\api\modules\v1\models\ORDER_MODEL';
 
 	public function actions()
 	{
