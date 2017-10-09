@@ -31,6 +31,9 @@ class UserController extends ActiveController
 	 */
 	public $modelClass = 'app\api\modules\v1\models\USER_MODEL';
 
+    /**
+     * @return array
+     */
 	public function actions()
 	{
 		$actions = parent::actions();
@@ -38,6 +41,7 @@ class UserController extends ActiveController
 		//unset($actions['update']);
 		return $actions;
 	}
+
 
 	public function actionLogin()
 	{
@@ -67,11 +71,18 @@ class UserController extends ActiveController
 		return $message;
 	}
 
+    /**
+     *
+     */
 	public function actionRecover()
 	{
 
 	}
 
+    /**
+     * @return array
+     * @throws BadRequestHttpException
+     */
 	public function actionRegister()
 	{
 
@@ -104,6 +115,12 @@ class UserController extends ActiveController
 		return $message;
 	}
 
+    /**
+     * @param $id
+     * @return array|null|static
+     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
+     */
 	public function actionUpdates($id)
 	{
 		/* @var $request USER_MODEL */
@@ -144,7 +161,10 @@ class UserController extends ActiveController
 		return $message;
 	}
 
-	public function actionAccountType()
+    /**
+     * @return array
+     */
+    public function actionAccountType()
 	{
 		return [
 			'CUSTOMER', 'RIDER'
