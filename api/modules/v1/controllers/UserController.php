@@ -51,8 +51,8 @@ class UserController extends ActiveController
 		}
 		$request = (object)Yii::$app->request->post();
 
-		$username = $request->user_name;
-		$password = sha1($request->password);
+		$username = $request->USER_NAME;
+		$password = sha1($request->PASSWORD);
 
 		$user = USER_MODEL::findOne(['USER_NAME' => $username, 'PASSWORD' => $password]);
 		if ($user == null) {//search based on email address

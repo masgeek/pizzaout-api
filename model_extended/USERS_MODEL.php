@@ -135,6 +135,6 @@ class USERS_MODEL extends Users implements IdentityInterface
 
 	public function getUserType()
 	{
-		return UserType::findOne($this->USER_TYPE)->TYPE_NAME;
+		return UserType::findOne($this->USER_TYPE)->USER_TYPE_NAME;
 	}
 }
