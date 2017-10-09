@@ -16,6 +16,8 @@ use Yii;
  * @property string $EMAIL
  * @property int $LOCATION_ID
  * @property string $PASSWORD
+ * @property string $DATE_REGISTERED
+ * @property string $LAST_UPDATED
  *
  * @property Order[] $orders
  * @property Location $lOCATION
@@ -39,6 +41,7 @@ class Users extends \yii\db\ActiveRecord
         return [
             [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'PASSWORD'], 'required'],
             [['USER_TYPE', 'MOBILE', 'LOCATION_ID'], 'integer'],
+            [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD'], 'string', 'max' => 100],
             [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
             [['USER_TYPE'], 'exist', 'skipOnError' => true, 'targetClass' => UserType::className(), 'targetAttribute' => ['USER_TYPE' => 'USER_TYPE_ID']],
@@ -60,6 +63,8 @@ class Users extends \yii\db\ActiveRecord
             'EMAIL' => 'Email',
             'LOCATION_ID' => 'Location  ID',
             'PASSWORD' => 'Password',
+            'DATE_REGISTERED' => 'Date  Registered',
+            'LAST_UPDATED' => 'Last  Updated',
         ];
     }
 

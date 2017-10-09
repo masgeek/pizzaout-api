@@ -22,6 +22,7 @@ User_Type
  */
 use app\models\Users;
 use app\models\UserType;
+use yii\db\Expression;
 
 class USER_MODEL extends Users
 {
@@ -48,6 +49,17 @@ class USER_MODEL extends Users
 		$rules[] = [['PASSWORD'], 'string', 'min' => 1, 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
 		return $rules;
 	}
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->DATE_REGISTERED = new Expression('NOW()');
+            }
+            $this->LAST_UPDATED = new Expression('NOW()');
+        }
+        return false;
+    }
 
 	public function attributeLabels()
 	{
