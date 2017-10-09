@@ -57,6 +57,8 @@ class USER_MODEL extends Users
                 $this->DATE_REGISTERED = new Expression('NOW()');
             }
             $this->LAST_UPDATED = new Expression('NOW()');
+
+            return true;
         }
         return false;
     }
