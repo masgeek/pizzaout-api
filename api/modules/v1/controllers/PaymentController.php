@@ -9,31 +9,33 @@
 namespace app\api\modules\v1\controllers;
 
 
-
-
-use app\api\modules\v1\models\ALL_SALON_PAYMENTS;
-use app\api\modules\v1\models\PAYMENT_MODEL;
-use Yii;
-use yii\data\ActiveDataProvider;
-use yii\db\Expression;
 use yii\rest\ActiveController;
 
-use yii\web\BadRequestHttpException;
-
-use app\api\modules\v1\models\RECEIPTS_MODEL;
-use app\api\modules\v1\models\RESERVATION_MODEL;
-
-use app\api\modules\v1\models\SERVICE_PAYMENTS;
-
+use Braintree_Configuration;
 
 class PaymentController extends ActiveController
 {
-	/**
-	 * @var object
-	 */
-	public $modelClass = 'app\api\modules\v1\models\PAYMENT_MODEL';
+    protected $merchant_id = 't6ygyzrt59f2m7mr';
+    protected $public_key = '5zzxx3744wv6qxp9';
+    protected $private_key = 'ae0a779df3f2396ff219fa69e27a38e2';
+    /**
+     * @var object
+     */
+    public $modelClass = 'app\api\modules\v1\models\PAYMENT_MODEL';
 
-	public function actionToken($client_id){
-	    return 4;
+    public function actionToken($user_id = false)
+    {
+
+        Braintree_Configuration::environment('sandbox');
+        Braintree_Configuration::merchantId($this->merchant_id);
+        Braintree_Configuration::publicKey($this->public_key);
+        Braintree_Configuration::privateKey($this->private_key);
+
+        $params = [
+            // 'customerId' => $user_id
+        ];
+        $clientToken = \Braintree_ClientToken::generate($params);
+
+        return $clientToken;
     }
 }
