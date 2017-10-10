@@ -96,7 +96,7 @@ $config = [
 						'POST assign-staff' => 'assign-staff',
 						'POST {id}/add-service' => 'add-service',
 						'POST add-service' => 'remove-service',
-						'POST {id}/pay' => 'pay',
+						'POST {user_id}/pay' => 'pay',
 						'GET account-type' => 'account-type',
 
                         'POST generate' => 'generate',

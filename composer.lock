@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bc8a69faf8b91e1a362f81f24cc4036",
+    "content-hash": "b4dd096711aae3c8615f9d221f19d666",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -2531,6 +2531,49 @@
             "time": "2017-10-06T13:21:14+00:00"
         },
         {
+            "name": "pafelin/laravel-nonce",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pafelin/laravel4-nonces.git",
+                "reference": "34d2fe8a8af19070bbae68b8ab05faadb36eb89b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pafelin/laravel4-nonces/zipball/34d2fe8a8af19070bbae68b8ab05faadb36eb89b",
+                "reference": "34d2fe8a8af19070bbae68b8ab05faadb36eb89b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pafelin\\LaravelNonce": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Genov",
+                    "email": "pavel@taskprocess.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generete nonces",
+            "keywords": [
+                "generator",
+                "illuminate",
+                "laravel4",
+                "nonce"
+            ],
+            "time": "2013-10-23T15:10:15+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.11",
             "source": {
@@ -4893,12 +4936,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "0f75bd70b53565ab4145020302bae56882962a96"
+                "reference": "4752ac97dea523b0accf2f5b1d0d497c0f574222"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/0f75bd70b53565ab4145020302bae56882962a96",
-                "reference": "0f75bd70b53565ab4145020302bae56882962a96",
+                "url": "https://api.github.com/repos/symfony/console/zipball/4752ac97dea523b0accf2f5b1d0d497c0f574222",
+                "reference": "4752ac97dea523b0accf2f5b1d0d497c0f574222",
                 "shasum": ""
             },
             "require": {
@@ -4954,7 +4997,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T07:56:07+00:00"
+            "time": "2017-10-10T10:38:39+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -5015,12 +5058,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "44c8fb3f90cb8d9c9ebb10890ef4d945e3094e62"
+                "reference": "147025beafa520d0e0fee9dbd073636ef819f675"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/44c8fb3f90cb8d9c9ebb10890ef4d945e3094e62",
-                "reference": "44c8fb3f90cb8d9c9ebb10890ef4d945e3094e62",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/147025beafa520d0e0fee9dbd073636ef819f675",
+                "reference": "147025beafa520d0e0fee9dbd073636ef819f675",
                 "shasum": ""
             },
             "require": {
@@ -5063,7 +5106,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:49:52+00:00"
+            "time": "2017-10-10T10:38:39+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -5550,7 +5593,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pafelin/laravel-nonce": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
