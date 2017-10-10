@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4dd096711aae3c8615f9d221f19d666",
+    "content-hash": "22aba2fd92c5c80c731804e8ec93de6c",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -3131,6 +3131,58 @@
             "time": "2017-10-08T22:01:58+00:00"
         },
         {
+            "name": "yiisoft/yii2-authclient",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-authclient.git",
+                "reference": "eec33d8584558aac1ec8d68ba605a898cee2d6e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/eec33d8584558aac1ec8d68ba605a898cee2d6e8",
+                "reference": "eec33d8584558aac1ec8d68ba605a898cee2d6e8",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-httpclient": "~2.0.1"
+            },
+            "suggest": {
+                "spomky-labs/jose": "required for JWS,JWT or JWK related flows like OpenIDConnect"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\authclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "External authentication via OAuth and OpenID for the Yii framework",
+            "keywords": [
+                "OpenID Connect",
+                "OpenId",
+                "api",
+                "auth",
+                "oauth",
+                "yii2"
+            ],
+            "time": "2017-06-23T09:45:49+00:00"
+        },
+        {
             "name": "yiisoft/yii2-bootstrap",
             "version": "dev-master",
             "source": {
@@ -3225,6 +3277,53 @@
                 "yii2"
             ],
             "time": "2017-08-01T14:22:25+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-httpclient",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-httpclient.git",
+                "reference": "4f82ef36021af046ddd3ccb857b334af8e596c79"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/4f82ef36021af046ddd3ccb857b334af8e596c79",
+                "reference": "4f82ef36021af046ddd3ccb857b334af8e596c79",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\httpclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "HTTP client extension for the Yii framework",
+            "keywords": [
+                "curl",
+                "http",
+                "httpclient",
+                "yii2"
+            ],
+            "time": "2017-10-06T19:57:33+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -5594,7 +5693,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "pafelin/laravel-nonce": 20
+        "pafelin/laravel-nonce": 20,
+        "yiisoft/yii2-authclient": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
