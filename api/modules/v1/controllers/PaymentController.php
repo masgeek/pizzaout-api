@@ -34,7 +34,8 @@ class PaymentController extends ActiveController
         $token = $payment->GetToken();//$payment->CreateSale($nonce);
 
         return [
-            'CLIENT_TOKEN' => $token
+            'CLIENT_TOKEN' => $token,
+            'PAYMENT_NONCE' => $nonce
         ];
     }
 }
