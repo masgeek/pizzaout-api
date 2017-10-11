@@ -29,7 +29,7 @@ class PaymentHelper
 
     public function GetToken(array $params = [])
     {
-        $clientToken = \Braintree_ClientToken::generate($params);
+        $clientToken = \Braintree_ClientToken::generate();
 
         return $clientToken;
     }
