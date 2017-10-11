@@ -13,7 +13,7 @@ use Pafelin\LaravelNonce\Nonce;
 
 class PaymentHelper
 {
-    protected $merchant_id = 'tsobu2';
+    protected $merchant_id = 'tsobuenterprise';
     protected $public_key = '5zzxx3744wv6qxp9';
     protected $private_key = 'ae0a779df3f2396ff219fa69e27a38e2';
 
