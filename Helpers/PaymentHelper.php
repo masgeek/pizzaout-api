@@ -13,14 +13,15 @@ use Pafelin\LaravelNonce\Nonce;
 
 class PaymentHelper
 {
-    protected $merchant_id = 'tsobuenterprise';
-    protected $public_key = '5zzxx3744wv6qxp9';
-    protected $private_key = 'ae0a779df3f2396ff219fa69e27a38e2';
+    protected $merchant_id = 't6ygyzrt59f2m7mr';
+    protected $public_key = 't6ygyzrt59f2m7mr';
+    protected $private_key = '1c7d269df330dd2ab3077d6c7d0e7941';
 
     public $environment = 'sandbox';
 
     function __construct()
     {
+
         Braintree_Configuration::environment($this->environment);
         Braintree_Configuration::merchantId($this->merchant_id);
         Braintree_Configuration::publicKey($this->public_key);

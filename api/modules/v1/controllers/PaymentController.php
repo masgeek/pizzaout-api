@@ -22,7 +22,11 @@ class PaymentController extends ActiveController
 
     public function actionPay($user_id)
     {
-        return $user_id;
+        $payment = new PaymentHelper();
+        $nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
+        $resp = $payment->CreateSale($nonce);
+
+        return $resp;
     }
 
     public function actionToken($user_id = false)
