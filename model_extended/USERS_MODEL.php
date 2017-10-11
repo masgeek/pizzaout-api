@@ -77,7 +77,7 @@ class USERS_MODEL extends Users implements IdentityInterface
                 ->one();
         }
         if ($userModel != null) {
-            $account_found = static::findOne(['USER_ID' => $userModel->User_ID]);
+            $account_found = static::findOne(['USER_ID' => $userModel->USER_ID]);
         }
         return $account_found;
     }
