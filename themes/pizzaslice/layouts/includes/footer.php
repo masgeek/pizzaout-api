@@ -7,7 +7,7 @@ use yii\helpers\Html;
     <!-- footer top -->
     <div class="row">
         <div class="col-sm-12 col-md-3">
-            <h3 class="widget-title">EOCTION</h3>
+            <h3 class="widget-title">PIZZA SLICE</h3>
             <div class="textwidget">
                 <?= Html::a('About Us', ['//site/about'], ['title' => 'About our company']); ?><br>
                 <?= Html::a('Terms &amp; Conditions', ['//site/terms'], ['title' => 'Terms &amp; Conditions']); ?><br>
