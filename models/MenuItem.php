@@ -10,13 +10,12 @@ use Yii;
  * @property int $MENU_ITEM_ID
  * @property int $MENU_CAT_ID
  * @property string $MENU_ITEM_NAME
- * @property string $MENU_ITEM_PRICE
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
  * @property int $HOT_DEAL
  *
- * @property ItemType[] $itemTypes
  * @property MenuCategory $mENUCAT
+ * @property MenuItemType[] $menuItemTypes
  */
 class MenuItem extends \yii\db\ActiveRecord
 {
@@ -34,9 +33,8 @@ class MenuItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['MENU_CAT_ID', 'MENU_ITEM_NAME', 'MENU_ITEM_PRICE', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'required'],
+            [['MENU_CAT_ID', 'MENU_ITEM_NAME', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'required'],
             [['MENU_CAT_ID', 'HOT_DEAL'], 'integer'],
-            [['MENU_ITEM_PRICE'], 'number'],
             [['MENU_ITEM_NAME', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'string', 'max' => 255],
             [['MENU_CAT_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuCategory::className(), 'targetAttribute' => ['MENU_CAT_ID' => 'MENU_CAT_ID']],
         ];
@@ -51,7 +49,6 @@ class MenuItem extends \yii\db\ActiveRecord
             'MENU_ITEM_ID' => 'Menu  Item  ID',
             'MENU_CAT_ID' => 'Menu  Cat  ID',
             'MENU_ITEM_NAME' => 'Menu  Item  Name',
-            'MENU_ITEM_PRICE' => 'Menu  Item  Price',
             'MENU_ITEM_DESC' => 'Menu  Item  Desc',
             'MENU_ITEM_IMAGE' => 'Menu  Item  Image',
             'HOT_DEAL' => 'Hot  Deal',
@@ -61,16 +58,16 @@ class MenuItem extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getItemTypes()
+    public function getMENUCAT()
     {
-        return $this->hasMany(ItemType::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
+        return $this->hasOne(MenuCategory::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMENUCAT()
+    public function getMenuItemTypes()
     {
-        return $this->hasOne(MenuCategory::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
+        return $this->hasMany(MenuItemType::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
     }
 }

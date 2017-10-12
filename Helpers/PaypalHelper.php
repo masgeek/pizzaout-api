@@ -17,6 +17,9 @@ class PaypalHelper
 
     protected $apiContext;
 
+    /**
+     * PaypalHelper constructor.
+     */
     function __construct()
     {
         $this->apiContext = new \PayPal\Rest\ApiContext(

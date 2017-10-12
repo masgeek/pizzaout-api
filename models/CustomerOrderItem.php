@@ -18,7 +18,7 @@ use Yii;
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
  *
- * @property ItemType $iTEMTYPE
+ * @property MenuItemType $iTEMTYPE
  * @property CustomerOrder $oRDER
  */
 class CustomerOrderItem extends \yii\db\ActiveRecord
@@ -43,7 +43,7 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['OPTIONS'], 'string', 'max' => 100],
             [['NOTES'], 'string', 'max' => 200],
-            [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
+            [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
             [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
         ];
     }
@@ -72,7 +72,7 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
      */
     public function getITEMTYPE()
     {
-        return $this->hasOne(ItemType::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
+        return $this->hasOne(MenuItemType::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
     }
 
     /**

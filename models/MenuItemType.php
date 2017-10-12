@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "item_type".
+ * This is the model class for table "menu_item_type".
  *
  * @property int $ITEM_TYPE_ID
  * @property int $MENU_ITEM_ID
@@ -17,14 +17,14 @@ use Yii;
  * @property CustomerOrderItem[] $customerOrderItems
  * @property MenuItem $mENUITEM
  */
-class ItemType extends \yii\db\ActiveRecord
+class MenuItemType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'item_type';
+        return 'menu_item_type';
     }
 
     /**
