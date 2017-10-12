@@ -73,8 +73,8 @@ class CustomerOrder extends \yii\db\ActiveRecord
             'ORDER_DATE' => 'Order  Date',
             'ORDER_PRICE' => 'Order  Price',
             'PAYMENT_METHOD' => 'Payment  Method',
-            'ORDER_STATUS' => 'Order  Status',
-            'NOTES' => 'Notes',
+            'ORDER_STATUS' => 'Status of the order',
+            'NOTES' => 'Can contain payment text from mobile transactions etc',
             'CREATED_AT' => 'Created  At',
             'UPDATED_AT' => 'Updated  At',
         ];
