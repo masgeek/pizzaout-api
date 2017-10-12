@@ -14,7 +14,7 @@ use Pafelin\LaravelNonce\Nonce;
 class PaymentHelper
 {
     protected $merchant_id = 't6ygyzrt59f2m7mr';
-    protected $public_key = 't6ygyzrt59f2m7mr';
+    protected $public_key = 'tgp4fy8pdcvtq2g6';
     protected $private_key = '1c7d269df330dd2ab3077d6c7d0e7941';
 
     public $environment = 'sandbox';
@@ -30,9 +30,9 @@ class PaymentHelper
 
     public function GetToken(array $params = [])
     {
-        //$clientToken = \Braintree_ClientToken::generate();
+        $clientToken = \Braintree_ClientToken::generate();
 
-        $clientToken  = \Braintree_MerchantAccount::find($this->merchant_id);
+        //$clientToken  = \Braintree_MerchantAccount::find($this->merchant_id);
         return $clientToken;
     }
 
