@@ -2,13 +2,15 @@
 
 namespace app\models;
 
+
+use app\model_extended\USERS_MODEL;
 use Yii;
 use yii\base\Model;
 
 /**
  * LoginForm is the model behind the login form.
  *
- * @property User|null $user This property is read-only.
+ * @property USERS_MODEL|null $user This property is read-only.
  *
  */
 class LoginForm extends Model
@@ -68,12 +70,12 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return USERS_MODEL|null
      */
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = USERS_MODEL::findByUsername($this->username);
         }
 
         return $this->_user;
