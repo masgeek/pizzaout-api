@@ -21,7 +21,7 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => 'themes/eoction'
+                    '@app/views' => 'themes/pizzaslice'
                 ],
             ]
         ],
