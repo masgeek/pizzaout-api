@@ -23,7 +23,6 @@ $config = [
                 'pathMap' => [
                     '@app/views' => 'themes/eoction'
                 ],
-                //'baseUrl' => 'themes/eoction' /* base url */
             ]
         ],
 		'fcm' => $fcm,
