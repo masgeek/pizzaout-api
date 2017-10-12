@@ -39,7 +39,8 @@
         "understeam/yii2-fcm": "~0.1",
         "braintree/braintree_php" : "3.25.0",
         "pafelin/laravel-nonce": "dev-master",
-        "yiisoft/yii2-authclient": "^2.0@dev"
+        "yiisoft/yii2-authclient": "^2.0@dev",
+        "paypal/rest-api-sdk-php": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
