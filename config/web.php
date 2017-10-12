@@ -17,6 +17,15 @@ $config = [
 		]
 	],
 	'components' => [
+        /* custom view template*/
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => 'themes/eoction'
+                ],
+                //'baseUrl' => 'themes/eoction' /* base url */
+            ]
+        ],
 		'fcm' => $fcm,
 		'pdf' => [
 			'class' => \kartik\mpdf\Pdf::classname(),
