@@ -10,6 +10,8 @@ use Yii;
  * @property int $ORDER_ID
  * @property int $USER_ID
  * @property int $LOCATION_ID
+ * @property int $CHEF_ID
+ * @property int $RIDER_ID
  * @property int $ORDER_QUANTITY
  * @property string $ORDER_DATE
  * @property string $ORDER_PRICE
@@ -21,7 +23,10 @@ use Yii;
  *
  * @property Users $uSER
  * @property Location $lOCATION
+ * @property Riders $rIDER
+ * @property Chef $cHEF
  * @property CustomerOrderItem[] $customerOrderItems
+ * @property Payment[] $payments
  */
 class CustomerOrder extends \yii\db\ActiveRecord
 {
@@ -40,7 +45,7 @@ class CustomerOrder extends \yii\db\ActiveRecord
     {
         return [
             [['USER_ID', 'LOCATION_ID', 'ORDER_QUANTITY', 'ORDER_DATE', 'ORDER_PRICE', 'PAYMENT_METHOD', 'ORDER_STATUS'], 'required'],
-            [['USER_ID', 'LOCATION_ID', 'ORDER_QUANTITY'], 'integer'],
+            [['USER_ID', 'LOCATION_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['ORDER_PRICE'], 'number'],
             [['PAYMENT_METHOD'], 'string', 'max' => 20],
@@ -48,6 +53,8 @@ class CustomerOrder extends \yii\db\ActiveRecord
             [['NOTES'], 'string', 'max' => 255],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
             [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
+            [['RIDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Riders::className(), 'targetAttribute' => ['RIDER_ID' => 'RIDER_ID']],
+            [['CHEF_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Chef::className(), 'targetAttribute' => ['CHEF_ID' => 'CHEF_ID']],
         ];
     }
 
@@ -60,6 +67,8 @@ class CustomerOrder extends \yii\db\ActiveRecord
             'ORDER_ID' => 'Order  ID',
             'USER_ID' => 'User  ID',
             'LOCATION_ID' => 'Location  ID',
+            'CHEF_ID' => 'Chef  ID',
+            'RIDER_ID' => 'Rider  ID',
             'ORDER_QUANTITY' => 'Order  Quantity',
             'ORDER_DATE' => 'Order  Date',
             'ORDER_PRICE' => 'Order  Price',
@@ -90,8 +99,32 @@ class CustomerOrder extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getRIDER()
+    {
+        return $this->hasOne(Riders::className(), ['RIDER_ID' => 'RIDER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCHEF()
+    {
+        return $this->hasOne(Chef::className(), ['CHEF_ID' => 'CHEF_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCustomerOrderItems()
     {
         return $this->hasMany(CustomerOrderItem::className(), ['ORDER_ID' => 'ORDER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPayments()
+    {
+        return $this->hasMany(Payment::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 }

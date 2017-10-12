@@ -12,6 +12,7 @@ use Yii;
  * @property int $KITCHEN_ID
  *
  * @property Kitchen $kITCHEN
+ * @property CustomerOrder[] $customerOrders
  */
 class Chef extends \yii\db\ActiveRecord
 {
@@ -54,5 +55,13 @@ class Chef extends \yii\db\ActiveRecord
     public function getKITCHEN()
     {
         return $this->hasOne(Kitchen::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCustomerOrders()
+    {
+        return $this->hasMany(CustomerOrder::className(), ['CHEF_ID' => 'CHEF_ID']);
     }
 }

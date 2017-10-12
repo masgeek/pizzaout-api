@@ -11,6 +11,8 @@ use Yii;
  * @property string $RIDER_NAME
  * @property string $RIDER_MOBILE
  * @property int $RIDER_STATUS
+ *
+ * @property CustomerOrder[] $customerOrders
  */
 class Riders extends \yii\db\ActiveRecord
 {
@@ -46,5 +48,13 @@ class Riders extends \yii\db\ActiveRecord
             'RIDER_MOBILE' => 'Rider  Mobile',
             'RIDER_STATUS' => 'Rider  Status',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCustomerOrders()
+    {
+        return $this->hasMany(CustomerOrder::className(), ['RIDER_ID' => 'RIDER_ID']);
     }
 }

@@ -14,6 +14,8 @@ use Yii;
  * @property double $PAYMENT_AMOUNT
  * @property string $PAYMENT_DATE
  * @property string $PAYMENT_STATUS
+ *
+ * @property CustomerOrder $oRDER
  */
 class Payment extends \yii\db\ActiveRecord
 {
@@ -38,6 +40,7 @@ class Payment extends \yii\db\ActiveRecord
             [['PAYMENT_REF'], 'string', 'max' => 255],
             [['PAYMENT_CHANNEL'], 'string', 'max' => 10],
             [['PAYMENT_STATUS'], 'string', 'max' => 50],
+            [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
         ];
     }
 
@@ -55,5 +58,13 @@ class Payment extends \yii\db\ActiveRecord
             'PAYMENT_DATE' => 'Payment  Date',
             'PAYMENT_STATUS' => 'Payment  Status',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getORDER()
+    {
+        return $this->hasOne(CustomerOrder::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 }

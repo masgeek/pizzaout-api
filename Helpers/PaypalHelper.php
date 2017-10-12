@@ -29,7 +29,7 @@ class PaypalHelper
         $this->apiContext->setConfig(
             array(
                 'log.LogEnabled' => true,
-                'log.FileName' => 'PayPalPizaa.log',
+                'log.FileName' => 'PayPalPizza.log',
                 'log.LogLevel' => 'DEBUG'
             )
         );
