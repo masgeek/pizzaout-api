@@ -15,8 +15,8 @@ use Yii;
  * @property string $MENU_ITEM_IMAGE
  * @property int $HOT_DEAL
  *
+ * @property ItemType[] $itemTypes
  * @property MenuCategory $mENUCAT
- * @property OrderItem[] $orderItems
  */
 class MenuItem extends \yii\db\ActiveRecord
 {
@@ -61,16 +61,16 @@ class MenuItem extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMENUCAT()
+    public function getItemTypes()
     {
-        return $this->hasOne(MenuCategory::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
+        return $this->hasMany(ItemType::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderItems()
+    public function getMENUCAT()
     {
-        return $this->hasMany(OrderItem::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
+        return $this->hasOne(MenuCategory::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
     }
 }

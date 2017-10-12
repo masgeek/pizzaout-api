@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "order".
+ * This is the model class for table "customer_order".
  *
  * @property int $ORDER_ID
  * @property int $USER_ID
@@ -14,22 +14,23 @@ use Yii;
  * @property string $ORDER_DATE
  * @property string $ORDER_PRICE
  * @property string $PAYMENT_METHOD
- * @property string $ORDER_STATUS
+ * @property string $ORDER_STATUS Status of the order
+ * @property string $NOTES Can contain payment text from mobile transactions etc
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
  *
  * @property Users $uSER
  * @property Location $lOCATION
- * @property OrderItem[] $orderItems
+ * @property CustomerOrderItem[] $customerOrderItems
  */
-class Order extends \yii\db\ActiveRecord
+class CustomerOrder extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'order';
+        return 'customer_order';
     }
 
     /**
@@ -43,7 +44,8 @@ class Order extends \yii\db\ActiveRecord
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['ORDER_PRICE'], 'number'],
             [['PAYMENT_METHOD'], 'string', 'max' => 20],
-            [['ORDER_STATUS'], 'string', 'max' => 255],
+            [['ORDER_STATUS'], 'string', 'max' => 10],
+            [['NOTES'], 'string', 'max' => 255],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
             [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
         ];
@@ -63,6 +65,7 @@ class Order extends \yii\db\ActiveRecord
             'ORDER_PRICE' => 'Order  Price',
             'PAYMENT_METHOD' => 'Payment  Method',
             'ORDER_STATUS' => 'Order  Status',
+            'NOTES' => 'Notes',
             'CREATED_AT' => 'Created  At',
             'UPDATED_AT' => 'Updated  At',
         ];
@@ -87,8 +90,8 @@ class Order extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderItems()
+    public function getCustomerOrderItems()
     {
-        return $this->hasMany(OrderItem::className(), ['ORDER_ID' => 'ORDER_ID']);
+        return $this->hasMany(CustomerOrderItem::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 }

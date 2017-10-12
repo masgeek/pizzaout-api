@@ -5,11 +5,11 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "order_item".
+ * This is the model class for table "customer_order_item".
  *
  * @property int $ORDER_ITEM_ID
  * @property int $ORDER_ID
- * @property int $MENU_ITEM_ID
+ * @property int $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $PRICE
  * @property string $SUBTOTAL
@@ -18,17 +18,17 @@ use Yii;
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
  *
- * @property MenuItem $mENUITEM
- * @property Order $oRDER
+ * @property ItemType $iTEMTYPE
+ * @property CustomerOrder $oRDER
  */
-class OrderItem extends \yii\db\ActiveRecord
+class CustomerOrderItem extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'order_item';
+        return 'customer_order_item';
     }
 
     /**
@@ -37,14 +37,14 @@ class OrderItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'MENU_ITEM_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'OPTIONS', 'NOTES', 'CREATED_AT'], 'required'],
-            [['ORDER_ID', 'MENU_ITEM_ID', 'QUANTITY'], 'integer'],
+            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'OPTIONS', 'NOTES', 'CREATED_AT'], 'required'],
+            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
             [['PRICE', 'SUBTOTAL'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['OPTIONS'], 'string', 'max' => 100],
             [['NOTES'], 'string', 'max' => 200],
-            [['MENU_ITEM_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItem::className(), 'targetAttribute' => ['MENU_ITEM_ID' => 'MENU_ITEM_ID']],
-            [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
+            [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
+            [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
         ];
     }
 
@@ -56,7 +56,7 @@ class OrderItem extends \yii\db\ActiveRecord
         return [
             'ORDER_ITEM_ID' => 'Order  Item  ID',
             'ORDER_ID' => 'Order  ID',
-            'MENU_ITEM_ID' => 'Menu  Item  ID',
+            'ITEM_TYPE_ID' => 'Item  Type  ID',
             'QUANTITY' => 'Quantity',
             'PRICE' => 'Price',
             'SUBTOTAL' => 'Subtotal',
@@ -70,9 +70,9 @@ class OrderItem extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMENUITEM()
+    public function getITEMTYPE()
     {
-        return $this->hasOne(MenuItem::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
+        return $this->hasOne(ItemType::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
     }
 
     /**
@@ -80,6 +80,6 @@ class OrderItem extends \yii\db\ActiveRecord
      */
     public function getORDER()
     {
-        return $this->hasOne(Order::className(), ['ORDER_ID' => 'ORDER_ID']);
+        return $this->hasOne(CustomerOrder::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 }

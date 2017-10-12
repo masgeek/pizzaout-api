@@ -10,6 +10,7 @@ namespace app\api\modules\v1\controllers;
 
 
 use app\Helpers\PaymentHelper;
+use app\Helpers\PaypalHelper;
 use yii\rest\ActiveController;
 
 
@@ -22,10 +23,13 @@ class PaymentController extends ActiveController
 
     public function actionPay($user_id)
     {
-        $payment = new PaymentHelper();
-        $nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
-        $resp = $payment->CreateSale($nonce);
+        //$payment = new PaymentHelper();
+        //$nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
+        //$resp = $payment->CreateSale($nonce);
 
+        $payment = new PaypalHelper();
+
+        $resp = $payment->CreateCard();
         return $resp;
     }
 

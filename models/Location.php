@@ -10,7 +10,7 @@ use Yii;
  * @property int $LOCATION_ID
  * @property string $LOCATION_NAME
  *
- * @property Order[] $orders
+ * @property CustomerOrder[] $customerOrders
  * @property Users[] $users
  */
 class Location extends \yii\db\ActiveRecord
@@ -48,9 +48,9 @@ class Location extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrders()
+    public function getCustomerOrders()
     {
-        return $this->hasMany(Order::className(), ['LOCATION_ID' => 'LOCATION_ID']);
+        return $this->hasMany(CustomerOrder::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 
     /**
