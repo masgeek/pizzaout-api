@@ -9,6 +9,11 @@
 namespace app\Helpers;
 
 
+use PayPal\Api\CreditCard;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PayPalConnectionException;
+use PayPal\Rest\ApiContext;
+
 class PaypalHelper
 {
 
@@ -22,8 +27,8 @@ class PaypalHelper
      */
     function __construct()
     {
-        $this->apiContext = new \PayPal\Rest\ApiContext(
-            new \PayPal\Auth\OAuthTokenCredential(
+        $this->apiContext = new ApiContext(
+            new OAuthTokenCredential(
                 $this->client_id,     // ClientID
                 $this->client_secret      // ClientSecret
             )
@@ -40,7 +45,7 @@ class PaypalHelper
 
     public function CreateCard()
     {
-        $creditCard = new \PayPal\Api\CreditCard();
+        $creditCard = new CreditCard();
         $creditCard->setType("visa")
             ->setNumber("4417119669820331")
             ->setExpireMonth("11")
@@ -53,7 +58,7 @@ class PaypalHelper
             $creditCard->create($this->apiContext);
             return  $creditCard;
         }
-        catch (\PayPal\Exception\PayPalConnectionException $ex) {
+        catch (PayPalConnectionException $ex) {
             // This will print the detailed information on the exception.
             //REALLY HELPFUL FOR DEBUGGING
             return  $ex->getData();
