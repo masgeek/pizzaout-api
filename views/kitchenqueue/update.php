@@ -22,6 +22,10 @@ $items = [
 		'label' => '<i class="glyphicon glyphicon-apple"></i> Order Items',
 		'content' => $this->render('/orders/_order_items', ['model' => $model]),
 	],
+	[
+		'label' => '<i class="glyphicon glyphicon-credit-card"></i> Payment Details',
+		'content' => $this->render('/orders/_payment_info', ['model' => $model]),
+	],
 ];
 
 ?>
@@ -34,7 +38,7 @@ $items = [
 		'items' => $items,
 		'position' => TabsX::POS_ABOVE,
 		'encodeLabels' => false,
-		'bordered'=>true,
+		'bordered' => true,
 	]);
 	?>
 </div>

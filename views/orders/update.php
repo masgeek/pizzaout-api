@@ -23,7 +23,7 @@ $items = [
 		'content' => $this->render('/orders/_order_items', ['model' => $model]),
 	],
 	[
-		'label' => '<i class="glyphicon glyphicon-credit-card"></i> Payment Info',
+		'label' => '<i class="glyphicon glyphicon-credit-card"></i> Payment Details',
 		'content' => $this->render('/orders/_payment_info', ['model' => $model]),
 	],
 ];
