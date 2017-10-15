@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Update';
 $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-home"></i> Order Details',
-		'content' => $this->render('_order_form', ['model' => $model, 'tracker' => $tracker]),
+		'content' => $this->render('_order_details', ['model' => $model, 'tracker' => $tracker]),
 		'active' => true
 	],
 	[
