@@ -12,6 +12,7 @@ use Yii;
  * @property string $CITY_ID
  * @property string $OPENING_TIME
  * @property string $CLOSING_TIME
+ * @property string $ADDRESS
  *
  * @property Chef[] $chefs
  * @property CustomerOrder[] $customerOrders
@@ -37,6 +38,7 @@ class Kitchen extends \yii\db\ActiveRecord
             [['KITCHEN_NAME', 'CITY_ID'], 'required'],
             [['CITY_ID'], 'integer'],
             [['OPENING_TIME', 'CLOSING_TIME'], 'safe'],
+            [['ADDRESS'], 'string'],
             [['KITCHEN_NAME'], 'string', 'max' => 100],
             [['CITY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['CITY_ID' => 'CITY_ID']],
         ];
@@ -53,6 +55,7 @@ class Kitchen extends \yii\db\ActiveRecord
             'CITY_ID' => 'City  ID',
             'OPENING_TIME' => 'Opening  Time',
             'CLOSING_TIME' => 'Closing  Time',
+            'ADDRESS' => 'Address',
         ];
     }
 
