@@ -4,7 +4,7 @@
 ?>
 
 
-<table class="table table-condensed table-hover GeneratedTable">
+<table class="table table-striped table-hover table-bordered GeneratedTable">
     <thead>
     <tr>
         <th>Order No</th>
