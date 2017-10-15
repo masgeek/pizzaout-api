@@ -11,88 +11,12 @@ use kartik\depdrop\DepDrop;
 /* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
 /* @var $form yii\widgets\ActiveForm */
 
-$attributes = [
-	[
-		'group' => true,
-		'label' => 'Order Details',
-		'rowOptions' => ['class' => 'success']
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'ORDER_ID',
-				//'label'=>'Book #',
-				'displayOnly' => true,
-				'valueColOptions' => ['style' => 'width:30%']
-			],
-			[
-				'attribute' => 'ORDER_PRICE',
-				//'label'=>'Buy Amount ($)',
-				'displayOnly' => true,
-				'format' => ['decimal', 2],
-				'inputContainer' => ['class' => 'col-sm-6'],
-			],
-
-		],
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'LOCATION_ID',
-				'value' => "{$model->lOCATION->LOCATION_NAME}",
-			],
-			[
-				'attribute' => 'ORDER_STATUS',
-				'format' => 'raw',
-				'value' => "<span class='badge' style='background-color: {$model->oRDERSTATUS->COLOR};'> </span>  <code>" . $model->ORDER_STATUS . '</code>',
-				'type' => DetailView::INPUT_COLOR,
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'ORDER_QUANTITY',
-			],
-			[
-				'attribute' => 'ORDER_DATE',
-				'format' => 'datetime',
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'RIDER_ID',
-			],
-			[
-				'attribute' => 'CHEF_ID',
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'PAYMENT_METHOD',
-			],
-			[
-				'attribute' => 'NOTES',
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-
-];
 
 ?>
 
 <div class="customer-orders-view">
-	<?= DetailView::widget([
+	<?= $this->render('_static_view', [
 		'model' => $model,
-		'attributes' => $attributes,
 	]) ?>
 </div>
 
@@ -118,19 +42,19 @@ $attributes = [
 			<?= $form->field($model, 'CHEF_ID')->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
 					'prompt' => '--- SELECT KITCHEN ---',
 					'id' => 'chef-kitchen',
-                    'enabled'=>false
+					'enabled' => false
 				]
 			) ?>
         </div>
         <!--<div class="col-md-6">
 			<?= $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
-				'options' => ['id' => 'chef-id'],
-				'pluginOptions' => [
-					'depends' => ['chef-kitchen'],
-					'placeholder' => '--- SELECT CHEF ---',
-					'url' => Url::to(['/chef/chef-list'])
-				]
-			]); ?>
+			'options' => ['id' => 'chef-id'],
+			'pluginOptions' => [
+				'depends' => ['chef-kitchen'],
+				'placeholder' => '--- SELECT CHEF ---',
+				'url' => Url::to(['/chef/chef-list'])
+			]
+		]); ?>
         </div>-->
     </div>
 

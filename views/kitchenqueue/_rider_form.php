@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div id="staus-history">
-	<?= $this->render('_static_view', [
+	<?= $this->render('/orders/_static_view', [
 		'model' => $model,
 	]) ?>
 </div>
