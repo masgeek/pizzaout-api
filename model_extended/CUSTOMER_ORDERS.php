@@ -53,7 +53,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$tracker->ORDER_ID = $this->ORDER_ID;
 		$tracker->STATUS = $this->ORDER_STATUS;
 		$tracker->TRACKING_DATE = new Expression('NOW()');
-		//$tracker->save();
+		$tracker->save();
 	}
 
 	/**
