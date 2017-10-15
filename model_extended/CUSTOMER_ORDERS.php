@@ -32,6 +32,19 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		return $labels;
 	}
 
+	public function beforeSave($insert)
+	{
+		$date = new Expression('NOW()');
+		if (parent::beforeSave($insert)) {
+			if ($this->isNewRecord) {
+				$this->CREATED_AT = $date;
+			}
+			$this->UPDATED_AT = $date;
+			return true;
+		}
+		return false;
+	}
+
 	public function afterSave($insert, $changedAttributes)
 	{
 		parent::afterSave($insert, $changedAttributes);
