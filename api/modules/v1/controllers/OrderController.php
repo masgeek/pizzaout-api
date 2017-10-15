@@ -32,13 +32,14 @@ class OrderController extends ActiveController
 
 		$date = new Expression('NOW()');
 
+		$order_status = 'PENDING';
 		$post = [
 			'PAYMENT_MODEL' => [
 				'ORDER_ID' => 1,
 				'PAYMENT_REF' => uniqid('PIZZA_'),
 				'PAYMENT_CHANNEL' => 'MOBILE',
 				'PAYMENT_AMOUNT' => 400,
-				'PAYMENT_STATUS' => 'PENDING',
+				'PAYMENT_STATUS' => $order_status,
 				'PAYMENT_NOTES' => 'N/A',
 			],
 			'CUSTOMER_ORDER_ITEM' => [
@@ -53,18 +54,11 @@ class OrderController extends ActiveController
 			'CUSTOMER_ORDER_MODEL' => [
 				'USER_ID' => $user_id,
 				'LOCATION_ID' => 1,
-				//'KITCHEN_ID',
-				//'CHEF_ID',
-				//'RIDER_ID',
 				'ORDER_QUANTITY' => 2,
-				//'ORDER_DATE',
 				'ORDER_PRICE' => 400,
 				'PAYMENT_METHOD' => 'MOBILE',
-				'ORDER_STATUS' => 'PENDING',
+				'ORDER_STATUS' => $order_status,
 				'NOTES' => 'EXTRA CHEESE',
-				//'CREATED_AT',
-				//'UPDATED_AT',
-				//'UPDATED_AT'
 			]
 		];
 
