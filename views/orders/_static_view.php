@@ -1,4 +1,5 @@
 <?php
+
 use kartik\detail\DetailView;
 
 /* @var $this yii\web\View */
@@ -91,16 +92,7 @@ $attributes = [
 ];
 ?>
 
-
-<div class="customer-orders-view">
-	<?= DetailView::widget([
-		'model' => $model,
-		'attributes' => $attributes,
-	]) ?>
-</div>
-
-<div id="staus-history">
-	<?= $this->render('_status_history', [
-		'model' => $model,
-	]) ?>
-</div>
+<?= DetailView::widget([
+	'model' => $model,
+	'attributes' => $attributes,
+]) ?>

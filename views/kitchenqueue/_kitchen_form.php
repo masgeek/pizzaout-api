@@ -15,6 +15,12 @@ use yii\widgets\ActiveForm;
 	]) ?>
 </div>
 
+<div id="staus-history">
+	<?= $this->render('/orders/_status_history', [
+		'model' => $model,
+	]) ?>
+</div>
+
 <div class="customer-orders-form">
 	<?php $form = ActiveForm::begin(); ?>
     <div class="row">
