@@ -16,7 +16,8 @@ class STATUS_MODEL extends Status
 {
 	public static function GetStatus()
 	{
-		$status = self::find()->all();
+		$status = self::find()
+			->all();
 
 		$listData = ArrayHelper::map($status, 'STATUS_NAME', 'STATUS_NAME');
 

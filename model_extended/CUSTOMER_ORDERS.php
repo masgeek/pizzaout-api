@@ -10,6 +10,7 @@ namespace app\model_extended;
 
 
 use app\models\CustomerOrder;
+use app\models\OrderTracking;
 use yii\db\Expression;
 
 class CUSTOMER_ORDERS extends CustomerOrder
@@ -36,6 +37,14 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$tracker->ORDER_ID = $this->ORDER_ID;
 		$tracker->STATUS = $this->ORDER_STATUS;
 		$tracker->TRACKING_DATE = new Expression('NOW()');
-		$tracker->save();
+		//$tracker->save();
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getOrderTrackings()
+	{
+		return $this->hasMany(OrderTracking::className(), ['ORDER_ID' => 'ORDER_ID'])->orderBy(['TRACKING_DATE' => SORT_DESC]);
 	}
 }

@@ -4,7 +4,7 @@
 ?>
 
 
-<table class="table table-condensed table-bordered table-striped">
+<table class="table table-condensed table-hover GeneratedTable">
     <thead>
     <tr>
         <th>Date</th>
@@ -25,3 +25,12 @@
 	<?php endforeach; ?>
     </tbody>
 </table>
+
+<!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
+<style>
+    table.GeneratedTable thead {
+        background-color: #adb37c;
+        color: #fefeff;
+    }
+</style>
+

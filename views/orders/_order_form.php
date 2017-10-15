@@ -6,6 +6,7 @@ use kartik\detail\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
+/* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
 /* @var $form yii\widgets\ActiveForm */
 
 $attributes = [
@@ -101,10 +102,18 @@ $attributes = [
 
 <div class="customer-orders-form">
 	<?php $form = ActiveForm::begin(); ?>
-    <!--?= $form->field($model, 'ORDER_STATUS')->textInput(['maxlength' => true]) ?-->
-	<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus()) ?>
+    <div class="row">
+        <div class="col-md-6">
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus(), ['prompt' => '--- SELECT STATUS ---']) ?>
+        </div>
+        <div class="col-md-6">
+			<?= $form->field($tracker, 'COMMENTS')->textarea(['cols' => 4, 'rows' => 2]) ?>
+        </div>
+    </div>
+	<?= $form->field($model, 'CHEF_ID')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus(), ['prompt' => '--- SELECT STATUS ---']) ?>
+	<?= $form->field($model, 'RIDER_ID')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus(), ['prompt' => '--- SELECT STATUS ---']) ?>
     <div class="form-group">
-		<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+		<?= Html::submitButton('UPDATE ORDER', ['class' => 'btn btn-success']) ?>
     </div>
 
 	<?php ActiveForm::end(); ?>
