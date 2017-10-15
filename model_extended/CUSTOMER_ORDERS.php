@@ -21,6 +21,9 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$labels = parent::attributeLabels();
 		$labels['LOCATION_ID'] = 'Location';
 		$labels['USER_ID'] = 'Customer';
+		$labels['KITCHEN_ID'] = 'Assign Kitchen';
+		$labels['CHEF_ID'] = 'Assign Chef';
+		$labels['RIDER_ID'] = 'Assign Rider';
 		$labels['NOTES'] = 'Notes';
 		$labels['ORDER_PRICE'] = 'Total';
 		$labels['PAYMENT_METHOD'] = 'Payment';

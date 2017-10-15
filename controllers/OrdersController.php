@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\model_extended\KITCHEN_MODEL;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use Yii;
 use app\model_extended\CUSTOMER_ORDERS;
@@ -35,6 +36,17 @@ class OrdersController extends Controller
 	 * @return mixed
 	 */
 	public function actionIndex()
+	{
+		$searchModel = new OrdersSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+		return $this->render('index', [
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+		]);
+	}
+
+	public function actionKitchen()
 	{
 		$searchModel = new OrdersSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -89,11 +101,10 @@ class OrdersController extends Controller
 
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			$tracker->isNewRecord = true;
 			$tracker->ORDER_ID = $model->ORDER_ID;
 			$tracker->STATUS = $model->ORDER_STATUS;
 			if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
-				//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+				return $this->redirect(['update', 'id' => $model->ORDER_ID]);
 			}
 		}
 

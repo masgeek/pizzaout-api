@@ -2,18 +2,19 @@
 
 namespace app\controllers;
 
+use app\model_extended\KITCHEN_MODEL;
+use app\model_extended\STATUS_TRACKING_MODEL;
 use Yii;
-use app\model_extended\CHEF_MODEL;
-use yii\data\ActiveDataProvider;
-use yii\helpers\Json;
+use app\model_extended\CUSTOMER_ORDERS;
+use app\models_search\OrdersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ChefController implements the CRUD actions for CHEF_MODEL model.
+ * KitchenqueueController implements the CRUD actions for CUSTOMER_ORDERS model.
  */
-class ChefController extends Controller
+class KitchenqueueController extends Controller
 {
 	/**
 	 * @inheritdoc
@@ -30,50 +31,24 @@ class ChefController extends Controller
 		];
 	}
 
-	public function actionChefList()
-	{
-
-		$out = [];
-		if (isset($_POST['depdrop_parents'])) {
-			$parents = $_POST['depdrop_parents'];
-			if ($parents != null) {
-				$kitchen_id = $parents[0];
-				$chef_list = CHEF_MODEL::GetChefs($kitchen_id);
-				// the getSubCatList function will query the database based on the
-				// cat_id and return an array like below:
-				// [
-				//    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
-				//    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
-				// ]
-				foreach ($chef_list as $key => $value) {
-					$out[] = [
-						'id' => $key,
-						'name' => $value
-					];
-				}
-				///echo Json::encode(['output' => $out, 'selected' => '']);
-			}
-		}
-		return Json::encode(['output' => $out, 'selected' => '']);
-	}
-
 	/**
-	 * Lists all CHEF_MODEL models.
+	 * Lists all CUSTOMER_ORDERS models.
 	 * @return mixed
 	 */
 	public function actionIndex()
 	{
-		$dataProvider = new ActiveDataProvider([
-			'query' => CHEF_MODEL::find(),
-		]);
+		$this->view->title = 'Kitchen Queue';
+		$searchModel = new OrdersSearch();
+		$dataProvider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams);
 
-		return $this->render('index', [
+		return $this->render('/kitchenqueue/index', [
+			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
 		]);
 	}
 
 	/**
-	 * Displays a single CHEF_MODEL model.
+	 * Displays a single CUSTOMER_ORDERS model.
 	 * @param string $id
 	 * @return mixed
 	 */
@@ -85,16 +60,16 @@ class ChefController extends Controller
 	}
 
 	/**
-	 * Creates a new CHEF_MODEL model.
+	 * Creates a new CUSTOMER_ORDERS model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
 	public function actionCreate()
 	{
-		$model = new CHEF_MODEL();
+		$model = new CUSTOMER_ORDERS();
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->CHEF_ID]);
+			return $this->redirect(['view', 'id' => $model->ORDER_ID]);
 		}
 
 		return $this->render('create', [
@@ -103,7 +78,7 @@ class ChefController extends Controller
 	}
 
 	/**
-	 * Updates an existing CHEF_MODEL model.
+	 * Updates an existing CUSTOMER_ORDERS model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param string $id
 	 * @return mixed
@@ -112,17 +87,24 @@ class ChefController extends Controller
 	{
 		$model = $this->findModel($id);
 
+		$tracker = new STATUS_TRACKING_MODEL();
+
+
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->CHEF_ID]);
+			$tracker->ORDER_ID = $model->ORDER_ID;
+			if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
+				return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+			}
 		}
 
 		return $this->render('update', [
 			'model' => $model,
+			'tracker' => $tracker
 		]);
 	}
 
 	/**
-	 * Deletes an existing CHEF_MODEL model.
+	 * Deletes an existing CUSTOMER_ORDERS model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 * @param string $id
 	 * @return mixed
@@ -135,15 +117,15 @@ class ChefController extends Controller
 	}
 
 	/**
-	 * Finds the CHEF_MODEL model based on its primary key value.
+	 * Finds the CUSTOMER_ORDERS model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 * @param string $id
-	 * @return CHEF_MODEL the loaded model
+	 * @return CUSTOMER_ORDERS the loaded model
 	 * @throws NotFoundHttpException if the model cannot be found
 	 */
 	protected function findModel($id)
 	{
-		if (($model = CHEF_MODEL::findOne($id)) !== null) {
+		if (($model = CUSTOMER_ORDERS::findOne($id)) !== null) {
 			return $model;
 		}
 

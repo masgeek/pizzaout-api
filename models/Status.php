@@ -9,6 +9,7 @@ use Yii;
  *
  * @property string $STATUS_NAME
  * @property string $COLOR
+ * @property string $SCOPE
  *
  * @property CustomerOrder[] $customerOrders
  * @property OrderTracking[] $orderTrackings
@@ -31,7 +32,7 @@ class Status extends \yii\db\ActiveRecord
         return [
             [['STATUS_NAME'], 'required'],
             [['STATUS_NAME'], 'string', 'max' => 20],
-            [['COLOR'], 'string', 'max' => 10],
+            [['COLOR', 'SCOPE'], 'string', 'max' => 10],
             [['STATUS_NAME'], 'unique'],
         ];
     }
@@ -44,6 +45,7 @@ class Status extends \yii\db\ActiveRecord
         return [
             'STATUS_NAME' => 'Status  Name',
             'COLOR' => 'Color',
+            'SCOPE' => 'Scope',
         ];
     }
 

@@ -6,7 +6,6 @@ use yii\helpers\Html;
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
 /* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
 
-$this->title = 'Update Customer  Orders: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Customer  Orders', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $model->ORDER_ID, 'url' => ['view', 'id' => $model->ORDER_ID]];
 $this->params['breadcrumbs'][] = 'Update';

@@ -10,6 +10,7 @@ use Yii;
  * @property string $ORDER_ID
  * @property string $USER_ID
  * @property string $LOCATION_ID
+ * @property string $KITCHEN_ID
  * @property string $CHEF_ID
  * @property string $RIDER_ID
  * @property int $ORDER_QUANTITY
@@ -24,8 +25,9 @@ use Yii;
  * @property Users $uSER
  * @property Location $lOCATION
  * @property Riders $rIDER
- * @property Chef $cHEF
+ * @property Kitchen $kITCHEN
  * @property Status $oRDERSTATUS
+ * @property Chef $cHEF
  * @property CustomerOrderItem[] $customerOrderItems
  * @property OrderTracking[] $orderTrackings
  * @property Payment[] $payments
@@ -47,7 +49,7 @@ class CustomerOrder extends \yii\db\ActiveRecord
     {
         return [
             [['USER_ID', 'LOCATION_ID', 'ORDER_QUANTITY', 'ORDER_DATE', 'ORDER_PRICE', 'PAYMENT_METHOD', 'ORDER_STATUS'], 'required'],
-            [['USER_ID', 'LOCATION_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
+            [['USER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['ORDER_PRICE'], 'number'],
             [['PAYMENT_METHOD', 'ORDER_STATUS'], 'string', 'max' => 20],
@@ -55,8 +57,9 @@ class CustomerOrder extends \yii\db\ActiveRecord
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
             [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
             [['RIDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Riders::className(), 'targetAttribute' => ['RIDER_ID' => 'RIDER_ID']],
-            [['CHEF_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Chef::className(), 'targetAttribute' => ['CHEF_ID' => 'CHEF_ID']],
+            [['KITCHEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Kitchen::className(), 'targetAttribute' => ['KITCHEN_ID' => 'KITCHEN_ID']],
             [['ORDER_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['ORDER_STATUS' => 'STATUS_NAME']],
+            [['CHEF_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Chef::className(), 'targetAttribute' => ['CHEF_ID' => 'CHEF_ID']],
         ];
     }
 
@@ -69,6 +72,7 @@ class CustomerOrder extends \yii\db\ActiveRecord
             'ORDER_ID' => 'Order  ID',
             'USER_ID' => 'User  ID',
             'LOCATION_ID' => 'Location  ID',
+            'KITCHEN_ID' => 'Kitchen  ID',
             'CHEF_ID' => 'Chef  ID',
             'RIDER_ID' => 'Rider  ID',
             'ORDER_QUANTITY' => 'Order  Quantity',
@@ -109,9 +113,9 @@ class CustomerOrder extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCHEF()
+    public function getKITCHEN()
     {
-        return $this->hasOne(Chef::className(), ['CHEF_ID' => 'CHEF_ID']);
+        return $this->hasOne(Kitchen::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
     }
 
     /**
@@ -120,6 +124,14 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function getORDERSTATUS()
     {
         return $this->hasOne(Status::className(), ['STATUS_NAME' => 'ORDER_STATUS']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCHEF()
+    {
+        return $this->hasOne(Chef::className(), ['CHEF_ID' => 'CHEF_ID']);
     }
 
     /**

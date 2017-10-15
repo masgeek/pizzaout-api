@@ -14,7 +14,9 @@ use Yii;
  * @property string $CLOSING_TIME
  *
  * @property Chef[] $chefs
+ * @property CustomerOrder[] $customerOrders
  * @property City $cITY
+ * @property Riders[] $riders
  */
 class Kitchen extends \yii\db\ActiveRecord
 {
@@ -65,8 +67,24 @@ class Kitchen extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getCustomerOrders()
+    {
+        return $this->hasMany(CustomerOrder::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCITY()
     {
         return $this->hasOne(City::className(), ['CITY_ID' => 'CITY_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRiders()
+    {
+        return $this->hasMany(Riders::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
     }
 }
