@@ -7,39 +7,28 @@ use yii\widgets\ActiveForm;
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="customer--orders-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'USER_ID')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'LOCATION_ID')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'CHEF_ID')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'RIDER_ID')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ORDER_QUANTITY')->textInput() ?>
-
-    <?= $form->field($model, 'ORDER_DATE')->textInput() ?>
-
-    <?= $form->field($model, 'ORDER_PRICE')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'PAYMENT_METHOD')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ORDER_STATUS')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'NOTES')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'CREATED_AT')->textInput() ?>
-
-    <?= $form->field($model, 'UPDATED_AT')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+<div class="customer-orders-form">
+	<?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-md-6">
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus(), ['prompt' => '--- SELECT STATUS ---']) ?>
+        </div>
+        <div class="col-md-6">
+			<?= $form->field($tracker, 'COMMENTS')->textarea(['cols' => 4, 'rows' => 2]) ?>
+        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="row">
+        <div class="col-md-12">
+			<?= $form->field($model, 'KITCHEN_ID')->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
+					'prompt' => '--- SELECT KITCHEN ---',
+				]
+			) ?>
+        </div>
+    </div>
+    <div class="form-group">
+		<?= Html::submitButton('UPDATE ORDER', ['class' => 'btn btn-success']) ?>
+    </div>
 
+	<?php ActiveForm::end(); ?>
 </div>

@@ -41,4 +41,8 @@ $items = [
 		'bordered' => true,
 	]);
 	?>
+
+	<?=
+	$this->render('_form', ['model' => $model, 'tracker' => $tracker])
+	?>
 </div>

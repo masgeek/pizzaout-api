@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Update';
 $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-home"></i> Order Details',
-		'content' => $this->render('_kitchen_form', ['model' => $model]),
+		'content' => $this->render('/orders/_order_form', ['model' => $model]),
 		'active' => true
 	],
 	[
@@ -40,5 +40,8 @@ $items = [
 		'encodeLabels' => false,
 		'bordered' => true,
 	]);
+	?>
+	<?=
+	$this->render('_kitchen_form', ['model' => $model, 'tracker' => $tracker])
 	?>
 </div>

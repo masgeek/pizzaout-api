@@ -8,19 +8,6 @@ use yii\widgets\ActiveForm;
 /* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div id="staus-history">
-	<?= $this->render('/orders/_static_view', [
-		'model' => $model,
-	]) ?>
-</div>
-
-<div id="staus-history">
-	<?= $this->render('/orders/_status_history', [
-		'model' => $model,
-	]) ?>
-</div>
-
 <div class="customer-orders-form">
 	<?php $form = ActiveForm::begin(); ?>
     <div class="row">
