@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "kitchen".
  *
- * @property int $KITCHEN_ID
+ * @property string $KITCHEN_ID
  * @property string $KITCHEN_NAME
- * @property int $CITY_ID
+ * @property string $CITY_ID
  * @property string $OPENING_TIME
  * @property string $CLOSING_TIME
  *

@@ -25,16 +25,10 @@ echo Nav::widget([
     //'options' => ['class' =>'nav navbar-nav'],
     'items' => [
         [
-            'label' => 'Manage Users',
-            'visible'=>Yii::$app->user->identity->usertype===\app\components\CUSTOM_HELPER::ADMIN_ACCOUNT,
+            'label' => 'Manage Orders',
+            //'visible'=>Yii::$app->user->identity->usertype===\app\components\CUSTOM_HELPER::ADMIN_ACCOUNT,
             'items' => [
-                ['label' => 'Pending Users', 'url' => ['/pending-users']],
-                '<li class="divider"></li>',
-                ['label' => 'Active Users', 'url' => ['/active-users']],
-                '<li class="divider"></li>',
-                ['label' => 'Suspended Users', 'url' => ['/suspended-users']],
-                '<li class="divider"></li>',
-                ['label' => 'Deactivated Users', 'url' => ['/deactivated-users']],
+                ['label' => 'Orders', 'url' => ['/orders']],
                 '<li class="divider"></li>',
             ],
         ],

@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "customer_order".
  *
- * @property int $ORDER_ID
- * @property int $USER_ID
- * @property int $LOCATION_ID
- * @property int $CHEF_ID
- * @property int $RIDER_ID
+ * @property string $ORDER_ID
+ * @property string $USER_ID
+ * @property string $LOCATION_ID
+ * @property string $CHEF_ID
+ * @property string $RIDER_ID
  * @property int $ORDER_QUANTITY
  * @property string $ORDER_DATE
  * @property string $ORDER_PRICE
@@ -73,8 +73,8 @@ class CustomerOrder extends \yii\db\ActiveRecord
             'ORDER_DATE' => 'Order  Date',
             'ORDER_PRICE' => 'Order  Price',
             'PAYMENT_METHOD' => 'Payment  Method',
-            'ORDER_STATUS' => 'Status of the order',
-            'NOTES' => 'Can contain payment text from mobile transactions etc',
+            'ORDER_STATUS' => 'Order  Status',
+            'NOTES' => 'Notes',
             'CREATED_AT' => 'Created  At',
             'UPDATED_AT' => 'Updated  At',
         ];

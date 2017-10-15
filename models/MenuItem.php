@@ -7,13 +7,14 @@ use Yii;
 /**
  * This is the model class for table "menu_item".
  *
- * @property int $MENU_ITEM_ID
- * @property int $MENU_CAT_ID
+ * @property string $MENU_ITEM_ID
+ * @property string $MENU_CAT_ID
  * @property string $MENU_ITEM_NAME
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
  * @property int $HOT_DEAL
  *
+ * @property ItemType[] $itemTypes
  * @property MenuCategory $mENUCAT
  * @property MenuItemType[] $menuItemTypes
  */
@@ -53,6 +54,14 @@ class MenuItem extends \yii\db\ActiveRecord
             'MENU_ITEM_IMAGE' => 'Menu  Item  Image',
             'HOT_DEAL' => 'Hot  Deal',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemTypes()
+    {
+        return $this->hasMany(ItemType::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
     }
 
     /**

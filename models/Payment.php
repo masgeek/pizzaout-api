@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "payment".
  *
  * @property int $PAYMENT_ID
- * @property int $ORDER_ID
+ * @property string $ORDER_ID
  * @property string $PAYMENT_REF
  * @property string $PAYMENT_CHANNEL
  * @property double $PAYMENT_AMOUNT
