@@ -131,7 +131,8 @@ class OrdersController extends Controller
 			$tracker->ORDER_ID = $model->ORDER_ID;
 			$tracker->STATUS = $model->ORDER_STATUS;
 			if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
-				return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+				//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+				return $this->redirect(['index']);
 			}
 		}
 

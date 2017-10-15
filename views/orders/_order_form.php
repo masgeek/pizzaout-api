@@ -38,29 +38,12 @@ use kartik\depdrop\DepDrop;
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-			<?= $form->field($model, 'CHEF_ID')->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
+        <div class="col-md-12">
+			<?= $form->field($model, 'KITCHEN_ID')->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
 					'prompt' => '--- SELECT KITCHEN ---',
-					'id' => 'chef-kitchen',
-					'enabled' => false
 				]
 			) ?>
         </div>
-        <!--<div class="col-md-6">
-			<?= $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
-			'options' => ['id' => 'chef-id'],
-			'pluginOptions' => [
-				'depends' => ['chef-kitchen'],
-				'placeholder' => '--- SELECT CHEF ---',
-				'url' => Url::to(['/chef/chef-list'])
-			]
-		]); ?>
-        </div>-->
-    </div>
-
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
     </div>
     <div class="form-group">
 		<?= Html::submitButton('UPDATE ORDER', ['class' => 'btn btn-success']) ?>

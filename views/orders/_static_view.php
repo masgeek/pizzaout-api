@@ -35,13 +35,15 @@ $attributes = [
 		'columns' => [
 			[
 				'attribute' => 'LOCATION_ID',
+				'displayOnly' => true,
 				'value' => "{$model->lOCATION->LOCATION_NAME}",
 			],
 			[
 				'attribute' => 'ORDER_STATUS',
 				'format' => 'raw',
+				'displayOnly' => true,
 				'value' => "<span class='badge' style='background-color: {$model->oRDERSTATUS->COLOR};'> </span>  <code>" . $model->ORDER_STATUS . '</code>',
-				'type' => DetailView::INPUT_COLOR,
+				//'type' => DetailView::INPUT_COLOR,
 				'valueColOptions' => ['style' => 'width:30%'],
 			],
 		],
@@ -50,9 +52,11 @@ $attributes = [
 		'columns' => [
 			[
 				'attribute' => 'ORDER_QUANTITY',
+				'displayOnly' => true,
 			],
 			[
 				'attribute' => 'ORDER_DATE',
+				'displayOnly' => true,
 				'format' => 'datetime',
 				'valueColOptions' => ['style' => 'width:30%'],
 			],
@@ -62,9 +66,11 @@ $attributes = [
 		'columns' => [
 			[
 				'attribute' => 'RIDER_ID',
+				'displayOnly' => true,
 			],
 			[
 				'attribute' => 'CHEF_ID',
+				'displayOnly' => true,
 				'valueColOptions' => ['style' => 'width:30%'],
 			],
 		],
@@ -73,6 +79,7 @@ $attributes = [
 		'columns' => [
 			[
 				'attribute' => 'KITCHEN_ID',
+				'displayOnly' => true,
 				'value' => $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'Not Assigned',
 			],
 		],
@@ -81,9 +88,11 @@ $attributes = [
 		'columns' => [
 			[
 				'attribute' => 'PAYMENT_METHOD',
+				'displayOnly' => true,
 			],
 			[
 				'attribute' => 'NOTES',
+				'displayOnly' => true,
 				'valueColOptions' => ['style' => 'width:30%'],
 			],
 		],
@@ -94,5 +103,6 @@ $attributes = [
 
 <?= DetailView::widget([
 	'model' => $model,
+	'mode'=>DetailView::MODE_VIEW,
 	'attributes' => $attributes,
 ]) ?>
