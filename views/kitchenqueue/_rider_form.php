@@ -20,20 +20,20 @@ use yii\widgets\ActiveForm;
     <div class="row">
 
         <div class="col-md-6">
-			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus([\app\Helpers\AppUtils::KITCHEN_SCOPE]), [
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus([\app\Helpers\AppUtils::RIDER_SCOPE]), [
 					'prompt' => '--- SELECT STATUS ---',
 				]
 			) ?>
         </div>
         <div class="col-md-6">
-			<?= $form->field($model, 'CHEF_ID')->dropDownList(\app\model_extended\CHEF_MODEL::GetChefs($model->KITCHEN_ID), [
-					'prompt' => '--- SELECT CHEF ---',
+			<?= $form->field($model, 'RIDER_ID')->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
+					'prompt' => '--- SELECT RIDER ---',
 				]
 			) ?>
         </div>
     </div>
     <div class="form-group">
-		<?= Html::submitButton('ADD TO QUEUE', ['class' => 'btn btn-primary btn-lg btn-block']) ?>
+		<?= Html::submitButton('Assign Rider', ['class' => 'btn btn-default btn-lg btn-block']) ?>
     </div>
 
 	<?php ActiveForm::end(); ?>

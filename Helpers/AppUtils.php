@@ -12,4 +12,5 @@ namespace app\Helpers;
 class AppUtils
 {
 	const KITCHEN_SCOPE = 'KITCHEN';
+	const RIDER_SCOPE = 'RIDER';
 }

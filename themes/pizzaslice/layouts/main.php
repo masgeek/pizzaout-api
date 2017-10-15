@@ -23,7 +23,7 @@ FontAssets::register($this);
     <!-- end navigation bar -->
 
 <!-- container -->
-<div class="container">
+<div class="container-fluid">
     <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
     ]) ?>
