@@ -18,6 +18,7 @@ $gridColumns = [
 			},
 		],
 		'urlCreator' => function ($action, $model, $key, $index) {
+			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
 			if ($action === 'update') {
 				$action = 'Process Order';
@@ -36,12 +37,15 @@ $gridColumns = [
 			},
 		],
 		'urlCreator' => function ($action, $model, $key, $index) {
+			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
-			if ($action === 'rider') {
-				$action = 'Assign Rider';
-				$url = \yii\helpers\Url::toRoute(['rider', 'id' => $model->ORDER_ID]);
-			}
+			if ($model->ORDER_STATUS == 'DELIVERY') {
+				if ($action === 'rider') {
 
+					$action = 'Assign Rider';
+					$url = \yii\helpers\Url::toRoute(['rider', 'id' => $model->ORDER_ID]);
+				}
+			}
 			return Html::a($action, $url, ['class' => 'btn btn-success btn-xs btn-block']);
 		},
 	],
