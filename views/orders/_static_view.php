@@ -73,7 +73,7 @@ $attributes = [
 		'columns' => [
 			[
 				'attribute' => 'KITCHEN_ID',
-				'value' => "{$model->kITCHEN->KITCHEN_NAME}",
+				'value' => $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'Not Assigned',
 			],
 		],
 	],
