@@ -35,7 +35,6 @@ class OrderController extends ActiveController
 		$order_status = 'PENDING';
 		$post = [
 			'PAYMENT_MODEL' => [
-				'ORDER_ID' => 1,
 				'PAYMENT_REF' => strtoupper(uniqid('PIZZA_')),
 				'PAYMENT_CHANNEL' => 'MOBILE',
 				'PAYMENT_AMOUNT' => 1200,
@@ -43,7 +42,6 @@ class OrderController extends ActiveController
 				'PAYMENT_NOTES' => 'N/A',
 			],
 			'CUSTOMER_ORDER_ITEM' => [
-				'ORDER_ID' => 1,
 				'ITEM_TYPE_ID' => 1,
 				'QUANTITY' => 1,
 				'PRICE' => 1200,
