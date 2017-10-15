@@ -20,7 +20,7 @@ $items = [
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-apple"></i> Order Items',
-		'content' => $this->render('_order_items', ['model' => $model]),
+		'content' => $this->render('/orders/_order_items', ['model' => $model]),
 	],
 ];
 

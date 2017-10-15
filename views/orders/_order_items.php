@@ -13,8 +13,6 @@
     </tr>
     </thead>
     <tbody>
-
-
 	<?php
 	foreach ($model->customerOrderItems as $orderItems):?>
         <tr>
