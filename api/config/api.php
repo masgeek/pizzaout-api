@@ -75,6 +75,7 @@ $config = [
 					'controller' => [
 						'v1/payment',
 						'v1/user',
+						'v1/order',
                         'v1/menucategory',
                         'v1/menuitem'
 					],
@@ -100,18 +101,6 @@ $config = [
 						'GET account-type' => 'account-type',
 
                         'POST generate' => 'generate',
-
-						'GET {id}/my-salons' => 'my-salons',
-						'GET {id}/my-services' => 'my-services',
-						'GET {id}/my-reservations' => 'my-reservations',
-						'GET {id}/reserved-services' => 'reserved-services',
-						'GET {id}/pending' => 'pending',
-						'GET {id}/confirmed' => 'confirmed',
-						'GET {id}/cancelled' => 'cancelled',
-						'GET {id}/confirmed-reservations' => 'confirmed-reservations',
-						'GET {id}/my-payments' => 'my-payments',
-						'GET {id}/reservation-payments' => 'reservation-payments',
-						'GET {user_id}/token' => 'token',
 					],
 				],
 			],

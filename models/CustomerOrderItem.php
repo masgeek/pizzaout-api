@@ -37,7 +37,7 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'OPTIONS', 'NOTES', 'CREATED_AT'], 'required'],
+            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'CREATED_AT'], 'required'],
             [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
             [['PRICE', 'SUBTOTAL'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],

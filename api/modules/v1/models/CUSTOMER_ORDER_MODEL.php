@@ -9,9 +9,9 @@
 namespace app\api\modules\v1\models;
 
 
-use app\models\Orders;
+use app\model_extended\CUSTOMER_ORDERS;
 
-class ORDER_MODEL extends Orders
+class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 {
 
 }
