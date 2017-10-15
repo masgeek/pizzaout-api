@@ -14,10 +14,9 @@ use yii\helpers\ArrayHelper;
 
 class KITCHEN_MODEL extends Kitchen
 {
-	public static function GetKitchens(array $scope = ['OFFICE', 'ALL'])
+	public static function GetKitchens()
 	{
 		$kitchen = self::find()
-			->where(['SCOPE' => $scope])
 			->all();
 
 		$listData = ArrayHelper::map($kitchen, 'KITCHEN_ID', 'KITCHEN_NAME');

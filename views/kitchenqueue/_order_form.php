@@ -113,7 +113,14 @@ $attributes = [
 <div class="customer-orders-form">
 	<?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="col-md-12">
+
+        <div class="col-md-6">
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus([\app\Helpers\AppUtils::KITCHEN_SCOPE]), [
+					'prompt' => '--- SELECT STATUS ---',
+				]
+			) ?>
+        </div>
+        <div class="col-md-6">
 			<?= $form->field($model, 'CHEF_ID')->dropDownList(\app\model_extended\CHEF_MODEL::GetChefs($model->KITCHEN_ID), [
 					'prompt' => '--- SELECT CHEF ---',
 				]

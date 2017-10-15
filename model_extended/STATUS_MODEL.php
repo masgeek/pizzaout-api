@@ -14,9 +14,10 @@ use yii\helpers\ArrayHelper;
 
 class STATUS_MODEL extends Status
 {
-	public static function GetStatus()
+	public static function GetStatus(array $scope = ['OFFICE', 'ALL'])
 	{
 		$status = self::find()
+			->where(['SCOPE' => $scope])
 			->all();
 
 		$listData = ArrayHelper::map($status, 'STATUS_NAME', 'STATUS_NAME');
