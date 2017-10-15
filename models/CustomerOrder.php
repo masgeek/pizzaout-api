@@ -25,7 +25,9 @@ use Yii;
  * @property Location $lOCATION
  * @property Riders $rIDER
  * @property Chef $cHEF
+ * @property Status $oRDERSTATUS
  * @property CustomerOrderItem[] $customerOrderItems
+ * @property OrderTracking[] $orderTrackings
  * @property Payment[] $payments
  */
 class CustomerOrder extends \yii\db\ActiveRecord
@@ -48,13 +50,13 @@ class CustomerOrder extends \yii\db\ActiveRecord
             [['USER_ID', 'LOCATION_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['ORDER_PRICE'], 'number'],
-            [['PAYMENT_METHOD'], 'string', 'max' => 20],
-            [['ORDER_STATUS'], 'string', 'max' => 10],
+            [['PAYMENT_METHOD', 'ORDER_STATUS'], 'string', 'max' => 20],
             [['NOTES'], 'string', 'max' => 255],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
             [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
             [['RIDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Riders::className(), 'targetAttribute' => ['RIDER_ID' => 'RIDER_ID']],
             [['CHEF_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Chef::className(), 'targetAttribute' => ['CHEF_ID' => 'CHEF_ID']],
+            [['ORDER_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['ORDER_STATUS' => 'STATUS_NAME']],
         ];
     }
 
@@ -115,9 +117,25 @@ class CustomerOrder extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getORDERSTATUS()
+    {
+        return $this->hasOne(Status::className(), ['STATUS_NAME' => 'ORDER_STATUS']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCustomerOrderItems()
     {
         return $this->hasMany(CustomerOrderItem::className(), ['ORDER_ID' => 'ORDER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderTrackings()
+    {
+        return $this->hasMany(OrderTracking::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 
     /**

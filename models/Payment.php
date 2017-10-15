@@ -39,7 +39,7 @@ class Payment extends \yii\db\ActiveRecord
             [['PAYMENT_DATE'], 'safe'],
             [['PAYMENT_REF'], 'string', 'max' => 255],
             [['PAYMENT_CHANNEL'], 'string', 'max' => 10],
-            [['PAYMENT_STATUS'], 'string', 'max' => 50],
+            [['PAYMENT_STATUS'], 'string', 'max' => 20],
             [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
         ];
     }
