@@ -84,7 +84,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 		$query = CUSTOMER_ORDERS::find();
 
 		// add conditions that should always apply here
-		$query->andWhere(['ORDER_STATUS' => ['CONFIRMED']]);
+		$query->andWhere(['ORDER_STATUS' => ['CONFIRMED', 'PREPARATION', 'COMPLETED']]);
 
 
 		$dataProvider = new ActiveDataProvider([

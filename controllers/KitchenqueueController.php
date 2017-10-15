@@ -63,8 +63,8 @@ class KitchenqueueController extends Controller
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			$tracker->ORDER_ID = $model->ORDER_ID;
 			$tracker->STATUS = $model->ORDER_STATUS;
-			if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
-				return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+			if ($tracker->save()) {
+				return $this->redirect(['index']);
 			}
 		}
 

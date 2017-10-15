@@ -14,7 +14,7 @@ $gridColumns = [
 
 	[
 		'class' => 'kartik\grid\ActionColumn',
-		'dropdown' => false,
+		'dropdown' => true,
 		'template' => '{update}',
 		'vAlign' => 'middle',
 		/*'urlCreator' => function ($action, $model, $key, $index) {
@@ -50,29 +50,22 @@ $gridColumns = [
 	'PAYMENT_METHOD',
 	'ORDER_STATUS',
 	'NOTES',
-	//'CREATED_AT:datetime',
-	//'UPDATED_AT:datetime',
-
-	//['class' => 'yii\grid\ActionColumn'],
 ];
 ?>
 <div class="customer-orders-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-		<?= Html::a('Create Customer  Orders', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
 		'columns' => $gridColumns,
-		'containerOptions' => ['style' => 'overflow: auto'], // only set when $responsive = false
+		//'containerOptions' => ['style' => 'overflow: auto'], // only set when $responsive = false
 		'beforeHeader' => [
 			[
 				'columns' => [
-					['content' => 'Customer Orders', 'options' => ['colspan' => 4, 'class' => 'text-center warning']],
+					['content' => 'Kitchen Queue Items', 'options' => ['colspan' => 4, 'class' => 'text-center success']],
 				],
 				'options' => ['class' => 'skip-export'] // remove this row from export
 			]

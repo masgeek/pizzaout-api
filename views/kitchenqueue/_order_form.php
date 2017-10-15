@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\detail\DetailView;
 use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
+use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
@@ -94,8 +95,8 @@ $attributes = [
 	],
 
 ];
-
 ?>
+
 
 <div class="customer-orders-view">
 	<?= DetailView::widget([
