@@ -74,32 +74,6 @@ class KitchenqueueController extends Controller
 		]);
 	}
 
-	/**
-	 * Updates an existing CUSTOMER_ORDERS model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param string $id
-	 * @return mixed
-	 */
-	public function actionRider($id)
-	{
-		$model = $this->findModel($id);
-
-		$tracker = new STATUS_TRACKING_MODEL();
-
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			$tracker->ORDER_ID = $model->ORDER_ID;
-			$tracker->STATUS = $model->ORDER_STATUS;
-			if ($tracker->save()) {
-				return $this->redirect(['index']);
-			}
-		}
-
-		return $this->render('/kitchenqueue/rider', [
-			'model' => $model,
-			'tracker' => $tracker
-		]);
-	}
 
 	/**
 	 * Deletes an existing CUSTOMER_ORDERS model.

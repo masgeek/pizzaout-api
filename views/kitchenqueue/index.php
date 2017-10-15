@@ -29,24 +29,6 @@ $gridColumns = [
 			return Html::a($action, $url, ['class' => 'btn btn-danger btn-xs btn-block']);
 		},
 	],
-	[
-		'class' => '\kartik\grid\ActionColumn',
-		'template' => '{rider}',
-		'buttons' => [
-			'rider' => function ($url, $model, $key) {
-				return $url;
-			},
-		],
-		'urlCreator' => function ($action, $model, $key, $index) {
-			$url = '#';
-			if ($action === 'rider') {
-				$action = 'Assign Rider';
-				$url = \yii\helpers\Url::toRoute(['rider', 'id' => $model->ORDER_ID]);
-			}
-
-			return Html::a($action, $url, ['class' => 'btn btn-success btn-xs btn-block']);
-		},
-	],
 	'ORDER_ID',
 	//'USER_ID',
 	[
