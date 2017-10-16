@@ -103,6 +103,12 @@ $attributes = [
 
 <?= DetailView::widget([
 	'model' => $model,
-	'mode'=>DetailView::MODE_VIEW,
+	'mode' => DetailView::MODE_VIEW,
+	'condensed' => true,
+	'hover' => true,
+	'panel' => [
+		'heading' => 'Order Information # ' . $model->ORDER_ID,
+		'type' => DetailView::TYPE_PRIMARY,
+	],
 	'attributes' => $attributes,
 ]) ?>
