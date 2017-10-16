@@ -1,6 +1,10 @@
 html,
 body {
     height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 30px;
+    margin-top: 30px;
+    background: #ebebeb;
 }
 
 .wrap {

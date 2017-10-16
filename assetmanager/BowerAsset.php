@@ -23,7 +23,7 @@ class BowerAsset extends AssetBundle
     );
     public $css = [
             //'animate.css/animate.min.css',
-            'tingle/dist/tingle.min.css'
+            //'tingle/dist/tingle.min.css'
     ];
     public $publishOptions = [
             //'forceCopy'=>true,
@@ -31,11 +31,11 @@ class BowerAsset extends AssetBundle
     public $js = [
             //'timer.jquery/dist/timer.jquery.js'
             //'countdown360/dist/jquery.countdown360.js'
-            'velocity/velocity.min.js',
+            //'velocity/velocity.min.js',
             //'velocity/velocity.ui.js',
-            //'//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js',
-            'tingle/dist/tingle.js',
-            'numeral/min/numeral.min.js'
+            '//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js',
+            //'tingle/dist/tingle.js',
+            //'numeral/min/numeral.min.js'
     ];
     public $depends = [
             'yii\web\JqueryAsset',
