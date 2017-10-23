@@ -1,5 +1,5 @@
 {
-  "name": "spa",
+  "name": "Pizza Slice",
   "homepage": "https://github.com/fatelord/spa",
   "authors": [
     "Sammy Barasa <barsamms@gmail.com>"
@@ -17,6 +17,11 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "magnific-popup": "^1.1.0",
+    "modernizer": "^2.8.2",
+    "jquery-mobile": "^1.4.5",
+    "nanoscroller": "^0.8.7",
+    "flot": "flot#^0.8.3"
   }
 }
