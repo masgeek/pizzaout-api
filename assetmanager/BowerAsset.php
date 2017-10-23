@@ -22,7 +22,7 @@ class BowerAsset extends AssetBundle
         'position' => \yii\web\View::POS_HEAD
     );
     public $css = [
-        'nanoscroller/bin/nanoscroller/css/nanoscroller.css',
+        'nanoscroller/bin/css/nanoscroller.css',
         'magnific-popup/dist/magnific-popup.css',
         //'animate.css/animate.min.css',
         //'tingle/dist/tingle.min.css'
@@ -33,24 +33,23 @@ class BowerAsset extends AssetBundle
     public $js = [
         'modernizer/modernizr.js',
         'magnific-popup/dist/jquery.magnific-popup.js',
-        'nanoscroller/bin/nanoscroller/javascripts/jquery.nanoscroller.js'
-        //'jquery-mobile/js/jquery.mobile.js'
-        //'timer.jquery/dist/timer.jquery.js'
-        //'countdown360/dist/jquery.countdown360.js'
-        //'velocity/velocity.min.js',
-        //'velocity/velocity.ui.js',
-        //'//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js',
-        //'tingle/dist/tingle.js',
-        //'numeral/min/numeral.min.js'
+        'nanoscroller/bin/javascripts/jquery.nanoscroller.js',
+        'flot/jquery.flot.js',
+        'flot.tooltip/js/jquery.flot.tooltip.js',
+        'flot/jquery.flot.pie.js',
+        'flot/jquery.flot.categories.js',
+        'flot/jquery.flot.resize.js',
+        'easypiechart/dist/jquery.easypiechart.js',
+        'jqvmap/dist/jquery.vmap.js',
+        'jqvmap/dist/maps/jquery.vmap.world.js',
+        'jqvmap/dist/maps/continents/jquery.vmap.africa.js',
+        'jqvmap/dist/maps/continents/jquery.vmap.asia.js',
+        'jqvmap/dist/maps/continents/jquery.vmap.australia.js',
+        'jqvmap/dist/maps/continents/jquery.vmap.europe.js',
+        'jqvmap/dist/maps/continents/jquery.vmap.north-america.js',
+        'jqvmap/dist/maps/continents/jquery.vmap.south-america.js',
+        'jqvmap/examples/js/jquery.vmap.sampledata.js',
     ];
-
-    /*
-     * <script src="assets2/vendor/flot/jquery.flot.js"></script>
-<script src="assets2/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
-<script src="assets2/vendor/flot/jquery.flot.pie.js"></script>
-<script src="assets2/vendor/flot/jquery.flot.categories.js"></script>
-<script src="assets2/vendor/flot/jquery.flot.resize.js"></script>
-     */
     public $depends = [
         'yii\web\JqueryAsset',
     ];

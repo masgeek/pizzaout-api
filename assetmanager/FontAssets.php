@@ -19,7 +19,7 @@ class FontAssets extends AssetBundle
         //'//fonts.googleapis.com/css?family=Ubuntu:400,700',
         //'//fonts.googleapis.com/css?family=Oswald:400,700',
         //'//fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700',
-	    '//fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+        //'//fonts.googleapis.com/css?family=Open+Sans:300,400,700'
     ];
     public $cssOptions = [
         'type' => 'text/css',
