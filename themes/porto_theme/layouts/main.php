@@ -4,14 +4,11 @@
 
 /* @var $content string */
 
-use yii\widgets\Breadcrumbs;
-use app\assetmanager\AppAsset;
-use app\assetmanager\FontAssets;
-use app\assetmanager\BowerAsset;
 
-AppAsset::register($this);
-BowerAsset::register($this);
-//FontAssets::register($this);
+\app\assetmanager\AppAsset::register($this);
+\app\assetmanager\BowerAsset::register($this);
+\app\assetmanager\CustomAssets::register($this);
+\app\assetmanager\FontAssets::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

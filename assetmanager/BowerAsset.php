@@ -32,6 +32,7 @@ class BowerAsset extends AssetBundle
     ];
     public $js = [
         'modernizer/modernizr.js',
+        'bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
         'magnific-popup/dist/jquery.magnific-popup.js',
         'nanoscroller/bin/javascripts/jquery.nanoscroller.js',
         'flot/jquery.flot.js',

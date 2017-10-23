@@ -16,11 +16,15 @@ class CustomAssets extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
-    public $jsOptions = array(
-        'position' => \yii\web\View::POS_HEAD
+    public $jsOptions = array(//'position' => \yii\web\View::POS_END
     );
 
     public $js = [
-        'js/liquid-meter/liquid.meter.js'
+        'js/jquery-browser-mobile/jquery.browser.mobile.js',
+        'js/liquid-meter/liquid.meter.js',
+        'js/theme/theme.js',
+        'js/theme/theme.custom.js',
+        'js/theme/theme.init.js',
+        'js/dashboard/examples.dashboard.js',
     ];
 }
