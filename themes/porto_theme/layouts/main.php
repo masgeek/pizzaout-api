@@ -13,7 +13,7 @@ use yii\widgets\Breadcrumbs;
 
 //$this->params['breadcrumbs'][] = ['label' => 'Rider  Models', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '#'];
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
