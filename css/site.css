@@ -1,6 +1,10 @@
 html,
 body {
     height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 30px;
+    margin-top: 30px;
+    background: #ebebeb;
 }
 
 .wrap {
@@ -41,7 +45,7 @@ a.asc:after, a.desc:after {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
+    font-family: 'Glyphicons Halflings', serif;
     font-style: normal;
     font-weight: normal;
     line-height: 1;

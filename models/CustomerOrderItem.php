@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "customer_order_item".
  *
  * @property int $ORDER_ITEM_ID
- * @property int $ORDER_ID
- * @property int $ITEM_TYPE_ID
+ * @property string $ORDER_ID
+ * @property string $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $PRICE
  * @property string $SUBTOTAL
@@ -37,7 +37,7 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'OPTIONS', 'NOTES', 'CREATED_AT'], 'required'],
+            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'CREATED_AT'], 'required'],
             [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
             [['PRICE', 'SUBTOTAL'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],

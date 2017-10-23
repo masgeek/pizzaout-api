@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "afae688dc94290bf6833361b09755b54",
+    "content-hash": "744a36bc0b5ff03ea3e955b9c18bdcd9",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -365,7 +365,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2017-08-22T10:13:04+00:00"
+            "time": "2017-08-22 10:13:04"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -576,7 +576,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2017-10-06T12:25:00+00:00"
+            "time": "2017-10-06 12:25:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -641,7 +641,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-10-07T03:19:56+00:00"
+            "time": "2017-10-07 03:19:56"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -694,7 +694,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-10-04T10:14:02+00:00"
+            "time": "2017-10-04 10:14:02"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -743,7 +743,7 @@
                 "popover",
                 "popover-x"
             ],
-            "time": "2017-09-09T18:26:15+00:00"
+            "time": "2017-09-09 18:26:15"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -787,7 +787,56 @@
                 "star",
                 "svg"
             ],
-            "time": "2017-09-06T17:23:12+00:00"
+            "time": "2017-09-06 17:23:12"
+        },
+        {
+            "name": "kartik-v/bootstrap-tabs-x",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-tabs-x.git",
+                "reference": "6eeac8de2aba01ddc24082d3d792ab056a9fcb07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-tabs-x/zipball/6eeac8de2aba01ddc24082d3d792ab056a9fcb07",
+                "reference": "6eeac8de2aba01ddc24082d3d792ab056a9fcb07",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\tabs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-tabs-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-tabs",
+                "tabs",
+                "tabs-x"
+            ],
+            "time": "2017-09-09 08:25:02"
         },
         {
             "name": "kartik-v/dependent-dropdown",
@@ -834,7 +883,7 @@
                 "option",
                 "select"
             ],
-            "time": "2017-08-01T11:43:55+00:00"
+            "time": "2017-08-01 11:43:55"
         },
         {
             "name": "kartik-v/yii2-date-range",
@@ -888,7 +937,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-08-08T04:26:22+00:00"
+            "time": "2017-08-08 04:26:22"
         },
         {
             "name": "kartik-v/yii2-detail-view",
@@ -943,7 +992,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-05-05T05:14:12+00:00"
+            "time": "2017-05-05 05:14:12"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -995,7 +1044,7 @@
                 "modal",
                 "yii2"
             ],
-            "time": "2017-09-26T16:04:46+00:00"
+            "time": "2017-09-26 16:04:46"
         },
         {
             "name": "kartik-v/yii2-dynagrid",
@@ -1055,7 +1104,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-29T08:29:13+00:00"
+            "time": "2017-09-29 08:29:13"
         },
         {
             "name": "kartik-v/yii2-editable",
@@ -1108,7 +1157,7 @@
                 "popover-x",
                 "widget"
             ],
-            "time": "2017-06-28T05:11:45+00:00"
+            "time": "2017-06-28 05:11:45"
         },
         {
             "name": "kartik-v/yii2-export",
@@ -1169,7 +1218,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2017-06-20T19:38:22+00:00"
+            "time": "2017-06-20 19:38:22"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -1222,7 +1271,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-10-08T06:59:07+00:00"
+            "time": "2017-10-08 06:59:07"
         },
         {
             "name": "kartik-v/yii2-helpers",
@@ -1273,7 +1322,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2017-07-06T10:26:18+00:00"
+            "time": "2017-07-06 10:26:18"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -1324,7 +1373,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-29T06:18:14+00:00"
+            "time": "2017-09-29 06:18:14"
         },
         {
             "name": "kartik-v/yii2-mpdf",
@@ -1376,7 +1425,7 @@
                 "utf8",
                 "yii2"
             ],
-            "time": "2017-07-19T09:51:02+00:00"
+            "time": "2017-07-19 09:51:02"
         },
         {
             "name": "kartik-v/yii2-popover-x",
@@ -1474,6 +1523,59 @@
             "time": "2015-06-17T17:34:48+00:00"
         },
         {
+            "name": "kartik-v/yii2-tabs-x",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-tabs-x.git",
+                "reference": "685eef44354194b36f6892de2f8288bcf12bc321"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-tabs-x/zipball/685eef44354194b36f6892de2f8288bcf12bc321",
+                "reference": "685eef44354194b36f6892de2f8288bcf12bc321",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-tabs-x": "~1.3",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\tabs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An extended bootstrap 3.0 tabs widget with ability to align tabs in multiple ways, add borders, rotated titles, and more.",
+            "homepage": "https://github.com/kartik-v/yii2-tabs-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-tabs",
+                "tabs",
+                "tabs-x"
+            ],
+            "time": "2017-05-04 12:30:21"
+        },
+        {
             "name": "kartik-v/yii2-widget-activeform",
             "version": "dev-master",
             "source": {
@@ -1523,7 +1625,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-11-24T17:29:45+00:00"
+            "time": "2016-11-24 17:29:45"
         },
         {
             "name": "kartik-v/yii2-widget-affix",
@@ -1572,7 +1674,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-03-21T16:55:54+00:00"
+            "time": "2016-03-21 16:55:54"
         },
         {
             "name": "kartik-v/yii2-widget-alert",
@@ -1627,7 +1729,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-03-10T17:08:52+00:00"
+            "time": "2017-03-10 17:08:52"
         },
         {
             "name": "kartik-v/yii2-widget-colorinput",
@@ -1681,7 +1783,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-22T12:51:04+00:00"
+            "time": "2017-09-22 12:51:04"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -1735,7 +1837,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-06T06:18:08+00:00"
+            "time": "2017-09-06 06:18:08"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -1784,7 +1886,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-07-18T08:42:00+00:00"
+            "time": "2017-07-18 08:42:00"
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
@@ -1833,7 +1935,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10T17:30:48+00:00"
+            "time": "2016-01-10 17:30:48"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -1888,7 +1990,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-06-24T19:36:32+00:00"
+            "time": "2017-06-24 19:36:32"
         },
         {
             "name": "kartik-v/yii2-widget-growl",
@@ -1937,7 +2039,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-05-03T08:23:04+00:00"
+            "time": "2015-05-03 08:23:04"
         },
         {
             "name": "kartik-v/yii2-widget-rangeinput",
@@ -1986,7 +2088,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-11-22T06:52:44+00:00"
+            "time": "2015-11-22 06:52:44"
         },
         {
             "name": "kartik-v/yii2-widget-rating",
@@ -2042,7 +2144,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-07-06T19:29:22+00:00"
+            "time": "2016-07-06 19:29:22"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -2095,7 +2197,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-04T15:30:52+00:00"
+            "time": "2017-09-04 15:30:52"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
@@ -2144,7 +2246,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-04-21T15:38:40+00:00"
+            "time": "2015-04-21 15:38:40"
         },
         {
             "name": "kartik-v/yii2-widget-spinner",
@@ -2192,7 +2294,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-07-10T17:53:26+00:00"
+            "time": "2015-07-10 17:53:26"
         },
         {
             "name": "kartik-v/yii2-widget-switchinput",
@@ -2242,7 +2344,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10T16:47:35+00:00"
+            "time": "2016-01-10 16:47:35"
         },
         {
             "name": "kartik-v/yii2-widget-timepicker",
@@ -2296,7 +2398,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-01-08T06:36:24+00:00"
+            "time": "2017-01-08 06:36:24"
         },
         {
             "name": "kartik-v/yii2-widget-touchspin",
@@ -2346,7 +2448,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10T17:10:39+00:00"
+            "time": "2016-01-10 17:10:39"
         },
         {
             "name": "kartik-v/yii2-widget-typeahead",
@@ -2399,7 +2501,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-08-01T04:05:16+00:00"
+            "time": "2017-08-01 04:05:16"
         },
         {
             "name": "kartik-v/yii2-widgets",
@@ -2461,7 +2563,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-09T19:54:17+00:00"
+            "time": "2014-11-09 19:54:17"
         },
         {
             "name": "mpdf/mpdf",
@@ -2528,7 +2630,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2017-10-06T13:21:14+00:00"
+            "time": "2017-10-06 13:21:14"
         },
         {
             "name": "pafelin/laravel-nonce",
@@ -2571,7 +2673,7 @@
                 "laravel4",
                 "nonce"
             ],
-            "time": "2013-10-23T15:10:15+00:00"
+            "time": "2013-10-23 15:10:15"
         },
         {
             "name": "paragonie/random_compat",
@@ -2726,7 +2828,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2017-10-05T18:36:51+00:00"
+            "time": "2017-10-05 18:36:51"
         },
         {
             "name": "phpoffice/phpexcel",
@@ -2788,7 +2890,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2017-03-02T00:38:00+00:00"
+            "time": "2017-03-02 00:38:00"
         },
         {
             "name": "psr/http-message",
@@ -2838,7 +2940,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -2885,7 +2987,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -3040,7 +3142,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-08-29T20:43:58+00:00"
+            "time": "2017-08-29 20:43:58"
         },
         {
             "name": "understeam/yii2-fcm",
@@ -3085,12 +3187,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "3f66a37dbc8386b7672540529a1ab3b8869fe813"
+                "reference": "6f376e7d78ae2afec8c0a37cb8c089e0148bb3b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3f66a37dbc8386b7672540529a1ab3b8869fe813",
-                "reference": "3f66a37dbc8386b7672540529a1ab3b8869fe813",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6f376e7d78ae2afec8c0a37cb8c089e0148bb3b0",
+                "reference": "6f376e7d78ae2afec8c0a37cb8c089e0148bb3b0",
                 "shasum": ""
             },
             "require": {
@@ -3177,7 +3279,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-10-08T22:01:58+00:00"
+            "time": "2017-10-15 09:09:27"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -3275,7 +3377,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2017-10-09T19:48:45+00:00"
+            "time": "2017-10-09 19:48:45"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -3325,7 +3427,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2017-08-01T14:22:25+00:00"
+            "time": "2017-08-01 14:22:25"
         },
         {
             "name": "yiisoft/yii2-httpclient",
@@ -3333,12 +3435,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-httpclient.git",
-                "reference": "4f82ef36021af046ddd3ccb857b334af8e596c79"
+                "reference": "6d47b2f0e83462a7ce0abcece6a80867cb6c7021"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/4f82ef36021af046ddd3ccb857b334af8e596c79",
-                "reference": "4f82ef36021af046ddd3ccb857b334af8e596c79",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/6d47b2f0e83462a7ce0abcece6a80867cb6c7021",
+                "reference": "6d47b2f0e83462a7ce0abcece6a80867cb6c7021",
                 "shasum": ""
             },
             "require": {
@@ -3372,7 +3474,7 @@
                 "httpclient",
                 "yii2"
             ],
-            "time": "2017-10-06T19:57:33+00:00"
+            "time": "2017-10-13 08:48:49"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -3483,7 +3585,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2017-08-30T11:04:59+00:00"
+            "time": "2017-08-30 11:04:59"
         },
         {
             "name": "bower-asset/typeahead.js",
@@ -3732,7 +3834,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14T21:17:01+00:00"
+            "time": "2015-06-14 21:17:01"
         },
         {
             "name": "fzaninotto/faker",
@@ -3824,7 +3926,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-04-12T18:52:22+00:00"
+            "time": "2017-04-12 18:52:22"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4008,7 +4110,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2016-04-07T12:29:16+00:00"
+            "time": "2016-04-07 12:29:16"
         },
         {
             "name": "phpspec/prophecy",
@@ -4071,7 +4173,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-09-04T11:05:03+00:00"
+            "time": "2017-09-04 11:05:03"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -4134,7 +4236,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-04-02T07:44:40+00:00"
+            "time": "2017-04-02 07:44:40"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4181,7 +4283,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2016-10-03T07:40:28+00:00"
+            "time": "2016-10-03 07:40:28"
         },
         {
             "name": "phpunit/php-text-template",
@@ -4271,7 +4373,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-03-07T15:42:04+00:00"
+            "time": "2017-03-07 15:42:04"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4320,7 +4422,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-03-07T08:21:50+00:00"
+            "time": "2017-03-07 08:21:50"
         },
         {
             "name": "phpunit/phpunit",
@@ -4461,7 +4563,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-06-30T09:13:00+00:00"
+            "time": "2017-06-30 09:13:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -4506,7 +4608,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04T10:23:55+00:00"
+            "time": "2017-03-04 10:23:55"
         },
         {
             "name": "sebastian/comparator",
@@ -4570,7 +4672,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-03-07T10:34:43+00:00"
+            "time": "2017-03-07 10:34:43"
         },
         {
             "name": "sebastian/diff",
@@ -4622,7 +4724,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-05-22T07:24:03+00:00"
+            "time": "2017-05-22 07:24:03"
         },
         {
             "name": "sebastian/environment",
@@ -4672,7 +4774,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-11-26T07:53:53+00:00"
+            "time": "2016-11-26 07:53:53"
         },
         {
             "name": "sebastian/exporter",
@@ -4739,7 +4841,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2017-03-07T10:36:49+00:00"
+            "time": "2017-03-07 10:36:49"
         },
         {
             "name": "sebastian/global-state",
@@ -4790,7 +4892,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2017-02-23T14:11:06+00:00"
+            "time": "2017-02-23 14:11:06"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -4836,7 +4938,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-03-07T10:37:45+00:00"
+            "time": "2017-03-07 10:37:45"
         },
         {
             "name": "sebastian/recursion-context",
@@ -4889,7 +4991,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2017-03-08T08:21:15+00:00"
+            "time": "2017-03-08 08:21:15"
         },
         {
             "name": "sebastian/resource-operations",
@@ -4931,7 +5033,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2016-10-03T07:43:09+00:00"
+            "time": "2016-10-03 07:43:09"
         },
         {
             "name": "sebastian/version",
@@ -4974,7 +5076,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2016-10-03T07:35:21+00:00"
+            "time": "2016-10-03 07:35:21"
         },
         {
             "name": "stecman/symfony-console-completion",
@@ -5481,7 +5583,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-14T15:44:48+00:00"
+            "time": "2017-06-14 15:44:48"
         },
         {
             "name": "symfony/yaml",
@@ -5589,7 +5691,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23T20:04:41+00:00"
+            "time": "2016-11-23 20:04:41"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -5683,7 +5785,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2017-08-02T13:01:06+00:00"
+            "time": "2017-08-02 13:01:06"
         },
         {
             "name": "yiisoft/yii2-gii",
