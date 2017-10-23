@@ -22,6 +22,7 @@ class BowerAsset extends AssetBundle
         'position' => \yii\web\View::POS_HEAD
     );
     public $css = [
+        'bootstrap-multiselect/dist/css/bootstrap-multiselect.css',
         'nanoscroller/bin/css/nanoscroller.css',
         'magnific-popup/dist/magnific-popup.css',
         //'animate.css/animate.min.css',

@@ -19,6 +19,12 @@ class CustomAssets extends AssetBundle
     public $jsOptions = array(//'position' => \yii\web\View::POS_END
     );
 
+    public $css = [
+        //'css/site.css',
+        'css/theme/theme.css',
+        'css/theme/skins/default.css',
+        'css/theme/theme-custom.css',
+    ];
     public $js = [
         'js/jquery-browser-mobile/jquery.browser.mobile.js',
         'js/liquid-meter/liquid.meter.js',
