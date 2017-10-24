@@ -62,8 +62,9 @@ TEMPLATE;
         <div class="row">
             <div class="col-sm-8">
                 <div class="checkbox-custom checkbox-default">
-                    <input id="RememberMe" name="rememberme" type="checkbox"/>
-                    <label for="RememberMe">Remember Me</label>
+                    <!--<input id="RememberMe" name="rememberme" type="checkbox"/>
+                    <label for="RememberMe">Remember Me</label>-->
+                    <?= $form->field($model, 'rememberMe')->checkbox(['template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>"]) ?>
                 </div>
             </div>
             <div class="col-sm-4 text-right">
