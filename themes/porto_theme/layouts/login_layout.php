@@ -24,7 +24,7 @@ use yii\widgets\Breadcrumbs;
 <!-- begin body content here -->
 <section class="body-sign">
     <div class="center-sign">
-        <a href="/" class="logo pull-left">
+        <a href="#" class="logo pull-left">
             <img src="assets/images/logo.png" height="54" alt="Porto Admin"/>
         </a>
         <?= $content ?>
