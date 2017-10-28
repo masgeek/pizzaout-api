@@ -8,21 +8,21 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
     "bootstrap-multiselect": "^0.9.13-1",
     "bootstrap3-dialog": "^1.35.4",
+    "dom-tools": "^0.1.0",
     "easy-pie-chart": "^2.1.7",
-    "flotjs": "^0.1.3",
+    "flot": "flot-charts#^0.8.3",
     "inputmask": "^3.3.10",
-    "jquery": "^3.2.1",
+    "jquery-flot-resize": "^1.0.0",
     "jquery-mobile": "^1.4.1",
     "jquery-sparkline": "^2.1.3",
     "jquery.flot.tooltip": "^0.9.0",
     "jqvmap": "^1.5.1",
     "magnific-popup": "^1.1.0",
     "modernizr": "^3.5.0",
-    "nanoscroller": "^0.8.7"
-  },
-  "scripts": {
-    "newinstall": "yarn install --modules-folder ./nod_modules"
+    "nanoscroller": "^0.8.7",
+    "wolfy87-eventemitter": "^4.3.0"
   }
 }

@@ -1,13 +1,17 @@
 // COMMON IMPORTS
 // -----------------------------------------------------------------------------
 @import "config/imports";
+
 // BASIC
 // -----------------------------------------------------------------------------
 @import "base/bootstrap_extend";
 @import "base/helpers";
 @import "base/form";
+
 // GUI
 // -----------------------------------------------------------------------------
+
+
 // MODULES
 // -----------------------------------------------------------------------------
 @import "modules/ui-elements/panels";
@@ -31,6 +35,7 @@
 @import "modules/forms/spinner";
 @import "modules/forms/form-group-invisible";
 @import "modules/forms/codemirror";
+
 // PAGES
 // -----------------------------------------------------------------------------
 @import "modules/pages/invoice";

@@ -1,98 +1,98 @@
 // SIZES
 // -----------------------------------------------------------------------------
 .text-xs {
-  @include font-size(10);
+	@include font-size( 10 );
 }
 
 .text-sm {
-  @include font-size(13);
+	@include font-size( 13 );
 }
 
 .text-md {
-  @include font-size(16);
+	@include font-size( 16 );
 }
 
 .text-lg {
-  @include font-size(19);
+	@include font-size( 19 );
 }
 
 .text-xl {
-  @include font-size(22);
+	@include font-size( 22 );
 }
 
 // STATES
 // -----------------------------------------------------------------------------
 .text-muted {
-  color: $color-muted !important;
+	color: $color-muted !important;
 }
 
 html.dark {
-  .text-muted {
-    color: darken($dark-default-text, 20%) !important;
-  }
+	.text-muted {
+		color: darken( $dark-default-text, 20% ) !important;
+	}
 }
 
 @each $color in $colors-list {
-  .text-#{nth($color,1)} {
-    color: #{nth($color,2)} !important;
-  }
+	.text-#{nth($color,1)} {
+		color: #{nth($color,2)} !important;
+	}
 }
 
 @each $color in $colors-list {
-  .text-#{nth($color,1)}-inverse {
-    color: #{nth($color,3)} !important;
-  }
+	.text-#{nth($color,1)}-inverse {
+		color: #{nth($color,3)} !important;
+	}
 }
 
 // WEIGHTS
 // -----------------------------------------------------------------------------
 /* weights */
 .text-weight-light {
-  font-weight: $font-weight-light;
+	font-weight: $font-weight-light;
 }
 
 .text-weight-normal {
-  font-weight: $font-weight-normal;
+	font-weight: $font-weight-normal;
 }
 
 .text-weight-semibold {
-  font-weight: $font-weight-semibold;
+	font-weight: $font-weight-semibold;
 }
 
 .text-weight-bold {
-  font-weight: $font-weight-bold;
+	font-weight: $font-weight-bold;
 }
 
 // TEXT OTHERS
 // -----------------------------------------------------------------------------
 .text-uppercase {
-  text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .text-lowercase {
-  text-transform: lowercase;
+	text-transform: lowercase;
 }
 
 .text-capitalize {
-  text-transform: capitalize;
+	text-transform: capitalize;
 }
 
 // BORDERS
 // -----------------------------------------------------------------------------
 .rounded {
-  border-radius: $border-radius;
+	border-radius: $border-radius;
 }
 
 .b-thin {
-  border-width: $border-thin;
+	border-width: $border-thin;
 }
 
 .b-normal {
-  border-width: $border-normal;
+	border-width: $border-normal;
 }
 
 .b-thick {
-  border-width: $border-thick;
+	border-width: $border-thick;
 }
 
 // SPACEMENTS
@@ -100,327 +100,327 @@ html.dark {
 /* Spacements */
 /* spacement top & bottom */
 .m-none {
-  margin: 0 !important;
+	margin: 0 !important;
 }
 
 .m-auto {
-  margin: 0 auto !important;
+	margin: 0 auto !important;
 }
 
 .m-xs {
-  margin: $spacement-xs !important;
+	margin: $spacement-xs !important;
 }
 
 .m-sm {
-  margin: $spacement-sm !important;
+	margin: $spacement-sm !important;
 }
 
 .m-md {
-  margin: $spacement-md !important;
+	margin: $spacement-md !important;
 }
 
 .m-lg {
-  margin: $spacement-lg !important;
+	margin: $spacement-lg !important;
 }
 
 .m-xl {
-  margin: $spacement-xl !important;
+	margin: $spacement-xl !important;
 }
 
 .m-xlg {
-  margin: $spacement-xlg !important;
+	margin: $spacement-xlg !important;
 }
 
 /* spacement top  */
 .mt-none {
-  margin-top: 0 !important;
+	margin-top: 0 !important;
 }
 
 .mt-xs {
-  margin-top: $spacement-xs !important;
+	margin-top: $spacement-xs !important;
 }
 
 .mt-sm {
-  margin-top: $spacement-sm !important;
+	margin-top: $spacement-sm !important;
 }
 
 .mt-md {
-  margin-top: $spacement-md !important;
+	margin-top: $spacement-md !important;
 }
 
 .mt-lg {
-  margin-top: $spacement-lg !important;
+	margin-top: $spacement-lg !important;
 }
 
 .mt-xl {
-  margin-top: $spacement-xl !important;
+	margin-top: $spacement-xl !important;
 }
 
 .mt-xlg {
-  margin-top: $spacement-xlg !important;
+	margin-top: $spacement-xlg !important;
 }
 
 /* spacement bottom  */
 .mb-none {
-  margin-bottom: 0 !important;
+	margin-bottom: 0 !important;
 }
 
 .mb-xs {
-  margin-bottom: $spacement-xs !important;
+	margin-bottom: $spacement-xs !important;
 }
 
 .mb-sm {
-  margin-bottom: $spacement-sm !important;
+	margin-bottom: $spacement-sm !important;
 }
 
 .mb-md {
-  margin-bottom: $spacement-md !important;
+	margin-bottom: $spacement-md !important;
 }
 
 .mb-lg {
-  margin-bottom: $spacement-lg !important;
+	margin-bottom: $spacement-lg !important;
 }
 
 .mb-xl {
-  margin-bottom: $spacement-xl !important;
+	margin-bottom: $spacement-xl !important;
 }
 
 .mb-xlg {
-  margin-bottom: $spacement-xlg !important;
+	margin-bottom: $spacement-xlg !important;
 }
 
 /* spacement left  */
 .mr-none {
-  margin-left: 0 !important;
+	margin-left: 0 !important;
 }
 
 .ml-xs {
-  margin-left: $spacement-xs !important;
+	margin-left: $spacement-xs !important;
 }
 
 .ml-sm {
-  margin-left: $spacement-sm !important;
+	margin-left: $spacement-sm !important;
 }
 
 .ml-md {
-  margin-left: $spacement-md !important;
+	margin-left: $spacement-md !important;
 }
 
 .ml-lg {
-  margin-left: $spacement-lg !important;
+	margin-left: $spacement-lg !important;
 }
 
 .ml-xl {
-  margin-left: $spacement-xl !important;
+	margin-left: $spacement-xl !important;
 }
 
 .ml-xlg {
-  margin-left: $spacement-xlg !important;
+	margin-left: $spacement-xlg !important;
 }
 
 /* spacement right  */
 .mr-none {
-  margin-right: 0 !important;
+	margin-right: 0 !important;
 }
 
 .mr-xs {
-  margin-right: $spacement-xs !important;
+	margin-right: $spacement-xs !important;
 }
 
 .mr-sm {
-  margin-right: $spacement-sm !important;
+	margin-right: $spacement-sm !important;
 }
 
 .mr-md {
-  margin-right: $spacement-md !important;
+	margin-right: $spacement-md !important;
 }
 
 .mr-lg {
-  margin-right: $spacement-lg !important;
+	margin-right: $spacement-lg !important;
 }
 
 .mr-xl {
-  margin-right: $spacement-xl !important;
+	margin-right: $spacement-xl !important;
 }
 
 .mr-xlg {
-  margin-right: $spacement-xlg !important;
+	margin-right: $spacement-xlg !important;
 }
 
 /* Spacement Padding */
 .p-none {
-  padding: 0 !important;
+	padding: 0 !important;
 }
 
 .p-xs {
-  padding: $spacement-xs !important;
+	padding: $spacement-xs !important;
 }
 
 .p-sm {
-  padding: $spacement-sm !important;
+	padding: $spacement-sm !important;
 }
 
 .p-md {
-  padding: $spacement-md !important;
+	padding: $spacement-md !important;
 }
 
 .p-lg {
-  padding: $spacement-lg !important;
+	padding: $spacement-lg !important;
 }
 
 .p-xl {
-  padding: $spacement-xl !important;
+	padding: $spacement-xl !important;
 }
 
 .p-xlg {
-  padding: $spacement-xlg !important;
+	padding: $spacement-xlg !important;
 }
 
 /* spacement top  */
 .pt-none {
-  padding-top: 0 !important;
+	padding-top: 0 !important;
 }
 
 .pt-xs {
-  padding-top: $spacement-xs !important;
+	padding-top: $spacement-xs !important;
 }
 
 .pt-sm {
-  padding-top: $spacement-sm !important;
+	padding-top: $spacement-sm !important;
 }
 
 .pt-md {
-  padding-top: $spacement-md !important;
+	padding-top: $spacement-md !important;
 }
 
 .pt-lg {
-  padding-top: $spacement-lg !important;
+	padding-top: $spacement-lg !important;
 }
 
 .pt-xl {
-  padding-top: $spacement-xl !important;
+	padding-top: $spacement-xl !important;
 }
 
 .pt-xlg {
-  padding-top: $spacement-xlg !important;
+	padding-top: $spacement-xlg !important;
 }
 
 /* spacement bottom  */
 .pb-none {
-  padding-bottom: 0 !important;
+	padding-bottom: 0 !important;
 }
 
 .pb-xs {
-  padding-bottom: $spacement-xs !important;
+	padding-bottom: $spacement-xs !important;
 }
 
 .pb-sm {
-  padding-bottom: $spacement-sm !important;
+	padding-bottom: $spacement-sm !important;
 }
 
 .pb-md {
-  padding-bottom: $spacement-md !important;
+	padding-bottom: $spacement-md !important;
 }
 
 .pb-lg {
-  padding-bottom: $spacement-lg !important;
+	padding-bottom: $spacement-lg !important;
 }
 
 .pb-xl {
-  padding-bottom: $spacement-xl !important;
+	padding-bottom: $spacement-xl !important;
 }
 
 .pb-xlg {
-  padding-bottom: $spacement-xlg !important;
+	padding-bottom: $spacement-xlg !important;
 }
 
 /* spacement left  */
 .pr-none {
-  padding-left: 0 !important;
+	padding-left: 0 !important;
 }
 
 .pl-xs {
-  padding-left: $spacement-xs !important;
+	padding-left: $spacement-xs !important;
 }
 
 .pl-sm {
-  padding-left: $spacement-sm !important;
+	padding-left: $spacement-sm !important;
 }
 
 .pl-md {
-  padding-left: $spacement-md !important;
+	padding-left: $spacement-md !important;
 }
 
 .pl-lg {
-  padding-left: $spacement-lg !important;
+	padding-left: $spacement-lg !important;
 }
 
 .pl-xl {
-  padding-left: $spacement-xl !important;
+	padding-left: $spacement-xl !important;
 }
 
 .pl-xlg {
-  padding-left: $spacement-xlg !important;
+	padding-left: $spacement-xlg !important;
 }
 
 /* spacement right  */
 .pr-none {
-  padding-right: 0 !important;
+	padding-right: 0 !important;
 }
 
 .pr-xs {
-  padding-right: $spacement-xs !important;
+	padding-right: $spacement-xs !important;
 }
 
 .pr-sm {
-  padding-right: $spacement-sm !important;
+	padding-right: $spacement-sm !important;
 }
 
 .pr-md {
-  padding-right: $spacement-md !important;
+	padding-right: $spacement-md !important;
 }
 
 .pr-lg {
-  padding-right: $spacement-lg !important;
+	padding-right: $spacement-lg !important;
 }
 
 .pr-xl {
-  padding-right: $spacement-xl !important;
+	padding-right: $spacement-xl !important;
 }
 
 .pr-xlg {
-  padding-right: $spacement-xlg !important;
+	padding-right: $spacement-xlg !important;
 }
 
 // HELPERS
 // -----------------------------------------------------------------------------
 .ib {
-  display: inline-block;
-  vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .va-middle {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 
 .ws-nowrap {
-  white-space: nowrap;
+	white-space: nowrap;
 }
 
 .ws-normal {
-  white-space: normal;
+	white-space: normal;
 }
 
 // BG STATES
 // -----------------------------------------------------------------------------
 .bg-default {
-  background: $color-default;
-  color: $color-default-inverse;
+	background: $color-default;
+	color: $color-default-inverse;
 }
 
 @each $color in $colors-list {
-  .bg-#{nth($color,1)} {
-    background: #{nth($color,2)};
-    color: #{nth($color,3)};
-  }
+	.bg-#{nth($color,1)} {
+		background: #{nth($color,2)};
+		color: #{nth($color,3)};
+	}
 }
