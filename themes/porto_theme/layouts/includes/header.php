@@ -1,7 +1,17 @@
+<?php
+
+/* @var $this \yii\web\View */
+
+/* @var $content string */
+
+use yii\helpers\Html;
+
+?>
+
 <header class="header">
     <div class="logo-container">
         <a href="../" class="logo">
-            <img src="assets2/images/logo.png" height="35" alt="Porto Admin"/>
+            <img src="assets2/images/logo.png" height="35" alt="Pizza Slice"/>
         </a>
         <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
              data-fire-event="sidebar-left-opened">
@@ -200,8 +210,8 @@
                          data-lock-picture="assets2/images/!logged-user.jpg"/>
                 </figure>
                 <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                    <span class="name">John Doe Junior</span>
-                    <span class="role">administrator</span>
+                    <span class="name"><?= Yii::$app->user->identity->username ?></span>
+                    <span class="role"><?= Yii::$app->user->identity->usertype ?></span>
                 </div>
 
                 <i class="fa custom-caret"></i>
@@ -214,14 +224,11 @@
                         <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i>
                             My Profile</a>
                     </li>
+					<?= Html::beginForm(['/site/logout'], 'post') ?>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i>
-                            Lock Screen</a>
+                        <?= Html::submitButton('<i class="fa fa-power-off"></i> Logout', ['class' => 'btn btn-link', 'role' => 'menuitem', 'tabindex' => '-1']) ?>
                     </li>
-                    <li>
-                        <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i>
-                            Logout</a>
-                    </li>
+					<?= Html::endForm() ?>
                 </ul>
             </div>
         </div>

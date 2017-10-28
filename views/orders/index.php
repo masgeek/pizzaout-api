@@ -7,7 +7,6 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models_search\OrdersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pending Orders';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

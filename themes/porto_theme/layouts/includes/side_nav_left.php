@@ -1,3 +1,7 @@
+<?php
+
+use yii\helpers\Html;
+?>
 <aside id="sidebar-left" class="sidebar-left">
 
     <div class="sidebar-header">
@@ -20,92 +24,32 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="mailbox-folder.html">
                             <span class="pull-right label label-primary">182</span>
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             <span>Mailbox</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="nav-parent">
                         <a>
-                            <i class="fa fa-copy" aria-hidden="true"></i>
-                            <span>Pages</span>
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <span>Kitchen</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
                                 <a href="pages-signup.html">
-                                    Sign Up
+                                    Menu
                                 </a>
                             </li>
                             <li>
                                 <a href="pages-signin.html">
-                                    Sign In
+                                    Queue
                                 </a>
                             </li>
                             <li>
                                 <a href="pages-recover-password.html">
-                                    Recover Password
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-lock-screen.html">
-                                    Locked Screen
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-user-profile.html">
-                                    User Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-session-timeout.html">
-                                    Session Timeout
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-calendar.html">
-                                    Calendar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-timeline.html">
-                                    Timeline
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-media-gallery.html">
-                                    Media Gallery
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-invoice.html">
-                                    Invoice
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-blank.html">
-                                    Blank Page
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-404.html">
-                                    404
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-500.html">
-                                    500
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-log-viewer.html">
-                                    Log Viewer
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-search-results.html">
-                                    Search Results
+                                    Categories
                                 </a>
                             </li>
                         </ul>
@@ -113,14 +57,10 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span>UI Elements</span>
+                            <span>Sales</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
-                                <a href="ui-elements-typography.html">
-                                    Typography
-                                </a>
-                            </li>
+                            <li><?= Html::a('Orders', ['//orders/pending'], ['title' => 'Orders']); ?></li>
                             <li class="nav-parent">
                                 <a>
                                     Icons

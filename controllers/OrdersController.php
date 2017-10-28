@@ -37,6 +37,23 @@ class OrdersController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$this->view->title = 'Orders';
+		$searchModel = new OrdersSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+		return $this->render('index', [
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+		]);
+	}
+
+	/**
+	 * Lists all CUSTOMER_ORDERS models.
+	 * @return mixed
+	 */
+	public function actionPending()
+	{
+		$this->view->title = 'Pending Orders';
 		$searchModel = new OrdersSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
