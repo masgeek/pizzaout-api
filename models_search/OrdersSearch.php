@@ -38,13 +38,16 @@ class OrdersSearch extends CUSTOMER_ORDERS
 	 *
 	 * @param array $params
 	 *
+	 * @param array $order_status
 	 * @return ActiveDataProvider
 	 */
-	public function search($params)
+	public function search($params, array $order_status)
 	{
 		$query = CUSTOMER_ORDERS::find();
 
 		// add conditions that should always apply here
+
+		$query->andWhere(['ORDER_STATUS' => $order_status]);
 
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
@@ -73,18 +76,23 @@ class OrdersSearch extends CUSTOMER_ORDERS
 		]);
 
 		$query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
-			->andFilterWhere(['like', 'ORDER_STATUS', $this->ORDER_STATUS])
+			//->andFilterWhere(['like', 'ORDER_STATUS', $this->ORDER_STATUS])
 			->andFilterWhere(['like', 'NOTES', $this->NOTES]);
 
 		return $dataProvider;
 	}
 
-	public function searchKitchenQueue($params)
+	/**
+	 * @param       $params
+	 * @param array $order_status
+	 * @return ActiveDataProvider
+	 */
+	public function searchKitchenQueue(array $params, array $order_status = ['CONFIRMED', 'PREPARING', 'COMPLETED'])
 	{
 		$query = CUSTOMER_ORDERS::find();
 
 		// add conditions that should always apply here
-		$query->andWhere(['ORDER_STATUS' => ['CONFIRMED', 'PREPARATION', 'COMPLETED']]);
+		$query->andWhere(['ORDER_STATUS' => $order_status]);
 
 
 		$dataProvider = new ActiveDataProvider([

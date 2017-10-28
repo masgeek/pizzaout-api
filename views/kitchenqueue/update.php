@@ -24,6 +24,7 @@ $items = [
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-credit-card"></i> Payment Details',
+        'visible'=>false,
 		'content' => $this->render('/orders/_payment_info', ['model' => $model]),
 	],
 ];

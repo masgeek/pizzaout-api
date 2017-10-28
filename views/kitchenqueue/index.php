@@ -41,6 +41,7 @@ $gridColumns = [
 	[
 		//'header' => 'Delivery Location',
 		'attribute' => 'LOCATION_ID',
+		'visible' => false,
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
 			return $model->lOCATION->LOCATION_NAME;
@@ -57,15 +58,24 @@ $gridColumns = [
 	[
 		'header' => 'Assigned Rider',
 		'attribute' => 'RIDER_ID',
+		'visible' => false,
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
 			return $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'N/A';
 		}
 	],
+	[
+		'header' => 'Kitchen Name',
+		'attribute' => 'KITCHEN_ID',
+		'value' => function ($model) {
+			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
+			return $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'N/A';
+		}
+	],
 	'ORDER_QUANTITY',
 	'ORDER_DATE:datetime',
 	'ORDER_PRICE:decimal',
-	'PAYMENT_METHOD',
+	//'PAYMENT_METHOD',
 	'ORDER_STATUS',
 	'NOTES',
 ];

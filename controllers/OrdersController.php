@@ -37,9 +37,21 @@ class OrdersController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->view->title = 'Orders';
+		$this->view->title = 'Processed Orders';
 		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CONFIRMED', 'PREPARING', 'DELIVERY']);
+
+		return $this->render('index', [
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+		]);
+	}
+
+	public function actionCancelled()
+	{
+		$this->view->title = 'Cancelled Orders';
+		$searchModel = new OrdersSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CANCELLED']);
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,
@@ -55,7 +67,7 @@ class OrdersController extends Controller
 	{
 		$this->view->title = 'Pending Orders';
 		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['PENDING']);
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,

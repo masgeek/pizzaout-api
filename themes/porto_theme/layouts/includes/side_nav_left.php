@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+
 ?>
 <aside id="sidebar-left" class="sidebar-left">
 
@@ -18,41 +19,8 @@ use yii\helpers\Html;
         <div class="nano-content">
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
-                    <li class="nav-active">
-                        <a href="index.html">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <!--<li>
-                        <a href="mailbox-folder.html">
-                            <span class="pull-right label label-primary">182</span>
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <span>Mailbox</span>
-                        </a>
-                    </li>-->
-                    <li class="nav-parent">
-                        <a>
-                            <i class="fa fa-cutlery" aria-hidden="true"></i>
-                            <span>Kitchen</span>
-                        </a>
-                        <ul class="nav nav-children">
-                            <li>
-                                <a href="pages-signup.html">
-                                    Menu
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-signin.html">
-                                    Queue
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages-recover-password.html">
-                                    Categories
-                                </a>
-                            </li>
-                        </ul>
+                    <li>
+						<?= Html::a('<i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span>', ['//'], ['title' => 'Dashboard']); ?>
                     </li>
                     <li class="nav-parent">
                         <a>
@@ -60,37 +28,12 @@ use yii\helpers\Html;
                             <span>Sales</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li><?= Html::a('Orders', ['//orders/pending'], ['title' => 'Orders']); ?></li>
                             <li class="nav-parent">
-                                <a>
-                                    Icons
-                                </a>
+                                <a>Orders</a>
                                 <ul class="nav nav-children">
-                                    <li>
-                                        <a href="ui-elements-icons-elusive.html">
-                                            Elusive
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-font-awesome.html">
-                                            Font Awesome
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-glyphicons.html">
-                                            Glyphicons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-line-icons.html">
-                                            Line Icons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-meteocons.html">
-                                            Meteocons
-                                        </a>
-                                    </li>
+                                    <li><?= Html::a('Pending Orders', ['//orders/pending'], ['title' => 'Pending Orders']); ?></li>
+                                    <li><?= Html::a('Processed Orders', ['//orders/index'], ['title' => 'Processed Orders']); ?></li>
+                                    <li><?= Html::a('Cancelled Orders', ['//orders/cancelled'], ['title' => 'Cancelled Orders']); ?></li>
                                 </ul>
                             </li>
                             <li>
@@ -220,6 +163,32 @@ use yii\helpers\Html;
                             <li>
                                 <a href="ui-elements-extra.html">
                                     Extra
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent nav-expanded nav-active">
+                        <a>
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <span>Kitchen</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+								<?= Html::a('Kitchen Queue', ['//kitchenqueue'], ['title' => 'Items in kitchen queue']); ?>
+                            </li>
+                            <li>
+                                <a href="pages-signup.html">
+                                    Menu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages-signin.html">
+                                    Queue
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages-recover-password.html">
+                                    Categories
                                 </a>
                             </li>
                         </ul>
@@ -478,3 +447,27 @@ use yii\helpers\Html;
     </div>
 
 </aside>
+
+<script>
+    //set acrtive navigation
+    /*$(".nav li").on("click", function () {
+        $(".nav li").removeClass("active nav-expanded nav-active");
+        $(this).addClass("active nav-expanded nav-active");
+
+    });*/
+
+    /*
+		var path = window.location.pathname;
+		path = path.replace(/\/$/, "");
+		path = decodeURIComponent(path);
+
+		$(".nav a").each(function () {
+			var href = $(this).attr('href');
+
+			if (path.substring(0, href.length) === href) {
+				$(this).closest('nav li').addClass('nav-expanded nav-active');
+				console.log(href);
+			}
+		});
+	*/
+</script>

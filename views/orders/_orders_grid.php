@@ -41,12 +41,14 @@ $gridColumns = [
 			$url = '#';
 			if ($model->ORDER_STATUS == 'DELIVERY') {
 				if ($action === 'rider') {
-
 					$action = 'Assign Rider';
 					$url = \yii\helpers\Url::toRoute(['rider', 'id' => $model->ORDER_ID]);
 				}
+
+				return Html::a($action, $url, ['class' => 'btn btn-success btn-xs btn-block']);
+			} else {
+				$action = null;
 			}
-			return Html::a($action, $url, ['class' => 'btn btn-success btn-xs btn-block']);
 		},
 	],
 	'ORDER_ID',
@@ -67,7 +69,8 @@ $gridColumns = [
 		}
 	],
 	[
-		'header' => 'Assigned Chef',
+		'header' => 'Chef',
+		'filter' => false,
 		'attribute' => 'CHEF_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
@@ -75,14 +78,15 @@ $gridColumns = [
 		}
 	],
 	[
-		'header' => 'Assigned Rider',
+		'header' => 'Rider',
+		'filter' => false,
 		'attribute' => 'RIDER_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
 			return $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'N/A';
 		}
 	],
-	'ORDER_QUANTITY',
+	//'ORDER_QUANTITY',
 	'ORDER_DATE:datetime',
 	'ORDER_PRICE:decimal',
 	'PAYMENT_METHOD',
