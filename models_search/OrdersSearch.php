@@ -112,12 +112,12 @@ class OrdersSearch extends CUSTOMER_ORDERS
 			'LOCATION_ID' => $this->LOCATION_ID,
 			'CHEF_ID' => $this->CHEF_ID,
 			'RIDER_ID' => $this->RIDER_ID,
-			'ORDER_QUANTITY' => $this->ORDER_QUANTITY,
-			'ORDER_DATE' => $this->ORDER_DATE,
+			//'ORDER_QUANTITY' => $this->ORDER_QUANTITY,
+			//'ORDER_DATE' => $this->ORDER_DATE,
 			'ORDER_STATUS' => $this->ORDER_STATUS,
-			'ORDER_PRICE' => $this->ORDER_PRICE,
-			'CREATED_AT' => $this->CREATED_AT,
-			'UPDATED_AT' => $this->UPDATED_AT,
+			//'ORDER_PRICE' => $this->ORDER_PRICE,
+			//'CREATED_AT' => $this->CREATED_AT,
+			//'UPDATED_AT' => $this->UPDATED_AT,
 		]);
 
 		$query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
