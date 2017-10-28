@@ -31,4 +31,3 @@ tests/_output/*
 tests/_support/_generated
 phploy.log
 vendor.zip
-yarn.lock
