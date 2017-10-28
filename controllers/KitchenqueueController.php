@@ -39,11 +39,15 @@ class KitchenqueueController extends Controller
 	{
 		$this->view->title = 'Kitchen Queue';
 		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams);
+		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CONFIRMED']);
+		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
+		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED']);
 
 		return $this->render('/kitchenqueue/index', [
 			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
+			'confirmedOrder' => $confirmedOrder,
+			'preparingOrder' => $preparingOrder,
+			'completedOrder' => $completedOrder,
 		]);
 	}
 

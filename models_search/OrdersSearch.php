@@ -87,7 +87,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 	 * @param array $order_status
 	 * @return ActiveDataProvider
 	 */
-	public function searchKitchenQueue(array $params, array $order_status = ['CONFIRMED', 'PREPARING', 'COMPLETED'])
+	public function searchKitchenQueue(array $params, array $order_status)
 	{
 		$query = CUSTOMER_ORDERS::find();
 
