@@ -37,7 +37,7 @@ class OrdersController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->view->title = 'Processed Orders';
+		$this->view->title = 'Orders';
 		$searchModel = new OrdersSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CONFIRMED', 'PREPARING', 'DELIVERY']);
 
@@ -47,7 +47,7 @@ class OrdersController extends Controller
 		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED', 'DELIVERED', 'DELIVERY']);
 		$cancelledOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CANCELLED']);
 
-		return $this->render('index', [
+		return $this->render('/orders/index', [
 			'searchModel' => $searchModel,
 			'pendingOrder' => $pendingOrder,
 			'confirmedOrder' => $confirmedOrder,
@@ -56,12 +56,13 @@ class OrdersController extends Controller
 		]);
 	}
 
-	/**
-	 * Updates an existing CUSTOMER_ORDERS model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param string $id
-	 * @return mixed
-	 */
+    /**
+     * Updates an existing CUSTOMER_ORDERS model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
 	public function actionRider($id)
 	{
 		$model = $this->findModel($id);
@@ -83,11 +84,12 @@ class OrdersController extends Controller
 		]);
 	}
 
-	/**
-	 * Displays a single CUSTOMER_ORDERS model.
-	 * @param string $id
-	 * @return mixed
-	 */
+    /**
+     * Displays a single CUSTOMER_ORDERS model.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
 	public function actionView($id)
 	{
 		return $this->render('view', [
@@ -113,12 +115,13 @@ class OrdersController extends Controller
 		]);
 	}
 
-	/**
-	 * Updates an existing CUSTOMER_ORDERS model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param string $id
-	 * @return mixed
-	 */
+    /**
+     * Updates an existing CUSTOMER_ORDERS model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
@@ -141,12 +144,13 @@ class OrdersController extends Controller
 		]);
 	}
 
-	/**
-	 * Deletes an existing CUSTOMER_ORDERS model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param string $id
-	 * @return mixed
-	 */
+    /**
+     * Deletes an existing CUSTOMER_ORDERS model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
 	public function actionDelete($id)
 	{
 		$this->findModel($id)->delete();

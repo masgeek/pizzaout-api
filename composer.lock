@@ -53,8 +53,7 @@
                 "mobile-first",
                 "responsive",
                 "web"
-            ],
-            "time": "2016-07-25T15:51:55+00:00"
+            ]
         },
         {
             "name": "bower-asset/bootstrap3-dialog",
@@ -107,8 +106,7 @@
                 "mobile-first",
                 "responsive",
                 "web"
-            ],
-            "time": "2017-03-24T01:21:30+00:00"
+            ]
         },
         {
             "name": "bower-asset/inputmask",
@@ -167,8 +165,7 @@
                 "jquery",
                 "mask",
                 "plugins"
-            ],
-            "time": "2017-10-16T09:33:03+00:00"
+            ]
         },
         {
             "name": "bower-asset/jquery",
@@ -199,8 +196,7 @@
                 "javascript",
                 "jquery",
                 "library"
-            ],
-            "time": "2017-03-20T19:02:00+00:00"
+            ]
         },
         {
             "name": "bower-asset/punycode",
@@ -228,8 +224,7 @@
                     "node_modules",
                     "package.json"
                 ]
-            },
-            "time": "2014-10-22T12:02:42+00:00"
+            }
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -658,12 +653,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "108e937019a18b72235d4d6497ca2b1dd429457f"
+                "reference": "f7a3e4435413c4880e7009340af4e96e30081841"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/108e937019a18b72235d4d6497ca2b1dd429457f",
-                "reference": "108e937019a18b72235d4d6497ca2b1dd429457f",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/f7a3e4435413c4880e7009340af4e96e30081841",
+                "reference": "f7a3e4435413c4880e7009340af4e96e30081841",
                 "shasum": ""
             },
             "type": "library",
@@ -703,7 +698,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-10-27T12:32:32+00:00"
+            "time": "2017-10-29T06:05:59+00:00"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -3196,12 +3191,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "e2515eede8404451b8822012cd00ca1bb0319b36"
+                "reference": "8c9cc7e531fe8b218b4581fc40b2df80f52d1611"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e2515eede8404451b8822012cd00ca1bb0319b36",
-                "reference": "e2515eede8404451b8822012cd00ca1bb0319b36",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/8c9cc7e531fe8b218b4581fc40b2df80f52d1611",
+                "reference": "8c9cc7e531fe8b218b4581fc40b2df80f52d1611",
                 "shasum": ""
             },
             "require": {
@@ -3288,7 +3283,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-10-27T08:41:45+00:00"
+            "time": "2017-10-31T23:43:02+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -3621,8 +3616,7 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": "dist/typeahead.bundle.js"
-            },
-            "time": "2015-04-27T04:02:14+00:00"
+            }
         },
         {
             "name": "codeception/base",
@@ -4253,16 +4247,16 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "dev-master",
+            "version": "1.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "3cc8f69b3028d0f96a9078e6295d86e9bf019be5"
+                "reference": "63304292f3cf89b2382b90dd7a2abf9e0ba232f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/3cc8f69b3028d0f96a9078e6295d86e9bf019be5",
-                "reference": "3cc8f69b3028d0f96a9078e6295d86e9bf019be5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/63304292f3cf89b2382b90dd7a2abf9e0ba232f9",
+                "reference": "63304292f3cf89b2382b90dd7a2abf9e0ba232f9",
                 "shasum": ""
             },
             "require": {
@@ -4296,7 +4290,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2016-10-03T07:40:28+00:00"
+            "time": "2017-10-30T04:21:02+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -5142,12 +5136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "01a9ebda07738c20e0d4935dc8e6934d3169d684"
+                "reference": "58a38941962e69476bf6e11ce13effc26120d2d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/01a9ebda07738c20e0d4935dc8e6934d3169d684",
-                "reference": "01a9ebda07738c20e0d4935dc8e6934d3169d684",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/58a38941962e69476bf6e11ce13effc26120d2d8",
+                "reference": "58a38941962e69476bf6e11ce13effc26120d2d8",
                 "shasum": ""
             },
             "require": {
@@ -5191,7 +5185,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-24T14:12:06+00:00"
+            "time": "2017-10-28T16:49:05+00:00"
         },
         {
             "name": "symfony/console",
@@ -5377,12 +5371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "62911460ad3ba2d5df0613bf9eef972803113135"
+                "reference": "8cc827ee34b27767110c6ba2f2efa899e8aa3be5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/62911460ad3ba2d5df0613bf9eef972803113135",
-                "reference": "62911460ad3ba2d5df0613bf9eef972803113135",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/8cc827ee34b27767110c6ba2f2efa899e8aa3be5",
+                "reference": "8cc827ee34b27767110c6ba2f2efa899e8aa3be5",
                 "shasum": ""
             },
             "require": {
@@ -5425,7 +5419,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-24T14:12:06+00:00"
+            "time": "2017-10-28T16:49:05+00:00"
         },
         {
             "name": "symfony/event-dispatcher",

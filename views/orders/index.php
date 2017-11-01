@@ -1,11 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\grid\GridView;
+use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
 /* @var $confirmedOrder yii\data\ActiveDataProvider */
+/* @var $pendingOrder yii\data\ActiveDataProvider */
 /* @var $preparingOrder yii\data\ActiveDataProvider */
 /* @var $completedOrder yii\data\ActiveDataProvider */
 
@@ -14,12 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
 		'active' => true
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-time"></i> Ready For Delivery',
