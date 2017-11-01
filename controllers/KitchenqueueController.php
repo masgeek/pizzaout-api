@@ -42,12 +42,14 @@ class KitchenqueueController extends Controller
 		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CONFIRMED']);
 		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
 		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED']);
+		$pendingDelivery = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['DELIVERY']);
 
 		return $this->render('/kitchenqueue/index', [
 			'searchModel' => $searchModel,
 			'confirmedOrder' => $confirmedOrder,
 			'preparingOrder' => $preparingOrder,
 			'completedOrder' => $completedOrder,
+			'pendingDelivery'=>$pendingDelivery
 		]);
 	}
 

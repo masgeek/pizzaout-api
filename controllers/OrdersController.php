@@ -41,48 +41,18 @@ class OrdersController extends Controller
 		$searchModel = new OrdersSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CONFIRMED', 'PREPARING', 'DELIVERY']);
 
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-		]);
-	}
-
-	public function actionCancelled()
-	{
-		$this->view->title = 'Cancelled Orders';
-		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CANCELLED']);
+		$pendingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
+		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CONFIRMED']);
+		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
+		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED', 'DELIVERED', 'DELIVERY']);
+		$cancelledOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CANCELLED']);
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-		]);
-	}
-
-	/**
-	 * Lists all CUSTOMER_ORDERS models.
-	 * @return mixed
-	 */
-	public function actionPending()
-	{
-		$this->view->title = 'Pending Orders';
-		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['PENDING']);
-
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-		]);
-	}
-
-	public function actionKitchen()
-	{
-		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
+			'pendingOrder' => $pendingOrder,
+			'confirmedOrder' => $confirmedOrder,
+			'preparingOrder' => $preparingOrder,
+			'completedOrder' => $completedOrder,
 		]);
 	}
 

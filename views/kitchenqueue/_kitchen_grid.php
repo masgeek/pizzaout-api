@@ -24,7 +24,7 @@ $gridColumns = [
 				$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
 			}
 
-			return Html::a($action, $url, ['class' => 'btn btn-danger btn-xs btn-block']);
+			return Html::a($action, $url, ['class' => 'label label-danger']);
 		},
 	],
 	'ORDER_ID',

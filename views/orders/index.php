@@ -5,17 +5,37 @@ use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $confirmedOrder yii\data\ActiveDataProvider */
+/* @var $preparingOrder yii\data\ActiveDataProvider */
+/* @var $completedOrder yii\data\ActiveDataProvider */
 
 $this->params['breadcrumbs'][] = $this->title;
 
+$items = [
+	[
+		'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
+		'active' => true
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-time"></i> Ready For Delivery',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $completedOrder]),
+	],
+];
 ?>
-<div class="customer-orders-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
-	<?= $this->render('_orders_grid', [
-		'dataProvider' => $dataProvider,
-		'searchModel' => $searchModel,
-	]) ?>
-</div>
+<?=
+TabsX::widget([
+	'items' => $items,
+	'position' => TabsX::POS_ABOVE,
+	'encodeLabels' => false,
+	'bordered' => true,
+]);
+?>
+
