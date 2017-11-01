@@ -28,12 +28,7 @@ use yii\helpers\Html;
                             <span>Sales</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li class="nav-parent">
-                                <a>Orders</a>
-                                <ul class="nav nav-children">
-                                    <li><?= Html::a('Orders', ['//orders/index'], ['title' => 'View Orders']); ?></li>
-                                </ul>
-                            </li>
+                            <li><?= Html::a('Orders', ['//orders/index'], ['title' => 'View Orders']); ?></li>
                         </ul>
                     </li>
                     <li class="nav-parent nav-expanded nav-active">
