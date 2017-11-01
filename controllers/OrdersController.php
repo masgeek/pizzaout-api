@@ -41,7 +41,7 @@ class OrdersController extends Controller
 		$searchModel = new OrdersSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CONFIRMED', 'PREPARING', 'DELIVERY']);
 
-		$pendingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
+		$pendingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PENDING']);
 		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CONFIRMED']);
 		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
 		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED', 'DELIVERED', 'DELIVERY']);

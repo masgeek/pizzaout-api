@@ -13,19 +13,23 @@ use kartik\tabs\TabsX;
 $this->params['breadcrumbs'][] = $this->title;
 
 $items = [
-	[
-		'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
-		'active' => true
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Ready For Delivery',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $completedOrder]),
-	],
+    [
+        'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
+        'active' => true
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Completed Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $completedOrder]),
+    ],
 ];
 ?>
 
@@ -33,10 +37,10 @@ $items = [
 
 <?=
 TabsX::widget([
-	'items' => $items,
-	'position' => TabsX::POS_ABOVE,
-	'encodeLabels' => false,
-	'bordered' => true,
+    'items' => $items,
+    'position' => TabsX::POS_ABOVE,
+    'encodeLabels' => false,
+    'bordered' => true,
 ]);
 ?>
 

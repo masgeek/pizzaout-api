@@ -58,7 +58,7 @@ use yii\widgets\Breadcrumbs;
     </div>
 
     <!-- right sidebar -->
-	<?php require_once __DIR__ . '/includes/side_nav_right.php'; ?>
+	<?php //require_once __DIR__ . '/includes/side_nav_right.php'; ?>
     <!-- end right sidebar -->
 </section>
 <!-- end body content here -->
