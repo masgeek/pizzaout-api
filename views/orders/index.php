@@ -9,6 +9,7 @@ use kartik\tabs\TabsX;
 /* @var $pendingOrder yii\data\ActiveDataProvider */
 /* @var $preparingOrder yii\data\ActiveDataProvider */
 /* @var $completedOrder yii\data\ActiveDataProvider */
+/* @var $cancelledOrder yii\data\ActiveDataProvider */
 
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -29,6 +30,10 @@ $items = [
     [
         'label' => '<i class="glyphicon glyphicon-time"></i> Completed Orders',
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $completedOrder]),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
     ],
 ];
 ?>

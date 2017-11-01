@@ -53,6 +53,7 @@ class OrdersController extends Controller
 			'confirmedOrder' => $confirmedOrder,
 			'preparingOrder' => $preparingOrder,
 			'completedOrder' => $completedOrder,
+            'cancelledOrder'=>$cancelledOrder
 		]);
 	}
 

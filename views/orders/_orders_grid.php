@@ -99,7 +99,7 @@ $gridColumns = [
 
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
-	'filterModel' => $searchModel,
+	//'filterModel' => $searchModel,
 	'columns' => $gridColumns,
 	'beforeHeader' => [
 		[
