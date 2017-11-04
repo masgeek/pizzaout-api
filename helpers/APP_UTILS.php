@@ -27,6 +27,7 @@ class APP_UTILS
 	const SCENARIO_ORDER_READY = 'order_ready';
 	const SCENARIO_ASSIGN_CHEF = 'assign_chef';
 	const SCENARIO_ASSIGN_RIDER = 'assign_rider';
+	const SCENARIO_UPDATE_RIDER = 'update_rider';
 
 
 	/**

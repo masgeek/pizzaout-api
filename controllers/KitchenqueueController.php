@@ -167,7 +167,11 @@ class KitchenqueueController extends Controller
 		$this->view->title = "Update Order #{$id} a rider";
 		$model = $this->findModel($id);
 
-		$model->scenario = APP_UTILS::SCENARIO_ASSIGN_RIDER;
+		if ($workflow == 4) {
+			$model->scenario = APP_UTILS::SCENARIO_ASSIGN_RIDER;
+		} else {
+			$model->scenario = APP_UTILS::SCENARIO_UPDATE_RIDER;
+		}
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['index']);
