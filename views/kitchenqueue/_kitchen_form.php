@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
 
         <div class="col-md-6">
-			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus([\app\Helpers\AppUtils::KITCHEN_SCOPE]), [
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus([\app\helpers\APP_UTILS::KITCHEN_SCOPE]), [
 					'prompt' => '--- SELECT STATUS ---',
 				]
 			) ?>

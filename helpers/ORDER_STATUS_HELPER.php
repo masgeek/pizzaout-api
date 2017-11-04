@@ -6,7 +6,7 @@
  * Time: 9:43 AM
  */
 
-namespace app\components;
+namespace app\helpers;
 
 
 class ORDER_STATUS_HELPER

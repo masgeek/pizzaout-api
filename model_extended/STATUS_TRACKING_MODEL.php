@@ -9,7 +9,7 @@
 namespace app\model_extended;
 
 
-use app\Helpers\AppUtils;
+use app\helpers\APP_UTILS;
 use app\models\OrderTracking;
 use yii\db\Expression;
 
@@ -18,7 +18,7 @@ class STATUS_TRACKING_MODEL extends OrderTracking
 	public function beforeValidate()
 	{
 		if (parent::beforeValidate()) {
-			$this->TRACKING_DATE = new Expression(AppUtils::GetCurrentTime());
+			$this->TRACKING_DATE = new Expression(APP_UTILS::GetCurrentTime());
 			return true;
 		}
 

@@ -6,7 +6,7 @@
  * Time: 10:57 PM
  */
 
-namespace app\components;
+namespace app\helpers;
 
 use app\api\modules\v1\models\REPORTS_MODEL;
 use kartik\mpdf\Pdf;

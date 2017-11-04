@@ -9,7 +9,7 @@
 namespace app\model_extended;
 
 
-use app\Helpers\AppUtils;
+use app\helpers\APP_UTILS;
 use app\models\Users;
 use app\models\UserType;
 use yii\base\Security;
@@ -88,9 +88,9 @@ class USERS_MODEL extends Users implements IdentityInterface
 	{
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
-				$this->DATE_REGISTERED = new Expression(AppUtils::GetCurrentTime());
+				$this->DATE_REGISTERED = new Expression(APP_UTILS::GetCurrentTime());
 			}
-			$this->LAST_UPDATED = new Expression(AppUtils::GetCurrentTime());
+			$this->LAST_UPDATED = new Expression(APP_UTILS::GetCurrentTime());
 			return true;
 		}
 		return false;

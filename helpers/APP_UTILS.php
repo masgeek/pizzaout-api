@@ -6,10 +6,10 @@
  * Time: 3:30 PM
  */
 
-namespace app\Helpers;
+namespace app\helpers;
 
 
-class AppUtils
+class APP_UTILS
 {
 	const KITCHEN_SCOPE = 'KITCHEN';
 	const RIDER_SCOPE = 'RIDER';

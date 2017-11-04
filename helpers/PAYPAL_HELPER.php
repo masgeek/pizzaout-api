@@ -6,7 +6,7 @@
  * Time: 14:01
  */
 
-namespace app\Helpers;
+namespace app\helpers;
 
 
 use PayPal\Api\CreditCard;
@@ -14,7 +14,7 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 
-class PaypalHelper
+class PAYPAL_HELPER
 {
 
     protected $client_id = 'AdMdfaROiPXoAQcv0vEJr8f_pfe4qB6AINOxNZqQfPURdn-6qdzHWAV829r_idqHSjUD3QwrfcMTmSQI';

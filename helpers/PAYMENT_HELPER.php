@@ -6,12 +6,12 @@
  * Time: 13:12
  */
 
-namespace app\Helpers;
+namespace app\helpers;
 
 use Braintree_Configuration;
 use Pafelin\LaravelNonce\Nonce;
 
-class PaymentHelper
+class PAYMENT_HELPER
 {
     protected $merchant_id = 't6ygyzrt59f2m7mr';
     protected $public_key = 'tgp4fy8pdcvtq2g6';

@@ -20,7 +20,7 @@ Password
 User_Type
 
  */
-use app\Helpers\AppUtils;
+use app\helpers\APP_UTILS;
 use app\models\Users;
 use app\models\UserType;
 use yii\db\Expression;
@@ -55,9 +55,9 @@ class USER_MODEL extends Users
 	{
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
-				$this->DATE_REGISTERED = new Expression(AppUtils::GetCurrentTime());
+				$this->DATE_REGISTERED = new Expression(APP_UTILS::GetCurrentTime());
 			}
-			$this->LAST_UPDATED = new Expression(AppUtils::GetCurrentTime());
+			$this->LAST_UPDATED = new Expression(APP_UTILS::GetCurrentTime());
 
 			return true;
 		}

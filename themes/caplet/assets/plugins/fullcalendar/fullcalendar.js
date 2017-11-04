@@ -2465,7 +2465,7 @@ function BasicView(element, calendar, viewName) {
 	
 	
 	
-	/* Semi-transparent Overlay Helpers
+	/* Semi-transparent Overlay helpers
 	------------------------------------------------------*/
 	// TODO: should be consolidated with AgendaView's methods
 
@@ -3312,7 +3312,7 @@ function AgendaView(element, calendar, viewName) {
 	
 	
 	
-	/* Semi-transparent Overlay Helpers
+	/* Semi-transparent Overlay helpers
 	-----------------------------------------------------*/
 	// TODO: should be consolidated with BasicView's methods
 

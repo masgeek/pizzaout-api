@@ -14,7 +14,7 @@ use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
 use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\components\CUSTOM_HELPER;
 use app\components\ORDER_STATUS_HELPER;
-use app\Helpers\AppUtils;
+use app\helpers\APP_UTILS;
 use yii\db\Expression;
 use yii\rest\ActiveController;
 
@@ -33,7 +33,7 @@ class OrderController extends ActiveController
 		$orderItems = new CUSTOMER_ORDER_ITEM();
 		$paymentDetail = new PAYMENT_MODEL();
 
-		$date = new Expression(AppUtils::GetCurrentTime());
+		$date = new Expression(APP_UTILS::GetCurrentTime());
 
 		$order_status = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
 		$post = [

@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
 
         <div class="col-md-6">
-			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus($model->ORDER_ID, [\app\Helpers\AppUtils::RIDER_SCOPE]), [
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus($model->ORDER_ID, [\app\helpers\APP_UTILS::RIDER_SCOPE]), [
 					'prompt' => '--- SELECT STATUS ---',
 				]
 			) ?>
