@@ -46,7 +46,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 
 	public function beforeSave($insert)
 	{
-		$date = APP_UTILS::GetCurrentTime();
+		$date = APP_UTILS::GetCurrentDateTime();
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
 				$this->CREATED_AT = $date;
@@ -64,7 +64,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$tracker = new STATUS_TRACKING_MODEL();
 		$tracker->ORDER_ID = $this->ORDER_ID;
 		$tracker->STATUS = $this->ORDER_STATUS;
-		$tracker->TRACKING_DATE = APP_UTILS::GetCurrentTime();
+		$tracker->TRACKING_DATE = APP_UTILS::GetCurrentDateTime();
 		$tracker->save();
 	}
 

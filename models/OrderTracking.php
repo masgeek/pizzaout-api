@@ -32,11 +32,11 @@ class OrderTracking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'STATUS', 'TRACKING_DATE'], 'required'],
+            [['ORDER_ID', 'STATUS'], 'required'],
             [['ORDER_ID'], 'integer'],
             [['TRACKING_DATE'], 'safe'],
             [['COMMENTS'], 'string', 'max' => 255],
-            [['STATUS'], 'string', 'max' => 20],
+            [['STATUS'], 'string', 'max' => 30],
             [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
             [['STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['STATUS' => 'STATUS_NAME']],
         ];

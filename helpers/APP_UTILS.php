@@ -35,7 +35,7 @@ class APP_UTILS
 	/**
 	 * @return string
 	 */
-	public static function GetCurrentTime()
+	public static function GetCurrentDateTime()
 	{
 		return \Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd HH:mm:ss'); // 2014-10-06
 	}

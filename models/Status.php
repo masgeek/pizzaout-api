@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "{{%status}}".
  *
  * @property string $STATUS_NAME
+ * @property string $STATUS_DESC
  * @property string $COLOR
  * @property string $SCOPE
  * @property int $RANK
@@ -35,6 +36,7 @@ class Status extends \yii\db\ActiveRecord
             [['STATUS_NAME'], 'required'],
             [['RANK'], 'integer'],
             [['STATUS_NAME'], 'string', 'max' => 30],
+            [['STATUS_DESC'], 'string', 'max' => 100],
             [['COLOR', 'SCOPE'], 'string', 'max' => 10],
             [['STATUS_NAME'], 'unique'],
             [['RANK'], 'unique'],
@@ -48,6 +50,7 @@ class Status extends \yii\db\ActiveRecord
     {
         return [
             'STATUS_NAME' => 'Status  Name',
+            'STATUS_DESC' => 'Status  Desc',
             'COLOR' => 'Color',
             'SCOPE' => 'Scope',
             'RANK' => 'Rank',

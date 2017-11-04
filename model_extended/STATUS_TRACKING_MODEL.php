@@ -24,7 +24,7 @@ class STATUS_TRACKING_MODEL extends OrderTracking
 		return $rules;
 	}
 
-	public function beforeValidate()
+	/*public function beforeValidate()
 	{
 		if (parent::beforeValidate()) {
 			$this->TRACKING_DATE =APP_UTILS::GetCurrentTime();
@@ -32,5 +32,5 @@ class STATUS_TRACKING_MODEL extends OrderTracking
 		}
 
 		return false;
-	}
+	}*/
 }

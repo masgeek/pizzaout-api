@@ -140,30 +140,43 @@ class OrdersController extends Controller
 		$tracker = new STATUS_TRACKING_MODEL();
 		$tracker->scenario = APP_UTILS::SCENARIO_CREATE;
 
+
+		$old_status = $model->ORDER_STATUS;
+		if ($model->load(Yii::$app->request->post())) {
+
+			$tracker->isNewRecord = true;
+			$tracker->load(Yii::$app->request->post());
+
+			if (strcmp($old_status, $model->ORDER_STATUS) != 0 && $model->validate()) {
+				if ($model->save()) {
+					$tracker->ORDER_ID = $model->ORDER_ID;
+					$tracker->STATUS = $model->ORDER_STATUS;
+					$tracker->TRACKING_DATE = APP_UTILS::GetCurrentDateTime();
+					if ($tracker->validate()) {
+						$tracker->save();
+					}
+				}
+				//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+
+			} else {
+				var_dump($model);
+			}
+
+			$tracker->validate();
+			var_dump($model->getErrors());
+			var_dump($tracker->getErrors());
+
+			var_dump($tracker);
+			//var_dump($tracker->save());
+			die;
+
+		}
+
+
 		$scope = [
 			APP_UTILS::OFFICE_SCOPE,
 			APP_UTILS::ALL_SCOPE
 		];
-		$old_status = $model->ORDER_STATUS;
-		if ($model->load(Yii::$app->request->post())) {
-			$tracker->ORDER_ID = $model->ORDER_ID;
-			$tracker->STATUS = $model->ORDER_STATUS;
-
-			if (strcmp($old_status, $model->ORDER_STATUS) != 0 && $model->save()) {
-				if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
-					//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
-					return $this->redirect(['index']);
-				}
-			} else {
-				var_dump(strcmp($old_status, $model->ORDER_STATUS));
-
-				var_dump($old_status . $model->ORDER_STATUS);
-
-				var_dump($model->getErrors());
-				die;
-			}
-
-		}
 
 		return $this->render('update', [
 			'model' => $model,
