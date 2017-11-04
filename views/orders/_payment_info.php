@@ -27,7 +27,7 @@ $formatter = \Yii::$app->formatter;
             <td><?= $formatter->asCurrency($payment->PAYMENT_AMOUNT) ?></td>
             <td><?= $formatter->asDatetime($payment->PAYMENT_DATE) ?></td>
             <td><?= $payment->PAYMENT_STATUS ?></td>
-            <td><?= "<span class='badge' style='background-color: {$payment->oRDERSTATUS->COLOR};'> </span>  <code>" . $payment->PAYMENT_STATUS . '</code>' ?></td>
+            <td><?= "<span class='badge' style='background-color: {$payment->pAYMENTSTATUS->COLOR};'> </span>  <code>" . $payment->PAYMENT_STATUS . '</code>' ?></td>
             <td><?= $payment->PAYMENT_NOTES != null ? $payment->PAYMENT_NOTES : 'N/A' ?></td>
         </tr>
 	<?php endforeach; ?>

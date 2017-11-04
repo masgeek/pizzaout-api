@@ -22,9 +22,10 @@ $attributes = [
 				'valueColOptions' => ['style' => 'width:30%']
 			],
 			[
-				'attribute' => 'ORDER_PRICE',
-//'label'=>'Buy Amount ($)',
+				'label' => 'Order Amount',
+				'attribute' => 'ORDER_ID',
 				'displayOnly' => true,
+				'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID),
 				'format' => ['decimal', 2],
 				'inputContainer' => ['class' => 'col-sm-6'],
 			],
@@ -34,9 +35,11 @@ $attributes = [
 	[
 		'columns' => [
 			[
-				'attribute' => 'LOCATION_ID',
+				'label' => 'Delivery Address',
+				'attribute' => 'ADDRESS_ID',
+				'format' => 'raw',
 				'displayOnly' => true,
-				'value' => "{$model->lOCATION->LOCATION_NAME}",
+				'value' => "<address>{$model->aDDRESS->ADDRESS}<br/>{$model->aDDRESS->lOCATION->LOCATION_NAME}</address>",
 			],
 			[
 				'attribute' => 'ORDER_STATUS',
@@ -50,8 +53,9 @@ $attributes = [
 	],
 	[
 		'columns' => [
-			[
-				'attribute' => 'ORDER_QUANTITY',
+			['label' => 'Quantity',
+				'attribute' => 'ORDER_ID',
+				'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderQuantity($model->ORDER_ID),
 				'displayOnly' => true,
 			],
 			[
