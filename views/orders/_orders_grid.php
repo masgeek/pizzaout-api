@@ -21,11 +21,11 @@ $gridColumns = [
 			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
 			if ($action === 'update') {
-				$action = 'Confirm<i class="fa fa-pencil fa-2x"></i>';
+				$action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
 				$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
 			}
 
-			return Html::a($action, $url, ['class' => 'btn btn-danger']);
+			return Html::a($action, $url, ['class' => 'btn btn-default']);
 		},
 	],
 	[
@@ -103,6 +103,10 @@ $gridColumns = [
 	'PAYMENT_METHOD',
 	'ORDER_STATUS',
 	'NOTES',
+	[
+		'class' => '\kartik\grid\ActionColumn',
+		'template' => '{view}',
+	],
 ];
 
 ?>

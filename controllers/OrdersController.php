@@ -46,14 +46,14 @@ class OrdersController extends Controller
 			ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
 		]);
 
-		$pendingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING]);
-		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED]);
-		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
+		$pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING]);
+		$confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED]);
+		$preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
 
-		$orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [
+		$orderReady = $searchModel->search(Yii::$app->request->queryParams, [
 			ORDER_STATUS_HELPER::STATUS_ORDER_READY]);
 
-		$cancelledOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED]);
+		$cancelledOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED]);
 
 		return $this->render('/orders/index', [
 			'searchModel' => $searchModel,

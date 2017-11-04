@@ -32,7 +32,7 @@ $items = [
 <div class="customer-orders-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+	<?= Html::a('Orders', ['//orders'], ['class' => 'btn btn-primary']) ?>
 	<?=
 	TabsX::widget([
 		'items' => $items,
