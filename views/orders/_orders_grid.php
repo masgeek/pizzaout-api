@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use kartik\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
@@ -128,11 +128,7 @@ $gridColumns = [
 	'ORDER_DATE:datetime',
 	'PAYMENT_METHOD',
 	'ORDER_STATUS',
-	'NOTES',
-	[
-		'class' => '\kartik\grid\ActionColumn',
-		'template' => '{view}',
-	],
+	'NOTES'
 ];
 
 ?>

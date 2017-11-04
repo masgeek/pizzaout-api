@@ -1,15 +1,17 @@
 <?php
 
-use yii\helpers\Html;
 use kartik\tabs\TabsX;
-
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
-/* @var $confirmedOrder yii\data\ActiveDataProvider */
+/* @var $kitchenAllocated yii\data\ActiveDataProvider */
+/* @var $chefAssigned yii\data\ActiveDataProvider */
 /* @var $preparingOrder yii\data\ActiveDataProvider */
-/* @var $completedOrder yii\data\ActiveDataProvider */
-/* @var $pendingDelivery yii\data\ActiveDataProvider */
+/* @var $orderReady yii\data\ActiveDataProvider */
+/* @var $awaitingRider yii\data\ActiveDataProvider */
+/* @var $allocatedRider yii\data\ActiveDataProvider */
+/* @var $dispatchRider yii\data\ActiveDataProvider */
 
 
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,22 +19,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $items = [
 	[
-		'label' => '<i class="glyphicon glyphicon-book"></i> Assign Chef',
-		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
+		'label' => '<i class="glyphicon glyphicon-book"></i> Kitchen Allocated',
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $kitchenAllocated]),
 		'active' => true
 	],
 	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Preparing',
+		'label' => '<i class="glyphicon glyphicon-book"></i> Chef Assigned',
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $chefAssigned]),
+	], [
+		'label' => '<i class="glyphicon glyphicon-book"></i> Preparing Order',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Ready For Delivery',
-		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $completedOrder]),
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-book"></i> Assign Rider',
-		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingDelivery]),
-	],
+	], [
+		'label' => '<i class="glyphicon glyphicon-book"></i> Order Ready',
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
+	], [
+		'label' => '<i class="glyphicon glyphicon-book"></i> Awaiting Rider',
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $awaitingRider]),
+	], [
+		'label' => '<i class="glyphicon glyphicon-book"></i> Rider Assigned',
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $allocatedRider]),
+	], [
+		'label' => '<i class="glyphicon glyphicon-book"></i> Rider Dispatched',
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $dispatchRider]),
+	]
 ];
 ?>
 

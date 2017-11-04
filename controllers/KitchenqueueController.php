@@ -2,14 +2,15 @@
 
 namespace app\controllers;
 
-use app\model_extended\KITCHEN_MODEL;
-use app\model_extended\STATUS_TRACKING_MODEL;
-use Yii;
+use app\helpers\APP_UTILS;
+use app\helpers\ORDER_STATUS_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
+use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * KitchenqueueController implements the CRUD actions for CUSTOMER_ORDERS model.
@@ -39,17 +40,23 @@ class KitchenqueueController extends Controller
 	{
 		$this->view->title = 'Kitchen Queue';
 		$searchModel = new OrdersSearch();
-		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CONFIRMED']);
-		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
-		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED']);
-		$pendingDelivery = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['DELIVERY']);
+		$kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_KITCHEN_ASSIGNED]);
+		$chefAssigned = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED]);
+		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
+		$orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_READY]);
+		$awaitingRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER]);
+		$allocatedRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED]);
+		$dispatchRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED]);
 
 		return $this->render('/kitchenqueue/index', [
 			'searchModel' => $searchModel,
-			'confirmedOrder' => $confirmedOrder,
+			'kitchenAllocated' => $kitchenAllocated,
+			'allocatedRider' => $allocatedRider,
+			'orderReady' => $orderReady,
+			'chefAssigned' => $chefAssigned,
+			'dispatchRider' => $dispatchRider,
 			'preparingOrder' => $preparingOrder,
-			'completedOrder' => $completedOrder,
-			'pendingDelivery'=>$pendingDelivery
+			'awaitingRider' => $awaitingRider,
 		]);
 	}
 
@@ -77,6 +84,34 @@ class KitchenqueueController extends Controller
 		return $this->render('/kitchenqueue/update', [
 			'model' => $model,
 			'tracker' => $tracker
+		]);
+	}
+
+	/**
+	 * @param $id
+	 * @return string|\yii\web\Response
+	 */
+
+	public function actionAssignChef($id)
+	{
+		$this->view->title = "Assign Chef to order #{$id}";
+		$model = $this->findModel($id);
+
+		$model->scenario = APP_UTILS::SCENARIO_ASSIGN_CHEF;
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['index']);
+		}
+
+		$scope = [
+			APP_UTILS::KITCHEN_SCOPE,
+		];
+		$workflow = 0;
+
+		return $this->render('assign_chef', [
+			'model' => $model,
+			'scope' => $scope,
+			'workflow' => $workflow
 		]);
 	}
 

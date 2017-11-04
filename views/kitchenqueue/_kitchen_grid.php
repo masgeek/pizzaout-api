@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use kartik\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
@@ -18,13 +18,63 @@ $gridColumns = [
 			},
 		],
 		'urlCreator' => function ($action, $model, $key, $index) {
+			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
+			$class = 'btn btn-sm ';
+
 			if ($action === 'update') {
-				$action = 'Process Order';
-				$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
+				switch ($model->ORDER_STATUS) {
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED:
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_PENDING:
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED:
+						$action = '<i class="fa fa-cutlery fa-1x"></i><br/>Assign Kitchen';
+						$class .= 'btn-warning';
+						$url = \yii\helpers\Url::toRoute(['assign-kitchen', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_KITCHEN_ASSIGNED:
+						$action = '<i class="fa fa-building fa-1x"></i><br/>Assign Chef';
+						$class .= 'btn-default';
+						$url = \yii\helpers\Url::toRoute(['assign-chef', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION:
+						$action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_READY:
+						$action = '<i class="fa fa-hourglass fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED:
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					default:
+						$action = '<i class="fa fa-cog fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+				}
+
 			}
 
-			return Html::a($action, $url, ['class' => 'label label-danger']);
+			return Html::a($action, $url, ['class' => $class]);
 		},
 	],
 	'ORDER_ID',
@@ -33,20 +83,23 @@ $gridColumns = [
 		'attribute' => 'USER_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			return "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}";
+			$names = "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}";
+			return ucwords(strtolower($names));
 		}
 	],
 	[
-		//'header' => 'Delivery Location',
+		'header' => 'Delivery Location',
 		'attribute' => 'LOCATION_ID',
-		'visible' => false,
+		'format' => 'raw',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			return $model->lOCATION->LOCATION_NAME;
+			$address = "{$model->aDDRESS->ADDRESS} <br/>{$model->aDDRESS->lOCATION->LOCATION_NAME}";
+			return ucwords(strtolower($address));
 		}
 	],
 	[
-		'header' => 'Assigned Chef',
+		'header' => 'Chef',
+		'filter' => false,
 		'attribute' => 'CHEF_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
@@ -54,50 +107,50 @@ $gridColumns = [
 		}
 	],
 	[
-		'header' => 'Assigned Rider',
+		'header' => 'Rider',
+		'filter' => false,
 		'attribute' => 'RIDER_ID',
-		'visible' => false,
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
 			return $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'N/A';
 		}
 	],
 	[
-		'header' => 'Kitchen Name',
-		'attribute' => 'KITCHEN_ID',
+		'header' => 'Cost',
+		'filter' => false,
+		'format' => 'currency',
+		'attribute' => 'ORDER_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			return $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'N/A';
+			return \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
 		}
 	],
-	'ORDER_QUANTITY',
 	'ORDER_DATE:datetime',
-	'ORDER_PRICE:decimal',
-	//'PAYMENT_METHOD',
+	'PAYMENT_METHOD',
 	'ORDER_STATUS',
-	'NOTES',
+	'NOTES'
 ];
 ?>
 
-	<?= GridView::widget([
-		'dataProvider' => $dataProvider,
-		'filterModel' => $searchModel,
-		'columns' => $gridColumns,
-		'beforeHeader' => [
-			[
-				'columns' => [
-					['content' => 'Kitchen Queue Items', 'options' => ['colspan' => 4, 'class' => 'text-center success']],
-				],
-				'options' => ['class' => 'skip-export'] // remove this row from export
-			]
-		],
-		'pjax' => false,
-		'bordered' => true,
-		'striped' => true,
-		'condensed' => true,
-		'responsive' => true,
-		'hover' => true,
-		'floatHeader' => true,
-		'showPageSummary' => false,
-		'panel' => false,
-	]); ?>
+<?= GridView::widget([
+	'dataProvider' => $dataProvider,
+	//'filterModel' => $searchModel,
+	'columns' => $gridColumns,
+	'beforeHeader' => [
+		[
+			'columns' => [
+				['content' => 'Kitchen Queue Items', 'options' => ['colspan' => 4, 'class' => 'text-center success']],
+			],
+			'options' => ['class' => 'skip-export'] // remove this row from export
+		]
+	],
+	'pjax' => false,
+	'bordered' => true,
+	'striped' => true,
+	'condensed' => true,
+	'responsive' => true,
+	'hover' => true,
+	'floatHeader' => true,
+	'showPageSummary' => false,
+	'panel' => false,
+]); ?>
