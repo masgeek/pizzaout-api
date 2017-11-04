@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 	<?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-md-6">
-			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus(), ['prompt' => '--- SELECT STATUS ---']) ?>
+			<?= $form->field($model, 'ORDER_STATUS')->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus($model->ORDER_ID), ['prompt' => '--- SELECT STATUS ---']) ?>
         </div>
         <div class="col-md-6">
 			<?= $form->field($tracker, 'COMMENTS')->textarea(['cols' => 4, 'rows' => 2]) ?>

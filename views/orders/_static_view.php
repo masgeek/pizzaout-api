@@ -65,12 +65,16 @@ $attributes = [
 	[
 		'columns' => [
 			[
+				'label' => 'Assigned Rider',
 				'attribute' => 'RIDER_ID',
 				'displayOnly' => true,
+				'value' => $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'Not Assigned',
 			],
 			[
+				'label' => 'Assigned Chef',
 				'attribute' => 'CHEF_ID',
 				'displayOnly' => true,
+				'value' => $model->cHEF != null ? $model->cHEF->CHEF_NAME : 'Not Assigned',
 				'valueColOptions' => ['style' => 'width:30%'],
 			],
 		],
@@ -78,6 +82,7 @@ $attributes = [
 	[
 		'columns' => [
 			[
+				'label' => 'Assigned Kitchen',
 				'attribute' => 'KITCHEN_ID',
 				'displayOnly' => true,
 				'value' => $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'Not Assigned',
