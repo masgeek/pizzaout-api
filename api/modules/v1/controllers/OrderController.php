@@ -12,6 +12,9 @@ namespace app\api\modules\v1\controllers;
 use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
 use app\api\modules\v1\models\PAYMENT_MODEL;
+use app\components\CUSTOM_HELPER;
+use app\components\ORDER_STATUS_HELPER;
+use app\Helpers\AppUtils;
 use yii\db\Expression;
 use yii\rest\ActiveController;
 
@@ -30,9 +33,9 @@ class OrderController extends ActiveController
 		$orderItems = new CUSTOMER_ORDER_ITEM();
 		$paymentDetail = new PAYMENT_MODEL();
 
-		$date = new Expression('NOW()');
+		$date = new Expression(AppUtils::GetCurrentTime());
 
-		$order_status = 'PENDING';
+		$order_status = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
 		$post = [
 			'PAYMENT_MODEL' => [
 				'PAYMENT_REF' => strtoupper(uniqid('PIZZA_')),

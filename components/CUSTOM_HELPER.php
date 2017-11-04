@@ -72,10 +72,4 @@ class CUSTOM_HELPER
         return REPORTS_MODEL::SaveReport($user_id, $file_name, $report_type);
     }
 
-    public static function GetTimeStamp()
-    {
-        $date = new \DateTime();
-        return $date->getTimestamp();
-    }
-
 }

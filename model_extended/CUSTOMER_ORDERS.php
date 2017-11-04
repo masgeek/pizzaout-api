@@ -9,6 +9,7 @@
 namespace app\model_extended;
 
 
+use app\Helpers\AppUtils;
 use app\models\CustomerOrder;
 use app\models\OrderTracking;
 use yii\db\Expression;
@@ -34,7 +35,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 
 	public function beforeSave($insert)
 	{
-		$date = new Expression('NOW()');
+		$date = new Expression(AppUtils::GetCurrentTime());
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
 				$this->CREATED_AT = $date;
