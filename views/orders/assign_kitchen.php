@@ -44,6 +44,6 @@ $items = [
 	?>
 
 	<?=
-	$this->render('_form', ['model' => $model, 'scope' => $scope, 'workflow' => $workflow])
+	$this->render('_form', ['workflow' => $workflow, 'scope' => $scope, 'model' => $model])
 	?>
 </div>

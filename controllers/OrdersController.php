@@ -4,13 +4,13 @@ namespace app\controllers;
 
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_STATUS_HELPER;
-use app\model_extended\STATUS_TRACKING_MODEL;
-use Yii;
 use app\model_extended\CUSTOMER_ORDERS;
+use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * OrdersController implements the CRUD actions for CUSTOMER_ORDERS model.
@@ -136,7 +136,7 @@ class OrdersController extends Controller
 
 		$this->view->title = "Order #{$id}";
 		$model = $this->findModel($id);
-		$model->scenario = APP_UTILS::SCENARIO_ALLOCATE_KITCHEN;
+		$model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['update', 'id' => $model->ORDER_ID]);
@@ -147,10 +147,12 @@ class OrdersController extends Controller
 			APP_UTILS::OFFICE_SCOPE,
 			APP_UTILS::ALL_SCOPE
 		];
+		$workflow = 0;
 
 		return $this->render('update', [
 			'model' => $model,
-			'scope' => $scope
+			'scope' => $scope,
+			'workflow' => $workflow
 		]);
 	}
 
@@ -166,13 +168,15 @@ class OrdersController extends Controller
 
 
 		$scope = [
-			APP_UTILS::OFFICE_SCOPE,
-			APP_UTILS::ALL_SCOPE
+			APP_UTILS::OFFICE_SCOPE
 		];
 
-		return $this->render('update', [
+		$workflow = 1;
+
+		return $this->render('assign_kitchen', [
 			'model' => $model,
-			'scope' => $scope
+			'scope' => $scope,
+			'workflow' => $workflow
 		]);
 	}
 

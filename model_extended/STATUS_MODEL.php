@@ -15,17 +15,19 @@ use yii\helpers\ArrayHelper;
 class STATUS_MODEL extends Status
 {
 	/**
-	 * @param       $order_id
+	 * @param int   $order_id
 	 * @param array $scope
+	 * @param int   $workflow
 	 * @return array
 	 */
-	public static function GetStatus($order_id, array $scope = ['ALL'])
+	public static function GetStatus($order_id, array $scope = ['ALL'], $workflow = 0)
 	{
 
 		$exclusion_list = self::StatusExclusionList($order_id);
 
 		$status = self::find()
 			->where(['SCOPE' => $scope])
+			->andWhere(['WORKFLOW' => $workflow])
 			->andWhere(['NOT IN', 'STATUS_NAME', $exclusion_list])
 			->orderBy(['RANK' => SORT_ASC])
 			->all();

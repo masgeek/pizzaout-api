@@ -12,7 +12,6 @@ namespace app\model_extended;
 use app\helpers\APP_UTILS;
 use app\models\CustomerOrder;
 use app\models\OrderTracking;
-use yii\db\Expression;
 
 class CUSTOMER_ORDERS extends CustomerOrder
 {
@@ -41,8 +40,14 @@ class CUSTOMER_ORDERS extends CustomerOrder
 	{
 		$rules = parent::rules();
 
-		$rules[] = [['KITCHEN_ID', 'CHEF_ID', 'COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+		$rules[] = [['COMMENTS', 'ORDER_STATUS'], 'required', 'on' => [
+			APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,
+			APP_UTILS::SCENARIO_CONFIRM_ORDER,
+			APP_UTILS::SCENARIO_ASSIGN_CHEF,
+		]];
 		$rules[] = [['KITCHEN_ID', 'COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
+		$rules[] = [['COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_CONFIRM_ORDER,]];
+		$rules[] = [['CHEF_ID'], 'required', 'on' => [APP_UTILS::SCENARIO_ASSIGN_CHEF,]];
 		return $rules;
 	}
 

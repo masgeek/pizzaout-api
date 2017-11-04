@@ -2,21 +2,20 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%status}}".
  *
- * @property string $STATUS_NAME
- * @property string $STATUS_DESC
- * @property string $COLOR
- * @property string $SCOPE
- * @property int $RANK
+ * @property string          $STATUS_NAME
+ * @property string          $STATUS_DESC
+ * @property string          $COLOR
+ * @property string          $SCOPE
+ * @property int             $RANK
+ * @property int             $WORKFLOW
  *
  * @property CustomerOrder[] $customerOrders
  * @property OrderTracking[] $orderTrackings
  * @property CustomerOrder[] $oRDERs
- * @property Payment[] $payments
+ * @property Payment[]       $payments
  */
 class Status extends \yii\db\ActiveRecord
 {
@@ -35,7 +34,7 @@ class Status extends \yii\db\ActiveRecord
     {
         return [
             [['STATUS_NAME'], 'required'],
-            [['RANK'], 'integer'],
+	        [['RANK', 'WORKFLOW'], 'integer'],
             [['STATUS_NAME'], 'string', 'max' => 30],
             [['STATUS_DESC'], 'string', 'max' => 100],
             [['COLOR', 'SCOPE'], 'string', 'max' => 10],
@@ -55,6 +54,7 @@ class Status extends \yii\db\ActiveRecord
             'COLOR' => 'Color',
             'SCOPE' => 'Scope',
             'RANK' => 'Rank',
+	        'WORKFLOW' => 'Workflow',
         ];
     }
 

@@ -2731,7 +2731,7 @@ input {
 }
 
 label {
-    font-weight: normal;
+    font-weight: bold;
 }
 
 textarea {

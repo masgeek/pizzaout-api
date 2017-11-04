@@ -21,6 +21,9 @@ class APP_UTILS
 	const SCENARIO_UPDATE = 'update';
 	const SCENARIO_DEFAULT = 'default';
 	const SCENARIO_ALLOCATE_KITCHEN = 'allocate_kitchen';
+	const SCENARIO_CONFIRM_ORDER = 'confirm_order';
+	const SCENARIO_ASSIGN_CHEF = 'assign_chef';
+	const SCENARIO_ASSIGN_RIDER = 'assign_rider';
 
 
 	/**
