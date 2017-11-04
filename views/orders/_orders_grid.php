@@ -57,15 +57,18 @@ $gridColumns = [
 		'attribute' => 'USER_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			return "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}";
+			$names = "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}";
+			return ucwords(strtolower($names));
 		}
 	],
 	[
-		//'header' => 'Delivery Location',
+		'header' => 'Delivery Location',
 		'attribute' => 'LOCATION_ID',
+		'format' => 'raw',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			return $model->aDDRESS->ADDRESS;
+			$address = "{$model->aDDRESS->ADDRESS} <br/>{$model->aDDRESS->lOCATION->LOCATION_NAME}";
+			return ucwords(strtolower($address));
 		}
 	],
 	[
