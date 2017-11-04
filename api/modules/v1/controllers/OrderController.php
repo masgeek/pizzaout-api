@@ -46,7 +46,7 @@ class OrderController extends ActiveController
 			],
 			'CUSTOMER_ORDER_ITEM' => [
 				'ITEM_TYPE_ID' => 1,
-				'QUANTITY' => 1,
+				'QUANTITY' => 2,
 				'PRICE' => 1200,
 				'SUBTOTAL' => 1200,
 				'OPTIONS' => 'N/A',
@@ -55,8 +55,8 @@ class OrderController extends ActiveController
 			'CUSTOMER_ORDER_MODEL' => [
 				'USER_ID' => $user_id,
 				'LOCATION_ID' => 1,
-				'ORDER_QUANTITY' => 2,
-				'ORDER_PRICE' => 1200,
+				//'ORDER_QUANTITY' => 2,
+				//'ORDER_PRICE' => 1200,
 				'PAYMENT_METHOD' => 'MOBILE',
 				'ORDER_STATUS' => $order_status,
 				'NOTES' => 'EXTRA CHEESE',

@@ -14,6 +14,7 @@ use Yii;
  *
  * @property CustomerOrder[] $customerOrders
  * @property OrderTracking[] $orderTrackings
+ * @property Payment[] $payments
  */
 class Status extends \yii\db\ActiveRecord
 {
@@ -67,5 +68,13 @@ class Status extends \yii\db\ActiveRecord
     public function getOrderTrackings()
     {
         return $this->hasMany(OrderTracking::className(), ['STATUS' => 'STATUS_NAME']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPayments()
+    {
+        return $this->hasMany(Payment::className(), ['PAYMENT_STATUS' => 'STATUS_NAME']);
     }
 }

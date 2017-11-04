@@ -1,10 +1,11 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
+$formatter = \Yii::$app->formatter;
 ?>
 
 
-<table class="table table-striped table-hover table-bordered GeneratedTable">
+<table class="table table-striped table-hover table-border">
     <thead>
     <tr>
         <th>Order No</th>
@@ -12,6 +13,7 @@
         <th>Amount</th>
         <th>Date</th>
         <th>Status</th>
+        <th>Notes</th>
     </tr>
     </thead>
     <tbody>
@@ -22,9 +24,11 @@
         <tr>
             <td><?= $payment->ORDER_ID ?></td>
             <td><?= $payment->PAYMENT_REF ?></td>
-            <td><?= $payment->PAYMENT_AMOUNT ?></td>
-            <td><?= $payment->PAYMENT_DATE ?></td>
+            <td><?= $formatter->asCurrency($payment->PAYMENT_AMOUNT) ?></td>
+            <td><?= $formatter->asDatetime($payment->PAYMENT_DATE) ?></td>
             <td><?= $payment->PAYMENT_STATUS ?></td>
+            <td><?= "<span class='badge' style='background-color: {$payment->oRDERSTATUS->COLOR};'> </span>  <code>" . $payment->PAYMENT_STATUS . '</code>' ?></td>
+            <td><?= $payment->PAYMENT_NOTES != null ? $payment->PAYMENT_NOTES : 'N/A' ?></td>
         </tr>
 	<?php endforeach; ?>
     </tbody>

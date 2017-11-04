@@ -20,11 +20,11 @@ $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-apple"></i> Order Items',
 		'content' => $this->render('/orders/_order_items', ['model' => $model]),
-		'active' => true
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-credit-card"></i> Payment Details',
 		'content' => $this->render('/orders/_payment_info', ['model' => $model]),
+		'active' => true
 	],
 ];
 

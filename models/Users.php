@@ -20,6 +20,7 @@ use Yii;
  * @property string $LAST_UPDATED
  * @property string $CLIENT_TOKEN
  *
+ * @property CustomerAddress[] $customerAddresses
  * @property CustomerOrder[] $customerOrders
  * @property Location $lOCATION
  * @property UserType $uSERTYPE
@@ -69,6 +70,14 @@ class Users extends \yii\db\ActiveRecord
             'LAST_UPDATED' => 'Last  Updated',
             'CLIENT_TOKEN' => 'Client  Token',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCustomerAddresses()
+    {
+        return $this->hasMany(CustomerAddress::className(), ['USER_ID' => 'USER_ID']);
     }
 
     /**
