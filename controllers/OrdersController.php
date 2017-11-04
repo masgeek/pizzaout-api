@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\ORDER_STATUS_HELPER;
 use app\model_extended\KITCHEN_MODEL;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use Yii;
@@ -39,31 +40,38 @@ class OrdersController extends Controller
 	{
 		$this->view->title = 'Orders';
 		$searchModel = new OrdersSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, ['CONFIRMED', 'PREPARING', 'DELIVERY']);
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, [
+			ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED,
+			ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION,
+			ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
+		]);
 
-		$pendingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PENDING']);
-		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CONFIRMED']);
-		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['PREPARING']);
-		$completedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['COMPLETED', 'DELIVERED', 'DELIVERY']);
-		$cancelledOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, ['CANCELLED']);
+		$pendingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING]);
+		$confirmedOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED]);
+		$preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
+
+		$orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [
+			ORDER_STATUS_HELPER::STATUS_ORDER_READY]);
+
+		$cancelledOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED]);
 
 		return $this->render('/orders/index', [
 			'searchModel' => $searchModel,
 			'pendingOrder' => $pendingOrder,
 			'confirmedOrder' => $confirmedOrder,
 			'preparingOrder' => $preparingOrder,
-			'completedOrder' => $completedOrder,
-            'cancelledOrder'=>$cancelledOrder
+			'orderReady' => $orderReady,
+			'cancelledOrder' => $cancelledOrder
 		]);
 	}
 
-    /**
-     * Updates an existing CUSTOMER_ORDERS model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException
-     */
+	/**
+	 * Updates an existing CUSTOMER_ORDERS model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param string $id
+	 * @return mixed
+	 * @throws NotFoundHttpException
+	 */
 	public function actionRider($id)
 	{
 		$model = $this->findModel($id);
@@ -85,12 +93,12 @@ class OrdersController extends Controller
 		]);
 	}
 
-    /**
-     * Displays a single CUSTOMER_ORDERS model.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException
-     */
+	/**
+	 * Displays a single CUSTOMER_ORDERS model.
+	 * @param string $id
+	 * @return mixed
+	 * @throws NotFoundHttpException
+	 */
 	public function actionView($id)
 	{
 		return $this->render('view', [
@@ -116,13 +124,13 @@ class OrdersController extends Controller
 		]);
 	}
 
-    /**
-     * Updates an existing CUSTOMER_ORDERS model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException
-     */
+	/**
+	 * Updates an existing CUSTOMER_ORDERS model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param string $id
+	 * @return mixed
+	 * @throws NotFoundHttpException
+	 */
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
@@ -145,13 +153,13 @@ class OrdersController extends Controller
 		]);
 	}
 
-    /**
-     * Deletes an existing CUSTOMER_ORDERS model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException
-     */
+	/**
+	 * Deletes an existing CUSTOMER_ORDERS model.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 * @param string $id
+	 * @return mixed
+	 * @throws NotFoundHttpException
+	 */
 	public function actionDelete($id)
 	{
 		$this->findModel($id)->delete();

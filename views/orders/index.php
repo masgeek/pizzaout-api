@@ -8,33 +8,33 @@ use kartik\tabs\TabsX;
 /* @var $confirmedOrder yii\data\ActiveDataProvider */
 /* @var $pendingOrder yii\data\ActiveDataProvider */
 /* @var $preparingOrder yii\data\ActiveDataProvider */
-/* @var $completedOrder yii\data\ActiveDataProvider */
+/* @var $orderReady yii\data\ActiveDataProvider */
 /* @var $cancelledOrder yii\data\ActiveDataProvider */
 
 $this->params['breadcrumbs'][] = $this->title;
 
 $items = [
-    [
-        'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
-        'active' => true
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Completed Orders',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $completedOrder]),
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
-    ],
+	[
+		'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
+		'active' => true
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
+		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
+	],
 ];
 ?>
 
@@ -42,10 +42,10 @@ $items = [
 
 <?=
 TabsX::widget([
-    'items' => $items,
-    'position' => TabsX::POS_ABOVE,
-    'encodeLabels' => false,
-    'bordered' => true,
+	'items' => $items,
+	'position' => TabsX::POS_ABOVE,
+	'encodeLabels' => false,
+	'bordered' => true,
 ]);
 ?>
 
