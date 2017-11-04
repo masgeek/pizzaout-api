@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
+/* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $scope array */
 
@@ -42,10 +43,10 @@ TEMPLATE;
 
     <div class="row">
         <div class="col-md-12">
-			<?= $form->field($tracker, 'COMMENTS', ['template' => $field_template])->textarea([
+			<?= $form->field($model, 'COMMENTS', ['template' => $field_template])->textarea([
 				'cols' => 4,
 				'rows' => 4,
-				'placeholder' => 'comments'
+				'placeholder' => 'Comments'
 			])->label(false) ?>
         </div>
     </div>

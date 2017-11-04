@@ -37,6 +37,7 @@ class OrderTracking extends \yii\db\ActiveRecord
             [['TRACKING_DATE'], 'safe'],
             [['COMMENTS'], 'string', 'max' => 255],
             [['STATUS'], 'string', 'max' => 30],
+            [['ORDER_ID', 'STATUS'], 'unique', 'targetAttribute' => ['ORDER_ID', 'STATUS']],
             [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
             [['STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['STATUS' => 'STATUS_NAME']],
         ];

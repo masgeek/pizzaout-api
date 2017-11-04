@@ -5,7 +5,6 @@ use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
-/* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
 /* @var $scope array */
 
 $this->params['breadcrumbs'][] = ['label' => 'Customer  Orders', 'url' => ['index']];
@@ -16,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Update';
 $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-home"></i> Order Details',
-		'content' => $this->render('_order_details', ['model' => $model, 'tracker' => $tracker]),
+		'content' => $this->render('_order_details', ['model' => $model,]),
 		'active' => true
 	],
 	[
@@ -44,6 +43,6 @@ $items = [
 	?>
 
 	<?=
-	$this->render('_form', ['model' => $model, 'tracker' => $tracker, 'scope' => $scope])
+	$this->render('_form', ['model' => $model, 'scope' => $scope])
 	?>
 </div>

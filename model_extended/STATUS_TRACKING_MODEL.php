@@ -11,12 +11,11 @@ namespace app\model_extended;
 
 use app\helpers\APP_UTILS;
 use app\models\OrderTracking;
-use yii\db\Expression;
 
 class STATUS_TRACKING_MODEL extends OrderTracking
 {
 
-	public function rules()
+	/*public function rules()
 	{
 		$rules = parent::rules();
 
@@ -24,13 +23,12 @@ class STATUS_TRACKING_MODEL extends OrderTracking
 		return $rules;
 	}
 
-	/*public function beforeValidate()
+	public function beforeSave($insert)
 	{
-		if (parent::beforeValidate()) {
-			$this->TRACKING_DATE =APP_UTILS::GetCurrentTime();
+		if (parent::beforeSave($insert)) {
+			$this->TRACKING_DATE = APP_UTILS::GetCurrentDateTime();
 			return true;
 		}
-
 		return false;
 	}*/
 }

@@ -17,6 +17,8 @@ use yii\db\Expression;
 class CUSTOMER_ORDERS extends CustomerOrder
 {
 
+	public $COMMENTS;
+
 	public function attributeLabels()
 	{
 		$labels = parent::attributeLabels();
@@ -39,8 +41,8 @@ class CUSTOMER_ORDERS extends CustomerOrder
 	{
 		$rules = parent::rules();
 
-		$rules[] = [['KITCHEN_ID', 'CHEF_ID', 'NOTES'], 'required', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
-		$rules[] = [['KITCHEN_ID'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
+		$rules[] = [['KITCHEN_ID', 'CHEF_ID', 'COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+		$rules[] = [['KITCHEN_ID', 'COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
 		return $rules;
 	}
 
@@ -64,6 +66,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$tracker = new STATUS_TRACKING_MODEL();
 		$tracker->ORDER_ID = $this->ORDER_ID;
 		$tracker->STATUS = $this->ORDER_STATUS;
+		$tracker->COMMENTS = $this->COMMENTS;
 		$tracker->TRACKING_DATE = APP_UTILS::GetCurrentDateTime();
 		$tracker->save();
 	}

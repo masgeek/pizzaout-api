@@ -133,43 +133,13 @@ class OrdersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+
 		$this->view->title = "Process Order No #{$id}";
 		$model = $this->findModel($id);
 		$model->scenario = APP_UTILS::SCENARIO_ALLOCATE_KITCHEN;
 
-		$tracker = new STATUS_TRACKING_MODEL();
-		$tracker->scenario = APP_UTILS::SCENARIO_CREATE;
-
-
-		$old_status = $model->ORDER_STATUS;
-		if ($model->load(Yii::$app->request->post())) {
-
-			$tracker->isNewRecord = true;
-			$tracker->load(Yii::$app->request->post());
-
-			if (strcmp($old_status, $model->ORDER_STATUS) != 0 && $model->validate()) {
-				if ($model->save()) {
-					$tracker->ORDER_ID = $model->ORDER_ID;
-					$tracker->STATUS = $model->ORDER_STATUS;
-					$tracker->TRACKING_DATE = APP_UTILS::GetCurrentDateTime();
-					if ($tracker->validate()) {
-						$tracker->save();
-					}
-				}
-				//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
-
-			} else {
-				var_dump($model);
-			}
-
-			$tracker->validate();
-			var_dump($model->getErrors());
-			var_dump($tracker->getErrors());
-
-			var_dump($tracker);
-			//var_dump($tracker->save());
-			die;
-
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['update', 'id' => $model->ORDER_ID]);
 		}
 
 
@@ -180,7 +150,6 @@ class OrdersController extends Controller
 
 		return $this->render('update', [
 			'model' => $model,
-			'tracker' => $tracker,
 			'scope' => $scope
 		]);
 	}

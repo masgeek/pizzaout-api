@@ -28,6 +28,7 @@ use Yii;
  * @property Chef $cHEF
  * @property CustomerOrderItem[] $customerOrderItems
  * @property OrderTracking[] $orderTrackings
+ * @property Status[] $statuses
  * @property Payment[] $payments
  */
 class CustomerOrder extends \yii\db\ActiveRecord
@@ -144,6 +145,14 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function getOrderTrackings()
     {
         return $this->hasMany(OrderTracking::className(), ['ORDER_ID' => 'ORDER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatuses()
+    {
+        return $this->hasMany(Status::className(), ['STATUS_NAME' => 'STATUS'])->viaTable('order_tracking', ['ORDER_ID' => 'ORDER_ID']);
     }
 
     /**
