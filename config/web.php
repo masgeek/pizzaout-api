@@ -102,8 +102,8 @@ $config = [
 			//'dateFormat' => 'dd.MM.yyyy',
 			'decimalSeparator' => '.',
 			'thousandSeparator' => ',',
-			//'timeZone' => 'GMT', //default time zones and format
-			'currencyCode' => 'SOS',
+			'timeZone' => 'GMT', //default time zones and format
+			//'currencyCode' => 'SOS',
 			//'currencyCode' => 'KES',
 			'nullDisplay' => '0'
 		],

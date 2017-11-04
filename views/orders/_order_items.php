@@ -23,8 +23,8 @@ $formatter = \Yii::$app->formatter;
         <tr>
             <td><?= "{$orderItems->QUANTITY}x"; ?></td>
             <td><?= "{$orderItems->iTEMTYPE->mENUITEM->MENU_ITEM_NAME} ({$orderItems->iTEMTYPE->ITEM_TYPE_SIZE})"; ?></td>
-            <td class="text-left"><?= $orderItems->PRICE ?></td>
-            <td class="text-right"><?= $orderItems->SUBTOTAL ?></td>
+            <td class="text-left"><?= $formatter->asCurrency($orderItems->PRICE) ?></td>
+            <td class="text-right"><?= $formatter->asCurrency($orderItems->SUBTOTAL) ?></td>
         </tr>
 		<?php
 		//lets do the order total here
