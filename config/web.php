@@ -3,10 +3,12 @@
 $params = require(__DIR__ . '/params.php');
 $fcm = require(__DIR__ . '/fcm.php');
 
+$timezone = 'Africa/Nairobi';
+
 $config = [
 	'id' => 'basic',
 	'basePath' => dirname(__DIR__),
-	'timeZone' => 'Africa/Nairobi',
+	'timeZone' => $timezone,
 	'bootstrap' => ['log'],
 	'aliases' => [
 		'@bower' => 'vendor/bower-asset',
@@ -17,14 +19,14 @@ $config = [
 		]
 	],
 	'components' => [
-        /* custom view template*/
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@app/views' => 'themes/porto_theme'
-                ],
-            ]
-        ],
+		/* custom view template*/
+		'view' => [
+			'theme' => [
+				'pathMap' => [
+					'@app/views' => 'themes/porto_theme'
+				],
+			]
+		],
 		'fcm' => $fcm,
 		'pdf' => [
 			'class' => \kartik\mpdf\Pdf::classname(),
@@ -102,7 +104,7 @@ $config = [
 			//'dateFormat' => 'dd.MM.yyyy',
 			'decimalSeparator' => '.',
 			'thousandSeparator' => ',',
-			'timeZone' => 'GMT', //default time zones and format
+			'timeZone' => $timezone, //default time zones and format
 			//'currencyCode' => 'SOS',
 			//'currencyCode' => 'KES',
 			'nullDisplay' => '0'
@@ -118,14 +120,14 @@ if (YII_ENV_DEV) {
 	$config['modules']['debug'] = [
 		'class' => 'yii\debug\Module',
 		// uncomment the following to add your IP if you are not connecting from localhost.
-		//'allowedIPs' => ['127.0.0.1', '::1'],
+		'allowedIPs' => ['127.0.0.1', '::1'],
 	];
 
 	$config['bootstrap'][] = 'gii';
 	$config['modules']['gii'] = [
 		'class' => 'yii\gii\Module',
 		// uncomment the following to add your IP if you are not connecting from localhost.
-		//'allowedIPs' => ['127.0.0.1', '::1'],
+		'allowedIPs' => ['127.0.0.1', '::1'],
 	];
 }
 
