@@ -13,24 +13,25 @@ use yii\web\AssetBundle;
 
 class CustomAssets extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+	public $basePath = '@webroot';
+	public $baseUrl = '@web';
 
-    public $jsOptions = array(//'position' => \yii\web\View::POS_END
-    );
+	public $jsOptions = array(//'position' => \yii\web\View::POS_END
+	);
 
-    public $css = [
-        //'css/site.css',
-        'css/theme/theme.css',
-        'css/theme/skins/default.css',
-        'css/theme/theme-custom.css',
-    ];
-    public $js = [
-        'js/jquery-browser-mobile/jquery.browser.mobile.js',
-        'js/liquid-meter/liquid.meter.js',
-        'js/theme/theme.js',
-        'js/theme/theme.custom.js',
-        'js/theme/theme.init.js',
-        'js/dashboard/examples.dashboard.js',
-    ];
+	public $css = [
+		//'css/site.css',
+		'css/custom-style.css',
+		'css/theme/theme.css',
+		'css/theme/skins/default.css',
+		'css/theme/theme-custom.css',
+	];
+	public $js = [
+		'js/jquery-browser-mobile/jquery.browser.mobile.js',
+		'js/liquid-meter/liquid.meter.js',
+		'js/theme/theme.js',
+		'js/theme/theme.custom.js',
+		'js/theme/theme.init.js',
+		'js/dashboard/examples.dashboard.js',
+	];
 }

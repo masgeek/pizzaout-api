@@ -12,9 +12,9 @@ use Yii;
  * @property string $MENU_ITEM_NAME
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
- * @property int $HOT_DEAL
+ * @property bool $HOT_DEAL
+ * @property bool $VEGETERIAN
  *
- * @property ItemType[] $itemTypes
  * @property MenuCategory $mENUCAT
  * @property MenuItemType[] $menuItemTypes
  */
@@ -35,8 +35,10 @@ class MenuItem extends \yii\db\ActiveRecord
     {
         return [
             [['MENU_CAT_ID', 'MENU_ITEM_NAME', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'required'],
-            [['MENU_CAT_ID', 'HOT_DEAL'], 'integer'],
-            [['MENU_ITEM_NAME', 'MENU_ITEM_DESC', 'MENU_ITEM_IMAGE'], 'string', 'max' => 255],
+            [['MENU_CAT_ID'], 'integer'],
+            [['MENU_ITEM_DESC'], 'string'],
+            [['HOT_DEAL', 'VEGETERIAN'], 'boolean'],
+            [['MENU_ITEM_NAME', 'MENU_ITEM_IMAGE'], 'string', 'max' => 255],
             [['MENU_CAT_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuCategory::className(), 'targetAttribute' => ['MENU_CAT_ID' => 'MENU_CAT_ID']],
         ];
     }
@@ -53,15 +55,8 @@ class MenuItem extends \yii\db\ActiveRecord
             'MENU_ITEM_DESC' => 'Menu  Item  Desc',
             'MENU_ITEM_IMAGE' => 'Menu  Item  Image',
             'HOT_DEAL' => 'Hot  Deal',
+            'VEGETERIAN' => 'Vegeterian',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getItemTypes()
-    {
-        return $this->hasMany(ItemType::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
     }
 
     /**

@@ -9,10 +9,9 @@ use Yii;
  *
  * @property string $ITEM_TYPE_ID
  * @property string $MENU_ITEM_ID
+ * @property string $ITEM_TYPE_SIZE
  * @property string $PRICE
- * @property string $ITEM_TYPE_NAME
- * @property string $DESCRIPTION
- * @property int $AVAILABLE
+ * @property bool $AVAILABLE
  *
  * @property CustomerOrderItem[] $customerOrderItems
  * @property MenuItem $mENUITEM
@@ -33,11 +32,11 @@ class MenuItemType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['MENU_ITEM_ID', 'PRICE', 'ITEM_TYPE_NAME'], 'required'],
-            [['MENU_ITEM_ID', 'AVAILABLE'], 'integer'],
+            [['MENU_ITEM_ID', 'ITEM_TYPE_SIZE', 'PRICE'], 'required'],
+            [['MENU_ITEM_ID'], 'integer'],
             [['PRICE'], 'number'],
-            [['ITEM_TYPE_NAME'], 'string', 'max' => 50],
-            [['DESCRIPTION'], 'string', 'max' => 255],
+            [['AVAILABLE'], 'boolean'],
+            [['ITEM_TYPE_SIZE'], 'string', 'max' => 10],
             [['MENU_ITEM_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItem::className(), 'targetAttribute' => ['MENU_ITEM_ID' => 'MENU_ITEM_ID']],
         ];
     }
@@ -50,9 +49,8 @@ class MenuItemType extends \yii\db\ActiveRecord
         return [
             'ITEM_TYPE_ID' => 'Item  Type  ID',
             'MENU_ITEM_ID' => 'Menu  Item  ID',
+            'ITEM_TYPE_SIZE' => 'Item  Type  Size',
             'PRICE' => 'Price',
-            'ITEM_TYPE_NAME' => 'Item  Type  Name',
-            'DESCRIPTION' => 'Description',
             'AVAILABLE' => 'Available',
         ];
     }
