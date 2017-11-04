@@ -2,8 +2,7 @@
 
 namespace app\controllers;
 
-use app\components\ORDER_STATUS_HELPER;
-use app\model_extended\KITCHEN_MODEL;
+use app\helpers\ORDER_STATUS_HELPER;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use Yii;
 use app\model_extended\CUSTOMER_ORDERS;
