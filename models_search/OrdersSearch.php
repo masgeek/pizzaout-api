@@ -18,9 +18,8 @@ class OrdersSearch extends CUSTOMER_ORDERS
 	public function rules()
 	{
 		return [
-			[['ORDER_ID', 'USER_ID', 'ADDRESS_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
+			[['ORDER_ID', 'USER_ID', 'ADDRESS_ID', 'CHEF_ID', 'RIDER_ID'], 'integer'],
 			[['ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'NOTES', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
-			[['ORDER_PRICE'], 'number'],
 		];
 	}
 
@@ -68,9 +67,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 			'ADDRESS_ID' => $this->ADDRESS_ID,
 			'CHEF_ID' => $this->CHEF_ID,
 			'RIDER_ID' => $this->RIDER_ID,
-			'ORDER_QUANTITY' => $this->ORDER_QUANTITY,
 			'ORDER_DATE' => $this->ORDER_DATE,
-			'ORDER_PRICE' => $this->ORDER_PRICE,
 			'CREATED_AT' => $this->CREATED_AT,
 			'UPDATED_AT' => $this->UPDATED_AT,
 		]);
@@ -112,12 +109,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 			'ADDRESS_ID' => $this->ADDRESS_ID,
 			'CHEF_ID' => $this->CHEF_ID,
 			'RIDER_ID' => $this->RIDER_ID,
-			//'ORDER_QUANTITY' => $this->ORDER_QUANTITY,
-			//'ORDER_DATE' => $this->ORDER_DATE,
 			'ORDER_STATUS' => $this->ORDER_STATUS,
-			//'ORDER_PRICE' => $this->ORDER_PRICE,
-			//'CREATED_AT' => $this->CREATED_AT,
-			//'UPDATED_AT' => $this->UPDATED_AT,
 		]);
 
 		$query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])

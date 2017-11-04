@@ -65,7 +65,7 @@ $gridColumns = [
 		'attribute' => 'LOCATION_ID',
 		'value' => function ($model) {
 			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			return $model->lOCATION->LOCATION_NAME;
+			return $model->aDDRESS->ADDRESS;
 		}
 	],
 	[
@@ -86,9 +86,17 @@ $gridColumns = [
 			return $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'N/A';
 		}
 	],
-	//'ORDER_QUANTITY',
+	[
+		'header' => 'Cost',
+		'filter' => false,
+		'format' => 'currency',
+		'attribute' => 'ORDER_ID',
+		'value' => function ($model) {
+			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
+			return \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+		}
+	],
 	'ORDER_DATE:datetime',
-	'ORDER_PRICE:decimal',
 	'PAYMENT_METHOD',
 	'ORDER_STATUS',
 	'NOTES',

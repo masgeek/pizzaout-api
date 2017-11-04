@@ -20,7 +20,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 	public function attributeLabels()
 	{
 		$labels = parent::attributeLabels();
-		$labels['LOCATION_ID'] = 'Location';
+		$labels['ADDRESS_ID'] = 'Delivery Address';
 		$labels['USER_ID'] = 'Customer';
 		$labels['KITCHEN_ID'] = 'Assign Kitchen';
 		$labels['CHEF_ID'] = 'Assign Chef';
@@ -30,6 +30,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$labels['PAYMENT_METHOD'] = 'Payment';
 		$labels['ORDER_STATUS'] = 'Status';
 		$labels['ORDER_ID'] = 'ORDER ID #';
+
 		return $labels;
 	}
 
@@ -53,7 +54,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$tracker = new STATUS_TRACKING_MODEL();
 		$tracker->ORDER_ID = $this->ORDER_ID;
 		$tracker->STATUS = $this->ORDER_STATUS;
-		$tracker->TRACKING_DATE = new Expression('NOW()');
+		$tracker->TRACKING_DATE = new Expression(APP_UTILS::GetCurrentTime());
 		$tracker->save();
 	}
 
