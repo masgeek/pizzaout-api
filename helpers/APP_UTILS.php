@@ -12,6 +12,7 @@ namespace app\helpers;
 class APP_UTILS
 {
 	const KITCHEN_SCOPE = 'KITCHEN';
+	const CHEF_SCOPE = 'CHEF';
 	const RIDER_SCOPE = 'RIDER';
 	const OFFICE_SCOPE = 'OFFICE';
 	const ALL_SCOPE = 'ALL';
@@ -22,6 +23,8 @@ class APP_UTILS
 	const SCENARIO_DEFAULT = 'default';
 	const SCENARIO_ALLOCATE_KITCHEN = 'allocate_kitchen';
 	const SCENARIO_CONFIRM_ORDER = 'confirm_order';
+	const SCENARIO_PREPARE_ORDER = 'prepare_order';
+	const SCENARIO_ORDER_READY = 'order_ready';
 	const SCENARIO_ASSIGN_CHEF = 'assign_chef';
 	const SCENARIO_ASSIGN_RIDER = 'assign_rider';
 

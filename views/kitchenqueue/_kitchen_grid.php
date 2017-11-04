@@ -46,24 +46,27 @@ $gridColumns = [
 						$url = \yii\helpers\Url::toRoute(['assign-chef', 'id' => $model->ORDER_ID]);
 						break;
 					case \app\helpers\ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED:
-					case \app\helpers\ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION:
-						$action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>View';
-						$class .= 'btn-success';
-						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						$action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>Prepare Order';
+						$class .= 'btn-primary';
+						$url = \yii\helpers\Url::toRoute(['prepare-order', 'id' => $model->ORDER_ID]);
 						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION:
+						$action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>Order Ready';
+						$class .= 'btn-primary';
+						$url = \yii\helpers\Url::toRoute(['order-ready', 'id' => $model->ORDER_ID]);
 						break;
 					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_READY:
-						$action = '<i class="fa fa-hourglass fa-1x"></i><br/>View';
+						$action = '<i class="fa fa-hourglass fa-1x"></i><br/>Assign Rider';
 						$class .= 'btn-success';
-						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						$url = \yii\helpers\Url::toRoute(['update-rider', 'id' => $model->ORDER_ID, 'workflow' => 4]);
 						break;
 					case \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER:
 					case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED:
 					case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED:
 					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED:
-						$action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
-						$class .= 'btn-success';
-						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>Update';
+						$class .= 'btn-purple';
+						$url = \yii\helpers\Url::toRoute(['update-rider', 'id' => $model->ORDER_ID, 'workflow' => 5]);
 						break;
 					default:
 						$action = '<i class="fa fa-cog fa-1x"></i><br/>View';

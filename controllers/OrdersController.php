@@ -139,7 +139,7 @@ class OrdersController extends Controller
 		$model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+			return $this->redirect(['index']);
 		}
 
 
@@ -163,7 +163,7 @@ class OrdersController extends Controller
 		$model->scenario = APP_UTILS::SCENARIO_ALLOCATE_KITCHEN;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+			return $this->redirect(['index']);
 		}
 
 

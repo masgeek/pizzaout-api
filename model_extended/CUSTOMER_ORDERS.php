@@ -30,7 +30,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$labels['ORDER_PRICE'] = 'Total';
 		$labels['PAYMENT_METHOD'] = 'Payment';
 		$labels['ORDER_STATUS'] = 'Status';
-		$labels['ORDER_ID'] = 'ORDER ID #';
+		$labels['ORDER_ID'] = 'Order ID #';
 
 		return $labels;
 	}
@@ -44,6 +44,9 @@ class CUSTOMER_ORDERS extends CustomerOrder
 			APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,
 			APP_UTILS::SCENARIO_CONFIRM_ORDER,
 			APP_UTILS::SCENARIO_ASSIGN_CHEF,
+			APP_UTILS::SCENARIO_PREPARE_ORDER,
+			APP_UTILS::SCENARIO_ORDER_READY,
+			APP_UTILS::SCENARIO_ASSIGN_RIDER,
 		]];
 		$rules[] = [['KITCHEN_ID', 'COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
 		$rules[] = [['COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_CONFIRM_ORDER,]];

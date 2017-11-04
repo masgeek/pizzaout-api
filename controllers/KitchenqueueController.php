@@ -116,17 +116,81 @@ class KitchenqueueController extends Controller
 	}
 
 
-	/**
-	 * Deletes an existing CUSTOMER_ORDERS model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param string $id
-	 * @return mixed
-	 */
-	public function actionDelete($id)
+	public function actionPrepareOrder($id)
 	{
-		$this->findModel($id)->delete();
-		return $this->redirect(['index']);
+		$this->view->title = "Prepare Order #{$id}";
+		$model = $this->findModel($id);
+
+		$model->scenario = APP_UTILS::SCENARIO_PREPARE_ORDER;
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['index']);
+		}
+
+		$scope = [
+			APP_UTILS::CHEF_SCOPE,
+		];
+		$workflow = 1;
+
+		return $this->render('assign_chef', [
+			'model' => $model,
+			'scope' => $scope,
+			'workflow' => $workflow
+		]);
 	}
+
+	public function actionOrderReady($id)
+	{
+		$this->view->title = "Order #{$id} Is Ready";
+		$model = $this->findModel($id);
+
+		$model->scenario = APP_UTILS::SCENARIO_PREPARE_ORDER;
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['index']);
+		}
+
+		$scope = [
+			APP_UTILS::CHEF_SCOPE,
+		];
+		$workflow = 2;
+
+		return $this->render('assign_chef', [
+			'model' => $model,
+			'scope' => $scope,
+			'workflow' => $workflow
+		]);
+	}
+
+	public function actionUpdateRider($id, $workflow)
+	{
+		$this->view->title = "Update Order #{$id} a rider";
+		$model = $this->findModel($id);
+
+		$model->scenario = APP_UTILS::SCENARIO_ASSIGN_RIDER;
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['index']);
+		}
+
+		$scope = [
+			APP_UTILS::KITCHEN_SCOPE,
+		];
+
+		return $this->render('assign_chef', [
+			'model' => $model,
+			'scope' => $scope,
+			'workflow' => $workflow
+		]);
+	}
+
+	public function actionView($id)
+	{
+		return $this->render('view', [
+			'model' => $this->findModel($id),
+		]);
+	}
+
 
 	/**
 	 * Finds the CUSTOMER_ORDERS model based on its primary key value.
