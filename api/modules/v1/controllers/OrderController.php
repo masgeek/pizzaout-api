@@ -54,7 +54,7 @@ class OrderController extends ActiveController
 			],
 			'CUSTOMER_ORDER_MODEL' => [
 				'USER_ID' => $user_id,
-				'LOCATION_ID' => 1,
+				'ADDRESS_ID' => 1,
 				//'ORDER_QUANTITY' => 2,
 				//'ORDER_PRICE' => 1200,
 				'PAYMENT_METHOD' => 'MOBILE',
