@@ -30,7 +30,7 @@ class STATUS_MODEL extends Status
 			->orderBy(['RANK' => SORT_ASC])
 			->all();
 
-		$listData = ArrayHelper::map($status, 'STATUS_NAME', 'STATUS_NAME');
+		$listData = ArrayHelper::map($status, 'STATUS_NAME', 'STATUS_DESC');
 
 		return $listData;
 	}

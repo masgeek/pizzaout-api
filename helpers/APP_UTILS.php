@@ -17,6 +17,11 @@ class APP_UTILS
 	const ALL_SCOPE = 'ALL';
 
 
+	const SCENARIO_CREATE = 'create';
+	const SCENARIO_UPDATE = 'update';
+	const SCENARIO_DEFAULT = 'default';
+
+
 	/**
 	 * @return int
 	 */

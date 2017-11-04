@@ -29,15 +29,12 @@ class USER_MODEL extends Users
 {
 	public $CHANGE_PASSWORD;
 
-	const SCENARIO_CREATE = 'create';
-	const SCENARIO_UPDATE = 'update';
-
 
 	public function scenarios()
 	{
 		$scenarios = parent::scenarios();
-		$scenarios[self::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
-		$scenarios[self::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
+		$scenarios[APP_UTILS::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
+		$scenarios[APP_UTILS::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
 
 		return $scenarios;
 	}
@@ -46,8 +43,8 @@ class USER_MODEL extends Users
 	{
 		$rules = parent::rules();
 
-		$rules[] = [['EMAIL'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
-		$rules[] = [['PASSWORD'], 'string', 'min' => 1, 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]];
+		$rules[] = [['EMAIL'], 'unique', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+		$rules[] = [['PASSWORD'], 'string', 'min' => 3, 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
 		return $rules;
 	}
 

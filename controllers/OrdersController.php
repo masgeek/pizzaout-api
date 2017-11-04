@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\APP_UTILS;
 use app\helpers\ORDER_STATUS_HELPER;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use Yii;
@@ -132,11 +133,17 @@ class OrdersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$this->view->title = "Process Order No #{$id}";
 		$model = $this->findModel($id);
+		$model->scenario = APP_UTILS::SCENARIO_UPDATE;
 
 		$tracker = new STATUS_TRACKING_MODEL();
+		$tracker->scenario = APP_UTILS::SCENARIO_CREATE;
 
-
+		$scope = [
+			APP_UTILS::OFFICE_SCOPE,
+			APP_UTILS::ALL_SCOPE
+		];
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			$tracker->ORDER_ID = $model->ORDER_ID;
 			$tracker->STATUS = $model->ORDER_STATUS;
@@ -148,7 +155,8 @@ class OrdersController extends Controller
 
 		return $this->render('update', [
 			'model' => $model,
-			'tracker' => $tracker
+			'tracker' => $tracker,
+			'scope' => $scope
 		]);
 	}
 

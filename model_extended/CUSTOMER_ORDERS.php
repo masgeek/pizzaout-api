@@ -34,6 +34,15 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		return $labels;
 	}
 
+
+	public function rules()
+	{
+		$rules = parent::rules();
+
+		$rules[] = [['KITCHEN_ID', 'CHEF_ID', 'NOTES'], 'required', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+		return $rules;
+	}
+
 	public function beforeSave($insert)
 	{
 		$date = new Expression(APP_UTILS::GetCurrentTime());

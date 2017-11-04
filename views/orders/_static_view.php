@@ -26,7 +26,7 @@ $attributes = [
 				'attribute' => 'ORDER_ID',
 				'displayOnly' => true,
 				'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID),
-				'format' => ['decimal', 2],
+				'format' => 'currency',
 				'inputContainer' => ['class' => 'col-sm-6'],
 			],
 

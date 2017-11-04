@@ -6,6 +6,7 @@ use kartik\tabs\TabsX;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
 /* @var $tracker app\model_extended\STATUS_TRACKING_MODEL */
+/* @var $scope array */
 
 $this->params['breadcrumbs'][] = ['label' => 'Customer  Orders', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $model->ORDER_ID, 'url' => ['view', 'id' => $model->ORDER_ID]];
@@ -43,6 +44,6 @@ $items = [
 	?>
 
 	<?=
-	$this->render('_form', ['model' => $model, 'tracker' => $tracker])
+	$this->render('_form', ['model' => $model, 'tracker' => $tracker, 'scope' => $scope])
 	?>
 </div>
