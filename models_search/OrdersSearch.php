@@ -18,7 +18,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 	public function rules()
 	{
 		return [
-			[['ORDER_ID', 'USER_ID', 'LOCATION_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
+			[['ORDER_ID', 'USER_ID', 'ADDRESS_ID', 'CHEF_ID', 'RIDER_ID', 'ORDER_QUANTITY'], 'integer'],
 			[['ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'NOTES', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
 			[['ORDER_PRICE'], 'number'],
 		];
@@ -65,7 +65,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 		$query->andFilterWhere([
 			'ORDER_ID' => $this->ORDER_ID,
 			'USER_ID' => $this->USER_ID,
-			'LOCATION_ID' => $this->LOCATION_ID,
+			'ADDRESS_ID' => $this->ADDRESS_ID,
 			'CHEF_ID' => $this->CHEF_ID,
 			'RIDER_ID' => $this->RIDER_ID,
 			'ORDER_QUANTITY' => $this->ORDER_QUANTITY,
@@ -109,7 +109,7 @@ class OrdersSearch extends CUSTOMER_ORDERS
 		$query->andFilterWhere([
 			'ORDER_ID' => $this->ORDER_ID,
 			'USER_ID' => $this->USER_ID,
-			'LOCATION_ID' => $this->LOCATION_ID,
+			'ADDRESS_ID' => $this->ADDRESS_ID,
 			'CHEF_ID' => $this->CHEF_ID,
 			'RIDER_ID' => $this->RIDER_ID,
 			//'ORDER_QUANTITY' => $this->ORDER_QUANTITY,

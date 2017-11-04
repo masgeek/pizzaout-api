@@ -8,12 +8,13 @@
 
 namespace app\models_search;
 
+use app\helpers\ORDER_STATUS_HELPER;
+use app\model_extended\CUSTOMER_PAYMENTS;
 use Yii;
-use app\model_extended\ALL_PAYMENTS;
 use yii\data\ActiveDataProvider;
 
 
-class PaymentSearch extends ALL_PAYMENTS
+class PaymentSearch extends CUSTOMER_PAYMENTS
 {
 	public $START_DATE;
 	public $END_DATE;
@@ -24,7 +25,7 @@ class PaymentSearch extends ALL_PAYMENTS
 	public function rules()
 	{
 		return [
-			[['DATE_PAID'], 'safe'],
+			[['PAYMENT_DATE'], 'safe'],
 		];
 	}
 
@@ -38,14 +39,14 @@ class PaymentSearch extends ALL_PAYMENTS
 	public function search($params)
 	{
 		$owner = Yii::$app->user->id;
-		$query = ALL_PAYMENTS::find();
+		$query = self::find();
 
 		// add conditions that should always apply here
 
 		//$query->groupBy('SERVICE_NAME');
 		$query->where(['OWNER_ID' => $owner]);
-		$query->andWhere(['PAYMENT_STATUS' => 1]);
-		$query->orderBy(['DATE_PAID' => SORT_DESC]);
+		$query->andWhere(['PAYMENT_STATUS' => ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED]);
+		$query->orderBy(['PAYMENT_DATE' => SORT_DESC]);
 
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
@@ -59,8 +60,8 @@ class PaymentSearch extends ALL_PAYMENTS
 			return $dataProvider;
 		}
 
-		if ($this->DATE_PAID != null) {
-			$date = explode("TO", $this->DATE_PAID);
+		if ($this->PAYMENT_DATE != null) {
+			$date = explode("TO", $this->PAYMENT_DATE);
 			$this->START_DATE = trim($date[0]);
 			$this->END_DATE = trim($date[1]);
 		} else {
@@ -74,7 +75,7 @@ class PaymentSearch extends ALL_PAYMENTS
 		]);
 
 		//$query->andFilterWhere(['like', 'PAYMENT_REF', $this->PAYMENT_REF]);
-		$query->andFilterWhere(['between', 'DATE_PAID', $this->START_DATE, $this->END_DATE]);
+		$query->andFilterWhere(['between', 'PAYMENT_DATE', $this->START_DATE, $this->END_DATE]);
 
 		return $dataProvider;
 	}
