@@ -1,36 +1,28 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
+
+$formatter = \Yii::$app->formatter;
 ?>
 
 
-<table class="table table-condensed table-hover GeneratedTable">
+<table class="table table-condensed table-hover table-border">
     <thead>
     <tr>
-        <th>Date</th>
         <th>Status</th>
         <th>Comments</th>
+        <th>Date</th>
     </tr>
     </thead>
     <tbody>
-
-
 	<?php
 	foreach ($model->orderTrackings as $orderTracking):?>
         <tr>
-            <td><?= $orderTracking->TRACKING_DATE ?></td>
             <td><?= $orderTracking->STATUS ?></td>
             <td><?= $orderTracking->COMMENTS ?></td>
+            <td><?= $formatter->asDatetime($orderTracking->TRACKING_DATE) ?></td>
         </tr>
 	<?php endforeach; ?>
     </tbody>
 </table>
-
-<!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
-<style>
-    table.GeneratedTable thead {
-        background-color: #adb37c;
-        color: #fefeff;
-    }
-</style>
 
