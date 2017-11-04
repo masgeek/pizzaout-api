@@ -154,6 +154,28 @@ class OrdersController extends Controller
 		]);
 	}
 
+	public function actionAssignKitchen($id)
+	{
+		$this->view->title = "Order #{$id}";
+		$model = $this->findModel($id);
+		$model->scenario = APP_UTILS::SCENARIO_ALLOCATE_KITCHEN;
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+		}
+
+
+		$scope = [
+			APP_UTILS::OFFICE_SCOPE,
+			APP_UTILS::ALL_SCOPE
+		];
+
+		return $this->render('update', [
+			'model' => $model,
+			'scope' => $scope
+		]);
+	}
+
 	/**
 	 * Deletes an existing CUSTOMER_ORDERS model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.

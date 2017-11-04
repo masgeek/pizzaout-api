@@ -20,35 +20,61 @@ $gridColumns = [
 		'urlCreator' => function ($action, $model, $key, $index) {
 			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
-			if ($action === 'update') {
-				$action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
-				$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
-			}
+			$class = 'btn btn-sm ';
 
-			return Html::a($action, $url, ['class' => 'btn btn-default']);
-		},
-	],
-	[
-		'class' => '\kartik\grid\ActionColumn',
-		'template' => '{rider}',
-		'buttons' => [
-			'rider' => function ($url, $model, $key) {
-				return $url;
-			},
-		],
-		'urlCreator' => function ($action, $model, $key, $index) {
-			/* @var $model app\models_search\OrdersSearch */
-			$url = '#';
-			if ($model->ORDER_STATUS == \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER) {
-				if ($action === 'rider') {
-					$action = 'Assign Rider';
-					$url = \yii\helpers\Url::toRoute(['rider', 'id' => $model->ORDER_ID]);
+			if ($action === 'update') {
+				switch ($model->ORDER_STATUS) {
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED:
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_PENDING:
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED:
+						$action = '<i class="fa fa-cutlery fa-1x"></i><br/>Assign Kitchen';
+						$class .= 'btn-warning';
+						$url = \yii\helpers\Url::toRoute(['assign-kitchen', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_KITCHEN_ASSIGNED:
+						$action = '<i class="fa fa-building fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION:
+						$action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_READY:
+						$action = '<i class="fa fa-hourglass fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED:
+					case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED:
+						$action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
+					default:
+						$action = '<i class="fa fa-cog fa-1x"></i><br/>View';
+						$class .= 'btn-success';
+						$url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+						break;
 				}
 
-				return Html::a($action, $url, ['class' => 'btn btn-success btn-xs btn-block']);
-			} else {
-				$action = null;
 			}
+
+			return Html::a($action, $url, ['class' => $class]);
 		},
 	],
 	'ORDER_ID',
