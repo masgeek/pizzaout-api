@@ -29,14 +29,14 @@ TEMPLATE;
 					'prompt' => '--- SELECT KITCHEN ---',
 					'class' => 'form-control'
 				]
-			)->label(false) ?>
+			) ?>
         </div>
 
         <div class="col-md-6">
 			<?= $form->field($model, 'ORDER_STATUS', ['template' => $field_template])->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus($model->ORDER_ID, $scope), [
 				'prompt' => '--- SELECT STATUS ---',
 				'class' => 'form-control'
-			])->label(false) ?>
+			]) ?>
         </div>
     </div>
 
@@ -51,7 +51,7 @@ TEMPLATE;
     </div>
 
     <div class="form-group">
-		<?= Html::submitButton('UPDATE ORDER', ['class' => 'btn btn-success']) ?>
+		<?= Html::submitButton('Process Order', ['class' => 'btn btn-success btn-lg btn-block']) ?>
     </div>
 
 	<?php ActiveForm::end(); ?>

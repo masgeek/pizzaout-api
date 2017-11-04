@@ -27,7 +27,7 @@ class STATUS_TRACKING_MODEL extends OrderTracking
 	public function beforeValidate()
 	{
 		if (parent::beforeValidate()) {
-			$this->TRACKING_DATE = new Expression(APP_UTILS::GetCurrentTime());
+			$this->TRACKING_DATE =APP_UTILS::GetCurrentTime();
 			return true;
 		}
 

@@ -88,9 +88,9 @@ class USERS_MODEL extends Users implements IdentityInterface
 	{
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
-				$this->DATE_REGISTERED = new Expression(APP_UTILS::GetCurrentTime());
+				$this->DATE_REGISTERED = APP_UTILS::GetCurrentTime();
 			}
-			$this->LAST_UPDATED = new Expression(APP_UTILS::GetCurrentTime());
+			$this->LAST_UPDATED = APP_UTILS::GetCurrentTime();
 			return true;
 		}
 		return false;

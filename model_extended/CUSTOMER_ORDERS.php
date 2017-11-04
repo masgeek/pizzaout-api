@@ -40,12 +40,13 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$rules = parent::rules();
 
 		$rules[] = [['KITCHEN_ID', 'CHEF_ID', 'NOTES'], 'required', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+		$rules[] = [['KITCHEN_ID'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
 		return $rules;
 	}
 
 	public function beforeSave($insert)
 	{
-		$date = new Expression(APP_UTILS::GetCurrentTime());
+		$date = APP_UTILS::GetCurrentTime();
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
 				$this->CREATED_AT = $date;
@@ -63,7 +64,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 		$tracker = new STATUS_TRACKING_MODEL();
 		$tracker->ORDER_ID = $this->ORDER_ID;
 		$tracker->STATUS = $this->ORDER_STATUS;
-		$tracker->TRACKING_DATE = new Expression(APP_UTILS::GetCurrentTime());
+		$tracker->TRACKING_DATE = APP_UTILS::GetCurrentTime();
 		$tracker->save();
 	}
 

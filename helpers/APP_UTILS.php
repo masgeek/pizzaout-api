@@ -20,6 +20,7 @@ class APP_UTILS
 	const SCENARIO_CREATE = 'create';
 	const SCENARIO_UPDATE = 'update';
 	const SCENARIO_DEFAULT = 'default';
+	const SCENARIO_ALLOCATE_KITCHEN = 'allocate_kitchen';
 
 
 	/**

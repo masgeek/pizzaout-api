@@ -33,7 +33,7 @@ class OrderController extends ActiveController
 		$orderItems = new CUSTOMER_ORDER_ITEM();
 		$paymentDetail = new PAYMENT_MODEL();
 
-		$date = new Expression(APP_UTILS::GetCurrentTime());
+		$date = APP_UTILS::GetCurrentTime();
 
 		$order_status = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
 		$post = [

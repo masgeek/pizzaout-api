@@ -135,7 +135,7 @@ class OrdersController extends Controller
 	{
 		$this->view->title = "Process Order No #{$id}";
 		$model = $this->findModel($id);
-		$model->scenario = APP_UTILS::SCENARIO_UPDATE;
+		$model->scenario = APP_UTILS::SCENARIO_ALLOCATE_KITCHEN;
 
 		$tracker = new STATUS_TRACKING_MODEL();
 		$tracker->scenario = APP_UTILS::SCENARIO_CREATE;
@@ -144,13 +144,25 @@ class OrdersController extends Controller
 			APP_UTILS::OFFICE_SCOPE,
 			APP_UTILS::ALL_SCOPE
 		];
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+		$old_status = $model->ORDER_STATUS;
+		if ($model->load(Yii::$app->request->post())) {
 			$tracker->ORDER_ID = $model->ORDER_ID;
 			$tracker->STATUS = $model->ORDER_STATUS;
-			if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
-				//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
-				return $this->redirect(['index']);
+
+			if (strcmp($old_status, $model->ORDER_STATUS) != 0 && $model->save()) {
+				if ($tracker->load(Yii::$app->request->post()) && $tracker->save()) {
+					//return $this->redirect(['update', 'id' => $model->ORDER_ID]);
+					return $this->redirect(['index']);
+				}
+			} else {
+				var_dump(strcmp($old_status, $model->ORDER_STATUS));
+
+				var_dump($old_status . $model->ORDER_STATUS);
+
+				var_dump($model->getErrors());
+				die;
 			}
+
 		}
 
 		return $this->render('update', [
