@@ -3,7 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 $fcm = require(__DIR__ . '/fcm.php');
 
-$timezone = 'Africa/Nairobi';
+$timezone = 'UTC';//'Africa/Nairobi';
 
 $config = [
 	'id' => 'basic',

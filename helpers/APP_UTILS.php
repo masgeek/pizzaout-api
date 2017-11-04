@@ -40,10 +40,14 @@ class APP_UTILS
 	}
 
 	/**
+	 * @param bool $readable
 	 * @return string
 	 */
-	public static function GetCurrentDateTime()
+	public static function GetCurrentDateTime($readable = false)
 	{
-		return \Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd HH:mm:ss'); // 2014-10-06
+		$time = \Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd HH:mm:ss'); // 2014-10-06
+
+		return $readable ? \Yii::$app->formatter->asDatetime($time, 'full') : $time;
+
 	}
 }
