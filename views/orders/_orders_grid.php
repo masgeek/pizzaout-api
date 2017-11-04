@@ -21,11 +21,11 @@ $gridColumns = [
 			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
 			if ($action === 'update') {
-				$action = 'Process Order';
+				$action = 'Confirm<i class="fa fa-pencil fa-2x"></i>';
 				$url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
 			}
 
-			return Html::a($action, $url, ['class' => 'btn btn-danger btn-xs btn-block']);
+			return Html::a($action, $url, ['class' => 'btn btn-danger']);
 		},
 	],
 	[
@@ -39,7 +39,7 @@ $gridColumns = [
 		'urlCreator' => function ($action, $model, $key, $index) {
 			/* @var $model app\models_search\OrdersSearch */
 			$url = '#';
-			if ($model->ORDER_STATUS == 'DELIVERY') {
+			if ($model->ORDER_STATUS == \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER) {
 				if ($action === 'rider') {
 					$action = 'Assign Rider';
 					$url = \yii\helpers\Url::toRoute(['rider', 'id' => $model->ORDER_ID]);

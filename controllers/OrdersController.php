@@ -134,7 +134,7 @@ class OrdersController extends Controller
 	public function actionUpdate($id)
 	{
 
-		$this->view->title = "Process Order No #{$id}";
+		$this->view->title = "Order #{$id}";
 		$model = $this->findModel($id);
 		$model->scenario = APP_UTILS::SCENARIO_ALLOCATE_KITCHEN;
 
