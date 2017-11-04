@@ -15,12 +15,13 @@ use yii\helpers\Html;
 
 
 $this->params['breadcrumbs'][] = $this->title;
-
+//$this->params['breadcrumbs'][] = ['label' => 'Receipts', 'url' => ['//receipt/print']];
 
 $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-book"></i> Kitchen Allocated',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $kitchenAllocated]),
+		'active' => true
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-book"></i> Chef Assigned',
@@ -36,8 +37,7 @@ $items = [
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $awaitingRider]),
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Rider Assigned',
-		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $allocatedRider]),
-		'active' => true
+		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $allocatedRider])
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Rider Dispatched',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $dispatchRider]),

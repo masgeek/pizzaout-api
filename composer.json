@@ -41,7 +41,8 @@
         "pafelin/laravel-nonce": "dev-master",
         "yiisoft/yii2-authclient": "^2.0@dev",
         "paypal/rest-api-sdk-php": "*",
-        "kartik-v/yii2-tabs-x": "*"
+      "kartik-v/yii2-tabs-x": "*",
+      "mike42/escpos-php": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
