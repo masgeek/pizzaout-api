@@ -151,7 +151,7 @@ $gridColumns = [
     'pjax' => true,
     'pjaxSettings' => [
         'neverTimeout' => true,
-        'beforeGrid' => 'My fancy content before.',
-        'afterGrid' => 'My fancy content after.',
+        //'beforeGrid' => 'My fancy content before.',
+        //'afterGrid' => 'My fancy content after.',
     ]
 ]); ?>
