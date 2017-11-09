@@ -6,7 +6,6 @@ use app\models\ContactForm;
 use app\models\LoginForm;
 use Yii;
 use yii\base\Theme;
-use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
@@ -24,18 +23,18 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'except' => ['index', 'logout', 'login',],
-                'rules' => [
-                    // allow authenticated users
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    // everything else is denied
-                ],
-            ],
+            /*'access' => [
+                 'class' => AccessControl::className(),
+                 'except' => ['index', 'logout', 'login',],
+                 'rules' => [
+                     // allow authenticated users
+                     [
+                         'allow' => true,
+                         'roles' => ['@'],
+                     ],
+                     // everything else is denied
+                 ],
+             ],*/
         ];
     }
 
