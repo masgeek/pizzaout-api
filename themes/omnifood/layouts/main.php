@@ -4,7 +4,9 @@
 
 /* @var $content string */
 
+\app\assetmanager\AppAsset::register($this);
 \app\assetmanager\OmniThemeAssets::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

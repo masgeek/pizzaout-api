@@ -41,7 +41,7 @@ use yii\helpers\Html;
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/1.jpg', ['alt' => 'Pizza Slice']); ?>
+                <?= Html::img('@omnifood/img/7.jpg', ['alt' => 'Pizza Slice']); ?>
             </figure>
         </li>
         <li>
