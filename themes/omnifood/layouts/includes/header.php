@@ -11,7 +11,7 @@ use yii\helpers\Html;
     <nav>
         <div class="row">
             <!--<img src="./assets/img/logo-white.png" alt="Omnifood logo" class="logo">-->
-            <?= Html::img('@omnifood/img/logo-white.png', ['alt' => 'Pizza Slice', 'class' => 'logo']); ?>
+            <?= Html::img('@omnifood/img/logo-white.png', ['alt' => 'Pizza Slice Logo', 'class' => 'logo']); ?>
             <ul class="main-nav">
                 <li><a href="#">Food delivery</a></li>
                 <li><a href="#">How it works</a></li>
