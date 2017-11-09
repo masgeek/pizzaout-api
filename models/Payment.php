@@ -12,8 +12,8 @@ namespace app\models;
  * @property string $PAYMENT_REF
  * @property string $PAYMENT_STATUS
  * @property string $PAYMENT_DATE
- * @property string $PAYMENT_NUMBER
  * @property string $PAYMENT_NOTES
+ * @property string $PAYMENT_NUMBER
  *
  * @property Status $pAYMENTSTATUS
  * @property CustomerOrder $oRDER
@@ -39,8 +39,7 @@ class Payment extends \yii\db\ActiveRecord
             [['PAYMENT_AMOUNT'], 'number'],
             [['PAYMENT_DATE'], 'safe'],
             [['PAYMENT_CHANNEL', 'PAYMENT_REF', 'PAYMENT_NOTES'], 'string', 'max' => 255],
-            [['PAYMENT_STATUS'], 'string', 'max' => 30],
-            [['PAYMENT_NUMBER'], 'string', 'max' => 20],
+            [['PAYMENT_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
             [['PAYMENT_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['PAYMENT_STATUS' => 'STATUS_NAME']],
             [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
         ];
@@ -59,8 +58,8 @@ class Payment extends \yii\db\ActiveRecord
             'PAYMENT_REF' => 'Payment  Ref',
             'PAYMENT_STATUS' => 'Payment  Status',
             'PAYMENT_DATE' => 'Payment  Date',
-            'PAYMENT_NUMBER' => 'Payment  Number',
             'PAYMENT_NOTES' => 'Payment  Notes',
+            'PAYMENT_NUMBER' => 'Payment  Number',
         ];
     }
 

@@ -45,8 +45,8 @@ class VwOrders extends \yii\db\ActiveRecord
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['PAYMENT_AMOUNT'], 'number'],
             [['EMAIL', 'OTHER_NAMES', 'SURNAME'], 'string', 'max' => 100],
-            [['PAYMENT_METHOD', 'PAYMENT_NUMBER'], 'string', 'max' => 20],
-            [['ORDER_STATUS'], 'string', 'max' => 30],
+            [['PAYMENT_METHOD'], 'string', 'max' => 20],
+            [['ORDER_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
             [['NOTES'], 'string', 'max' => 255],
         ];
     }

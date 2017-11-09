@@ -42,6 +42,8 @@ $checkboxTemplate = <<<TEMPLATE
 <div class="col-lg-8">{error}</div>
 TEMPLATE;
 
+
+$registerLink = \yii\helpers\Url::to(['user/register']);
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -90,7 +92,7 @@ TEMPLATE;
                     <a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
                 </div>
         -->
-        <p class="text-center">Don't have an account yet? <a href="#">Sign Up!</a></p>
+        <p class="text-center">Don't have an account yet? <?= Html::a('Sign Up!!', $registerLink) ?></p>
     </div>
 </div>
 <?php ActiveForm::end(); ?>

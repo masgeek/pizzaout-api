@@ -6,7 +6,7 @@
 
 \app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
-\app\assetmanager\CustomAssets::register($this);
+//\app\assetmanager\CustomAssets::register($this);
 \app\assetmanager\FontAssets::register($this);
 
 ?>

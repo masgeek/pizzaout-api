@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row">
-        <?= $form->field($model, 'USER_TYPE')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'USER_TYPE')->hiddenInput(['maxlength' => true])->label(false) ?>
     </div>
 
     <div class="row">
@@ -32,13 +32,13 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'EMAIL')->textInput(['maxlength' => true]) ?>
     </div>
     <div class="row">
-        <?= $form->field($model, 'LOCATION_ID')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'LOCATION_ID')->hiddenInput(['maxlength' => true])->label(false) ?>
     </div>
     <div class="row">
         <?= $form->field($model, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-block']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Sign Up' : 'Update Profile', ['class' => 'btn btn-success btn-lg btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
