@@ -6,6 +6,8 @@
 
 use yii\helpers\Html;
 
+$registerLink = \yii\helpers\Url::to(['site/register']);
+$loginLink = \yii\helpers\Url::to(['site/login']);
 ?>
 <header>
     <nav>
@@ -21,7 +23,7 @@ use yii\helpers\Html;
     </nav>
     <div class="hero-text-box">
         <h1>Hello delicious pizza.</h1>
-        <a class="btn btn-full" href="#">Login</a>
-        <a class="btn btn-ghost" href="#">Sign Up</a>
+        <?= Html::a('Login', $loginLink, ['class' => 'btn btn-full']) ?>
+        <?= Html::a('Sign Up', $registerLink, ['class' => 'btn btn-ghost']) ?>
     </div>
 </header>
