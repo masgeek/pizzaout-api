@@ -61,9 +61,9 @@ $gridColumns = [
                         $url = \yii\helpers\Url::toRoute(['update-rider', 'id' => $model->ORDER_ID, 'workflow' => 4]);
                         break;
                     case \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED:
+                        //case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED:
+                        //case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED:
+                        //case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED:
                         $action = '<i class="fa fa-pencil fa-1x"></i><br/>Update';
                         $class .= 'btn-purple';
                         $url = \yii\helpers\Url::toRoute(['update-rider', 'id' => $model->ORDER_ID, 'workflow' => 5]);
