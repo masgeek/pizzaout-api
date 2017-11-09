@@ -93,7 +93,7 @@ class SiteController extends Controller
         $this->layout = 'login_layout';
         $this->view->title = 'User Sign In';
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['//orders']);
         }
 
         $model = new LoginForm();
