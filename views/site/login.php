@@ -5,8 +5,8 @@
 
 /* @var $model app\models\LoginForm */
 
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -24,7 +24,7 @@ TEMPLATE;
 $password_field_template = <<<TEMPLATE
 <div class="clearfix">
     <label class="pull-left">{label}</label>
-    <a href="pages-recover-password.html" class="pull-right">Lost Password?</a>
+    <a href="#" class="pull-right">Lost Password?</a>
 </div>
 <div class="input-group input-group-icon">
      {input} 
@@ -34,6 +34,14 @@ $password_field_template = <<<TEMPLATE
 </div>
     {error}{hint}
 TEMPLATE;
+
+$checkboxTemplate = <<<TEMPLATE
+<div class="col-lg-offset-1 col-lg-3">
+{input} {label}
+</div>
+<div class="col-lg-8">{error}</div>
+TEMPLATE;
+
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -60,31 +68,29 @@ TEMPLATE;
         </div>
 
         <div class="row">
-            <div class="col-sm-8">
+            <!--<div class="col-sm-8">
                 <div class="checkbox-custom checkbox-default">
-                    <!--<input id="RememberMe" name="rememberme" type="checkbox"/>
-                    <label for="RememberMe">Remember Me</label>-->
-                    <?= $form->field($model, 'rememberMe')->checkbox(['template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>"]) ?>
+                    <?= $form->field($model, 'rememberMe')->checkbox(['template' => $checkboxTemplate]) ?>
                 </div>
-            </div>
-            <div class="col-sm-4 text-right">
+            </div>-->
+            <div class="col-sm-12 text-right">
                 <!--<button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
                 <button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>-->
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary hidden-xs', 'name' => 'login-button']) ?>
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block btn-lg visible-xs mt-lg', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary hidden-xs btn-block', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block btn-lg visible-xs mt-lg btn-block', 'name' => 'login-button']) ?>
             </div>
         </div>
 
         <span class="mt-lg mb-lg line-thru text-center text-uppercase">
             <span>or</span>
         </span>
-
-        <div class="mb-xs text-center">
-            <a class="btn btn-facebook mb-md ml-xs mr-xs">Connect with <i class="fa fa-facebook"></i></a>
-            <a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
-        </div>
-
-        <p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p>
+        <!--
+                <div class="mb-xs text-center">
+                    <a class="btn btn-facebook mb-md ml-xs mr-xs">Connect with <i class="fa fa-facebook"></i></a>
+                    <a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
+                </div>
+        -->
+        <p class="text-center">Don't have an account yet? <a href="#">Sign Up!</a></p>
     </div>
 </div>
 <?php ActiveForm::end(); ?>
