@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\LoginForm;
+use Yii;
+use yii\base\Theme;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
 
 class SiteController extends Controller
 {
@@ -25,7 +26,7 @@ class SiteController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index'],
+                'only' => ['logout',],
                 'rules' => [
                     // allow authenticated users
                     [
@@ -61,9 +62,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+
+        Yii::$app->getView()->theme = new Theme([
+            'basePath' => '@app/themes/omnifood',
+            'baseUrl' => '@web/themes/omnifood',
+            'pathMap' => [
+                '@app/views' => '@app/themes/omnifood',
+            ],
+        ]);
+
+
         $this->view->title = 'Pizza Slice Test';
-        //return $this->render('index');
-        return $this->redirect(['//orders']);
+        if (!Yii::$app->user->isGuest) {
+            // return $this->redirect(['//orders']);
+
+        }
+        return $this->render('index');
     }
 
     /**

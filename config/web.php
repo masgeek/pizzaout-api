@@ -12,6 +12,7 @@ $config = [
 	'bootstrap' => ['log'],
 	'aliases' => [
 		'@bower' => 'vendor/bower-asset',
+        '@omnifood' => 'themeassets/omnifood',
 	],
 	'modules' => [
 		'gridview' => [

@@ -1,10 +1,34 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./vendors/css/normalize.css">
+    <link rel="stylesheet" href="./vendors/css/grid.css">
+    <link rel="stylesheet" href="./vendors/css/ionicons.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <title>Omnifood</title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="row">
+            <img src="./assets/img/logo-white.png" alt="Omnifood logo" class="logo">
+            <ul class="main-nav">
+                <li><a href="#">Food delivery</a></li>
+                <li><a href="#">How it works</a></li>
+                <li><a href="#">Our cities</a></li>
+                <li><a href="#">Sign up</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="hero-text-box">
+        <h1>Goodbye junk food. <br/>Hello super healthy meals.</h1>
+        <a class="btn btn-full" href="#">I'm hungry</a>
+        <a class="btn btn-ghost" href="#">Show me more</a>
+    </div>
+</header>
 
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
-
-?>
 <section class="section-features">
     <div class="row">
         <h2>Get food fast &mdash; not fast food</h2>
@@ -45,44 +69,44 @@ use yii\helpers\Html;
     <ul class="meals-showcase clearfix">
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/1.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/1.jpg" alt="Korean bibimbap with egg and vegetables">
             </figure>
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/2.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/2.jpg" alt="Simple italian pizza with cherry tomatoes">
             </figure>
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/3.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/3.jpg" alt="Chicken breast steak with vegetables">
             </figure>
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/4.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/4.jpg" alt="Autumn pumpkin soup">
             </figure>
         </li>
     </ul>
     <ul class="meals-showcase clearfix">
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/5.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/5.jpg" alt="Paleo beef steak with vegetables">
             </figure>
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/6.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/6.jpg" alt="Healthy baguette with egg and vegetables">
             </figure>
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/1.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/7.jpg" alt="Burger with cheddar and bacon">
             </figure>
         </li>
         <li>
             <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/8.jpg', ['alt' => 'Pizza Slice']); ?>
+                <img src="./assets/img/8.jpg" alt="Granola with cherries and strawberry">
             </figure>
         </li>
     </ul>
@@ -94,7 +118,7 @@ use yii\helpers\Html;
     </div>
     <div class="row">
         <div class="col span-1-of-2 steps-box">
-            <?= Html::img('@omnifood/img/app-iPhone.png', ['alt' => 'Pizza Slice', 'class' => 'app-screen']); ?>
+            <img src="assets/img/app-iPhone.png" alt="Omnifood app on iPhone" class="app-screen">
         </div>
         <div class="col span-1-of-2 steps-box">
             <div class="works-step">
@@ -110,17 +134,12 @@ use yii\helpers\Html;
                 <p>Enjoy your meal after less than 20 minutes. See you the next time!</p>
             </div>
 
-            <a href="#" class="btn-app">
-                <?= Html::img('@omnifood/img/download-app.svg', ['alt' => 'Pizza Slice']); ?>
-            </a>
-            <a href="#" class="btn-app">
-                <?= Html::img('@omnifood/img/download-app-android.png', ['alt' => 'Pizza Slice']); ?>
-            </a>
+            <a href="#" class="btn-app"><img src="./assets/img/download-app.svg" alt="App Store Button"></a>
+            <a href="#" class="btn-app"><img src="./assets/img/download-app-android.png" alt="Play Store Button"></a>
         </div>
     </div>
 </section>
 
-<!--
 <section class="section-cities">
     <div class="row">
         <h2>We're currently in these cities</h2>
@@ -192,7 +211,6 @@ use yii\helpers\Html;
         </div>
     </div>
 </section>
--->
 
 <section class="section-testimonials">
     <div class="row">
@@ -203,9 +221,7 @@ use yii\helpers\Html;
                     Omnifood is just awesome! I just launched a startup which leaves me with no time for cooking, so
                     Omnifood is a life-saver. Now that I got used to it, I couldn't live without my daily meals!
                     <br>
-                    <cite>
-                        <?= Html::img('@omnifood/img/customer-1.jpg', ['alt' => 'Pizza Slice']); ?>
-                        Ismail Yusuf</cite>
+                    <cite><img src="assets/img/customer-1.jpg">Alberto Duncan</cite>
                 </blockquote>
             </div>
             <div class="col span-1-of-3">
@@ -213,10 +229,7 @@ use yii\helpers\Html;
                     Inexpensive, healthy and great-tasting meals, delivered right to my home. We have lots of food
                     delivery here in Lisbon, but no one comes even close to Omnifood. Me and my family are so in love!
                     <br>
-                    <cite>
-                        <?= Html::img('@omnifood/img/customer-2.jpg', ['alt' => 'Pizza Slice']); ?>
-                        Nadia
-                    </cite>
+                    <cite><img src="assets/img/customer-2.jpg">Joana Silva</cite>
                 </blockquote>
             </div>
             <div class="col span-1-of-3">
@@ -224,9 +237,7 @@ use yii\helpers\Html;
                     I was looking for a quick and easy food delivery service in San Francisco. I tried a lof of them and
                     ended up with Omnifood. Best food delivery service in the Bay Area. Keep up the great work!
                     <br>
-                    <cite>
-                        <?= Html::img('@omnifood/img/customer-3.jpg', ['alt' => 'Pizza Slice']); ?>
-                        Sammy Barasa</cite>
+                    <cite><img src="assets/img/customer-3.jpg">Milton Chapman</cite>
                 </blockquote>
             </div>
         </div>
@@ -235,7 +246,7 @@ use yii\helpers\Html;
 
 <section class="section-pricing">
     <div class="row">
-        <h2>Start Ordering today!!!</h2>
+        <h2>Start Eating Healthy today</h2>
     </div>
     <div class="row">
         <div class="col"></div>
@@ -244,6 +255,7 @@ use yii\helpers\Html;
     </div>
 </section>
 
-
+</body>
+</html>
 
 
