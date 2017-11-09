@@ -17,11 +17,12 @@
 <body>
 <?php $this->beginBody() ?>
 <!-- begin body content here -->
-<section class="body">
-    <div class="inner-wrapper">
-        <?= $content ?>
-    </div>
-</section>
+
+<div class="col-md-8 col-md-offset-2">
+    <!-- start: page -->
+    <?= $content ?>
+    <!-- end: page -->
+</div>
 <!-- end body content here -->
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
 <?php $this->endBody() ?>

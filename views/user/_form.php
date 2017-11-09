@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="users--model-form">
+<div class="users-model-form">
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
