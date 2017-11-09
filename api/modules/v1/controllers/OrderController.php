@@ -12,10 +12,8 @@ namespace app\api\modules\v1\controllers;
 use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
 use app\api\modules\v1\models\PAYMENT_MODEL;
-use app\components\CUSTOM_HELPER;
-use app\components\ORDER_STATUS_HELPER;
 use app\helpers\APP_UTILS;
-use yii\db\Expression;
+use app\helpers\ORDER_STATUS_HELPER;
 use yii\rest\ActiveController;
 
 class OrderController extends ActiveController
