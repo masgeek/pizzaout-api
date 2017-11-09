@@ -87,6 +87,9 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
+        var_dump(5);
+        die;
         $this->layout = 'login_layout';
         $this->view->title = 'User Sign In';
         if (!Yii::$app->user->isGuest) {
