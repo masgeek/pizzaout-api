@@ -100,7 +100,7 @@ use yii\helpers\Html;
         <div class="col span-1-of-2 steps-box">
             <div class="works-step">
                 <div>1</div>
-                <p>Create and account.</p>
+                <p>Create an account.</p>
             </div>
             <div class="works-step">
                 <div>2</div>
