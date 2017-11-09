@@ -26,7 +26,7 @@ class SiteController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout',],
+                'except' => ['index', 'logout', 'login',],
                 'rules' => [
                     // allow authenticated users
                     [
