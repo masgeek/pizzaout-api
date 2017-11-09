@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 
-$registerLink = \yii\helpers\Url::to(['site/register']);
+$registerLink = \yii\helpers\Url::to(['user/register']);
 $loginLink = \yii\helpers\Url::to(['site/login']);
 ?>
 <header>

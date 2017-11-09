@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\USERS_MODEL */
 
-$this->title = 'Create Users  Model';
+$this->title = 'Register User';
 $this->params['breadcrumbs'][] = ['label' => 'Users  Models', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
