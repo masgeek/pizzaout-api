@@ -81,6 +81,8 @@ $gridColumns = [
     'SURNAME',
     'OTHER_NAMES',
     'MOBILE',
+    'PAYMENT_NUMBER',
+    //'PAYMENT_AMOUNT',
 	[
 		'header' => 'Delivery Location',
 		'attribute' => 'LOCATION_ID',
@@ -122,7 +124,7 @@ $gridColumns = [
 	'ORDER_DATE:datetime',
 	'PAYMENT_METHOD',
 	'ORDER_STATUS',
-	'NOTES'
+    //'NOTES'
 ];
 
 ?>

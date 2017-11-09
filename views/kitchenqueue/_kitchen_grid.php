@@ -84,6 +84,8 @@ $gridColumns = [
     'SURNAME',
     'OTHER_NAMES',
     'MOBILE',
+    'PAYMENT_NUMBER',
+    'PAYMENT_AMOUNT',
     [
         'header' => 'Delivery Location',
         'attribute' => 'LOCATION_ID',

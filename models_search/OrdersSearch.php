@@ -20,7 +20,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             [['ORDER_ID', 'USER_ID', 'ADDRESS_ID', 'CHEF_ID',
                 'RIDER_ID', 'SURNAME', 'OTHER_NAMES', 'MOBILE',
                 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS',
-                'NOTES', 'CREATED_AT', 'UPDATED_AT'
+                'NOTES', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_NUMBER'
             ], 'safe'],
         ];
     }
@@ -74,6 +74,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             'SURNAME' => $this->SURNAME,
             'OTHER_NAMES' => $this->OTHER_NAMES,
             'MOBILE' => $this->MOBILE,
+            'PAYMENT_NUMBER' => $this->PAYMENT_NUMBER,
         ]);
 
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])

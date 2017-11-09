@@ -40,7 +40,7 @@ class OrderController extends ActiveController
                 'PAYMENT_CHANNEL' => 'MOBILE',
                 'PAYMENT_AMOUNT' => 1200,
                 'PAYMENT_STATUS' => $order_status,
-                'payment_number' => '097895689',
+                'PAYMENT_NUMBER' => '097895689',
                 'PAYMENT_NOTES' => 'N/A',
             ],
             'CUSTOMER_ORDER_ITEM' => [

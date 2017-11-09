@@ -21,6 +21,8 @@ namespace app\models;
  * @property string $NOTES Can contain payment text from mobile transactions etc
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
+ * @property string $PAYMENT_NUMBER
+ * @property string $PAYMENT_AMOUNT
  */
 class VwOrders extends \yii\db\ActiveRecord
 {
@@ -39,10 +41,11 @@ class VwOrders extends \yii\db\ActiveRecord
     {
         return [
             [['ORDER_ID', 'USER_ID', 'MOBILE', 'ADDRESS_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID'], 'integer'],
-            [['USER_ID', 'EMAIL', 'MOBILE', 'OTHER_NAMES', 'SURNAME', 'ADDRESS_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS'], 'required'],
+            [['USER_ID', 'EMAIL', 'MOBILE', 'OTHER_NAMES', 'SURNAME', 'ADDRESS_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'PAYMENT_AMOUNT'], 'required'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
+            [['PAYMENT_AMOUNT'], 'number'],
             [['EMAIL', 'OTHER_NAMES', 'SURNAME'], 'string', 'max' => 100],
-            [['PAYMENT_METHOD'], 'string', 'max' => 20],
+            [['PAYMENT_METHOD', 'PAYMENT_NUMBER'], 'string', 'max' => 20],
             [['ORDER_STATUS'], 'string', 'max' => 30],
             [['NOTES'], 'string', 'max' => 255],
         ];
@@ -70,6 +73,8 @@ class VwOrders extends \yii\db\ActiveRecord
             'NOTES' => 'Can contain payment text from mobile transactions etc',
             'CREATED_AT' => 'Created  At',
             'UPDATED_AT' => 'Updated  At',
+            'PAYMENT_NUMBER' => 'Payment  Number',
+            'PAYMENT_AMOUNT' => 'Payment  Amount',
         ];
     }
 }
