@@ -147,7 +147,7 @@ class OrdersController extends Controller
 			APP_UTILS::OFFICE_SCOPE,
 			APP_UTILS::ALL_SCOPE
 		];
-		$workflow = 0;
+        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
 
 		return $this->render('update', [
 			'model' => $model,
@@ -171,7 +171,7 @@ class OrdersController extends Controller
 			APP_UTILS::OFFICE_SCOPE
 		];
 
-		$workflow = 1;
+        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
 
 		return $this->render('assign_kitchen', [
 			'model' => $model,

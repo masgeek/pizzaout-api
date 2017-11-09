@@ -40,7 +40,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 	{
 		$rules = parent::rules();
 
-		$rules[] = [['COMMENTS', 'ORDER_STATUS'], 'required', 'on' => [
+        $rules[] = [['ORDER_STATUS'], 'required', 'on' => [
 			APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,
 			APP_UTILS::SCENARIO_CONFIRM_ORDER,
 			APP_UTILS::SCENARIO_ASSIGN_CHEF,
@@ -48,8 +48,8 @@ class CUSTOMER_ORDERS extends CustomerOrder
 			APP_UTILS::SCENARIO_ORDER_READY,
 			APP_UTILS::SCENARIO_ASSIGN_RIDER,
 		]];
-		$rules[] = [['KITCHEN_ID', 'COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
-		$rules[] = [['COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_CONFIRM_ORDER,]];
+        $rules[] = [['KITCHEN_ID'], 'required', 'on' => [APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,]];
+        //$rules[] = [['COMMENTS'], 'required', 'on' => [APP_UTILS::SCENARIO_CONFIRM_ORDER,]];
 		$rules[] = [['CHEF_ID'], 'required', 'on' => [APP_UTILS::SCENARIO_ASSIGN_CHEF,]];
 		return $rules;
 	}

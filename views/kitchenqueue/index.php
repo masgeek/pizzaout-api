@@ -26,6 +26,7 @@ $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-book"></i> Chef Assigned',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $chefAssigned]),
+        'visible' => false,
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Preparing Order',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
@@ -35,9 +36,11 @@ $items = [
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Awaiting Rider',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $awaitingRider]),
+        'visible' => false,
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Rider Assigned',
-		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $allocatedRider])
+        'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $allocatedRider]),
+        'visible' => false,
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Rider Dispatched',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $dispatchRider]),
