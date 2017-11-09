@@ -78,15 +78,9 @@ $gridColumns = [
 		},
 	],
 	'ORDER_ID',
-	//'USER_ID',
-	[
-		'attribute' => 'USER_ID',
-		'value' => function ($model) {
-			/* @var $model \app\model_extended\CUSTOMER_ORDERS */
-			$names = "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}";
-			return ucwords(strtolower($names));
-		}
-	],
+    'SURNAME',
+    'OTHER_NAMES',
+    'MOBILE',
 	[
 		'header' => 'Delivery Location',
 		'attribute' => 'LOCATION_ID',
@@ -136,7 +130,7 @@ $gridColumns = [
 
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
-	//'filterModel' => $searchModel,
+    'filterModel' => $searchModel,
 	'columns' => $gridColumns,
 	'beforeHeader' => [
 		[
@@ -146,7 +140,6 @@ $gridColumns = [
 			'options' => ['class' => 'skip-export'] // remove this row from export
 		]
 	],
-	'pjax' => false,
 	'bordered' => true,
 	'striped' => true,
 	'condensed' => true,
@@ -155,4 +148,10 @@ $gridColumns = [
 	'floatHeader' => false,
 	'showPageSummary' => false,
 	'panel' => false,
+    'pjax' => true,
+    'pjaxSettings' => [
+        'neverTimeout' => true,
+        'beforeGrid' => 'My fancy content before.',
+        'afterGrid' => 'My fancy content after.',
+    ]
 ]); ?>
