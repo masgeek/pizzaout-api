@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\APP_UTILS;
 use app\models\ContactForm;
 use app\models\LoginForm;
 use Yii;
@@ -74,7 +75,13 @@ class SiteController extends Controller
 
         $this->view->title = 'Pizza Slice';
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect(['//orders']);
+            $userType = Yii::$app->user->identity->usertype;
+            //check user Type and redirect accordingly
+            if ($userType === APP_UTILS::USER_TYPE_CUSTOMER) {
+                return $this->redirect(['//customer']);
+            } elseif ($userType == APP_UTILS::USER_TYPE_ADMIN) {
+                return $this->redirect(['//orders']);
+            }
         }
         return $this->render('index');
     }
@@ -86,9 +93,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-
-        var_dump(5);
-        die;
         $this->layout = 'login_layout';
         $this->view->title = 'User Sign In';
         if (!Yii::$app->user->isGuest) {
