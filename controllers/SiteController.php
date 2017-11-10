@@ -74,7 +74,7 @@ class SiteController extends Controller
 
         $this->view->title = 'Pizza Slice Test';
         if (!Yii::$app->user->isGuest) {
-            // return $this->redirect(['//orders']);
+            return $this->redirect(['//orders']);
 
         }
         return $this->render('index');
