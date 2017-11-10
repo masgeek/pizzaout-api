@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "{{%cart}}".
  *
  * @property int $CART_ITEM_ID
+ * @property int $USER_ID
  * @property int $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $ITEM_PRICE
@@ -15,6 +16,7 @@ use Yii;
  * @property string $UPDATED_AT
  *
  * @property MenuItemType $iTEMTYPE
+ * @property Users $uSER
  */
 class Cart extends \yii\db\ActiveRecord
 {
@@ -32,11 +34,12 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ITEM_TYPE_ID', 'QUANTITY', 'ITEM_PRICE'], 'required'],
-            [['ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
+            [['USER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'ITEM_PRICE'], 'required'],
+            [['USER_ID', 'ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
             [['ITEM_PRICE'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
+            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
         ];
     }
 
@@ -47,6 +50,7 @@ class Cart extends \yii\db\ActiveRecord
     {
         return [
             'CART_ITEM_ID' => 'Cart  Item  ID',
+            'USER_ID' => 'User  ID',
             'ITEM_TYPE_ID' => 'Item  Type  ID',
             'QUANTITY' => 'Quantity',
             'ITEM_PRICE' => 'Item  Price',
@@ -61,5 +65,13 @@ class Cart extends \yii\db\ActiveRecord
     public function getITEMTYPE()
     {
         return $this->hasOne(MenuItemType::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUSER()
+    {
+        return $this->hasOne(Users::className(), ['USER_ID' => 'USER_ID']);
     }
 }

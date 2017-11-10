@@ -88,12 +88,13 @@ $formatter = \Yii::$app->formatter;
                             $orderSubTotal = 0.0;
 
                             foreach ($cart_items as $key => $orderItems):
+                                $itemTotal = (int)$orderItems->QUANTITY * (float)$orderItems->ITEM_PRICE;
                                 $orderSubTotal = $orderSubTotal + (int)$orderItems->QUANTITY * (float)$orderItems->ITEM_PRICE;
                                 ?>
                                 <tr>
                                     <td></td>
                                     <td><?= "{$orderItems->QUANTITY}x {$orderItems->iTEMTYPE->mENUITEM->MENU_ITEM_NAME} ({$orderItems->iTEMTYPE->ITEM_TYPE_SIZE})"; ?></td>
-                                    <td class="text-right"><?= $formatter->asCurrency($orderSubTotal) ?></td>
+                                    <td class="text-right"><?= $formatter->asCurrency($itemTotal) ?></td>
                                 </tr>
                             <?php
                             endforeach;
@@ -133,7 +134,7 @@ $formatter = \Yii::$app->formatter;
                         </table>
                     </div>
                     <div class="panel-footer">
-                            <?= Html::a('PROCEED TO CHECKOUT', ['//customer/default/checkout'], ['class' => 'btn btn-success btn-lg btn-block']) ?>
+                        <?= Html::a('PROCEED TO CHECKOUT', ['//customer/default/checkout'], ['class' => 'btn btn-success btn-lg btn-block']) ?>
                     </div>
                 </section>
             </div>

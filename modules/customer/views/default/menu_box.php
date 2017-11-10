@@ -38,7 +38,17 @@ use yii\helpers\Html;
                             </p>
                         </td>
                         <td class="text-center">
-                            <?= Html::a('<i class="fa fa-plus-circle"></i>', ['//customer/defaults/add', $model->MENU_ITEM_ID], ['class' => 'btn btn-default']) ?>
+                            <?= Html::a('<i class="fa fa-plus-circle"></i>',
+                                ['//customer/default/add'], [
+                                    'class' => 'btn btn-default',
+                                    'data-method' => 'POST',
+                                    'data-params' => [
+                                        'MENU_ITEM_ID' => $model->MENU_ITEM_ID,
+                                        'ITEM_TYPE_ID' => $itemType->ITEM_TYPE_ID,
+                                        'ITEM_PRICE' => $itemType->PRICE,
+                                        'QUANTITY' => 1,
+                                    ],
+                                ]) ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
