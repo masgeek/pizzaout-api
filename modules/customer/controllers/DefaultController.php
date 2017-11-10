@@ -4,6 +4,7 @@ namespace app\modules\customer\controllers;
 
 use app\model_extended\CART_MODEL;
 use app\model_extended\MENU_ITEMS;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
 /**
@@ -30,13 +31,18 @@ class DefaultController extends Controller
 
 
         //lets get the list of pizzas on offer
-        $menu_item = MENU_ITEMS::find()
-            ->all();
+        $menu_item = new ActiveDataProvider([
+            'query' => MENU_ITEMS::find(),
+        ]);
 
-        return $this->render('index');
+        return $this->render('view', [
+            'dataProvider' => $menu_item,
+        ]);
+
     }
 
-    public function actionCheckout(){
+    public function actionCheckout()
+    {
         return 6;
     }
 }
