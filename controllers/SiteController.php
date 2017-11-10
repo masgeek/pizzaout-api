@@ -111,7 +111,7 @@ class SiteController extends Controller
     /**
      * Logout action.
      *
-     * @return string
+     * @return \yii\web\Response
      */
     public function actionLogout()
     {
