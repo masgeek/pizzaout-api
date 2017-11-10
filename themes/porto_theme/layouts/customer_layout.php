@@ -94,7 +94,7 @@ $formatter = \Yii::$app->formatter;
                                             'formOptions' => [
                                                 'action' => ['change-quantity', 'id' => $orderItems->CART_ITEM_ID]
                                             ], 'options' => [
-                                                'id' => $orderItems->CART_ITEM_ID,
+                                                'id' => "qty_$orderItems->CART_ITEM_ID",
                                                 'format' => Editable::FORMAT_LINK,
                                                 'inputType' => Editable::INPUT_SPIN,
                                             ]
