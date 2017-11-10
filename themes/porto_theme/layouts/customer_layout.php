@@ -88,16 +88,16 @@ $formatter = \Yii::$app->formatter;
                                         <?= Editable::widget([
                                             'model' => $orderItems,
                                             'attribute' => 'QUANTITY',
-                                            //'name' => 'province',
                                             'asPopover' => false,
                                             'submitOnEnter' => true,
-                                            //'header' => 'Province',
-                                            'format' => Editable::FORMAT_LINK,
-                                            'inputType' => Editable::INPUT_SPIN,
                                             'editableValueOptions' => ['class' => 'text-danger'],
                                             'formOptions' => [
                                                 'action' => ['change-quantity', 'id' => $orderItems->CART_ITEM_ID]
-                                            ],
+                                            ], 'options' => [
+                                                'id' => $orderItems->CART_ITEM_ID,
+                                                'format' => Editable::FORMAT_LINK,
+                                                'inputType' => Editable::INPUT_SPIN,
+                                            ]
                                         ]) ?>x
                                     </td>
                                     <td><?= "{$orderItems->iTEMTYPE->mENUITEM->MENU_ITEM_NAME} ({$orderItems->iTEMTYPE->ITEM_TYPE_SIZE})"; ?></td>
