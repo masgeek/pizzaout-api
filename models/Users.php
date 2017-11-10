@@ -2,17 +2,19 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "{{%users}}".
  *
- * @property string $USER_ID
+ * @property int $USER_ID
  * @property string $USER_NAME
- * @property string $USER_TYPE
+ * @property int $USER_TYPE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
  * @property int $MOBILE
  * @property string $EMAIL
- * @property string $LOCATION_ID
+ * @property int $LOCATION_ID
  * @property string $PASSWORD
  * @property string $DATE_REGISTERED
  * @property string $LAST_UPDATED
@@ -44,8 +46,6 @@ class Users extends \yii\db\ActiveRecord
             [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD'], 'string', 'max' => 100],
             [['CLIENT_TOKEN'], 'string', 'max' => 255],
-            [['USER_NAME'], 'unique'],
-            [['EMAIL'], 'unique'],
             [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
             [['USER_TYPE'], 'exist', 'skipOnError' => true, 'targetClass' => UserType::className(), 'targetAttribute' => ['USER_TYPE' => 'USER_TYPE_ID']],
         ];

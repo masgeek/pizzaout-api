@@ -2,6 +2,7 @@
 
 namespace app\modules\customer\controllers;
 
+use app\model_extended\CART_MODEL;
 use yii\web\Controller;
 
 /**
@@ -15,6 +16,17 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        $this->view->title = 'Orders';
+
+        $this->view->params['title'] = 'Orders Cart';
+
+
+        //get the list of orders
+        $cart_items = CART_MODEL::find()
+            ->where(['USER_ID' => \Yii::$app->user->id])
+            ->all();
+        $this->view->params['cart_items'] = $cart_items;
+
         return $this->render('index');
     }
 }

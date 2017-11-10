@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "customer_order_item".
  *
  * @property int $ORDER_ITEM_ID
- * @property string $ORDER_ID
- * @property string $ITEM_TYPE_ID
+ * @property int $ORDER_ID
+ * @property int $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $PRICE
  * @property string $SUBTOTAL
