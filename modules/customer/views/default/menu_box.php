@@ -16,19 +16,30 @@ use yii\helpers\Html;
 
 <div class="panel panel-success">
     <div class="panel-body">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <?= Html::img("{$model->MENU_ITEM_IMAGE}", ['alt' => 'Pizza Slice', 'class' => 'img img-thumbnail']); ?>
         </div>
         <div class="col-md-4">
-            <?= $model->MENU_ITEM_DESC ?>
+            <p class="large-text"><?= $model->MENU_ITEM_NAME ?></p>
+            <p class="muted"><?= $model->MENU_ITEM_DESC ?></p>
         </div>
-        <div class="col-md-4">
-            <table class="table table-condensed">
+        <div class="col-md-6">
+            <table class="table  table-hover">
                 <?php foreach ($model->menuItemTypes as $key => $itemType): ?>
                     <tr>
-                        <td><?= $itemType->ITEM_TYPE_SIZE ?></td>
-                        <td><?= $itemType->PRICE ?></td>
-                        <td>&plus;</td>
+                        <td valign="center">
+                            <p class="large-text">
+                                <?= $itemType->ITEM_TYPE_SIZE ?>
+                            </p>
+                        </td>
+                        <td class="text-center">
+                            <p class="large-text">
+                                <?= $itemType->PRICE ?>
+                            </p>
+                        </td>
+                        <td class="text-center">
+                            <?= Html::a('<i class="fa fa-plus-circle"></i>', ['//customer/defaults/add', $model->MENU_ITEM_ID], ['class' => 'btn btn-default']) ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </table>

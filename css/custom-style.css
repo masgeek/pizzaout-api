@@ -56,3 +56,8 @@ table .id, table .id .sort {
     border-top-width: 2px;
     border-top-style: solid;
 }
+
+.large-text{
+    font-size: 15px;
+    color: green;
+}
