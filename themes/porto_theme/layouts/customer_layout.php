@@ -55,12 +55,12 @@ $formatter = \Yii::$app->formatter;
                 </div>
             </header>
 
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <!-- start: page -->
                 <?= $content ?>
                 <!-- end: page -->
             </div>
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-3 col-md-3">
                 <section class="panel panel-success">
                     <header class="panel-heading">
                         <div class="panel-actions">
@@ -133,7 +133,7 @@ $formatter = \Yii::$app->formatter;
                         </table>
                     </div>
                     <div class="panel-footer">
-                            <?= Html::a('PROCEED TO CHECKOUT', ['//customer/cart/checkout'], ['class' => 'btn btn-success btn-lg btn-block']) ?>
+                            <?= Html::a('PROCEED TO CHECKOUT', ['//customer/default/checkout'], ['class' => 'btn btn-success btn-lg btn-block']) ?>
                     </div>
                 </section>
             </div>

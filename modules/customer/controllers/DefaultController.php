@@ -3,6 +3,7 @@
 namespace app\modules\customer\controllers;
 
 use app\model_extended\CART_MODEL;
+use app\model_extended\MENU_ITEMS;
 use yii\web\Controller;
 
 /**
@@ -27,6 +28,15 @@ class DefaultController extends Controller
             ->all();
         $this->view->params['cart_items'] = $cart_items;
 
+
+        //lets get the list of pizzas on offer
+        $menu_item = MENU_ITEMS::find()
+            ->all();
+
         return $this->render('index');
+    }
+
+    public function actionCheckout(){
+        return 6;
     }
 }
