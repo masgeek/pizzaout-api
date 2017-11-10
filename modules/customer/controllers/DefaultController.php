@@ -137,6 +137,34 @@ class DefaultController extends Controller
     }
 
     /**
+     * @param $id
+     * @return array
+     */
+    public function actionChangeQuantity($id)
+    {
+        $output = ['output' => '', 'message' => ''];
+        $model = CART_MODEL::findOne($id);
+        // Check if there is an Editable ajax request
+        if (isset($_POST['hasEditable'])) {
+            // read your posted model attributes
+            if ($model->load(Yii::$app->request->post())) {
+                // read or convert your posted information
+                if ($model->save()) {
+                    $value = $model->QUANTITY;
+                    if ($model->QUANTITY <= 0) {
+                        $model->delete();
+                    } else {
+                        $output = ['output' => $value, 'message' => ''];
+                    }
+                }
+            }
+        }
+
+        // return JSON encoded output in the below format
+        return json_encode($output);
+    }
+
+    /**
      * @return string
      * @throws \Exception
      * @throws \Throwable
@@ -202,7 +230,7 @@ class DefaultController extends Controller
                 return $this->redirect(['//customer/default/placed-orders']);
             }
             $transaction->rollback();
-            die;
+            $this->refresh();
         }
 
         return $this->render('checkout', [

@@ -6,6 +6,7 @@
 
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Html;
+use kartik\editable\Editable;
 
 \app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
@@ -55,12 +56,12 @@ $formatter = \Yii::$app->formatter;
                 </div>
             </header>
 
-            <div class="col-md-9">
+            <div class="col-lg-8 col-md-12">
                 <!-- start: page -->
                 <?= $content ?>
                 <!-- end: page -->
             </div>
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-4 col-md-12">
                 <section class="panel panel-success">
                     <header class="panel-heading">
                         <div class="panel-actions">
@@ -74,7 +75,7 @@ $formatter = \Yii::$app->formatter;
                         <table data-height="auto" class="table table-condensed table-border">
                             <tbody>
                             <?php
-                            /* @var $cart_model \app\model_extended\CART_MODEL */
+                            /* @var $orderItems \app\model_extended\CART_MODEL */
                             $cart_items = isset($this->params['cart_items']) ? $this->params['cart_items'] : [];
                             $orderSubTotal = 0.0;
 
@@ -83,8 +84,23 @@ $formatter = \Yii::$app->formatter;
                                 $orderSubTotal = $orderSubTotal + (int)$orderItems->QUANTITY * (float)$orderItems->ITEM_PRICE;
                                 ?>
                                 <tr>
-                                    <td></td>
-                                    <td><?= "{$orderItems->QUANTITY}x {$orderItems->iTEMTYPE->mENUITEM->MENU_ITEM_NAME} ({$orderItems->iTEMTYPE->ITEM_TYPE_SIZE})"; ?></td>
+                                    <td align="right">
+                                        <?= Editable::widget([
+                                            'model' => $orderItems,
+                                            'attribute' => 'QUANTITY',
+                                            //'name' => 'province',
+                                            'asPopover' => false,
+                                            'submitOnEnter' => false,
+                                            //'header' => 'Province',
+                                            'format' => Editable::FORMAT_LINK,
+                                            'inputType' => Editable::INPUT_SPIN,
+                                            'editableValueOptions' => ['class' => 'text-danger'],
+                                            'formOptions' => [
+                                                'action' => ['change-quantity', 'id' => $orderItems->CART_ITEM_ID]
+                                            ],
+                                        ]) ?>x
+                                    </td>
+                                    <td><?= "{$orderItems->iTEMTYPE->mENUITEM->MENU_ITEM_NAME} ({$orderItems->iTEMTYPE->ITEM_TYPE_SIZE})"; ?></td>
                                     <td class="text-right"><?= $formatter->asCurrency($itemTotal) ?></td>
                                 </tr>
                             <?php
@@ -125,7 +141,10 @@ $formatter = \Yii::$app->formatter;
                         </table>
                     </div>
                     <div class="panel-footer">
-                        <?= Html::a('PROCEED TO CHECKOUT', ['//customer/default/checkout'], ['class' => 'btn btn-success btn-lg btn-block']) ?>
+
+                        <?= Html::a(count($cart_items) > 0 ? 'PROCEED TO CHECKOUT' : 'CART IS EMPTY',
+                            count($cart_items) > 0 ? ['//customer/default/checkout'] : '#',
+                            ['class' => count($cart_items) > 0 ? 'btn btn-success btn-lg btn-block' : 'btn btn-danger btn-lg btn-block']) ?>
                     </div>
                 </section>
             </div>
