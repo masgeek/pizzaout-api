@@ -11,6 +11,9 @@ namespace app\helpers;
 
 class APP_UTILS
 {
+    const PAYMENT_METHOD_MOBILE = 'MOBILE';
+    const PAYMENT_METHOD_CARD = 'CARD';
+
     const KITCHEN_SCOPE = 'KITCHEN';
     const CHEF_SCOPE = 'CHEF';
     const RIDER_SCOPE = 'RIDER';

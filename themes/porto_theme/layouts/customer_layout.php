@@ -72,15 +72,6 @@ $formatter = \Yii::$app->formatter;
                     </header>
                     <div class="panel-body">
                         <table data-height="auto" class="table table-condensed table-border">
-                            <!--<thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                                <th width="65%">Name/Options</th>
-                                <th class="text-left">Price</th>
-                                <th class="text-right">Sub Total</th>
-                            </tr>
-                            </thead>
-                            -->
                             <tbody>
                             <?php
                             /* @var $cart_model \app\model_extended\CART_MODEL */
