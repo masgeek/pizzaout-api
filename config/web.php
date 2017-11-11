@@ -17,7 +17,10 @@ $config = [
 	'modules' => [
 		'gridview' => [
 			'class' => 'kartik\grid\Module'
-		]
+		],
+        'customer' => [
+            'class' => 'app\modules\customer\Module',
+        ],
 	],
 	'components' => [
 		/* custom view template*/
