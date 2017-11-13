@@ -16,3 +16,12 @@ return [
     'gatewayURL' => 'https://migs-mtf.mastercard.com.au/vpcpay?',
     'vpcVersion' => '1',
 ];
+
+/**
+ * University of Nairobi
+Merchant ID: 00000129
+Operator Id: admin
+Password :  andalite6
+
+URL https://migs-mtf.mastercard.com.au/ma
+ */
