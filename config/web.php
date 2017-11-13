@@ -32,6 +32,7 @@ $config = [
                 ],
             ]
         ],
+        'card' => $merchant,
         'fcm' => $fcm,
         'pdf' => [
             'class' => \kartik\mpdf\Pdf::classname(),
@@ -117,7 +118,6 @@ $config = [
 
     ],
     'params' => $params,
-    'cardmerchant' => $merchant
 ];
 
 if (YII_ENV_DEV) {
