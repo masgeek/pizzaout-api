@@ -131,6 +131,8 @@ class CheckoutController extends Controller
           'vpc_Version' => string '1' (length=1)
          */
 
+        $session = Yii::$app->session;
+
 
         $resp_code = (int)Yii::$app->request->get('vpc_TxnResponseCode', 100);
         $batchNo = Yii::$app->request->get('vpc_BatchNo'); //=> string '20171113' (length=8)
@@ -170,18 +172,20 @@ class CheckoutController extends Controller
         $model->load($postData);
 
 
-        if ($model->save() && $resp_code === 1) {
+        if ($model->save() && $resp_code === 0) {
             //mark payment as confirmed also
             //CUSTOMER_ORDERS::updateAll(['ORDER_STATUS' => ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED], "ORDER_ID='{$order_id}'");
             $orders = CUSTOMER_ORDERS::findOne($order_id);
             $orders->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED;
             $orders->save();
             //set flash and tell user that order is successful
+            $session->setFlash('SUCCESS', $responseType);
         } else {
             //set the flash and tell user the order has failed
+            $session->setFlash('FAILED', $responseType);
         }
 
-        var_dump($model);
+        var_dump($session->getFlash('FAILED'));
         //log to the database
         return $responseType;
 
