@@ -36,6 +36,7 @@ class CardComponent extends Component
     public $merchantcodeKES;
     public $merchantidKES;
     public $tokenKES;
+
     public $merchantcodeUSD;
     public $merchantidUSD;
     public $tokenUSD;
@@ -43,6 +44,8 @@ class CardComponent extends Component
     public $gatewayURL;
     public $vpcVersion;
 
+
+    protected $checkoutAction = 'checkout/confirmation';
 
     public function init()
     {
@@ -56,5 +59,12 @@ class CardComponent extends Component
         if ($this->returnURL == null) {
             throw new InvalidParamException('Return URL cannot be null');
         }
+    }
+
+    public function ConfirmationUrl()
+    {
+        //$publicIP = $card->returnURL;
+        //$returnURL = $publicIP . 'checkout/confirmation';
+        return "{$this->returnURL}{$this->checkoutAction}";
     }
 }
