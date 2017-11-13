@@ -93,10 +93,9 @@ class CheckoutController extends Controller
 
     /**
      *
-     * @param $vpc_TxnResponseCode
      * @return string
      */
-    public function actionConfirmation($vpc_TxnResponseCode)
+    public function actionConfirmation()
     {
         //RESPONSE FROM THE MERCGANET
         /*
@@ -131,11 +130,9 @@ class CheckoutController extends Controller
           'vpc_VerType' => string '3DS' (length=3)
           'vpc_Version' => string '1' (length=1)
          */
-        $request = Yii::$app->request->get();
 
 
-        $resp_code = Yii::$app->request->get('vpc_TxnResponseCode', null);
-
+        $resp_code = (int)Yii::$app->request->get('vpc_TxnResponseCode', 100);
         $batchNo = Yii::$app->request->get('vpc_BatchNo'); //=> string '20171113' (length=8)
         $cardType = PAYMENT_HELPER::CartType(Yii::$app->request->get('vpc_Card')); //=> string 'M' (length=1)
         $paymentCurrency = Yii::$app->request->get('vpc_Currency'); //=> string 'USD' (length=3)
@@ -172,17 +169,18 @@ class CheckoutController extends Controller
         $model = $searchPayment != null ? $searchPayment : new PAYMENT_MODEL();
         $model->load($postData);
 
-        if ($model->save()) {
+
+        if ($model->save() && $resp_code === 1) {
             //mark payment as confirmed also
             //CUSTOMER_ORDERS::updateAll(['ORDER_STATUS' => ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED], "ORDER_ID='{$order_id}'");
             $orders = CUSTOMER_ORDERS::findOne($order_id);
             $orders->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED;
             $orders->save();
-            //set flash and tell user that order is sucessfull
+            //set flash and tell user that order is successful
         } else {
             //set the flash and tell user the order has failed
         }
-        // var_dump($request);
+
         var_dump($model);
         //log to the database
         return $responseType;
