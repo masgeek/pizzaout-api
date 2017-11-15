@@ -3,7 +3,7 @@ return [
     'class' => 'app\components\CardComponent',
     'instName' => 'University of Nairobi',
     //base url for the links generated in the email
-    'returnURL' => 'http://localhost:81/pizza/',//'http://pizza.tsobu.co.ke/',
+    'returnURL' => LOCAL ? 'http://localhost:81/pizza/' : 'http://pizza.tsobu.co.ke/',
     'baseURL' => 'https://migs-mtf.mastercard.com.au',
     //Payment gateways information
     //'merchantcodeKES' => 'CA1B7397',
