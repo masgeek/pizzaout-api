@@ -6,7 +6,7 @@ return [
     'returnURL' =>'http://pizza.tsobu.co.ke/',
     'debugUrl' =>'http://localhost:81/pizza/',
     'baseURL' => 'https://migs-mtf.mastercard.com.au',
-    'allowedIPs' => ['127.0.0.1', '::1','41.89.65.170'],
+    'allowedIPs' => ['127.0.0.1', '::1'],//'41.89.65.170'],
     //Payment gateways information
     //'merchantcodeKES' => 'CA1B7397',
     //'merchantidKES' => '00000123',
