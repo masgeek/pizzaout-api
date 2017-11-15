@@ -84,7 +84,7 @@ class CheckoutController extends Controller
         //redirect to gateway
         $paymentURL = "{$gatewayURL}{$url}";
 
-
+return $paymentURL;
         return $this->redirect($paymentURL); //$paymentURL;
     }
 
