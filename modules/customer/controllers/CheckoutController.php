@@ -35,6 +35,7 @@ class CheckoutController extends Controller
 
         $amountDue = ($amount * 100); //multiply by 100 to remove decimal points 1.e 100.00->10000
         //build return URL
+        $urlPayload = "";
         $returnURL = $card->ConfirmationUrl(); // $publicIP . 'checkout/confirmation';
 
         //check currency type and change the merchant url accordingly
@@ -68,29 +69,29 @@ class CheckoutController extends Controller
 
         ksort($paymentDataArr); // You have to ksort the array to make it according to the order that it needs
 
-        $url = "";
+
         foreach ($paymentDataArr as $key => $value) {
             //urlencode causes sha mismatch, removed it
             //$url .= $key . "=" . urlencode($value) . "&";
-            $url .= $key . "=" . $value . "&";
+            $urlPayload .= $key . "=" . $value . "&";
         }
 
-        $hashing_url = rtrim($url, "&");
+        $hashing_url = rtrim($urlPayload, "&");
         $secureHashFinal = hash_hmac('SHA256', $hashing_url, pack('H*', $secureToken));
-        $url .= "vpc_SecureHash=" . $secureHashFinal;
-        $url .= "&vpc_SecureHashType=SHA256";
+        $urlPayload .= "vpc_SecureHash=" . $secureHashFinal;
+        $urlPayload .= "&vpc_SecureHashType=SHA256";
 
         //header("location:https://migs-mtf.mastercard.com.au/vpcpay?$url");
         //redirect to gateway
-        $paymentURL = "{$gatewayURL}{$url}";
+        $paymentURL = "{$gatewayURL}{$urlPayload}";
 
-return $paymentURL;
         return $this->redirect($paymentURL); //$paymentURL;
     }
 
     /**
      *
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionConfirmation()
     {
