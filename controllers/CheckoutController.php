@@ -169,7 +169,8 @@ class CheckoutController extends Controller
 
         $searchPayment = PAYMENT_MODEL::findOne(['ORDER_ID' => $order_id]);
         $model = $searchPayment != null ? $searchPayment : new PAYMENT_MODEL();
-        $model->load($postData);
+        $model->load($postData); //load the array data in to the model attributes
+
 
 
         if ($model->save() && $resp_code === 0) {

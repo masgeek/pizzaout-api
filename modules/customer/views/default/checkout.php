@@ -14,13 +14,22 @@
 
 /* @var $model \app\model_extended\CUSTOMER_ORDERS */
 
-use yii\widgets\ActiveForm;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use kartik\tabs\TabsX;
 
 $vat = 0;
 $deliveryFee = 0;
 $orderTotal = 0;
+
+$field_template = <<<TEMPLATE
+<label>{label}</label>
+<div class="input-group input-group-icon">
+     {input} 
+    <span class="input-group-addon">
+        <span class="icon icon-lg"><i class="fa fa-mobile"></i></span>
+    </span>
+</div>
+    {error}{hint}
+TEMPLATE;
 ?>
 
 <div class="col-lg-3 col-md-3">
@@ -86,27 +95,27 @@ $orderTotal = 0;
 </div>
 
 <div class="col-lg-9 col-md-9">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'USER_ID')->hiddenInput()->label(false) ?>
-
-
-    <?= $form->field($model, 'PAYMENT_METHOD')->textInput(['readonly' => true]) ?>
-
-
-    <?= $form->field($model, 'NOTES')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($paymentModel, 'PAYMENT_NUMBER')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($paymentModel, 'PAYMENT_AMOUNT')->textInput(['value' => $orderTotal, 'readonly' => true])->label(false) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Place Order', ['class' => 'btn btn-success btn-block btn-lg']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-
+    <?php
+    $items = [
+        [
+            'label' => '<i class="glyphicon glyphicon-phone"></i> Mobile Payment',
+            'content' => $this->render('checkout-forms/_mobile-form', ['paymentModel' => $paymentModel, 'model' => $model, 'orderTotal' => $orderTotal, 'field_template' => $field_template]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-credit-card"></i> Card Payment',
+            'content' => $this->render('checkout-forms/_card-form', ['paymentModel' => $paymentModel, 'model' => $model, 'orderTotal' => $orderTotal]),
+           // 'active' => true
+        ],
+    ];
+    ?>
+    <?=
+    TabsX::widget([
+        'items' => $items,
+        'position' => TabsX::POS_ABOVE,
+        'encodeLabels' => false,
+        'bordered' => false,
+    ]);
+    ?>
 </div>
 
 

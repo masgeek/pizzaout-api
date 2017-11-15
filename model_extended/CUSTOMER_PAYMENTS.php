@@ -14,4 +14,11 @@ use app\models\Payment;
 class CUSTOMER_PAYMENTS extends Payment
 {
 
+    public function rules()
+    {
+        $rules = parent::rules();
+
+        $rules[] = [['PAYMENT_NUMBER'], 'required'];
+        return $rules;
+    }
 }

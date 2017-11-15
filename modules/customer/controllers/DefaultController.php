@@ -190,8 +190,6 @@ class DefaultController extends Controller
         $model->ADDRESS_ID = 1;
         $model->ORDER_DATE = APP_UTILS::GetCurrentDateTime();
         $model->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
-        $model->PAYMENT_METHOD = APP_UTILS::PAYMENT_METHOD_MOBILE;
-        $paymentModel->PAYMENT_CHANNEL = APP_UTILS::PAYMENT_METHOD_MOBILE;
 
         if ($model->load(Yii::$app->request->post())) {
             $transaction = $connection->beginTransaction();
