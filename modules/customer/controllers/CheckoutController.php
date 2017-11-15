@@ -35,7 +35,6 @@ class CheckoutController extends Controller
 
         $amountDue = ($amount * 100); //multiply by 100 to remove decimal points 1.e 100.00->10000
         //build return URL
-        $publicIP = $card->returnURL;
         $returnURL = $card->ConfirmationUrl(); // $publicIP . 'checkout/confirmation';
 
         //check currency type and change the merchant url accordingly

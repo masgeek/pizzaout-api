@@ -63,8 +63,6 @@ class CardComponent extends Component
 
     public function ConfirmationUrl()
     {
-        //$publicIP = $card->returnURL;
-        //$returnURL = $publicIP . 'checkout/confirmation';
         return "{$this->returnURL}{$this->checkoutAction}";
     }
 }
