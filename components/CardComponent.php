@@ -31,6 +31,7 @@ class CardComponent extends Component
     public $content;
     public $instName;
     public $returnURL;
+    public $debugUrl;
     public $baseURL;
 
     public $merchantcodeKES;
@@ -44,6 +45,9 @@ class CardComponent extends Component
     public $gatewayURL;
     public $vpcVersion;
 
+    public $allowedIPs = ['127.0.0.1', '::1'];
+
+    private $currentIP;
 
     protected $checkoutAction = 'customer/checkout/confirmation';
 
@@ -59,10 +63,20 @@ class CardComponent extends Component
         if ($this->returnURL == null) {
             throw new InvalidParamException('Return URL cannot be null');
         }
+
+        if (array_search($this->CurrentIP(), $this->allowedIPs)) {
+            $this->returnURL = $this->debugUrl;
+        }
     }
 
     public function ConfirmationUrl()
     {
         return "{$this->returnURL}{$this->checkoutAction}";
+
+    }
+
+    private function CurrentIP()
+    {
+        return \Yii::$app->request->getUserIP();
     }
 }
