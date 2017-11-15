@@ -20,7 +20,7 @@ use kartik\growl\Growl;
     'pluginOptions' => [
         'showProgressbar' => true,
         'placement' => [
-            'from' => 'top',
+            'from' => 'bottom',
             'align' => 'center',
         ],
         'animate' => [
