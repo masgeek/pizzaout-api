@@ -187,16 +187,16 @@ class CheckoutController extends Controller
             $session->setFlash('CARD', $responseType);
             $respPayload = [
                 'growl_type' => Growl::TYPE_SUCCESS,
-                'title' => 'Success',
-                'message' => "Order has been processed successfully. {$responseType}"
+                'title' => $responseType,
+                'message' => "Order has been processed successfully"
             ];
         } else {
             //set the flash and tell user the order has failed
             $session->setFlash('CARD', $responseType);
             $respPayload = [
                 'growl_type' => Growl::TYPE_DANGER,
-                'title' => 'Transaction Failure',
-                'message' => "Order not processed successfully. {$responseType}"
+                'title' => $responseType,
+                'message' => "Order not processed successfully."
             ];
         }
         //log to the database
