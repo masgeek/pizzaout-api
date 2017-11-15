@@ -174,7 +174,7 @@ class CheckoutController extends Controller
         $model->load($postData); //load the array data in to the model attributes
 
 
-        if ($model->save() && $resp_code === 0) {
+        if ($model->save() && $resp_code === '0') {
             //mark payment as confirmed also
             //CUSTOMER_ORDERS::updateAll(['ORDER_STATUS' => ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED], "ORDER_ID='{$order_id}'");
             $orders = CUSTOMER_ORDERS::findOne($order_id);
