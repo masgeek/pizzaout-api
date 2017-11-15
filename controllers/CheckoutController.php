@@ -179,13 +179,13 @@ class CheckoutController extends Controller
             $orders->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED;
             $orders->save();
             //set flash and tell user that order is successful
-            $session->setFlash('SUCCESS', $responseType);
+            $session->setFlash('CARD', $responseType);
         } else {
             //set the flash and tell user the order has failed
-            $session->setFlash('FAILED', $responseType);
+            $session->setFlash('CARD', $responseType);
         }
 
-        var_dump($session->getFlash('FAILED'));
+        var_dump($session->getFlash('CARD'));
         //log to the database
         return $responseType;
 
