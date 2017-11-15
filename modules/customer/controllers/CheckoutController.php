@@ -6,13 +6,12 @@
  * Time: 13:35
  */
 
-namespace app\controllers;
+namespace app\modules\customer\controllers;
 
 
 use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\components\CardComponent;
 use app\helpers\APP_UTILS;
-use app\helpers\CUSTOM_HELPER;
 use app\helpers\ORDER_STATUS_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
 use Yii;
@@ -88,7 +87,7 @@ class CheckoutController extends Controller
         $paymentURL = "{$gatewayURL}{$url}";
 
 
-        return $paymentURL;
+        return $this->redirect($paymentURL); //$paymentURL;
     }
 
     /**
@@ -170,7 +169,6 @@ class CheckoutController extends Controller
         $searchPayment = PAYMENT_MODEL::findOne(['ORDER_ID' => $order_id]);
         $model = $searchPayment != null ? $searchPayment : new PAYMENT_MODEL();
         $model->load($postData); //load the array data in to the model attributes
-
 
 
         if ($model->save() && $resp_code === 0) {

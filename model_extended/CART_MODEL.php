@@ -19,10 +19,17 @@ class CART_MODEL extends Cart
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
                 $this->CREATED_AT = APP_UTILS::GetCurrentDateTime();
+                $this->CART_TIMESTAMP = APP_UTILS::GetTimeStamp();
             }
             $this->UPDATED_AT = APP_UTILS::GetCurrentDateTime();
             return true;
         }
         return false;
+    }
+
+    public static function ClearCart($cart_timestamp)
+    {
+        //remove the cart item
+        self::deleteAll(['CART_TIMESTAMP' => $cart_timestamp]);
     }
 }

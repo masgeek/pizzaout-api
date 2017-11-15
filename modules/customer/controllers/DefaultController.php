@@ -139,6 +139,9 @@ class DefaultController extends Controller
     /**
      * @param $id
      * @return array
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws yii\db\StaleObjectException
      */
     public function actionChangeQuantity($id)
     {
@@ -211,8 +214,6 @@ class DefaultController extends Controller
                     //save the order items as we are deleting
                     if ($customer_order_items->save()) {
                         $saveSuccessful = true;
-                        //remove the cart item
-                        CART_MODEL::findOne($orderItems->CART_ITEM_ID)->delete();
                     }
                 endforeach;
                 //Save the payment information
@@ -225,7 +226,15 @@ class DefaultController extends Controller
             }
             if ($saveSuccessful) {
                 $transaction->commit();
-                return $this->redirect(['//customer/default/placed-orders']);
+                //if it is card redirect to  card checkout
+                if ($model->PAYMENT_METHOD === APP_UTILS::PAYMENT_METHOD_CARD) {
+                    //remove from cart after successfull checkout
+                    return $this->redirect(['//customer/checkout/card', 'id' => $model->ORDER_ID]);
+                } else {
+                    //remove the cart item
+                    CART_MODEL::ClearCart($orderItems->CART_TIMESTAMP);
+                    return $this->redirect(['//customer/default/placed-orders']);
+                }
             }
             $transaction->rollback();
             $this->refresh();
