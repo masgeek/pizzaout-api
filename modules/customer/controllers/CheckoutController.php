@@ -130,12 +130,13 @@ class CheckoutController extends Controller
           'vpc_Version' => string '1' (length=1)
          */
 
+
         $session = Yii::$app->session;
 
         $cart_timestamp = $session->get('CART_TIMESTAMP');
 
 
-        $resp_code = (int)Yii::$app->request->get('vpc_TxnResponseCode', 100);
+        $resp_code = Yii::$app->request->get('vpc_TxnResponseCode', 100);
         $batchNo = Yii::$app->request->get('vpc_BatchNo'); //=> string '20171113' (length=8)
         $cardType = PAYMENT_HELPER::CartType(Yii::$app->request->get('vpc_Card')); //=> string 'M' (length=1)
         $paymentCurrency = Yii::$app->request->get('vpc_Currency'); //=> string 'USD' (length=3)
@@ -181,13 +182,13 @@ class CheckoutController extends Controller
             $orders->save();
 
             //clear the cart items
-            //CART_MODEL::ClearCart($cart_timestamp);
+            CART_MODEL::ClearCart($cart_timestamp);
             //set flash and tell user that order is successful
             $session->setFlash('CARD', $responseType);
             $respPayload = [
                 'growl_type' => Growl::TYPE_SUCCESS,
                 'title' => 'Success',
-                'message' => 'Order has been processed successfully'
+                'message' => "Order has been processed successfully. {$responseType}"
             ];
         } else {
             //set the flash and tell user the order has failed
@@ -195,7 +196,7 @@ class CheckoutController extends Controller
             $respPayload = [
                 'growl_type' => Growl::TYPE_DANGER,
                 'title' => 'Transaction Failure',
-                'message' => 'Order not processed successfully'
+                'message' => "Order not processed successfully. {$responseType}"
             ];
         }
         //log to the database
