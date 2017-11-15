@@ -13,6 +13,7 @@ use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\components\CardComponent;
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_STATUS_HELPER;
+use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDERS;
 use Yii;
 use app\helpers\PAYMENT_HELPER;
@@ -20,19 +21,17 @@ use yii\web\Controller;
 
 class CheckoutController extends Controller
 {
-
-
     public function actionCard($id)
     {
 
         /* @var $card CardComponent */
         //define the card component
         $card = Yii::$app->card;
+        $session = Yii::$app->session;
 
+        $cart_timestamp = $session->get('CART_TIMESTAMP');
 
-        $paymentModel = $this->loadModel($id);
-
-        $amount = 2000;
+        $amount = $this->GetCartTotal($cart_timestamp);
 
         $amountDue = ($amount * 100); //multiply by 100 to remove decimal points 1.e 100.00->10000
         //build return URL
@@ -132,6 +131,8 @@ class CheckoutController extends Controller
 
         $session = Yii::$app->session;
 
+        $cart_timestamp = $session->get('CART_TIMESTAMP');
+
 
         $resp_code = (int)Yii::$app->request->get('vpc_TxnResponseCode', 100);
         $batchNo = Yii::$app->request->get('vpc_BatchNo'); //=> string '20171113' (length=8)
@@ -177,19 +178,35 @@ class CheckoutController extends Controller
             $orders = CUSTOMER_ORDERS::findOne($order_id);
             $orders->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED;
             $orders->save();
+
+            //clear the cart items
+            //CART_MODEL::ClearCart($cart_timestamp);
             //set flash and tell user that order is successful
             $session->setFlash('CARD', $responseType);
         } else {
             //set the flash and tell user the order has failed
             $session->setFlash('CARD', $responseType);
         }
-
-        var_dump($session->getFlash('CARD'));
         //log to the database
-        return $responseType;
+        //$this->layout ='customer_layout_no_cart';
+        return $this->render('success'); //$responseType;
 
     }
 
+
+    private function GetCartTotal($cart_timestamp)
+    {
+        $cartItems = CART_MODEL::find()
+            ->where(['CART_TIMESTAMP' => $cart_timestamp])
+            ->all();
+
+        $amount = 0;
+        foreach ($cartItems as $key => $cartModel) {
+            $amount = $amount + ((int)$cartModel->QUANTITY * (float)$cartModel->ITEM_PRICE);
+        }
+
+        return $amount;
+    }
 
     private function loadModel($id)
     {

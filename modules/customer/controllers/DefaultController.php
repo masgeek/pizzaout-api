@@ -176,6 +176,7 @@ class DefaultController extends Controller
      */
     public function actionCheckout()
     {
+        $session = Yii::$app->session;
         $connection = \Yii::$app->db;
         $this->layout = 'customer_layout_no_cart';
         $this->view->title = 'Order Checkout';
@@ -228,7 +229,8 @@ class DefaultController extends Controller
                 $transaction->commit();
                 //if it is card redirect to  card checkout
                 if ($model->PAYMENT_METHOD === APP_UTILS::PAYMENT_METHOD_CARD) {
-                    //remove from cart after successfull checkout
+                    //Add cart timestamp to the session
+                    $session->set('CART_TIMESTAMP', $orderItems->CART_TIMESTAMP);
                     return $this->redirect(['//customer/checkout/card', 'id' => $model->ORDER_ID]);
                 } else {
                     //remove the cart item

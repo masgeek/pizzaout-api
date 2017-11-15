@@ -25,7 +25,7 @@ class BowerAsset extends AssetBundle
         'bootstrap-multiselect/dist/css/bootstrap-multiselect.css',
         'nanoscroller/bin/css/nanoscroller.css',
         'magnific-popup/dist/magnific-popup.css',
-        //'animate.css/animate.min.css',
+        'animate.css/animate.min.css',
         //'tingle/dist/tingle.min.css'
     ];
     public $publishOptions = [

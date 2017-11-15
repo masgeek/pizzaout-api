@@ -45,7 +45,7 @@ class CardComponent extends Component
     public $vpcVersion;
 
 
-    protected $checkoutAction = 'checkout/confirmation';
+    protected $checkoutAction = 'customer/checkout/confirmation';
 
     public function init()
     {
