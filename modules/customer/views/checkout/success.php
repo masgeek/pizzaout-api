@@ -8,13 +8,11 @@
 
 use kartik\growl\Growl;
 
-$session = Yii::$app->session;
-$message = ($session->getFlash('CARD'));
 ?>
 
 <?= Growl::widget([
-    'type' => Growl::TYPE_DANGER,
-    'title' => 'Oh snap!',
+    'type' => $growl_type,
+    'title' => $title,
     'icon' => 'glyphicon glyphicon-remove-sign',
     'body' => $message,
     'showSeparator' => true,
@@ -22,8 +20,8 @@ $message = ($session->getFlash('CARD'));
     'pluginOptions' => [
         'showProgressbar' => true,
         'placement' => [
-            'from' => 'bottom',
-            'align' => 'left',
+            'from' => 'top',
+            'align' => 'center',
         ],
         'animate' => [
             'enter' => 'animated fadeInDown',

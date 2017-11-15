@@ -15,6 +15,7 @@ use app\helpers\APP_UTILS;
 use app\helpers\ORDER_STATUS_HELPER;
 use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDERS;
+use kartik\growl\Growl;
 use Yii;
 use app\helpers\PAYMENT_HELPER;
 use yii\web\Controller;
@@ -183,13 +184,23 @@ class CheckoutController extends Controller
             //CART_MODEL::ClearCart($cart_timestamp);
             //set flash and tell user that order is successful
             $session->setFlash('CARD', $responseType);
+            $respPayload = [
+                'growl_type' => Growl::TYPE_SUCCESS,
+                'title' => 'Success',
+                'message' => 'Order has been processed successfully'
+            ];
         } else {
             //set the flash and tell user the order has failed
             $session->setFlash('CARD', $responseType);
+            $respPayload = [
+                'growl_type' => Growl::TYPE_DANGER,
+                'title' => 'Transaction Failure',
+                'message' => 'Order not processed successfully'
+            ];
         }
         //log to the database
         //$this->layout ='customer_layout_no_cart';
-        return $this->render('/checkout/success'); //$responseType;
+        return $this->render('/checkout/success', $respPayload); //$responseType;
 
     }
 
