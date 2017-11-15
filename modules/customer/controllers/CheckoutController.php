@@ -189,7 +189,7 @@ class CheckoutController extends Controller
         }
         //log to the database
         //$this->layout ='customer_layout_no_cart';
-        return $this->render('success'); //$responseType;
+        return $this->render('/checkout/success'); //$responseType;
 
     }
 

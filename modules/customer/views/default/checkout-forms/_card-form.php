@@ -21,10 +21,10 @@ $paymentModel->PAYMENT_NUMBER = 'N/A';
 
 <div class="row">
     <div class="col-md-6 col-sm-12">
-        <?= Html::img('@web/images/credit_cards/mastercard_large.png', ['alt' => 'Master Card Payment', 'class' => 'img img-thumbnail']); ?>
+        <?= Html::img('@web/images/credit_cards/master_card_large.png', ['alt' => 'Master Card Payment', 'class' => 'img img-thumbnail']); ?>
     </div>
     <div class="col-md-6 cl-sm-12">
-        <?= Html::img('@web/images/credit_cards/visa_large.png', ['alt' => 'Visa Card Payment', 'class' => 'img img-thumbnail']); ?>
+        <?= Html::img('@web/images/credit_cards/visa_card_large.png', ['alt' => 'Visa Card Payment', 'class' => 'img img-thumbnail']); ?>
     </div>
 </div>
 
