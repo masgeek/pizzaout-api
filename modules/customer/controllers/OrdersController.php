@@ -17,6 +17,8 @@ use yii\web\NotFoundHttpException;
  */
 class OrdersController extends Controller
 {
+    public $layout = 'customer_layout_no_cart';
+
     /**
      * @inheritdoc
      */
@@ -67,30 +69,46 @@ class OrdersController extends Controller
 
     public function actionPending()
     {
+        $user_id = Yii::$app->user->id;
+
         $this->view->title = 'Pending Orders';
         $searchModel = new OrdersSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, [
-            ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED,
-            ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION,
-            ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
-        ]);
 
-        $pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING]);
-        $confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED]);
-        $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
+        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING], $user_id);
 
-        $orderReady = $searchModel->search(Yii::$app->request->queryParams, [
-            ORDER_STATUS_HELPER::STATUS_ORDER_READY]);
-
-        $cancelledOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED]);
-
-        return $this->render('//orders/index', [
+        return $this->render('pending', [
             'searchModel' => $searchModel,
             'pendingOrder' => $pendingOrder,
-            'confirmedOrder' => $confirmedOrder,
-            'preparingOrder' => $preparingOrder,
-            'orderReady' => $orderReady,
-            'cancelledOrder' => $cancelledOrder
         ]);
+    }
+
+    /**
+     * Displays a single CUSTOMER_ORDERS model.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+
+    /**
+     * Finds the CUSTOMER_ORDERS model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param string $id
+     * @return CUSTOMER_ORDERS the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = CUSTOMER_ORDERS::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
