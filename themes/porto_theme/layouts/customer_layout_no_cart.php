@@ -34,7 +34,7 @@ $formatter = \Yii::$app->formatter;
 
     <div class="inner-wrapper">
         <!-- start: sidebar -->
-        <?php require_once __DIR__ . '/includes/side_nav_left.php'; ?>
+        <?php require_once __DIR__ . '/includes/customer_side_nav_left.php'; ?>
         <!-- end: sidebar -->
         <section role="main" class="content-body">
             <header class="page-header">
