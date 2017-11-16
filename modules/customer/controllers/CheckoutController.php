@@ -15,6 +15,7 @@ use app\helpers\APP_UTILS;
 use app\helpers\ORDER_STATUS_HELPER;
 use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDERS;
+use app\models_search\OrdersSearch;
 use kartik\growl\Growl;
 use Yii;
 use app\helpers\PAYMENT_HELPER;
@@ -185,23 +186,42 @@ class CheckoutController extends Controller
             CART_MODEL::ClearCart($cart_timestamp);
             //set flash and tell user that order is successful
             $session->setFlash('CARD', $responseType);
-            $respPayload = [
-                'growl_type' => Growl::TYPE_SUCCESS,
-                'title' => $responseType,
-                'message' => "Order has been processed successfully"
-            ];
+
+            $growl_type = Growl::TYPE_SUCCESS;
+            $title = $responseType;
+            $message = "Order has been processed successfully.";
         } else {
             //set the flash and tell user the order has failed
             $session->setFlash('CARD', $responseType);
-            $respPayload = [
-                'growl_type' => Growl::TYPE_DANGER,
-                'title' => $responseType,
-                'message' => "Order not processed successfully."
-            ];
+
+            $growl_type = Growl::TYPE_DANGER;
+            $title = $responseType;
+            $message = "Order not processed successfully.";
         }
         //log to the database
+
         $this->layout = 'customer_layout_no_cart';
-        return $this->render('/checkout/success', $respPayload); //$responseType;
+        $user_id = Yii::$app->user->id;
+        $this->view->title = 'Confirmed Orders';
+
+        $searchModel = new OrdersSearch();
+
+        $dataProvider = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [
+            ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED,
+            ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION,
+            ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER,
+            ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
+        ], $user_id);
+
+        return $this->render('/checkout/success', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'growl_type' => $growl_type,
+            'title' => $title,
+            'message' => $message,
+        ]);
 
     }
 

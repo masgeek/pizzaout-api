@@ -52,6 +52,11 @@ class OrdersSearch extends ORDER_VIEW_MODEL
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'ORDER_DATE' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -99,6 +104,11 @@ class OrdersSearch extends ORDER_VIEW_MODEL
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'ORDER_DATE' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -143,6 +153,11 @@ class OrdersSearch extends ORDER_VIEW_MODEL
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'ORDER_DATE' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -168,13 +183,13 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             'PAYMENT_NUMBER' => $this->PAYMENT_NUMBER,
         ]);
 
-        if ($this->ORDER_DATE != null) {
+        if ($this->ORDER_DATE != null && strlen($this->ORDER_DATE) > 1) {
             $date = explode("TO", $this->ORDER_DATE);
             $this->START_DATE = trim($date[0]);
             $this->END_DATE = trim($date[1]);
         } else {
             $this->START_DATE = $this->FirstDayOfMonth(); //date('Y-m-d');
-            $this->END_DATE = date('Y-m-d');
+            $this->END_DATE = $this->LastDayOfMonth(); //date('Y-m-d');
         }
 
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])

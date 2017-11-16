@@ -7,7 +7,13 @@
  */
 
 use kartik\growl\Growl;
+use yii\helpers\Html;
+use kartik\tabs\TabsX;
 
+/* @var $this yii\web\View */
+/* @var $searchModel app\models_search\OrdersSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= Growl::widget([
@@ -29,3 +35,7 @@ use kartik\growl\Growl;
         ],
     ]
 ]); ?>
+
+<h2><?= Html::encode($this->title) ?></h2>
+
+<?= $this->render('/orders/_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]) ?>

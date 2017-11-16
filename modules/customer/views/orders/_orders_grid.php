@@ -82,7 +82,7 @@ $gridColumns = [
             if ($action === 'view') {
                 $action = '<i class="fa fa-pencil fa-1x"></i> View';
                 $class .= 'btn-success btn-block';
-                $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+                $url = \yii\helpers\Url::toRoute(['//customer/orders/view', 'id' => $model->ORDER_ID]);
             }
             return Html::a($action, $url, ['class' => $class]);
         },
