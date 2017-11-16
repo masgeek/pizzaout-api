@@ -7,7 +7,6 @@ use kartik\tabs\TabsX;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
 
-$this->title = $model->ORDER_ID;
 $this->params['breadcrumbs'][] = ['label' => 'Customer  Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -29,22 +28,7 @@ $items = [
 ];
 
 ?>
-<div class="customer--orders-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-		<?= Html::a('Process Order', ['//orders'], ['class' => 'btn btn-primary']) ?>
-        <!--
-        <?= Html::a('Delete', ['delete', 'id' => $model->ORDER_ID], [
-			'class' => 'btn btn-danger',
-			'data' => [
-				'confirm' => 'Are you sure you want to delete this item?',
-				'method' => 'post',
-			],
-		]) ?>
-		-->
-    </p>
+<div class="customer-orders-view">
 
 	<?=
 	TabsX::widget([

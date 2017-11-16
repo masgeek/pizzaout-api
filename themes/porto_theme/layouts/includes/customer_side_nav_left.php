@@ -28,8 +28,8 @@ use yii\helpers\Html;
                             <span>Orders</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li><?= Html::a('Placed Orders', ['//customer/orders/placed'], ['title' => 'Placed Orders']); ?></li>
-                            <li><?= Html::a('Pending Orders', ['//customer/orders/pending'], ['title' => 'Pending Orders']); ?></li>
+                            <li><?= Html::a('Placed/Pending Orders', ['//customer/orders/pending'], ['title' => 'Placed Orders']); ?></li>
+                            <li><?= Html::a('Confirmed Orders', ['//customer/orders/confirmed'], ['title' => 'Confirmed Orders']); ?></li>
                             <li><?= Html::a('Closed Orders', ['//customer/orders/closed'], ['title' => 'Closed Orders']); ?></li>
                             <li><?= Html::a('Cancelled Orders', ['//customer/orders/cancelled'], ['title' => 'Cancelled Orders']); ?></li>
                         </ul>

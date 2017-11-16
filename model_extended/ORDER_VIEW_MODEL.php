@@ -49,7 +49,8 @@ use app\models\VwOrders;
  */
 class ORDER_VIEW_MODEL extends VwOrders
 {
-
+    public $START_DATE;
+    public $END_DATE;
 
     public function attributeLabels()
     {

@@ -139,7 +139,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
         // add conditions that should always apply here
 
         $query->andWhere(['USER_ID' => $user_id]);
-        //$query->andWhere(['ORDER_STATUS' => $order_status]);
+        $query->andWhere(['ORDER_STATUS' => $order_status]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -159,7 +159,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             'ADDRESS_ID' => $this->ADDRESS_ID,
             'CHEF_ID' => $this->CHEF_ID,
             'RIDER_ID' => $this->RIDER_ID,
-            'ORDER_DATE' => $this->ORDER_DATE,
+            // 'ORDER_DATE' => $this->ORDER_DATE,
             'CREATED_AT' => $this->CREATED_AT,
             'UPDATED_AT' => $this->UPDATED_AT,
             'SURNAME' => $this->SURNAME,
@@ -168,10 +168,30 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             'PAYMENT_NUMBER' => $this->PAYMENT_NUMBER,
         ]);
 
+        if ($this->ORDER_DATE != null) {
+            $date = explode("TO", $this->ORDER_DATE);
+            $this->START_DATE = trim($date[0]);
+            $this->END_DATE = trim($date[1]);
+        } else {
+            $this->START_DATE = $this->FirstDayOfMonth(); //date('Y-m-d');
+            $this->END_DATE = date('Y-m-d');
+        }
+
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
             ->andFilterWhere(['like', 'ORDER_ID', $this->ORDER_ID])
-            ->andFilterWhere(['like', 'NOTES', $this->NOTES]);
+            ->andFilterWhere(['like', 'NOTES', $this->NOTES])
+            ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
 
         return $dataProvider;
+    }
+
+    private function FirstDayOfMonth($format = 'Y-m-d')
+    {
+        return date($format, strtotime('first day of this month'));
+    }
+
+    private function LastDayOfMonth($format = 'Y-m-d')
+    {
+        return date($format, strtotime('last day of this month'));
     }
 }

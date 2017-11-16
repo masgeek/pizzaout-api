@@ -116,9 +116,12 @@ $attributes = [
 	'condensed' => true,
 	'bordered' => true,
 	'hover' => false,
-	'panel' => [
-		'heading' => 'Order Information # ' . $model->ORDER_ID,
-		'type' => DetailView::TYPE_PRIMARY,
-	],
+    'panel' => [
+        'heading' => 'Order Information # ' . $model->ORDER_ID,
+        'type' => DetailView::TYPE_PRIMARY,
+        'headingOptions' => [
+            'template' => '{title}'
+        ]
+    ],
 	'attributes' => $attributes,
 ]) ?>
