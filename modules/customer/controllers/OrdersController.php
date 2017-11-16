@@ -61,6 +61,7 @@ class OrdersController extends Controller
 
     public function actionPending()
     {
+        $this->layout = 'customer_layout';
         $user_id = Yii::$app->user->id;
 
         $this->view->title = 'Pending Orders';
