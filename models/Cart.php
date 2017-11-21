@@ -2,17 +2,15 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%cart}}".
  *
- * @property int $CART_ITEM_ID
- * @property int $USER_ID
- * @property int $ITEM_TYPE_ID
+ * @property string $CART_ITEM_ID
+ * @property string $USER_ID
+ * @property string $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $ITEM_PRICE
- * @property int $CART_TIMESTAMP
+ * @property string $CART_TIMESTAMP
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
  *

@@ -2,14 +2,12 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "customer_address".
  *
- * @property int $ADDRESS_ID
- * @property int $USER_ID
- * @property int $LOCATION_ID
+ * @property string $ADDRESS_ID
+ * @property string $USER_ID
+ * @property string $LOCATION_ID
  * @property string $ADDRESS
  *
  * @property Users $uSER

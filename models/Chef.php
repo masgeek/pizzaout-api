@@ -2,14 +2,12 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "chef".
  *
- * @property int $CHEF_ID
+ * @property string $CHEF_ID
  * @property string $CHEF_NAME
- * @property int $KITCHEN_ID
+ * @property string $KITCHEN_ID
  *
  * @property Kitchen $kITCHEN
  * @property CustomerOrder[] $customerOrders

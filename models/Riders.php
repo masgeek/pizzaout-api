@@ -2,13 +2,11 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "riders".
  *
- * @property int $RIDER_ID
- * @property int $KITCHEN_ID
+ * @property string $RIDER_ID
+ * @property string $KITCHEN_ID
  * @property string $RIDER_NAME
  * @property string $RIDER_MOBILE
  * @property int $RIDER_STATUS

@@ -2,12 +2,10 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "location".
  *
- * @property int $LOCATION_ID
+ * @property string $LOCATION_ID
  * @property string $LOCATION_NAME
  * @property string $ADDRESS
  *

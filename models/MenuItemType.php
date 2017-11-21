@@ -2,13 +2,11 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "menu_item_type".
  *
- * @property int $ITEM_TYPE_ID
- * @property int $MENU_ITEM_ID
+ * @property string $ITEM_TYPE_ID
+ * @property string $MENU_ITEM_ID
  * @property string $ITEM_TYPE_SIZE
  * @property string $PRICE
  * @property bool $AVAILABLE

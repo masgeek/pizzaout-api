@@ -37,6 +37,7 @@ class MENU_ITEM_MODEL extends MenuItem
             /* @var $model MENU_ITEM_MODEL */
 
             $baseUrl = Url::to('@foodimages', true);
+            //$baseUrl = Url::to('@webroot', false);
             $imagePath = "{$baseUrl}/{$model->MENU_ITEM_IMAGE}";
             return $imagePath;
         };

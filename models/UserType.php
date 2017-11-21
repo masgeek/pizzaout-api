@@ -2,12 +2,10 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "user_type".
  *
- * @property int $USER_TYPE_ID
+ * @property string $USER_TYPE_ID
  * @property string $USER_TYPE_NAME
  *
  * @property Users[] $users

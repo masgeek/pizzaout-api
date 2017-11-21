@@ -2,21 +2,19 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "vw_orders".
  *
- * @property int $ORDER_ID
- * @property int $USER_ID
+ * @property string $ORDER_ID
+ * @property string $USER_ID
  * @property string $EMAIL
  * @property int $MOBILE
  * @property string $OTHER_NAMES
  * @property string $SURNAME
- * @property int $ADDRESS_ID
- * @property int $KITCHEN_ID
- * @property int $CHEF_ID
- * @property int $RIDER_ID
+ * @property string $ADDRESS_ID
+ * @property string $KITCHEN_ID
+ * @property string $CHEF_ID
+ * @property string $RIDER_ID
  * @property string $ORDER_DATE
  * @property string $PAYMENT_METHOD
  * @property string $ORDER_STATUS Status of the order
