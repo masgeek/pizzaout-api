@@ -2,6 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 $fcm = require(__DIR__ . '/fcm.php');
+$aliases = require(__DIR__ . '/aliases.php');
 $merchant = require(__DIR__ . '/card_merchant.php');
 
 $timezone = 'UTC';//'Africa/Nairobi';
@@ -11,10 +12,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'timeZone' => $timezone,
     'bootstrap' => ['log'],
-    'aliases' => [
-        '@bower' => 'vendor/bower-asset',
-        '@omnifood' => 'themeassets/omnifood',
-    ],
+    'aliases' => $$aliases,
     'modules' => [
         'gridview' => [
             'class' => 'kartik\grid\Module'
@@ -126,7 +124,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1','41.89.65.170'],
+        'allowedIPs' => ['127.0.0.1', '::1', '41.89.65.170'],
     ];
 
     $config['bootstrap'][] = 'gii';

@@ -8,7 +8,7 @@
 
 namespace app\api\modules\v1\controllers;
 
-use app\api\modules\v1\models\MENU_CAT_MODEL;
+use app\api\modules\v1\models\MENU_ITEM_MODEL;
 use app\api\modules\v1\models\OFFERED_SERVICE_MODEL;
 use app\api\modules\v1\models\RESERVED_SERVICE_MODEL;
 use app\api\modules\v1\models\SALON_MODEL;
@@ -32,15 +32,11 @@ class MenuitemController extends ActiveController
     }
 
 
-    /**
-     * Return only the active categories
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public function actionIndex()
+    public function actionCatItem($menu_cat_id)
     {
-        return MENU_CAT_MODEL::find()
-            ->where(['ACTIVE' => 1])
-            ->orderBy(['RANK' => SORT_ASC])
+        return MENU_ITEM_MODEL::find()
+            ->where(['MENU_CAT_ID' => 1])
+            ->orderBy(['MENU_ITEM_NAME' => SORT_ASC])
             ->all();
     }
 }
