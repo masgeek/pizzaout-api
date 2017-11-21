@@ -35,7 +35,7 @@ class MenuitemController extends ActiveController
     public function actionCatItem($menu_cat_id)
     {
         return MENU_ITEM_MODEL::find()
-            ->where(['MENU_CAT_ID' => 1])
+            //->where(['MENU_CAT_ID' => 1])
             ->orderBy(['MENU_ITEM_NAME' => SORT_ASC])
             ->all();
     }
