@@ -78,9 +78,9 @@ class SiteController extends Controller
             $userType = Yii::$app->user->identity->usertype;
             //check user Type and redirect accordingly
             if ($userType === APP_UTILS::USER_TYPE_CUSTOMER) {
-                return $this->redirect(['//customer']);
+                return $this->redirect(['//customer']); //redirect to the customer dashboard
             } elseif ($userType == APP_UTILS::USER_TYPE_ADMIN) {
-                return $this->redirect(['//orders']);
+                return $this->redirect(['//orders']); //redirect to orders management
             }
         }
         return $this->render('index');

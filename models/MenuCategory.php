@@ -2,15 +2,14 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "menu_category".
  *
- * @property int $MENU_CAT_ID
+ * @property string $MENU_CAT_ID
  * @property string $MENU_CAT_NAME
  * @property string $MENU_CAT_IMAGE
  * @property int $ACTIVE
+ * @property int $RANK
  *
  * @property MenuItem[] $menuItems
  */
@@ -30,10 +29,11 @@ class MenuCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['MENU_CAT_NAME'], 'required'],
-            [['ACTIVE'], 'integer'],
+            [['MENU_CAT_NAME', 'RANK'], 'required'],
+            [['ACTIVE', 'RANK'], 'integer'],
             [['MENU_CAT_NAME'], 'string', 'max' => 50],
             [['MENU_CAT_IMAGE'], 'string', 'max' => 255],
+            [['MENU_CAT_NAME'], 'unique'],
         ];
     }
 
@@ -47,6 +47,7 @@ class MenuCategory extends \yii\db\ActiveRecord
             'MENU_CAT_NAME' => 'Menu  Cat  Name',
             'MENU_CAT_IMAGE' => 'Menu  Cat  Image',
             'ACTIVE' => 'Active',
+            'RANK' => 'Rank',
         ];
     }
 
