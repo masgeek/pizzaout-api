@@ -142,6 +142,7 @@ $gridColumns = [
             'options' => ['class' => 'skip-export'] // remove this row from export
         ]
     ],
+    'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Orders",
     'bordered' => true,
     'striped' => true,
     'condensed' => true,

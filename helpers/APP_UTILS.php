@@ -48,6 +48,7 @@ class APP_UTILS
     /**
      * @param bool $readable
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
     public static function GetCurrentDateTime($readable = false)
     {

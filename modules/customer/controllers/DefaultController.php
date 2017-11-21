@@ -139,6 +139,9 @@ class DefaultController extends Controller
     /**
      * @param $id
      * @return array
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws yii\db\StaleObjectException
      */
     public function actionChangeQuantity($id)
     {
@@ -173,6 +176,7 @@ class DefaultController extends Controller
      */
     public function actionCheckout()
     {
+        $session = Yii::$app->session;
         $connection = \Yii::$app->db;
         $this->layout = 'customer_layout_no_cart';
         $this->view->title = 'Order Checkout';
@@ -190,8 +194,6 @@ class DefaultController extends Controller
         $model->ADDRESS_ID = 1;
         $model->ORDER_DATE = APP_UTILS::GetCurrentDateTime();
         $model->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
-        $model->PAYMENT_METHOD = APP_UTILS::PAYMENT_METHOD_MOBILE;
-        $paymentModel->PAYMENT_CHANNEL = APP_UTILS::PAYMENT_METHOD_MOBILE;
 
         if ($model->load(Yii::$app->request->post())) {
             $transaction = $connection->beginTransaction();
@@ -213,8 +215,6 @@ class DefaultController extends Controller
                     //save the order items as we are deleting
                     if ($customer_order_items->save()) {
                         $saveSuccessful = true;
-                        //remove the cart item
-                        CART_MODEL::findOne($orderItems->CART_ITEM_ID)->delete();
                     }
                 endforeach;
                 //Save the payment information
@@ -227,7 +227,16 @@ class DefaultController extends Controller
             }
             if ($saveSuccessful) {
                 $transaction->commit();
-                return $this->redirect(['//customer/default/placed-orders']);
+                //if it is card redirect to  card checkout
+                if ($model->PAYMENT_METHOD === APP_UTILS::PAYMENT_METHOD_CARD) {
+                    //Add cart timestamp to the session
+                    $session->set('CART_TIMESTAMP', $orderItems->CART_TIMESTAMP);
+                    return $this->redirect(['//customer/checkout/card', 'id' => $model->ORDER_ID]);
+                } else {
+                    //remove the cart item
+                    CART_MODEL::ClearCart($orderItems->CART_TIMESTAMP);
+                    return $this->redirect(['//customer/default/placed-orders']);
+                }
             }
             $transaction->rollback();
             $this->refresh();
