@@ -18,14 +18,14 @@ class CART_MODEL extends Cart
     {
         $fields = parent::fields();
 
-        $fields['MENU_ITEM'] = function ($model) {
+        $fields['SIZE'] = function ($model) {
             /* @var $model CART_MODEL */
-            return $model->iTEMTYPE->mENUITEM;
+            return $model->iTEMTYPE->ITEM_TYPE_SIZE;
         };
 
-        $fields['ITEM_TYPE'] = function ($model) {
+        $fields['MENU_CAT_ITEM'] = function ($model) {
             /* @var $model CART_MODEL */
-            return $model->iTEMTYPE;
+            return $model->iTEMTYPE->mENUITEM;
         };
         return $fields;
     }
