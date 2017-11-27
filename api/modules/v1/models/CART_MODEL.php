@@ -14,4 +14,14 @@ use app\models\Cart;
 class CART_MODEL extends Cart
 {
 
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields['ITEM_TYPE'] = function ($model) {
+            /* @var $model $this */
+            return $model->iTEMTYPE;
+        };
+        return $fields;
+    }
 }

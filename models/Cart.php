@@ -35,7 +35,7 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'ITEM_PRICE'], 'required'],
+            [['USER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'ITEM_PRICE', 'CART_TIMESTAMP'], 'required'],
             [['USER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'CART_TIMESTAMP'], 'integer'],
             [['ITEM_PRICE'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],

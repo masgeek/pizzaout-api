@@ -23,4 +23,23 @@ class CartController extends ActiveController
      */
     public $modelClass = 'app\api\modules\v1\models\CART_MODEL';
 
+    /**
+     * Checks the privilege of the current user.
+     *
+     * This method should be overridden to check whether the current user has the privilege
+     * to run the specified action against the specified data model.
+     * If the user does not have access, a [[ForbiddenHttpException]] should be thrown.
+     *
+     * @param string $action the ID of the action to be executed
+     * @param \yii\base\Model $model the model to be accessed. If `null`, it means no specific model is being accessed.
+     * @param array $params additional parameters
+     * @throws ForbiddenHttpException if the user does not have access
+     * @throws \yii\web\ForbiddenHttpException
+     */
+    public function checkAccessOld($action, $model = null, $params = [])
+    {
+        throw new \yii\web\ForbiddenHttpException(sprintf('You can only %s articles that you\'ve created.', $action));
+
+    }
+
 }
