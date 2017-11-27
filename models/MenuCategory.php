@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $MENU_CAT_ID
  * @property string $MENU_CAT_NAME
- * @property int $MAX_QTY Show the maximum number of quantities one can select from
  * @property string $MENU_CAT_IMAGE
  * @property int $ACTIVE
  * @property int $RANK
@@ -33,7 +32,7 @@ class MenuCategory extends \yii\db\ActiveRecord
     {
         return [
             [['MENU_CAT_NAME', 'RANK'], 'required'],
-            [['MAX_QTY', 'ACTIVE', 'RANK'], 'integer'],
+            [['ACTIVE', 'RANK'], 'integer'],
             [['MENU_CAT_NAME'], 'string', 'max' => 50],
             [['MENU_CAT_IMAGE'], 'string', 'max' => 255],
             [['MENU_CAT_NAME'], 'unique'],
@@ -48,7 +47,6 @@ class MenuCategory extends \yii\db\ActiveRecord
         return [
             'MENU_CAT_ID' => 'Menu  Cat  ID',
             'MENU_CAT_NAME' => 'Menu  Cat  Name',
-            'MAX_QTY' => 'Show the maximum number of quantities one can select from',
             'MENU_CAT_IMAGE' => 'Menu  Cat  Image',
             'ACTIVE' => 'Active',
             'RANK' => 'Rank',
