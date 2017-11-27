@@ -2,11 +2,13 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "order_tracking".
  *
- * @property string $TRACKING_ID
- * @property string $ORDER_ID
+ * @property int $TRACKING_ID
+ * @property int $ORDER_ID
  * @property string $COMMENTS
  * @property string $STATUS
  * @property string $TRACKING_DATE

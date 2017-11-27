@@ -2,27 +2,29 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "vw_orders".
  *
- * @property string $ORDER_ID
- * @property string $USER_ID
- * @property string $EMAIL
+ * @property int $ORDER_ID
+ * @property int $USER_ID
+ * @property int $KITCHEN_ID
+ * @property int $CHEF_ID
+ * @property int $RIDER_ID
  * @property int $MOBILE
- * @property string $OTHER_NAMES
  * @property string $SURNAME
- * @property string $ADDRESS_ID
- * @property string $KITCHEN_ID
- * @property string $CHEF_ID
- * @property string $RIDER_ID
+ * @property string $OTHER_NAMES
  * @property string $ORDER_DATE
- * @property string $PAYMENT_METHOD
  * @property string $ORDER_STATUS Status of the order
+ * @property string $PAYMENT_AMOUNT
+ * @property string $PAYMENT_NUMBER
  * @property string $NOTES Can contain payment text from mobile transactions etc
+ * @property int $ADDRESS_ID
+ * @property string $PAYMENT_METHOD
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
- * @property string $PAYMENT_NUMBER
- * @property string $PAYMENT_AMOUNT
+ * @property string $PAYMENT_DATE
  */
 class VwOrders extends \yii\db\ActiveRecord
 {
@@ -40,14 +42,14 @@ class VwOrders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'USER_ID', 'MOBILE', 'ADDRESS_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID'], 'integer'],
-            [['USER_ID', 'EMAIL', 'MOBILE', 'OTHER_NAMES', 'SURNAME', 'ADDRESS_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'PAYMENT_AMOUNT'], 'required'],
-            [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
+            [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'MOBILE', 'ADDRESS_ID'], 'integer'],
+            [['USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_AMOUNT', 'PAYMENT_METHOD', 'PAYMENT_DATE'], 'required'],
+            [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_DATE'], 'safe'],
             [['PAYMENT_AMOUNT'], 'number'],
-            [['EMAIL', 'OTHER_NAMES', 'SURNAME'], 'string', 'max' => 100],
-            [['PAYMENT_METHOD'], 'string', 'max' => 20],
+            [['SURNAME', 'OTHER_NAMES'], 'string', 'max' => 100],
             [['ORDER_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
             [['NOTES'], 'string', 'max' => 255],
+            [['PAYMENT_METHOD'], 'string', 'max' => 20],
         ];
     }
 
@@ -59,22 +61,22 @@ class VwOrders extends \yii\db\ActiveRecord
         return [
             'ORDER_ID' => 'Order  ID',
             'USER_ID' => 'User  ID',
-            'EMAIL' => 'Email',
-            'MOBILE' => 'Mobile',
-            'OTHER_NAMES' => 'Other  Names',
-            'SURNAME' => 'Surname',
-            'ADDRESS_ID' => 'Address  ID',
             'KITCHEN_ID' => 'Kitchen  ID',
             'CHEF_ID' => 'Chef  ID',
             'RIDER_ID' => 'Rider  ID',
+            'MOBILE' => 'Mobile',
+            'SURNAME' => 'Surname',
+            'OTHER_NAMES' => 'Other  Names',
             'ORDER_DATE' => 'Order  Date',
-            'PAYMENT_METHOD' => 'Payment  Method',
             'ORDER_STATUS' => 'Status of the order',
+            'PAYMENT_AMOUNT' => 'Payment  Amount',
+            'PAYMENT_NUMBER' => 'Payment  Number',
             'NOTES' => 'Can contain payment text from mobile transactions etc',
+            'ADDRESS_ID' => 'Address  ID',
+            'PAYMENT_METHOD' => 'Payment  Method',
             'CREATED_AT' => 'Created  At',
             'UPDATED_AT' => 'Updated  At',
-            'PAYMENT_NUMBER' => 'Payment  Number',
-            'PAYMENT_AMOUNT' => 'Payment  Amount',
+            'PAYMENT_DATE' => 'Payment  Date',
         ];
     }
 }

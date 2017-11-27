@@ -2,17 +2,19 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "{{%users}}".
  *
- * @property string $USER_ID
+ * @property int $USER_ID
  * @property string $USER_NAME
- * @property string $USER_TYPE
+ * @property int $USER_TYPE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
  * @property int $MOBILE
  * @property string $EMAIL
- * @property string $LOCATION_ID
+ * @property int $LOCATION_ID
  * @property string $PASSWORD
  * @property string $DATE_REGISTERED
  * @property string $LAST_UPDATED
@@ -21,6 +23,7 @@ namespace app\models;
  * @property CustomerAddress[] $customerAddresses
  * @property CustomerOrder[] $customerOrders
  * @property Cart[] $carts
+ * @property Favs[] $favs
  * @property Location $lOCATION
  * @property UserType $uSERTYPE
  */
@@ -93,6 +96,14 @@ class Users extends \yii\db\ActiveRecord
     public function getCarts()
     {
         return $this->hasMany(Cart::className(), ['USER_ID' => 'USER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavs()
+    {
+        return $this->hasMany(Favs::className(), ['USER_ID' => 'USER_ID']);
     }
 
     /**

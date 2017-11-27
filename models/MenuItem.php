@@ -2,11 +2,13 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "menu_item".
  *
- * @property string $MENU_ITEM_ID
- * @property string $MENU_CAT_ID
+ * @property int $MENU_ITEM_ID
+ * @property int $MENU_CAT_ID
  * @property string $MENU_ITEM_NAME
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
@@ -15,6 +17,7 @@ namespace app\models;
  *
  * @property MenuCategory $mENUCAT
  * @property MenuItemType[] $menuItemTypes
+ * @property Favs[] $favs
  */
 class MenuItem extends \yii\db\ActiveRecord
 {
@@ -71,5 +74,13 @@ class MenuItem extends \yii\db\ActiveRecord
     public function getMenuItemTypes()
     {
         return $this->hasMany(MenuItemType::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavs()
+    {
+        return $this->hasMany(Favs::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
     }
 }
