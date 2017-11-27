@@ -74,11 +74,29 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
+                        'v1/my-cart' => 'v1/cart',
+                    ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v1/cart' => 'v1/cart',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                        '{user_id}' => '<user_id:\\w+>',
+                        '{menu_cat_id}' => '<menu_cat_id:\\w+>',
+                    ],
+                    'extraPatterns' => []
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
                         'v1/payment',
                         'v1/user',
                         'v1/order',
                         'v1/menucategory',
-                        'v1/menuitem'
+                        'v1/menuitem',
                     ],
                     //'GET,HEAD <id:\d+>/booth' => 'booth/all-booths',
                     'tokens' => [
@@ -110,7 +128,7 @@ $config = [
         ],
         'db' => $db,
         'user' => [
-            'identityClass' => 'app\models\UserOld',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => false,
         ],
     ],
