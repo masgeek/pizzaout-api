@@ -52,4 +52,14 @@ class CartController extends ActiveController
         return $cartItems;
     }
 
+    public function actionInCart($item_type_id, $user_id)
+    {
+        $inCart = CART_MODEL::find()
+            ->where(['ITEM_TYPE_ID' => $item_type_id])
+            ->andWhere(['USER_ID' => $user_id])
+            ->one();
+
+        return $inCart;
+    }
+
 }

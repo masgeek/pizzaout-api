@@ -180,13 +180,16 @@ class OrdersController extends Controller
 		]);
 	}
 
-	/**
-	 * Deletes an existing CUSTOMER_ORDERS model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param string $id
-	 * @return mixed
-	 * @throws NotFoundHttpException
-	 */
+    /**
+     * Deletes an existing CUSTOMER_ORDERS model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
 	public function actionDelete($id)
 	{
 		$this->findModel($id)->delete();

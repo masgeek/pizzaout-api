@@ -169,10 +169,8 @@ class DefaultController extends Controller
 
     /**
      * @return string
-     * @throws \Exception
-     * @throws \Throwable
+     * @throws yii\base\InvalidConfigException
      * @throws yii\db\Exception
-     * @throws yii\db\StaleObjectException
      */
     public function actionCheckout()
     {
