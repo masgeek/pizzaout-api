@@ -76,18 +76,14 @@ $config = [
                     'controller' => [
                         'v1/my-cart' => 'v1/cart',
                     ],
-                ],
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => [
-                        'v1/cart' => 'v1/cart',
-                    ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>',
                         '{user_id}' => '<user_id:\\w+>',
                         '{menu_cat_id}' => '<menu_cat_id:\\w+>',
                     ],
-                    'extraPatterns' => []
+                    'extraPatterns' => [
+                        'GET {user_id}/items' => 'items',
+                    ]
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',

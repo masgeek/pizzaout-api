@@ -42,4 +42,9 @@ class CartController extends ActiveController
 
     }
 
+    public function actionItems($user_id)
+    {
+        return $user_id;
+    }
+
 }
