@@ -9,6 +9,8 @@
 namespace app\helpers;
 
 
+use app\model_extended\CART_MODEL;
+
 class APP_UTILS
 {
     const PAYMENT_METHOD_MOBILE = 'MOBILE';
@@ -56,5 +58,11 @@ class APP_UTILS
 
         return $readable ? \Yii::$app->formatter->asDatetime($time, 'full') : $time;
 
+    }
+
+    public static function GetCartTimesTamp($user_id)
+    {
+        $model = CART_MODEL::findOne(['USER_ID' => $user_id]);
+        return $model != null ? $model->CART_TIMESTAMP : self::GetTimeStamp();
     }
 }

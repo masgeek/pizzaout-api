@@ -23,11 +23,11 @@ class CART_MODEL extends Cart
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $date = APP_UTILS::GetCurrentDateTime();
             if ($this->isNewRecord) {
-                $this->CREATED_AT = $date;
+                $this->CREATED_AT = APP_UTILS::GetCurrentDateTime();
             }
-            $this->UPDATED_AT = $date;
+            $this->UPDATED_AT = APP_UTILS::GetCurrentDateTime();
+            $this->CART_TIMESTAMP = APP_UTILS::GetCartTimesTamp($this->USER_ID);
             return true;
         }
         return false;

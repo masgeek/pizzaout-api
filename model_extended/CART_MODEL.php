@@ -21,7 +21,7 @@ class CART_MODEL extends Cart
                 $this->CREATED_AT = APP_UTILS::GetCurrentDateTime();
             }
             $this->UPDATED_AT = APP_UTILS::GetCurrentDateTime();
-            $this->CART_TIMESTAMP = $this->GetCartTimesTamp($this->USER_ID);
+            $this->CART_TIMESTAMP = APP_UTILS::GetCartTimesTamp($this->USER_ID);
             return true;
         }
         return false;
@@ -31,11 +31,5 @@ class CART_MODEL extends Cart
     {
         //remove the cart item
         self::deleteAll(['CART_TIMESTAMP' => $cart_timestamp]);
-    }
-
-    private function GetCartTimesTamp($user_id)
-    {
-        $model = self::findOne(['USER_ID' => $user_id]);
-        return $model != null ? $model->CART_TIMESTAMP : APP_UTILS::GetTimeStamp();
     }
 }

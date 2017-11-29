@@ -8,6 +8,7 @@
 
 namespace app\api\modules\v1\controllers;
 
+use app\api\modules\v1\models\CART_MODEL;
 use app\api\modules\v1\models\MENU_ITEM_MODEL;
 use app\api\modules\v1\models\OFFERED_SERVICE_MODEL;
 use app\api\modules\v1\models\RESERVED_SERVICE_MODEL;
@@ -44,7 +45,11 @@ class CartController extends ActiveController
 
     public function actionItems($user_id)
     {
-        return $user_id;
+        $cartItems = CART_MODEL::find()
+            ->where(['USER_ID' => $user_id])
+            ->all();
+
+        return $cartItems;
     }
 
 }
