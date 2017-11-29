@@ -9,11 +9,33 @@
 namespace app\api\modules\v1\models;
 
 
+use app\helpers\APP_UTILS;
 use app\models\Cart;
 
 class CART_MODEL extends Cart
 {
 
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $date = APP_UTILS::GetCurrentDateTime();
+            if ($this->isNewRecord) {
+                $this->CREATED_AT = $date;
+            }
+            $this->UPDATED_AT = $date;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return array
+     */
     public function fields()
     {
         $fields = parent::fields();
