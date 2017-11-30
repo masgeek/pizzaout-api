@@ -17,9 +17,6 @@ use Yii;
  * @property string $NOTES
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
- *
- * @property MenuItemType $iTEMTYPE
- * @property CustomerOrder $oRDER
  */
 class CustomerOrderItem extends \yii\db\ActiveRecord
 {
@@ -37,14 +34,12 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'CREATED_AT'], 'required'],
-            [['ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
+            [['ORDER_ITEM_ID', 'ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'PRICE', 'SUBTOTAL', 'CREATED_AT'], 'required'],
+            [['ORDER_ITEM_ID', 'ORDER_ID', 'ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
             [['PRICE', 'SUBTOTAL'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['OPTIONS'], 'string', 'max' => 100],
             [['NOTES'], 'string', 'max' => 200],
-            [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
-            [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
         ];
     }
 
@@ -65,21 +60,5 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
             'CREATED_AT' => 'Created  At',
             'UPDATED_AT' => 'Updated  At',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getITEMTYPE()
-    {
-        return $this->hasOne(MenuItemType::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getORDER()
-    {
-        return $this->hasOne(CustomerOrder::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 }

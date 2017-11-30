@@ -12,10 +12,6 @@ use Yii;
  * @property string $ITEM_TYPE_SIZE
  * @property string $PRICE
  * @property bool $AVAILABLE
- *
- * @property CustomerOrderItem[] $customerOrderItems
- * @property MenuItem $mENUITEM
- * @property Cart[] $carts
  */
 class MenuItemType extends \yii\db\ActiveRecord
 {
@@ -33,12 +29,11 @@ class MenuItemType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['MENU_ITEM_ID', 'ITEM_TYPE_SIZE', 'PRICE'], 'required'],
-            [['MENU_ITEM_ID'], 'integer'],
+            [['ITEM_TYPE_ID', 'MENU_ITEM_ID', 'ITEM_TYPE_SIZE', 'PRICE'], 'required'],
+            [['ITEM_TYPE_ID', 'MENU_ITEM_ID'], 'integer'],
             [['PRICE'], 'number'],
             [['AVAILABLE'], 'boolean'],
-            [['ITEM_TYPE_SIZE'], 'string', 'max' => 10],
-            [['MENU_ITEM_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItem::className(), 'targetAttribute' => ['MENU_ITEM_ID' => 'MENU_ITEM_ID']],
+            [['ITEM_TYPE_SIZE'], 'string', 'max' => 15],
         ];
     }
 
@@ -54,29 +49,5 @@ class MenuItemType extends \yii\db\ActiveRecord
             'PRICE' => 'Price',
             'AVAILABLE' => 'Available',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomerOrderItems()
-    {
-        return $this->hasMany(CustomerOrderItem::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMENUITEM()
-    {
-        return $this->hasOne(MenuItem::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCarts()
-    {
-        return $this->hasMany(Cart::className(), ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']);
     }
 }

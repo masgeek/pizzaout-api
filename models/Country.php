@@ -9,8 +9,6 @@ use Yii;
  *
  * @property int $COUNRY_ID
  * @property string $COUNTRY_NAME
- *
- * @property City[] $cities
  */
 class Country extends \yii\db\ActiveRecord
 {
@@ -28,7 +26,8 @@ class Country extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['COUNTRY_NAME'], 'required'],
+            [['COUNRY_ID', 'COUNTRY_NAME'], 'required'],
+            [['COUNRY_ID'], 'integer'],
             [['COUNTRY_NAME'], 'string', 'max' => 100],
         ];
     }
@@ -42,13 +41,5 @@ class Country extends \yii\db\ActiveRecord
             'COUNRY_ID' => 'Counry  ID',
             'COUNTRY_NAME' => 'Country  Name',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCities()
-    {
-        return $this->hasMany(City::className(), ['COUNTRY_ID' => 'COUNRY_ID']);
     }
 }

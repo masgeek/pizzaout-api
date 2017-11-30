@@ -29,7 +29,6 @@ class Migration extends \yii\db\ActiveRecord
             [['version'], 'required'],
             [['apply_time'], 'integer'],
             [['version'], 'string', 'max' => 180],
-            [['version'], 'unique'],
         ];
     }
 

@@ -19,13 +19,6 @@ use Yii;
  * @property string $DATE_REGISTERED
  * @property string $LAST_UPDATED
  * @property string $CLIENT_TOKEN
- *
- * @property CustomerAddress[] $customerAddresses
- * @property CustomerOrder[] $customerOrders
- * @property Cart[] $carts
- * @property Favs[] $favs
- * @property Location $lOCATION
- * @property UserType $uSERTYPE
  */
 class Users extends \yii\db\ActiveRecord
 {
@@ -43,13 +36,11 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'PASSWORD'], 'required'],
-            [['USER_TYPE', 'MOBILE', 'LOCATION_ID'], 'integer'],
+            [['USER_ID', 'USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'PASSWORD'], 'required'],
+            [['USER_ID', 'USER_TYPE', 'MOBILE', 'LOCATION_ID'], 'integer'],
             [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD'], 'string', 'max' => 100],
             [['CLIENT_TOKEN'], 'string', 'max' => 255],
-            [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
-            [['USER_TYPE'], 'exist', 'skipOnError' => true, 'targetClass' => UserType::className(), 'targetAttribute' => ['USER_TYPE' => 'USER_TYPE_ID']],
         ];
     }
 
@@ -72,53 +63,5 @@ class Users extends \yii\db\ActiveRecord
             'LAST_UPDATED' => 'Last  Updated',
             'CLIENT_TOKEN' => 'Client  Token',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomerAddresses()
-    {
-        return $this->hasMany(CustomerAddress::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomerOrders()
-    {
-        return $this->hasMany(CustomerOrder::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCarts()
-    {
-        return $this->hasMany(Cart::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFavs()
-    {
-        return $this->hasMany(Favs::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLOCATION()
-    {
-        return $this->hasOne(Location::className(), ['LOCATION_ID' => 'LOCATION_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUSERTYPE()
-    {
-        return $this->hasOne(UserType::className(), ['USER_TYPE_ID' => 'USER_TYPE']);
     }
 }

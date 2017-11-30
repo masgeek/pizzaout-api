@@ -42,8 +42,8 @@ class VwOrders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['ORDER_ID', 'USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_AMOUNT', 'ADDRESS_ID', 'PAYMENT_METHOD', 'PAYMENT_DATE'], 'required'],
             [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'MOBILE', 'ADDRESS_ID'], 'integer'],
-            [['USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_AMOUNT', 'PAYMENT_METHOD', 'PAYMENT_DATE'], 'required'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_DATE'], 'safe'],
             [['PAYMENT_AMOUNT'], 'number'],
             [['SURNAME', 'OTHER_NAMES'], 'string', 'max' => 100],

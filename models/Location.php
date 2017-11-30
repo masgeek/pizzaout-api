@@ -10,9 +10,6 @@ use Yii;
  * @property int $LOCATION_ID
  * @property string $LOCATION_NAME
  * @property string $ADDRESS
- *
- * @property CustomerAddress[] $customerAddresses
- * @property Users[] $users
  */
 class Location extends \yii\db\ActiveRecord
 {
@@ -30,7 +27,8 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['LOCATION_NAME'], 'required'],
+            [['LOCATION_ID', 'LOCATION_NAME'], 'required'],
+            [['LOCATION_ID'], 'integer'],
             [['ADDRESS'], 'string'],
             [['LOCATION_NAME'], 'string', 'max' => 255],
         ];
@@ -46,21 +44,5 @@ class Location extends \yii\db\ActiveRecord
             'LOCATION_NAME' => 'Location  Name',
             'ADDRESS' => 'Address',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomerAddresses()
-    {
-        return $this->hasMany(CustomerAddress::className(), ['LOCATION_ID' => 'LOCATION_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsers()
-    {
-        return $this->hasMany(Users::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 }

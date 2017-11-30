@@ -10,9 +10,6 @@ use Yii;
  * @property int $FAV_ID
  * @property int $MENU_ITEM_ID
  * @property int $USER_ID
- *
- * @property MenuItem $mENUITEM
- * @property Users $uSER
  */
 class Favs extends \yii\db\ActiveRecord
 {
@@ -30,9 +27,8 @@ class Favs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['MENU_ITEM_ID', 'USER_ID'], 'integer'],
-            [['MENU_ITEM_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItem::className(), 'targetAttribute' => ['MENU_ITEM_ID' => 'MENU_ITEM_ID']],
-            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
+            [['FAV_ID'], 'required'],
+            [['FAV_ID', 'MENU_ITEM_ID', 'USER_ID'], 'integer'],
         ];
     }
 
@@ -46,21 +42,5 @@ class Favs extends \yii\db\ActiveRecord
             'MENU_ITEM_ID' => 'Menu  Item  ID',
             'USER_ID' => 'User  ID',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMENUITEM()
-    {
-        return $this->hasOne(MenuItem::className(), ['MENU_ITEM_ID' => 'MENU_ITEM_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUSER()
-    {
-        return $this->hasOne(Users::className(), ['USER_ID' => 'USER_ID']);
     }
 }
