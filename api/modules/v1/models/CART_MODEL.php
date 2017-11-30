@@ -40,6 +40,10 @@ class CART_MODEL extends Cart
     {
         $fields = parent::fields();
 
+        $fields['ITEM_PRICE'] = function ($model) {
+            return (float)$model->ITEM_PRICE;
+        };
+
         $fields['SIZE'] = function ($model) {
             /* @var $model CART_MODEL */
             return $model->iTEMTYPE->ITEM_TYPE_SIZE;
