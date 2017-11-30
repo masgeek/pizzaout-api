@@ -12,6 +12,8 @@ use Yii;
  * @property string $MENU_CAT_IMAGE
  * @property int $ACTIVE
  * @property int $RANK
+ *
+ * @property MenuItem[] $menuItems
  */
 class MenuCategory extends \yii\db\ActiveRecord
 {
@@ -48,5 +50,13 @@ class MenuCategory extends \yii\db\ActiveRecord
             'ACTIVE' => 'Active',
             'RANK' => 'Rank',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMenuItems()
+    {
+        return $this->hasMany(MenuItem::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
     }
 }
