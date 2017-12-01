@@ -4,12 +4,12 @@ namespace app\modules\customer\controllers;
 
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_STATUS_HELPER;
+use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDER_ITEMS;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\CUSTOMER_PAYMENTS;
-use yii;
-use app\model_extended\CART_MODEL;
 use app\model_extended\MENU_ITEMS;
+use yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -124,6 +124,7 @@ class DefaultController extends Controller
         } else {
             $cartModel = new CART_MODEL();
             $cartModel->USER_ID = $user_id;
+            //$cartModel->ITEM_TYPE_SIZE =
             $post = ['CART_MODEL' => Yii::$app->request->post()];
             if ($cartModel->load($post) && $cartModel->validate()) {
                 //now we save and go back to the menu

@@ -48,6 +48,7 @@ $baseUrl = Url::to('@web/themeassets/omnifood/img/');
                                     'data-params' => [
                                         'MENU_ITEM_ID' => $model->MENU_ITEM_ID,
                                         'ITEM_TYPE_ID' => $itemType->ITEM_TYPE_ID,
+                                        'ITEM_TYPE_SIZE' => $itemType->ITEM_TYPE_SIZE,
                                         'ITEM_PRICE' => $itemType->PRICE,
                                         'QUANTITY' => 1,
                                     ],
