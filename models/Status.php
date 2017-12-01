@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%status}}".
  *
@@ -13,6 +11,11 @@ use Yii;
  * @property string $SCOPE
  * @property int $RANK
  * @property int $WORKFLOW
+ *
+ * @property CustomerOrder[] $customerOrders
+ * @property OrderTracking[] $orderTrackings
+ * @property CustomerOrder[] $oRDERs
+ * @property Payment[] $payments
  */
 class Status extends \yii\db\ActiveRecord
 {
@@ -35,6 +38,8 @@ class Status extends \yii\db\ActiveRecord
             [['STATUS_NAME'], 'string', 'max' => 30],
             [['STATUS_DESC'], 'string', 'max' => 100],
             [['COLOR', 'SCOPE'], 'string', 'max' => 10],
+            [['STATUS_NAME'], 'unique'],
+            [['RANK'], 'unique'],
         ];
     }
 
@@ -51,5 +56,37 @@ class Status extends \yii\db\ActiveRecord
             'RANK' => 'Rank',
             'WORKFLOW' => 'Workflow',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCustomerOrders()
+    {
+        return $this->hasMany(CustomerOrder::className(), ['ORDER_STATUS' => 'STATUS_NAME']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderTrackings()
+    {
+        return $this->hasMany(OrderTracking::className(), ['STATUS' => 'STATUS_NAME']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getORDERs()
+    {
+        return $this->hasMany(CustomerOrder::className(), ['ORDER_ID' => 'ORDER_ID'])->viaTable('order_tracking', ['STATUS' => 'STATUS_NAME']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPayments()
+    {
+        return $this->hasMany(Payment::className(), ['PAYMENT_STATUS' => 'STATUS_NAME']);
     }
 }

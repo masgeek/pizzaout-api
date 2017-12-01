@@ -2,14 +2,15 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "city".
  *
- * @property int $CITY_ID
+ * @property string $CITY_ID
  * @property string $CITY_NAME
- * @property int $COUNTRY_ID
+ * @property string $COUNTRY_ID
+ *
+ * @property Country $cOUNTRY
+ * @property Kitchen[] $kitchens
  */
 class City extends \yii\db\ActiveRecord
 {
@@ -27,9 +28,10 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['CITY_ID', 'CITY_NAME', 'COUNTRY_ID'], 'required'],
-            [['CITY_ID', 'COUNTRY_ID'], 'integer'],
+            [['CITY_NAME', 'COUNTRY_ID'], 'required'],
+            [['COUNTRY_ID'], 'integer'],
             [['CITY_NAME'], 'string', 'max' => 100],
+            [['COUNTRY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['COUNTRY_ID' => 'COUNRY_ID']],
         ];
     }
 
@@ -43,5 +45,21 @@ class City extends \yii\db\ActiveRecord
             'CITY_NAME' => 'City  Name',
             'COUNTRY_ID' => 'Country  ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCOUNTRY()
+    {
+        return $this->hasOne(Country::className(), ['COUNRY_ID' => 'COUNTRY_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKitchens()
+    {
+        return $this->hasMany(Kitchen::className(), ['CITY_ID' => 'CITY_ID']);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "user_type".
  *
- * @property int $USER_TYPE_ID
+ * @property string $USER_TYPE_ID
  * @property string $USER_TYPE_NAME
+ *
+ * @property Users[] $users
  */
 class UserType extends \yii\db\ActiveRecord
 {
@@ -26,8 +26,7 @@ class UserType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_TYPE_ID', 'USER_TYPE_NAME'], 'required'],
-            [['USER_TYPE_ID'], 'integer'],
+            [['USER_TYPE_NAME'], 'required'],
             [['USER_TYPE_NAME'], 'string', 'max' => 255],
         ];
     }
@@ -41,5 +40,13 @@ class UserType extends \yii\db\ActiveRecord
             'USER_TYPE_ID' => 'User  Type  ID',
             'USER_TYPE_NAME' => 'User  Type  Name',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(Users::className(), ['USER_TYPE' => 'USER_TYPE_ID']);
     }
 }
