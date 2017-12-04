@@ -25,7 +25,7 @@ class PAYPAL_HELPER
     /**
      * PaypalHelper constructor.
      */
-    function __construct()
+    function __construct($enableLog = false)
     {
         $this->apiContext = new ApiContext(
             new OAuthTokenCredential(
@@ -36,13 +36,16 @@ class PAYPAL_HELPER
 
         $this->apiContext->setConfig(
             array(
-                'log.LogEnabled' => true,
+                'log.LogEnabled' => $enableLog,
                 'log.FileName' => 'PayPalPizza.log',
                 'log.LogLevel' => 'DEBUG'
             )
         );
     }
 
+    /**
+     * @return CreditCard|string
+     */
     public function CreateCard()
     {
         $creditCard = new CreditCard();
@@ -56,12 +59,24 @@ class PAYPAL_HELPER
 
         try {
             $creditCard->create($this->apiContext);
-            return  $creditCard;
-        }
-        catch (PayPalConnectionException $ex) {
+            return $creditCard;
+        } catch (PayPalConnectionException $ex) {
             // This will print the detailed information on the exception.
             //REALLY HELPFUL FOR DEBUGGING
-            return  $ex->getData();
+            return $ex->getData();
         }
+    }
+
+    public function CreateSale($nonceFromTheClient, $amount)
+    {
+        $result = \Braintree_Transaction::sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonceFromTheClient,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+        return $result;
     }
 }

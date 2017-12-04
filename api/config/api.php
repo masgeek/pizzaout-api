@@ -105,7 +105,7 @@ $config = [
                     'extraPatterns' => [
                         'GET,POST all' => 'all',
                         'GET,POST,PUT,DELETE push' => 'push',
-                        'GET,POST,PUT,DELETE token' => 'token',
+                        'GET {user_id}/token' => 'token',
                         'POST login' => 'login',
                         'POST register' => 'register',
                         'POST add' => 'add',
@@ -115,7 +115,7 @@ $config = [
                         'POST assign-staff' => 'assign-staff',
                         'POST {id}/add-service' => 'add-service',
                         'POST add-service' => 'remove-service',
-                        'POST {user_id}/pay' => 'pay',
+                        'POST pay' => 'pay',
                         'GET account-type' => 'account-type',
                         'GET {menu_cat_id}/cat-item' => 'cat-item',
 
