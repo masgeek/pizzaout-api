@@ -25,23 +25,23 @@ class PaymentController extends ActiveController
     public function actionPay()
     {
         //{"CART_TIMESTAMP":"2342423","AMOUNT":"89","USER_ID":"10","NONCE":"5d9e76ec-562e-0fa3-5a7e-20d3d4935b2e"}
-       //$request = \Yii::$app->request->post();
+       $request = \Yii::$app->request->post();
 
         $nonce = Yii::$app->request->post('NONCE',null);
         $cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP',null);
         $user_id = Yii::$app->request->post('USER_ID',null);
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //////--------------------------------------------------------------------------------------------------/////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        return $_REQUEST;
-        //$payment = new PaymentHelper();
-        //$nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
-        //$resp = $payment->CreateSale($nonce);
-        $payment = new PAYPAL_HELPER(true);
-
-        $resp = $payment->CreateSale();
-        return $resp;
+        if($nonce!=null) {
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////--------------------------------------------------------------------------------------------------/////
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            return $_REQUEST;
+            //$payment = new PaymentHelper();
+            //$nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
+            //$resp = $payment->CreateSale($nonce);
+            $payment = new PAYPAL_HELPER(true);
+            $resp = $payment->CreateSale();
+        }
+        return $request;
     }
 
     public function actionToken($user_id)
