@@ -13,9 +13,16 @@ use Pafelin\LaravelNonce\Nonce;
 
 class PAYMENT_HELPER
 {
+    /*
+     * Braintree_Configuration::environment('sandbox');
+Braintree_Configuration::merchantId('t6ygyzrt59f2m7mr');
+Braintree_Configuration::publicKey('vh8ctdxv4fqwgtpt');
+Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
+     */
+    protected $merchant_name = 'tsobuenterprise'; //account to use for the payment
     protected $merchant_id = 't6ygyzrt59f2m7mr';
-    protected $public_key = 'tgp4fy8pdcvtq2g6';
-    protected $private_key = '1c7d269df330dd2ab3077d6c7d0e7941';
+    protected $public_key = 'vh8ctdxv4fqwgtpt';
+    protected $private_key = '2bc24b7befcaca84f632ea9cc78806dd';
 
     public $environment = 'sandbox';
 
@@ -38,8 +45,8 @@ class PAYMENT_HELPER
 
     public function GenerateNonce($user_id)
     {
-        $t = new Nonce();
-        $nonce = $t->generate($user_id);
+        $generator = new Nonce();
+        $nonce = $generator->generate($user_id);
 
         return $nonce;
     }

@@ -38,7 +38,7 @@ class PaymentController extends ActiveController
         $user_id = 56;
         $payment = new PAYMENT_HELPER();
 
-        $nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
+        $nonce = $payment->GenerateNonce($user_id);
         $token = $payment->GetToken();//$payment->CreateSale($nonce);
 
         return [
