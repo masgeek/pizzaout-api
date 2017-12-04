@@ -66,17 +66,4 @@ class PAYPAL_HELPER
             return $ex->getData();
         }
     }
-
-    public function CreateSale($nonceFromTheClient, $amount)
-    {
-        $result = \Braintree_Transaction::sale([
-            'amount' => $amount,
-            'paymentMethodNonce' => $nonceFromTheClient,
-            'options' => [
-                'submitForSettlement' => true
-            ]
-        ]);
-
-        return $result;
-    }
 }

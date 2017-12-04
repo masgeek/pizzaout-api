@@ -36,16 +36,14 @@ class PaymentController extends ActiveController
         $nonce = Yii::$app->request->post('NONCE', null);
         $cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP', null);
         $user_id = Yii::$app->request->post('USER_ID', null);
+        $amount = Yii::$app->request->post('AMOUNT', null);
+
         if ($nonce != null) {
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //////--------------------------------------------------------------------------------------------------/////
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            return $_REQUEST;
-            //$payment = new PaymentHelper();
-            //$nonce = 'fake-valid-nonce';///$payment->GenerateNonce($user_id);
-            //$resp = $payment->CreateSale($nonce);
-            $payment = new PAYPAL_HELPER(true);
-            $resp = $payment->CreateSale();
+            $payment = new PAYMENT_HELPER();
+            return $payment->CreateSale($nonce, $amount);
         }
         return $request;
     }

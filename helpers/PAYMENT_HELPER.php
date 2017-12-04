@@ -51,13 +51,14 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
         return $nonce;
     }
 
-    public function CreateSale($nonceFromTheClient)
+    public function CreateSale($nonceFromTheClient, $amount)
     {
         $result = \Braintree_Transaction::sale([
-            'amount' => '100.00',
+            'amount' => $amount,
             'paymentMethodNonce' => $nonceFromTheClient,
+            'merchantAccountId' => $this->merchant_id,
             'options' => [
-                'submitForSettlement' => True
+                'submitForSettlement' => true,
             ]
         ]);
 
