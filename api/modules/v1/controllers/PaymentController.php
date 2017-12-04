@@ -24,7 +24,13 @@ class PaymentController extends ActiveController
 
     public function actionPay()
     {
-        //{"CART_TIMESTAMP":"2342423","AMOUNT":"89","USER_ID":"10","NONCE":"5d9e76ec-562e-0fa3-5a7e-20d3d4935b2e"}
+        /*{
+            "CART_TIMESTAMP":"2342423",
+            "AMOUNT":"89",
+            "USER_ID":"10",
+            "NONCE":"5d9e76ec-562e-0fa3-5a7e-20d3d4935b2e"
+        }*/
+
         $request = \Yii::$app->request->post();
 
         $nonce = Yii::$app->request->post('NONCE', null);
