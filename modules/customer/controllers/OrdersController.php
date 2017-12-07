@@ -3,7 +3,7 @@
 namespace app\modules\customer\controllers;
 
 use app\helpers\APP_UTILS;
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
@@ -45,12 +45,12 @@ class OrdersController extends Controller
         $searchModel = new OrdersSearch();
 
         $dataProvider = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [
-            ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED,
-            ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED,
-            ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED,
-            ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION,
-            ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER,
-            ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION,
+            ORDER_HELPER::STATUS_AWAITING_RIDER,
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED
         ], $user_id);
 
         return $this->render('orders_view', [
@@ -67,7 +67,7 @@ class OrdersController extends Controller
         $this->view->title = 'Pending Orders';
         $searchModel = new OrdersSearch();
 
-        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING], $user_id);
+        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING], $user_id);
 
         return $this->render('orders_view', [
             'searchModel' => $searchModel,
@@ -82,7 +82,7 @@ class OrdersController extends Controller
         $this->view->title = 'Closed Orders';
         $searchModel = new OrdersSearch();
 
-        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED], $user_id);
+        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_DELIVERED], $user_id);
 
         return $this->render('orders_view', [
             'searchModel' => $searchModel,
@@ -97,7 +97,7 @@ class OrdersController extends Controller
         $this->view->title = 'Cancelled Orders';
         $searchModel = new OrdersSearch();
 
-        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED], $user_id);
+        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CANCELLED], $user_id);
 
         return $this->render('orders_view', [
             'searchModel' => $searchModel,

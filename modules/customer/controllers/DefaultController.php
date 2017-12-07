@@ -2,17 +2,18 @@
 
 namespace app\modules\customer\controllers;
 
+
+use yii;
+use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
 use app\helpers\APP_UTILS;
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDER_ITEMS;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\CUSTOMER_PAYMENTS;
 use app\model_extended\MENU_ITEMS;
-use yii;
-use yii\data\ActiveDataProvider;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
 
 /**
  * Default controller for the `customer` module
@@ -86,7 +87,7 @@ class DefaultController extends Controller
         $user_id = \Yii::$app->user->id;
         //get the list of orders
 
-        $this->view->params['cart_items'] = $this->GetCartItems($user_id);
+        $this->view->params['cart_items'] = ORDER_HELPER::GetCartItems($user_id);
 
 
         //lets get the list of pizzas on offer
@@ -183,7 +184,7 @@ class DefaultController extends Controller
         $user_id = Yii::$app->user->id;
 
         $saveSuccessful = false;
-        $cart_items = $this->GetCartItems($user_id);
+        $cart_items = ORDER_HELPER::GetCartItems($user_id);
 
         $paymentModel = new CUSTOMER_PAYMENTS();
         $model = new CUSTOMER_ORDERS();
@@ -192,7 +193,7 @@ class DefaultController extends Controller
         $model->USER_ID = $user_id;
         $model->ADDRESS_ID = 1;
         $model->ORDER_DATE = APP_UTILS::GetCurrentDateTime();
-        $model->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
+        $model->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_PENDING;
 
         if ($model->load(Yii::$app->request->post())) {
             $transaction = $connection->beginTransaction();
@@ -219,7 +220,7 @@ class DefaultController extends Controller
                 //Save the payment information
                 $paymentModel->PAYMENT_DATE = APP_UTILS::GetCurrentDateTime();
                 $paymentModel->PAYMENT_REF = strtoupper(uniqid());
-                $paymentModel->PAYMENT_STATUS = ORDER_STATUS_HELPER::STATUS_PAYMENT_PENDING;
+                $paymentModel->PAYMENT_STATUS = ORDER_HELPER::STATUS_PAYMENT_PENDING;
                 if ($paymentModel->validate() && $paymentModel->save()) {
                     $saveSuccessful = true;
                 }
@@ -246,12 +247,5 @@ class DefaultController extends Controller
             'cart_items' => $cart_items,
             'model' => $model,
             'paymentModel' => $paymentModel]);
-    }
-
-    private function GetCartItems($user_id)
-    {
-        return CART_MODEL::find()
-            ->where(['USER_ID' => $user_id])
-            ->all();
     }
 }

@@ -24,43 +24,43 @@ $gridColumns = [
 
             if ($action === 'update') {
                 switch ($model->ORDER_STATUS) {
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CANCELLED:
                         $action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_PENDING:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
                         $action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
                         break;
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED:
+                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
                         $action = '<i class="fa fa-cutlery fa-1x"></i><br/>Assign Kitchen';
                         $class .= 'btn-warning';
                         $url = \yii\helpers\Url::toRoute(['assign-kitchen', 'id' => $model->ORDER_ID]);
                         break;
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_KITCHEN_ASSIGNED:
+                    case \app\helpers\ORDER_HELPER::STATUS_KITCHEN_ASSIGNED:
                         $action = '<i class="fa fa-building fa-1x"></i><br/>View';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION:
+                    case \app\helpers\ORDER_HELPER::STATUS_CHEF_ASSIGNED:
+                    case \app\helpers\ORDER_HELPER::STATUS_UNDER_PREPARATION:
                         $action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>View';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
                         break;
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_READY:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_READY:
                         $action = '<i class="fa fa-hourglass fa-1x"></i><br/>View';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED:
-                    case \app\helpers\ORDER_STATUS_HELPER::STATUS_ORDER_DELIVERED:
+                    case \app\helpers\ORDER_HELPER::STATUS_AWAITING_RIDER:
+                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_ASSIGNED:
+                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_DISPATCHED:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_DELIVERED:
                         $action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);

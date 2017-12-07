@@ -202,7 +202,7 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
      * @param $card_code
      * @return string
      */
-    public static function CartType($card_code)
+    public static function getCardType($card_code)
     {
         switch (strtoupper($card_code)) {
             case 'VI':

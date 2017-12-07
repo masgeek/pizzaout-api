@@ -12,7 +12,7 @@ namespace app\modules\customer\controllers;
 use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\components\CardComponent;
 use app\helpers\APP_UTILS;
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\models_search\OrdersSearch;
@@ -97,39 +97,7 @@ class CheckoutController extends Controller
      */
     public function actionConfirmation()
     {
-        //RESPONSE FROM THE MERCGANET
-        /*
-         * 'vpc_3DSECI' => string '05' (length=2)
-          'vpc_3DSXID' => string 'lG/WwUBF/9bg33i7Haj/9Pb5XIo=' (length=28)
-          'vpc_3DSenrolled' => string 'Y' (length=1)
-          'vpc_3DSstatus' => string 'Y' (length=1)
-          'vpc_AVSResultCode' => string 'Unsupported' (length=11)
-          'vpc_AcqAVSRespCode' => string 'Unsupported' (length=11)
-          'vpc_AcqCSCRespCode' => string 'M' (length=1)
-          'vpc_AcqResponseCode' => string '00' (length=2)
-          'vpc_Amount' => string '200000' (length=6)
-          'vpc_AuthorizeId' => string '055801' (length=6)
-          'vpc_BatchNo' => string '20171113' (length=8)
-          'vpc_CSCResultCode' => string 'M' (length=1)
-          'vpc_Card' => string 'VC' (length=2)
-          'vpc_Command' => string 'pay' (length=3)
-          'vpc_Currency' => string 'USD' (length=3)
-          'vpc_Locale' => string 'en_UK' (length=5)
-          'vpc_MerchTxnRef' => string '-5A097DE70C03F' (length=14)
-          'vpc_Merchant' => string '00000129' (length=8)
-          'vpc_Message' => string 'Approved' (length=8)
-          'vpc_OrderInfo' => string '-5A097DE70C044' (length=14)
-          'vpc_ReceiptNo' => string '731722364810' (length=12)
-          'vpc_SecureHash' => string '5C08FABAC8912B6E90AD0A6A7C3AAA598F05F7D09001534EF4A0846B517E1DF9' (length=64)
-          'vpc_SecureHashType' => string 'SHA256' (length=6)
-          'vpc_TransactionNo' => string '1100000008' (length=10)
-          'vpc_TxnResponseCode' => string '0' (length=1)
-          'vpc_VerSecurityLevel' => string '05' (length=2)
-          'vpc_VerStatus' => string 'Y' (length=1)
-          'vpc_VerToken' => string 'gIGCg4SFhoeIiYqLjI2Oj5CRkpM=' (length=28)
-          'vpc_VerType' => string '3DS' (length=3)
-          'vpc_Version' => string '1' (length=1)
-         */
+        //RESPONSE FROM THE MERCHANT
 
 
         $session = Yii::$app->session;
@@ -139,7 +107,7 @@ class CheckoutController extends Controller
 
         $resp_code = Yii::$app->request->get('vpc_TxnResponseCode', 100);
         $batchNo = Yii::$app->request->get('vpc_BatchNo'); //=> string '20171113' (length=8)
-        $cardType = PAYMENT_HELPER::CartType(Yii::$app->request->get('vpc_Card')); //=> string 'M' (length=1)
+        $cardType = PAYMENT_HELPER::getCardType(Yii::$app->request->get('vpc_Card')); //=> string 'M' (length=1)
         $paymentCurrency = Yii::$app->request->get('vpc_Currency'); //=> string 'USD' (length=3)
         $merchantTxnRef = Yii::$app->request->get('vpc_MerchTxnRef'); //=> string '-5A097DE70C03F' (length=14)
         $orderInfo = Yii::$app->request->get('vpc_OrderInfo');// => string '-5A097DE70C044' (length=14)
@@ -163,7 +131,7 @@ class CheckoutController extends Controller
                 'PAYMENT_CHANNEL' => APP_UTILS::PAYMENT_METHOD_CARD,
                 'PAYMENT_AMOUNT' => $paymentAmount,
                 'PAYMENT_REF' => $merchantTxnRef,
-                'PAYMENT_STATUS' => ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED,
+                'PAYMENT_STATUS' => ORDER_HELPER::STATUS_ORDER_CONFIRMED,
                 'PAYMENT_DATE' => APP_UTILS::GetCurrentDateTime(),
                 'PAYMENT_NOTES' => $receiptNo,
                 'PAYMENT_NUMBER' => $cardType,
@@ -179,7 +147,7 @@ class CheckoutController extends Controller
             //mark payment as confirmed also
             //CUSTOMER_ORDERS::updateAll(['ORDER_STATUS' => ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED], "ORDER_ID='{$order_id}'");
             $orders = CUSTOMER_ORDERS::findOne($order_id);
-            $orders->ORDER_STATUS = ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED;
+            $orders->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_CONFIRMED;
             $orders->save();
 
             //clear the cart items
@@ -207,12 +175,12 @@ class CheckoutController extends Controller
         $searchModel = new OrdersSearch();
 
         $dataProvider = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [
-            ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED,
-            ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED,
-            ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED,
-            ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION,
-            ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER,
-            ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION,
+            ORDER_HELPER::STATUS_AWAITING_RIDER,
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED
         ], $user_id);
 
         return $this->render('/checkout/success', [
@@ -238,10 +206,5 @@ class CheckoutController extends Controller
         }
 
         return $amount;
-    }
-
-    private function loadModel($id)
-    {
-        return null;
     }
 }

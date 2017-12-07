@@ -8,7 +8,7 @@
 
 namespace app\models_search;
 
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CUSTOMER_PAYMENTS;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -45,7 +45,7 @@ class PaymentSearch extends CUSTOMER_PAYMENTS
 
 		//$query->groupBy('SERVICE_NAME');
 		$query->where(['OWNER_ID' => $owner]);
-		$query->andWhere(['PAYMENT_STATUS' => ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED]);
+		$query->andWhere(['PAYMENT_STATUS' => ORDER_HELPER::STATUS_PAYMENT_CONFIRMED]);
 		$query->orderBy(['PAYMENT_DATE' => SORT_DESC]);
 
 		$dataProvider = new ActiveDataProvider([

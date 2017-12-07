@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\APP_UTILS;
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
@@ -41,19 +41,19 @@ class OrdersController extends Controller
 		$this->view->title = 'Orders';
 		$searchModel = new OrdersSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams, [
-			ORDER_STATUS_HELPER::STATUS_PAYMENT_CONFIRMED,
-			ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION,
-			ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED
+			ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
+			ORDER_HELPER::STATUS_UNDER_PREPARATION,
+			ORDER_HELPER::STATUS_RIDER_DISPATCHED
 		]);
 
-		$pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_PENDING]);
-		$confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CONFIRMED]);
-		$preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
+		$pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING]);
+		$confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
+		$preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION]);
 
 		$orderReady = $searchModel->search(Yii::$app->request->queryParams, [
-			ORDER_STATUS_HELPER::STATUS_ORDER_READY]);
+			ORDER_HELPER::STATUS_ORDER_READY]);
 
-		$cancelledOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_CANCELLED]);
+		$cancelledOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CANCELLED]);
 
 		return $this->render('/orders/index', [
 			'searchModel' => $searchModel,
@@ -147,7 +147,7 @@ class OrdersController extends Controller
 			APP_UTILS::OFFICE_SCOPE,
 			APP_UTILS::ALL_SCOPE
 		];
-        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
 
 		return $this->render('update', [
 			'model' => $model,
@@ -171,7 +171,7 @@ class OrdersController extends Controller
 			APP_UTILS::OFFICE_SCOPE
 		];
 
-        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
 
 		return $this->render('assign_kitchen', [
 			'model' => $model,

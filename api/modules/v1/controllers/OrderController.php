@@ -13,7 +13,7 @@ use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
 use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\helpers\APP_UTILS;
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use yii\rest\ActiveController;
 
 class OrderController extends ActiveController
@@ -33,7 +33,7 @@ class OrderController extends ActiveController
 
         $date = APP_UTILS::GetCurrentDateTime();
 
-        $order_status = ORDER_STATUS_HELPER::STATUS_ORDER_PENDING;
+        $order_status = ORDER_HELPER::STATUS_ORDER_PENDING;
         $post = [
             'PAYMENT_MODEL' => [
                 'PAYMENT_REF' => strtoupper(uniqid('PIZZA_')),

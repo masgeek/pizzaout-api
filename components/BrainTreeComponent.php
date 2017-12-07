@@ -11,7 +11,7 @@ namespace app\components;
 
 use yii\base\Component;
 
-class PaypalComponent extends Component
+class BrainTreeComponent extends Component
 {
 
 }

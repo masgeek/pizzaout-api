@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\APP_UTILS;
-use app\helpers\ORDER_STATUS_HELPER;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
@@ -40,13 +40,13 @@ class KitchenqueueController extends Controller
     {
         $this->view->title = 'Kitchen Queue';
         $searchModel = new OrdersSearch();
-        $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_KITCHEN_ASSIGNED]);
-        $chefAssigned = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_CHEF_ASSIGNED]);
-        $preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_UNDER_PREPARATION]);
-        $orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_ORDER_READY]);
-        $awaitingRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_AWAITING_RIDER]);
-        $allocatedRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_RIDER_ASSIGNED]);
-        $dispatchRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_STATUS_HELPER::STATUS_RIDER_DISPATCHED]);
+        $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_KITCHEN_ASSIGNED]);
+        $chefAssigned = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_CHEF_ASSIGNED]);
+        $preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION]);
+        $orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_READY]);
+        $awaitingRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_AWAITING_RIDER]);
+        $allocatedRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_RIDER_ASSIGNED]);
+        $dispatchRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_RIDER_DISPATCHED]);
 
         return $this->render('/kitchenqueue/index', [
             'searchModel' => $searchModel,
@@ -106,7 +106,7 @@ class KitchenqueueController extends Controller
         $scope = [
             APP_UTILS::KITCHEN_SCOPE,
         ];
-        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
 
         return $this->render('assign_chef', [
             'model' => $model,
@@ -130,7 +130,7 @@ class KitchenqueueController extends Controller
         $scope = [
             APP_UTILS::CHEF_SCOPE,
         ];
-        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
 
         return $this->render('assign_chef', [
             'model' => $model,
@@ -153,7 +153,7 @@ class KitchenqueueController extends Controller
         $scope = [
             APP_UTILS::KITCHEN_SCOPE,
         ];
-        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
 
         return $this->render('assign_chef', [
             'model' => $model,
@@ -177,7 +177,7 @@ class KitchenqueueController extends Controller
         $scope = [
             APP_UTILS::KITCHEN_SCOPE,
         ];
-        $workflow = ORDER_STATUS_HELPER::NextWorkFlow($id, $scope);
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
         return $this->render('assign_chef', [
             'model' => $model,
             'scope' => $scope,
