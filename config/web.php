@@ -2,6 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 $fcm = require(__DIR__ . '/fcm.php');
+$braintree = require(__DIR__ . './braintree.php');
 $aliases = require(__DIR__ . '/aliases.php');
 $merchant = require(__DIR__ . '/card_merchant.php');
 
@@ -32,6 +33,7 @@ $config = [
         ],
         'card' => $merchant,
         'fcm' => $fcm,
+        'braintree' => $braintree,
         'pdf' => [
             'class' => \kartik\mpdf\Pdf::classname(),
             'format' => \kartik\mpdf\Pdf::FORMAT_A4,

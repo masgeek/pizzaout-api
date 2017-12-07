@@ -3,6 +3,7 @@
 
 $db = require(__DIR__ . '/../../config/db.php');
 $fcm = require(__DIR__ . '/../../config/fcm.php');
+$braintree = require(__DIR__ . '/../../config/braintree.php');
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -28,6 +29,7 @@ $config = [
     ],*/
     'components' => [
         'fcm' => $fcm,
+        'braintree' => $braintree,
         'pdf' => [
             'class' => \kartik\mpdf\Pdf::classname(),
             'format' => \kartik\mpdf\Pdf::FORMAT_A4,
@@ -63,6 +65,13 @@ $config = [
                     // Create API log in the standard log dir
                     // But in file 'api.log':
                     'logFile' => '@app/runtime/logs/api.log',
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info'],
+                    // Create API log in the standard log dir
+                    // But in file 'api.log':
+                    'logFile' => '@app/runtime/logs/trace.log',
                 ],
             ],
         ],

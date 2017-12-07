@@ -9,6 +9,7 @@
 namespace app\api\modules\v1\controllers;
 
 
+use app\api\modules\v1\models\USER_MODEL;
 use Yii;
 use app\helpers\PAYMENT_HELPER;
 use app\helpers\PAYPAL_HELPER;
@@ -24,6 +25,7 @@ class PaymentController extends ActiveController
 
     public function actionPay()
     {
+
         /*{
             "CART_TIMESTAMP":"2342423",
             "AMOUNT":"89",
@@ -33,17 +35,19 @@ class PaymentController extends ActiveController
 
         $request = \Yii::$app->request->post();
 
+
         $nonce = Yii::$app->request->post('NONCE', null);
         $cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP', null);
         $user_id = Yii::$app->request->post('USER_ID', null);
         $amount = Yii::$app->request->post('AMOUNT', null);
+        $currency = Yii::$app->request->post('CURRENCY', null);
 
         if ($nonce != null) {
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //////--------------------------------------------------------------------------------------------------/////
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $payment = new PAYMENT_HELPER();
-            return $payment->CreateSale($nonce, $amount);
+            return $payment->CreateSale($nonce, $amount, $currency, $cart_timestamp, USER_MODEL::findOne($user_id));
         }
         return $request;
     }

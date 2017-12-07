@@ -8,6 +8,8 @@
 
 namespace app\helpers;
 
+use app\api\modules\v1\models\USER_MODEL;
+use Yii;
 use Braintree_Configuration;
 use Pafelin\LaravelNonce\Nonce;
 
@@ -19,7 +21,7 @@ Braintree_Configuration::merchantId('t6ygyzrt59f2m7mr');
 Braintree_Configuration::publicKey('vh8ctdxv4fqwgtpt');
 Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
      */
-    protected $merchant_name = 'tsobuenterprise'; //account to use for the payment
+    protected $merchantAccountId = 'tsobuenterprise'; //account to use for the payment
     protected $merchant_id = 't6ygyzrt59f2m7mr';
     protected $public_key = 'vh8ctdxv4fqwgtpt';
     protected $private_key = '2bc24b7befcaca84f632ea9cc78806dd';
@@ -51,18 +53,62 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
         return $nonce;
     }
 
-    public function CreateSale($nonceFromTheClient, $amount)
+    /**
+     * @param $nonceFromTheClient
+     * @param $amount
+     * @param $currency
+     * @param $cartimestamp
+     * @param USER_MODEL $customer
+     * @return array
+     */
+    public function CreateSale($nonceFromTheClient, $amount, $currency, $cartimestamp, USER_MODEL $customer)
     {
+        /* @var $customer USER_MODEL */
+        //$braintree = Yii::$app->braintree;
+        //return $braintree;
+
+
+        if ($currency == 'KES') {
+            $this->merchantAccountId = 'tsobu2';
+        }
         $result = \Braintree_Transaction::sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonceFromTheClient,
-            'merchantAccountId' => $this->merchant_id,
+            'orderId' => $cartimestamp,
+            'merchantAccountId' => $this->merchantAccountId,
+            'customer' => [
+                'firstName' => $customer->SURNAME,
+                'lastName' => $customer->OTHER_NAMES,
+                //'company' => 'Braintree',
+                'phone' => $customer->MOBILE,
+                //'fax' => '312-555-1235',
+                //'website' => 'http://www.example.com',
+                'email' => $customer->EMAIL
+            ],
             'options' => [
                 'submitForSettlement' => true,
             ]
         ]);
 
-        return $result;
+        //Yii::trace($result, 'INFO');
+
+        if ($result->success) {
+            //save the payment details
+            $message = [
+                'STATUS' => $result->success,
+                'TRANS_STATUS' => $result->transaction->status,
+                'TRANS_TYPE' => $result->transaction->type,
+                'MESSAGE' => 'Payment Successful'
+            ];
+        } else {
+            $message = [
+                'STATUS' => $result->success,
+                'TRANS_STATUS' => 'Failed',
+                'TRANS_TYPE' => null,
+                'MESSAGE' => $result->message
+            ];
+        }
+        return $message;
     }
 
     /**
