@@ -2,17 +2,19 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "{{%users}}".
  *
- * @property string $USER_ID
+ * @property int $USER_ID
  * @property string $USER_NAME
- * @property string $USER_TYPE
+ * @property int $USER_TYPE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
  * @property int $MOBILE
  * @property string $EMAIL
- * @property string $LOCATION_ID
+ * @property int $LOCATION_ID
  * @property string $PASSWORD
  * @property string $DATE_REGISTERED
  * @property string $LAST_UPDATED

@@ -2,10 +2,12 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "country".
  *
- * @property string $COUNRY_ID
+ * @property int $COUNRY_ID
  * @property string $COUNTRY_NAME
  *
  * @property City[] $cities

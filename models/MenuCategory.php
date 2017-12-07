@@ -2,17 +2,18 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "menu_category".
  *
- * @property string $MENU_CAT_ID
+ * @property int $MENU_CAT_ID
  * @property string $MENU_CAT_NAME
  * @property string $MENU_CAT_IMAGE
  * @property int $ACTIVE
  * @property int $RANK
  *
  * @property MenuItem[] $menuItems
- * @property MenuItem[] $menuItems0
  */
 class MenuCategory extends \yii\db\ActiveRecord
 {
@@ -56,14 +57,6 @@ class MenuCategory extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getMenuItems()
-    {
-        return $this->hasMany(MenuItem::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMenuItems0()
     {
         return $this->hasMany(MenuItem::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
     }
