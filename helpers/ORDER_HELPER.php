@@ -53,6 +53,7 @@ class ORDER_HELPER
 
     /**
      * @param $user_id
+     * @param array $cart_items
      * @param array $customer_order_arr
      * @param array $customer_payment_arr
      * @param bool $isCard
@@ -60,7 +61,7 @@ class ORDER_HELPER
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
-    public static function CreateOrderFromCart($user_id, array $cart_items, array $customer_order_arr, array $customer_payment_arr, $isCard = false)
+    public static function CreateOrderFromCart($user_id, array $customer_order_arr, array $customer_payment_arr, array $cart_items = [], $isCard = false)
     {
         /* @var $orderItems CART_MODEL */
         $session = Yii::$app->session;
