@@ -19,7 +19,7 @@ class ORDER_HELPER
 {
     const STATUS_ORDER_CANCELLED = 'ORDER CANCELLED';
     const STATUS_ORDER_PENDING = 'ORDER PENDING';
-    const STATUS_PAYMENT_CONFIRMED = 'PAYMENT CONFIRMED';
+    const STATUS_PAYMENT_CONFIRMED = 'ORDER CONFIRMED';
     const STATUS_PAYMENT_PENDING = 'PAYMENT PENDING';
     const STATUS_ORDER_CONFIRMED = 'ORDER CONFIRMED';
     const STATUS_KITCHEN_ASSIGNED = 'KITCHEN ALLOCATED';
@@ -54,15 +54,15 @@ class ORDER_HELPER
     /**
      * @param $user_id
      * @param array $cart_items
-     * @param array $customer_order_arr
-     * @param array $customer_payment_arr
+     * @param array $order_payment_arr
      * @param bool $isCard
      * @return bool
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
-    public static function CreateOrderFromCart($user_id, array $customer_order_arr, array $customer_payment_arr, array $cart_items = [], $isCard = false)
+    public static function CreateOrderFromCart($user_id, array $order_payment_arr, array $cart_items = [], bool $isCard = false)
     {
+        ;
         /* @var $orderItems CART_MODEL */
         $session = Yii::$app->session;
         $connection = \Yii::$app->db;
@@ -77,15 +77,11 @@ class ORDER_HELPER
         $paymentModel = new CUSTOMER_PAYMENTS();
         $customer_order = new CUSTOMER_ORDERS();
         $customer_order_items = new CUSTOMER_ORDER_ITEMS();
+        $customer_order->ORDER_STATUS = $isCard ? self::STATUS_ORDER_CONFIRMED : self::STATUS_ORDER_PENDING;
 
-        $customer_order->USER_ID = $user_id;
-        $customer_order->ADDRESS_ID = 1;
-        $customer_order->ORDER_DATE = $currentDate;
-        $customer_order->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_PENDING;
-
-        if ($customer_order->load($customer_order_arr)) {
+        if ($customer_order->load($order_payment_arr)) {
             $transaction = $connection->beginTransaction();
-            $paymentModel->load($customer_payment_arr);
+            $paymentModel->load($order_payment_arr);
             if ($customer_order->save()) {
                 foreach ($cart_items as $key => $orderItems):
                     $customer_order_items->isNewRecord = true;
@@ -99,19 +95,22 @@ class ORDER_HELPER
                     $customer_order_items->NOTES = $customer_order->NOTES;
                     $customer_order_items->CREATED_AT = $currentDate;
 
-                    //save the order items as we are deleting
-                    if ($customer_order_items->save()) {
-                        $saveSuccessful = true;
+                    //save the order items
+                    if (!$customer_order_items->save()) {
+                        return false;
                     }
                 endforeach;
-                //Save the payment information
-                $paymentModel->PAYMENT_DATE = $currentDate;
-                $paymentModel->PAYMENT_REF = strtoupper(uniqid());
+
+                $paymentModel->ORDER_ID = $customer_order->ORDER_ID;
                 $paymentModel->PAYMENT_STATUS = $isCard ? self::STATUS_PAYMENT_CONFIRMED : self::STATUS_PAYMENT_PENDING;
+
                 if ($paymentModel->validate() && $paymentModel->save()) {
                     $saveSuccessful = true;
+                } else {
+                    $saveSuccessful = false;
                 }
             }
+
             if ($saveSuccessful) {
                 $transaction->commit();
                 //if it is card redirect to  card checkout

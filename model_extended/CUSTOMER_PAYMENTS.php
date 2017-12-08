@@ -19,6 +19,8 @@ class CUSTOMER_PAYMENTS extends Payment
         $rules = parent::rules();
 
         $rules[] = [['PAYMENT_NUMBER'], 'required'];
+        $rules[] = [['ORDER_ID'], 'required'];
+        $rules[] = [['PAYMENT_STATUS'], 'required'];
         return $rules;
     }
 }

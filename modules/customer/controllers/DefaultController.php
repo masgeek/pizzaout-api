@@ -60,7 +60,7 @@ class DefaultController extends Controller
         $user_id = \Yii::$app->user->id;
         //get the list of orders
 
-        $this->view->params['cart_items'] = $this->GetCartItems($user_id);
+        $this->view->params['cart_items'] = ORDER_HELPER::GetCartItems($user_id);
 
 
         //lets get the list of pizzas on offer

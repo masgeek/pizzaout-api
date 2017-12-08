@@ -10,6 +10,8 @@ namespace app\api\modules\v1\controllers;
 
 
 use app\api\modules\v1\models\USER_MODEL;
+use app\helpers\ORDER_HELPER;
+use app\model_extended\CART_MODEL;
 use Yii;
 use app\helpers\PAYMENT_HELPER;
 use app\helpers\PAYPAL_HELPER;
@@ -23,6 +25,10 @@ class PaymentController extends ActiveController
      */
     public $modelClass = 'app\api\modules\v1\models\PAYMENT_MODEL';
 
+    /**
+     * @return object
+     * @throws \Exception
+     */
     public function actionPay()
     {
 
@@ -39,6 +45,7 @@ class PaymentController extends ActiveController
         $nonce = Yii::$app->request->post('NONCE', null);
         $cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP', null);
         $user_id = Yii::$app->request->post('USER_ID', null);
+        $address_id = Yii::$app->request->post('ADDRESS_ID', null);
         $amount = Yii::$app->request->post('AMOUNT', null);
         $currency = Yii::$app->request->post('CURRENCY', null);
 
@@ -47,14 +54,24 @@ class PaymentController extends ActiveController
             //////--------------------------------------------------------------------------------------------------/////
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $payment = new PAYMENT_HELPER();
-            return $payment->CreateSale($nonce, $amount, $currency, $cart_timestamp, USER_MODEL::findOne($user_id));
+            $resp = $payment->CreateSale($nonce, $amount, $currency, $cart_timestamp, $address_id, USER_MODEL::findOne($user_id));
+            //if ($resp->STATUS) {
+            //clear the cart and create the order
+            //CART_MODEL::Clearcart($cart_timestamp);
+            //}
+
+            return $resp;
         }
-        return $request;
+        throw new \Exception('Invalid parameters', 500);
     }
 
+    /**
+     * @param $user_id
+     * @return array
+     */
     public function actionToken($user_id)
     {
-        $payment = new PAYMENT_HELPER(true);
+        $payment = new PAYMENT_HELPER();
 
         $nonce = $payment->GenerateNonce($user_id);
         $token = $payment->GetToken();//$payment->CreateSale($nonce);

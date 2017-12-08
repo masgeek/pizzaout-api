@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\api\modules\v1\models\USER_MODEL;
 use Yii;
 use Braintree_Configuration;
@@ -58,10 +59,13 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
      * @param $amount
      * @param $currency
      * @param $cartimestamp
+     * @param $address_id
      * @param USER_MODEL $customer
-     * @return array
+     * @return object
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\Exception
      */
-    public function CreateSale($nonceFromTheClient, $amount, $currency, $cartimestamp, USER_MODEL $customer)
+    public function CreateSale($nonceFromTheClient, $amount, $currency, $cartimestamp, $address_id, USER_MODEL $customer)
     {
         /* @var $customer USER_MODEL */
         //$braintree = Yii::$app->braintree;
@@ -90,10 +94,28 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
             ]
         ]);
 
-        //Yii::trace($result, 'INFO');
+        $order_payment_arr = [
+            'CUSTOMER_ORDERS' => [
+                'USER_ID' => $customer->USER_ID,
+                'ADDRESS_ID' => $address_id,
+                'PAYMENT_METHOD' => APP_UTILS::PAYMENT_METHOD_CARD,
+                'ORDER_DATE' => APP_UTILS::GetCurrentDateTime()
+            ],
+            'CUSTOMER_PAYMENTS' => [
+                'PAYMENT_AMOUNT' => $amount,
+                'PAYMENT_CHANNEL' => APP_UTILS::PAYMENT_METHOD_CARD,
+                'PAYMENT_NUMBER' => APP_UTILS::PAYMENT_METHOD_CARD,
+                'PAYMENT_DATE' => APP_UTILS::GetCurrentDateTime(),
+                'PAYMENT_REF' => $cartimestamp,
+            ]
+        ];
 
+        return ORDER_HELPER::CreateOrderFromCart($customer->USER_ID, $order_payment_arr, [], true);
+        //Yii::trace($result, 'INFO');
         if ($result->success) {
             //save the payment details
+            //create the order as well
+
             $message = [
                 'STATUS' => $result->success,
                 'TRANS_STATUS' => $result->transaction->status,
@@ -108,7 +130,7 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
                 'MESSAGE' => $result->message
             ];
         }
-        return $message;
+        return (object)$message;
     }
 
     /**
@@ -242,5 +264,17 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
         }
 
         return $cardType;
+    }
+
+    /**
+     * @param array $payment_arr
+     * @return PAYMENT_MODEL
+     */
+    public static function LogPayments(array $payment_arr)
+    {
+        $payment = new PAYMENT_MODEL();
+        $payment->load($payment_arr);
+
+        return $payment;
     }
 }
