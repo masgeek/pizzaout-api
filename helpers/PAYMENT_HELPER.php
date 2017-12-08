@@ -106,20 +106,22 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
                 'PAYMENT_CHANNEL' => APP_UTILS::PAYMENT_METHOD_CARD,
                 'PAYMENT_NUMBER' => APP_UTILS::PAYMENT_METHOD_CARD,
                 'PAYMENT_DATE' => APP_UTILS::GetCurrentDateTime(),
+                'PAYMENT_NOTES' => $nonceFromTheClient,
                 'PAYMENT_REF' => $cartimestamp,
             ]
         ];
 
-        return ORDER_HELPER::CreateOrderFromCart($customer->USER_ID, $order_payment_arr, [], true);
+
         //Yii::trace($result, 'INFO');
         if ($result->success) {
             //save the payment details
             //create the order as well
-
+            $resp = ORDER_HELPER::CreateOrderFromCart($customer->USER_ID, $order_payment_arr, [], true);
             $message = [
                 'STATUS' => $result->success,
                 'TRANS_STATUS' => $result->transaction->status,
                 'TRANS_TYPE' => $result->transaction->type,
+                'ORDER_CREATED' => $resp,
                 'MESSAGE' => 'Payment Successful'
             ];
         } else {
@@ -127,9 +129,11 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
                 'STATUS' => $result->success,
                 'TRANS_STATUS' => 'Failed',
                 'TRANS_TYPE' => null,
+                'ORDER_CREATED' => false,
                 'MESSAGE' => $result->message
             ];
         }
+
         return (object)$message;
     }
 

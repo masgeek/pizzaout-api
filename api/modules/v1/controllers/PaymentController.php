@@ -26,8 +26,9 @@ class PaymentController extends ActiveController
     public $modelClass = 'app\api\modules\v1\models\PAYMENT_MODEL';
 
     /**
-     * @return object
-     * @throws \Exception
+     * @return \Exception|object
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\Exception
      */
     public function actionPay()
     {
@@ -55,14 +56,14 @@ class PaymentController extends ActiveController
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $payment = new PAYMENT_HELPER();
             $resp = $payment->CreateSale($nonce, $amount, $currency, $cart_timestamp, $address_id, USER_MODEL::findOne($user_id));
-            //if ($resp->STATUS) {
-            //clear the cart and create the order
-            //CART_MODEL::Clearcart($cart_timestamp);
-            //}
+            if ($resp->ORDER_CREATED) {
+                //clear the cart and create the order
+                CART_MODEL::Clearcart($cart_timestamp);
+            }
 
             return $resp;
         }
-        throw new \Exception('Invalid parameters', 500);
+        return new \Exception('Invalid parameters', 500);
     }
 
     /**

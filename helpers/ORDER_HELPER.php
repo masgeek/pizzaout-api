@@ -68,7 +68,7 @@ class ORDER_HELPER
         $connection = \Yii::$app->db;
         $currentDate = APP_UTILS::GetCurrentDateTime();
         $saveSuccessful = false;
-
+        $cart_timestamp = null;
 
         if (count($cart_items) <= 0) {
             $cart_items = self::GetCartItems($user_id);
@@ -99,6 +99,8 @@ class ORDER_HELPER
                     if (!$customer_order_items->save()) {
                         return false;
                     }
+
+                    $cart_timestamp = $orderItems->CART_TIMESTAMP;
                 endforeach;
 
                 $paymentModel->ORDER_ID = $customer_order->ORDER_ID;
@@ -116,10 +118,10 @@ class ORDER_HELPER
                 //if it is card redirect to  card checkout
                 if ($customer_order->PAYMENT_METHOD === APP_UTILS::PAYMENT_METHOD_CARD) {
                     //Add cart timestamp to the session
-                    $session->set('CART_TIMESTAMP', $orderItems->CART_TIMESTAMP);
+                    $session->set('CART_TIMESTAMP', $cart_timestamp);
                 } else {
                     //remove the cart item
-                    CART_MODEL::ClearCart($orderItems->CART_TIMESTAMP);
+                    CART_MODEL::ClearCart($cart_timestamp);
                 }
             }
             $transaction->rollback();

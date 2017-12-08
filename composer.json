@@ -40,13 +40,12 @@
     "kartik-v/yii2-export": "*",
     "rmrevin/yii2-fontawesome": "^2.17",
     "understeam/yii2-fcm": "~0.1",
+    "braintree/braintree_php": "3.25.0",
     "pafelin/laravel-nonce": "dev-master",
     "yiisoft/yii2-authclient": "^2.0@dev",
     "paypal/rest-api-sdk-php": "*",
     "kartik-v/yii2-tabs-x": "*",
-    "mike42/escpos-php": "dev-master",
-    "yii2mod/yii2-cart": "*",
-    "tuyakhov/yii2-braintree": "*"
+    "mike42/escpos-php": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
