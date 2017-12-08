@@ -2,7 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 $fcm = require(__DIR__ . '/fcm.php');
-$braintree = require(__DIR__ . './braintree.php');
+$braintree = require(__DIR__ . '/braintree.php');
 $aliases = require(__DIR__ . '/aliases.php');
 $merchant = require(__DIR__ . '/card_merchant.php');
 
