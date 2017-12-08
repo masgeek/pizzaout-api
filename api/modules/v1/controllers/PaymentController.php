@@ -10,6 +10,7 @@ namespace app\api\modules\v1\controllers;
 
 
 use app\api\modules\v1\models\USER_MODEL;
+use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
 use app\model_extended\CART_MODEL;
 use Yii;
@@ -49,14 +50,15 @@ class PaymentController extends ActiveController
         $address_id = Yii::$app->request->post('ADDRESS_ID', null);
         $amount = Yii::$app->request->post('AMOUNT', null);
         $currency = Yii::$app->request->post('CURRENCY', null);
+        $payment_channel = Yii::$app->request->post('PAYMENT_CHANNEL', APP_UTILS::PAYMENT_METHOD_CARD);
 
         if ($nonce != null) {
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //////--------------------------------------------------------------------------------------------------/////
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $payment = new PAYMENT_HELPER();
-            $resp = $payment->CreateSale($nonce, $amount, $currency, $cart_timestamp, $address_id, USER_MODEL::findOne($user_id));
-            if ($resp->ORDER_CREATED) {
+            $resp = $payment->CreateSale($nonce, $amount, $currency, $cart_timestamp, $address_id, USER_MODEL::findOne($user_id), $payment_channel);
+            if ($resp->ORDER_CREATED === true) {
                 //clear the cart and create the order
                 CART_MODEL::Clearcart($cart_timestamp);
             }

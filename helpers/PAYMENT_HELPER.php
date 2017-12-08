@@ -48,6 +48,7 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
 
     public function GenerateNonce($user_id)
     {
+        $hasher = uniqid("{$user_id}_USER");
         $generator = new Nonce();
         $nonce = $generator->generate($user_id);
 
@@ -65,7 +66,7 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
-    public function CreateSale($nonceFromTheClient, $amount, $currency, $cartimestamp, $address_id, USER_MODEL $customer)
+    public function CreateSale($nonceFromTheClient, $amount, $currency, $cartimestamp, $address_id, USER_MODEL $customer, $paymentChannel)
     {
         /* @var $customer USER_MODEL */
         //$braintree = Yii::$app->braintree;
@@ -98,19 +99,18 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
             'CUSTOMER_ORDERS' => [
                 'USER_ID' => $customer->USER_ID,
                 'ADDRESS_ID' => $address_id,
-                'PAYMENT_METHOD' => APP_UTILS::PAYMENT_METHOD_CARD,
+                'PAYMENT_METHOD' => $paymentChannel,
                 'ORDER_DATE' => APP_UTILS::GetCurrentDateTime()
             ],
             'CUSTOMER_PAYMENTS' => [
                 'PAYMENT_AMOUNT' => $amount,
-                'PAYMENT_CHANNEL' => APP_UTILS::PAYMENT_METHOD_CARD,
-                'PAYMENT_NUMBER' => APP_UTILS::PAYMENT_METHOD_CARD,
+                'PAYMENT_CHANNEL' => $paymentChannel,
+                'PAYMENT_NUMBER' => $paymentChannel,
                 'PAYMENT_DATE' => APP_UTILS::GetCurrentDateTime(),
                 'PAYMENT_NOTES' => $nonceFromTheClient,
                 'PAYMENT_REF' => $cartimestamp,
             ]
         ];
-
 
         //Yii::trace($result, 'INFO');
         if ($result->success) {
