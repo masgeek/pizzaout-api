@@ -5,5 +5,3 @@
     'publicKey' => 'vh8ctdxv4fqwgtpt',
     'privateKey' => '2bc24b7befcaca84f632ea9cc78806dd',
 ];*/
-
-return [];
