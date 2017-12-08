@@ -29,7 +29,7 @@ $config = [
     ],*/
     'components' => [
         'fcm' => $fcm,
-        'braintree' => $braintree,
+        //'braintree' => $braintree,
         'pdf' => [
             'class' => \kartik\mpdf\Pdf::classname(),
             'format' => \kartik\mpdf\Pdf::FORMAT_A4,
