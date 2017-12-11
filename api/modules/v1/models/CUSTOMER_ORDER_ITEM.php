@@ -29,6 +29,7 @@ class CUSTOMER_ORDER_ITEM extends CustomerOrderItem
                 'MENU_ITEM' => $model->iTEMTYPE->mENUITEM
             ];
         }
+
         return $itemDetails;
     }
 }

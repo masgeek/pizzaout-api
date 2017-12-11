@@ -17,22 +17,9 @@ use app\model_extended\CUSTOMER_ORDERS;
  */
 class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 {
+
+
     public function fields()
-    {
-        $fields = parent::fields();
-
-        $fields['ORDER_DETAILS'] = function ($model) {
-            /* @var $model $this */
-            $data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
-            return $data;
-        };
-
-
-        ksort($fields);
-        return $fields;
-    }
-
-    public function fieldsOld()
     {
         $fields = parent::fields();
 
@@ -64,20 +51,10 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return $model->payment != null ? $model->payment : 'NONE';
         };
 
-        $fields['ORDER_ITEMS'] = function ($model) {
+        $fields['ORDER_DETAILS'] = function ($model) {
             /* @var $model $this */
-            return $model->customerOrderItems != null ? $model->customerOrderItems : 'NONE';
-        };
-
-
-        $fields['ORDER_ITEMS_TEST'] = function ($model) {
-            /* @var $model $this */
-
-            //facebook_posts::find()->joinWith('fans')->joinWith(['comments', 'comments.fan'])->all();
-
-            $data = CUSTOMER_ORDER_ITEM::find()->joinWith('$iTEMTYPE')->all();
+            $data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
             return $data;
-            return $model->customerOrderItems != null ? $model->customerOrderItems : 'NONE';
         };
 
 
