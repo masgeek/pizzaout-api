@@ -8,12 +8,13 @@
 
 namespace app\api\modules\v1\controllers;
 
-
+use Yii;
 use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
 use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
+use app\models_search\OrdersSearch;
 use yii\rest\ActiveController;
 
 class OrderController extends ActiveController
@@ -83,5 +84,66 @@ class OrderController extends ActiveController
         $paymentDetail->validate();
 
         return $customerOrder;
+    }
+
+
+    public function actionMyOrders($user_id)
+    {
+        $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'CONFIRMED');
+        $order_type = strtoupper($order_type_post);
+
+        switch ($order_type) {
+            case 'CONFIRMED':
+            default:
+                $order_status = $this->confirmedOrders();
+                break;
+            case 'CANCELLED':
+                $order_status = $this->cancelledOrders();
+                break;
+            case 'PENDING':
+                $order_status = $this->pendingOrders();
+                break;
+            case 'DELIVERED':
+                $order_status = $this->deliveredOrders();
+                break;
+
+        }
+
+        $orders = CUSTOMER_ORDER_MODEL::find()
+            ->where(['ORDER_STATUS' => $order_status])
+            ->andWhere(['USER_ID' => $user_id])
+            ->all();
+
+        return $orders;
+    }
+
+
+    private function confirmedOrders()
+    {
+        return [
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION,
+            ORDER_HELPER::STATUS_AWAITING_RIDER,
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED
+        ];
+
+    }
+
+    private function pendingOrders()
+    {
+        return [ORDER_HELPER::STATUS_ORDER_PENDING];
+
+    }
+
+    private function cancelledOrders()
+    {
+        return [ORDER_HELPER::STATUS_ORDER_CANCELLED];
+    }
+
+    private function deliveredOrders()
+    {
+        return [ORDER_HELPER::STATUS_ORDER_DELIVERED];
     }
 }

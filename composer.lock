@@ -53,7 +53,8 @@
                 "mobile-first",
                 "responsive",
                 "web"
-            ]
+            ],
+            "time": "2016-07-25T15:51:55+00:00"
         },
         {
             "name": "bower-asset/bootstrap3-dialog",
@@ -106,7 +107,8 @@
                 "mobile-first",
                 "responsive",
                 "web"
-            ]
+            ],
+            "time": "2017-03-24T01:21:30+00:00"
         },
         {
             "name": "bower-asset/inputmask",
@@ -197,7 +199,8 @@
                 "javascript",
                 "jquery",
                 "library"
-            ]
+            ],
+            "time": "2017-03-20T19:02:00+00:00"
         },
         {
             "name": "bower-asset/punycode",
@@ -225,7 +228,8 @@
                     "node_modules",
                     "package.json"
                 ]
-            }
+            },
+            "time": "2014-10-22T12:02:42+00:00"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -654,12 +658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "a0fb8f86acfab701e6180b2cf1459c257c04ba26"
+                "reference": "47c634744659a47a61d78acdc49324990f941c4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/a0fb8f86acfab701e6180b2cf1459c257c04ba26",
-                "reference": "a0fb8f86acfab701e6180b2cf1459c257c04ba26",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/47c634744659a47a61d78acdc49324990f941c4a",
+                "reference": "47c634744659a47a61d78acdc49324990f941c4a",
                 "shasum": ""
             },
             "type": "library",
@@ -699,7 +703,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-12-07T09:12:39+00:00"
+            "time": "2017-12-09T05:49:47+00:00"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -3247,12 +3251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "b6a90bf8abacc6e2a7f74257d8c32485e7780976"
+                "reference": "00511c195ba0e4acc9ccef435c5d398cf0d69045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/b6a90bf8abacc6e2a7f74257d8c32485e7780976",
-                "reference": "b6a90bf8abacc6e2a7f74257d8c32485e7780976",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/00511c195ba0e4acc9ccef435c5d398cf0d69045",
+                "reference": "00511c195ba0e4acc9ccef435c5d398cf0d69045",
                 "shasum": ""
             },
             "require": {
@@ -3339,7 +3343,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-12-02T15:24:56+00:00"
+            "time": "2017-12-10T20:07:47+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -3672,7 +3676,8 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": "dist/typeahead.bundle.js"
-            }
+            },
+            "time": "2015-04-27T04:02:14+00:00"
         },
         {
             "name": "codeception/base",
@@ -5254,12 +5259,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "2cdef78de8f54f68ff16a857e710e7302b47d4c7"
+                "reference": "8ef143bcb0986ec4fdbee6ce42cb55511ce2c447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/2cdef78de8f54f68ff16a857e710e7302b47d4c7",
-                "reference": "2cdef78de8f54f68ff16a857e710e7302b47d4c7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/8ef143bcb0986ec4fdbee6ce42cb55511ce2c447",
+                "reference": "8ef143bcb0986ec4fdbee6ce42cb55511ce2c447",
                 "shasum": ""
             },
             "require": {
@@ -5315,7 +5320,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-02T18:20:11+00:00"
+            "time": "2017-12-08T15:24:53+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -5323,12 +5328,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "7134b93e90ea7e7881fcb2da006d21b4c5f31908"
+                "reference": "816da4d2570f767c3e8d2dedbc941a265deea4af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/7134b93e90ea7e7881fcb2da006d21b4c5f31908",
-                "reference": "7134b93e90ea7e7881fcb2da006d21b4c5f31908",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/816da4d2570f767c3e8d2dedbc941a265deea4af",
+                "reference": "816da4d2570f767c3e8d2dedbc941a265deea4af",
                 "shasum": ""
             },
             "require": {
@@ -5368,7 +5373,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05T16:10:10+00:00"
+            "time": "2017-12-08T15:24:53+00:00"
         },
         {
             "name": "symfony/debug",
@@ -5488,12 +5493,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "ca20b8f9ef149f40ff656d52965f240d85f7a8e4"
+                "reference": "12ebc20b36b6503bb4676f63e7545e8e44040894"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ca20b8f9ef149f40ff656d52965f240d85f7a8e4",
-                "reference": "ca20b8f9ef149f40ff656d52965f240d85f7a8e4",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/12ebc20b36b6503bb4676f63e7545e8e44040894",
+                "reference": "12ebc20b36b6503bb4676f63e7545e8e44040894",
                 "shasum": ""
             },
             "require": {
@@ -5543,7 +5548,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-09T14:14:31+00:00"
+            "time": "2017-12-08T15:24:53+00:00"
         },
         {
             "name": "symfony/finder",
@@ -5659,12 +5664,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "7c97fe601f6d6399dbdfb9153ca7cb31a87f6fb3"
+                "reference": "5009c3ee3388332f667c9ce37cb1712656f5d734"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/7c97fe601f6d6399dbdfb9153ca7cb31a87f6fb3",
-                "reference": "7c97fe601f6d6399dbdfb9153ca7cb31a87f6fb3",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/5009c3ee3388332f667c9ce37cb1712656f5d734",
+                "reference": "5009c3ee3388332f667c9ce37cb1712656f5d734",
                 "shasum": ""
             },
             "require": {
@@ -5709,7 +5714,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-05T08:19:51+00:00"
+            "time": "2017-12-08T15:26:26+00:00"
         },
         {
             "name": "webmozart/assert",

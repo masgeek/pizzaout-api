@@ -60,7 +60,7 @@ class ORDER_HELPER
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
-    public static function CreateOrderFromCart($user_id, array $order_payment_arr, array $cart_items = [], bool $isCard = false)
+    public static function CreateOrderFromCart($user_id, array $order_payment_arr, array $cart_items = [], $isCard = false)
     {
         ;
         /* @var $orderItems CART_MODEL */

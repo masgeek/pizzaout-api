@@ -99,9 +99,22 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
+                        'v1/order',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                        '{user_id}' => '<user_id:\\w+>',
+                        '{rider_id}' => '<rider_id:\\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'POST {user_id}/my-orders' => 'my-orders',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
                         'v1/payment',
                         'v1/user',
-                        'v1/order',
                         'v1/menucategory',
                         'v1/menuitem',
                     ],
