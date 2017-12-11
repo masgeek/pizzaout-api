@@ -113,6 +113,19 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
+                        'v1/cust-addr' => 'v1/customeraddress',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                        '{user_id}' => '<user_id:\\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'GET {user_id}/my-address' => 'my-address',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
                         'v1/payment',
                         'v1/user',
                         'v1/menucategory',

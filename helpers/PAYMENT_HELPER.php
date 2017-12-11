@@ -128,7 +128,7 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
             $message = [
                 'STATUS' => $result->success,
                 'TRANS_STATUS' => 'Failed',
-                'TRANS_TYPE' => null,
+                'TRANS_TYPE' => 'Failed',
                 'ORDER_CREATED' => false,
                 'MESSAGE' => $result->message
             ];
