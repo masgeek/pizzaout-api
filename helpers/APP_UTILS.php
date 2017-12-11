@@ -67,16 +67,24 @@ class APP_UTILS
         return $model != null ? $model->CART_TIMESTAMP : self::GetTimeStamp();
     }
 
-    public static function BuildImage($model)
+    /**
+     * @param $model
+     * @param bool $cleanUrl
+     * @return string
+     */
+    public static function BuildImageUrl($model, $cleanUrl = false)
     {
-        //$baseUrl = Url::to('@foodimages', true);
+
+        // $baseUrl = Url::to('@foodimages', true);
         //$baseUrl = Url::to('@webroot', false);
+
+        $imageFolder = \Yii::getAlias('@foodimages');
+
         $baseUrl = Url::to([null], true);
 
-        $variable = substr($baseUrl, 0, strpos($baseUrl, "api"));
+        $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
 
-        return $variable;
-        $imagePath = "{$baseUrl}/{$model->MENU_ITEM_IMAGE}";
+        $imagePath = "{$cleanBaseURL}{$imageFolder}/{$model->MENU_ITEM_IMAGE}";
         return $imagePath;
     }
 }

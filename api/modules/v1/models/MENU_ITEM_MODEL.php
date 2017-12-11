@@ -38,7 +38,7 @@ class MENU_ITEM_MODEL extends MenuItem implements Linkable
 
         $fields['MENU_ITEM_IMAGE'] = function ($model) {
             /* @var $model MENU_ITEM_MODEL */
-            return APP_UTILS::BuildImage($model);
+            return APP_UTILS::BuildImageUrl($model);
         };
 
 
