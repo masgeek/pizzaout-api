@@ -112,6 +112,7 @@ class OrderController extends ActiveController
         $orders = CUSTOMER_ORDER_MODEL::find()
             ->where(['ORDER_STATUS' => $order_status])
             ->andWhere(['USER_ID' => $user_id])
+            ->orderBy(['ORDER_DATE' => SORT_DESC])
             ->all();
 
         return $orders;

@@ -10,6 +10,7 @@ namespace app\helpers;
 
 
 use app\model_extended\CART_MODEL;
+use yii\helpers\Url;
 
 class APP_UTILS
 {
@@ -64,5 +65,18 @@ class APP_UTILS
     {
         $model = CART_MODEL::findOne(['USER_ID' => $user_id]);
         return $model != null ? $model->CART_TIMESTAMP : self::GetTimeStamp();
+    }
+
+    public static function BuildImage($model)
+    {
+        //$baseUrl = Url::to('@foodimages', true);
+        //$baseUrl = Url::to('@webroot', false);
+        $baseUrl = Url::to([null], true);
+
+        $variable = substr($baseUrl, 0, strpos($baseUrl, "api"));
+
+        return $variable;
+        $imagePath = "{$baseUrl}/{$model->MENU_ITEM_IMAGE}";
+        return $imagePath;
     }
 }

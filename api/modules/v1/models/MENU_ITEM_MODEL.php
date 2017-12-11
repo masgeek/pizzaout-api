@@ -9,11 +9,14 @@
 namespace app\api\modules\v1\models;
 
 
+use app\helpers\APP_UTILS;
 use app\model_extended\MENU_ITEM_TYPE;
 use app\models\MenuItem;
 use yii\helpers\Url;
+use yii\web\Link;
+use yii\web\Linkable;
 
-class MENU_ITEM_MODEL extends MenuItem
+class MENU_ITEM_MODEL extends MenuItem implements Linkable
 {
 
     public function fields()
@@ -35,14 +38,20 @@ class MENU_ITEM_MODEL extends MenuItem
 
         $fields['MENU_ITEM_IMAGE'] = function ($model) {
             /* @var $model MENU_ITEM_MODEL */
-
-            $baseUrl = Url::to('@foodimages', true);
-            //$baseUrl = Url::to('@webroot', false);
-            $imagePath = "{$baseUrl}/{$model->MENU_ITEM_IMAGE}";
-            return $imagePath;
+            return APP_UTILS::BuildImage($model);
         };
 
 
         return $fields;
+    }
+
+    public function getLinks()
+    {
+        return [
+            Link::REL_SELF => Url::to(['user/view', 'id' => $this->MENU_ITEM_ID], true),
+            'edit' => Url::to(['user/view', 'id' => $this->MENU_ITEM_ID], true),
+            'profile' => Url::to(['user/profile/view', 'id' => $this->MENU_ITEM_ID], true),
+            'index' => Url::to(['users'], true),
+        ];
     }
 }
