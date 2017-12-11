@@ -21,11 +21,8 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
     {
         $fields = parent::fields();
 
-        $fields['ORDER_ITEMS_TEST'] = function ($model) {
+        $fields['ORDER_DETAILS'] = function ($model) {
             /* @var $model $this */
-
-            //facebook_posts::find()->joinWith('fans')->joinWith(['comments', 'comments.fan'])->all();
-
             $data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
             return $data;
         };
