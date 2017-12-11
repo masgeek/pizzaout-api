@@ -10,18 +10,32 @@ namespace app\api\modules\v1\models;
 
 
 use app\model_extended\CUSTOMER_ORDERS;
-use yii\helpers\Url;
-use yii\web\Link;
-use yii\web\Linkable;
 
 /**
  *
  * @property PAYMENT_MODEL $payment
- * @property array $links
  */
-class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS implements Linkable
+class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 {
     public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields['ORDER_ITEMS_TEST'] = function ($model) {
+            /* @var $model $this */
+
+            //facebook_posts::find()->joinWith('fans')->joinWith(['comments', 'comments.fan'])->all();
+
+            $data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
+            return $data;
+        };
+
+
+        ksort($fields);
+        return $fields;
+    }
+
+    public function fieldsOld()
     {
         $fields = parent::fields();
 
@@ -41,17 +55,35 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS implements Linkable
 
         $fields['RIDER'] = function ($model) {
             /* @var $model $this */
-            return $model->rIDER;
+            return $model->rIDER != null ? $model->rIDER : 'NONE';
         };
 
         $fields['ADDRESS'] = function ($model) {
             /* @var $model $this */
-            return $model->aDDRESS;
+            return $model->aDDRESS != null ? $model->aDDRESS : 'NONE';
         };
         $fields['PAYMENT'] = function ($model) {
             /* @var $model $this */
-            return $model->payment;
+            return $model->payment != null ? $model->payment : 'NONE';
         };
+
+        $fields['ORDER_ITEMS'] = function ($model) {
+            /* @var $model $this */
+            return $model->customerOrderItems != null ? $model->customerOrderItems : 'NONE';
+        };
+
+
+        $fields['ORDER_ITEMS_TEST'] = function ($model) {
+            /* @var $model $this */
+
+            //facebook_posts::find()->joinWith('fans')->joinWith(['comments', 'comments.fan'])->all();
+
+            $data = CUSTOMER_ORDER_ITEM::find()->joinWith('$iTEMTYPE')->all();
+            return $data;
+            return $model->customerOrderItems != null ? $model->customerOrderItems : 'NONE';
+        };
+
+
         ksort($fields);
         return $fields;
     }
@@ -63,16 +95,5 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS implements Linkable
     public function getPayment()
     {
         return $this->hasOne(PAYMENT_MODEL::className(), ['ORDER_ID' => 'ORDER_ID']);
-    }
-
-    public function getLinks()
-    {
-        return [];
-        return [
-            Link::REL_SELF => Url::to(['user/view', 'id' => $this->ORDER_ID], true),
-            'edit' => Url::to(['user/view', 'id' => $this->ORDER_ID], true),
-            'profile' => Url::to(['user/profile/view', 'id' => $this->ORDER_ID], true),
-            'index' => Url::to(['users'], true),
-        ];
     }
 }
