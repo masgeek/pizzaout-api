@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-13 13:45:36
+Date: 2017-12-13 14:38:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -124,30 +124,11 @@ CREATE TABLE `customer_order` (
   CONSTRAINT `customer_order_ibfk_4` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1025 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1026 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of customer_order
 -- ----------------------------
-INSERT INTO `customer_order` VALUES ('1000', '5', '1', '1', '4', '1', '2017-10-15 11:57:51', 'MOBILE', 'ORDER DELIVERED', 'More cheese', '2017-10-15 11:57:40', '2017-10-30 20:52:05');
-INSERT INTO `customer_order` VALUES ('1006', '5', '1', '1', '4', '1', '2017-10-15 11:23:49', 'MOBILE', 'RIDER DISPATCHED', 'EXTRA CHEESE', '2017-10-15 11:23:49', '2017-11-04 20:37:57');
-INSERT INTO `customer_order` VALUES ('1007', '10', '1', '1', '4', null, '2017-10-15 11:29:49', 'MOBILE', 'UNDER PREPARATION', 'EXTRA CHEESE', '2017-10-15 11:29:49', '2017-11-09 15:17:20');
-INSERT INTO `customer_order` VALUES ('1008', '10', '1', null, null, null, '2017-10-15 11:31:28', 'MOBILE', 'ORDER CANCELLED', 'EXTRA CHEESE', '2017-10-15 11:31:28', '2017-11-01 03:40:37');
-INSERT INTO `customer_order` VALUES ('1009', '10', '1', '1', '4', null, '2017-10-15 11:33:09', 'MOBILE', 'UNDER PREPARATION', 'EXTRA CHEESE', '2017-10-15 11:33:09', '2017-11-04 20:34:44');
-INSERT INTO `customer_order` VALUES ('1010', '10', '1', '1', null, '1', '2017-10-15 11:33:28', 'MOBILE', 'RIDER DISPATCHED', 'EXTRA CHEESE', '2017-10-15 11:33:28', '2017-11-04 20:41:00');
-INSERT INTO `customer_order` VALUES ('1012', '10', '1', '1', '4', null, '2017-10-15 17:17:23', 'MOBILE', 'UNDER PREPARATION', 'EXTRA CHEESE', '2017-10-15 17:17:23', '2017-11-09 15:17:12');
-INSERT INTO `customer_order` VALUES ('1013', '10', '1', '1', '4', '1', '2017-10-15 17:17:43', 'MOBILE', 'RIDER DISPATCHED', 'EXTRA CHEESE', '2017-10-15 17:17:43', '2017-11-09 15:11:28');
-INSERT INTO `customer_order` VALUES ('1014', '10', '1', '1', '4', null, '2017-10-16 01:41:48', 'MOBILE', 'UNDER PREPARATION', 'EXTRA CHEESE', '2017-10-16 01:41:48', '2017-11-04 21:06:27');
-INSERT INTO `customer_order` VALUES ('1015', '10', '1', null, null, null, '2017-10-16 01:42:13', 'MOBILE', 'ORDER CONFIRMED', 'EXTRA CHEESE', '2017-10-16 01:42:13', '2017-11-04 20:17:20');
-INSERT INTO `customer_order` VALUES ('1016', '5', '1', '1', '4', '1', '2017-10-16 01:58:36', 'MOBILE', 'RIDER DISPATCHED', 'EXTRA CHEESE', '2017-10-16 01:58:36', '2017-11-09 15:05:05');
-INSERT INTO `customer_order` VALUES ('1017', '5', '1', '1', '4', '1', '2017-10-16 02:38:13', 'MOBILE', 'RIDER DISPATCHED', 'EXTRA CHEESE', '2017-10-16 02:38:13', '2017-11-06 08:29:12');
-INSERT INTO `customer_order` VALUES ('1018', '5', '1', '1', '4', null, '2017-10-16 02:38:14', 'MOBILE', 'ORDER READY', 'EXTRA CHEESE', '2017-10-16 02:38:14', '2017-11-09 15:11:18');
-INSERT INTO `customer_order` VALUES ('1019', '10', '1', null, null, null, '2017-11-09 16:44:15', 'MOBILE', 'ORDER CONFIRMED', 'EXTRA CHEESE', '2017-11-09 16:44:16', '2017-11-09 15:16:50');
-INSERT INTO `customer_order` VALUES ('1020', '5', '1', null, null, null, '2017-11-13 02:18:55', 'MOBILE', 'ORDER PENDING', 'deliver to my house', '2017-11-13 02:18:55', '2017-11-13 02:18:55');
-INSERT INTO `customer_order` VALUES ('1021', '10', '1', null, null, null, '2017-11-15 12:41:06', 'CARD', 'ORDER PENDING', null, '2017-11-15 12:41:06', '2017-11-15 12:41:06');
-INSERT INTO `customer_order` VALUES ('1022', '10', '1', null, null, null, '2017-11-15 12:55:46', 'CARD', 'ORDER CONFIRMED', null, '2017-11-15 12:55:46', '2017-11-15 13:03:59');
-INSERT INTO `customer_order` VALUES ('1023', '5', '1', null, null, null, '2017-11-15 13:16:35', 'CARD', 'ORDER PENDING', null, '2017-11-15 13:16:35', '2017-11-15 13:16:35');
-INSERT INTO `customer_order` VALUES ('1024', '10', '1', null, null, null, '2017-11-18 13:08:28', 'CARD', 'ORDER PENDING', null, '2017-11-18 13:08:28', '2017-11-18 13:08:28');
 
 -- ----------------------------
 -- Table structure for customer_order_item
@@ -169,34 +150,11 @@ CREATE TABLE `customer_order_item` (
   KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
   CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customer_order_item
 -- ----------------------------
-INSERT INTO `customer_order_item` VALUES ('1', '1000', '1', '2', '500', '1000', '', '', '2017-10-15 11:58:07', '2017-10-15 11:58:09');
-INSERT INTO `customer_order_item` VALUES ('7', '1006', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 11:23:49', null);
-INSERT INTO `customer_order_item` VALUES ('8', '1007', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 11:29:49', null);
-INSERT INTO `customer_order_item` VALUES ('9', '1008', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 11:31:28', null);
-INSERT INTO `customer_order_item` VALUES ('10', '1009', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 11:33:09', null);
-INSERT INTO `customer_order_item` VALUES ('11', '1010', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 11:33:28', null);
-INSERT INTO `customer_order_item` VALUES ('13', '1012', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 17:17:23', null);
-INSERT INTO `customer_order_item` VALUES ('14', '1013', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-15 17:17:43', null);
-INSERT INTO `customer_order_item` VALUES ('15', '1014', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-16 01:41:48', null);
-INSERT INTO `customer_order_item` VALUES ('16', '1015', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-16 01:42:13', null);
-INSERT INTO `customer_order_item` VALUES ('17', '1016', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-16 01:58:36', null);
-INSERT INTO `customer_order_item` VALUES ('18', '1017', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-16 02:38:13', null);
-INSERT INTO `customer_order_item` VALUES ('19', '1018', '1', '1', '500', '500', 'N/A', 'Test Order', '2017-10-16 02:38:14', null);
-INSERT INTO `customer_order_item` VALUES ('20', '1019', '1', '2', '1200', '1200', 'N/A', 'Test Order', '2017-11-09 16:44:15', null);
-INSERT INTO `customer_order_item` VALUES ('21', '1020', '1', '2', '1200', '2400', 'N/A', 'Test Order Here', '2017-11-13 02:18:55', null);
-INSERT INTO `customer_order_item` VALUES ('22', '1020', '4', '1', '300', '300', 'N/A', 'Test Order Here', '2017-11-13 02:18:56', null);
-INSERT INTO `customer_order_item` VALUES ('23', '1021', '1', '1', '1200', '1200', 'N/A', 'Test Order Here', '2017-11-15 12:41:06', null);
-INSERT INTO `customer_order_item` VALUES ('24', '1021', '4', '1', '300', '300', 'N/A', 'Test Order Here', '2017-11-15 12:41:06', null);
-INSERT INTO `customer_order_item` VALUES ('25', '1022', '1', '1', '1200', '1200', 'N/A', 'Test Order Here', '2017-11-15 12:55:46', null);
-INSERT INTO `customer_order_item` VALUES ('26', '1022', '4', '1', '300', '300', 'N/A', 'Test Order Here', '2017-11-15 12:55:46', null);
-INSERT INTO `customer_order_item` VALUES ('27', '1023', '2', '1', '500', '500', 'N/A', 'Test Order Here', '2017-11-15 13:16:35', null);
-INSERT INTO `customer_order_item` VALUES ('28', '1024', '1', '1', '1200', '1200', 'N/A', 'Test Order Here', '2017-11-18 13:08:28', null);
-INSERT INTO `customer_order_item` VALUES ('29', '1024', '4', '1', '300', '300', 'N/A', 'Test Order Here', '2017-11-18 13:08:28', null);
 
 -- ----------------------------
 -- Table structure for kitchen
@@ -284,10 +242,10 @@ CREATE TABLE `menu_item` (
 -- ----------------------------
 -- Records of menu_item
 -- ----------------------------
-INSERT INTO `menu_item` VALUES ('1', '1', 'Margherita', 'Crushed Tomatoes, Mozzarella, Grana, Basil', '2.jpg', '\0', '\0', '10');
-INSERT INTO `menu_item` VALUES ('2', '1', 'Hawaiian', 'pizza topped with tomato sauce, cheese, pineapple, and Canadian bacon or ham. Some versions may include peppers, mushrooms', '2.jpg', '\0', '\0', '10');
-INSERT INTO `menu_item` VALUES ('3', '1', 'Chicken Tikka Masala', 'cheesy pizza topped with delicious Indian chicken tikka masala', '2.jpg', '\0', '\0', '10');
-INSERT INTO `menu_item` VALUES ('4', '1', 'Supreme', 'Sausage, pepperoni, mushrooms, olives, peppers, and onion', '2.jpg', '\0', '\0', '10');
+INSERT INTO `menu_item` VALUES ('1', '1', 'Margherita', 'Crushed Tomatoes, Mozzarella, Grana, Basil', '1.jpg', '\0', '\0', '10');
+INSERT INTO `menu_item` VALUES ('2', '1', 'Hawaiian', 'pizza topped with tomato sauce, cheese, pineapple, and Canadian bacon or ham. Some versions may include peppers, mushrooms', '3.jpg', '\0', '\0', '10');
+INSERT INTO `menu_item` VALUES ('3', '1', 'Chicken Tikka Masala', 'cheesy pizza topped with delicious Indian chicken tikka masala', '4.jpg', '\0', '\0', '10');
+INSERT INTO `menu_item` VALUES ('4', '1', 'Supreme', 'Sausage, pepperoni, mushrooms, olives, peppers, and onion', '5.jpg', '\0', '\0', '10');
 
 -- ----------------------------
 -- Table structure for menu_item_type
@@ -302,7 +260,7 @@ CREATE TABLE `menu_item_type` (
   PRIMARY KEY (`ITEM_TYPE_ID`),
   KEY `MENU_ITEM_ID` (`MENU_ITEM_ID`) USING BTREE,
   CONSTRAINT `menu_item_type_ibfk_1` FOREIGN KEY (`MENU_ITEM_ID`) REFERENCES `menu_item` (`MENU_ITEM_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of menu_item_type
@@ -311,6 +269,7 @@ INSERT INTO `menu_item_type` VALUES ('1', '1', 'LARGE', '1200.00', '');
 INSERT INTO `menu_item_type` VALUES ('2', '1', 'SMALL', '500.00', '');
 INSERT INTO `menu_item_type` VALUES ('3', '2', 'MEDIUM', '700.00', '');
 INSERT INTO `menu_item_type` VALUES ('4', '4', 'LARGE', '300.00', '');
+INSERT INTO `menu_item_type` VALUES ('5', '3', 'MEDIUM', '350.00', '');
 
 -- ----------------------------
 -- Table structure for order_tracking
@@ -329,56 +288,11 @@ CREATE TABLE `order_tracking` (
   KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of order_tracking
 -- ----------------------------
-INSERT INTO `order_tracking` VALUES ('60', '1010', 'werwer', 'ORDER CONFIRMED', '2017-11-04 17:14:45', '');
-INSERT INTO `order_tracking` VALUES ('61', '1016', 'Order confirmed', 'ORDER CONFIRMED', '2017-11-04 17:42:26', '');
-INSERT INTO `order_tracking` VALUES ('62', '1014', 'confiormed', 'ORDER CONFIRMED', '2017-11-04 17:43:55', '');
-INSERT INTO `order_tracking` VALUES ('63', '1012', 'test', 'ORDER PENDING', '2017-11-04 18:45:59', '');
-INSERT INTO `order_tracking` VALUES ('64', '1014', 'Chef assigned', 'CHEF ASSIGNED', '2017-11-04 19:05:51', '');
-INSERT INTO `order_tracking` VALUES ('65', '1016', 'Kitchen transfer', 'KITCHEN ALLOCATED', '2017-11-04 20:16:21', '');
-INSERT INTO `order_tracking` VALUES ('66', '1009', 'Kitchen transfer', 'KITCHEN ALLOCATED', '2017-11-04 20:16:45', '');
-INSERT INTO `order_tracking` VALUES ('67', '1015', 'confirmed', 'ORDER CONFIRMED', '2017-11-04 20:17:20', '');
-INSERT INTO `order_tracking` VALUES ('68', '1012', 'confirm', 'ORDER CONFIRMED', '2017-11-04 20:17:59', '');
-INSERT INTO `order_tracking` VALUES ('69', '1009', 'Assigned cheff', 'CHEF ASSIGNED', '2017-11-04 20:21:30', '');
-INSERT INTO `order_tracking` VALUES ('70', '1009', 'Preparing', 'UNDER PREPARATION', '2017-11-04 20:34:45', '');
-INSERT INTO `order_tracking` VALUES ('71', '1006', 'Ready', 'ORDER READY', '2017-11-04 20:35:04', '');
-INSERT INTO `order_tracking` VALUES ('72', '1006', 'Assigned', 'RIDER ASSIGNED', '2017-11-04 20:37:57', '');
-INSERT INTO `order_tracking` VALUES ('73', '1010', 'Rider assigned', 'RIDER ASSIGNED', '2017-11-04 20:41:00', '');
-INSERT INTO `order_tracking` VALUES ('74', '1014', 'Order being prepared', 'UNDER PREPARATION', '2017-11-04 21:06:27', '');
-INSERT INTO `order_tracking` VALUES ('75', '1017', 'paid', 'ORDER CONFIRMED', '2017-11-06 08:24:48', '');
-INSERT INTO `order_tracking` VALUES ('76', '1017', 'prepare urgently', 'KITCHEN ALLOCATED', '2017-11-06 08:25:39', '');
-INSERT INTO `order_tracking` VALUES ('77', '1017', 'done', 'CHEF ASSIGNED', '2017-11-06 08:27:06', '');
-INSERT INTO `order_tracking` VALUES ('78', '1017', 'done', 'UNDER PREPARATION', '2017-11-06 08:27:29', '');
-INSERT INTO `order_tracking` VALUES ('79', '1017', 'prepared', 'ORDER READY', '2017-11-06 08:28:10', '');
-INSERT INTO `order_tracking` VALUES ('80', '1017', 'Assigned', 'RIDER ASSIGNED', '2017-11-06 08:29:12', '');
-INSERT INTO `order_tracking` VALUES ('81', '1013', 'ghgh', 'ORDER CONFIRMED', '2017-11-07 12:07:19', '');
-INSERT INTO `order_tracking` VALUES ('82', '1013', '6565656', 'KITCHEN ALLOCATED', '2017-11-07 12:09:18', '');
-INSERT INTO `order_tracking` VALUES ('83', '1013', 'bv', 'CHEF ASSIGNED', '2017-11-07 12:10:16', '');
-INSERT INTO `order_tracking` VALUES ('84', '1013', 'hgfhfgh', 'UNDER PREPARATION', '2017-11-07 12:12:02', '');
-INSERT INTO `order_tracking` VALUES ('85', '1013', 'vbcbvb', 'ORDER READY', '2017-11-07 12:12:22', '');
-INSERT INTO `order_tracking` VALUES ('86', '1019', null, 'ORDER PENDING', '2017-11-09 16:44:16', '');
-INSERT INTO `order_tracking` VALUES ('87', '1016', 'PREPARING', 'UNDER PREPARATION', '2017-11-09 15:01:20', '');
-INSERT INTO `order_tracking` VALUES ('88', '1016', 'READY', 'ORDER READY', '2017-11-09 15:02:03', '');
-INSERT INTO `order_tracking` VALUES ('89', '1016', 'DISPATCHED', 'RIDER DISPATCHED', '2017-11-09 15:05:05', '');
-INSERT INTO `order_tracking` VALUES ('90', '1018', 'CONFIRMED', 'ORDER CONFIRMED', '2017-11-09 15:05:49', '');
-INSERT INTO `order_tracking` VALUES ('91', '1018', null, 'KITCHEN ALLOCATED', '2017-11-09 15:10:51', '');
-INSERT INTO `order_tracking` VALUES ('92', '1018', null, 'UNDER PREPARATION', '2017-11-09 15:11:08', '');
-INSERT INTO `order_tracking` VALUES ('93', '1018', null, 'ORDER READY', '2017-11-09 15:11:18', '');
-INSERT INTO `order_tracking` VALUES ('94', '1013', null, 'RIDER DISPATCHED', '2017-11-09 15:11:29', '');
-INSERT INTO `order_tracking` VALUES ('95', '1019', null, 'ORDER CONFIRMED', '2017-11-09 15:16:50', '');
-INSERT INTO `order_tracking` VALUES ('96', '1012', null, 'KITCHEN ALLOCATED', '2017-11-09 15:16:58', '');
-INSERT INTO `order_tracking` VALUES ('97', '1012', null, 'UNDER PREPARATION', '2017-11-09 15:17:12', '');
-INSERT INTO `order_tracking` VALUES ('98', '1007', null, 'UNDER PREPARATION', '2017-11-09 15:17:20', '');
-INSERT INTO `order_tracking` VALUES ('99', '1020', null, 'ORDER PENDING', '2017-11-13 02:18:55', '');
-INSERT INTO `order_tracking` VALUES ('100', '1021', null, 'ORDER PENDING', '2017-11-15 12:41:06', '');
-INSERT INTO `order_tracking` VALUES ('101', '1022', null, 'ORDER PENDING', '2017-11-15 12:55:46', '');
-INSERT INTO `order_tracking` VALUES ('102', '1022', null, 'ORDER CONFIRMED', '2017-11-15 12:57:54', '');
-INSERT INTO `order_tracking` VALUES ('103', '1023', null, 'ORDER PENDING', '2017-11-15 13:16:35', '');
-INSERT INTO `order_tracking` VALUES ('104', '1024', null, 'ORDER PENDING', '2017-11-18 13:08:28', '');
 
 -- ----------------------------
 -- Table structure for payment
@@ -399,29 +313,11 @@ CREATE TABLE `payment` (
   KEY `payment_ibfk_2` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`PAYMENT_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of payment
 -- ----------------------------
-INSERT INTO `payment` VALUES ('1', '1000', 'CARD', '0.00', '1000-5A2163A78D0F5', 'ORDER CONFIRMED', '2017-12-01 14:14:03', null, 'Unknown');
-INSERT INTO `payment` VALUES ('7', '1006', 'MOBILE', '500.00', 'PIZZA_59E38B956E655', 'PAYMENT PENDING', '2017-10-15 11:23:49', 'N/A', null);
-INSERT INTO `payment` VALUES ('8', '1007', 'MOBILE', '500.00', 'PIZZA_59E38CFD0AF07', 'PAYMENT PENDING', '2017-10-15 11:29:49', 'N/A', null);
-INSERT INTO `payment` VALUES ('9', '1008', 'MOBILE', '500.00', 'PIZZA_59E38D6097F05', 'PAYMENT PENDING', '2017-10-15 11:31:28', 'N/A', null);
-INSERT INTO `payment` VALUES ('10', '1009', 'MOBILE', '500.00', 'PIZZA_59E38DC51FC16', 'PAYMENT PENDING', '2017-10-15 11:33:09', 'N/A', null);
-INSERT INTO `payment` VALUES ('11', '1010', 'MOBILE', '500.00', 'PIZZA_59E38DD81BC33', 'PAYMENT PENDING', '2017-10-15 11:33:28', 'N/A', null);
-INSERT INTO `payment` VALUES ('13', '1012', 'MOBILE', '500.00', 'PIZZA_59E3DE739A18C', 'PAYMENT PENDING', '2017-10-15 17:17:23', 'N/A', null);
-INSERT INTO `payment` VALUES ('14', '1013', 'MOBILE', '500.00', 'PIZZA_59E3DE875B6A6', 'PAYMENT PENDING', '2017-10-15 17:17:43', 'N/A', null);
-INSERT INTO `payment` VALUES ('15', '1014', 'MOBILE', '500.00', 'PIZZA_59E454ABEDEBE', 'PAYMENT PENDING', '2017-10-16 01:41:48', 'N/A', null);
-INSERT INTO `payment` VALUES ('16', '1015', 'MOBILE', '500.00', 'PIZZA_59E454C586542', 'PAYMENT PENDING', '2017-10-16 01:42:13', 'N/A', null);
-INSERT INTO `payment` VALUES ('17', '1016', 'MOBILE', '500.00', 'PIZZA_59E4589CC5D00', 'PAYMENT PENDING', '2017-10-16 01:58:36', 'N/A', null);
-INSERT INTO `payment` VALUES ('18', '1017', 'MOBILE', '500.00', 'PIZZA_59E461E565175', 'PAYMENT PENDING', '2017-10-16 02:38:13', 'N/A', null);
-INSERT INTO `payment` VALUES ('19', '1018', 'MOBILE', '500.00', 'PIZZA_59E461E68D452', 'PAYMENT PENDING', '2017-10-16 02:38:14', 'N/A', null);
-INSERT INTO `payment` VALUES ('20', '1019', 'MOBILE', '1200.00', 'PIZZA_5A045BB00A4AA', 'ORDER PENDING', '2017-11-09 16:44:15', 'N/A', null);
-INSERT INTO `payment` VALUES ('21', null, 'MOBILE', '2700.00', '5A09011009714', 'PAYMENT PENDING', '2017-11-13 02:18:56', null, '0724802220');
-INSERT INTO `payment` VALUES ('22', '1022', 'CARD', '1500.00', '1022-5A0C39B8AF328', 'ORDER CONFIRMED', '2017-11-15 13:03:59', '731923364944', 'Mastercard');
-INSERT INTO `payment` VALUES ('23', '1023', 'CARD', '500.00', '1023-5A0C3E342DC72', 'ORDER CONFIRMED', '2017-11-15 13:18:59', '732000364946', 'Unknown');
-INSERT INTO `payment` VALUES ('24', '1024', 'CARD', '1500.00', '1024-5A1030CD23108', 'ORDER CONFIRMED', '2017-11-21 17:24:28', null, 'Unknown');
 
 -- ----------------------------
 -- Table structure for riders
@@ -432,7 +328,7 @@ CREATE TABLE `riders` (
   `KITCHEN_ID` bigint(10) DEFAULT NULL,
   `RIDER_NAME` varchar(100) NOT NULL,
   `RIDER_MOBILE` varchar(255) DEFAULT NULL,
-  `RIDER_STATUS` int(1) NOT NULL DEFAULT '1',
+  `RIDER_STATUS` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`RIDER_ID`),
   KEY `KITCHEN_ID` (`KITCHEN_ID`) USING BTREE,
   CONSTRAINT `riders_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE
@@ -441,10 +337,10 @@ CREATE TABLE `riders` (
 -- ----------------------------
 -- Records of riders
 -- ----------------------------
-INSERT INTO `riders` VALUES ('1', '1', 'Yusuf', '56765', '1');
-INSERT INTO `riders` VALUES ('2', '2', 'Khaleed', '6786786', '1');
-INSERT INTO `riders` VALUES ('3', '1', 'Ismael', '34534', '1');
-INSERT INTO `riders` VALUES ('4', '2', 'Latif', '78958', '1');
+INSERT INTO `riders` VALUES ('1', '1', 'Yusuf', '56765', '');
+INSERT INTO `riders` VALUES ('2', '2', 'Khaleed', '6786786', '');
+INSERT INTO `riders` VALUES ('3', '1', 'Ismael', '34534', '');
+INSERT INTO `riders` VALUES ('4', '2', 'Latif', '78958', '');
 
 -- ----------------------------
 -- Table structure for tb_cart
@@ -470,7 +366,6 @@ CREATE TABLE `tb_cart` (
 -- ----------------------------
 -- Records of tb_cart
 -- ----------------------------
-INSERT INTO `tb_cart` VALUES ('3', '10', '1', '7', '1200', 'LARGE', '1512726042', '2017-12-08 09:40:46', '2017-12-09 13:32:40');
 
 -- ----------------------------
 -- Table structure for tb_favs
