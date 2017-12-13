@@ -1,17 +1,18 @@
 <?php
 \Yii::setAlias('@foodimages', 'images/foodimages/');
 
-$db = require(__DIR__ . '/../../config/db.php');
-$fcm = require(__DIR__ . '/../../config/fcm.php');
-$braintree = require(__DIR__ . '/../../config/braintree.php');
-$params = require(__DIR__ . '/params.php');
+$db = require_once(__DIR__ . '/../../config/db.php');
+$fcm = require_once(__DIR__ . '/../../config/fcm.php');
+$braintree = require_once(__DIR__ . '/../../config/braintree.php');
+$params = require_once(__DIR__ . '/params.php');
+$formatter = require_once(__DIR__ . '/../../config/formatter.php');
 
 $config = [
     'id' => 'basic-api',
     'name' => 'PIZZA API',
     // Need to get one level up:
     'basePath' => dirname(__DIR__) . '/..',
-    'timeZone' => 'Africa/Nairobi',
+    'timeZone' => $timezone,
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '../vendor/bower-asset',
@@ -174,6 +175,8 @@ $config = [
                 ],
             ],
         ],
+        //formatting class
+        'formatter' => $formatter,
         'db' => $db,
         'user' => [
             'identityClass' => 'app\models\User',

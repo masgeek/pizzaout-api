@@ -12,6 +12,7 @@ use Yii;
  * @property string $COMMENTS
  * @property string $STATUS
  * @property string $TRACKING_DATE
+ * @property bool $USER_VISIBLE
  *
  * @property CustomerOrder $oRDER
  * @property Status $sTATUS
@@ -35,6 +36,7 @@ class OrderTracking extends \yii\db\ActiveRecord
             [['ORDER_ID', 'STATUS'], 'required'],
             [['ORDER_ID'], 'integer'],
             [['TRACKING_DATE'], 'safe'],
+            [['USER_VISIBLE'], 'boolean'],
             [['COMMENTS'], 'string', 'max' => 255],
             [['STATUS'], 'string', 'max' => 30],
             [['ORDER_ID', 'STATUS'], 'unique', 'targetAttribute' => ['ORDER_ID', 'STATUS']],
@@ -54,6 +56,7 @@ class OrderTracking extends \yii\db\ActiveRecord
             'COMMENTS' => 'Comments',
             'STATUS' => 'Status',
             'TRACKING_DATE' => 'Tracking  Date',
+            'USER_VISIBLE' => 'User  Visible',
         ];
     }
 

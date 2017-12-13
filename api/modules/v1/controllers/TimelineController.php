@@ -49,16 +49,24 @@ class TimelineController extends ActiveController
 
     }
 
+    /**
+     * @throws Exception
+     */
     public function actionIndex()
     {
-        throw new Exception('', 400);
+        throw new Exception('Not allowed', 404);
     }
 
+    /**
+     * @param $order_id
+     * @return TRACKING_MODEL[]|array|\yii\db\ActiveRecord[]
+     */
     public function actionActiveOrders($order_id)
     {
         $orderTimeline = TRACKING_MODEL::find()
             ->where(['ORDER_ID' => $order_id])
-            ->orderBy(['TRACKING_DATE' => SORT_DESC])
+            ->andWhere(['USER_VISIBLE' => 1])
+            ->orderBy(['TRACKING_DATE' => SORT_ASC])
             ->all();
 
         return $orderTimeline;

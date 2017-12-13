@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%favs}}".
+ * This is the model class for table "tb_favs".
  *
  * @property int $FAV_ID
  * @property int $MENU_ITEM_ID
@@ -21,7 +21,7 @@ class Favs extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%favs}}';
+        return 'tb_favs';
     }
 
     /**

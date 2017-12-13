@@ -104,6 +104,9 @@ class OrderController extends ActiveController
     private function getOrders($order_type, $user_id)
     {
         switch ($order_type) {
+            case 'ACTIVE':
+                $order_status = $this->activeOrders();
+                break;
             case 'CONFIRMED':
             default:
                 $order_status = $this->confirmedOrders();
@@ -121,7 +124,7 @@ class OrderController extends ActiveController
         }
 
         $orders = CUSTOMER_ORDER_MODEL::find()
-            ->where(['ORDER_STATUS' => $order_status])
+            //->where(['ORDER_STATUS' => $order_status])
             ->andWhere(['USER_ID' => $user_id])
             ->orderBy(['ORDER_DATE' => SORT_DESC])
             ->all();
@@ -138,7 +141,8 @@ class OrderController extends ActiveController
             ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
             ORDER_HELPER::STATUS_UNDER_PREPARATION,
             ORDER_HELPER::STATUS_AWAITING_RIDER,
-            ORDER_HELPER::STATUS_RIDER_DISPATCHED
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED,
+            ORDER_HELPER::STATUS_KITCHEN_ASSIGNED
         ];
 
     }

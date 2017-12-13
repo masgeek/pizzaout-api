@@ -11,7 +11,7 @@ use Yii;
  * @property int $KITCHEN_ID
  * @property string $RIDER_NAME
  * @property string $RIDER_MOBILE
- * @property int $RIDER_STATUS
+ * @property bool $RIDER_STATUS
  *
  * @property CustomerOrder[] $customerOrders
  * @property Kitchen $kITCHEN
@@ -32,8 +32,9 @@ class Riders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['KITCHEN_ID', 'RIDER_STATUS'], 'integer'],
+            [['KITCHEN_ID'], 'integer'],
             [['RIDER_NAME'], 'required'],
+            [['RIDER_STATUS'], 'boolean'],
             [['RIDER_NAME'], 'string', 'max' => 100],
             [['RIDER_MOBILE'], 'string', 'max' => 255],
             [['KITCHEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Kitchen::className(), 'targetAttribute' => ['KITCHEN_ID' => 'KITCHEN_ID']],

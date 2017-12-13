@@ -1,12 +1,11 @@
 <?php
+$params = require_once(__DIR__ . '/params.php');
+$fcm = require_once(__DIR__ . '/fcm.php');
+$braintree = require_once(__DIR__ . '/braintree.php');
+$aliases = require_once(__DIR__ . '/aliases.php');
+$merchant = require_once(__DIR__ . '/card_merchant.php');
+$formatter = require_once(__DIR__ . '/formatter.php');
 
-$params = require(__DIR__ . '/params.php');
-$fcm = require(__DIR__ . '/fcm.php');
-$braintree = require(__DIR__ . '/braintree.php');
-$aliases = require(__DIR__ . '/aliases.php');
-$merchant = require(__DIR__ . '/card_merchant.php');
-
-$timezone = 'UTC';//'Africa/Nairobi';
 
 $config = [
     'id' => 'basic',
@@ -105,16 +104,7 @@ $config = [
             ],
         ],
         //formatting class
-        'formatter' => [
-            'class' => 'yii\i18n\Formatter',
-            //'dateFormat' => 'dd.MM.yyyy',
-            'decimalSeparator' => '.',
-            'thousandSeparator' => ',',
-            'timeZone' => $timezone, //default time zones and format
-            //'currencyCode' => 'USD',
-            'currencyCode' => 'KES',
-            'nullDisplay' => '0'
-        ],
+        'formatter' => $formatter,
 
     ],
     'params' => $params,
