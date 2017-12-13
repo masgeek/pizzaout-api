@@ -91,7 +91,18 @@ class OrderController extends ActiveController
     {
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'CONFIRMED');
         $order_type = strtoupper($order_type_post);
+        return $this->getOrders($order_type, $user_id);
+    }
 
+    public function actionActiveOrders($user_id)
+    {
+        $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
+        $order_type = strtoupper($order_type_post);
+        return $this->getOrders($order_type, $user_id);
+    }
+
+    private function getOrders($order_type, $user_id)
+    {
         switch ($order_type) {
             case 'CONFIRMED':
             default:
@@ -118,31 +129,19 @@ class OrderController extends ActiveController
         return $orders;
     }
 
-    public function actionActiveOrders($user_id)
+    private function activeOrders()
     {
-        $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'CONFIRMED');
-        $order_type = strtoupper($order_type_post);
+        return [
+            ORDER_HELPER::STATUS_ORDER_PENDING,
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION,
+            ORDER_HELPER::STATUS_AWAITING_RIDER,
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED
+        ];
 
-        switch ($order_type) {
-            case 'CONFIRMED':
-            default:
-                $order_status = $this->confirmedOrders();
-                //add the pending flag here
-                $order_status = array_merge_recursive($order_status, [ORDER_HELPER::STATUS_ORDER_PENDING]);
-                break;
-        }
-
-
-        return $order_status;
-        $orders = CUSTOMER_ORDER_MODEL::find()
-            ->where(['ORDER_STATUS' => $order_status])
-            ->andWhere(['USER_ID' => $user_id])
-            ->orderBy(['ORDER_DATE' => SORT_DESC])
-            ->all();
-
-        return $orders;
     }
-
 
     private function confirmedOrders()
     {
