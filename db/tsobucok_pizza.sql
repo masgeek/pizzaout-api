@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-13 14:38:11
+Date: 2017-12-13 16:08:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -124,11 +124,12 @@ CREATE TABLE `customer_order` (
   CONSTRAINT `customer_order_ibfk_4` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1026 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1032 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of customer_order
 -- ----------------------------
+INSERT INTO `customer_order` VALUES ('1031', '10', '1', null, null, null, '2017-12-13 12:37:05', 'VISA', 'ORDER CONFIRMED', null, '2017-12-13 12:37:05', '2017-12-13 12:37:05');
 
 -- ----------------------------
 -- Table structure for customer_order_item
@@ -150,7 +151,7 @@ CREATE TABLE `customer_order_item` (
   KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
   CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customer_order_item
@@ -288,11 +289,12 @@ CREATE TABLE `order_tracking` (
   KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of order_tracking
 -- ----------------------------
+INSERT INTO `order_tracking` VALUES ('113', '1031', null, 'ORDER CONFIRMED', '2017-12-13 12:37:05', '');
 
 -- ----------------------------
 -- Table structure for payment
@@ -313,11 +315,12 @@ CREATE TABLE `payment` (
   KEY `payment_ibfk_2` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`PAYMENT_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of payment
 -- ----------------------------
+INSERT INTO `payment` VALUES ('30', '1031', 'VISA', '700.00', '1513168290', 'ORDER CONFIRMED', '2017-12-13 12:37:05', 'd8074d25-7ea4-0f23-5f6e-faf5b561a632', 'VISA');
 
 -- ----------------------------
 -- Table structure for riders
@@ -361,7 +364,7 @@ CREATE TABLE `tb_cart` (
   KEY `USER_ID` (`USER_ID`) USING BTREE,
   CONSTRAINT `tb_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_cart_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tb_cart
