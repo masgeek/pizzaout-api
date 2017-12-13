@@ -108,6 +108,7 @@ $config = [
                     ],
                     'extraPatterns' => [
                         'POST {user_id}/my-orders' => 'my-orders',
+                        'POST {user_id}/active-orders' => 'active-orders',
                     ]
                 ],
                 [

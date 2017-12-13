@@ -565,7 +565,7 @@ CREATE TABLE `tb_users` (
 
 INSERT INTO `tb_users` (`USER_ID`, `USER_NAME`, `USER_TYPE`, `SURNAME`, `OTHER_NAMES`, `MOBILE`, `EMAIL`, `LOCATION_ID`, `PASSWORD`, `DATE_REGISTERED`, `LAST_UPDATED`, `CLIENT_TOKEN`) VALUES
 (5, 'pkyalo', 1, 'kingoo', 'Peter Kyalo', 724802220, 'petchaloo@gmail.com', 1, '834dfae0c40820faccf4f83580be800545dca3c1', NULL, NULL, NULL),
-(10, 'fatelord', 1, 'BARASA', '1123', 1123, '1233333DT', 1, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', NULL),
+(10, 'fatelord', 1, 'BARASA', 'SAMMY M', 1123, 'barsamms@gmail.com', 1, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', NULL),
 (11, 'admin', 2, 'admin', 'admin', 123, 'admin@slice.com', 1, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-11-10 13:11:43', '2017-11-10 13:11:49', NULL);
 
 -- --------------------------------------------------------
@@ -589,39 +589,9 @@ INSERT INTO `user_type` (`USER_TYPE_ID`, `USER_TYPE_NAME`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_orders`
--- (See below for the actual view)
---
-CREATE TABLE `vw_orders` (
-`ORDER_ID` bigint(20)
-,`USER_ID` bigint(20)
-,`KITCHEN_ID` bigint(10)
-,`CHEF_ID` bigint(10)
-,`RIDER_ID` bigint(10)
-,`MOBILE` int(20)
-,`SURNAME` varchar(100)
-,`OTHER_NAMES` varchar(100)
-,`ORDER_DATE` datetime
-,`ORDER_STATUS` varchar(30)
-,`PAYMENT_AMOUNT` decimal(10,2)
-,`PAYMENT_NUMBER` varchar(30)
-,`NOTES` varchar(255)
-,`ADDRESS_ID` bigint(20)
-,`PAYMENT_METHOD` varchar(20)
-,`CREATED_AT` datetime
-,`UPDATED_AT` datetime
-,`PAYMENT_DATE` datetime
-);
 
--- --------------------------------------------------------
-
---
--- Structure for view `vw_orders`
---
-DROP TABLE IF EXISTS `vw_orders`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`tsobucok`@`localhost` SQL SECURITY DEFINER VIEW `vw_orders`  AS  select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
+DROP VIEW if EXISTS `vw_orders`;
+CREATE VIEW `vw_orders`  AS  select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
 
 --
 -- Indexes for dumped tables
