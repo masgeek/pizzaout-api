@@ -50,13 +50,18 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             /* @var $model $this */
             return $model->payment != null ? $model->payment : 'NONE';
         };
-
+        $fields['ORDER_TIMELINE'] = function ($model) {
+            /* @var $model $this */
+            //$data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
+            //return $data;
+            return $this->orderTrackings != null ? $this->orderTrackings : 'NONE';
+        };
+        
         $fields['ORDER_DETAILS'] = function ($model) {
             /* @var $model $this */
             $data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
             return $data;
         };
-
 
         ksort($fields);
         return $fields;

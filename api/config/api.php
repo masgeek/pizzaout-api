@@ -114,6 +114,20 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
+                        'v1/timeline',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                        //'{user_id}' => '<user_id:\\w+>',
+                        '{order_id}' => '<order_id:\\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'GET {order_id}/active-orders' => 'active-orders',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
                         'v1/cust-addr' => 'v1/customeraddress',
                     ],
                     'tokens' => [
