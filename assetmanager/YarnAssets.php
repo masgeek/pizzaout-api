@@ -29,7 +29,7 @@ class YarnAssets extends AssetBundle
 	];
 
 	public $js = [
-		'modernizr/bin/modernizr',
+		/*'modernizr/bin/modernizr',
 		'bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
 		'magnific-popup/dist/jquery.magnific-popup.js',
 		'nanoscroller/bin/javascripts/jquery.nanoscroller.js',
@@ -47,7 +47,7 @@ class YarnAssets extends AssetBundle
 		'jqvmap/dist/maps/continents/jquery.vmap.europe.js',
 		'jqvmap/dist/maps/continents/jquery.vmap.north-america.js',
 		'jqvmap/dist/maps/continents/jquery.vmap.south-america.js',
-		'jqvmap/examples/js/jquery.vmap.sampledata.js',
+		'jqvmap/examples/js/jquery.vmap.sampledata.js',*/
 	];
 
 	public $depends = [

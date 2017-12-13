@@ -76,7 +76,7 @@ class PaymentController extends ActiveController
     {
         $payment = new PAYMENT_HELPER();
 
-        $nonce = $payment->GenerateNonce($user_id);
+        $nonce = null;//$payment->GenerateNonce($user_id);
         $token = $payment->GetToken();//$payment->CreateSale($nonce);
 
         return [

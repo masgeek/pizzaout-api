@@ -21,59 +21,94 @@ $field_template = <<<TEMPLATE
     {error}{hint}
 TEMPLATE;
 
+$checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
 ?>
 <div class="customer-orders-form">
-	<?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
-	<?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ALLOCATE_KITCHEN): ?>
+    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ALLOCATE_KITCHEN): ?>
         <div class="col-md-12">
-			<?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
-					'prompt' => '--- SELECT KITCHEN ---',
-					'class' => 'form-control'
-				]
-			) ?>
+            <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
+                    'prompt' => '--- SELECT KITCHEN ---',
+                    'class' => 'form-control'
+                ]
+            ) ?>
         </div>
 
-	<?php endif; ?>
+    <?php endif; ?>
 
-	<?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_CHEF): ?>
+    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_CHEF): ?>
         <div class="col-md-12">
-			<?= $form->field($model, 'CHEF_ID', ['template' => $field_template])->dropDownList(\app\model_extended\CHEF_MODEL::GetChefs($model->KITCHEN_ID), [
-					'prompt' => '--- SELECT CHEF ---',
-				]
-			) ?>
+            <?= $form->field($model, 'CHEF_ID', ['template' => $field_template])->dropDownList(\app\model_extended\CHEF_MODEL::GetChefs($model->KITCHEN_ID), [
+                    'prompt' => '--- SELECT CHEF ---',
+                ]
+            ) ?>
         </div>
-	<?php endif; ?>
+    <?php endif; ?>
 
 
-	<?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER): ?>
+    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER): ?>
         <div class="col-md-12">
-			<?= $form->field($model, 'RIDER_ID', ['template' => $field_template])->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
-					'prompt' => '--- SELECT RIDER ---',
-				]
-			) ?>
+            <?= $form->field($model, 'RIDER_ID', ['template' => $field_template])->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
+                    'prompt' => '--- SELECT RIDER ---',
+                ]
+            ) ?>
         </div>
-	<?php endif; ?>
+    <?php endif; ?>
 
     <div class="col-md-12">
-		<?= $form->field($model, 'ORDER_STATUS', ['template' => $field_template])->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus($model->ORDER_ID, $scope, $workflow), [
-			'prompt' => '--- SELECT STATUS ---',
-			'class' => 'form-control',
-		]) ?>
+        <?= $form->field($model, 'ORDER_STATUS', ['template' => $field_template])->dropDownList(\app\model_extended\STATUS_MODEL::GetStatus($model->ORDER_ID, $scope, $workflow), [
+            'prompt' => '--- SELECT STATUS ---',
+            'class' => 'form-control',
+        ]) ?>
     </div>
 
     <div class="col-md-12">
-		<?= $form->field($model, 'COMMENTS', ['template' => $field_template])->textarea([
-			'cols' => 4,
-			'rows' => 4,
-			'placeholder' => 'Comments'
-		])->label(false) ?>
+        <div class="input-group">
+                    <span class="input-group-addon beautiful">
+                        <?= $form->field($model, 'ALERT_USER')->checkbox(['label' => null, 'class' => null])->label(false); ?>
+                    </span>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <?= $form->field($model, 'COMMENTS', ['template' => $field_template])->textarea([
+            'cols' => 4,
+            'rows' => 4,
+            'placeholder' => 'Comments'
+        ])->label(false) ?>
     </div>
 
 
     <div class="form-group">
-		<?= Html::submitButton('Process Order', ['class' => 'btn btn-success btn-lg btn-block']) ?>
+        <?= Html::submitButton('Process Order', ['class' => 'btn btn-success btn-lg btn-block']) ?>
     </div>
 
-	<?php ActiveForm::end(); ?>
+    <!--
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon beautiful">
+                        <input type="checkbox">
+                    </span>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon beautiful">
+                        <input type="radio">
+                    </span>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+    </div>
+-->
+    <?php ActiveForm::end(); ?>
 </div>

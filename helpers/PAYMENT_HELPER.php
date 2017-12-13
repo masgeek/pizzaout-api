@@ -38,7 +38,7 @@ Braintree_Configuration::privateKey('2bc24b7befcaca84f632ea9cc78806dd');
         Braintree_Configuration::privateKey($this->private_key);
     }
 
-    public function GetToken(array $params = [])
+    public function GetToken()
     {
         $clientToken = \Braintree_ClientToken::generate();
 

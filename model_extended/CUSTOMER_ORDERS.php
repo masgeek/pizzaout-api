@@ -17,6 +17,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 {
 
     public $COMMENTS;
+    public $ALERT_USER = true;
 
     public function attributeLabels()
     {
@@ -30,6 +31,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $labels['ORDER_PRICE'] = 'Total';
         $labels['PAYMENT_METHOD'] = 'Payment';
         $labels['ORDER_STATUS'] = 'Status';
+        $labels['ALERT_USER'] = 'Notify User';
         $labels['ORDER_ID'] = 'Order ID #';
 
         return $labels;
@@ -40,7 +42,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
     {
         $rules = parent::rules();
 
-        $rules[] = [['ORDER_STATUS'], 'required', 'on' => [
+        $rules[] = [['ORDER_STATUS', 'ALERT_USER'], 'required', 'on' => [
             APP_UTILS::SCENARIO_ALLOCATE_KITCHEN,
             APP_UTILS::SCENARIO_CONFIRM_ORDER,
             APP_UTILS::SCENARIO_ASSIGN_CHEF,
@@ -77,6 +79,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $tracker->STATUS = $this->ORDER_STATUS;
         $tracker->COMMENTS = $this->COMMENTS;
         $tracker->TRACKING_DATE = APP_UTILS::GetCurrentDateTime();
+        $tracker->USER_VISIBLE = $this->ALERT_USER;
         $tracker->save();
     }
 
@@ -87,4 +90,5 @@ class CUSTOMER_ORDERS extends CustomerOrder
     {
         return $this->hasMany(OrderTracking::className(), ['ORDER_ID' => 'ORDER_ID'])->orderBy(['TRACKING_DATE' => SORT_DESC]);
     }
+
 }

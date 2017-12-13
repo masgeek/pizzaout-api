@@ -8,10 +8,12 @@
     color: #fefeff;
     background-color: #8181ec;
 }
+
 /** TABLE **/
 .panel .table-responsive {
     padding: 10px;
 }
+
 .table-border {
     background-color: #FFF;
     border: 0 solid #E7E7E7;
@@ -57,7 +59,12 @@ table .id, table .id .sort {
     border-top-style: solid;
 }
 
-.large-text{
+.large-text {
     font-size: 15px;
     color: green;
+}
+
+.input-group-addon.beautiful input[type="checkbox"],
+.input-group-addon.beautiful input[type="radio"] {
+    display: none;
 }
