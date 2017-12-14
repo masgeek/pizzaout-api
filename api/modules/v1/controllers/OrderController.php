@@ -16,6 +16,7 @@ use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
 use app\models_search\OrdersSearch;
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 use yii\rest\ActiveController;
 
 class OrderController extends ActiveController
@@ -141,7 +142,9 @@ class OrderController extends ActiveController
 
         }
 
-        $query->andWhere(['ORDER_STATUS' => $order_status]);
+        $query->andWhere(['ORDER_STATUS' => $order_status])
+            ->orderBy(['ORDER_DATE' => SORT_DESC])
+            ->asArray();
         /*$orders = CUSTOMER_ORDER_MODEL::find()
             ->where(['ORDER_STATUS' => $order_status])
             ->andWhere(['USER_ID' => $user_id])
@@ -149,6 +152,7 @@ class OrderController extends ActiveController
             ->asArray()
             ->all();*/
 
+        return $query->all();
         return new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
