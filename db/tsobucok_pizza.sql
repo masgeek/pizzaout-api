@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-14 13:15:53
+Date: 2017-12-14 14:06:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -124,11 +124,12 @@ CREATE TABLE `customer_order` (
   CONSTRAINT `customer_order_ibfk_4` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1032 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1033 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of customer_order
 -- ----------------------------
+INSERT INTO `customer_order` VALUES ('1032', '10', '1', '1', '4', '3', '2017-12-14 10:16:43', 'VISA', 'RIDER DISPATCHED', null, '2017-12-14 10:16:43', '2017-12-14 10:32:12');
 
 -- ----------------------------
 -- Table structure for customer_order_item
@@ -150,11 +151,12 @@ CREATE TABLE `customer_order_item` (
   KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
   CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customer_order_item
 -- ----------------------------
+INSERT INTO `customer_order_item` VALUES ('1', '1032', '4', '1', '300', '300', 'N/A', null, '2017-12-14 10:16:43', null);
 
 -- ----------------------------
 -- Table structure for db_cache
@@ -307,7 +309,7 @@ CREATE TABLE `my_session` (
 -- ----------------------------
 -- Records of my_session
 -- ----------------------------
-INSERT INTO `my_session` VALUES ('nggnob827u3urv5u4c52s69m14', '1513260526', 0x5F5F666C6173687C613A303A7B7D, '0', '0');
+INSERT INTO `my_session` VALUES ('rnje7377vdbnsjqs5erms3oqu7', '1513262044', 0x5F5F666C6173687C613A303A7B7D, '0', '0');
 
 -- ----------------------------
 -- Table structure for order_tracking
@@ -326,11 +328,16 @@ CREATE TABLE `order_tracking` (
   KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of order_tracking
 -- ----------------------------
+INSERT INTO `order_tracking` VALUES ('114', '1032', null, 'ORDER CONFIRMED', '2017-12-14 10:16:44', '');
+INSERT INTO `order_tracking` VALUES ('115', '1032', null, 'KITCHEN ALLOCATED', '2017-12-14 10:31:24', '');
+INSERT INTO `order_tracking` VALUES ('116', '1032', null, 'UNDER PREPARATION', '2017-12-14 10:31:38', '');
+INSERT INTO `order_tracking` VALUES ('117', '1032', null, 'ORDER READY', '2017-12-14 10:31:59', '');
+INSERT INTO `order_tracking` VALUES ('118', '1032', null, 'RIDER DISPATCHED', '2017-12-14 10:32:12', '');
 
 -- ----------------------------
 -- Table structure for payment
@@ -351,11 +358,12 @@ CREATE TABLE `payment` (
   KEY `payment_ibfk_2` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`PAYMENT_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of payment
 -- ----------------------------
+INSERT INTO `payment` VALUES ('31', '1032', 'VISA', '300.00', '1513246545', 'ORDER CONFIRMED', '2017-12-14 10:16:43', 'fd6e6f1c-a59b-0e7e-7261-09f67a783d43', 'VISA');
 
 -- ----------------------------
 -- Table structure for riders
@@ -404,7 +412,6 @@ CREATE TABLE `tb_cart` (
 -- ----------------------------
 -- Records of tb_cart
 -- ----------------------------
-INSERT INTO `tb_cart` VALUES ('1', '10', '4', '1', '300', 'LARGE', '1513246545', '2017-12-14 10:15:45', '2017-12-14 10:15:45');
 
 -- ----------------------------
 -- Table structure for tb_favs
@@ -494,7 +501,7 @@ CREATE TABLE `tb_users` (
   KEY `USER_TYPE_idx` (`USER_TYPE`) USING BTREE,
   CONSTRAINT `tb_users_ibfk_1` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`),
   CONSTRAINT `tb_users_ibfk_2` FOREIGN KEY (`USER_TYPE`) REFERENCES `user_type` (`USER_TYPE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_users
@@ -502,6 +509,7 @@ CREATE TABLE `tb_users` (
 INSERT INTO `tb_users` VALUES ('5', 'pkyalo', '1', 'kingoo', 'Peter Kyalo', '724802220', 'petchaloo@gmail.com', '1', '834dfae0c40820faccf4f83580be800545dca3c1', null, null, null);
 INSERT INTO `tb_users` VALUES ('10', 'fatelord', '1', 'BARASA', 'SAMMY M', '1123', 'barsamms@gmail.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', null);
 INSERT INTO `tb_users` VALUES ('11', 'admin', '2', 'admin', 'admin', '123', 'admin@slice.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-11-10 13:11:43', '2017-11-10 13:11:49', null);
+INSERT INTO `tb_users` VALUES ('12', 'rider', '3', 'Saber', 'Rider', '1123', 'rider@gmail.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', '');
 
 -- ----------------------------
 -- Table structure for user_type
@@ -511,13 +519,14 @@ CREATE TABLE `user_type` (
   `USER_TYPE_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `USER_TYPE_NAME` varchar(255) NOT NULL,
   PRIMARY KEY (`USER_TYPE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_type
 -- ----------------------------
 INSERT INTO `user_type` VALUES ('1', 'CUSTOMER');
 INSERT INTO `user_type` VALUES ('2', 'ADMIN');
+INSERT INTO `user_type` VALUES ('3', 'RIDER');
 
 -- ----------------------------
 -- View structure for vw_orders
