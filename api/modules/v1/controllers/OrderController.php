@@ -142,9 +142,7 @@ class OrderController extends ActiveController
 
         }
 
-        $query->andWhere(['ORDER_STATUS' => $order_status])
-            ->orderBy(['ORDER_DATE' => SORT_DESC])
-            ->asArray();
+        $query->andWhere(['ORDER_STATUS' => $order_status]);
         /*$orders = CUSTOMER_ORDER_MODEL::find()
             ->where(['ORDER_STATUS' => $order_status])
             ->andWhere(['USER_ID' => $user_id])
@@ -152,12 +150,12 @@ class OrderController extends ActiveController
             ->asArray()
             ->all();*/
 
-        return $query->all();
         return new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
+            'pagination' => false,
+            /*'pagination' => [
                 'pageSize' => 200,
-            ],
+            ],*/
             'sort' => [
                 'defaultOrder' => [
                     'ORDER_DATE' => SORT_DESC,
