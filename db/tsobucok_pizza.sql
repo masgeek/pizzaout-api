@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-13 16:08:46
+Date: 2017-12-14 12:23:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -151,7 +151,7 @@ CREATE TABLE `customer_order_item` (
   KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
   CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customer_order_item
@@ -273,6 +273,23 @@ INSERT INTO `menu_item_type` VALUES ('4', '4', 'LARGE', '300.00', '');
 INSERT INTO `menu_item_type` VALUES ('5', '3', 'MEDIUM', '350.00', '');
 
 -- ----------------------------
+-- Table structure for my_session
+-- ----------------------------
+DROP TABLE IF EXISTS `my_session`;
+CREATE TABLE `my_session` (
+  `id` char(40) NOT NULL,
+  `expire` int(11) DEFAULT NULL,
+  `data` blob,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`),
+  KEY `expire` (`expire`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of my_session
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for order_tracking
 -- ----------------------------
 DROP TABLE IF EXISTS `order_tracking`;
@@ -364,7 +381,7 @@ CREATE TABLE `tb_cart` (
   KEY `USER_ID` (`USER_ID`) USING BTREE,
   CONSTRAINT `tb_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_cart_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tb_cart

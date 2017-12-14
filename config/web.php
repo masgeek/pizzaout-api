@@ -5,6 +5,7 @@ $braintree = require_once(__DIR__ . '/braintree.php');
 $aliases = require_once(__DIR__ . '/aliases.php');
 $merchant = require_once(__DIR__ . '/card_merchant.php');
 $formatter = require_once(__DIR__ . '/formatter.php');
+$session = require_once(__DIR__ . '/session.php');
 
 
 $config = [
@@ -30,6 +31,7 @@ $config = [
                 ],
             ]
         ],
+        'session'=>$session,
         'card' => $merchant,
         'fcm' => $fcm,
         //'braintree' => $braintree,

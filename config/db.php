@@ -13,4 +13,11 @@ return [
     'username' => 'tsobucok_pizza',
     'password' => 'Cyberhopper123',
     'charset' => 'utf8',
+    'enableSchemaCache' => true,
+
+    // Duration of schema cache.
+    'schemaCacheDuration' => 3600,
+
+    // Name of the cache component used to store schema information
+    'schemaCache' => 'db_cache',
 ];
