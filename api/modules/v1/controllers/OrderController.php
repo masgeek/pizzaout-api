@@ -152,7 +152,7 @@ class OrderController extends ActiveController
         return new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 1,
+                'pageSize' => 200,
             ],
             'sort' => [
                 'defaultOrder' => [
