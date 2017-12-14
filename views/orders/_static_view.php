@@ -72,7 +72,7 @@ $attributes = [
 				'label' => 'Assigned Rider',
 				'attribute' => 'RIDER_ID',
 				'displayOnly' => true,
-				'value' => $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'Not Assigned',
+				'value' => $model->rIDER != null ? $model->rIDER->uSER->SURNAME : 'Not Assigned',
 			],
 			[
 				'label' => 'Assigned Chef',

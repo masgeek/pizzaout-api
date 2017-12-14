@@ -22,6 +22,7 @@ use Yii;
  *
  * @property CustomerAddress[] $customerAddresses
  * @property CustomerOrder[] $customerOrders
+ * @property Riders[] $riders
  * @property Cart[] $carts
  * @property Favs[] $favs
  * @property Location $lOCATION
@@ -88,6 +89,14 @@ class Users extends \yii\db\ActiveRecord
     public function getCustomerOrders()
     {
         return $this->hasMany(CustomerOrder::className(), ['USER_ID' => 'USER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRiders()
+    {
+        return $this->hasMany(Riders::className(), ['USER_ID' => 'USER_ID']);
     }
 
     /**

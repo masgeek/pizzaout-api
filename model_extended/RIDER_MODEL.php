@@ -14,14 +14,18 @@ use yii\helpers\ArrayHelper;
 
 class RIDER_MODEL extends Riders
 {
-	public static function GetRiders($kitchen_id)
-	{
-		$chefs = self::find()
-			->where(['KITCHEN_ID' => $kitchen_id])
-			->all();
+    public static function GetRiders($kitchen_id)
+    {
+        $riders = self::find()
+            ->with('uSER')
+            ->where(['KITCHEN_ID' => $kitchen_id])
+            ->all();
 
-		$listData = ArrayHelper::map($chefs, 'RIDER_ID', 'RIDER_NAME');
+        $riders_arr = [];
+        foreach ($riders as $key => $rider) {
+            $riders_arr[$rider->RIDER_ID] = "{$rider->uSER->SURNAME}, {$rider->uSER->OTHER_NAMES}";
+        }
 
-		return $listData;
-	}
+        return $riders_arr;
+    }
 }
