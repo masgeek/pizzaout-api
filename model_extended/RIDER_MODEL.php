@@ -19,6 +19,7 @@ class RIDER_MODEL extends Riders
         $riders = self::find()
             ->with('uSER')
             ->where(['KITCHEN_ID' => $kitchen_id])
+            ->andWhere(['RIDER_STATUS' => 1])
             ->all();
 
         $riders_arr = [];

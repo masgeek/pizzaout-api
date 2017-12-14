@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-12-14 14:06:28
+Date: 2017-12-14 14:42:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -129,7 +129,7 @@ CREATE TABLE `customer_order` (
 -- ----------------------------
 -- Records of customer_order
 -- ----------------------------
-INSERT INTO `customer_order` VALUES ('1032', '10', '1', '1', '4', '3', '2017-12-14 10:16:43', 'VISA', 'RIDER DISPATCHED', null, '2017-12-14 10:16:43', '2017-12-14 10:32:12');
+INSERT INTO `customer_order` VALUES ('1032', '10', '1', '1', '4', '3', '2017-12-14 10:16:43', 'VISA', 'ORDER READY', null, '2017-12-14 10:16:43', '2017-12-14 11:33:25');
 
 -- ----------------------------
 -- Table structure for customer_order_item
@@ -309,7 +309,7 @@ CREATE TABLE `my_session` (
 -- ----------------------------
 -- Records of my_session
 -- ----------------------------
-INSERT INTO `my_session` VALUES ('rnje7377vdbnsjqs5erms3oqu7', '1513262044', 0x5F5F666C6173687C613A303A7B7D, '0', '0');
+INSERT INTO `my_session` VALUES ('rnje7377vdbnsjqs5erms3oqu7', '1513266129', 0x5F5F666C6173687C613A303A7B7D, '0', '0');
 
 -- ----------------------------
 -- Table structure for order_tracking
@@ -328,16 +328,11 @@ CREATE TABLE `order_tracking` (
   KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of order_tracking
 -- ----------------------------
-INSERT INTO `order_tracking` VALUES ('114', '1032', null, 'ORDER CONFIRMED', '2017-12-14 10:16:44', '');
-INSERT INTO `order_tracking` VALUES ('115', '1032', null, 'KITCHEN ALLOCATED', '2017-12-14 10:31:24', '');
-INSERT INTO `order_tracking` VALUES ('116', '1032', null, 'UNDER PREPARATION', '2017-12-14 10:31:38', '');
-INSERT INTO `order_tracking` VALUES ('117', '1032', null, 'ORDER READY', '2017-12-14 10:31:59', '');
-INSERT INTO `order_tracking` VALUES ('118', '1032', null, 'RIDER DISPATCHED', '2017-12-14 10:32:12', '');
 
 -- ----------------------------
 -- Table structure for payment
@@ -371,22 +366,23 @@ INSERT INTO `payment` VALUES ('31', '1032', 'VISA', '300.00', '1513246545', 'ORD
 DROP TABLE IF EXISTS `riders`;
 CREATE TABLE `riders` (
   `RIDER_ID` bigint(10) NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(10) DEFAULT NULL,
   `KITCHEN_ID` bigint(10) DEFAULT NULL,
-  `RIDER_NAME` varchar(100) NOT NULL,
-  `RIDER_MOBILE` varchar(255) DEFAULT NULL,
   `RIDER_STATUS` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`RIDER_ID`),
   KEY `KITCHEN_ID` (`KITCHEN_ID`) USING BTREE,
-  CONSTRAINT `riders_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE
+  KEY `USER_ID` (`USER_ID`),
+  CONSTRAINT `riders_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `riders_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of riders
 -- ----------------------------
-INSERT INTO `riders` VALUES ('1', '1', 'Yusuf', '56765', '');
-INSERT INTO `riders` VALUES ('2', '2', 'Khaleed', '6786786', '');
-INSERT INTO `riders` VALUES ('3', '1', 'Ismael', '34534', '');
-INSERT INTO `riders` VALUES ('4', '2', 'Latif', '78958', '');
+INSERT INTO `riders` VALUES ('1', '12', '1', '');
+INSERT INTO `riders` VALUES ('2', '12', '2', '');
+INSERT INTO `riders` VALUES ('3', '12', '1', '');
+INSERT INTO `riders` VALUES ('4', '12', '2', '');
 
 -- ----------------------------
 -- Table structure for tb_cart
@@ -532,4 +528,4 @@ INSERT INTO `user_type` VALUES ('3', 'RIDER');
 -- View structure for vw_orders
 -- ----------------------------
 DROP VIEW IF EXISTS `vw_orders`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_orders` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
+CREATE VIEW `vw_orders` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
