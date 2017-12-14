@@ -31,7 +31,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $labels['ORDER_PRICE'] = 'Total';
         $labels['PAYMENT_METHOD'] = 'Payment';
         $labels['ORDER_STATUS'] = 'Status';
-        $labels['ALERT_USER'] = 'Notify User';
+        $labels['ALERT_USER'] = 'Notify Customer';
         $labels['ORDER_ID'] = 'Order ID #';
 
         return $labels;

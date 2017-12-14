@@ -64,13 +64,17 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
     </div>
 
     <div class="col-md-12">
-        <div class="input-group">
-                    <span class="input-group-addon beautiful">
-                        <?= $form->field($model, 'ALERT_USER')->checkbox(['label' => null, 'class' => null])->label(false); ?>
-                    </span>
-            <input type="text" class="form-control">
-        </div>
+        <?= $form->field($model, 'ALERT_USER')->checkbox(); ?>
     </div>
+
+    <!--<div class="col-lg-12">
+        <div class="input-group">
+                <span class="input-group-addon beautiful">
+                    <input type="checkbox" name="CUSTOMER_ORDERS[ALERT_USER]">
+                </span>
+            <input type="text" class="form-control" placeholder="Notify customer">
+        </div>
+    </div>-->
 
 
     <div class="col-md-12">
@@ -109,6 +113,6 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
         </div>
 
     </div>
--->
+    -->
     <?php ActiveForm::end(); ?>
 </div>

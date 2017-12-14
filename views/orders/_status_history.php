@@ -11,18 +11,20 @@ $formatter = \Yii::$app->formatter;
     <tr>
         <th>Status</th>
         <th>Comments</th>
+        <th>Customer Notified</th>
         <th>Date</th>
     </tr>
     </thead>
     <tbody>
-	<?php
-	foreach ($model->orderTrackings as $orderTracking):?>
+    <?php
+    foreach ($model->orderTrackings as $orderTracking):?>
         <tr>
             <td><?= $orderTracking->STATUS ?></td>
-            <td><?= $orderTracking->COMMENTS ?></td>
+            <td><?= $orderTracking->COMMENTS != null ? $orderTracking->COMMENTS : 'N/A' ?></td>
+            <td><?= $orderTracking->USER_VISIBLE ? 'Yes' : 'No' ?></td>
             <td><?= $formatter->asDatetime($orderTracking->TRACKING_DATE) ?></td>
         </tr>
-	<?php endforeach; ?>
+    <?php endforeach; ?>
     </tbody>
 </table>
 
