@@ -37,10 +37,8 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return $model->kITCHEN != null ? $model->KITCHEN_ID : 0;
         };
 
-        $fields['RIDER'] = function ($model) {
-            /* @var $model $this */
-            return $model->rIDER != null ? $model->rIDER : 'NONE';
-        };
+        ksort($fields);
+
 
         $fields['ADDRESS'] = function ($model) {
             /* @var $model $this */
@@ -63,7 +61,7 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return $data;
         };
 
-        ksort($fields);
+
         return $fields;
     }
 

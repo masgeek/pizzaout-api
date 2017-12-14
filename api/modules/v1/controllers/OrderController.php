@@ -15,6 +15,7 @@ use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
 use app\models_search\OrdersSearch;
+use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
 class OrderController extends ActiveController
@@ -101,8 +102,22 @@ class OrderController extends ActiveController
         return $this->getOrders($order_type, $user_id);
     }
 
-    private function getOrders($order_type, $user_id)
+    public function actionRiderOrders($rider_id)
     {
+        $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
+        $order_type = strtoupper($order_type_post);
+        return $this->getOrders($order_type, $rider_id);
+    }
+
+    private function getOrders($order_type, $user_id, $rider_id = null)
+    {
+        $query = CUSTOMER_ORDER_MODEL::find();
+        if ($rider_id != null) {
+            $query->andWhere(['RIDER_ID' => $rider_id]);
+        } else {
+            $query->andWhere(['USER_ID' => $user_id]);
+        }
+
         switch ($order_type) {
             case 'ACTIVE':
                 $order_status = $this->activeOrders();
@@ -117,19 +132,36 @@ class OrderController extends ActiveController
             case 'PENDING':
                 $order_status = $this->pendingOrders();
                 break;
+            case 'DISPATCHED':
+                $order_status = $this->dispatchedOrders();
+                break;
             case 'DELIVERED':
                 $order_status = $this->deliveredOrders();
                 break;
 
         }
 
-        $orders = CUSTOMER_ORDER_MODEL::find()
+        $query->andWhere(['ORDER_STATUS' => $order_status]);
+        /*$orders = CUSTOMER_ORDER_MODEL::find()
             ->where(['ORDER_STATUS' => $order_status])
             ->andWhere(['USER_ID' => $user_id])
             ->orderBy(['ORDER_DATE' => SORT_DESC])
-            ->all();
+            ->asArray()
+            ->all();*/
 
-        return $orders;
+        return new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 1,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'ORDER_DATE' => SORT_DESC,
+                ]
+            ],
+        ]);
+
+
     }
 
     private function activeOrders()
@@ -169,6 +201,11 @@ class OrderController extends ActiveController
     private function cancelledOrders()
     {
         return [ORDER_HELPER::STATUS_ORDER_CANCELLED];
+    }
+
+    private function dispatchedOrders()
+    {
+        return [ORDER_HELPER::STATUS_RIDER_DISPATCHED, ORDER_HELPER::STATUS_RIDER_ASSIGNED];
     }
 
     private function deliveredOrders()

@@ -111,6 +111,7 @@ $config = [
                     'extraPatterns' => [
                         'POST {user_id}/my-orders' => 'my-orders',
                         'POST {user_id}/active-orders' => 'active-orders',
+                        'POST {rider_id}/rider-orders' => 'rider-orders',
                     ]
                 ],
                 [
@@ -125,6 +126,20 @@ $config = [
                     ],
                     'extraPatterns' => [
                         'GET {order_id}/active-orders' => 'active-orders',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v1/rider',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                        //'{user_id}' => '<user_id:\\w+>',
+                        '{user_id}' => '<user_id:\\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'GET {id}/my-orders' => 'my-orders',
                     ]
                 ],
                 [
