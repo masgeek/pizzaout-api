@@ -47,7 +47,11 @@ $config = [
             'cookieValidationKey' => 'IAyw-vu_u-ruH_LfDNEFS-LEQR88cAdM',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            //'class' => 'yii\caching\FileCache',
+            //'class' => 'yii\caching\ApcCache',
+            'class' => 'yii\caching\DbCache',
+            // 'db' => 'mydb',
+            'cacheTable' => 'db_cache',
         ],
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
