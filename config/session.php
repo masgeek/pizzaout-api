@@ -13,9 +13,13 @@ return [
     // 'db' => 'mydb',
     // To override default session table, set the following
     'sessionTable' => 'my_session',
+    'cookieParams' => ['httponly' => true, 'lifetime' => 7 * 24 * 60 * 60],
+    'timeout' => 3600 * 4, //session expire
+    'useCookies' => true,
     'writeCallback' => function ($session) {
         return [
-            'user_id' => Yii::$app->user->id
+            'user_id' => Yii::$app->user->id != null ? Yii::$app->user->id : 0,
+            'user_name' => Yii::$app->user->identity != null ? Yii::$app->user->identity->username : 0
         ];
     },
 ];

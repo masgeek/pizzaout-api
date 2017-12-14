@@ -31,7 +31,7 @@ $config = [
                 ],
             ]
         ],
-        'session'=>$session,
+        'session' => $session,
         'card' => $merchant,
         'fcm' => $fcm,
         //'braintree' => $braintree,
@@ -52,6 +52,9 @@ $config = [
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
             'enableAutoLogin' => false,
+            'authTimeout' => 400,
+            'enableSession' => true,
+            'autoRenewCookie' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
