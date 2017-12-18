@@ -92,7 +92,7 @@ CREATE TABLE `customer_address` (
 -- Records of customer_address
 -- ----------------------------
 INSERT INTO `customer_address` VALUES ('1', '5', '1', 'KISMAYU');
-INSERT INTO `customer_address` VALUES ('2', '10', '1', 'kismayu');
+INSERT INTO `customer_address` VALUES ('2', '10', '1', 'KISMAYU');
 
 -- ----------------------------
 -- Table structure for customer_order
