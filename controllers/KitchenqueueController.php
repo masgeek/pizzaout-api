@@ -8,6 +8,7 @@ use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -26,11 +27,25 @@ class KitchenqueueController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
                 ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ]
             ],
         ];
     }
+
 
     /**
      * Lists all CUSTOMER_ORDERS models.
