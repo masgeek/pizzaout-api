@@ -7,6 +7,9 @@
 
 use yii\helpers\Html;
 
+$this->context->enableCsrfValidation = false;
+$this->context->layout = 'error_layout';
+
 $this->title = $name;
 ?>
 <div class="site-error">
