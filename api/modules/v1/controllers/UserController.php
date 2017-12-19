@@ -85,7 +85,6 @@ class UserController extends ActiveController
      */
 	public function actionRegister()
 	{
-
 		/* @var $request USER_MODEL */
 		$message = [];
 
@@ -137,7 +136,7 @@ class UserController extends ActiveController
 
 
 		$user->setScenario(USER_MODEL::SCENARIO_UPDATE);
-		$request = (OBJECT)YII::$APP->REQUEST->BODYPARAMS;
+		$request = (object)YII::$APP->REQUEST->BODYPARAMS;
 		$user->SURNAME = ISSET($request->SURNAME) ? $request->SURNAME : $user->SURNAME;
 		$user->EMAIL = ISSET($request->EMAIL) ? $request->EMAIL : $user->EMAIL;
 		$user->MOBILE = ISSET($request->MOBILE) ? $request->MOBILE : $user->MOBILE;
