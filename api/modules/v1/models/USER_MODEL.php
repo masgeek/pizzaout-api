@@ -46,7 +46,7 @@ class USER_MODEL extends Users
     {
         $rules = parent::rules();
 
-        $rules[] = [['EMAIL'], 'unique', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+        //$rules[] = [['EMAIL'], 'unique', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
         $rules[] = [['PASSWORD'], 'string', 'min' => 3, 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
         return $rules;
     }
