@@ -39,7 +39,7 @@ class MenucategoryController extends ActiveController
     public function actionIndex()
     {
         return MENU_CAT_MODEL::find()
-            //->where(['ACTIVE' => 1])
+            ->where(['ACTIVE' => 1])
             ->orderBy(['RANK' => SORT_ASC])
             ->all();
     }
