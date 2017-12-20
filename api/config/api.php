@@ -114,6 +114,7 @@ $config = [
                         'POST {rider_id}/rider-orders' => 'rider-orders',
                     ]
                 ],
+                /////////////////////////////////////
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
@@ -128,6 +129,23 @@ $config = [
                         'GET {order_id}/active-orders' => 'active-orders',
                     ]
                 ],
+                //////////////////////////////////////
+                ///  /////////////////////////////////////
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v1/address',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                        '{user_id}' => '<user_id:\\w+>',
+                        '{order_id}' => '<order_id:\\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'GET {user_id}/my-address' => 'my-address',
+                    ]
+                ],
+                //////////////////////////////////////
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
