@@ -12,7 +12,7 @@ $config = [
     'name' => 'PIZZA API',
     // Need to get one level up:
     'basePath' => dirname(__DIR__) . '/..',
-    'timeZone' => $timezone,
+    //'timeZone' => $timezone,
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '../vendor/bower-asset',
