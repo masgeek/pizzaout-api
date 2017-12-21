@@ -8,7 +8,7 @@ return
         'decimalSeparator' => '.',
         'thousandSeparator' => ',',
         'timeZone' => $timezone, //default time zones and format
-        //'currencyCode' => 'USD',
-        'currencyCode' => 'KES',
+        'currencyCode' => 'USD',
+        //'currencyCode' => 'KES',
         'nullDisplay' => '0'
     ];
