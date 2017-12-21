@@ -29,21 +29,18 @@ class DefaultController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'add' => ['post'],
+                    'delete' => ['post'],
                 ],
             ],
-            /*'access' => [
-                 'class' => AccessControl::className(),
-                 'except' => ['index', 'logout', 'login',],
-                 'rules' => [
-                     // allow authenticated users
-                     [
-                         'allow' => true,
-                         'roles' => ['@'],
-                     ],
-                     // everything else is denied
-                 ],
-             ],*/
+            'access' => [
+                'class' => yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ]
+            ],
         ];
     }
 
