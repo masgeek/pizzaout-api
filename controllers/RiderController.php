@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\model_extended\RIDER_MODEL;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,7 +28,7 @@ class RiderController extends Controller
                 ],
             ],
             'access' => [
-                'class' => yii\filters\AccessControl::className(),
+                'class' => AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
