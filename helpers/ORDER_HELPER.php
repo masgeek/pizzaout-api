@@ -115,7 +115,7 @@ class ORDER_HELPER
                     $session->set('CART_TIMESTAMP', $cart_timestamp);
                 } else {
                     //remove the cart item
-                    //CART_MODEL::ClearCart($cart_timestamp);
+                    CART_MODEL::ClearCart($cart_timestamp);
                     $resp = [
                         'ORDER_CREATED' => $saveSuccessful,
                         'ORDER_ID' => (int)$customer_order->ORDER_ID
