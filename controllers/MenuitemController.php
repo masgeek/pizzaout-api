@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\model_extended\MENU_ITEMS;
 use app\models_search\MenuItemSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,7 +28,7 @@ class MenuitemController extends Controller
                 ],
             ],
             'access' => [
-                'class' => yii\filters\AccessControl::className(),
+                'class' => AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
