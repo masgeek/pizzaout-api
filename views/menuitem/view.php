@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mENUCAT.MENU_CAT_NAME',
             'MENU_ITEM_NAME',
             'MENU_ITEM_DESC:ntext',
-            'MENU_ITEM_IMAGE',
+            //'MENU_ITEM_IMAGE',
             'HOT_DEAL:boolean',
             'VEGETARIAN:boolean',
             'MAX_QTY',
