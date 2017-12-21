@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\MENU_ITEM_TYPE */
 
-$this->title = 'Update Menu  Item  Type: {nameAttribute}';
+$this->title = 'Update Menu  Item  Type:';
 $this->params['breadcrumbs'][] = ['label' => 'Menu  Item  Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ITEM_TYPE_ID, 'url' => ['view', 'id' => $model->ITEM_TYPE_ID]];
 $this->params['breadcrumbs'][] = 'Update';
