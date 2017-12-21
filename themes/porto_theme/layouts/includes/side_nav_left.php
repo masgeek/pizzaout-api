@@ -20,7 +20,7 @@ use yii\helpers\Html;
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
                     <li>
-						<?= Html::a('<i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span>', ['//'], ['title' => 'Dashboard']); ?>
+                        <?= Html::a('<i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span>', ['//'], ['title' => 'Dashboard']); ?>
                     </li>
                     <li class="nav-parent">
                         <a>
@@ -38,7 +38,24 @@ use yii\helpers\Html;
                         </a>
                         <ul class="nav nav-children">
                             <li>
-								<?= Html::a('Kitchen Queue', ['//kitchenqueue'], ['title' => 'Items in kitchen queue']); ?>
+                                <?= Html::a('Kitchen Queue', ['//kitchenqueue'], ['title' => 'Items in kitchen queue']); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent nav-expanded nav-active">
+                        <a>
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <span>Setup</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <?= Html::a('Menu Categories', ['//menucategory'], ['title' => 'Menu Categories']); ?>
+                            </li>
+                            <li>
+                                <?= Html::a('Menu Items', ['//menuitem'], ['title' => 'Menu Items']); ?>
+                            </li>
+                            <li>
+                                <?= Html::a('Menu Item Types', ['//menuitemtype'], ['title' => 'Menu Item Type']); ?>
                             </li>
                         </ul>
                     </li>
