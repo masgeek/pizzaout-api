@@ -94,6 +94,7 @@ $config = [
                         '{item_type_id}' => '<item_type_id:\\w+>',
                     ],
                     'extraPatterns' => [
+                        'POST create-order' => 'create-order',
                         'GET {user_id}/items' => 'items',
                         'GET,POST {item_type_id}/in-cart/{user_id}' => 'in-cart',
                     ]

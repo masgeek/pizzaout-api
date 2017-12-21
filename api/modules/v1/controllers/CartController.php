@@ -8,8 +8,10 @@
 
 namespace app\api\modules\v1\controllers;
 
+use Yii;
 use app\api\modules\v1\models\CART_MODEL;
-use app\api\modules\v1\models\MENU_ITEM_MODEL;
+use app\helpers\APP_UTILS;
+use app\helpers\ORDER_HELPER;
 use yii\rest\ActiveController;
 use yii\web\ForbiddenHttpException;
 
@@ -66,6 +68,36 @@ class CartController extends ActiveController
             ->one();
 
         return $inCart;
+    }
+
+    /**
+     * @return array
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\Exception
+     */
+    public function actionCreateOrder()
+    {
+        $cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP', 0);
+        $user_id = Yii::$app->request->post('USER_ID', 0);
+        $address_id = Yii::$app->request->post('ADDRESS_ID', 0);
+        $payment_channel = Yii::$app->request->post('PAYMENT_CHANNEL', APP_UTILS::PAYMENT_METHOD_MOBILE);
+
+
+        $date = APP_UTILS::GetCurrentDateTime();
+        $order_payment_arr = [
+            'CUSTOMER_ORDERS' => [
+                'USER_ID' => $user_id,
+                'ADDRESS_ID' => $address_id,
+                'PAYMENT_METHOD' => $payment_channel,
+                'ORDER_DATE' => $date
+            ]
+        ];
+
+        $resp = ORDER_HELPER::CreateOrderFromCart($user_id, $order_payment_arr);
+
+        return [
+            'ORDER_CREATED' => $resp
+        ];
     }
 
 }
