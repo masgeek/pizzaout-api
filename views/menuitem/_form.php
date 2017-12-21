@@ -24,7 +24,7 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         <?= $form->field($model, 'MENU_ITEM_DESC')->textarea(['rows' => 6]) ?>
     </div>
     <div class="row">
-        <?= $form->field($model, 'MENU_ITEM_IMAGE')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'MENU_ITEM_IMAGE')->hiddenInput(['maxlength' => true])->label(false) ?>
     </div>
     <div class="row">
         <?= $form->field($model, 'HOT_DEAL')->checkbox() ?>
