@@ -34,6 +34,11 @@ class PaymentController extends ActiveController
     public function actionPay()
     {
 
+    }
+
+    public function actionPayOld()
+    {
+
         /*{
             "CART_TIMESTAMP":"2342423",
             "AMOUNT":"89",

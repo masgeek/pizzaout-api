@@ -93,11 +93,8 @@ class CartController extends ActiveController
             ]
         ];
 
-        $resp = ORDER_HELPER::CreateOrderFromCart($user_id, $order_payment_arr);
+       return ORDER_HELPER::CreateOrderFromCart($user_id, $order_payment_arr);
 
-        return [
-            'ORDER_CREATED' => $resp
-        ];
     }
 
 }

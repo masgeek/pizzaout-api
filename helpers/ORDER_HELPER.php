@@ -70,6 +70,9 @@ class ORDER_HELPER
         $saveSuccessful = false;
         $cart_timestamp = null;
 
+        $resp = [
+            'ORDER_CREATED' => $saveSuccessful
+        ];
         if (count($cart_items) <= 0) {
             $cart_items = self::GetCartItems($user_id);
         }
@@ -113,12 +116,16 @@ class ORDER_HELPER
                 } else {
                     //remove the cart item
                     //CART_MODEL::ClearCart($cart_timestamp);
+                    $resp = [
+                        'ORDER_CREATED' => $saveSuccessful,
+                        'ORDER_ID' => (int)$customer_order->ORDER_ID
+                    ];
                 }
             } else {
                 $transaction->rollback();
             }
         }
-        return $saveSuccessful;
+        return $resp;
     }
 
 
