@@ -131,8 +131,9 @@ class ORDER_HELPER
 
     public static function GetCartItems($user_id)
     {
-        return CART_MODEL::find()
+        $cart_items =  CART_MODEL::find()
             ->where(['USER_ID' => $user_id])
             ->all();
+        return $cart_items;
     }
 }

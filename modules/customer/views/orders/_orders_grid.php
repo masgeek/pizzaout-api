@@ -31,7 +31,7 @@ $gridColumns = [
         'attribute' => 'RIDER_ID',
         'value' => function ($model) {
             /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            return $model->rIDER != null ? $model->rIDER->RIDER_NAME : 'N/A';
+            return $model->rIDER != null ? $model->uSER->SURNAME : 'N/A';
         }
     ],
     [
