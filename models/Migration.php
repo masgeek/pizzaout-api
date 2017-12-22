@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tb_migration".
+ * This is the model class for table "{{%migration}}".
  *
  * @property string $version
  * @property int $apply_time
@@ -17,7 +17,7 @@ class Migration extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tb_migration';
+        return '{{%migration}}';
     }
 
     /**
@@ -39,8 +39,8 @@ class Migration extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'version' => 'Version',
-            'apply_time' => 'Apply Time',
+            'version' => Yii::t('app', 'Version'),
+            'apply_time' => Yii::t('app', 'Apply Time'),
         ];
     }
 }

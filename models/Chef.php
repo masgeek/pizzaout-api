@@ -43,9 +43,9 @@ class Chef extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'CHEF_ID' => 'Chef  ID',
-            'CHEF_NAME' => 'Chef  Name',
-            'KITCHEN_ID' => 'Kitchen  ID',
+            'CHEF_ID' => Yii::t('app', 'Chef  ID'),
+            'CHEF_NAME' => Yii::t('app', 'Chef  Name'),
+            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
         ];
     }
 

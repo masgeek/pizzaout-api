@@ -53,15 +53,15 @@ class Payment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'PAYMENT_ID' => 'Payment  ID',
-            'ORDER_ID' => 'Order  ID',
-            'PAYMENT_CHANNEL' => 'Payment  Channel',
-            'PAYMENT_AMOUNT' => 'Payment  Amount',
-            'PAYMENT_REF' => 'Payment  Ref',
-            'PAYMENT_STATUS' => 'Payment  Status',
-            'PAYMENT_DATE' => 'Payment  Date',
-            'PAYMENT_NOTES' => 'Payment  Notes',
-            'PAYMENT_NUMBER' => 'Payment  Number',
+            'PAYMENT_ID' => Yii::t('app', 'Payment  ID'),
+            'ORDER_ID' => Yii::t('app', 'Order  ID'),
+            'PAYMENT_CHANNEL' => Yii::t('app', 'Payment  Channel'),
+            'PAYMENT_AMOUNT' => Yii::t('app', 'Payment  Amount'),
+            'PAYMENT_REF' => Yii::t('app', 'Payment  Ref'),
+            'PAYMENT_STATUS' => Yii::t('app', 'Payment  Status'),
+            'PAYMENT_DATE' => Yii::t('app', 'Payment  Date'),
+            'PAYMENT_NOTES' => Yii::t('app', 'Payment  Notes'),
+            'PAYMENT_NUMBER' => Yii::t('app', 'Payment  Number'),
         ];
     }
 

@@ -68,18 +68,18 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ORDER_ID' => 'Order  ID',
-            'USER_ID' => 'User  ID',
-            'ADDRESS_ID' => 'Address  ID',
-            'KITCHEN_ID' => 'Kitchen  ID',
-            'CHEF_ID' => 'Chef  ID',
-            'RIDER_ID' => 'Rider  ID',
-            'ORDER_DATE' => 'Order  Date',
-            'PAYMENT_METHOD' => 'Payment  Method',
-            'ORDER_STATUS' => 'Order  Status',
-            'NOTES' => 'Notes',
-            'CREATED_AT' => 'Created  At',
-            'UPDATED_AT' => 'Updated  At',
+            'ORDER_ID' => Yii::t('app', 'Order  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'ADDRESS_ID' => Yii::t('app', 'Address  ID'),
+            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
+            'CHEF_ID' => Yii::t('app', 'Chef  ID'),
+            'RIDER_ID' => Yii::t('app', 'Rider  ID'),
+            'ORDER_DATE' => Yii::t('app', 'Order  Date'),
+            'PAYMENT_METHOD' => Yii::t('app', 'Payment  Method'),
+            'ORDER_STATUS' => Yii::t('app', 'Status of the order'),
+            'NOTES' => Yii::t('app', 'Can contain payment text from mobile transactions etc'),
+            'CREATED_AT' => Yii::t('app', 'Created  At'),
+            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
         ];
     }
 

@@ -41,9 +41,9 @@ class DbCache extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'expire' => 'Expire',
-            'data' => 'Data',
+            'id' => Yii::t('app', 'ID'),
+            'expire' => Yii::t('app', 'Expire'),
+            'data' => Yii::t('app', 'Data'),
         ];
     }
 }

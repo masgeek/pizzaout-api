@@ -42,9 +42,9 @@ class Location extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'LOCATION_ID' => 'Location  ID',
-            'LOCATION_NAME' => 'Location  Name',
-            'ADDRESS' => 'Address',
+            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
+            'LOCATION_NAME' => Yii::t('app', 'Location  Name'),
+            'ADDRESS' => Yii::t('app', 'Address'),
         ];
     }
 

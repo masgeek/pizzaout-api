@@ -44,11 +44,11 @@ class MySession extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'expire' => 'Expire',
-            'data' => 'Data',
-            'user_id' => 'User ID',
-            'user_name' => 'User Name',
+            'id' => Yii::t('app', 'ID'),
+            'expire' => Yii::t('app', 'Expire'),
+            'data' => Yii::t('app', 'Data'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'user_name' => Yii::t('app', 'User Name'),
         ];
     }
 }

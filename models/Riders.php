@@ -45,10 +45,10 @@ class Riders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'RIDER_ID' => 'Rider  ID',
-            'USER_ID' => 'User  ID',
-            'KITCHEN_ID' => 'Kitchen  ID',
-            'RIDER_STATUS' => 'Rider  Status',
+            'RIDER_ID' => Yii::t('app', 'Rider  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
+            'RIDER_STATUS' => Yii::t('app', 'Rider  Status'),
         ];
     }
 

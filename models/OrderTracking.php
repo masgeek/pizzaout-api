@@ -51,12 +51,12 @@ class OrderTracking extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'TRACKING_ID' => 'Tracking  ID',
-            'ORDER_ID' => 'Order  ID',
-            'COMMENTS' => 'Comments',
-            'STATUS' => 'Status',
-            'TRACKING_DATE' => 'Tracking  Date',
-            'USER_VISIBLE' => 'User  Visible',
+            'TRACKING_ID' => Yii::t('app', 'Tracking  ID'),
+            'ORDER_ID' => Yii::t('app', 'Order  ID'),
+            'COMMENTS' => Yii::t('app', 'Comments'),
+            'STATUS' => Yii::t('app', 'Status'),
+            'TRACKING_DATE' => Yii::t('app', 'Tracking  Date'),
+            'USER_VISIBLE' => Yii::t('app', 'User  Visible'),
         ];
     }
 

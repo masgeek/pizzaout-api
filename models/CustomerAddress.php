@@ -46,10 +46,10 @@ class CustomerAddress extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ADDRESS_ID' => 'Address  ID',
-            'USER_ID' => 'User  ID',
-            'LOCATION_ID' => 'Location  ID',
-            'ADDRESS' => 'Address',
+            'ADDRESS_ID' => Yii::t('app', 'Address  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
+            'ADDRESS' => Yii::t('app', 'Address'),
         ];
     }
 

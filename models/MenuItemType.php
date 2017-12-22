@@ -50,11 +50,11 @@ class MenuItemType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ITEM_TYPE_ID' => 'Item  Type  ID',
-            'MENU_ITEM_ID' => 'Menu  Item  ID',
-            'ITEM_TYPE_SIZE' => 'Item  Type  Size',
-            'PRICE' => 'Price',
-            'AVAILABLE' => 'Available',
+            'ITEM_TYPE_ID' => Yii::t('app', 'Item  Type  ID'),
+            'MENU_ITEM_ID' => Yii::t('app', 'Menu  Item  ID'),
+            'ITEM_TYPE_SIZE' => Yii::t('app', 'Item  Type  Size'),
+            'PRICE' => Yii::t('app', 'Price'),
+            'AVAILABLE' => Yii::t('app', 'Available'),
         ];
     }
 

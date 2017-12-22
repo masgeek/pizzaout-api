@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tb_sizes".
+ * This is the model class for table "{{%sizes}}".
  *
  * @property string $SIZED_ID
  * @property string $SIZE_TYPE
@@ -20,7 +20,7 @@ class Sizes extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tb_sizes';
+        return '{{%sizes}}';
     }
 
     /**
@@ -42,9 +42,9 @@ class Sizes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'SIZED_ID' => 'Sized  ID',
-            'SIZE_TYPE' => 'Size  Type',
-            'ACTIVE' => 'Active',
+            'SIZED_ID' => Yii::t('app', 'Sized  ID'),
+            'SIZE_TYPE' => Yii::t('app', 'Size  Type'),
+            'ACTIVE' => Yii::t('app', 'Active'),
         ];
     }
 

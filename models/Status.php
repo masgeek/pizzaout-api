@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tb_status".
+ * This is the model class for table "{{%status}}".
  *
  * @property string $STATUS_NAME
  * @property string $STATUS_DESC
@@ -26,7 +26,7 @@ class Status extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tb_status';
+        return '{{%status}}';
     }
 
     /**
@@ -51,12 +51,12 @@ class Status extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'STATUS_NAME' => 'Status  Name',
-            'STATUS_DESC' => 'Status  Desc',
-            'COLOR' => 'Color',
-            'SCOPE' => 'Scope',
-            'RANK' => 'Rank',
-            'WORKFLOW' => 'Workflow',
+            'STATUS_NAME' => Yii::t('app', 'Status  Name'),
+            'STATUS_DESC' => Yii::t('app', 'Status  Desc'),
+            'COLOR' => Yii::t('app', 'Color'),
+            'SCOPE' => Yii::t('app', 'Scope'),
+            'RANK' => Yii::t('app', 'Rank'),
+            'WORKFLOW' => Yii::t('app', 'Workflow'),
         ];
     }
 

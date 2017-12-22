@@ -39,8 +39,8 @@ class UserType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'USER_TYPE_ID' => 'User  Type  ID',
-            'USER_TYPE_NAME' => 'User  Type  Name',
+            'USER_TYPE_ID' => Yii::t('app', 'User  Type  ID'),
+            'USER_TYPE_NAME' => Yii::t('app', 'User  Type  Name'),
         ];
     }
 

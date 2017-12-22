@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tb_cart".
+ * This is the model class for table "{{%cart}}".
  *
  * @property string $CART_ITEM_ID
  * @property string $USER_ID
@@ -27,7 +27,7 @@ class Cart extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tb_cart';
+        return '{{%cart}}';
     }
 
     /**
@@ -52,15 +52,15 @@ class Cart extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'CART_ITEM_ID' => 'Cart  Item  ID',
-            'USER_ID' => 'User  ID',
-            'ITEM_TYPE_ID' => 'Item  Type  ID',
-            'QUANTITY' => 'Quantity',
-            'ITEM_PRICE' => 'Item  Price',
-            'ITEM_TYPE_SIZE' => 'Item  Type  Size',
-            'CART_TIMESTAMP' => 'Cart  Timestamp',
-            'CREATED_AT' => 'Created  At',
-            'UPDATED_AT' => 'Updated  At',
+            'CART_ITEM_ID' => Yii::t('app', 'Cart  Item  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'ITEM_TYPE_ID' => Yii::t('app', 'Item  Type  ID'),
+            'QUANTITY' => Yii::t('app', 'Quantity'),
+            'ITEM_PRICE' => Yii::t('app', 'Item  Price'),
+            'ITEM_TYPE_SIZE' => Yii::t('app', 'Item  Type  Size'),
+            'CART_TIMESTAMP' => Yii::t('app', 'Cart  Timestamp'),
+            'CREATED_AT' => Yii::t('app', 'Created  At'),
+            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
         ];
     }
 
