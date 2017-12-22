@@ -32,7 +32,9 @@ class USER_MODEL extends Users
     const SCENARIO_UPDATE = 'update';
     public $CHANGE_PASSWORD;
 
-
+    /**
+     * @return array
+     */
     public function scenarios()
     {
         $scenarios = parent::scenarios();
@@ -42,6 +44,9 @@ class USER_MODEL extends Users
         return $scenarios;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         $rules = parent::rules();
@@ -51,14 +56,19 @@ class USER_MODEL extends Users
         return $rules;
     }
 
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     */
     public function beforeSave($insert)
     {
+        $date = APP_UTILS::GetCurrentDateTime();
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-                $this->DATE_REGISTERED = APP_UTILS::GetCurrentDateTime();
+                $this->DATE_REGISTERED = $date;;
             }
-            $this->LAST_UPDATED = APP_UTILS::GetCurrentDateTime();
-
+            $this->LAST_UPDATED = $date;
             return true;
         }
         return false;
@@ -71,6 +81,9 @@ class USER_MODEL extends Users
         return $labels;
     }
 
+    /**
+     * @return array
+     */
     public function fields()
     {
         $fields = parent::fields();
