@@ -72,7 +72,7 @@ class ORDER_HELPER
 
         $resp = [
             'ORDER_CREATED' => $saveSuccessful,
-            'USSD_NUMBER' => '*799*30173865*'
+            'USSD_NUMBER' => '*799*30173865*',
         ];
         if (count($cart_items) <= 0) {
             $cart_items = self::GetCartItems($user_id);
@@ -120,7 +120,7 @@ class ORDER_HELPER
                     $resp = [
                         'ORDER_CREATED' => $saveSuccessful,
                         'ORDER_ID' => (int)$customer_order->ORDER_ID,
-                        'USSD_NUMBER' => '*799*30173865*'
+                        'USSD_NUMBER' => '*799*30173865*',
                     ];
                 }
             } else {
