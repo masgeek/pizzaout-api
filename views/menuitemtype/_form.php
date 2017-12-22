@@ -23,11 +23,11 @@ TEMPLATE;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'MENU_ITEM_ID',['template'=>$field_template])->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems($model->mENUITEM->MENU_CAT_ID)) ?>
+    <?= $form->field($model, 'MENU_ITEM_ID', ['template' => $field_template])->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems(null)) ?>
 
-    <?= $form->field($model, 'ITEM_TYPE_SIZE',['template'=>$field_template])->dropDownList(\app\model_extended\MENU_ITEMS::GetItemSizes()) ?>
+    <?= $form->field($model, 'ITEM_TYPE_SIZE', ['template' => $field_template])->dropDownList(\app\model_extended\MENU_ITEMS::GetItemSizes()) ?>
 
-    <?= $form->field($model, 'PRICE',['template'=>$field_template])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'PRICE', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'AVAILABLE')->checkbox() ?>
 
