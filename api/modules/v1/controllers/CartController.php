@@ -53,6 +53,7 @@ class CartController extends ActiveController
     {
         $cartItems = CART_MODEL::find()
             ->where(['USER_ID' => $user_id])
+            ->asArray()
             ->all();
 
         return $cartItems;
@@ -93,7 +94,7 @@ class CartController extends ActiveController
             ]
         ];
 
-       return ORDER_HELPER::CreateOrderFromCart($user_id, $order_payment_arr);
+        return ORDER_HELPER::CreateOrderFromCart($user_id, $order_payment_arr);
 
     }
 
