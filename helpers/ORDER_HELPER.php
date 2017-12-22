@@ -53,10 +53,10 @@ class ORDER_HELPER
 
     /**
      * @param $user_id
-     * @param array $cart_items
      * @param array $order_payment_arr
+     * @param array $cart_items
      * @param bool $isCard
-     * @return bool
+     * @return array
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
@@ -72,6 +72,7 @@ class ORDER_HELPER
 
         $resp = [
             'ORDER_CREATED' => $saveSuccessful,
+            'ORDER_ID' => 0,
             'USSD_NUMBER' => '*799*30173865*',
         ];
         if (count($cart_items) <= 0) {
