@@ -204,6 +204,7 @@ $config = [
                         'POST pay' => 'pay',
                         'GET account-type' => 'account-type',
                         'GET {menu_cat_id}/cat-item' => 'cat-item',
+                        'GET single-cat-item' => 'single-cat-item',
 
                         'POST generate' => 'generate',
                     ],
