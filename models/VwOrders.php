@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "vw_orders".
  *
- * @property int $ORDER_ID
- * @property int $USER_ID
- * @property int $KITCHEN_ID
- * @property int $CHEF_ID
- * @property int $RIDER_ID
+ * @property string $ORDER_ID
+ * @property string $USER_ID
+ * @property string $KITCHEN_ID
+ * @property string $CHEF_ID
+ * @property string $RIDER_ID
  * @property int $MOBILE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
@@ -20,7 +20,7 @@ use Yii;
  * @property string $PAYMENT_AMOUNT
  * @property string $PAYMENT_NUMBER
  * @property string $NOTES Can contain payment text from mobile transactions etc
- * @property int $ADDRESS_ID
+ * @property string $ADDRESS_ID
  * @property string $PAYMENT_METHOD
  * @property string $CREATED_AT
  * @property string $UPDATED_AT

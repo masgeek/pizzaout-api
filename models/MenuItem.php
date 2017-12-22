@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "menu_item".
  *
- * @property int $MENU_ITEM_ID
- * @property int $MENU_CAT_ID
+ * @property string $MENU_ITEM_ID
+ * @property string $MENU_CAT_ID
  * @property string $MENU_ITEM_NAME
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
