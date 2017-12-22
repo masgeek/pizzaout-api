@@ -53,7 +53,6 @@ class CartController extends ActiveController
     {
         $cartItems = CART_MODEL::find()
             ->where(['USER_ID' => $user_id])
-            ->asArray()
             ->all();
 
         return $cartItems;
