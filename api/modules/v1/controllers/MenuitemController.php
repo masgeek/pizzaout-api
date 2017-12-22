@@ -40,12 +40,11 @@ class MenuitemController extends ActiveController
             ->all();
     }
 
-    public function actionSingleCatItem()
+    public function actionSingleCat()
     {
-        $singlecat = MENU_ITEM_MODEL::find()
+        return MENU_ITEM_MODEL::find()
             ->orderBy(['MENU_ITEM_NAME' => SORT_ASC])
-            ->one();
+            ->all();
 
-        return [$singlecat];
     }
 }

@@ -16,7 +16,7 @@ use yii\helpers\Url;
 use yii\web\Link;
 use yii\web\Linkable;
 
-class MENU_ITEM_MODEL extends MenuItem implements Linkable
+class MENU_ITEM_MODEL extends MenuItem //implements Linkable
 {
 
     public function fields()
@@ -33,6 +33,7 @@ class MENU_ITEM_MODEL extends MenuItem implements Linkable
             /* @var $model MENU_ITEM_MODEL */
             return MENU_ITEM_TYPE::find()
                 ->where(['MENU_ITEM_ID' => $model->MENU_ITEM_ID])
+                ->asArray()
                 ->all();
         };
 
@@ -45,6 +46,7 @@ class MENU_ITEM_MODEL extends MenuItem implements Linkable
         return $fields;
     }
 
+    /*
     public function getLinks()
     {
         return [
@@ -53,5 +55,5 @@ class MENU_ITEM_MODEL extends MenuItem implements Linkable
             'profile' => Url::to(['user/profile/view', 'id' => $this->MENU_ITEM_ID], true),
             'index' => Url::to(['users'], true),
         ];
-    }
+    }*/
 }
