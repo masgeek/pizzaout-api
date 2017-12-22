@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%cart}}".
+ * This is the model class for table "tb_cart".
  *
  * @property string $CART_ITEM_ID
  * @property string $USER_ID
@@ -27,7 +27,7 @@ class Cart extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%cart}}';
+        return 'tb_cart';
     }
 
     /**

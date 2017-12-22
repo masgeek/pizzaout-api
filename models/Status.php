@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%status}}".
+ * This is the model class for table "tb_status".
  *
  * @property string $STATUS_NAME
  * @property string $STATUS_DESC
@@ -26,7 +26,7 @@ class Status extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%status}}';
+        return 'tb_status';
     }
 
     /**

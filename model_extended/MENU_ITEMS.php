@@ -29,17 +29,9 @@ class MENU_ITEMS extends MenuItem
     public static function GetItemSizes()
     {
 
-        return [
-            'SMALL' => 'SMALL',
-            'MEDIUM' => 'MEDIUM',
-            'LARGE' => 'LARGE',
-        ];
-        /* $chefs = self::find()
-             //->where(['MENU_CAT_ID' => $menu_cat_id])
-             ->all();
-
-         $listData = ArrayHelper::map($chefs, 'MENU_ITEM_ID', 'MENU_ITEM_NAME');
-
-         return $listData;*/
+        $sizes = SIZES_MODEL::find()
+            //->where(['MENU_CAT_ID' => $menu_cat_id])
+            ->all();
+        return ArrayHelper::map($sizes, 'SIZE_TYPE', 'SIZE_TYPE');
     }
 }
