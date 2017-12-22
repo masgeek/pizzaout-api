@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%sizes}}".
  *
- * @property string $SIZED_ID
+ * @property string $SIZE_ID
  * @property string $SIZE_TYPE
  * @property bool $ACTIVE
  *
@@ -42,7 +42,7 @@ class Sizes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'SIZED_ID' => Yii::t('app', 'Sized  ID'),
+            'SIZE_ID' => Yii::t('app', 'Size  ID'),
             'SIZE_TYPE' => Yii::t('app', 'Size  Type'),
             'ACTIVE' => Yii::t('app', 'Active'),
         ];
