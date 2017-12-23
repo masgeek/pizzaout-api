@@ -46,9 +46,13 @@ class CART_MODEL extends Cart
 
         $fields['SIZE'] = function ($model) {
             /* @var $model CART_MODEL */
-            return $model->iTEMTYPE->ITEM_TYPE_SIZE;
+            return $model->ITEM_TYPE_SIZE;
         };
 
+        $fields['SIZES'] = function ($model) {
+            /* @var $model CART_MODEL */
+            return $model->iTEMTYPE->mENUITEM->menuItemTypes;
+        };
         $fields['MENU_CAT_ITEM'] = function ($model) {
             /* @var $model CART_MODEL */
             return $model->iTEMTYPE->mENUITEM;

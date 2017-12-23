@@ -68,11 +68,11 @@ class APP_UTILS
     }
 
     /**
-     * @param $model
+     * @param $image_url
      * @param bool $cleanUrl
      * @return string
      */
-    public static function BuildImageUrl($model, $cleanUrl = false)
+    public static function BuildImageUrl($image_url, $cleanUrl = false)
     {
 
         // $baseUrl = Url::to('@foodimages', true);
@@ -84,7 +84,7 @@ class APP_UTILS
 
         $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
 
-        $imagePath = "{$cleanBaseURL}{$imageFolder}/{$model->MENU_ITEM_IMAGE}";
+        $imagePath = "{$cleanBaseURL}{$imageFolder}/{$image_url}";
         return $imagePath;
     }
 }
