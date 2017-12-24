@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 22, 2017 at 09:57 AM
+-- Generation Time: Dec 24, 2017 at 03:00 AM
 -- Server version: 10.0.33-MariaDB
 -- PHP Version: 5.6.30
 
@@ -164,7 +164,21 @@ INSERT INTO `customer_order` (`ORDER_ID`, `USER_ID`, `ADDRESS_ID`, `KITCHEN_ID`,
   (1091, 25, 1, NULL, NULL, NULL, '2017-12-22 12:42:47', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 12:42:47', '2017-12-22 12:42:47'),
   (1092, 25, 1, NULL, NULL, NULL, '2017-12-22 12:42:47', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 12:42:47', '2017-12-22 12:42:47'),
   (1093, 25, 1, NULL, NULL, NULL, '2017-12-22 14:38:12', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 14:38:12', '2017-12-22 14:38:12'),
-  (1094, 25, 1, NULL, NULL, NULL, '2017-12-22 14:38:12', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 14:38:13', '2017-12-22 14:38:13');
+  (1094, 25, 1, NULL, NULL, NULL, '2017-12-22 14:38:12', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 14:38:13', '2017-12-22 14:38:13'),
+  (1095, 25, 1, NULL, NULL, NULL, '2017-12-22 16:13:46', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:13:46', '2017-12-22 16:13:46'),
+  (1096, 10, 1, NULL, NULL, NULL, '2017-12-22 16:24:15', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:24:15', '2017-12-22 16:24:15'),
+  (1097, 10, 1, NULL, NULL, NULL, '2017-12-22 16:30:26', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:30:26', '2017-12-22 16:30:26'),
+  (1098, 10, 1, NULL, NULL, NULL, '2017-12-22 16:34:14', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:34:14', '2017-12-22 16:34:14'),
+  (1099, 46, 1, NULL, NULL, NULL, '2017-12-22 16:53:32', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:53:32', '2017-12-22 16:53:32'),
+  (1100, 46, 1, NULL, NULL, NULL, '2017-12-22 16:53:32', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:53:32', '2017-12-22 16:53:32'),
+  (1101, 10, 1, NULL, NULL, NULL, '2017-12-22 16:59:15', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 16:59:15', '2017-12-22 16:59:15'),
+  (1102, 5, 1, NULL, NULL, NULL, '2017-12-22 17:33:56', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-22 17:33:56', '2017-12-22 17:33:56'),
+  (1103, 25, 1, NULL, NULL, NULL, '2017-12-23 02:18:54', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-23 02:18:54', '2017-12-23 02:18:54'),
+  (1104, 25, 1, NULL, NULL, NULL, '2017-12-23 02:18:55', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-23 02:18:55', '2017-12-23 02:18:55'),
+  (1105, 48, 1, NULL, NULL, NULL, '2017-12-23 07:10:29', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-23 07:10:29', '2017-12-23 07:10:29'),
+  (1106, 48, 1, NULL, NULL, NULL, '2017-12-23 07:10:37', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-23 07:10:37', '2017-12-23 07:10:37'),
+  (1107, 25, 1, NULL, NULL, NULL, '2017-12-23 10:58:55', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-23 10:58:55', '2017-12-23 10:58:55'),
+  (1108, 10, 1, NULL, NULL, NULL, '2017-12-23 11:10:30', 'MOBILE', 'ORDER PENDING', NULL, '2017-12-23 11:10:30', '2017-12-23 11:10:30');
 
 -- --------------------------------------------------------
 
@@ -223,7 +237,25 @@ INSERT INTO `customer_order_item` (`ORDER_ITEM_ID`, `ORDER_ID`, `ITEM_TYPE_ID`, 
   (53, 1090, 9, 20, '1', '20', 'N/A', NULL, '2017-12-22 09:14:01', NULL),
   (54, 1091, 11, 11, '1', '11', 'N/A', NULL, '2017-12-22 12:42:47', NULL),
   (55, 1092, 11, 11, '1', '11', 'N/A', NULL, '2017-12-22 12:42:47', NULL),
-  (56, 1093, 10, 1, '15', '15', 'N/A', NULL, '2017-12-22 14:38:12', NULL);
+  (56, 1093, 10, 1, '15', '15', 'N/A', NULL, '2017-12-22 14:38:12', NULL),
+  (57, 1095, 9, 1, '13', '13', 'N/A', NULL, '2017-12-22 16:13:46', NULL),
+  (58, 1095, 10, 1, '15', '15', 'N/A', NULL, '2017-12-22 16:13:46', NULL),
+  (59, 1096, 3, 20, '1', '20', 'N/A', NULL, '2017-12-22 16:24:15', NULL),
+  (60, 1096, 15, 1, '1', '1', 'N/A', NULL, '2017-12-22 16:24:15', NULL),
+  (61, 1097, 1, 19, '15', '285', 'N/A', NULL, '2017-12-22 16:30:26', NULL),
+  (62, 1097, 14, 5, '1', '5', 'N/A', NULL, '2017-12-22 16:30:26', NULL),
+  (63, 1101, 14, 1, '1', '1', 'N/A', NULL, '2017-12-22 16:59:15', NULL),
+  (64, 1101, 16, 1, '1', '1', 'N/A', NULL, '2017-12-22 16:59:15', NULL),
+  (65, 1102, 5, 1, '1', '1', 'N/A', NULL, '2017-12-22 17:33:56', NULL),
+  (66, 1102, 5, 1, '1', '1', 'N/A', NULL, '2017-12-22 17:33:56', NULL),
+  (67, 1103, 1, 1, '15', '15', 'N/A', NULL, '2017-12-23 02:18:54', NULL),
+  (68, 1103, 8, 1, '13', '13', 'N/A', NULL, '2017-12-23 02:18:54', NULL),
+  (69, 1104, 1, 1, '15', '15', 'N/A', NULL, '2017-12-23 02:18:55', NULL),
+  (70, 1104, 8, 1, '13', '13', 'N/A', NULL, '2017-12-23 02:18:55', NULL),
+  (71, 1105, 9, 2, '11', '22', 'N/A', NULL, '2017-12-23 07:10:29', NULL),
+  (72, 1105, 9, 2, '11', '22', 'N/A', NULL, '2017-12-23 07:10:29', NULL),
+  (73, 1107, 3, 1, '13', '13', 'N/A', NULL, '2017-12-23 10:58:55', NULL),
+  (74, 1108, 5, 1, '13', '13', 'N/A', NULL, '2017-12-23 11:10:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -339,7 +371,7 @@ INSERT INTO `menu_item` (`MENU_ITEM_ID`, `MENU_CAT_ID`, `MENU_ITEM_NAME`, `MENU_
   (3, 1, 'Chicken Tikka Masala', 'cheesy pizza topped with delicious Indian chicken tikka masala', 'pizza3.jpg', b'0', b'0', 20),
   (4, 1, 'Supreme', 'Sausage, pepperoni, mushrooms, olives, peppers, and onion', 'pizza3.jpg', b'0', b'0', 20),
   (5, 6, 'Water', '', 'drink7.jpg', b'0', b'0', 10),
-  (7, 6, 'Orange Juice', 'Freshly squeezed orange juice', '1.jpg', b'0', b'0', 20),
+  (7, 6, 'Orange Juice', 'Freshly squeezed orange juice', 'drink1.jpg', b'0', b'0', 20),
   (8, 6, 'Coffee', 'Black coffee without milk', '1.jpg', b'0', b'0', 10),
   (9, 6, 'lemon juice', '', 'drink3.jpg', b'0', b'0', 10),
   (10, 6, 'tea', '', 'drink5.jpg', b'0', b'0', 10);
@@ -401,7 +433,12 @@ CREATE TABLE `my_session` (
 --
 
 INSERT INTO `my_session` (`id`, `expire`, `data`, `user_id`, `user_name`) VALUES
-  ('hrkt94sscqv6o436v5vr3qp292', 1513972654, 0x5f5f666c6173687c613a303a7b7d5f5f69647c693a31313b5f5f6578706972657c693a313531333935383635343b, 11, 'admin');
+  ('28hjpibk6rarfeuijvkf48a9j4', 1513977484, 0x5f5f666c6173687c613a303a7b7d5f5f72657475726e55726c7c733a373a222f6f7264657273223b, 0, '0'),
+  ('52qcvs95eg7kkntrqoga4ntvr2', 1513978548, 0x5f5f666c6173687c613a303a7b7d5f5f72657475726e55726c7c733a32323a222f6d656e7563617465676f72792f7570646174652f31223b, 0, '0'),
+  ('d74tpt4q52v7gjojicmeb50hg0', 1513977548, 0x5f5f666c6173687c613a303a7b7d5f5f72657475726e55726c7c733a31333a222f6d656e7563617465676f7279223b, 0, '0'),
+  ('flfm5bm0bf3j2mjdmovhmdnbs0', 1514118117, 0x5f5f666c6173687c613a303a7b7d, 0, '0'),
+  ('k84l6361hqtom7opacg1b3u4s2', 1513979345, 0x5f5f666c6173687c613a303a7b7d5f5f69647c693a32353b5f5f6578706972657c693a313531333936353334343b, 25, 'Mohamed'),
+  ('loueo52plajr6e1p19mnmjmcu2', 1513979047, 0x5f5f666c6173687c613a303a7b7d5f5f72657475726e55726c7c733a32313a222f637573746f6d65722f64656661756c742f616464223b, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -456,7 +493,21 @@ INSERT INTO `order_tracking` (`TRACKING_ID`, `ORDER_ID`, `COMMENTS`, `STATUS`, `
   (182, 1091, NULL, 'ORDER PENDING', '2017-12-22 12:42:47', b'1'),
   (183, 1092, NULL, 'ORDER PENDING', '2017-12-22 12:42:47', b'1'),
   (184, 1093, NULL, 'ORDER PENDING', '2017-12-22 14:38:12', b'1'),
-  (185, 1094, NULL, 'ORDER PENDING', '2017-12-22 14:38:13', b'1');
+  (185, 1094, NULL, 'ORDER PENDING', '2017-12-22 14:38:13', b'1'),
+  (186, 1095, NULL, 'ORDER PENDING', '2017-12-22 16:13:46', b'1'),
+  (187, 1096, NULL, 'ORDER PENDING', '2017-12-22 16:24:15', b'1'),
+  (188, 1097, NULL, 'ORDER PENDING', '2017-12-22 16:30:26', b'1'),
+  (189, 1098, NULL, 'ORDER PENDING', '2017-12-22 16:34:14', b'1'),
+  (190, 1099, NULL, 'ORDER PENDING', '2017-12-22 16:53:32', b'1'),
+  (191, 1100, NULL, 'ORDER PENDING', '2017-12-22 16:53:32', b'1'),
+  (192, 1101, NULL, 'ORDER PENDING', '2017-12-22 16:59:15', b'1'),
+  (193, 1102, NULL, 'ORDER PENDING', '2017-12-22 17:33:56', b'1'),
+  (194, 1103, NULL, 'ORDER PENDING', '2017-12-23 02:18:54', b'1'),
+  (195, 1104, NULL, 'ORDER PENDING', '2017-12-23 02:18:55', b'1'),
+  (196, 1105, NULL, 'ORDER PENDING', '2017-12-23 07:10:29', b'1'),
+  (197, 1106, NULL, 'ORDER PENDING', '2017-12-23 07:10:37', b'1'),
+  (198, 1107, NULL, 'ORDER PENDING', '2017-12-23 10:58:55', b'1'),
+  (199, 1108, NULL, 'ORDER PENDING', '2017-12-23 11:10:30', b'1');
 
 -- --------------------------------------------------------
 
@@ -524,10 +575,9 @@ CREATE TABLE `tb_cart` (
 INSERT INTO `tb_cart` (`CART_ITEM_ID`, `USER_ID`, `ITEM_TYPE_ID`, `QUANTITY`, `ITEM_PRICE`, `ITEM_TYPE_SIZE`, `CART_TIMESTAMP`, `CREATED_AT`, `UPDATED_AT`) VALUES
   (2, 24, 1, 1, '1200', 'LARGE', 1513775598, '2017-12-20 13:13:18', '2017-12-21 07:34:07'),
   (5, 24, 4, 1, '300', 'LARGE', 1513775598, '2017-12-21 07:34:13', '2017-12-21 07:34:13'),
-  (60, 5, 5, 9, '1', 'MEDIUM', 1513931061, '2017-12-22 08:24:21', '2017-12-22 12:19:04'),
-  (61, 5, 5, 1, '1', 'MEDIUM', 1513931061, '2017-12-22 08:24:28', '2017-12-22 08:24:28'),
-  (62, 5, 5, 1, '1', 'MEDIUM', 1513931061, '2017-12-22 08:24:28', '2017-12-22 08:24:28'),
-  (63, 10, 3, 20, '1', 'MEDIUM', 1513931956, '2017-12-22 08:39:16', '2017-12-22 08:39:16');
+  (88, 5, 13, 1, '1', '500ML', 1513968604, '2017-12-22 18:50:04', '2017-12-22 18:50:04'),
+  (89, 5, 13, 1, '1', '500ML', 1513968604, '2017-12-22 18:50:06', '2017-12-22 18:50:06'),
+  (91, 5, 5, 2, '13', 'MEDIUM', 1513968604, '2017-12-23 03:48:22', '2017-12-23 03:49:50');
 
 -- --------------------------------------------------------
 
@@ -653,7 +703,8 @@ INSERT INTO `tb_users` (`USER_ID`, `USER_NAME`, `USER_TYPE`, `SURNAME`, `OTHER_N
   (44, 'Abdikasim', 1, 'Moalim', 'Ahmed', 617999222, 'abdulkasimmoalim@gmail.com', 1, 'b82886f310d6c223dea476600babca5849670e21', '2017-12-21 17:27:14', '2017-12-21 17:27:14', NULL),
   (45, 'Sandheere', 1, 'Mohamed', 'Sandheere', 2147483647, 'sanka6016@gmail.com', 1, '890940a175fdd194c3f42a27e8ecbfefb983094d', '2017-12-21 17:48:20', '2017-12-21 17:48:20', NULL),
   (46, 'Sandheere10', 1, 'Mohamed', 'Sandheere', 2147483647, 'sanka6015@gmail.com', 1, '8238a351f035bc1f72a1a7cff337221a73dae6f2', '2017-12-21 18:02:10', '2017-12-21 18:02:10', NULL),
-  (47, 'Mr. Vision', 1, 'Yasir', 'Baffo', 618309457, 'mr.vision2025@gmail.com', 1, '7c4a8d09ca3762af61e59520943dc26494f8941b', '2017-12-21 18:32:22', '2017-12-21 18:32:22', NULL);
+  (47, 'Mr. Vision', 1, 'Yasir', 'Baffo', 618309457, 'mr.vision2025@gmail.com', 1, '7c4a8d09ca3762af61e59520943dc26494f8941b', '2017-12-21 18:32:22', '2017-12-21 18:32:22', NULL),
+  (48, 'Aainab', 1, 'Ainab', 'Ahmed Abdi', 615513533, 'axmedcaynab@gmail.com', 1, '0fb641dff5070d488355f89a1ad0fdc8203e0f33', '2017-12-23 06:44:32', '2017-12-23 06:44:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -676,40 +727,14 @@ INSERT INTO `user_type` (`USER_TYPE_ID`, `USER_TYPE_NAME`) VALUES
   (3, 'RIDER');
 
 -- --------------------------------------------------------
-
---
--- Stand-in structure for view `vw_orders`
--- (See below for the actual view)
---
-CREATE TABLE `vw_orders` (
-   `ORDER_ID` bigint(20)
-  ,`USER_ID` bigint(20)
-  ,`KITCHEN_ID` bigint(10)
-  ,`CHEF_ID` bigint(10)
-  ,`RIDER_ID` bigint(10)
-  ,`MOBILE` int(20)
-  ,`SURNAME` varchar(100)
-  ,`OTHER_NAMES` varchar(100)
-  ,`ORDER_DATE` datetime
-  ,`ORDER_STATUS` varchar(30)
-  ,`PAYMENT_AMOUNT` decimal(10,2)
-  ,`PAYMENT_NUMBER` varchar(30)
-  ,`NOTES` varchar(255)
-  ,`ADDRESS_ID` bigint(20)
-  ,`PAYMENT_METHOD` varchar(20)
-  ,`CREATED_AT` datetime
-  ,`UPDATED_AT` datetime
-  ,`PAYMENT_DATE` datetime
-);
-
 -- --------------------------------------------------------
 
 --
 -- Structure for view `vw_orders`
 --
-DROP TABLE IF EXISTS `vw_orders`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tsobucok`@`localhost` SQL SECURITY DEFINER VIEW `vw_orders`  AS  select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
+
+CREATE VIEW `vw_orders`  AS  select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
 
 --
 -- Indexes for dumped tables
@@ -920,12 +945,12 @@ ALTER TABLE `customer_address`
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
-  MODIFY `ORDER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1095;
+  MODIFY `ORDER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1109;
 --
 -- AUTO_INCREMENT for table `customer_order_item`
 --
 ALTER TABLE `customer_order_item`
-  MODIFY `ORDER_ITEM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `ORDER_ITEM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `kitchen`
 --
@@ -955,7 +980,7 @@ ALTER TABLE `menu_item_type`
 -- AUTO_INCREMENT for table `order_tracking`
 --
 ALTER TABLE `order_tracking`
-  MODIFY `TRACKING_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `TRACKING_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 --
 -- AUTO_INCREMENT for table `payment`
 --
@@ -970,7 +995,7 @@ ALTER TABLE `riders`
 -- AUTO_INCREMENT for table `tb_cart`
 --
 ALTER TABLE `tb_cart`
-  MODIFY `CART_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `CART_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT for table `tb_favs`
 --
@@ -985,7 +1010,7 @@ ALTER TABLE `tb_sizes`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `user_type`
 --
