@@ -126,6 +126,7 @@ class SiteController extends Controller
      */
     public function actionTerms()
     {
+        $this->layout = 'login_layout';
         return $this->render('terms');
     }
 }
