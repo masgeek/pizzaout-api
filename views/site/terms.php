@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="static-content has-image">
         <p></p>
         <p>Please carefully read the terms and conditions ("Terms and Conditions") below before placing any order for
-            any of the Goods or Services from www.food.jumia.co.ke or www.party.jumia.co.ke. By placing an order for any
+            any of the Goods or Services from Pizza Out. By placing an order for any
             of the Goods or Services from these Websites, whereas it is by phone, through our mobile applications or by
             any other available channel, you agree to be bound by these Terms and Conditions.<br> &nbsp;</p>
         <ul class="blackbullet">
