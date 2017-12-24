@@ -78,7 +78,9 @@ class APP_UTILS
 
         $baseUrl = Url::to([null], true);
 
+
         $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
+        $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
 
         $imagePath = "{$cleanBaseURL}{$imageFolder}/{$image_url}";
         return $imagePath;
