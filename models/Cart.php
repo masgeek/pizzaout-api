@@ -13,6 +13,7 @@ use Yii;
  * @property int $QUANTITY
  * @property string $ITEM_PRICE
  * @property string $ITEM_TYPE_SIZE
+ * @property string $NOTES
  * @property string $CART_TIMESTAMP
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
@@ -41,6 +42,7 @@ class Cart extends \yii\db\ActiveRecord
             [['ITEM_PRICE'], 'number'],
             [['CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['ITEM_TYPE_SIZE'], 'string', 'max' => 15],
+            [['NOTES'], 'string', 'max' => 255],
             [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
         ];
@@ -58,6 +60,7 @@ class Cart extends \yii\db\ActiveRecord
             'QUANTITY' => Yii::t('app', 'Quantity'),
             'ITEM_PRICE' => Yii::t('app', 'Item  Price'),
             'ITEM_TYPE_SIZE' => Yii::t('app', 'Item  Type  Size'),
+            'NOTES' => Yii::t('app', 'Notes'),
             'CART_TIMESTAMP' => Yii::t('app', 'Cart  Timestamp'),
             'CREATED_AT' => Yii::t('app', 'Created  At'),
             'UPDATED_AT' => Yii::t('app', 'Updated  At'),
