@@ -55,7 +55,10 @@ class CART_MODEL extends Cart
         };
         $fields['MENU_CAT_ITEM'] = function ($model) {
             /* @var $model CART_MODEL */
-            return $model->iTEMTYPE->mENUITEM;
+            $menu_item = $model->iTEMTYPE->mENUITEM;
+
+            $menu_item->MENU_ITEM_IMAGE = APP_UTILS::BuildImageUrl($menu_item->MENU_ITEM_IMAGE);
+            return $menu_item;
         };
         return $fields;
     }
