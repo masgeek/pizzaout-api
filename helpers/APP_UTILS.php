@@ -72,15 +72,17 @@ class APP_UTILS
      * @param bool $cleanUrl
      * @return string
      */
-    public static function BuildImageUrl($image_url, $cleanUrl = false)
+    public static function BuildImageUrl($image_url, $fromApi = true)
     {
         $imageFolder = \Yii::getAlias('@foodimages');
 
         $baseUrl = Url::to([null], true);
 
-
-        $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
-        $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
+        if ($fromApi) {
+            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
+        } else {
+            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
+        }
 
         $imagePath = "{$cleanBaseURL}{$imageFolder}/{$image_url}";
         return $imagePath;
