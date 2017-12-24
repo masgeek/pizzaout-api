@@ -74,10 +74,6 @@ class APP_UTILS
      */
     public static function BuildImageUrl($image_url, $cleanUrl = false)
     {
-
-        // $baseUrl = Url::to('@foodimages', true);
-        //$baseUrl = Url::to('@webroot', false);
-
         $imageFolder = \Yii::getAlias('@foodimages');
 
         $baseUrl = Url::to([null], true);

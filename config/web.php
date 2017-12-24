@@ -1,4 +1,6 @@
 <?php
+\Yii::setAlias('@foodimages', 'images/foodimages/');
+
 $params = require_once(__DIR__ . '/params.php');
 $fcm = require_once(__DIR__ . '/fcm.php');
 $braintree = require_once(__DIR__ . '/braintree.php');

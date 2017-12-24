@@ -13,14 +13,14 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 //$baseUrl = Yii::$app->request->baseUrl . '/omnifood/img/';
-$baseUrl = Url::to('@web/themeassets/omnifood/img/');
+$image = \app\helpers\APP_UTILS::BuildImageUrl($model->MENU_ITEM_IMAGE);
 ?>
 
 
 <div class="panel panel-success">
     <div class="panel-body">
         <div class="col-md-2">
-            <?= Html::img("{$baseUrl}{$model->MENU_ITEM_IMAGE}", ['alt' => 'Pizza Slice', 'class' => 'img img-thumbnail']); ?>
+            <?= Html::img("$image", ['alt' => 'Pizza Slice', 'class' => 'img img-thumbnail']); ?>
         </div>
         <div class="col-md-4">
             <p class="large-text"><?= $model->MENU_ITEM_NAME ?></p>
