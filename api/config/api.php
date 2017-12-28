@@ -135,7 +135,7 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
-                        'v1/my-address' => 'v1/address',
+                        'v1/address' => 'v1/address',
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>',
