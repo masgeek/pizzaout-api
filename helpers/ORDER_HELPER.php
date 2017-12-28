@@ -121,7 +121,7 @@ class ORDER_HELPER
                     $resp = [
                         'ORDER_CREATED' => $saveSuccessful,
                         'ORDER_ID' => (int)$customer_order->ORDER_ID,
-                        'USSD_NUMBER' => '*799*30173865*',
+                        'USSD_NUMBER' => '*799*31722313*',
                     ];
                 }
             } else {
