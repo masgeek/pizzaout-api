@@ -47,7 +47,7 @@ class AddressController extends ActiveController
     {
         //get all the address of the user
         $address = CUSTOMER_ADDRESS_MODEL::find()
-            ->where(["USER_ID" => $user_id])
+            //->where(["USER_ID" => $user_id])
             ->all();
 
         return $address;
