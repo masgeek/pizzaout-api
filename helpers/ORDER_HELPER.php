@@ -132,6 +132,15 @@ class ORDER_HELPER
     }
 
 
+    /**
+     * @param $user_id
+     * @param array $order_payment_arr
+     * @param array $cart_items
+     * @param bool $isCard
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\Exception
+     */
     public static function CreateOrderFromCartOld($user_id, array $order_payment_arr, array $cart_items = [], $isCard = false)
     {
         /* @var $orderItems CART_MODEL */
@@ -194,8 +203,9 @@ class ORDER_HELPER
                     //remove the cart item
                     CART_MODEL::ClearCart($cart_timestamp);
                 }
+            } else {
+                $transaction->rollback();
             }
-            $transaction->rollback();
         }
         return $saveSuccessful;
     }
