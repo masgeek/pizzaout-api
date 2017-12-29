@@ -150,6 +150,13 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
+                        'v1/location',
+                    ],
+                ],
+                //////////////////////////////////////
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
                         'v1/rider',
                     ],
                     'tokens' => [
