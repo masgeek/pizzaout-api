@@ -18,11 +18,11 @@ class CUSTOMER_ADDRESS_MODEL extends CustomerAddress
         $fields = parent::fields();
 
         $fields['USER'] = function ($model) {
-            /* @var $model $this */
-            return $model->uSER;
+            /* @var $model CUSTOMER_ADDRESS_MODEL */
+            return $model->uSER->USER_NAME;
         };
         $fields['LOCATION'] = function ($model) {
-            /* @var $model $this */
+            /* @var $model CUSTOMER_ADDRESS_MODEL */
             return $model->lOCATION;
         };
         return $fields;
