@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "{{%favs}}".
  *
- * @property string $FAV_ID
- * @property string $MENU_ITEM_ID
- * @property string $USER_ID
+ * @property int $FAV_ID
+ * @property int $MENU_ITEM_ID
+ * @property int $USER_ID
  *
  * @property MenuItem $mENUITEM
  * @property Users $uSER

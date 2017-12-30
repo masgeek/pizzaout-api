@@ -10,7 +10,7 @@ use Yii;
  * @property string $id
  * @property int $expire
  * @property resource $data
- * @property string $user_id
+ * @property int $user_id
  * @property string $user_name
  */
 class MySession extends \yii\db\ActiveRecord

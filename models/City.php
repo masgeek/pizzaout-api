@@ -7,12 +7,13 @@ use Yii;
 /**
  * This is the model class for table "city".
  *
- * @property string $CITY_ID
+ * @property int $CITY_ID
  * @property string $CITY_NAME
- * @property string $COUNTRY_ID
+ * @property int $COUNTRY_ID
  *
  * @property Country $cOUNTRY
  * @property Kitchen[] $kitchens
+ * @property Location[] $locations
  */
 class City extends \yii\db\ActiveRecord
 {
@@ -63,5 +64,13 @@ class City extends \yii\db\ActiveRecord
     public function getKitchens()
     {
         return $this->hasMany(Kitchen::className(), ['CITY_ID' => 'CITY_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLocations()
+    {
+        return $this->hasMany(Location::className(), ['CITY_ID' => 'CITY_ID']);
     }
 }

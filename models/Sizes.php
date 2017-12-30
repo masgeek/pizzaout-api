@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%sizes}}".
  *
- * @property string $SIZE_ID
+ * @property int $SIZE_ID
  * @property string $SIZE_TYPE
  * @property bool $ACTIVE
  *
