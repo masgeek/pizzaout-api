@@ -1,5 +1,6 @@
 <?php
 die("Maintenance");
+
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('LOCAL') or define('LOCAL', true);
