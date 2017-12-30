@@ -27,6 +27,11 @@ class OrderController extends ActiveController
     public $modelClass = 'app\api\modules\v1\models\CUSTOMER_ORDER_MODEL';
 
 
+    /**
+     * @param $user_id
+     * @return CUSTOMER_ORDER_MODEL
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionPay($user_id)
     {
         //create fictitious order
@@ -89,6 +94,10 @@ class OrderController extends ActiveController
     }
 
 
+    /**
+     * @param $user_id
+     * @return ActiveDataProvider
+     */
     public function actionMyOrders($user_id)
     {
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'CONFIRMED');
@@ -96,6 +105,10 @@ class OrderController extends ActiveController
         return $this->getOrders($order_type, $user_id);
     }
 
+    /**
+     * @param $user_id
+     * @return ActiveDataProvider
+     */
     public function actionActiveOrders($user_id)
     {
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
@@ -103,6 +116,10 @@ class OrderController extends ActiveController
         return $this->getOrders($order_type, $user_id);
     }
 
+    /**
+     * @param $rider_id
+     * @return ActiveDataProvider
+     */
     public function actionRiderOrders($rider_id)
     {
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
@@ -110,6 +127,12 @@ class OrderController extends ActiveController
         return $this->getOrders($order_type, $rider_id);
     }
 
+    /**
+     * @param $order_type
+     * @param $user_id
+     * @param null $rider_id
+     * @return ActiveDataProvider
+     */
     private function getOrders($order_type, $user_id, $rider_id = null)
     {
         $query = CUSTOMER_ORDER_MODEL::find();
@@ -166,6 +189,9 @@ class OrderController extends ActiveController
 
     }
 
+    /**
+     * @return array
+     */
     private function activeOrders()
     {
         return [

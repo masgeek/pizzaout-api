@@ -82,7 +82,7 @@ class ORDER_HELPER
         $paymentModel = new CUSTOMER_PAYMENTS();
         $customer_order = new CUSTOMER_ORDERS();
         $customer_order_items = new CUSTOMER_ORDER_ITEMS();
-        $customer_order->ORDER_STATUS = $isCard ? self::STATUS_ORDER_CONFIRMED : self::STATUS_ORDER_PENDING;
+        $customer_order->ORDER_STATUS = $isCard ? self::STATUS_ORDER_CONFIRMED : self::STATUS_PAYMENT_PENDING;
 
         if ($customer_order->load($order_payment_arr)) {
             $transaction = $connection->beginTransaction();
