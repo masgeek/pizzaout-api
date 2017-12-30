@@ -25,6 +25,15 @@ class CUSTOMER_ADDRESS_MODEL extends CustomerAddress
             /* @var $model CUSTOMER_ADDRESS_MODEL */
             return $model->lOCATION;
         };
+        $fields['CITY'] = function ($model) {
+            /* @var $model CUSTOMER_ADDRESS_MODEL */
+            return $model->lOCATION->cITY;
+        };
+
+        $fields['COUNTRY'] = function ($model) {
+            /* @var $model CUSTOMER_ADDRESS_MODEL */
+            return $model->lOCATION->cITY->cOUNTRY;
+        };
         return $fields;
     }
 }

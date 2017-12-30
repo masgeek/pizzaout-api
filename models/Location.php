@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "location".
  *
  * @property int $LOCATION_ID
- * @property string $LOCATION_NAME
  * @property int $CITY_ID
+ * @property string $LOCATION_NAME
  * @property string $ADDRESS
  *
  * @property CustomerAddress[] $customerAddresses
@@ -32,8 +32,8 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['LOCATION_NAME'], 'required'],
             [['CITY_ID'], 'integer'],
+            [['LOCATION_NAME'], 'required'],
             [['ADDRESS'], 'string'],
             [['LOCATION_NAME'], 'string', 'max' => 255],
             [['CITY_ID'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['CITY_ID' => 'CITY_ID']],
@@ -47,8 +47,8 @@ class Location extends \yii\db\ActiveRecord
     {
         return [
             'LOCATION_ID' => Yii::t('app', 'Location  ID'),
-            'LOCATION_NAME' => Yii::t('app', 'Location  Name'),
             'CITY_ID' => Yii::t('app', 'City  ID'),
+            'LOCATION_NAME' => Yii::t('app', 'Location  Name'),
             'ADDRESS' => Yii::t('app', 'Address'),
         ];
     }
