@@ -196,6 +196,7 @@ class OrderController extends ActiveController
     {
         return [
             ORDER_HELPER::STATUS_ORDER_PENDING,
+            ORDER_HELPER::STATUS_PAYMENT_PENDING,
             ORDER_HELPER::STATUS_ORDER_CONFIRMED,
             ORDER_HELPER::STATUS_CHEF_ASSIGNED,
             ORDER_HELPER::STATUS_PAYMENT_CONFIRMED,
