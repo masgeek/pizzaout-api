@@ -131,7 +131,7 @@ class OrderController extends ActiveController
      * @param $order_type
      * @param $user_id
      * @param null $rider_id
-     * @return ActiveDataProvider
+     * @return array|ActiveDataProvider
      */
     private function getOrders($order_type, $user_id, $rider_id = null)
     {
@@ -147,11 +147,13 @@ class OrderController extends ActiveController
                 $order_status = $this->activeOrders();
                 break;
             case 'CONFIRMED':
-            default:
                 $order_status = $this->confirmedOrders();
                 break;
             case 'CANCELLED':
                 $order_status = $this->cancelledOrders();
+                break;
+            case 'UNPAID':
+                $order_status = $this->unpaidOrders();
                 break;
             case 'PENDING':
                 $order_status = $this->pendingOrders();
@@ -162,6 +164,8 @@ class OrderController extends ActiveController
             case 'DELIVERED':
                 $order_status = $this->deliveredOrders();
                 break;
+            default:
+                return [];
 
         }
 
@@ -218,6 +222,12 @@ class OrderController extends ActiveController
             ORDER_HELPER::STATUS_AWAITING_RIDER,
             ORDER_HELPER::STATUS_RIDER_DISPATCHED
         ];
+
+    }
+
+    private function unpaidOrders()
+    {
+        return [ORDER_HELPER::STATUS_PAYMENT_PENDING];
 
     }
 
