@@ -4,7 +4,7 @@
 $db = require_once(__DIR__ . '/../../config/db.php');
 $fcm = require_once(__DIR__ . '/../../config/fcm.php');
 $braintree = require_once(__DIR__ . '/../../config/braintree.php');
-$params = require_once(__DIR__ . '/params.php');
+$params = require_once(__DIR__ . '/../../config/params.php');
 $formatter = require_once(__DIR__ . '/../../config/formatter.php');
 $session = require_once(__DIR__ . '/../../config/session.php');
 $config = [
