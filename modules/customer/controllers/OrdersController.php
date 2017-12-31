@@ -75,6 +75,9 @@ class OrdersController extends Controller
         $user_id = Yii::$app->user->id;
 
         $this->view->title = 'Pending Orders';
+
+        $this->view->params['cart_items'] = ORDER_HELPER::GetCartItems($user_id);
+
         $searchModel = new OrdersSearch();
 
         $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING], $user_id);
