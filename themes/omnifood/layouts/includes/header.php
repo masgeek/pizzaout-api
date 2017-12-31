@@ -16,11 +16,11 @@ $logo = \app\helpers\APP_UTILS::BuildImageUrl("logo.png", false, "images/app_ima
         <div class="row">
             <!--<img src="./assets/img/logo-white.png" alt="Omnifood logo" class="logo">-->
             <?= Html::img($logo, ['alt' => 'Pizza Out', 'class' => 'logo']); ?>
-            <ul class="main-nav">
+            <!--<ul class="main-nav">
                 <li><a href="#">Food delivery</a></li>
                 <li><a href="#">How it works</a></li>
                 <li><a href="#">Our cities</a></li>
-            </ul>
+            </ul>-->
         </div>
     </nav>
     <div class="hero-text-box">
