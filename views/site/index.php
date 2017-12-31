@@ -4,50 +4,44 @@
 
 use yii\helpers\Html;
 
+$pizza1 = \app\helpers\APP_UTILS::BuildImageUrl("pizza1.jpg", false, "images/foodimages");
+$pizza2 = \app\helpers\APP_UTILS::BuildImageUrl("pizza2.jpg", false, "images/foodimages");
+$pizza3 = \app\helpers\APP_UTILS::BuildImageUrl("pizza3.jpg", false, "images/foodimages");
+$pizza4 = \app\helpers\APP_UTILS::BuildImageUrl("pizza4.jpg", false, "images/foodimages");
+
+$drink1 = \app\helpers\APP_UTILS::BuildImageUrl("sprite.png", false, "images/foodimages");
+$drink2 = \app\helpers\APP_UTILS::BuildImageUrl("fanta.png", false, "images/foodimages");
+$drink3 = \app\helpers\APP_UTILS::BuildImageUrl("coke.png", false, "images/foodimages");
+$drink4 = \app\helpers\APP_UTILS::BuildImageUrl("drinks2.png", false, "images/foodimages");
 ?>
 <section class="section-meals">
     <ul class="meals-showcase clearfix">
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/1.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($pizza1, ['alt' => 'Pizza Out']); ?></figure>
         </li>
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/2.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($pizza2, ['alt' => 'Pizza Out']); ?></figure>
         </li>
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/3.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($pizza3, ['alt' => 'Pizza Out']); ?></figure>
         </li>
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/4.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($pizza4, ['alt' => 'Pizza Out']); ?></figure>
         </li>
     </ul>
+
     <ul class="meals-showcase clearfix">
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/5.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($drink1, ['alt' => 'Pizza Out']); ?></figure>
         </li>
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/6.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($drink2, ['alt' => 'Pizza Out']); ?></figure>
         </li>
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/7.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($drink3, ['alt' => 'Pizza Out']); ?></figure>
         </li>
         <li>
-            <figure class="meal-photo">
-                <?= Html::img('@omnifood/img/8.jpg', ['alt' => 'Pizza Slice']); ?>
-            </figure>
+            <figure class="meal-photo"><?= Html::img($drink4, ['alt' => 'Pizza Out']); ?></figure>
         </li>
     </ul>
 </section>
@@ -56,7 +50,7 @@ use yii\helpers\Html;
     <div class="row">
         <h2>Get food fast</h2>
         <p class="long-copy">
-            Hello,we're PizzaSlice, your new premium food delivery service. We know you're always busy. No time for
+            Hello,we're PizzaOut, your new premium food delivery service. We know you're always busy. No time for
             cooking. So let us take care of that, we're really good at it, we promise!
         </p>
     </div>
@@ -88,14 +82,13 @@ use yii\helpers\Html;
 </section>
 
 
-
 <section class="section-steps">
     <div class="row">
         <h2>How it works &mdash; Simple as 1, 2, 3</h2>
     </div>
     <div class="row">
         <div class="col span-1-of-2 steps-box">
-            <?= Html::img('@omnifood/img/app-iPhone.png', ['alt' => 'Pizza Slice', 'class' => 'app-screen']); ?>
+            <?= Html::img('@omnifood/img/app-iPhone.png', ['alt' => 'Pizza Out', 'class' => 'app-screen']); ?>
         </div>
         <div class="col span-1-of-2 steps-box">
             <div class="works-step">
@@ -112,10 +105,10 @@ use yii\helpers\Html;
             </div>
 
             <a href="#" class="btn-app">
-                <?= Html::img('@omnifood/img/download-app.svg', ['alt' => 'Pizza Slice']); ?>
+                <?= Html::img('@omnifood/img/download-app.svg', ['alt' => 'Pizza Out']); ?>
             </a>
-            <a href="#" class="btn-app">
-                <?= Html::img('@omnifood/img/download-app-android.png', ['alt' => 'Pizza Slice']); ?>
+            <a href="https://goo.gl/8vAwpM" target="_blank" class="btn-app">
+                <?= Html::img('@omnifood/img/download-app-android.png', ['alt' => 'Pizza Out']); ?>
             </a>
         </div>
     </div>
@@ -205,7 +198,7 @@ use yii\helpers\Html;
                     Omnifood is a life-saver. Now that I got used to it, I couldn't live without my daily meals!
                     <br>
                     <cite>
-                        <?= Html::img('@omnifood/img/customer-1.jpg', ['alt' => 'Pizza Slice']); ?>
+                        <?= Html::img('@omnifood/img/customer-1.jpg', ['alt' => 'Pizza Out']); ?>
                         Ismail Yusuf</cite>
                 </blockquote>
             </div>
@@ -215,7 +208,7 @@ use yii\helpers\Html;
                     delivery here in Lisbon, but no one comes even close to Omnifood. Me and my family are so in love!
                     <br>
                     <cite>
-                        <?= Html::img('@omnifood/img/customer-2.jpg', ['alt' => 'Pizza Slice']); ?>
+                        <?= Html::img('@omnifood/img/customer-2.jpg', ['alt' => 'Pizza Out']); ?>
                         Nadia
                     </cite>
                 </blockquote>
@@ -226,7 +219,7 @@ use yii\helpers\Html;
                     ended up with Omnifood. Best food delivery service in the Bay Area. Keep up the great work!
                     <br>
                     <cite>
-                        <?= Html::img('@omnifood/img/customer-3.jpg', ['alt' => 'Pizza Slice']); ?>
+                        <?= Html::img('@omnifood/img/customer-3.jpg', ['alt' => 'Pizza Out']); ?>
                         Sammy Barasa</cite>
                 </blockquote>
             </div>
