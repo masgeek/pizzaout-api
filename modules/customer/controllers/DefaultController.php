@@ -5,6 +5,7 @@ namespace app\modules\customer\controllers;
 
 use yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use app\helpers\APP_UTILS;
@@ -33,7 +34,7 @@ class DefaultController extends Controller
                 ],
             ],
             'access' => [
-                'class' => yii\filters\AccessControl::className(),
+                'class' => AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,

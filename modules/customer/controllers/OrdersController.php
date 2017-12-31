@@ -8,6 +8,7 @@ use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -32,7 +33,7 @@ class OrdersController extends Controller
                 ],
             ],
             'access' => [
-                'class' => yii\filters\AccessControl::className(),
+                'class' => AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
