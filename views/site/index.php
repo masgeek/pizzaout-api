@@ -88,7 +88,7 @@ $drink4 = \app\helpers\APP_UTILS::BuildImageUrl("drinks2.png", false, "images/fo
     </div>
     <div class="row">
         <div class="col span-1-of-2 steps-box">
-            <?= Html::img('@omnifood/img/app-iPhone.png', ['alt' => 'Pizza Out', 'class' => 'app-screen']); ?>
+            <!--<?= Html::img('@omnifood/img/app-iPhone.png', ['alt' => 'Pizza Out', 'class' => 'app-screen']); ?>-->
         </div>
         <div class="col span-1-of-2 steps-box">
             <div class="works-step">
@@ -188,6 +188,7 @@ $drink4 = \app\helpers\APP_UTILS::BuildImageUrl("drinks2.png", false, "images/fo
 </section>
 -->
 
+<!--
 <section class="section-testimonials">
     <div class="row">
         <h2>Our customer's can't live without us</h2>
@@ -226,7 +227,7 @@ $drink4 = \app\helpers\APP_UTILS::BuildImageUrl("drinks2.png", false, "images/fo
         </div>
     </div>
 </section>
-
+-->
 <section class="section-pricing">
     <div class="row">
         <h2>Start Ordering today!!!</h2>
