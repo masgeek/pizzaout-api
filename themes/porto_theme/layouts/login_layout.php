@@ -27,7 +27,6 @@ $logo = \app\helpers\APP_UTILS::BuildImageUrl("logo.png", false, "images/app_ima
 <section class="body-sign">
     <div class="center-sign">
         <a href="#" class="logo pull-left">
-            <?= $logo ?>
             <img src="<?= $logo ?>" height="54" alt="Pizza Out Logo"/>
         </a>
         <?= $content ?>
