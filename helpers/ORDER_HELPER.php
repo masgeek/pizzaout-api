@@ -69,11 +69,11 @@ class ORDER_HELPER
         $currentDate = APP_UTILS::GetCurrentDateTime();
         $saveSuccessful = false;
         $cart_timestamp = null;
-
+        $ussdNumber = Yii::$app->params['ussdNumber'];
         $resp = [
             'ORDER_CREATED' => $saveSuccessful,
             'ORDER_ID' => 0,
-            'USSD_NUMBER' => '*799*31722313*',
+            'USSD_NUMBER' => $ussdNumber
         ];
         if (count($cart_items) <= 0) {
             $cart_items = self::GetCartItems($user_id);
@@ -121,7 +121,7 @@ class ORDER_HELPER
                     $resp = [
                         'ORDER_CREATED' => $saveSuccessful,
                         'ORDER_ID' => (int)$customer_order->ORDER_ID,
-                        'USSD_NUMBER' => '*799*31722313*',
+                        'USSD_NUMBER' => $ussdNumber
                     ];
                 }
             } else {

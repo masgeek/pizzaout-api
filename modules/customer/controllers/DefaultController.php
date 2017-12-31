@@ -57,8 +57,6 @@ class DefaultController extends Controller
 
         $user_id = \Yii::$app->user->id;
         //get the list of orders
-
-
         $this->view->params['cart_items'] = ORDER_HELPER::GetCartItems($user_id);
 
 

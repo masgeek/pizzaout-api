@@ -55,13 +55,13 @@ $formatter = \Yii::$app->formatter;
                     <!--<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>-->
                 </div>
             </header>
-
-            <div class="col-lg-8 col-md-12">
+            <hr/>
+            <div class="col-lg-9 col-md-12 col-sm-12">
                 <!-- start: page -->
                 <?= $content ?>
                 <!-- end: page -->
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-3 col-md-12 col-sm-12">
                 <section class="panel panel-success">
                     <header class="panel-heading">
                         <div class="panel-actions">
