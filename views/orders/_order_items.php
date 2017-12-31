@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
 /* @var $orderItems app\model_extended\CUSTOMER_ORDER_ITEMS */
-
+/* @var object $formatter */
 $formatter = \Yii::$app->formatter;
 ?>
 
@@ -17,19 +17,19 @@ $formatter = \Yii::$app->formatter;
     </tr>
     </thead>
     <tbody>
-	<?php
-	$orderTotal = 0.0;
-	foreach ($model->customerOrderItems as $orderItems):?>
+    <?php
+    $orderTotal = 0.0;
+    foreach ($model->customerOrderItems as $orderItems):?>
         <tr>
             <td><?= "{$orderItems->QUANTITY}x"; ?></td>
             <td><?= "{$orderItems->iTEMTYPE->mENUITEM->MENU_ITEM_NAME} ({$orderItems->iTEMTYPE->ITEM_TYPE_SIZE})"; ?></td>
             <td class="text-left"><?= $formatter->asCurrency($orderItems->PRICE) ?></td>
             <td class="text-right"><?= $formatter->asCurrency($orderItems->SUBTOTAL) ?></td>
         </tr>
-		<?php
-		//lets do the order total here
-		$orderTotal = $orderTotal + (float)$orderItems->SUBTOTAL;
-	endforeach; ?>
+        <?php
+        //lets do the order total here
+        $orderTotal = $orderTotal + (float)$orderItems->SUBTOTAL;
+    endforeach; ?>
     <tr>
         <td class="thick-line"></td>
         <td class="thick-line"></td>
