@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Menu  Items';
+$this->title = 'Our Menu';
 $this->params['breadcrumbs'][] = $this->title;
 
 $listviewWidget = ListView::widget([

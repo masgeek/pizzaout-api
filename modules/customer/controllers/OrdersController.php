@@ -80,7 +80,7 @@ class OrdersController extends Controller
 
         $searchModel = new OrdersSearch();
 
-        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING], $user_id);
+        $pendingOrder = $searchModel->searchCustomerOrders(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING, ORDER_HELPER::STATUS_PAYMENT_PENDING], $user_id);
 
         return $this->render('orders_view', [
             'searchModel' => $searchModel,
