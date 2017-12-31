@@ -59,9 +59,9 @@ $config = [
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
             'enableAutoLogin' => false,
-            'authTimeout' => 400,
+            'authTimeout' => 3600 * 4 * 24,
             'enableSession' => true,
-            'autoRenewCookie' => true,
+            'autoRenewCookie' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
