@@ -30,6 +30,7 @@ $gridColumns = [
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
+                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
                         $action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
