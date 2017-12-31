@@ -1,16 +1,16 @@
 /*
-Navicat MySQL Data Transfer
+Navicat MariaDB Data Transfer
 
-Source Server         : LOCALHOST
-Source Server Version : 50714
+Source Server         : MARIA
+Source Server Version : 100211
 Source Host           : localhost:3306
 Source Database       : tsobucok_pizza
 
-Target Server Type    : MYSQL
-Target Server Version : 50714
+Target Server Type    : MariaDB
+Target Server Version : 100211
 File Encoding         : 65001
 
-Date: 2017-12-30 23:18:10
+Date: 2017-12-31 13:55:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -364,7 +364,7 @@ DROP TABLE IF EXISTS `db_cache`;
 CREATE TABLE `db_cache` (
   `id` char(128) NOT NULL,
   `expire` int(11) DEFAULT NULL,
-  `data` blob,
+  `data` blob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `expire` (`expire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -384,7 +384,7 @@ CREATE TABLE `kitchen` (
   `CITY_ID` bigint(20) NOT NULL,
   `OPENING_TIME` time DEFAULT NULL,
   `CLOSING_TIME` time DEFAULT NULL,
-  `ADDRESS` text,
+  `ADDRESS` text DEFAULT NULL,
   PRIMARY KEY (`KITCHEN_ID`),
   KEY `City_ID` (`CITY_ID`) USING BTREE,
   CONSTRAINT `kitchen_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`)
@@ -404,7 +404,7 @@ CREATE TABLE `location` (
   `LOCATION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CITY_ID` bigint(20) DEFAULT NULL,
   `LOCATION_NAME` varchar(255) NOT NULL,
-  `ADDRESS` text,
+  `ADDRESS` text DEFAULT NULL,
   PRIMARY KEY (`LOCATION_ID`),
   KEY `CITY_ID` (`CITY_ID`),
   CONSTRAINT `location_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -439,7 +439,7 @@ CREATE TABLE `menu_category` (
   `MENU_CAT_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `MENU_CAT_NAME` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `MENU_CAT_IMAGE` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ACTIVE` int(1) NOT NULL DEFAULT '1',
+  `ACTIVE` int(1) NOT NULL DEFAULT 1,
   `RANK` int(2) NOT NULL,
   PRIMARY KEY (`MENU_CAT_ID`),
   UNIQUE KEY `MENU_CAT_ID` (`MENU_CAT_ID`,`RANK`),
@@ -469,11 +469,10 @@ CREATE TABLE `menu_item` (
   `MENU_ITEM_IMAGE` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `HOT_DEAL` bit(1) NOT NULL DEFAULT b'0',
   `VEGETARIAN` bit(1) NOT NULL DEFAULT b'0',
-  `MAX_QTY` int(2) NOT NULL DEFAULT '10' COMMENT 'Show the maximum number of quantities one can select from',
+  `MAX_QTY` int(2) NOT NULL DEFAULT 10 COMMENT 'Show the maximum number of quantities one can select from',
   PRIMARY KEY (`MENU_ITEM_ID`),
   KEY `MENU_CAT_ID` (`MENU_CAT_ID`) USING BTREE,
-  CONSTRAINT `menu_item_ibfk_1` FOREIGN KEY (`MENU_CAT_ID`) REFERENCES `menu_category` (`MENU_CAT_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `menu_item_ibfk_2` FOREIGN KEY (`MENU_CAT_ID`) REFERENCES `menu_category` (`MENU_CAT_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `menu_item_ibfk_1` FOREIGN KEY (`MENU_CAT_ID`) REFERENCES `menu_category` (`MENU_CAT_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -528,7 +527,7 @@ DROP TABLE IF EXISTS `my_session`;
 CREATE TABLE `my_session` (
   `id` char(60) NOT NULL,
   `expire` int(11) DEFAULT NULL,
-  `data` longblob,
+  `data` longblob DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   `user_name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -824,8 +823,8 @@ CREATE TABLE `tb_status` (
   `STATUS_DESC` varchar(100) DEFAULT NULL,
   `COLOR` varchar(10) NOT NULL DEFAULT 'GREEN',
   `SCOPE` varchar(10) NOT NULL DEFAULT 'ALL',
-  `RANK` int(2) NOT NULL DEFAULT '1',
-  `WORKFLOW` int(2) NOT NULL DEFAULT '1',
+  `RANK` int(2) NOT NULL DEFAULT 1,
+  `WORKFLOW` int(2) NOT NULL DEFAULT 1,
   UNIQUE KEY `STATUS_NAME` (`STATUS_NAME`) USING BTREE,
   UNIQUE KEY `RANK` (`RANK`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -915,4 +914,4 @@ INSERT INTO `user_type` VALUES ('3', 'RIDER');
 -- View structure for vw_orders
 -- ----------------------------
 DROP VIEW IF EXISTS `vw_orders`;
-CREATE VIEW `vw_orders` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`)) ) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `vw_orders` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`)) ) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
