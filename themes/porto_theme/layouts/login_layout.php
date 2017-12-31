@@ -14,6 +14,8 @@ use yii\widgets\Breadcrumbs;
 //$this->params['breadcrumbs'][] = ['label' => 'Rider  Models', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '#'];
 //$this->params['breadcrumbs'][] = $this->title;
+
+$logo = \app\helpers\APP_UTILS::BuildImageUrl("logo.png", false, "images/app_images");
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -25,7 +27,8 @@ use yii\widgets\Breadcrumbs;
 <section class="body-sign">
     <div class="center-sign">
         <a href="#" class="logo pull-left">
-            <img src="assets/images/logo.png" height="54" alt="Pizza out"/>
+            <?= $logo ?>
+            <img src="<?= $logo ?>" height="54" alt="Pizza Out Logo"/>
         </a>
         <?= $content ?>
     </div>

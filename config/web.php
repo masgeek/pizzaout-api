@@ -1,5 +1,6 @@
 <?php
 \Yii::setAlias('@foodimages', 'images/foodimages/');
+\Yii::setAlias('@appimages', 'images/app_images/');
 
 $params = require_once(__DIR__ . '/params.php');
 $fcm = require_once(__DIR__ . '/fcm.php');

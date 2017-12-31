@@ -88,6 +88,12 @@ class APP_UTILS
             $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
         }
 
+        $parsed = parse_url($cleanBaseURL);
+        if (empty($parsed['scheme'])) {
+            //$urlStr = 'http://' . ltrim($urlStr, '/');
+            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
+        }
+
         return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
 }
