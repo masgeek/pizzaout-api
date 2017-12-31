@@ -20,7 +20,7 @@ use yii\helpers\Html;
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
                     <li>
-                        <?= Html::a('<i class="fa fa-clipboard" aria-hidden="true"></i><span>Menu</span>', ['//customer/default/index'], ['title' => 'Menu']); ?>
+                        <?= Html::a('<i class="fa fa-clipboard" aria-hidden="true"></i><span>Menu</span>', ['//customer'], ['title' => 'Menu']); ?>
                     </li>
                     <li class="nav-parent nav-expanded nav-active">
                         <a>
@@ -28,7 +28,7 @@ use yii\helpers\Html;
                             <span>Orders</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li><?= Html::a('Placed/Pending Orders', ['//customer/orders/pending'], ['title' => 'Placed Orders']); ?></li>
+                            <li><?= Html::a('Pending Orders', ['//customer/orders/pending'], ['title' => 'Placed Orders']); ?></li>
                             <li><?= Html::a('Confirmed Orders', ['//customer/orders/confirmed'], ['title' => 'Confirmed Orders']); ?></li>
                             <li><?= Html::a('Closed Orders', ['//customer/orders/closed'], ['title' => 'Closed Orders']); ?></li>
                             <li><?= Html::a('Cancelled Orders', ['//customer/orders/cancelled'], ['title' => 'Cancelled Orders']); ?></li>

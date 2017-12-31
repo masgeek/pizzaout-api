@@ -88,7 +88,6 @@ class APP_UTILS
             $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
         }
 
-        $imagePath = "{$cleanBaseURL}{$imageFolder}/{$image_url}";
-        return $imagePath;
+        return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
 }
