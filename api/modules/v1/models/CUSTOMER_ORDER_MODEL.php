@@ -42,8 +42,14 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 
         $fields['ADDRESS'] = function ($model) {
             /* @var $model $this */
-            return $model->aDDRESS != null ? $model->aDDRESS : 'NONE';
+            return 'NONE';
         };
+
+        $fields['LOCATION'] = function ($model) {
+            /* @var $model $this */
+            return $model->lOCATION != null ? $model->lOCATION : 'NONE';
+        };
+
         $fields['PAYMENT'] = function ($model) {
             /* @var $model $this */
             return $model->payment != null ? $model->payment : 'NONE';
@@ -54,7 +60,7 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             //return $data;
             return $this->orderTrackings != null ? $this->orderTrackings : 'NONE';
         };
-        
+
         $fields['ORDER_DETAILS'] = function ($model) {
             /* @var $model $this */
             $data = CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);

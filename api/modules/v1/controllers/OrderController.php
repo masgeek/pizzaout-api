@@ -8,6 +8,7 @@
 
 namespace app\api\modules\v1\controllers;
 
+use app\api\modules\v1\models\LOCATION_MODEL;
 use Yii;
 use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
@@ -42,6 +43,7 @@ class OrderController extends ActiveController
         $date = APP_UTILS::GetCurrentDateTime();
 
         $order_status = ORDER_HELPER::STATUS_ORDER_PENDING;
+        $location = LOCATION_MODEL::find()->one();
         $post = [
             'PAYMENT_MODEL' => [
                 'PAYMENT_REF' => strtoupper(uniqid('PIZZA_')),
@@ -54,14 +56,14 @@ class OrderController extends ActiveController
             'CUSTOMER_ORDER_ITEM' => [
                 'ITEM_TYPE_ID' => 1,
                 'QUANTITY' => 2,
-                'PRICE' => 1200,
-                'SUBTOTAL' => 1200,
+                'PRICE' => 15,
+                'SUBTOTAL' => 30,
                 'OPTIONS' => 'N/A',
                 'NOTES' => 'Test Order',
             ],
             'CUSTOMER_ORDER_MODEL' => [
                 'USER_ID' => $user_id,
-                'ADDRESS_ID' => 1,
+                'LOCATION_ID' => $location->LOCATION_ID,
                 //'ORDER_QUANTITY' => 2,
                 //'ORDER_PRICE' => 1200,
                 'PAYMENT_METHOD' => 'MOBILE',
@@ -170,12 +172,6 @@ class OrderController extends ActiveController
         }
 
         $query->andWhere(['ORDER_STATUS' => $order_status]);
-        /*$orders = CUSTOMER_ORDER_MODEL::find()
-            ->where(['ORDER_STATUS' => $order_status])
-            ->andWhere(['USER_ID' => $user_id])
-            ->orderBy(['ORDER_DATE' => SORT_DESC])
-            ->asArray()
-            ->all();*/
 
         return new ActiveDataProvider([
             'query' => $query,
