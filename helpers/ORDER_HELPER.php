@@ -69,7 +69,7 @@ class ORDER_HELPER
         $currentDate = APP_UTILS::GetCurrentDateTime();
         $saveSuccessful = false;
         $cart_timestamp = null;
-        $ussdNumber = Yii::$app->params['ussdNumber'];
+        $ussdNumber = self::getUssdNumber();
         $resp = [
             'ORDER_CREATED' => $saveSuccessful,
             'ORDER_ID' => 0,
@@ -131,6 +131,11 @@ class ORDER_HELPER
         return $resp;
     }
 
+
+    public static function getUssdNumber()
+    {
+        return Yii::$app->params['ussdNumber'];
+    }
 
     /**
      * @param $user_id

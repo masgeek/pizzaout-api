@@ -111,4 +111,9 @@ class CartController extends ActiveController
 
     }
 
+    public function actionUssd()
+    {
+        return ['USSD_NUMBER' => ORDER_HELPER::getUssdNumber()];
+    }
+
 }

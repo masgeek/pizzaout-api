@@ -1,129 +1,85 @@
--- phpMyAdmin SQL Dump
--- version 4.7.3
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: Jan 01, 2018 at 02:30 PM
--- Server version: 10.0.33-MariaDB
--- PHP Version: 5.6.30
+/*
+Navicat MariaDB Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+Source Server         : MARIA
+Source Server Version : 100211
+Source Host           : localhost:3306
+Source Database       : tsobucok_pizza
 
+Target Server Type    : MariaDB
+Target Server Version : 100211
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+Date: 2018-01-02 00:38:40
+*/
 
---
--- Database: `tsobucok_pizza`
---
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `chef`
---
-
+-- ----------------------------
+-- Table structure for chef
+-- ----------------------------
+DROP TABLE IF EXISTS `chef`;
 CREATE TABLE `chef` (
-  `CHEF_ID` bigint(20) NOT NULL,
+  `CHEF_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CHEF_NAME` varchar(100) NOT NULL,
-  `KITCHEN_ID` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `KITCHEN_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`CHEF_ID`),
+  KEY `Kitchen_ID` (`KITCHEN_ID`) USING BTREE,
+  CONSTRAINT `chef_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `chef`
---
+-- ----------------------------
+-- Records of chef
+-- ----------------------------
+INSERT INTO `chef` VALUES ('4', 'Ahmed Jama', '1');
+INSERT INTO `chef` VALUES ('5', 'Bashir Munye', '2');
 
-INSERT INTO `chef` (`CHEF_ID`, `CHEF_NAME`, `KITCHEN_ID`) VALUES
-  (4, 'Ahmed Jama', 1),
-  (5, 'Bashir Munye', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `city`
---
-
+-- ----------------------------
+-- Table structure for city
+-- ----------------------------
+DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `CITY_ID` bigint(20) NOT NULL,
+  `CITY_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CITY_NAME` varchar(100) NOT NULL,
-  `COUNTRY_ID` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `COUNTRY_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`CITY_ID`),
+  KEY `Country_ID` (`COUNTRY_ID`) USING BTREE,
+  CONSTRAINT `city_ibfk_1` FOREIGN KEY (`COUNTRY_ID`) REFERENCES `country` (`COUNRY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `city`
---
+-- ----------------------------
+-- Records of city
+-- ----------------------------
+INSERT INTO `city` VALUES ('1', 'MOGADISHU', '2');
+INSERT INTO `city` VALUES ('3', 'MOMBASA', '1');
 
-INSERT INTO `city` (`CITY_ID`, `CITY_NAME`, `COUNTRY_ID`) VALUES
-  (1, 'MOGADISHU', 2),
-  (3, 'MOMBASA', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `country`
---
-
+-- ----------------------------
+-- Table structure for country
+-- ----------------------------
+DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
-  `COUNRY_ID` bigint(20) NOT NULL,
-  `COUNTRY_NAME` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `COUNRY_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `COUNTRY_NAME` varchar(100) NOT NULL,
+  PRIMARY KEY (`COUNRY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `country`
---
+-- ----------------------------
+-- Records of country
+-- ----------------------------
+INSERT INTO `country` VALUES ('1', 'KENYA');
+INSERT INTO `country` VALUES ('2', 'SOMALIA');
+INSERT INTO `country` VALUES ('3', 'SOUTH SUDAN');
+INSERT INTO `country` VALUES ('4', 'ETHIOPIA');
+INSERT INTO `country` VALUES ('5', 'ERITREA');
 
-INSERT INTO `country` (`COUNRY_ID`, `COUNTRY_NAME`) VALUES
-  (1, 'KENYA'),
-  (2, 'SOMALIA'),
-  (3, 'SOUTH SUDAN'),
-  (4, 'ETHIOPIA'),
-  (5, 'ERITREA');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer_address`
---
-
-CREATE TABLE `customer_address` (
-  `ADDRESS_ID` bigint(20) NOT NULL,
-  `USER_ID` bigint(20) NOT NULL,
-  `LOCATION_ID` bigint(20) DEFAULT NULL,
-  `ADDRESS` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customer_address`
---
-
-INSERT INTO `customer_address` (`ADDRESS_ID`, `USER_ID`, `LOCATION_ID`, `ADDRESS`) VALUES
-  (1, 5, 1, 'KISMAYU'),
-  (2, 10, 1, 'hete'),
-  (3, 25, 1, 'makka al mukarama road '),
-  (4, 5, 1, 'Mogadishu'),
-  (5, 10, 8, 'Sammy Address'),
-  (6, 10, 1, 'test me'),
-  (7, 10, 4, 'NHC Nairobi West\n\nlock F3'),
-  (8, 10, 3, 'testing new address addition\n\nthat is multiline too'),
-  (9, 5, 1, 'kilonge street'),
-  (10, 10, 8, 'Location'),
-  (11, 25, 10, 'Masjidka Ali Dheere');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer_order`
---
-
+-- ----------------------------
+-- Table structure for customer_order
+-- ----------------------------
+DROP TABLE IF EXISTS `customer_order`;
 CREATE TABLE `customer_order` (
-  `ORDER_ID` bigint(20) NOT NULL,
+  `ORDER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `USER_ID` bigint(20) NOT NULL,
-  `ADDRESS_ID` bigint(20) NOT NULL,
+  `LOCATION_ID` bigint(20) NOT NULL,
   `KITCHEN_ID` bigint(10) DEFAULT NULL,
   `CHEF_ID` bigint(10) DEFAULT NULL,
   `RIDER_ID` bigint(10) DEFAULT NULL,
@@ -132,151 +88,161 @@ CREATE TABLE `customer_order` (
   `ORDER_STATUS` varchar(30) NOT NULL COMMENT 'Status of the order',
   `NOTES` varchar(255) DEFAULT NULL COMMENT 'Can contain payment text from mobile transactions etc',
   `CREATED_AT` datetime DEFAULT NULL,
-  `UPDATED_AT` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `UPDATED_AT` datetime DEFAULT NULL,
+  PRIMARY KEY (`ORDER_ID`),
+  KEY `User_ID` (`USER_ID`) USING BTREE,
+  KEY `Location_ID` (`LOCATION_ID`) USING BTREE,
+  KEY `customer_order_ibfk_3` (`RIDER_ID`) USING BTREE,
+  KEY `KITCHEN_ID` (`KITCHEN_ID`) USING BTREE,
+  KEY `ORDER_STATUS` (`ORDER_STATUS`) USING BTREE,
+  KEY `CHEF_ID` (`CHEF_ID`) USING BTREE,
+  CONSTRAINT `customer_order_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON UPDATE CASCADE,
+  CONSTRAINT `customer_order_ibfk_3` FOREIGN KEY (`RIDER_ID`) REFERENCES `riders` (`RIDER_ID`) ON UPDATE CASCADE,
+  CONSTRAINT `customer_order_ibfk_4` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE,
+  CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
+  CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE,
+  CONSTRAINT `customer_order_ibfk_7` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1208 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `customer_order`
---
+-- ----------------------------
+-- Records of customer_order
+-- ----------------------------
+INSERT INTO `customer_order` VALUES ('1051', '25', '1', '1', '4', '1', '2017-12-21 13:40:50', 'MOBILE', 'RIDER DISPATCHED', null, '2017-12-21 13:40:50', '2017-12-31 13:50:15');
+INSERT INTO `customer_order` VALUES ('1052', '25', '1', null, null, null, '2017-12-21 14:07:43', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 14:07:43', '2017-12-21 14:07:43');
+INSERT INTO `customer_order` VALUES ('1053', '25', '1', null, null, null, '2017-12-21 14:10:57', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 14:10:57', '2017-12-21 14:10:57');
+INSERT INTO `customer_order` VALUES ('1054', '25', '1', null, null, null, '2017-12-21 14:11:05', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 14:11:05', '2017-12-21 14:11:05');
+INSERT INTO `customer_order` VALUES ('1055', '25', '1', null, null, null, '2017-12-21 14:15:30', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 14:15:30', '2017-12-21 14:15:30');
+INSERT INTO `customer_order` VALUES ('1056', '25', '1', null, null, null, '2017-12-21 15:17:48', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 15:17:48', '2017-12-21 15:17:48');
+INSERT INTO `customer_order` VALUES ('1057', '25', '1', null, null, null, '2017-12-21 15:17:49', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 15:17:49', '2017-12-21 15:17:49');
+INSERT INTO `customer_order` VALUES ('1058', '25', '1', null, null, null, '2017-12-21 15:33:19', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 15:33:19', '2017-12-21 15:33:19');
+INSERT INTO `customer_order` VALUES ('1059', '25', '1', null, null, null, '2017-12-21 15:34:15', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 15:34:15', '2017-12-21 15:34:15');
+INSERT INTO `customer_order` VALUES ('1060', '25', '1', null, null, null, '2017-12-21 15:36:32', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 15:36:32', '2017-12-21 15:36:32');
+INSERT INTO `customer_order` VALUES ('1061', '25', '1', null, null, null, '2017-12-21 17:43:36', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 17:43:36', '2017-12-21 17:43:36');
+INSERT INTO `customer_order` VALUES ('1062', '25', '1', null, null, null, '2017-12-21 17:46:10', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 17:46:10', '2017-12-21 17:46:10');
+INSERT INTO `customer_order` VALUES ('1063', '25', '1', null, null, null, '2017-12-21 18:03:18', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:03:19', '2017-12-21 18:03:19');
+INSERT INTO `customer_order` VALUES ('1064', '46', '1', null, null, null, '2017-12-21 18:05:13', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:05:13', '2017-12-21 18:05:13');
+INSERT INTO `customer_order` VALUES ('1065', '46', '1', null, null, null, '2017-12-21 18:16:00', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:16:00', '2017-12-21 18:16:00');
+INSERT INTO `customer_order` VALUES ('1066', '46', '1', null, null, null, '2017-12-21 18:23:41', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:23:41', '2017-12-21 18:23:41');
+INSERT INTO `customer_order` VALUES ('1067', '46', '1', null, null, null, '2017-12-21 18:27:20', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:27:20', '2017-12-21 18:27:20');
+INSERT INTO `customer_order` VALUES ('1068', '46', '1', null, null, null, '2017-12-21 18:30:22', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:30:22', '2017-12-21 18:30:22');
+INSERT INTO `customer_order` VALUES ('1069', '25', '1', null, null, null, '2017-12-21 18:46:02', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:46:02', '2017-12-21 18:46:02');
+INSERT INTO `customer_order` VALUES ('1070', '25', '1', null, null, null, '2017-12-21 18:48:56', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:48:56', '2017-12-21 18:48:56');
+INSERT INTO `customer_order` VALUES ('1071', '25', '1', null, null, null, '2017-12-21 18:49:19', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:49:19', '2017-12-21 18:49:19');
+INSERT INTO `customer_order` VALUES ('1072', '25', '1', null, null, null, '2017-12-21 18:51:10', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 18:51:10', '2017-12-21 18:51:10');
+INSERT INTO `customer_order` VALUES ('1073', '37', '1', null, null, null, '2017-12-21 19:19:39', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 19:19:40', '2017-12-21 19:19:40');
+INSERT INTO `customer_order` VALUES ('1074', '25', '1', null, null, null, '2017-12-21 22:41:26', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-21 22:41:26', '2017-12-21 22:41:26');
+INSERT INTO `customer_order` VALUES ('1075', '25', '1', null, null, null, '2017-12-22 03:13:59', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 03:13:59', '2017-12-22 03:13:59');
+INSERT INTO `customer_order` VALUES ('1076', '25', '1', null, null, null, '2017-12-22 05:39:58', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 05:39:58', '2017-12-22 05:39:58');
+INSERT INTO `customer_order` VALUES ('1087', '25', '1', null, null, null, '2017-12-22 08:22:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 08:22:37', '2017-12-22 08:22:37');
+INSERT INTO `customer_order` VALUES ('1088', '25', '1', null, null, null, '2017-12-22 08:22:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 08:22:37', '2017-12-22 08:22:37');
+INSERT INTO `customer_order` VALUES ('1089', '25', '1', null, null, null, '2017-12-22 09:00:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 09:00:38', '2017-12-22 09:00:38');
+INSERT INTO `customer_order` VALUES ('1090', '25', '1', null, null, null, '2017-12-22 09:14:01', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 09:14:02', '2017-12-22 09:14:02');
+INSERT INTO `customer_order` VALUES ('1091', '25', '1', null, null, null, '2017-12-22 12:42:47', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 12:42:47', '2017-12-22 12:42:47');
+INSERT INTO `customer_order` VALUES ('1092', '25', '1', null, null, null, '2017-12-22 12:42:47', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 12:42:47', '2017-12-22 12:42:47');
+INSERT INTO `customer_order` VALUES ('1093', '25', '1', null, null, null, '2017-12-22 14:38:12', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 14:38:12', '2017-12-22 14:38:12');
+INSERT INTO `customer_order` VALUES ('1094', '25', '1', null, null, null, '2017-12-22 14:38:12', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 14:38:13', '2017-12-22 14:38:13');
+INSERT INTO `customer_order` VALUES ('1095', '25', '1', null, null, null, '2017-12-22 16:13:46', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 16:13:46', '2017-12-22 16:13:46');
+INSERT INTO `customer_order` VALUES ('1099', '46', '1', null, null, null, '2017-12-22 16:53:32', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 16:53:32', '2017-12-22 16:53:32');
+INSERT INTO `customer_order` VALUES ('1100', '46', '1', null, null, null, '2017-12-22 16:53:32', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 16:53:32', '2017-12-22 16:53:32');
+INSERT INTO `customer_order` VALUES ('1102', '5', '1', null, null, null, '2017-12-22 17:33:56', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-22 17:33:56', '2017-12-22 17:33:56');
+INSERT INTO `customer_order` VALUES ('1103', '25', '1', null, null, null, '2017-12-23 02:18:54', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-23 02:18:54', '2017-12-23 02:18:54');
+INSERT INTO `customer_order` VALUES ('1104', '25', '1', null, null, null, '2017-12-23 02:18:55', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-23 02:18:55', '2017-12-23 02:18:55');
+INSERT INTO `customer_order` VALUES ('1105', '48', '1', null, null, null, '2017-12-23 07:10:29', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-23 07:10:29', '2017-12-23 07:10:29');
+INSERT INTO `customer_order` VALUES ('1106', '48', '1', null, null, null, '2017-12-23 07:10:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-23 07:10:37', '2017-12-23 07:10:37');
+INSERT INTO `customer_order` VALUES ('1107', '25', '1', null, null, null, '2017-12-23 10:58:55', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-23 10:58:55', '2017-12-23 10:58:55');
+INSERT INTO `customer_order` VALUES ('1109', '25', '1', null, null, null, '2017-12-24 13:34:40', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 13:34:41', '2017-12-24 13:34:41');
+INSERT INTO `customer_order` VALUES ('1110', '25', '1', null, null, null, '2017-12-24 13:36:43', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 13:36:43', '2017-12-24 13:36:43');
+INSERT INTO `customer_order` VALUES ('1111', '25', '1', null, null, null, '2017-12-24 13:38:49', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 13:38:49', '2017-12-24 13:38:49');
+INSERT INTO `customer_order` VALUES ('1112', '50', '1', null, null, null, '2017-12-24 15:24:36', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 15:24:37', '2017-12-24 15:24:37');
+INSERT INTO `customer_order` VALUES ('1113', '25', '1', null, null, null, '2017-12-24 17:25:38', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 17:25:38', '2017-12-24 17:25:38');
+INSERT INTO `customer_order` VALUES ('1114', '25', '1', null, null, null, '2017-12-24 19:49:26', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:49:26', '2017-12-24 19:49:26');
+INSERT INTO `customer_order` VALUES ('1115', '25', '1', null, null, null, '2017-12-24 19:49:45', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:49:45', '2017-12-24 19:49:45');
+INSERT INTO `customer_order` VALUES ('1116', '25', '1', null, null, null, '2017-12-24 19:49:49', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:49:49', '2017-12-24 19:49:49');
+INSERT INTO `customer_order` VALUES ('1117', '25', '1', null, null, null, '2017-12-24 19:49:52', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:49:52', '2017-12-24 19:49:52');
+INSERT INTO `customer_order` VALUES ('1118', '25', '1', null, null, null, '2017-12-24 19:50:09', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:50:09', '2017-12-24 19:50:09');
+INSERT INTO `customer_order` VALUES ('1119', '25', '1', null, null, null, '2017-12-24 19:50:18', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:50:18', '2017-12-24 19:50:18');
+INSERT INTO `customer_order` VALUES ('1120', '25', '1', null, null, null, '2017-12-24 19:50:20', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:50:20', '2017-12-24 19:50:20');
+INSERT INTO `customer_order` VALUES ('1121', '25', '1', null, null, null, '2017-12-24 19:50:22', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:50:22', '2017-12-24 19:50:22');
+INSERT INTO `customer_order` VALUES ('1122', '25', '1', null, null, null, '2017-12-24 19:50:23', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:50:23', '2017-12-24 19:50:23');
+INSERT INTO `customer_order` VALUES ('1123', '25', '1', null, null, null, '2017-12-24 19:50:46', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-24 19:50:46', '2017-12-24 19:50:46');
+INSERT INTO `customer_order` VALUES ('1124', '25', '1', null, null, null, '2017-12-25 07:23:43', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 07:23:43', '2017-12-25 07:23:43');
+INSERT INTO `customer_order` VALUES ('1125', '25', '1', null, null, null, '2017-12-25 07:23:49', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 07:23:49', '2017-12-25 07:23:49');
+INSERT INTO `customer_order` VALUES ('1126', '25', '1', null, null, null, '2017-12-25 07:24:50', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 07:24:50', '2017-12-25 07:24:50');
+INSERT INTO `customer_order` VALUES ('1127', '51', '1', null, null, null, '2017-12-25 10:10:54', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 10:10:54', '2017-12-25 10:10:54');
+INSERT INTO `customer_order` VALUES ('1128', '25', '1', null, null, null, '2017-12-25 10:18:52', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 10:18:52', '2017-12-25 10:18:52');
+INSERT INTO `customer_order` VALUES ('1130', '46', '1', null, null, null, '2017-12-25 13:26:55', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 13:26:55', '2017-12-25 13:26:55');
+INSERT INTO `customer_order` VALUES ('1131', '25', '1', null, null, null, '2017-12-25 15:52:28', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 15:52:28', '2017-12-25 15:52:28');
+INSERT INTO `customer_order` VALUES ('1132', '46', '1', null, null, null, '2017-12-25 16:36:56', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-25 16:36:56', '2017-12-25 16:36:56');
+INSERT INTO `customer_order` VALUES ('1133', '25', '1', null, null, null, '2017-12-26 02:28:52', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 02:28:53', '2017-12-26 02:28:53');
+INSERT INTO `customer_order` VALUES ('1134', '52', '1', null, null, null, '2017-12-26 04:18:09', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 04:18:09', '2017-12-26 04:18:09');
+INSERT INTO `customer_order` VALUES ('1135', '47', '1', null, null, null, '2017-12-26 10:39:48', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 10:39:48', '2017-12-26 10:39:48');
+INSERT INTO `customer_order` VALUES ('1136', '37', '1', null, null, null, '2017-12-26 10:52:08', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 10:52:08', '2017-12-26 10:52:08');
+INSERT INTO `customer_order` VALUES ('1137', '37', '1', null, null, null, '2017-12-26 10:54:25', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 10:54:25', '2017-12-26 10:54:25');
+INSERT INTO `customer_order` VALUES ('1138', '37', '1', null, null, null, '2017-12-26 16:51:23', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 16:51:23', '2017-12-26 16:51:23');
+INSERT INTO `customer_order` VALUES ('1139', '53', '1', null, null, null, '2017-12-26 16:51:31', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 16:51:31', '2017-12-26 16:51:31');
+INSERT INTO `customer_order` VALUES ('1140', '47', '1', null, null, null, '2017-12-26 17:26:05', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 17:26:05', '2017-12-26 17:26:05');
+INSERT INTO `customer_order` VALUES ('1141', '29', '1', null, null, null, '2017-12-26 18:15:54', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-26 18:15:54', '2017-12-26 18:15:54');
+INSERT INTO `customer_order` VALUES ('1142', '25', '1', null, null, null, '2017-12-27 07:15:10', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 07:15:10', '2017-12-27 07:15:10');
+INSERT INTO `customer_order` VALUES ('1143', '54', '1', null, null, null, '2017-12-27 09:16:21', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 09:16:21', '2017-12-27 09:16:21');
+INSERT INTO `customer_order` VALUES ('1144', '46', '1', null, null, null, '2017-12-27 11:24:38', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 11:24:38', '2017-12-27 11:24:38');
+INSERT INTO `customer_order` VALUES ('1145', '54', '1', null, null, null, '2017-12-27 12:32:23', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 12:32:23', '2017-12-27 12:32:23');
+INSERT INTO `customer_order` VALUES ('1146', '54', '1', null, null, null, '2017-12-27 12:32:29', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 12:32:29', '2017-12-27 12:32:29');
+INSERT INTO `customer_order` VALUES ('1147', '25', '1', null, null, null, '2017-12-27 16:25:03', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:03', '2017-12-27 16:25:03');
+INSERT INTO `customer_order` VALUES ('1148', '25', '1', null, null, null, '2017-12-27 16:25:07', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:07', '2017-12-27 16:25:07');
+INSERT INTO `customer_order` VALUES ('1149', '25', '1', null, null, null, '2017-12-27 16:25:11', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:11', '2017-12-27 16:25:11');
+INSERT INTO `customer_order` VALUES ('1150', '25', '1', null, null, null, '2017-12-27 16:25:16', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:16', '2017-12-27 16:25:16');
+INSERT INTO `customer_order` VALUES ('1151', '25', '1', null, null, null, '2017-12-27 16:25:19', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:19', '2017-12-27 16:25:19');
+INSERT INTO `customer_order` VALUES ('1152', '25', '1', null, null, null, '2017-12-27 16:25:21', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:21', '2017-12-27 16:25:21');
+INSERT INTO `customer_order` VALUES ('1153', '25', '1', null, null, null, '2017-12-27 16:25:28', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:28', '2017-12-27 16:25:28');
+INSERT INTO `customer_order` VALUES ('1154', '25', '1', null, null, null, '2017-12-27 16:25:34', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:34', '2017-12-27 16:25:34');
+INSERT INTO `customer_order` VALUES ('1155', '25', '1', null, null, null, '2017-12-27 16:25:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:37', '2017-12-27 16:25:37');
+INSERT INTO `customer_order` VALUES ('1156', '25', '1', null, null, null, '2017-12-27 16:25:39', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:39', '2017-12-27 16:25:39');
+INSERT INTO `customer_order` VALUES ('1157', '25', '1', null, null, null, '2017-12-27 16:25:40', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:40', '2017-12-27 16:25:40');
+INSERT INTO `customer_order` VALUES ('1158', '25', '1', null, null, null, '2017-12-27 16:25:42', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:25:42', '2017-12-27 16:25:42');
+INSERT INTO `customer_order` VALUES ('1159', '25', '1', null, null, null, '2017-12-27 16:26:13', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-27 16:26:13', '2017-12-27 16:26:13');
+INSERT INTO `customer_order` VALUES ('1160', '25', '1', null, null, null, '2017-12-28 10:41:21', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 10:41:21', '2017-12-28 10:41:21');
+INSERT INTO `customer_order` VALUES ('1161', '25', '1', null, null, null, '2017-12-28 10:41:31', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 10:41:31', '2017-12-28 10:41:31');
+INSERT INTO `customer_order` VALUES ('1162', '37', '1', null, null, null, '2017-12-28 10:41:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 10:41:37', '2017-12-28 10:41:37');
+INSERT INTO `customer_order` VALUES ('1163', '25', '1', null, null, null, '2017-12-28 10:41:38', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 10:41:38', '2017-12-28 10:41:38');
+INSERT INTO `customer_order` VALUES ('1166', '25', '1', null, null, null, '2017-12-28 11:55:09', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 11:55:09', '2017-12-28 11:55:09');
+INSERT INTO `customer_order` VALUES ('1167', '25', '1', null, null, null, '2017-12-28 11:55:51', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 11:55:51', '2017-12-28 11:55:51');
+INSERT INTO `customer_order` VALUES ('1168', '25', '1', null, null, null, '2017-12-28 13:23:22', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 13:23:22', '2017-12-28 13:23:22');
+INSERT INTO `customer_order` VALUES ('1169', '25', '1', null, null, null, '2017-12-28 13:23:37', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 13:23:37', '2017-12-28 13:23:37');
+INSERT INTO `customer_order` VALUES ('1170', '25', '1', null, null, null, '2017-12-28 15:58:07', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 15:58:07', '2017-12-28 15:58:07');
+INSERT INTO `customer_order` VALUES ('1173', '25', '1', null, null, null, '2017-12-28 20:35:56', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-28 20:35:56', '2017-12-28 20:35:56');
+INSERT INTO `customer_order` VALUES ('1176', '29', '1', null, null, null, '2017-12-29 10:21:31', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-29 10:21:31', '2017-12-29 10:21:31');
+INSERT INTO `customer_order` VALUES ('1177', '5', '1', null, null, null, '2017-12-30 05:30:28', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 05:30:28', '2017-12-30 05:30:28');
+INSERT INTO `customer_order` VALUES ('1178', '5', '1', null, null, null, '2017-12-30 05:37:35', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 05:37:35', '2017-12-30 05:37:35');
+INSERT INTO `customer_order` VALUES ('1179', '25', '1', null, null, null, '2017-12-30 07:59:41', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 07:59:41', '2017-12-30 07:59:41');
+INSERT INTO `customer_order` VALUES ('1180', '25', '1', null, null, null, '2017-12-30 08:35:41', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 08:35:41', '2017-12-30 08:35:41');
+INSERT INTO `customer_order` VALUES ('1185', '54', '1', null, null, null, '2017-12-30 11:28:41', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 11:28:41', '2017-12-30 11:28:41');
+INSERT INTO `customer_order` VALUES ('1186', '54', '1', null, null, null, '2017-12-30 11:30:17', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 11:30:17', '2017-12-30 11:30:17');
+INSERT INTO `customer_order` VALUES ('1189', '5', '1', null, null, null, '2017-12-30 12:28:09', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 12:28:09', '2017-12-30 12:28:09');
+INSERT INTO `customer_order` VALUES ('1190', '25', '1', null, null, null, '2017-12-30 17:40:20', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-30 17:40:20', '2017-12-30 17:40:20');
+INSERT INTO `customer_order` VALUES ('1191', '10', '1', '2', null, null, '2017-12-30 20:20:07', 'MOBILE', 'KITCHEN ALLOCATED', null, '2017-12-30 20:20:07', '2017-12-31 13:51:29');
+INSERT INTO `customer_order` VALUES ('1192', '25', '1', null, null, null, '2017-12-31 03:02:32', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-31 03:02:32', '2017-12-31 03:02:32');
+INSERT INTO `customer_order` VALUES ('1193', '25', '1', null, null, null, '2017-12-31 03:17:04', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-31 03:17:04', '2017-12-31 03:17:04');
+INSERT INTO `customer_order` VALUES ('1194', '25', '1', null, null, null, '2017-12-31 03:46:44', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-31 03:46:44', '2017-12-31 03:46:44');
+INSERT INTO `customer_order` VALUES ('1195', '25', '1', null, null, null, '2017-12-31 06:08:25', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-31 06:08:25', '2017-12-31 06:08:25');
+INSERT INTO `customer_order` VALUES ('1196', '25', '1', null, null, null, '2017-12-31 15:32:30', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-31 15:32:30', '2017-12-31 15:32:30');
+INSERT INTO `customer_order` VALUES ('1197', '10', '1', null, null, null, '2017-12-31 17:53:01', 'MOBILE', 'PAYMENT PENDING', null, '2017-12-31 17:53:01', '2017-12-31 17:53:01');
+INSERT INTO `customer_order` VALUES ('1198', '25', '1', null, null, null, '2018-01-01 05:43:07', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 05:43:07', '2018-01-01 05:43:07');
+INSERT INTO `customer_order` VALUES ('1199', '10', '1', null, null, null, '2018-01-01 07:24:28', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 07:24:28', '2018-01-01 07:24:28');
+INSERT INTO `customer_order` VALUES ('1200', '25', '1', null, null, null, '2018-01-01 12:37:20', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 12:37:20', '2018-01-01 12:37:20');
+INSERT INTO `customer_order` VALUES ('1201', '25', '1', null, null, null, '2018-01-01 13:40:36', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 13:40:36', '2018-01-01 13:40:36');
+INSERT INTO `customer_order` VALUES ('1202', '25', '1', null, null, null, '2018-01-01 14:16:23', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 14:16:23', '2018-01-01 14:16:23');
+INSERT INTO `customer_order` VALUES ('1203', '25', '1', null, null, null, '2018-01-01 17:12:00', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 17:12:00', '2018-01-01 17:12:00');
+INSERT INTO `customer_order` VALUES ('1204', '25', '1', null, null, null, '2018-01-01 17:17:28', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 17:17:29', '2018-01-01 17:17:29');
+INSERT INTO `customer_order` VALUES ('1205', '56', '1', null, null, null, '2018-01-01 19:15:03', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 19:15:03', '2018-01-01 19:15:03');
+INSERT INTO `customer_order` VALUES ('1206', '25', '1', null, null, null, '2018-01-01 19:35:48', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 19:35:48', '2018-01-01 19:35:48');
+INSERT INTO `customer_order` VALUES ('1207', '10', '15', null, null, null, '2018-01-01 21:37:19', 'MOBILE', 'PAYMENT PENDING', null, '2018-01-01 21:37:19', '2018-01-01 21:37:19');
 
-INSERT INTO `customer_order` (`ORDER_ID`, `USER_ID`, `ADDRESS_ID`, `KITCHEN_ID`, `CHEF_ID`, `RIDER_ID`, `ORDER_DATE`, `PAYMENT_METHOD`, `ORDER_STATUS`, `NOTES`, `CREATED_AT`, `UPDATED_AT`) VALUES
-  (1051, 25, 1, 1, 4, 1, '2017-12-21 13:40:50', 'MOBILE', 'RIDER DISPATCHED', NULL, '2017-12-21 13:40:50', '2017-12-31 13:50:15'),
-  (1052, 25, 1, NULL, NULL, NULL, '2017-12-21 14:07:43', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 14:07:43', '2017-12-21 14:07:43'),
-  (1053, 25, 1, NULL, NULL, NULL, '2017-12-21 14:10:57', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 14:10:57', '2017-12-21 14:10:57'),
-  (1054, 25, 1, NULL, NULL, NULL, '2017-12-21 14:11:05', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 14:11:05', '2017-12-21 14:11:05'),
-  (1055, 25, 1, NULL, NULL, NULL, '2017-12-21 14:15:30', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 14:15:30', '2017-12-21 14:15:30'),
-  (1056, 25, 1, NULL, NULL, NULL, '2017-12-21 15:17:48', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 15:17:48', '2017-12-21 15:17:48'),
-  (1057, 25, 1, NULL, NULL, NULL, '2017-12-21 15:17:49', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 15:17:49', '2017-12-21 15:17:49'),
-  (1058, 25, 1, NULL, NULL, NULL, '2017-12-21 15:33:19', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 15:33:19', '2017-12-21 15:33:19'),
-  (1059, 25, 1, NULL, NULL, NULL, '2017-12-21 15:34:15', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 15:34:15', '2017-12-21 15:34:15'),
-  (1060, 25, 1, NULL, NULL, NULL, '2017-12-21 15:36:32', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 15:36:32', '2017-12-21 15:36:32'),
-  (1061, 25, 1, NULL, NULL, NULL, '2017-12-21 17:43:36', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 17:43:36', '2017-12-21 17:43:36'),
-  (1062, 25, 1, NULL, NULL, NULL, '2017-12-21 17:46:10', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 17:46:10', '2017-12-21 17:46:10'),
-  (1063, 25, 1, NULL, NULL, NULL, '2017-12-21 18:03:18', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:03:19', '2017-12-21 18:03:19'),
-  (1064, 46, 1, NULL, NULL, NULL, '2017-12-21 18:05:13', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:05:13', '2017-12-21 18:05:13'),
-  (1065, 46, 1, NULL, NULL, NULL, '2017-12-21 18:16:00', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:16:00', '2017-12-21 18:16:00'),
-  (1066, 46, 1, NULL, NULL, NULL, '2017-12-21 18:23:41', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:23:41', '2017-12-21 18:23:41'),
-  (1067, 46, 1, NULL, NULL, NULL, '2017-12-21 18:27:20', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:27:20', '2017-12-21 18:27:20'),
-  (1068, 46, 1, NULL, NULL, NULL, '2017-12-21 18:30:22', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:30:22', '2017-12-21 18:30:22'),
-  (1069, 25, 1, NULL, NULL, NULL, '2017-12-21 18:46:02', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:46:02', '2017-12-21 18:46:02'),
-  (1070, 25, 1, NULL, NULL, NULL, '2017-12-21 18:48:56', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:48:56', '2017-12-21 18:48:56'),
-  (1071, 25, 1, NULL, NULL, NULL, '2017-12-21 18:49:19', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:49:19', '2017-12-21 18:49:19'),
-  (1072, 25, 1, NULL, NULL, NULL, '2017-12-21 18:51:10', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 18:51:10', '2017-12-21 18:51:10'),
-  (1073, 37, 1, NULL, NULL, NULL, '2017-12-21 19:19:39', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 19:19:40', '2017-12-21 19:19:40'),
-  (1074, 25, 1, NULL, NULL, NULL, '2017-12-21 22:41:26', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-21 22:41:26', '2017-12-21 22:41:26'),
-  (1075, 25, 1, NULL, NULL, NULL, '2017-12-22 03:13:59', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 03:13:59', '2017-12-22 03:13:59'),
-  (1076, 25, 1, NULL, NULL, NULL, '2017-12-22 05:39:58', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 05:39:58', '2017-12-22 05:39:58'),
-  (1087, 25, 1, NULL, NULL, NULL, '2017-12-22 08:22:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 08:22:37', '2017-12-22 08:22:37'),
-  (1088, 25, 1, NULL, NULL, NULL, '2017-12-22 08:22:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 08:22:37', '2017-12-22 08:22:37'),
-  (1089, 25, 1, NULL, NULL, NULL, '2017-12-22 09:00:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 09:00:38', '2017-12-22 09:00:38'),
-  (1090, 25, 1, NULL, NULL, NULL, '2017-12-22 09:14:01', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 09:14:02', '2017-12-22 09:14:02'),
-  (1091, 25, 1, NULL, NULL, NULL, '2017-12-22 12:42:47', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 12:42:47', '2017-12-22 12:42:47'),
-  (1092, 25, 1, NULL, NULL, NULL, '2017-12-22 12:42:47', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 12:42:47', '2017-12-22 12:42:47'),
-  (1093, 25, 1, NULL, NULL, NULL, '2017-12-22 14:38:12', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 14:38:12', '2017-12-22 14:38:12'),
-  (1094, 25, 1, NULL, NULL, NULL, '2017-12-22 14:38:12', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 14:38:13', '2017-12-22 14:38:13'),
-  (1095, 25, 1, NULL, NULL, NULL, '2017-12-22 16:13:46', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 16:13:46', '2017-12-22 16:13:46'),
-  (1099, 46, 1, NULL, NULL, NULL, '2017-12-22 16:53:32', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 16:53:32', '2017-12-22 16:53:32'),
-  (1100, 46, 1, NULL, NULL, NULL, '2017-12-22 16:53:32', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 16:53:32', '2017-12-22 16:53:32'),
-  (1102, 5, 1, NULL, NULL, NULL, '2017-12-22 17:33:56', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-22 17:33:56', '2017-12-22 17:33:56'),
-  (1103, 25, 1, NULL, NULL, NULL, '2017-12-23 02:18:54', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-23 02:18:54', '2017-12-23 02:18:54'),
-  (1104, 25, 1, NULL, NULL, NULL, '2017-12-23 02:18:55', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-23 02:18:55', '2017-12-23 02:18:55'),
-  (1105, 48, 1, NULL, NULL, NULL, '2017-12-23 07:10:29', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-23 07:10:29', '2017-12-23 07:10:29'),
-  (1106, 48, 1, NULL, NULL, NULL, '2017-12-23 07:10:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-23 07:10:37', '2017-12-23 07:10:37'),
-  (1107, 25, 1, NULL, NULL, NULL, '2017-12-23 10:58:55', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-23 10:58:55', '2017-12-23 10:58:55'),
-  (1109, 25, 1, NULL, NULL, NULL, '2017-12-24 13:34:40', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 13:34:41', '2017-12-24 13:34:41'),
-  (1110, 25, 1, NULL, NULL, NULL, '2017-12-24 13:36:43', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 13:36:43', '2017-12-24 13:36:43'),
-  (1111, 25, 1, NULL, NULL, NULL, '2017-12-24 13:38:49', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 13:38:49', '2017-12-24 13:38:49'),
-  (1112, 50, 1, NULL, NULL, NULL, '2017-12-24 15:24:36', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 15:24:37', '2017-12-24 15:24:37'),
-  (1113, 25, 1, NULL, NULL, NULL, '2017-12-24 17:25:38', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 17:25:38', '2017-12-24 17:25:38'),
-  (1114, 25, 1, NULL, NULL, NULL, '2017-12-24 19:49:26', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:49:26', '2017-12-24 19:49:26'),
-  (1115, 25, 1, NULL, NULL, NULL, '2017-12-24 19:49:45', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:49:45', '2017-12-24 19:49:45'),
-  (1116, 25, 1, NULL, NULL, NULL, '2017-12-24 19:49:49', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:49:49', '2017-12-24 19:49:49'),
-  (1117, 25, 1, NULL, NULL, NULL, '2017-12-24 19:49:52', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:49:52', '2017-12-24 19:49:52'),
-  (1118, 25, 1, NULL, NULL, NULL, '2017-12-24 19:50:09', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:50:09', '2017-12-24 19:50:09'),
-  (1119, 25, 1, NULL, NULL, NULL, '2017-12-24 19:50:18', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:50:18', '2017-12-24 19:50:18'),
-  (1120, 25, 1, NULL, NULL, NULL, '2017-12-24 19:50:20', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:50:20', '2017-12-24 19:50:20'),
-  (1121, 25, 1, NULL, NULL, NULL, '2017-12-24 19:50:22', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:50:22', '2017-12-24 19:50:22'),
-  (1122, 25, 1, NULL, NULL, NULL, '2017-12-24 19:50:23', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:50:23', '2017-12-24 19:50:23'),
-  (1123, 25, 1, NULL, NULL, NULL, '2017-12-24 19:50:46', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-24 19:50:46', '2017-12-24 19:50:46'),
-  (1124, 25, 1, NULL, NULL, NULL, '2017-12-25 07:23:43', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 07:23:43', '2017-12-25 07:23:43'),
-  (1125, 25, 1, NULL, NULL, NULL, '2017-12-25 07:23:49', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 07:23:49', '2017-12-25 07:23:49'),
-  (1126, 25, 1, NULL, NULL, NULL, '2017-12-25 07:24:50', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 07:24:50', '2017-12-25 07:24:50'),
-  (1127, 51, 1, NULL, NULL, NULL, '2017-12-25 10:10:54', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 10:10:54', '2017-12-25 10:10:54'),
-  (1128, 25, 1, NULL, NULL, NULL, '2017-12-25 10:18:52', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 10:18:52', '2017-12-25 10:18:52'),
-  (1130, 46, 1, NULL, NULL, NULL, '2017-12-25 13:26:55', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 13:26:55', '2017-12-25 13:26:55'),
-  (1131, 25, 1, NULL, NULL, NULL, '2017-12-25 15:52:28', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 15:52:28', '2017-12-25 15:52:28'),
-  (1132, 46, 1, NULL, NULL, NULL, '2017-12-25 16:36:56', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-25 16:36:56', '2017-12-25 16:36:56'),
-  (1133, 25, 1, NULL, NULL, NULL, '2017-12-26 02:28:52', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 02:28:53', '2017-12-26 02:28:53'),
-  (1134, 52, 1, NULL, NULL, NULL, '2017-12-26 04:18:09', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 04:18:09', '2017-12-26 04:18:09'),
-  (1135, 47, 1, NULL, NULL, NULL, '2017-12-26 10:39:48', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 10:39:48', '2017-12-26 10:39:48'),
-  (1136, 37, 1, NULL, NULL, NULL, '2017-12-26 10:52:08', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 10:52:08', '2017-12-26 10:52:08'),
-  (1137, 37, 1, NULL, NULL, NULL, '2017-12-26 10:54:25', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 10:54:25', '2017-12-26 10:54:25'),
-  (1138, 37, 1, NULL, NULL, NULL, '2017-12-26 16:51:23', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 16:51:23', '2017-12-26 16:51:23'),
-  (1139, 53, 1, NULL, NULL, NULL, '2017-12-26 16:51:31', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 16:51:31', '2017-12-26 16:51:31'),
-  (1140, 47, 1, NULL, NULL, NULL, '2017-12-26 17:26:05', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 17:26:05', '2017-12-26 17:26:05'),
-  (1141, 29, 1, NULL, NULL, NULL, '2017-12-26 18:15:54', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-26 18:15:54', '2017-12-26 18:15:54'),
-  (1142, 25, 1, NULL, NULL, NULL, '2017-12-27 07:15:10', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 07:15:10', '2017-12-27 07:15:10'),
-  (1143, 54, 1, NULL, NULL, NULL, '2017-12-27 09:16:21', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 09:16:21', '2017-12-27 09:16:21'),
-  (1144, 46, 1, NULL, NULL, NULL, '2017-12-27 11:24:38', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 11:24:38', '2017-12-27 11:24:38'),
-  (1145, 54, 1, NULL, NULL, NULL, '2017-12-27 12:32:23', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 12:32:23', '2017-12-27 12:32:23'),
-  (1146, 54, 1, NULL, NULL, NULL, '2017-12-27 12:32:29', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 12:32:29', '2017-12-27 12:32:29'),
-  (1147, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:03', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:03', '2017-12-27 16:25:03'),
-  (1148, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:07', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:07', '2017-12-27 16:25:07'),
-  (1149, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:11', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:11', '2017-12-27 16:25:11'),
-  (1150, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:16', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:16', '2017-12-27 16:25:16'),
-  (1151, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:19', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:19', '2017-12-27 16:25:19'),
-  (1152, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:21', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:21', '2017-12-27 16:25:21'),
-  (1153, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:28', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:28', '2017-12-27 16:25:28'),
-  (1154, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:34', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:34', '2017-12-27 16:25:34'),
-  (1155, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:37', '2017-12-27 16:25:37'),
-  (1156, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:39', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:39', '2017-12-27 16:25:39'),
-  (1157, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:40', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:40', '2017-12-27 16:25:40'),
-  (1158, 25, 1, NULL, NULL, NULL, '2017-12-27 16:25:42', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:25:42', '2017-12-27 16:25:42'),
-  (1159, 25, 1, NULL, NULL, NULL, '2017-12-27 16:26:13', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-27 16:26:13', '2017-12-27 16:26:13'),
-  (1160, 25, 1, NULL, NULL, NULL, '2017-12-28 10:41:21', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 10:41:21', '2017-12-28 10:41:21'),
-  (1161, 25, 1, NULL, NULL, NULL, '2017-12-28 10:41:31', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 10:41:31', '2017-12-28 10:41:31'),
-  (1162, 37, 1, NULL, NULL, NULL, '2017-12-28 10:41:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 10:41:37', '2017-12-28 10:41:37'),
-  (1163, 25, 1, NULL, NULL, NULL, '2017-12-28 10:41:38', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 10:41:38', '2017-12-28 10:41:38'),
-  (1166, 25, 1, NULL, NULL, NULL, '2017-12-28 11:55:09', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 11:55:09', '2017-12-28 11:55:09'),
-  (1167, 25, 1, NULL, NULL, NULL, '2017-12-28 11:55:51', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 11:55:51', '2017-12-28 11:55:51'),
-  (1168, 25, 1, NULL, NULL, NULL, '2017-12-28 13:23:22', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 13:23:22', '2017-12-28 13:23:22'),
-  (1169, 25, 1, NULL, NULL, NULL, '2017-12-28 13:23:37', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 13:23:37', '2017-12-28 13:23:37'),
-  (1170, 25, 1, NULL, NULL, NULL, '2017-12-28 15:58:07', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 15:58:07', '2017-12-28 15:58:07'),
-  (1173, 25, 1, NULL, NULL, NULL, '2017-12-28 20:35:56', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-28 20:35:56', '2017-12-28 20:35:56'),
-  (1176, 29, 1, NULL, NULL, NULL, '2017-12-29 10:21:31', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-29 10:21:31', '2017-12-29 10:21:31'),
-  (1177, 5, 1, NULL, NULL, NULL, '2017-12-30 05:30:28', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 05:30:28', '2017-12-30 05:30:28'),
-  (1178, 5, 1, NULL, NULL, NULL, '2017-12-30 05:37:35', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 05:37:35', '2017-12-30 05:37:35'),
-  (1179, 25, 1, NULL, NULL, NULL, '2017-12-30 07:59:41', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 07:59:41', '2017-12-30 07:59:41'),
-  (1180, 25, 3, NULL, NULL, NULL, '2017-12-30 08:35:41', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 08:35:41', '2017-12-30 08:35:41'),
-  (1185, 54, 1, NULL, NULL, NULL, '2017-12-30 11:28:41', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 11:28:41', '2017-12-30 11:28:41'),
-  (1186, 54, 1, NULL, NULL, NULL, '2017-12-30 11:30:17', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 11:30:17', '2017-12-30 11:30:17'),
-  (1189, 5, 9, NULL, NULL, NULL, '2017-12-30 12:28:09', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 12:28:09', '2017-12-30 12:28:09'),
-  (1190, 25, 3, NULL, NULL, NULL, '2017-12-30 17:40:20', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-30 17:40:20', '2017-12-30 17:40:20'),
-  (1191, 10, 2, 2, NULL, NULL, '2017-12-30 20:20:07', 'MOBILE', 'KITCHEN ALLOCATED', NULL, '2017-12-30 20:20:07', '2017-12-31 13:51:29'),
-  (1192, 25, 3, NULL, NULL, NULL, '2017-12-31 03:02:32', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-31 03:02:32', '2017-12-31 03:02:32'),
-  (1193, 25, 3, NULL, NULL, NULL, '2017-12-31 03:17:04', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-31 03:17:04', '2017-12-31 03:17:04'),
-  (1194, 25, 11, NULL, NULL, NULL, '2017-12-31 03:46:44', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-31 03:46:44', '2017-12-31 03:46:44'),
-  (1195, 25, 11, NULL, NULL, NULL, '2017-12-31 06:08:25', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-31 06:08:25', '2017-12-31 06:08:25'),
-  (1196, 25, 11, NULL, NULL, NULL, '2017-12-31 15:32:30', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-31 15:32:30', '2017-12-31 15:32:30'),
-  (1197, 10, 5, NULL, NULL, NULL, '2017-12-31 17:53:01', 'MOBILE', 'PAYMENT PENDING', NULL, '2017-12-31 17:53:01', '2017-12-31 17:53:01'),
-  (1198, 25, 11, NULL, NULL, NULL, '2018-01-01 05:43:07', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 05:43:07', '2018-01-01 05:43:07'),
-  (1199, 10, 5, NULL, NULL, NULL, '2018-01-01 07:24:28', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 07:24:28', '2018-01-01 07:24:28'),
-  (1200, 25, 3, NULL, NULL, NULL, '2018-01-01 12:37:20', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 12:37:20', '2018-01-01 12:37:20'),
-  (1201, 25, 11, NULL, NULL, NULL, '2018-01-01 13:40:36', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 13:40:36', '2018-01-01 13:40:36'),
-  (1202, 25, 3, NULL, NULL, NULL, '2018-01-01 14:16:23', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 14:16:23', '2018-01-01 14:16:23'),
-  (1203, 25, 3, NULL, NULL, NULL, '2018-01-01 17:12:00', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 17:12:00', '2018-01-01 17:12:00'),
-  (1204, 25, 3, NULL, NULL, NULL, '2018-01-01 17:17:28', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 17:17:29', '2018-01-01 17:17:29'),
-  (1205, 56, 1, NULL, NULL, NULL, '2018-01-01 19:15:03', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 19:15:03', '2018-01-01 19:15:03'),
-  (1206, 25, 3, NULL, NULL, NULL, '2018-01-01 19:35:48', 'MOBILE', 'PAYMENT PENDING', NULL, '2018-01-01 19:35:48', '2018-01-01 19:35:48');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer_order_item`
---
-
+-- ----------------------------
+-- Table structure for customer_order_item
+-- ----------------------------
+DROP TABLE IF EXISTS `customer_order_item`;
 CREATE TABLE `customer_order_item` (
-  `ORDER_ITEM_ID` int(11) NOT NULL,
+  `ORDER_ITEM_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ORDER_ID` bigint(10) NOT NULL,
   `ITEM_TYPE_ID` bigint(10) NOT NULL,
   `QUANTITY` int(4) NOT NULL,
@@ -285,473 +251,475 @@ CREATE TABLE `customer_order_item` (
   `OPTIONS` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `NOTES` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CREATED_AT` datetime NOT NULL,
-  `UPDATED_AT` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `UPDATED_AT` datetime DEFAULT NULL,
+  PRIMARY KEY (`ORDER_ITEM_ID`),
+  KEY `ORDER_ID` (`ORDER_ID`) USING BTREE,
+  KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
+  CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `customer_order_item`
---
+-- ----------------------------
+-- Records of customer_order_item
+-- ----------------------------
+INSERT INTO `customer_order_item` VALUES ('18', '1051', '4', '4', '300', '1200', 'N/A', null, '2017-12-21 13:40:50', null);
+INSERT INTO `customer_order_item` VALUES ('19', '1051', '5', '5', '10', '50', 'N/A', null, '2017-12-21 13:40:50', null);
+INSERT INTO `customer_order_item` VALUES ('20', '1052', '5', '10', '1', '10', 'N/A', null, '2017-12-21 14:07:43', null);
+INSERT INTO `customer_order_item` VALUES ('21', '1053', '4', '5', '1', '5', 'N/A', null, '2017-12-21 14:10:57', null);
+INSERT INTO `customer_order_item` VALUES ('22', '1055', '1', '1', '1', '1', 'N/A', null, '2017-12-21 14:15:30', null);
+INSERT INTO `customer_order_item` VALUES ('23', '1056', '2', '2', '1', '2', 'N/A', null, '2017-12-21 15:17:48', null);
+INSERT INTO `customer_order_item` VALUES ('24', '1056', '2', '2', '1', '2', 'N/A', null, '2017-12-21 15:17:48', null);
+INSERT INTO `customer_order_item` VALUES ('25', '1059', '1', '3', '1', '3', 'N/A', null, '2017-12-21 15:34:15', null);
+INSERT INTO `customer_order_item` VALUES ('26', '1060', '5', '1', '1', '1', 'N/A', null, '2017-12-21 15:36:32', null);
+INSERT INTO `customer_order_item` VALUES ('27', '1062', '3', '2', '1', '2', 'N/A', null, '2017-12-21 17:46:10', null);
+INSERT INTO `customer_order_item` VALUES ('28', '1064', '5', '2', '1', '2', 'N/A', null, '2017-12-21 18:05:13', null);
+INSERT INTO `customer_order_item` VALUES ('29', '1065', '4', '1', '1', '1', 'N/A', null, '2017-12-21 18:16:00', null);
+INSERT INTO `customer_order_item` VALUES ('30', '1066', '1', '1', '1', '1', 'N/A', null, '2017-12-21 18:23:41', null);
+INSERT INTO `customer_order_item` VALUES ('31', '1067', '5', '1', '1', '1', 'N/A', null, '2017-12-21 18:27:20', null);
+INSERT INTO `customer_order_item` VALUES ('32', '1068', '5', '1', '1', '1', 'N/A', null, '2017-12-21 18:30:22', null);
+INSERT INTO `customer_order_item` VALUES ('33', '1070', '4', '10', '1', '10', 'N/A', null, '2017-12-21 18:48:56', null);
+INSERT INTO `customer_order_item` VALUES ('34', '1072', '3', '1', '1', '1', 'N/A', null, '2017-12-21 18:51:10', null);
+INSERT INTO `customer_order_item` VALUES ('35', '1073', '4', '1', '1', '1', 'N/A', null, '2017-12-21 19:19:39', null);
+INSERT INTO `customer_order_item` VALUES ('36', '1074', '5', '1', '1', '1', 'N/A', null, '2017-12-21 22:41:26', null);
+INSERT INTO `customer_order_item` VALUES ('37', '1074', '5', '1', '1', '1', 'N/A', null, '2017-12-21 22:41:26', null);
+INSERT INTO `customer_order_item` VALUES ('38', '1074', '3', '1', '1', '1', 'N/A', null, '2017-12-21 22:41:26', null);
+INSERT INTO `customer_order_item` VALUES ('39', '1074', '1', '1', '1', '1', 'N/A', null, '2017-12-21 22:41:26', null);
+INSERT INTO `customer_order_item` VALUES ('40', '1074', '4', '1', '1', '1', 'N/A', null, '2017-12-21 22:41:26', null);
+INSERT INTO `customer_order_item` VALUES ('41', '1075', '3', '5', '1', '5', 'N/A', null, '2017-12-22 03:13:59', null);
+INSERT INTO `customer_order_item` VALUES ('42', '1076', '5', '1', '1', '1', 'N/A', null, '2017-12-22 05:39:58', null);
+INSERT INTO `customer_order_item` VALUES ('43', '1076', '5', '1', '1', '1', 'N/A', null, '2017-12-22 05:39:58', null);
+INSERT INTO `customer_order_item` VALUES ('49', '1087', '4', '10', '1', '10', 'N/A', null, '2017-12-22 08:22:37', null);
+INSERT INTO `customer_order_item` VALUES ('50', '1089', '10', '20', '1', '20', 'N/A', null, '2017-12-22 09:00:37', null);
+INSERT INTO `customer_order_item` VALUES ('51', '1090', '10', '20', '1', '20', 'N/A', null, '2017-12-22 09:14:01', null);
+INSERT INTO `customer_order_item` VALUES ('52', '1090', '10', '20', '1', '20', 'N/A', null, '2017-12-22 09:14:01', null);
+INSERT INTO `customer_order_item` VALUES ('53', '1090', '9', '20', '1', '20', 'N/A', null, '2017-12-22 09:14:01', null);
+INSERT INTO `customer_order_item` VALUES ('56', '1093', '10', '1', '15', '15', 'N/A', null, '2017-12-22 14:38:12', null);
+INSERT INTO `customer_order_item` VALUES ('57', '1095', '9', '1', '13', '13', 'N/A', null, '2017-12-22 16:13:46', null);
+INSERT INTO `customer_order_item` VALUES ('58', '1095', '10', '1', '15', '15', 'N/A', null, '2017-12-22 16:13:46', null);
+INSERT INTO `customer_order_item` VALUES ('65', '1102', '5', '1', '1', '1', 'N/A', null, '2017-12-22 17:33:56', null);
+INSERT INTO `customer_order_item` VALUES ('66', '1102', '5', '1', '1', '1', 'N/A', null, '2017-12-22 17:33:56', null);
+INSERT INTO `customer_order_item` VALUES ('67', '1103', '1', '1', '15', '15', 'N/A', null, '2017-12-23 02:18:54', null);
+INSERT INTO `customer_order_item` VALUES ('68', '1103', '8', '1', '13', '13', 'N/A', null, '2017-12-23 02:18:54', null);
+INSERT INTO `customer_order_item` VALUES ('69', '1104', '1', '1', '15', '15', 'N/A', null, '2017-12-23 02:18:55', null);
+INSERT INTO `customer_order_item` VALUES ('70', '1104', '8', '1', '13', '13', 'N/A', null, '2017-12-23 02:18:55', null);
+INSERT INTO `customer_order_item` VALUES ('71', '1105', '9', '2', '11', '22', 'N/A', null, '2017-12-23 07:10:29', null);
+INSERT INTO `customer_order_item` VALUES ('72', '1105', '9', '2', '11', '22', 'N/A', null, '2017-12-23 07:10:29', null);
+INSERT INTO `customer_order_item` VALUES ('73', '1107', '3', '1', '13', '13', 'N/A', null, '2017-12-23 10:58:55', null);
+INSERT INTO `customer_order_item` VALUES ('75', '1109', '8', '6', '15', '90', 'N/A', null, '2017-12-24 13:34:40', null);
+INSERT INTO `customer_order_item` VALUES ('76', '1110', '19', '1', '1', '1', 'N/A', null, '2017-12-24 13:36:43', null);
+INSERT INTO `customer_order_item` VALUES ('77', '1110', '8', '1', '15', '15', 'N/A', null, '2017-12-24 13:36:43', null);
+INSERT INTO `customer_order_item` VALUES ('78', '1112', '3', '1', '13', '13', 'N/A', null, '2017-12-24 15:24:36', null);
+INSERT INTO `customer_order_item` VALUES ('79', '1113', '8', '1', '15', '15', 'N/A', null, '2017-12-24 17:25:38', null);
+INSERT INTO `customer_order_item` VALUES ('80', '1114', '7', '4', '11', '44', 'N/A', null, '2017-12-24 19:49:26', null);
+INSERT INTO `customer_order_item` VALUES ('81', '1124', '4', '1', '15', '15', 'N/A', null, '2017-12-25 07:23:43', null);
+INSERT INTO `customer_order_item` VALUES ('82', '1127', '4', '1', '15', '15', 'N/A', null, '2017-12-25 10:10:54', null);
+INSERT INTO `customer_order_item` VALUES ('83', '1128', '1', '1', '15', '15', 'N/A', null, '2017-12-25 10:18:52', null);
+INSERT INTO `customer_order_item` VALUES ('86', '1131', '9', '1', '11', '11', 'N/A', null, '2017-12-25 15:52:28', null);
+INSERT INTO `customer_order_item` VALUES ('87', '1133', '8', '1', '15', '15', 'N/A', null, '2017-12-26 02:28:52', null);
+INSERT INTO `customer_order_item` VALUES ('88', '1134', '9', '1', '11', '11', 'N/A', null, '2017-12-26 04:18:09', null);
+INSERT INTO `customer_order_item` VALUES ('89', '1135', '2', '1', '11', '11', 'N/A', null, '2017-12-26 10:39:48', null);
+INSERT INTO `customer_order_item` VALUES ('90', '1136', '8', '1', '15', '15', 'N/A', null, '2017-12-26 10:52:08', null);
+INSERT INTO `customer_order_item` VALUES ('91', '1137', '1', '5', '15', '75', 'N/A', null, '2017-12-26 10:54:25', null);
+INSERT INTO `customer_order_item` VALUES ('92', '1139', '1', '1', '15', '15', 'N/A', null, '2017-12-26 16:51:31', null);
+INSERT INTO `customer_order_item` VALUES ('93', '1141', '9', '1', '11', '11', 'N/A', null, '2017-12-26 18:15:54', null);
+INSERT INTO `customer_order_item` VALUES ('94', '1142', '10', '1', '15', '15', 'N/A', null, '2017-12-27 07:15:10', null);
+INSERT INTO `customer_order_item` VALUES ('95', '1143', '10', '1', '15', '15', 'N/A', null, '2017-12-27 09:16:21', null);
+INSERT INTO `customer_order_item` VALUES ('96', '1159', '1', '1', '15', '15', 'N/A', null, '2017-12-27 16:26:13', null);
+INSERT INTO `customer_order_item` VALUES ('97', '1160', '5', '1', '13', '13', 'N/A', null, '2017-12-28 10:41:21', null);
+INSERT INTO `customer_order_item` VALUES ('98', '1162', '27', '1', '1', '1', 'N/A', null, '2017-12-28 10:41:37', null);
+INSERT INTO `customer_order_item` VALUES ('101', '1166', '5', '1', '13', '13', 'N/A', null, '2017-12-28 11:55:09', null);
+INSERT INTO `customer_order_item` VALUES ('102', '1167', '23', '1', '1', '1', 'N/A', null, '2017-12-28 11:55:51', null);
+INSERT INTO `customer_order_item` VALUES ('103', '1169', '23', '1', '1', '1', 'N/A', null, '2017-12-28 13:23:37', null);
+INSERT INTO `customer_order_item` VALUES ('104', '1170', '4', '1', '15', '15', 'N/A', null, '2017-12-28 15:58:07', null);
+INSERT INTO `customer_order_item` VALUES ('107', '1173', '5', '1', '13', '13', 'N/A', null, '2017-12-28 20:35:56', null);
+INSERT INTO `customer_order_item` VALUES ('108', '1176', '5', '1', '13', '13', 'N/A', null, '2017-12-29 10:21:31', null);
+INSERT INTO `customer_order_item` VALUES ('109', '1177', '27', '1', '1', '1', 'N/A', null, '2017-12-30 05:30:28', null);
+INSERT INTO `customer_order_item` VALUES ('110', '1177', '23', '1', '1', '1', 'N/A', null, '2017-12-30 05:30:28', null);
+INSERT INTO `customer_order_item` VALUES ('111', '1178', '23', '1', '1', '1', 'N/A', null, '2017-12-30 05:37:35', null);
+INSERT INTO `customer_order_item` VALUES ('112', '1179', '8', '1', '15', '15', 'N/A', null, '2017-12-30 07:59:41', null);
+INSERT INTO `customer_order_item` VALUES ('113', '1180', '8', '1', '15', '15', 'N/A', null, '2017-12-30 08:35:41', null);
+INSERT INTO `customer_order_item` VALUES ('114', '1180', '5', '1', '13', '13', 'N/A', null, '2017-12-30 08:35:41', null);
+INSERT INTO `customer_order_item` VALUES ('119', '1186', '8', '1', '15', '15', 'N/A', null, '2017-12-30 11:30:17', null);
+INSERT INTO `customer_order_item` VALUES ('122', '1189', '2', '1', '11', '11', 'N/A', null, '2017-12-30 12:28:09', null);
+INSERT INTO `customer_order_item` VALUES ('123', '1189', '4', '1', '15', '15', 'N/A', null, '2017-12-30 12:28:09', null);
+INSERT INTO `customer_order_item` VALUES ('124', '1189', '1', '1', '15', '15', 'N/A', null, '2017-12-30 12:28:09', null);
+INSERT INTO `customer_order_item` VALUES ('125', '1190', '3', '1', '13', '13', 'N/A', null, '2017-12-30 17:40:20', null);
+INSERT INTO `customer_order_item` VALUES ('126', '1191', '5', '1', '13', '13', 'N/A', null, '2017-12-30 20:20:07', null);
+INSERT INTO `customer_order_item` VALUES ('127', '1191', '27', '1', '1', '1', 'N/A', null, '2017-12-30 20:20:07', null);
+INSERT INTO `customer_order_item` VALUES ('128', '1192', '3', '1', '13', '13', 'N/A', null, '2017-12-31 03:02:32', null);
+INSERT INTO `customer_order_item` VALUES ('129', '1193', '8', '1', '15', '15', 'N/A', null, '2017-12-31 03:17:04', null);
+INSERT INTO `customer_order_item` VALUES ('130', '1193', '27', '1', '1', '1', 'N/A', null, '2017-12-31 03:17:04', null);
+INSERT INTO `customer_order_item` VALUES ('131', '1194', '3', '1', '13', '13', 'N/A', null, '2017-12-31 03:46:44', null);
+INSERT INTO `customer_order_item` VALUES ('132', '1194', '8', '1', '15', '15', 'N/A', null, '2017-12-31 03:46:44', null);
+INSERT INTO `customer_order_item` VALUES ('133', '1194', '27', '10', '1', '10', 'N/A', null, '2017-12-31 03:46:44', null);
+INSERT INTO `customer_order_item` VALUES ('134', '1195', '3', '1', '13', '13', 'N/A', null, '2017-12-31 06:08:25', null);
+INSERT INTO `customer_order_item` VALUES ('135', '1196', '3', '1', '13', '13', 'N/A', null, '2017-12-31 15:32:30', null);
+INSERT INTO `customer_order_item` VALUES ('136', '1197', '2', '1', '11', '11', 'N/A', null, '2017-12-31 17:53:01', null);
+INSERT INTO `customer_order_item` VALUES ('137', '1197', '23', '1', '1', '1', 'N/A', null, '2017-12-31 17:53:01', null);
+INSERT INTO `customer_order_item` VALUES ('138', '1198', '3', '1', '13', '13', 'N/A', null, '2018-01-01 05:43:07', null);
+INSERT INTO `customer_order_item` VALUES ('139', '1199', '1', '1', '15', '15', 'N/A', null, '2018-01-01 07:24:28', null);
+INSERT INTO `customer_order_item` VALUES ('140', '1200', '5', '1', '13', '13', 'N/A', null, '2018-01-01 12:37:20', null);
+INSERT INTO `customer_order_item` VALUES ('141', '1201', '4', '1', '15', '15', 'N/A', null, '2018-01-01 13:40:36', null);
+INSERT INTO `customer_order_item` VALUES ('142', '1202', '10', '1', '15', '15', 'N/A', null, '2018-01-01 14:16:23', null);
+INSERT INTO `customer_order_item` VALUES ('143', '1203', '5', '1', '13', '13', 'N/A', null, '2018-01-01 17:12:00', null);
+INSERT INTO `customer_order_item` VALUES ('144', '1203', '8', '1', '15', '15', 'N/A', null, '2018-01-01 17:12:00', null);
+INSERT INTO `customer_order_item` VALUES ('145', '1204', '3', '1', '13', '13', 'N/A', null, '2018-01-01 17:17:28', null);
+INSERT INTO `customer_order_item` VALUES ('146', '1206', '10', '1', '15', '15', 'N/A', null, '2018-01-01 19:35:48', null);
+INSERT INTO `customer_order_item` VALUES ('147', '1207', '2', '1', '11', '11', 'N/A', null, '2018-01-01 21:37:19', null);
 
-INSERT INTO `customer_order_item` (`ORDER_ITEM_ID`, `ORDER_ID`, `ITEM_TYPE_ID`, `QUANTITY`, `PRICE`, `SUBTOTAL`, `OPTIONS`, `NOTES`, `CREATED_AT`, `UPDATED_AT`) VALUES
-  (18, 1051, 4, 4, '300', '1200', 'N/A', NULL, '2017-12-21 13:40:50', NULL),
-  (19, 1051, 5, 5, '10', '50', 'N/A', NULL, '2017-12-21 13:40:50', NULL),
-  (20, 1052, 5, 10, '1', '10', 'N/A', NULL, '2017-12-21 14:07:43', NULL),
-  (21, 1053, 4, 5, '1', '5', 'N/A', NULL, '2017-12-21 14:10:57', NULL),
-  (22, 1055, 1, 1, '1', '1', 'N/A', NULL, '2017-12-21 14:15:30', NULL),
-  (23, 1056, 2, 2, '1', '2', 'N/A', NULL, '2017-12-21 15:17:48', NULL),
-  (24, 1056, 2, 2, '1', '2', 'N/A', NULL, '2017-12-21 15:17:48', NULL),
-  (25, 1059, 1, 3, '1', '3', 'N/A', NULL, '2017-12-21 15:34:15', NULL),
-  (26, 1060, 5, 1, '1', '1', 'N/A', NULL, '2017-12-21 15:36:32', NULL),
-  (27, 1062, 3, 2, '1', '2', 'N/A', NULL, '2017-12-21 17:46:10', NULL),
-  (28, 1064, 5, 2, '1', '2', 'N/A', NULL, '2017-12-21 18:05:13', NULL),
-  (29, 1065, 4, 1, '1', '1', 'N/A', NULL, '2017-12-21 18:16:00', NULL),
-  (30, 1066, 1, 1, '1', '1', 'N/A', NULL, '2017-12-21 18:23:41', NULL),
-  (31, 1067, 5, 1, '1', '1', 'N/A', NULL, '2017-12-21 18:27:20', NULL),
-  (32, 1068, 5, 1, '1', '1', 'N/A', NULL, '2017-12-21 18:30:22', NULL),
-  (33, 1070, 4, 10, '1', '10', 'N/A', NULL, '2017-12-21 18:48:56', NULL),
-  (34, 1072, 3, 1, '1', '1', 'N/A', NULL, '2017-12-21 18:51:10', NULL),
-  (35, 1073, 4, 1, '1', '1', 'N/A', NULL, '2017-12-21 19:19:39', NULL),
-  (36, 1074, 5, 1, '1', '1', 'N/A', NULL, '2017-12-21 22:41:26', NULL),
-  (37, 1074, 5, 1, '1', '1', 'N/A', NULL, '2017-12-21 22:41:26', NULL),
-  (38, 1074, 3, 1, '1', '1', 'N/A', NULL, '2017-12-21 22:41:26', NULL),
-  (39, 1074, 1, 1, '1', '1', 'N/A', NULL, '2017-12-21 22:41:26', NULL),
-  (40, 1074, 4, 1, '1', '1', 'N/A', NULL, '2017-12-21 22:41:26', NULL),
-  (41, 1075, 3, 5, '1', '5', 'N/A', NULL, '2017-12-22 03:13:59', NULL),
-  (42, 1076, 5, 1, '1', '1', 'N/A', NULL, '2017-12-22 05:39:58', NULL),
-  (43, 1076, 5, 1, '1', '1', 'N/A', NULL, '2017-12-22 05:39:58', NULL),
-  (49, 1087, 4, 10, '1', '10', 'N/A', NULL, '2017-12-22 08:22:37', NULL),
-  (50, 1089, 10, 20, '1', '20', 'N/A', NULL, '2017-12-22 09:00:37', NULL),
-  (51, 1090, 10, 20, '1', '20', 'N/A', NULL, '2017-12-22 09:14:01', NULL),
-  (52, 1090, 10, 20, '1', '20', 'N/A', NULL, '2017-12-22 09:14:01', NULL),
-  (53, 1090, 9, 20, '1', '20', 'N/A', NULL, '2017-12-22 09:14:01', NULL),
-  (56, 1093, 10, 1, '15', '15', 'N/A', NULL, '2017-12-22 14:38:12', NULL),
-  (57, 1095, 9, 1, '13', '13', 'N/A', NULL, '2017-12-22 16:13:46', NULL),
-  (58, 1095, 10, 1, '15', '15', 'N/A', NULL, '2017-12-22 16:13:46', NULL),
-  (65, 1102, 5, 1, '1', '1', 'N/A', NULL, '2017-12-22 17:33:56', NULL),
-  (66, 1102, 5, 1, '1', '1', 'N/A', NULL, '2017-12-22 17:33:56', NULL),
-  (67, 1103, 1, 1, '15', '15', 'N/A', NULL, '2017-12-23 02:18:54', NULL),
-  (68, 1103, 8, 1, '13', '13', 'N/A', NULL, '2017-12-23 02:18:54', NULL),
-  (69, 1104, 1, 1, '15', '15', 'N/A', NULL, '2017-12-23 02:18:55', NULL),
-  (70, 1104, 8, 1, '13', '13', 'N/A', NULL, '2017-12-23 02:18:55', NULL),
-  (71, 1105, 9, 2, '11', '22', 'N/A', NULL, '2017-12-23 07:10:29', NULL),
-  (72, 1105, 9, 2, '11', '22', 'N/A', NULL, '2017-12-23 07:10:29', NULL),
-  (73, 1107, 3, 1, '13', '13', 'N/A', NULL, '2017-12-23 10:58:55', NULL),
-  (75, 1109, 8, 6, '15', '90', 'N/A', NULL, '2017-12-24 13:34:40', NULL),
-  (76, 1110, 19, 1, '1', '1', 'N/A', NULL, '2017-12-24 13:36:43', NULL),
-  (77, 1110, 8, 1, '15', '15', 'N/A', NULL, '2017-12-24 13:36:43', NULL),
-  (78, 1112, 3, 1, '13', '13', 'N/A', NULL, '2017-12-24 15:24:36', NULL),
-  (79, 1113, 8, 1, '15', '15', 'N/A', NULL, '2017-12-24 17:25:38', NULL),
-  (80, 1114, 7, 4, '11', '44', 'N/A', NULL, '2017-12-24 19:49:26', NULL),
-  (81, 1124, 4, 1, '15', '15', 'N/A', NULL, '2017-12-25 07:23:43', NULL),
-  (82, 1127, 4, 1, '15', '15', 'N/A', NULL, '2017-12-25 10:10:54', NULL),
-  (83, 1128, 1, 1, '15', '15', 'N/A', NULL, '2017-12-25 10:18:52', NULL),
-  (86, 1131, 9, 1, '11', '11', 'N/A', NULL, '2017-12-25 15:52:28', NULL),
-  (87, 1133, 8, 1, '15', '15', 'N/A', NULL, '2017-12-26 02:28:52', NULL),
-  (88, 1134, 9, 1, '11', '11', 'N/A', NULL, '2017-12-26 04:18:09', NULL),
-  (89, 1135, 2, 1, '11', '11', 'N/A', NULL, '2017-12-26 10:39:48', NULL),
-  (90, 1136, 8, 1, '15', '15', 'N/A', NULL, '2017-12-26 10:52:08', NULL),
-  (91, 1137, 1, 5, '15', '75', 'N/A', NULL, '2017-12-26 10:54:25', NULL),
-  (92, 1139, 1, 1, '15', '15', 'N/A', NULL, '2017-12-26 16:51:31', NULL),
-  (93, 1141, 9, 1, '11', '11', 'N/A', NULL, '2017-12-26 18:15:54', NULL),
-  (94, 1142, 10, 1, '15', '15', 'N/A', NULL, '2017-12-27 07:15:10', NULL),
-  (95, 1143, 10, 1, '15', '15', 'N/A', NULL, '2017-12-27 09:16:21', NULL),
-  (96, 1159, 1, 1, '15', '15', 'N/A', NULL, '2017-12-27 16:26:13', NULL),
-  (97, 1160, 5, 1, '13', '13', 'N/A', NULL, '2017-12-28 10:41:21', NULL),
-  (98, 1162, 27, 1, '1', '1', 'N/A', NULL, '2017-12-28 10:41:37', NULL),
-  (101, 1166, 5, 1, '13', '13', 'N/A', NULL, '2017-12-28 11:55:09', NULL),
-  (102, 1167, 23, 1, '1', '1', 'N/A', NULL, '2017-12-28 11:55:51', NULL),
-  (103, 1169, 23, 1, '1', '1', 'N/A', NULL, '2017-12-28 13:23:37', NULL),
-  (104, 1170, 4, 1, '15', '15', 'N/A', NULL, '2017-12-28 15:58:07', NULL),
-  (107, 1173, 5, 1, '13', '13', 'N/A', NULL, '2017-12-28 20:35:56', NULL),
-  (108, 1176, 5, 1, '13', '13', 'N/A', NULL, '2017-12-29 10:21:31', NULL),
-  (109, 1177, 27, 1, '1', '1', 'N/A', NULL, '2017-12-30 05:30:28', NULL),
-  (110, 1177, 23, 1, '1', '1', 'N/A', NULL, '2017-12-30 05:30:28', NULL),
-  (111, 1178, 23, 1, '1', '1', 'N/A', NULL, '2017-12-30 05:37:35', NULL),
-  (112, 1179, 8, 1, '15', '15', 'N/A', NULL, '2017-12-30 07:59:41', NULL),
-  (113, 1180, 8, 1, '15', '15', 'N/A', NULL, '2017-12-30 08:35:41', NULL),
-  (114, 1180, 5, 1, '13', '13', 'N/A', NULL, '2017-12-30 08:35:41', NULL),
-  (119, 1186, 8, 1, '15', '15', 'N/A', NULL, '2017-12-30 11:30:17', NULL),
-  (122, 1189, 2, 1, '11', '11', 'N/A', NULL, '2017-12-30 12:28:09', NULL),
-  (123, 1189, 4, 1, '15', '15', 'N/A', NULL, '2017-12-30 12:28:09', NULL),
-  (124, 1189, 1, 1, '15', '15', 'N/A', NULL, '2017-12-30 12:28:09', NULL),
-  (125, 1190, 3, 1, '13', '13', 'N/A', NULL, '2017-12-30 17:40:20', NULL),
-  (126, 1191, 5, 1, '13', '13', 'N/A', NULL, '2017-12-30 20:20:07', NULL),
-  (127, 1191, 27, 1, '1', '1', 'N/A', NULL, '2017-12-30 20:20:07', NULL),
-  (128, 1192, 3, 1, '13', '13', 'N/A', NULL, '2017-12-31 03:02:32', NULL),
-  (129, 1193, 8, 1, '15', '15', 'N/A', NULL, '2017-12-31 03:17:04', NULL),
-  (130, 1193, 27, 1, '1', '1', 'N/A', NULL, '2017-12-31 03:17:04', NULL),
-  (131, 1194, 3, 1, '13', '13', 'N/A', NULL, '2017-12-31 03:46:44', NULL),
-  (132, 1194, 8, 1, '15', '15', 'N/A', NULL, '2017-12-31 03:46:44', NULL),
-  (133, 1194, 27, 10, '1', '10', 'N/A', NULL, '2017-12-31 03:46:44', NULL),
-  (134, 1195, 3, 1, '13', '13', 'N/A', NULL, '2017-12-31 06:08:25', NULL),
-  (135, 1196, 3, 1, '13', '13', 'N/A', NULL, '2017-12-31 15:32:30', NULL),
-  (136, 1197, 2, 1, '11', '11', 'N/A', NULL, '2017-12-31 17:53:01', NULL),
-  (137, 1197, 23, 1, '1', '1', 'N/A', NULL, '2017-12-31 17:53:01', NULL),
-  (138, 1198, 3, 1, '13', '13', 'N/A', NULL, '2018-01-01 05:43:07', NULL),
-  (139, 1199, 1, 1, '15', '15', 'N/A', NULL, '2018-01-01 07:24:28', NULL),
-  (140, 1200, 5, 1, '13', '13', 'N/A', NULL, '2018-01-01 12:37:20', NULL),
-  (141, 1201, 4, 1, '15', '15', 'N/A', NULL, '2018-01-01 13:40:36', NULL),
-  (142, 1202, 10, 1, '15', '15', 'N/A', NULL, '2018-01-01 14:16:23', NULL),
-  (143, 1203, 5, 1, '13', '13', 'N/A', NULL, '2018-01-01 17:12:00', NULL),
-  (144, 1203, 8, 1, '15', '15', 'N/A', NULL, '2018-01-01 17:12:00', NULL),
-  (145, 1204, 3, 1, '13', '13', 'N/A', NULL, '2018-01-01 17:17:28', NULL),
-  (146, 1206, 10, 1, '15', '15', 'N/A', NULL, '2018-01-01 19:35:48', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `db_cache`
---
-
+-- ----------------------------
+-- Table structure for db_cache
+-- ----------------------------
+DROP TABLE IF EXISTS `db_cache`;
 CREATE TABLE `db_cache` (
   `id` char(128) NOT NULL,
   `expire` int(11) DEFAULT NULL,
-  `data` blob
+  `data` blob DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `expire` (`expire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `db_cache`
---
+-- ----------------------------
+-- Records of db_cache
+-- ----------------------------
+INSERT INTO `db_cache` VALUES ('963454f612a8b5fb4a63ba1e97f028a1', '0', 0x613A323A7B693A303B613A323A7B693A303B613A32333A7B693A303B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A32353A223C636F6E74726F6C6C65723A5C772B3E2F3C69643A5C642B3E223B733A373A227061747465726E223B733A34323A22235E283F503C6134636632363639613E5C772B292F283F503C6162663339363735303E5C642B29242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31373A223C636F6E74726F6C6C65723E2F76696577223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A323A7B733A393A22613463663236363961223B733A31303A22636F6E74726F6C6C6572223B733A393A22616266333936373530223B733A323A226964223B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31393A222F3C636F6E74726F6C6C65723E2F3C69643E2F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B733A32383A22235E283F503C6134636632363639613E5C772B292F76696577242375223B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A313A7B733A323A226964223B733A383A22235E5C642B242375223B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A313A7B733A31303A22636F6E74726F6C6C6572223B733A31323A223C636F6E74726F6C6C65723E223B7D7D693A313B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A33383A223C636F6E74726F6C6C65723A5C772B3E2F3C616374696F6E3A5C772B3E2F3C69643A5C642B3E223B733A373A227061747465726E223B733A36313A22235E283F503C6134636632363639613E5C772B292F283F503C6134376363386339323E5C772B292F283F503C6162663339363735303E5C642B29242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32313A223C636F6E74726F6C6C65723E2F3C616374696F6E3E223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A333A7B733A393A22613463663236363961223B733A31303A22636F6E74726F6C6C6572223B733A393A22613437636338633932223B733A363A22616374696F6E223B733A393A22616266333936373530223B733A323A226964223B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A32383A222F3C636F6E74726F6C6C65723E2F3C616374696F6E3E2F3C69643E2F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B733A34323A22235E283F503C6134636632363639613E5C772B292F283F503C6134376363386339323E5C772B29242375223B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A313A7B733A323A226964223B733A383A22235E5C642B242375223B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A323A7B733A31303A22636F6E74726F6C6C6572223B733A31323A223C636F6E74726F6C6C65723E223B733A363A22616374696F6E223B733A383A223C616374696F6E3E223B7D7D693A323B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A32393A223C636F6E74726F6C6C65723A5C772B3E2F3C616374696F6E3A5C772B3E223B733A373A227061747465726E223B733A34323A22235E283F503C6134636632363639613E5C772B292F283F503C6134376363386339323E5C772B29242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32313A223C636F6E74726F6C6C65723E2F3C616374696F6E3E223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A323A7B733A393A22613463663236363961223B733A31303A22636F6E74726F6C6C6572223B733A393A22613437636338633932223B733A363A22616374696F6E223B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A32333A222F3C636F6E74726F6C6C65723E2F3C616374696F6E3E2F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B733A34323A22235E283F503C6134636632363639613E5C772B292F283F503C6134376363386339323E5C772B29242375223B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A323A7B733A31303A22636F6E74726F6C6C6572223B733A31323A223C636F6E74726F6C6C65723E223B733A363A22616374696F6E223B733A383A223C616374696F6E3E223B7D7D693A333B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A313A222F223B733A373A227061747465726E223B733A353A22235E242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31303A22736974652F696E646578223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A303A22223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A343B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A393A226D792D73616C6F6E73223B733A373A227061747465726E223B733A31343A22235E6D792D73616C6F6E73242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31313A2273616C6F6E2F696E646578223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31313A222F6D792D73616C6F6E732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A353B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A383A226D792D7374616666223B733A373A227061747465726E223B733A31333A22235E6D792D7374616666242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31313A2273746166662F696E646578223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31303A222F6D792D73746166662F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A363B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31313A226D792D7061796D656E7473223B733A373A227061747465726E223B733A31363A22235E6D792D7061796D656E7473242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31333A227061796D656E742F696E646578223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31333A222F6D792D7061796D656E74732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A373B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31363A2270656E64696E672D7061796D656E7473223B733A373A227061747465726E223B733A32313A22235E70656E64696E672D7061796D656E7473242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32343A227061796D656E742F70656E64696E672D7061796D656E7473223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31383A222F70656E64696E672D7061796D656E74732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A383B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31353A22636F6E6669726D2D7061796D656E74223B733A373A227061747465726E223B733A32303A22235E636F6E6669726D2D7061796D656E74242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32333A227061796D656E742F636F6E6669726D2D7061796D656E74223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31373A222F636F6E6669726D2D7061796D656E742F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A393B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31383A2266696E616C697A65642D7061796D656E7473223B733A373A227061747465726E223B733A32333A22235E66696E616C697A65642D7061796D656E7473242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32363A227061796D656E742F66696E616C697A65642D7061796D656E7473223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A32303A222F66696E616C697A65642D7061796D656E74732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31303B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31313A226D792D626F6F6B696E6773223B733A373A227061747465726E223B733A31363A22235E6D792D626F6F6B696E6773242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31373A227265736572766174696F6E2F696E646578223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31333A222F6D792D626F6F6B696E67732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31313B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31313A226164642D73657276696365223B733A373A227061747465726E223B733A31363A22235E6164642D73657276696365242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32303A2273616C6F6E73657276696365732F637265617465223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31333A222F6164642D736572766963652F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31323B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31343A2261737369676E2D73657276696365223B733A373A227061747465726E223B733A31393A22235E61737369676E2D73657276696365242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32313A22626F6F6B65642F61737369676E2D73657276696365223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31363A222F61737369676E2D736572766963652F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31333B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31353A22636F6E6669726D2D73657276696365223B733A373A227061747465726E223B733A32303A22235E636F6E6669726D2D73657276696365242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32323A22626F6F6B65642F636F6E6669726D2D73657276696365223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31373A222F636F6E6669726D2D736572766963652F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31343B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31393A22636F6E6669726D2D7265736572766174696F6E223B733A373A227061747465726E223B733A32343A22235E636F6E6669726D2D7265736572766174696F6E242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A33313A227265736572766174696F6E2F636F6E6669726D2D7265736572766174696F6E223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A32313A222F636F6E6669726D2D7265736572766174696F6E2F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31353B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31393A2270726F636573732D7265736572766174696F6E223B733A373A227061747465726E223B733A32343A22235E70726F636573732D7265736572766174696F6E242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A33313A227265736572766174696F6E2F70726F636573732D7265736572766174696F6E223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A32313A222F70726F636573732D7265736572766174696F6E2F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31363B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A373A22636F6E6669726D223B733A373A227061747465726E223B733A31323A22235E636F6E6669726D242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31393A227265736572766174696F6E2F636F6E6669726D223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A393A222F636F6E6669726D2F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31373B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A383A227365727669636573223B733A373A227061747465726E223B733A31333A22235E7365727669636573242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31333A22736572766963652F696E646578223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31303A222F73657276696365732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31383B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31323A226163746976652D7573657273223B733A373A227061747465726E223B733A31373A22235E6163746976652D7573657273242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31373A22757365722F6163746976652D7573657273223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31343A222F6163746976652D75736572732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A31393B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31333A2270656E64696E672D7573657273223B733A373A227061747465726E223B733A31383A22235E70656E64696E672D7573657273242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31383A22757365722F70656E64696E672D7573657273223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31353A222F70656E64696E672D75736572732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A32303B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31353A2273757370656E6465642D7573657273223B733A373A227061747465726E223B733A32303A22235E73757370656E6465642D7573657273242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32303A22757365722F73757370656E6465642D7573657273223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31373A222F73757370656E6465642D75736572732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A32313B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31373A2264656163746976617465642D7573657273223B733A373A227061747465726E223B733A32323A22235E64656163746976617465642D7573657273242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A32323A22757365722F64656163746976617465642D7573657273223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31393A222F64656163746976617465642D75736572732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D693A32323B4F3A31353A227969695C7765625C55726C52756C65223A31363A7B733A343A226E616D65223B733A31313A22757365722D737461747573223B733A373A227061747465726E223B733A31363A22235E757365722D737461747573242375223B733A343A22686F7374223B4E3B733A353A22726F757465223B733A31363A22757365722F757365722D737461747573223B733A383A2264656661756C7473223B613A303A7B7D733A363A22737566666978223B4E3B733A343A2276657262223B4E3B733A343A226D6F6465223B4E3B733A31323A22656E636F6465506172616D73223B623A313B733A31303A226E6F726D616C697A6572223B4E3B733A31353A22002A00637265617465537461747573223B4E3B733A31353A22002A00706C616365686F6C64657273223B613A303A7B7D733A32363A22007969695C7765625C55726C52756C65005F74656D706C617465223B733A31333A222F757365722D7374617475732F223B733A32373A22007969695C7765625C55726C52756C65005F726F75746552756C65223B4E3B733A32383A22007969695C7765625C55726C52756C65005F706172616D52756C6573223B613A303A7B7D733A32393A22007969695C7765625C55726C52756C65005F726F757465506172616D73223B613A303A7B7D7D7D693A313B733A33323A226232653031636433643535663537643638626664363364323039373561336535223B7D693A313B4E3B7D);
 
-INSERT INTO `db_cache` (`id`, `expire`, `data`) VALUES
-  ('963454f612a8b5fb4a63ba1e97f028a1', 0, 0x613a323a7b693a303b613a323a7b693a303b613a32333a7b693a303b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a32353a223c636f6e74726f6c6c65723a5c772b3e2f3c69643a5c642b3e223b733a373a227061747465726e223b733a34323a22235e283f503c6134636632363639613e5c772b292f283f503c6162663339363735303e5c642b29242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31373a223c636f6e74726f6c6c65723e2f76696577223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a323a7b733a393a22613463663236363961223b733a31303a22636f6e74726f6c6c6572223b733a393a22616266333936373530223b733a323a226964223b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31393a222f3c636f6e74726f6c6c65723e2f3c69643e2f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b733a32383a22235e283f503c6134636632363639613e5c772b292f76696577242375223b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a313a7b733a323a226964223b733a383a22235e5c642b242375223b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a313a7b733a31303a22636f6e74726f6c6c6572223b733a31323a223c636f6e74726f6c6c65723e223b7d7d693a313b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a33383a223c636f6e74726f6c6c65723a5c772b3e2f3c616374696f6e3a5c772b3e2f3c69643a5c642b3e223b733a373a227061747465726e223b733a36313a22235e283f503c6134636632363639613e5c772b292f283f503c6134376363386339323e5c772b292f283f503c6162663339363735303e5c642b29242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32313a223c636f6e74726f6c6c65723e2f3c616374696f6e3e223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a333a7b733a393a22613463663236363961223b733a31303a22636f6e74726f6c6c6572223b733a393a22613437636338633932223b733a363a22616374696f6e223b733a393a22616266333936373530223b733a323a226964223b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a32383a222f3c636f6e74726f6c6c65723e2f3c616374696f6e3e2f3c69643e2f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b733a34323a22235e283f503c6134636632363639613e5c772b292f283f503c6134376363386339323e5c772b29242375223b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a313a7b733a323a226964223b733a383a22235e5c642b242375223b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a323a7b733a31303a22636f6e74726f6c6c6572223b733a31323a223c636f6e74726f6c6c65723e223b733a363a22616374696f6e223b733a383a223c616374696f6e3e223b7d7d693a323b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a32393a223c636f6e74726f6c6c65723a5c772b3e2f3c616374696f6e3a5c772b3e223b733a373a227061747465726e223b733a34323a22235e283f503c6134636632363639613e5c772b292f283f503c6134376363386339323e5c772b29242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32313a223c636f6e74726f6c6c65723e2f3c616374696f6e3e223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a323a7b733a393a22613463663236363961223b733a31303a22636f6e74726f6c6c6572223b733a393a22613437636338633932223b733a363a22616374696f6e223b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a32333a222f3c636f6e74726f6c6c65723e2f3c616374696f6e3e2f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b733a34323a22235e283f503c6134636632363639613e5c772b292f283f503c6134376363386339323e5c772b29242375223b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a323a7b733a31303a22636f6e74726f6c6c6572223b733a31323a223c636f6e74726f6c6c65723e223b733a363a22616374696f6e223b733a383a223c616374696f6e3e223b7d7d693a333b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a313a222f223b733a373a227061747465726e223b733a353a22235e242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31303a22736974652f696e646578223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a303a22223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a343b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a393a226d792d73616c6f6e73223b733a373a227061747465726e223b733a31343a22235e6d792d73616c6f6e73242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31313a2273616c6f6e2f696e646578223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31313a222f6d792d73616c6f6e732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a353b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a383a226d792d7374616666223b733a373a227061747465726e223b733a31333a22235e6d792d7374616666242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31313a2273746166662f696e646578223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31303a222f6d792d73746166662f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a363b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31313a226d792d7061796d656e7473223b733a373a227061747465726e223b733a31363a22235e6d792d7061796d656e7473242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31333a227061796d656e742f696e646578223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31333a222f6d792d7061796d656e74732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a373b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31363a2270656e64696e672d7061796d656e7473223b733a373a227061747465726e223b733a32313a22235e70656e64696e672d7061796d656e7473242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32343a227061796d656e742f70656e64696e672d7061796d656e7473223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31383a222f70656e64696e672d7061796d656e74732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a383b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31353a22636f6e6669726d2d7061796d656e74223b733a373a227061747465726e223b733a32303a22235e636f6e6669726d2d7061796d656e74242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32333a227061796d656e742f636f6e6669726d2d7061796d656e74223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31373a222f636f6e6669726d2d7061796d656e742f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a393b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31383a2266696e616c697a65642d7061796d656e7473223b733a373a227061747465726e223b733a32333a22235e66696e616c697a65642d7061796d656e7473242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32363a227061796d656e742f66696e616c697a65642d7061796d656e7473223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a32303a222f66696e616c697a65642d7061796d656e74732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31303b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31313a226d792d626f6f6b696e6773223b733a373a227061747465726e223b733a31363a22235e6d792d626f6f6b696e6773242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31373a227265736572766174696f6e2f696e646578223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31333a222f6d792d626f6f6b696e67732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31313b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31313a226164642d73657276696365223b733a373a227061747465726e223b733a31363a22235e6164642d73657276696365242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32303a2273616c6f6e73657276696365732f637265617465223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31333a222f6164642d736572766963652f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31323b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31343a2261737369676e2d73657276696365223b733a373a227061747465726e223b733a31393a22235e61737369676e2d73657276696365242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32313a22626f6f6b65642f61737369676e2d73657276696365223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31363a222f61737369676e2d736572766963652f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31333b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31353a22636f6e6669726d2d73657276696365223b733a373a227061747465726e223b733a32303a22235e636f6e6669726d2d73657276696365242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32323a22626f6f6b65642f636f6e6669726d2d73657276696365223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31373a222f636f6e6669726d2d736572766963652f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31343b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31393a22636f6e6669726d2d7265736572766174696f6e223b733a373a227061747465726e223b733a32343a22235e636f6e6669726d2d7265736572766174696f6e242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a33313a227265736572766174696f6e2f636f6e6669726d2d7265736572766174696f6e223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a32313a222f636f6e6669726d2d7265736572766174696f6e2f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31353b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31393a2270726f636573732d7265736572766174696f6e223b733a373a227061747465726e223b733a32343a22235e70726f636573732d7265736572766174696f6e242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a33313a227265736572766174696f6e2f70726f636573732d7265736572766174696f6e223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a32313a222f70726f636573732d7265736572766174696f6e2f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31363b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a373a22636f6e6669726d223b733a373a227061747465726e223b733a31323a22235e636f6e6669726d242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31393a227265736572766174696f6e2f636f6e6669726d223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a393a222f636f6e6669726d2f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31373b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a383a227365727669636573223b733a373a227061747465726e223b733a31333a22235e7365727669636573242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31333a22736572766963652f696e646578223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31303a222f73657276696365732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31383b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31323a226163746976652d7573657273223b733a373a227061747465726e223b733a31373a22235e6163746976652d7573657273242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31373a22757365722f6163746976652d7573657273223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31343a222f6163746976652d75736572732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a31393b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31333a2270656e64696e672d7573657273223b733a373a227061747465726e223b733a31383a22235e70656e64696e672d7573657273242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31383a22757365722f70656e64696e672d7573657273223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31353a222f70656e64696e672d75736572732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a32303b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31353a2273757370656e6465642d7573657273223b733a373a227061747465726e223b733a32303a22235e73757370656e6465642d7573657273242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32303a22757365722f73757370656e6465642d7573657273223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31373a222f73757370656e6465642d75736572732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a32313b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31373a2264656163746976617465642d7573657273223b733a373a227061747465726e223b733a32323a22235e64656163746976617465642d7573657273242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a32323a22757365722f64656163746976617465642d7573657273223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31393a222f64656163746976617465642d75736572732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d693a32323b4f3a31353a227969695c7765625c55726c52756c65223a31363a7b733a343a226e616d65223b733a31313a22757365722d737461747573223b733a373a227061747465726e223b733a31363a22235e757365722d737461747573242375223b733a343a22686f7374223b4e3b733a353a22726f757465223b733a31363a22757365722f757365722d737461747573223b733a383a2264656661756c7473223b613a303a7b7d733a363a22737566666978223b4e3b733a343a2276657262223b4e3b733a343a226d6f6465223b4e3b733a31323a22656e636f6465506172616d73223b623a313b733a31303a226e6f726d616c697a6572223b4e3b733a31353a22002a00637265617465537461747573223b4e3b733a31353a22002a00706c616365686f6c64657273223b613a303a7b7d733a32363a22007969695c7765625c55726c52756c65005f74656d706c617465223b733a31333a222f757365722d7374617475732f223b733a32373a22007969695c7765625c55726c52756c65005f726f75746552756c65223b4e3b733a32383a22007969695c7765625c55726c52756c65005f706172616d52756c6573223b613a303a7b7d733a32393a22007969695c7765625c55726c52756c65005f726f757465506172616d73223b613a303a7b7d7d7d693a313b733a33323a226232653031636433643535663537643638626664363364323039373561336535223b7d693a313b4e3b7d);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kitchen`
---
-
+-- ----------------------------
+-- Table structure for kitchen
+-- ----------------------------
+DROP TABLE IF EXISTS `kitchen`;
 CREATE TABLE `kitchen` (
-  `KITCHEN_ID` bigint(20) NOT NULL,
+  `KITCHEN_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `KITCHEN_NAME` varchar(100) NOT NULL,
   `CITY_ID` bigint(20) NOT NULL,
   `OPENING_TIME` time DEFAULT NULL,
   `CLOSING_TIME` time DEFAULT NULL,
-  `ADDRESS` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ADDRESS` text DEFAULT NULL,
+  PRIMARY KEY (`KITCHEN_ID`),
+  KEY `City_ID` (`CITY_ID`) USING BTREE,
+  CONSTRAINT `kitchen_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `kitchen`
---
+-- ----------------------------
+-- Records of kitchen
+-- ----------------------------
+INSERT INTO `kitchen` VALUES ('1', 'Mogadishu', '1', '09:56:58', '23:57:03', null);
+INSERT INTO `kitchen` VALUES ('2', 'Mombasa', '3', '18:23:43', '18:23:45', null);
 
-INSERT INTO `kitchen` (`KITCHEN_ID`, `KITCHEN_NAME`, `CITY_ID`, `OPENING_TIME`, `CLOSING_TIME`, `ADDRESS`) VALUES
-  (1, 'Mogadishu', 1, '09:56:58', '23:57:03', NULL),
-  (2, 'Mombasa', 3, '18:23:43', '18:23:45', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `location`
---
-
+-- ----------------------------
+-- Table structure for location
+-- ----------------------------
+DROP TABLE IF EXISTS `location`;
 CREATE TABLE `location` (
-  `LOCATION_ID` bigint(20) NOT NULL,
+  `LOCATION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CITY_ID` bigint(20) DEFAULT NULL,
   `LOCATION_NAME` varchar(255) NOT NULL,
-  `ADDRESS` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ADDRESS` text DEFAULT NULL,
+  PRIMARY KEY (`LOCATION_ID`),
+  KEY `CITY_ID` (`CITY_ID`),
+  CONSTRAINT `location_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `location`
---
+-- ----------------------------
+-- Records of location
+-- ----------------------------
+INSERT INTO `location` VALUES ('1', '1', 'Degmada Boondheere ', null);
+INSERT INTO `location` VALUES ('2', '1', 'Degmada C/Casiis', null);
+INSERT INTO `location` VALUES ('3', '1', 'Degnada Dayniile', null);
+INSERT INTO `location` VALUES ('4', '1', 'Degmada Dharkeynley', null);
+INSERT INTO `location` VALUES ('5', '1', 'Degmada Hodan', null);
+INSERT INTO `location` VALUES ('6', '1', 'Degmada Howlwadaag', null);
+INSERT INTO `location` VALUES ('7', '1', 'Degmada Heliwa', null);
+INSERT INTO `location` VALUES ('8', '1', 'Degmada Kaxda', null);
+INSERT INTO `location` VALUES ('9', '1', 'Degmada Kaaraan', null);
+INSERT INTO `location` VALUES ('10', '1', 'Degmada Shibis  ', null);
+INSERT INTO `location` VALUES ('11', '1', 'Degmada Shangaani', null);
+INSERT INTO `location` VALUES ('12', '1', 'Degmada Waabari', null);
+INSERT INTO `location` VALUES ('13', '1', 'Degmada Wadajir', null);
+INSERT INTO `location` VALUES ('14', '1', 'Degmada Warta nabada ', null);
+INSERT INTO `location` VALUES ('15', '1', 'Degmada Xamerweyne', null);
+INSERT INTO `location` VALUES ('16', '1', 'Degnada Xamerjajab', null);
+INSERT INTO `location` VALUES ('17', '1', 'Degmada Yaaqshiid', null);
 
-INSERT INTO `location` (`LOCATION_ID`, `CITY_ID`, `LOCATION_NAME`, `ADDRESS`) VALUES
-  (1, 1, 'Degmada Boondheere ', NULL),
-  (2, 1, 'Degmada C/Casiis', NULL),
-  (3, 1, 'Degnada Dayniile', NULL),
-  (4, 1, 'Degmada Dharkeynley', NULL),
-  (5, 1, 'Degmada Hodan', NULL),
-  (6, 1, 'Degmada Howlwadaag', NULL),
-  (7, 1, 'Degmada Heliwa', NULL),
-  (8, 1, 'Degmada Kaxda', NULL),
-  (9, 1, 'Degmada Kaaraan', NULL),
-  (10, 1, 'Degmada Shibis  ', NULL),
-  (11, 1, 'Degmada Shangaani', NULL),
-  (12, 1, 'Degmada Waabari', NULL),
-  (13, 1, 'Degmada Wadajir', NULL),
-  (14, 1, 'Degmada Warta nabada ', NULL),
-  (15, 1, 'Degmada Xamerweyne', NULL),
-  (16, 1, 'Degnada Xamerjajab', NULL),
-  (17, 1, 'Degmada Yaaqshiid', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_category`
---
-
+-- ----------------------------
+-- Table structure for menu_category
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_category`;
 CREATE TABLE `menu_category` (
-  `MENU_CAT_ID` bigint(10) NOT NULL,
+  `MENU_CAT_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `MENU_CAT_NAME` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `MENU_CAT_IMAGE` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ACTIVE` int(1) NOT NULL DEFAULT '1',
-  `RANK` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ACTIVE` int(1) NOT NULL DEFAULT 1,
+  `RANK` int(2) NOT NULL,
+  PRIMARY KEY (`MENU_CAT_ID`),
+  UNIQUE KEY `MENU_CAT_ID` (`MENU_CAT_ID`,`RANK`),
+  UNIQUE KEY `MENU_CAT_NAME` (`MENU_CAT_NAME`),
+  KEY `MENU_CAT_ID_2` (`MENU_CAT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `menu_category`
---
+-- ----------------------------
+-- Records of menu_category
+-- ----------------------------
+INSERT INTO `menu_category` VALUES ('1', 'PIZZA', 'pizza.jpg', '1', '1');
+INSERT INTO `menu_category` VALUES ('2', 'BURGERS', null, '0', '5');
+INSERT INTO `menu_category` VALUES ('3', 'SALADS', null, '0', '3');
+INSERT INTO `menu_category` VALUES ('4', 'SWEETS', null, '0', '6');
+INSERT INTO `menu_category` VALUES ('5', 'SANDWICH', null, '0', '4');
+INSERT INTO `menu_category` VALUES ('6', 'DRINKS', 'drinks.jpg', '1', '2');
 
-INSERT INTO `menu_category` (`MENU_CAT_ID`, `MENU_CAT_NAME`, `MENU_CAT_IMAGE`, `ACTIVE`, `RANK`) VALUES
-  (1, 'PIZZA', 'pizza.jpg', 1, 1),
-  (2, 'BURGERS', NULL, 0, 5),
-  (3, 'SALADS', NULL, 0, 3),
-  (4, 'SWEETS', NULL, 0, 6),
-  (5, 'SANDWICH', NULL, 0, 4),
-  (6, 'DRINKS', 'drinks.jpg', 1, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_item`
---
-
+-- ----------------------------
+-- Table structure for menu_item
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_item`;
 CREATE TABLE `menu_item` (
-  `MENU_ITEM_ID` bigint(10) NOT NULL,
+  `MENU_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `MENU_CAT_ID` bigint(10) NOT NULL,
   `MENU_ITEM_NAME` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `MENU_ITEM_DESC` text COLLATE utf8_unicode_ci NOT NULL,
   `MENU_ITEM_IMAGE` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `HOT_DEAL` bit(1) NOT NULL DEFAULT b'0',
   `VEGETARIAN` bit(1) NOT NULL DEFAULT b'0',
-  `MAX_QTY` int(2) NOT NULL DEFAULT '10' COMMENT 'Show the maximum number of quantities one can select from'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `MAX_QTY` int(2) NOT NULL DEFAULT 10 COMMENT 'Show the maximum number of quantities one can select from',
+  PRIMARY KEY (`MENU_ITEM_ID`),
+  KEY `MENU_CAT_ID` (`MENU_CAT_ID`) USING BTREE,
+  CONSTRAINT `menu_item_ibfk_1` FOREIGN KEY (`MENU_CAT_ID`) REFERENCES `menu_category` (`MENU_CAT_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `menu_item`
---
+-- ----------------------------
+-- Records of menu_item
+-- ----------------------------
+INSERT INTO `menu_item` VALUES ('1', '1', 'MARGHERITA', 'Crushed Tomatoes, Mozzarella, Grana, Basil', 'pizza1.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('2', '1', 'HAWAIIAN', 'pizza topped with tomato sauce, cheese, pineapple, and Canadian bacon or ham. Some versions may include peppers, mushrooms', 'pizza2.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('3', '1', 'CHICKEN TIKKA MASALA', 'cheesy pizza topped with delicious Indian chicken tikka masala', 'pizza3.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('4', '1', 'SUPREME', 'Sausage, pepperoni, mushrooms, olives, peppers, and onion', 'pizza8.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('11', '6', 'FANTA', 'Soft Drink', 'fanta.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('12', '6', 'COCA COLA', 'Soft Drink', 'coke.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('13', '6', 'SPRITE', 'Soft Drink', 'sprite.jpg', '\0', '\0', '20');
 
-INSERT INTO `menu_item` (`MENU_ITEM_ID`, `MENU_CAT_ID`, `MENU_ITEM_NAME`, `MENU_ITEM_DESC`, `MENU_ITEM_IMAGE`, `HOT_DEAL`, `VEGETARIAN`, `MAX_QTY`) VALUES
-  (1, 1, 'MARGHERITA', 'Crushed Tomatoes, Mozzarella, Grana, Basil', 'pizza1.jpg', b'0', b'0', 20),
-  (2, 1, 'HAWAIIAN', 'pizza topped with tomato sauce, cheese, pineapple, and Canadian bacon or ham. Some versions may include peppers, mushrooms', 'pizza2.jpg', b'0', b'0', 20),
-  (3, 1, 'CHICKEN TIKKA MASALA', 'cheesy pizza topped with delicious Indian chicken tikka masala', 'pizza3.jpg', b'0', b'0', 20),
-  (4, 1, 'SUPREME', 'Sausage, pepperoni, mushrooms, olives, peppers, and onion', 'pizza8.jpg', b'0', b'0', 20),
-  (11, 6, 'FANTA', 'Soft Drink', 'fanta.jpg', b'0', b'0', 20),
-  (12, 6, 'COCA COLA', 'Soft Drink', 'coke.jpg', b'0', b'0', 20),
-  (13, 6, 'SPRITE', 'Soft Drink', 'sprite.jpg', b'0', b'0', 20);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_item_type`
---
-
+-- ----------------------------
+-- Table structure for menu_item_type
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_item_type`;
 CREATE TABLE `menu_item_type` (
-  `ITEM_TYPE_ID` bigint(11) NOT NULL,
+  `ITEM_TYPE_ID` bigint(11) NOT NULL AUTO_INCREMENT,
   `MENU_ITEM_ID` bigint(11) NOT NULL,
   `ITEM_TYPE_SIZE` varchar(15) DEFAULT NULL,
   `PRICE` decimal(10,2) NOT NULL,
-  `AVAILABLE` bit(1) NOT NULL DEFAULT b'1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `AVAILABLE` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`ITEM_TYPE_ID`),
+  KEY `MENU_ITEM_ID` (`MENU_ITEM_ID`) USING BTREE,
+  KEY `ITEM_TYPE_SIZE` (`ITEM_TYPE_SIZE`),
+  CONSTRAINT `menu_item_type_ibfk_1` FOREIGN KEY (`MENU_ITEM_ID`) REFERENCES `menu_item` (`MENU_ITEM_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `menu_item_type_ibfk_2` FOREIGN KEY (`ITEM_TYPE_SIZE`) REFERENCES `tb_sizes` (`SIZE_TYPE`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `menu_item_type`
---
+-- ----------------------------
+-- Records of menu_item_type
+-- ----------------------------
+INSERT INTO `menu_item_type` VALUES ('1', '1', 'LARGE', '15.00', '');
+INSERT INTO `menu_item_type` VALUES ('2', '1', 'SMALL', '11.00', '');
+INSERT INTO `menu_item_type` VALUES ('3', '2', 'MEDIUM', '13.00', '');
+INSERT INTO `menu_item_type` VALUES ('4', '4', 'LARGE', '15.00', '');
+INSERT INTO `menu_item_type` VALUES ('5', '3', 'MEDIUM', '13.00', '');
+INSERT INTO `menu_item_type` VALUES ('6', '1', 'MEDIUM', '13.00', '');
+INSERT INTO `menu_item_type` VALUES ('7', '2', 'SMALL', '11.00', '');
+INSERT INTO `menu_item_type` VALUES ('8', '2', 'LARGE', '15.00', '');
+INSERT INTO `menu_item_type` VALUES ('9', '3', 'SMALL', '11.00', '');
+INSERT INTO `menu_item_type` VALUES ('10', '3', 'LARGE', '15.00', '');
+INSERT INTO `menu_item_type` VALUES ('19', '11', '500ML', '1.00', '');
+INSERT INTO `menu_item_type` VALUES ('23', '12', '500ML', '1.00', '');
+INSERT INTO `menu_item_type` VALUES ('27', '13', '500ML', '1.00', '');
 
-INSERT INTO `menu_item_type` (`ITEM_TYPE_ID`, `MENU_ITEM_ID`, `ITEM_TYPE_SIZE`, `PRICE`, `AVAILABLE`) VALUES
-  (1, 1, 'LARGE', '15.00', b'1'),
-  (2, 1, 'SMALL', '11.00', b'1'),
-  (3, 2, 'MEDIUM', '13.00', b'1'),
-  (4, 4, 'LARGE', '15.00', b'1'),
-  (5, 3, 'MEDIUM', '13.00', b'1'),
-  (6, 1, 'MEDIUM', '13.00', b'1'),
-  (7, 2, 'SMALL', '11.00', b'1'),
-  (8, 2, 'LARGE', '15.00', b'1'),
-  (9, 3, 'SMALL', '11.00', b'1'),
-  (10, 3, 'LARGE', '15.00', b'1'),
-  (19, 11, '500ML', '1.00', b'1'),
-  (23, 12, '500ML', '1.00', b'1'),
-  (27, 13, '500ML', '1.00', b'1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `my_session`
---
-
+-- ----------------------------
+-- Table structure for my_session
+-- ----------------------------
+DROP TABLE IF EXISTS `my_session`;
 CREATE TABLE `my_session` (
   `id` char(60) NOT NULL,
   `expire` int(11) DEFAULT NULL,
-  `data` longblob,
+  `data` longblob DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `user_name` varchar(20) DEFAULT NULL
+  `user_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`),
+  KEY `expire` (`expire`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `my_session`
---
+-- ----------------------------
+-- Records of my_session
+-- ----------------------------
+INSERT INTO `my_session` VALUES ('01cvoa3k4hcas5778fsfj5ghk0', '1514750025', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A32363A222F637573746F6D65722F64656661756C742F636865636B6F7574223B, '0', '0');
+INSERT INTO `my_session` VALUES ('07n8163ptcqf1ejm1q0c5g8v31', '1515140774', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F6578706972657C693A313531353134303737343B, '10', 'BARASA');
+INSERT INTO `my_session` VALUES ('0rp5popudl9in56gvgk5n7omr1', '1515089947', 0x5F5F666C6173687C613A303A7B7D, '0', '0');
+INSERT INTO `my_session` VALUES ('eednttpiu3ul99lpsujv46pj41', '1514714825', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A373A222F6F7264657273223B5F5F69647C693A31313B5F5F6578706972657C693A313531343730303832353B, '11', 'admin');
+INSERT INTO `my_session` VALUES ('i3bac3n4t3dn652ftei4g7k5t4', '1515186023', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F6578706972657C693A313531353138363032333B, '10', 'BARASA');
 
-INSERT INTO `my_session` (`id`, `expire`, `data`, `user_id`, `user_name`) VALUES
-  ('01cvoa3k4hcas5778fsfj5ghk0', 1514750025, 0x5f5f666c6173687c613a303a7b7d5f5f72657475726e55726c7c733a32363a222f637573746f6d65722f64656661756c742f636865636b6f7574223b, 0, '0'),
-  ('07n8163ptcqf1ejm1q0c5g8v31', 1515140774, 0x5f5f666c6173687c613a303a7b7d5f5f69647c693a31303b5f5f6578706972657c693a313531353134303737343b, 10, 'BARASA'),
-  ('0rp5popudl9in56gvgk5n7omr1', 1515089947, 0x5f5f666c6173687c613a303a7b7d, 0, '0'),
-  ('eednttpiu3ul99lpsujv46pj41', 1514714825, 0x5f5f666c6173687c613a303a7b7d5f5f72657475726e55726c7c733a373a222f6f7264657273223b5f5f69647c693a31313b5f5f6578706972657c693a313531343730303832353b, 11, 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_tracking`
---
-
+-- ----------------------------
+-- Table structure for order_tracking
+-- ----------------------------
+DROP TABLE IF EXISTS `order_tracking`;
 CREATE TABLE `order_tracking` (
-  `TRACKING_ID` bigint(10) NOT NULL,
+  `TRACKING_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `ORDER_ID` bigint(10) NOT NULL,
   `COMMENTS` varchar(255) DEFAULT NULL,
   `STATUS` varchar(30) NOT NULL,
   `TRACKING_DATE` datetime DEFAULT NULL,
-  `USER_VISIBLE` bit(1) NOT NULL DEFAULT b'1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `USER_VISIBLE` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`TRACKING_ID`),
+  UNIQUE KEY `ORDER_ID` (`ORDER_ID`,`STATUS`) USING BTREE,
+  KEY `STATUS` (`STATUS`) USING BTREE,
+  KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
+  CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `order_tracking`
---
+-- ----------------------------
+-- Records of order_tracking
+-- ----------------------------
+INSERT INTO `order_tracking` VALUES ('141', '1051', null, 'ORDER PENDING', '2017-12-21 13:40:50', '');
+INSERT INTO `order_tracking` VALUES ('142', '1052', null, 'ORDER PENDING', '2017-12-21 14:07:43', '');
+INSERT INTO `order_tracking` VALUES ('143', '1053', null, 'ORDER PENDING', '2017-12-21 14:10:57', '');
+INSERT INTO `order_tracking` VALUES ('144', '1054', null, 'ORDER PENDING', '2017-12-21 14:11:05', '');
+INSERT INTO `order_tracking` VALUES ('145', '1055', null, 'ORDER PENDING', '2017-12-21 14:15:30', '');
+INSERT INTO `order_tracking` VALUES ('146', '1056', null, 'ORDER PENDING', '2017-12-21 15:17:48', '');
+INSERT INTO `order_tracking` VALUES ('147', '1057', null, 'ORDER PENDING', '2017-12-21 15:17:49', '');
+INSERT INTO `order_tracking` VALUES ('148', '1058', null, 'ORDER PENDING', '2017-12-21 15:33:19', '');
+INSERT INTO `order_tracking` VALUES ('149', '1059', null, 'ORDER PENDING', '2017-12-21 15:34:15', '');
+INSERT INTO `order_tracking` VALUES ('150', '1060', null, 'ORDER PENDING', '2017-12-21 15:36:32', '');
+INSERT INTO `order_tracking` VALUES ('152', '1061', null, 'ORDER PENDING', '2017-12-21 17:43:36', '');
+INSERT INTO `order_tracking` VALUES ('153', '1062', null, 'ORDER PENDING', '2017-12-21 17:46:10', '');
+INSERT INTO `order_tracking` VALUES ('154', '1063', null, 'ORDER PENDING', '2017-12-21 18:03:19', '');
+INSERT INTO `order_tracking` VALUES ('155', '1064', null, 'ORDER PENDING', '2017-12-21 18:05:13', '');
+INSERT INTO `order_tracking` VALUES ('156', '1065', null, 'ORDER PENDING', '2017-12-21 18:16:01', '');
+INSERT INTO `order_tracking` VALUES ('157', '1066', null, 'ORDER PENDING', '2017-12-21 18:23:41', '');
+INSERT INTO `order_tracking` VALUES ('158', '1067', null, 'ORDER PENDING', '2017-12-21 18:27:20', '');
+INSERT INTO `order_tracking` VALUES ('159', '1068', null, 'ORDER PENDING', '2017-12-21 18:30:22', '');
+INSERT INTO `order_tracking` VALUES ('160', '1069', null, 'ORDER PENDING', '2017-12-21 18:46:02', '');
+INSERT INTO `order_tracking` VALUES ('161', '1070', null, 'ORDER PENDING', '2017-12-21 18:48:56', '');
+INSERT INTO `order_tracking` VALUES ('162', '1071', null, 'ORDER PENDING', '2017-12-21 18:49:19', '');
+INSERT INTO `order_tracking` VALUES ('163', '1072', null, 'ORDER PENDING', '2017-12-21 18:51:10', '');
+INSERT INTO `order_tracking` VALUES ('164', '1073', null, 'ORDER PENDING', '2017-12-21 19:19:40', '');
+INSERT INTO `order_tracking` VALUES ('165', '1074', null, 'ORDER PENDING', '2017-12-21 22:41:26', '');
+INSERT INTO `order_tracking` VALUES ('166', '1075', null, 'ORDER PENDING', '2017-12-22 03:13:59', '');
+INSERT INTO `order_tracking` VALUES ('167', '1076', null, 'ORDER PENDING', '2017-12-22 05:39:58', '');
+INSERT INTO `order_tracking` VALUES ('178', '1087', null, 'ORDER PENDING', '2017-12-22 08:22:37', '');
+INSERT INTO `order_tracking` VALUES ('179', '1088', null, 'ORDER PENDING', '2017-12-22 08:22:37', '');
+INSERT INTO `order_tracking` VALUES ('180', '1089', null, 'ORDER PENDING', '2017-12-22 09:00:38', '');
+INSERT INTO `order_tracking` VALUES ('181', '1090', null, 'ORDER PENDING', '2017-12-22 09:14:02', '');
+INSERT INTO `order_tracking` VALUES ('182', '1091', null, 'ORDER PENDING', '2017-12-22 12:42:47', '');
+INSERT INTO `order_tracking` VALUES ('183', '1092', null, 'ORDER PENDING', '2017-12-22 12:42:47', '');
+INSERT INTO `order_tracking` VALUES ('184', '1093', null, 'ORDER PENDING', '2017-12-22 14:38:12', '');
+INSERT INTO `order_tracking` VALUES ('185', '1094', null, 'ORDER PENDING', '2017-12-22 14:38:13', '');
+INSERT INTO `order_tracking` VALUES ('186', '1095', null, 'ORDER PENDING', '2017-12-22 16:13:46', '');
+INSERT INTO `order_tracking` VALUES ('190', '1099', null, 'ORDER PENDING', '2017-12-22 16:53:32', '');
+INSERT INTO `order_tracking` VALUES ('191', '1100', null, 'ORDER PENDING', '2017-12-22 16:53:32', '');
+INSERT INTO `order_tracking` VALUES ('193', '1102', null, 'ORDER PENDING', '2017-12-22 17:33:56', '');
+INSERT INTO `order_tracking` VALUES ('194', '1103', null, 'ORDER PENDING', '2017-12-23 02:18:54', '');
+INSERT INTO `order_tracking` VALUES ('195', '1104', null, 'ORDER PENDING', '2017-12-23 02:18:55', '');
+INSERT INTO `order_tracking` VALUES ('196', '1105', null, 'ORDER PENDING', '2017-12-23 07:10:29', '');
+INSERT INTO `order_tracking` VALUES ('197', '1106', null, 'ORDER PENDING', '2017-12-23 07:10:37', '');
+INSERT INTO `order_tracking` VALUES ('198', '1107', null, 'ORDER PENDING', '2017-12-23 10:58:55', '');
+INSERT INTO `order_tracking` VALUES ('200', '1109', null, 'ORDER PENDING', '2017-12-24 13:34:41', '');
+INSERT INTO `order_tracking` VALUES ('201', '1110', null, 'ORDER PENDING', '2017-12-24 13:36:43', '');
+INSERT INTO `order_tracking` VALUES ('202', '1111', null, 'ORDER PENDING', '2017-12-24 13:38:49', '');
+INSERT INTO `order_tracking` VALUES ('203', '1112', null, 'ORDER PENDING', '2017-12-24 15:24:37', '');
+INSERT INTO `order_tracking` VALUES ('204', '1113', null, 'ORDER PENDING', '2017-12-24 17:25:38', '');
+INSERT INTO `order_tracking` VALUES ('205', '1114', null, 'ORDER PENDING', '2017-12-24 19:49:26', '');
+INSERT INTO `order_tracking` VALUES ('206', '1115', null, 'ORDER PENDING', '2017-12-24 19:49:45', '');
+INSERT INTO `order_tracking` VALUES ('207', '1116', null, 'ORDER PENDING', '2017-12-24 19:49:49', '');
+INSERT INTO `order_tracking` VALUES ('208', '1117', null, 'ORDER PENDING', '2017-12-24 19:49:52', '');
+INSERT INTO `order_tracking` VALUES ('209', '1118', null, 'ORDER PENDING', '2017-12-24 19:50:09', '');
+INSERT INTO `order_tracking` VALUES ('210', '1119', null, 'ORDER PENDING', '2017-12-24 19:50:18', '');
+INSERT INTO `order_tracking` VALUES ('211', '1120', null, 'ORDER PENDING', '2017-12-24 19:50:20', '');
+INSERT INTO `order_tracking` VALUES ('212', '1121', null, 'ORDER PENDING', '2017-12-24 19:50:22', '');
+INSERT INTO `order_tracking` VALUES ('213', '1122', null, 'ORDER PENDING', '2017-12-24 19:50:23', '');
+INSERT INTO `order_tracking` VALUES ('214', '1123', null, 'ORDER PENDING', '2017-12-24 19:50:46', '');
+INSERT INTO `order_tracking` VALUES ('215', '1124', null, 'ORDER PENDING', '2017-12-25 07:23:43', '');
+INSERT INTO `order_tracking` VALUES ('216', '1125', null, 'ORDER PENDING', '2017-12-25 07:23:49', '');
+INSERT INTO `order_tracking` VALUES ('217', '1126', null, 'ORDER PENDING', '2017-12-25 07:24:50', '');
+INSERT INTO `order_tracking` VALUES ('218', '1127', null, 'ORDER PENDING', '2017-12-25 10:10:54', '');
+INSERT INTO `order_tracking` VALUES ('219', '1128', null, 'ORDER PENDING', '2017-12-25 10:18:52', '');
+INSERT INTO `order_tracking` VALUES ('221', '1130', null, 'ORDER PENDING', '2017-12-25 13:26:55', '');
+INSERT INTO `order_tracking` VALUES ('222', '1131', null, 'ORDER PENDING', '2017-12-25 15:52:28', '');
+INSERT INTO `order_tracking` VALUES ('223', '1132', null, 'ORDER PENDING', '2017-12-25 16:36:56', '');
+INSERT INTO `order_tracking` VALUES ('224', '1133', null, 'ORDER PENDING', '2017-12-26 02:28:53', '');
+INSERT INTO `order_tracking` VALUES ('225', '1134', null, 'ORDER PENDING', '2017-12-26 04:18:09', '');
+INSERT INTO `order_tracking` VALUES ('226', '1135', null, 'ORDER PENDING', '2017-12-26 10:39:48', '');
+INSERT INTO `order_tracking` VALUES ('227', '1136', null, 'ORDER PENDING', '2017-12-26 10:52:08', '');
+INSERT INTO `order_tracking` VALUES ('228', '1137', null, 'ORDER PENDING', '2017-12-26 10:54:25', '');
+INSERT INTO `order_tracking` VALUES ('229', '1138', null, 'ORDER PENDING', '2017-12-26 16:51:23', '');
+INSERT INTO `order_tracking` VALUES ('230', '1139', null, 'ORDER PENDING', '2017-12-26 16:51:31', '');
+INSERT INTO `order_tracking` VALUES ('231', '1140', null, 'ORDER PENDING', '2017-12-26 17:26:05', '');
+INSERT INTO `order_tracking` VALUES ('232', '1141', null, 'ORDER PENDING', '2017-12-26 18:15:54', '');
+INSERT INTO `order_tracking` VALUES ('233', '1142', null, 'ORDER PENDING', '2017-12-27 07:15:10', '');
+INSERT INTO `order_tracking` VALUES ('234', '1143', null, 'ORDER PENDING', '2017-12-27 09:16:21', '');
+INSERT INTO `order_tracking` VALUES ('235', '1144', null, 'ORDER PENDING', '2017-12-27 11:24:38', '');
+INSERT INTO `order_tracking` VALUES ('236', '1145', null, 'ORDER PENDING', '2017-12-27 12:32:23', '');
+INSERT INTO `order_tracking` VALUES ('237', '1146', null, 'ORDER PENDING', '2017-12-27 12:32:29', '');
+INSERT INTO `order_tracking` VALUES ('238', '1147', null, 'ORDER PENDING', '2017-12-27 16:25:03', '');
+INSERT INTO `order_tracking` VALUES ('239', '1148', null, 'ORDER PENDING', '2017-12-27 16:25:07', '');
+INSERT INTO `order_tracking` VALUES ('240', '1149', null, 'ORDER PENDING', '2017-12-27 16:25:11', '');
+INSERT INTO `order_tracking` VALUES ('241', '1150', null, 'ORDER PENDING', '2017-12-27 16:25:16', '');
+INSERT INTO `order_tracking` VALUES ('242', '1151', null, 'ORDER PENDING', '2017-12-27 16:25:19', '');
+INSERT INTO `order_tracking` VALUES ('243', '1152', null, 'ORDER PENDING', '2017-12-27 16:25:21', '');
+INSERT INTO `order_tracking` VALUES ('244', '1153', null, 'ORDER PENDING', '2017-12-27 16:25:28', '');
+INSERT INTO `order_tracking` VALUES ('245', '1154', null, 'ORDER PENDING', '2017-12-27 16:25:34', '');
+INSERT INTO `order_tracking` VALUES ('246', '1155', null, 'ORDER PENDING', '2017-12-27 16:25:37', '');
+INSERT INTO `order_tracking` VALUES ('247', '1156', null, 'ORDER PENDING', '2017-12-27 16:25:39', '');
+INSERT INTO `order_tracking` VALUES ('248', '1157', null, 'ORDER PENDING', '2017-12-27 16:25:40', '');
+INSERT INTO `order_tracking` VALUES ('249', '1158', null, 'ORDER PENDING', '2017-12-27 16:25:42', '');
+INSERT INTO `order_tracking` VALUES ('250', '1159', null, 'ORDER PENDING', '2017-12-27 16:26:13', '');
+INSERT INTO `order_tracking` VALUES ('251', '1160', null, 'ORDER PENDING', '2017-12-28 10:41:21', '');
+INSERT INTO `order_tracking` VALUES ('252', '1161', null, 'ORDER PENDING', '2017-12-28 10:41:31', '');
+INSERT INTO `order_tracking` VALUES ('253', '1162', null, 'ORDER PENDING', '2017-12-28 10:41:37', '');
+INSERT INTO `order_tracking` VALUES ('254', '1163', null, 'ORDER PENDING', '2017-12-28 10:41:38', '');
+INSERT INTO `order_tracking` VALUES ('257', '1166', null, 'ORDER PENDING', '2017-12-28 11:55:09', '');
+INSERT INTO `order_tracking` VALUES ('258', '1167', null, 'ORDER PENDING', '2017-12-28 11:55:51', '');
+INSERT INTO `order_tracking` VALUES ('259', '1168', null, 'ORDER PENDING', '2017-12-28 13:23:22', '');
+INSERT INTO `order_tracking` VALUES ('260', '1169', null, 'ORDER PENDING', '2017-12-28 13:23:37', '');
+INSERT INTO `order_tracking` VALUES ('261', '1170', null, 'ORDER PENDING', '2017-12-28 15:58:07', '');
+INSERT INTO `order_tracking` VALUES ('264', '1173', null, 'ORDER PENDING', '2017-12-28 20:35:56', '');
+INSERT INTO `order_tracking` VALUES ('267', '1176', null, 'ORDER PENDING', '2017-12-29 10:21:31', '');
+INSERT INTO `order_tracking` VALUES ('268', '1177', null, 'ORDER PENDING', '2017-12-30 05:30:28', '');
+INSERT INTO `order_tracking` VALUES ('269', '1178', null, 'ORDER PENDING', '2017-12-30 05:37:35', '');
+INSERT INTO `order_tracking` VALUES ('270', '1179', null, 'ORDER PENDING', '2017-12-30 07:59:41', '');
+INSERT INTO `order_tracking` VALUES ('271', '1180', null, 'ORDER PENDING', '2017-12-30 08:35:41', '');
+INSERT INTO `order_tracking` VALUES ('276', '1185', null, 'PAYMENT PENDING', '2017-12-30 11:28:41', '');
+INSERT INTO `order_tracking` VALUES ('277', '1186', null, 'PAYMENT PENDING', '2017-12-30 11:30:17', '');
+INSERT INTO `order_tracking` VALUES ('280', '1189', null, 'PAYMENT PENDING', '2017-12-30 12:28:09', '');
+INSERT INTO `order_tracking` VALUES ('281', '1190', null, 'PAYMENT PENDING', '2017-12-30 17:40:20', '');
+INSERT INTO `order_tracking` VALUES ('282', '1191', null, 'PAYMENT PENDING', '2017-12-30 20:20:07', '');
+INSERT INTO `order_tracking` VALUES ('283', '1192', null, 'PAYMENT PENDING', '2017-12-31 03:02:32', '');
+INSERT INTO `order_tracking` VALUES ('284', '1193', null, 'PAYMENT PENDING', '2017-12-31 03:17:04', '');
+INSERT INTO `order_tracking` VALUES ('285', '1194', null, 'PAYMENT PENDING', '2017-12-31 03:46:44', '');
+INSERT INTO `order_tracking` VALUES ('286', '1195', null, 'PAYMENT PENDING', '2017-12-31 06:08:25', '');
+INSERT INTO `order_tracking` VALUES ('287', '1051', null, 'ORDER CONFIRMED', '2017-12-31 13:47:15', '');
+INSERT INTO `order_tracking` VALUES ('288', '1051', null, 'KITCHEN ALLOCATED', '2017-12-31 13:47:38', '');
+INSERT INTO `order_tracking` VALUES ('289', '1051', null, 'UNDER PREPARATION', '2017-12-31 13:48:04', '');
+INSERT INTO `order_tracking` VALUES ('290', '1051', null, 'ORDER READY', '2017-12-31 13:48:16', '');
+INSERT INTO `order_tracking` VALUES ('291', '1051', null, 'RIDER DISPATCHED', '2017-12-31 13:50:15', '');
+INSERT INTO `order_tracking` VALUES ('292', '1191', null, 'ORDER CONFIRMED', '2017-12-31 13:51:08', '');
+INSERT INTO `order_tracking` VALUES ('293', '1191', null, 'KITCHEN ALLOCATED', '2017-12-31 13:51:29', '');
+INSERT INTO `order_tracking` VALUES ('294', '1196', null, 'PAYMENT PENDING', '2017-12-31 15:32:30', '');
+INSERT INTO `order_tracking` VALUES ('295', '1197', null, 'PAYMENT PENDING', '2017-12-31 17:53:01', '');
+INSERT INTO `order_tracking` VALUES ('296', '1198', null, 'PAYMENT PENDING', '2018-01-01 05:43:07', '');
+INSERT INTO `order_tracking` VALUES ('297', '1199', null, 'PAYMENT PENDING', '2018-01-01 07:24:28', '');
+INSERT INTO `order_tracking` VALUES ('298', '1200', null, 'PAYMENT PENDING', '2018-01-01 12:37:20', '');
+INSERT INTO `order_tracking` VALUES ('299', '1201', null, 'PAYMENT PENDING', '2018-01-01 13:40:36', '');
+INSERT INTO `order_tracking` VALUES ('300', '1202', null, 'PAYMENT PENDING', '2018-01-01 14:16:23', '');
+INSERT INTO `order_tracking` VALUES ('301', '1203', null, 'PAYMENT PENDING', '2018-01-01 17:12:00', '');
+INSERT INTO `order_tracking` VALUES ('302', '1204', null, 'PAYMENT PENDING', '2018-01-01 17:17:29', '');
+INSERT INTO `order_tracking` VALUES ('303', '1205', null, 'PAYMENT PENDING', '2018-01-01 19:15:03', '');
+INSERT INTO `order_tracking` VALUES ('304', '1206', null, 'PAYMENT PENDING', '2018-01-01 19:35:48', '');
+INSERT INTO `order_tracking` VALUES ('305', '1207', null, 'PAYMENT PENDING', '2018-01-01 21:37:19', '');
 
-INSERT INTO `order_tracking` (`TRACKING_ID`, `ORDER_ID`, `COMMENTS`, `STATUS`, `TRACKING_DATE`, `USER_VISIBLE`) VALUES
-  (141, 1051, NULL, 'ORDER PENDING', '2017-12-21 13:40:50', b'1'),
-  (142, 1052, NULL, 'ORDER PENDING', '2017-12-21 14:07:43', b'1'),
-  (143, 1053, NULL, 'ORDER PENDING', '2017-12-21 14:10:57', b'1'),
-  (144, 1054, NULL, 'ORDER PENDING', '2017-12-21 14:11:05', b'1'),
-  (145, 1055, NULL, 'ORDER PENDING', '2017-12-21 14:15:30', b'1'),
-  (146, 1056, NULL, 'ORDER PENDING', '2017-12-21 15:17:48', b'1'),
-  (147, 1057, NULL, 'ORDER PENDING', '2017-12-21 15:17:49', b'1'),
-  (148, 1058, NULL, 'ORDER PENDING', '2017-12-21 15:33:19', b'1'),
-  (149, 1059, NULL, 'ORDER PENDING', '2017-12-21 15:34:15', b'1'),
-  (150, 1060, NULL, 'ORDER PENDING', '2017-12-21 15:36:32', b'1'),
-  (152, 1061, NULL, 'ORDER PENDING', '2017-12-21 17:43:36', b'1'),
-  (153, 1062, NULL, 'ORDER PENDING', '2017-12-21 17:46:10', b'1'),
-  (154, 1063, NULL, 'ORDER PENDING', '2017-12-21 18:03:19', b'1'),
-  (155, 1064, NULL, 'ORDER PENDING', '2017-12-21 18:05:13', b'1'),
-  (156, 1065, NULL, 'ORDER PENDING', '2017-12-21 18:16:01', b'1'),
-  (157, 1066, NULL, 'ORDER PENDING', '2017-12-21 18:23:41', b'1'),
-  (158, 1067, NULL, 'ORDER PENDING', '2017-12-21 18:27:20', b'1'),
-  (159, 1068, NULL, 'ORDER PENDING', '2017-12-21 18:30:22', b'1'),
-  (160, 1069, NULL, 'ORDER PENDING', '2017-12-21 18:46:02', b'1'),
-  (161, 1070, NULL, 'ORDER PENDING', '2017-12-21 18:48:56', b'1'),
-  (162, 1071, NULL, 'ORDER PENDING', '2017-12-21 18:49:19', b'1'),
-  (163, 1072, NULL, 'ORDER PENDING', '2017-12-21 18:51:10', b'1'),
-  (164, 1073, NULL, 'ORDER PENDING', '2017-12-21 19:19:40', b'1'),
-  (165, 1074, NULL, 'ORDER PENDING', '2017-12-21 22:41:26', b'1'),
-  (166, 1075, NULL, 'ORDER PENDING', '2017-12-22 03:13:59', b'1'),
-  (167, 1076, NULL, 'ORDER PENDING', '2017-12-22 05:39:58', b'1'),
-  (178, 1087, NULL, 'ORDER PENDING', '2017-12-22 08:22:37', b'1'),
-  (179, 1088, NULL, 'ORDER PENDING', '2017-12-22 08:22:37', b'1'),
-  (180, 1089, NULL, 'ORDER PENDING', '2017-12-22 09:00:38', b'1'),
-  (181, 1090, NULL, 'ORDER PENDING', '2017-12-22 09:14:02', b'1'),
-  (182, 1091, NULL, 'ORDER PENDING', '2017-12-22 12:42:47', b'1'),
-  (183, 1092, NULL, 'ORDER PENDING', '2017-12-22 12:42:47', b'1'),
-  (184, 1093, NULL, 'ORDER PENDING', '2017-12-22 14:38:12', b'1'),
-  (185, 1094, NULL, 'ORDER PENDING', '2017-12-22 14:38:13', b'1'),
-  (186, 1095, NULL, 'ORDER PENDING', '2017-12-22 16:13:46', b'1'),
-  (190, 1099, NULL, 'ORDER PENDING', '2017-12-22 16:53:32', b'1'),
-  (191, 1100, NULL, 'ORDER PENDING', '2017-12-22 16:53:32', b'1'),
-  (193, 1102, NULL, 'ORDER PENDING', '2017-12-22 17:33:56', b'1'),
-  (194, 1103, NULL, 'ORDER PENDING', '2017-12-23 02:18:54', b'1'),
-  (195, 1104, NULL, 'ORDER PENDING', '2017-12-23 02:18:55', b'1'),
-  (196, 1105, NULL, 'ORDER PENDING', '2017-12-23 07:10:29', b'1'),
-  (197, 1106, NULL, 'ORDER PENDING', '2017-12-23 07:10:37', b'1'),
-  (198, 1107, NULL, 'ORDER PENDING', '2017-12-23 10:58:55', b'1'),
-  (200, 1109, NULL, 'ORDER PENDING', '2017-12-24 13:34:41', b'1'),
-  (201, 1110, NULL, 'ORDER PENDING', '2017-12-24 13:36:43', b'1'),
-  (202, 1111, NULL, 'ORDER PENDING', '2017-12-24 13:38:49', b'1'),
-  (203, 1112, NULL, 'ORDER PENDING', '2017-12-24 15:24:37', b'1'),
-  (204, 1113, NULL, 'ORDER PENDING', '2017-12-24 17:25:38', b'1'),
-  (205, 1114, NULL, 'ORDER PENDING', '2017-12-24 19:49:26', b'1'),
-  (206, 1115, NULL, 'ORDER PENDING', '2017-12-24 19:49:45', b'1'),
-  (207, 1116, NULL, 'ORDER PENDING', '2017-12-24 19:49:49', b'1'),
-  (208, 1117, NULL, 'ORDER PENDING', '2017-12-24 19:49:52', b'1'),
-  (209, 1118, NULL, 'ORDER PENDING', '2017-12-24 19:50:09', b'1'),
-  (210, 1119, NULL, 'ORDER PENDING', '2017-12-24 19:50:18', b'1'),
-  (211, 1120, NULL, 'ORDER PENDING', '2017-12-24 19:50:20', b'1'),
-  (212, 1121, NULL, 'ORDER PENDING', '2017-12-24 19:50:22', b'1'),
-  (213, 1122, NULL, 'ORDER PENDING', '2017-12-24 19:50:23', b'1'),
-  (214, 1123, NULL, 'ORDER PENDING', '2017-12-24 19:50:46', b'1'),
-  (215, 1124, NULL, 'ORDER PENDING', '2017-12-25 07:23:43', b'1'),
-  (216, 1125, NULL, 'ORDER PENDING', '2017-12-25 07:23:49', b'1'),
-  (217, 1126, NULL, 'ORDER PENDING', '2017-12-25 07:24:50', b'1'),
-  (218, 1127, NULL, 'ORDER PENDING', '2017-12-25 10:10:54', b'1'),
-  (219, 1128, NULL, 'ORDER PENDING', '2017-12-25 10:18:52', b'1'),
-  (221, 1130, NULL, 'ORDER PENDING', '2017-12-25 13:26:55', b'1'),
-  (222, 1131, NULL, 'ORDER PENDING', '2017-12-25 15:52:28', b'1'),
-  (223, 1132, NULL, 'ORDER PENDING', '2017-12-25 16:36:56', b'1'),
-  (224, 1133, NULL, 'ORDER PENDING', '2017-12-26 02:28:53', b'1'),
-  (225, 1134, NULL, 'ORDER PENDING', '2017-12-26 04:18:09', b'1'),
-  (226, 1135, NULL, 'ORDER PENDING', '2017-12-26 10:39:48', b'1'),
-  (227, 1136, NULL, 'ORDER PENDING', '2017-12-26 10:52:08', b'1'),
-  (228, 1137, NULL, 'ORDER PENDING', '2017-12-26 10:54:25', b'1'),
-  (229, 1138, NULL, 'ORDER PENDING', '2017-12-26 16:51:23', b'1'),
-  (230, 1139, NULL, 'ORDER PENDING', '2017-12-26 16:51:31', b'1'),
-  (231, 1140, NULL, 'ORDER PENDING', '2017-12-26 17:26:05', b'1'),
-  (232, 1141, NULL, 'ORDER PENDING', '2017-12-26 18:15:54', b'1'),
-  (233, 1142, NULL, 'ORDER PENDING', '2017-12-27 07:15:10', b'1'),
-  (234, 1143, NULL, 'ORDER PENDING', '2017-12-27 09:16:21', b'1'),
-  (235, 1144, NULL, 'ORDER PENDING', '2017-12-27 11:24:38', b'1'),
-  (236, 1145, NULL, 'ORDER PENDING', '2017-12-27 12:32:23', b'1'),
-  (237, 1146, NULL, 'ORDER PENDING', '2017-12-27 12:32:29', b'1'),
-  (238, 1147, NULL, 'ORDER PENDING', '2017-12-27 16:25:03', b'1'),
-  (239, 1148, NULL, 'ORDER PENDING', '2017-12-27 16:25:07', b'1'),
-  (240, 1149, NULL, 'ORDER PENDING', '2017-12-27 16:25:11', b'1'),
-  (241, 1150, NULL, 'ORDER PENDING', '2017-12-27 16:25:16', b'1'),
-  (242, 1151, NULL, 'ORDER PENDING', '2017-12-27 16:25:19', b'1'),
-  (243, 1152, NULL, 'ORDER PENDING', '2017-12-27 16:25:21', b'1'),
-  (244, 1153, NULL, 'ORDER PENDING', '2017-12-27 16:25:28', b'1'),
-  (245, 1154, NULL, 'ORDER PENDING', '2017-12-27 16:25:34', b'1'),
-  (246, 1155, NULL, 'ORDER PENDING', '2017-12-27 16:25:37', b'1'),
-  (247, 1156, NULL, 'ORDER PENDING', '2017-12-27 16:25:39', b'1'),
-  (248, 1157, NULL, 'ORDER PENDING', '2017-12-27 16:25:40', b'1'),
-  (249, 1158, NULL, 'ORDER PENDING', '2017-12-27 16:25:42', b'1'),
-  (250, 1159, NULL, 'ORDER PENDING', '2017-12-27 16:26:13', b'1'),
-  (251, 1160, NULL, 'ORDER PENDING', '2017-12-28 10:41:21', b'1'),
-  (252, 1161, NULL, 'ORDER PENDING', '2017-12-28 10:41:31', b'1'),
-  (253, 1162, NULL, 'ORDER PENDING', '2017-12-28 10:41:37', b'1'),
-  (254, 1163, NULL, 'ORDER PENDING', '2017-12-28 10:41:38', b'1'),
-  (257, 1166, NULL, 'ORDER PENDING', '2017-12-28 11:55:09', b'1'),
-  (258, 1167, NULL, 'ORDER PENDING', '2017-12-28 11:55:51', b'1'),
-  (259, 1168, NULL, 'ORDER PENDING', '2017-12-28 13:23:22', b'1'),
-  (260, 1169, NULL, 'ORDER PENDING', '2017-12-28 13:23:37', b'1'),
-  (261, 1170, NULL, 'ORDER PENDING', '2017-12-28 15:58:07', b'1'),
-  (264, 1173, NULL, 'ORDER PENDING', '2017-12-28 20:35:56', b'1'),
-  (267, 1176, NULL, 'ORDER PENDING', '2017-12-29 10:21:31', b'1'),
-  (268, 1177, NULL, 'ORDER PENDING', '2017-12-30 05:30:28', b'1'),
-  (269, 1178, NULL, 'ORDER PENDING', '2017-12-30 05:37:35', b'1'),
-  (270, 1179, NULL, 'ORDER PENDING', '2017-12-30 07:59:41', b'1'),
-  (271, 1180, NULL, 'ORDER PENDING', '2017-12-30 08:35:41', b'1'),
-  (276, 1185, NULL, 'PAYMENT PENDING', '2017-12-30 11:28:41', b'1'),
-  (277, 1186, NULL, 'PAYMENT PENDING', '2017-12-30 11:30:17', b'1'),
-  (280, 1189, NULL, 'PAYMENT PENDING', '2017-12-30 12:28:09', b'1'),
-  (281, 1190, NULL, 'PAYMENT PENDING', '2017-12-30 17:40:20', b'1'),
-  (282, 1191, NULL, 'PAYMENT PENDING', '2017-12-30 20:20:07', b'1'),
-  (283, 1192, NULL, 'PAYMENT PENDING', '2017-12-31 03:02:32', b'1'),
-  (284, 1193, NULL, 'PAYMENT PENDING', '2017-12-31 03:17:04', b'1'),
-  (285, 1194, NULL, 'PAYMENT PENDING', '2017-12-31 03:46:44', b'1'),
-  (286, 1195, NULL, 'PAYMENT PENDING', '2017-12-31 06:08:25', b'1'),
-  (287, 1051, NULL, 'ORDER CONFIRMED', '2017-12-31 13:47:15', b'1'),
-  (288, 1051, NULL, 'KITCHEN ALLOCATED', '2017-12-31 13:47:38', b'1'),
-  (289, 1051, NULL, 'UNDER PREPARATION', '2017-12-31 13:48:04', b'1'),
-  (290, 1051, NULL, 'ORDER READY', '2017-12-31 13:48:16', b'1'),
-  (291, 1051, NULL, 'RIDER DISPATCHED', '2017-12-31 13:50:15', b'1'),
-  (292, 1191, NULL, 'ORDER CONFIRMED', '2017-12-31 13:51:08', b'1'),
-  (293, 1191, NULL, 'KITCHEN ALLOCATED', '2017-12-31 13:51:29', b'1'),
-  (294, 1196, NULL, 'PAYMENT PENDING', '2017-12-31 15:32:30', b'1'),
-  (295, 1197, NULL, 'PAYMENT PENDING', '2017-12-31 17:53:01', b'1'),
-  (296, 1198, NULL, 'PAYMENT PENDING', '2018-01-01 05:43:07', b'1'),
-  (297, 1199, NULL, 'PAYMENT PENDING', '2018-01-01 07:24:28', b'1'),
-  (298, 1200, NULL, 'PAYMENT PENDING', '2018-01-01 12:37:20', b'1'),
-  (299, 1201, NULL, 'PAYMENT PENDING', '2018-01-01 13:40:36', b'1'),
-  (300, 1202, NULL, 'PAYMENT PENDING', '2018-01-01 14:16:23', b'1'),
-  (301, 1203, NULL, 'PAYMENT PENDING', '2018-01-01 17:12:00', b'1'),
-  (302, 1204, NULL, 'PAYMENT PENDING', '2018-01-01 17:17:29', b'1'),
-  (303, 1205, NULL, 'PAYMENT PENDING', '2018-01-01 19:15:03', b'1'),
-  (304, 1206, NULL, 'PAYMENT PENDING', '2018-01-01 19:35:48', b'1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
-
+-- ----------------------------
+-- Table structure for payment
+-- ----------------------------
+DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
-  `PAYMENT_ID` bigint(20) NOT NULL,
+  `PAYMENT_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `ORDER_ID` bigint(20) DEFAULT NULL,
   `PAYMENT_CHANNEL` varchar(255) NOT NULL,
   `PAYMENT_AMOUNT` decimal(10,2) NOT NULL,
@@ -759,40 +727,48 @@ CREATE TABLE `payment` (
   `PAYMENT_STATUS` varchar(30) DEFAULT NULL,
   `PAYMENT_DATE` datetime NOT NULL,
   `PAYMENT_NOTES` varchar(255) DEFAULT NULL,
-  `PAYMENT_NUMBER` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `PAYMENT_NUMBER` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`PAYMENT_ID`),
+  KEY `payment_ibfk_1` (`PAYMENT_STATUS`) USING BTREE,
+  KEY `payment_ibfk_2` (`ORDER_ID`) USING BTREE,
+  CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`PAYMENT_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of payment
+-- ----------------------------
 
---
--- Table structure for table `riders`
---
-
+-- ----------------------------
+-- Table structure for riders
+-- ----------------------------
+DROP TABLE IF EXISTS `riders`;
 CREATE TABLE `riders` (
-  `RIDER_ID` bigint(10) NOT NULL,
+  `RIDER_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `USER_ID` bigint(10) DEFAULT NULL,
   `KITCHEN_ID` bigint(10) DEFAULT NULL,
-  `RIDER_STATUS` bit(1) NOT NULL DEFAULT b'1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `RIDER_STATUS` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`RIDER_ID`),
+  KEY `KITCHEN_ID` (`KITCHEN_ID`) USING BTREE,
+  KEY `USER_ID` (`USER_ID`),
+  CONSTRAINT `riders_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `riders_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `riders`
---
+-- ----------------------------
+-- Records of riders
+-- ----------------------------
+INSERT INTO `riders` VALUES ('1', '12', '1', '');
+INSERT INTO `riders` VALUES ('2', '12', '2', '');
+INSERT INTO `riders` VALUES ('3', '12', '1', '');
+INSERT INTO `riders` VALUES ('4', '12', '2', '');
 
-INSERT INTO `riders` (`RIDER_ID`, `USER_ID`, `KITCHEN_ID`, `RIDER_STATUS`) VALUES
-  (1, 12, 1, b'1'),
-  (2, 12, 2, b'1'),
-  (3, 12, 1, b'1'),
-  (4, 12, 2, b'1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_cart`
---
-
+-- ----------------------------
+-- Table structure for tb_cart
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_cart`;
 CREATE TABLE `tb_cart` (
-  `CART_ITEM_ID` bigint(10) NOT NULL,
+  `CART_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `USER_ID` bigint(20) NOT NULL,
   `ITEM_TYPE_ID` bigint(10) NOT NULL,
   `QUANTITY` int(4) NOT NULL,
@@ -801,606 +777,213 @@ CREATE TABLE `tb_cart` (
   `NOTES` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CART_TIMESTAMP` bigint(20) DEFAULT NULL,
   `CREATED_AT` datetime DEFAULT NULL,
-  `UPDATED_AT` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `UPDATED_AT` datetime DEFAULT NULL,
+  PRIMARY KEY (`CART_ITEM_ID`),
+  KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
+  KEY `USER_ID` (`USER_ID`) USING BTREE,
+  CONSTRAINT `tb_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tb_cart_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `tb_cart`
---
+-- ----------------------------
+-- Records of tb_cart
+-- ----------------------------
+INSERT INTO `tb_cart` VALUES ('110', '51', '10', '1', '15', 'LARGE', null, '1514196891', '2017-12-25 10:14:51', '2017-12-25 10:14:51');
+INSERT INTO `tb_cart` VALUES ('156', '5', '23', '1', '1', '500ML', null, '1514652051', '2017-12-30 16:40:51', '2017-12-30 16:40:51');
+INSERT INTO `tb_cart` VALUES ('157', '5', '19', '2', '1', '500ML', null, '1514652051', '2017-12-30 16:41:00', '2017-12-31 15:19:17');
+INSERT INTO `tb_cart` VALUES ('158', '5', '1', '1', '15', 'LARGE', null, '1514652051', '2017-12-30 18:18:10', '2018-01-01 17:20:55');
+INSERT INTO `tb_cart` VALUES ('172', '5', '6', '1', '13', 'MEDIUM', null, '1514652051', '2017-12-31 15:19:25', '2017-12-31 15:19:25');
+INSERT INTO `tb_cart` VALUES ('186', '5', '4', '1', '15', 'LARGE', null, '1514652051', '2018-01-01 17:21:00', '2018-01-01 17:21:00');
+INSERT INTO `tb_cart` VALUES ('187', '56', '6', '2', '13', 'MEDIUM', null, '1514834204', '2018-01-01 19:16:44', '2018-01-01 19:16:44');
 
-INSERT INTO `tb_cart` (`CART_ITEM_ID`, `USER_ID`, `ITEM_TYPE_ID`, `QUANTITY`, `ITEM_PRICE`, `ITEM_TYPE_SIZE`, `NOTES`, `CART_TIMESTAMP`, `CREATED_AT`, `UPDATED_AT`) VALUES
-  (110, 51, 10, 1, '15', 'LARGE', NULL, 1514196891, '2017-12-25 10:14:51', '2017-12-25 10:14:51'),
-  (156, 5, 23, 1, '1', '500ML', NULL, 1514652051, '2017-12-30 16:40:51', '2017-12-30 16:40:51'),
-  (157, 5, 19, 2, '1', '500ML', NULL, 1514652051, '2017-12-30 16:41:00', '2017-12-31 15:19:17'),
-  (158, 5, 1, 1, '15', 'LARGE', NULL, 1514652051, '2017-12-30 18:18:10', '2018-01-01 17:20:55'),
-  (172, 5, 6, 1, '13', 'MEDIUM', NULL, 1514652051, '2017-12-31 15:19:25', '2017-12-31 15:19:25'),
-  (178, 10, 27, 7, '1', '500ML', NULL, 1514795092, '2018-01-01 08:24:52', '2018-01-01 08:25:03'),
-  (186, 5, 4, 1, '15', 'LARGE', NULL, 1514652051, '2018-01-01 17:21:00', '2018-01-01 17:21:00'),
-  (187, 56, 6, 2, '13', 'MEDIUM', NULL, 1514834204, '2018-01-01 19:16:44', '2018-01-01 19:16:44');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_favs`
---
-
+-- ----------------------------
+-- Table structure for tb_favs
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_favs`;
 CREATE TABLE `tb_favs` (
-  `FAV_ID` bigint(20) NOT NULL,
+  `FAV_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `MENU_ITEM_ID` bigint(20) DEFAULT NULL,
-  `USER_ID` bigint(20) DEFAULT NULL
+  `USER_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`FAV_ID`),
+  KEY `MENU_ITEM_ID` (`MENU_ITEM_ID`),
+  KEY `USER_ID` (`USER_ID`),
+  CONSTRAINT `tb_favs_ibfk_1` FOREIGN KEY (`MENU_ITEM_ID`) REFERENCES `menu_item` (`MENU_ITEM_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tb_favs_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of tb_favs
+-- ----------------------------
 
---
--- Table structure for table `tb_migration`
---
-
+-- ----------------------------
+-- Table structure for tb_migration
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_migration`;
 CREATE TABLE `tb_migration` (
   `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_migration`
---
+-- ----------------------------
+-- Records of tb_migration
+-- ----------------------------
+INSERT INTO `tb_migration` VALUES ('m000000_000000_base', '1510298356');
+INSERT INTO `tb_migration` VALUES ('m160516_095943_init', '1510298358');
 
-INSERT INTO `tb_migration` (`version`, `apply_time`) VALUES
-  ('m000000_000000_base', 1510298356),
-  ('m160516_095943_init', 1510298358);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_sizes`
---
-
+-- ----------------------------
+-- Table structure for tb_sizes
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_sizes`;
 CREATE TABLE `tb_sizes` (
-  `SIZE_ID` bigint(20) NOT NULL,
+  `SIZE_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `SIZE_TYPE` varchar(20) NOT NULL,
-  `ACTIVE` bit(1) DEFAULT b'1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ACTIVE` bit(1) DEFAULT b'1',
+  PRIMARY KEY (`SIZE_ID`),
+  UNIQUE KEY `SIZE_NAME` (`SIZE_TYPE`),
+  KEY `SIZED_ID` (`SIZE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_sizes`
---
+-- ----------------------------
+-- Records of tb_sizes
+-- ----------------------------
+INSERT INTO `tb_sizes` VALUES ('1', 'SMALL', '');
+INSERT INTO `tb_sizes` VALUES ('2', 'MEDIUM', '');
+INSERT INTO `tb_sizes` VALUES ('3', 'LARGE', '');
+INSERT INTO `tb_sizes` VALUES ('4', '500ML', '');
+INSERT INTO `tb_sizes` VALUES ('5', '1LITRE', '');
+INSERT INTO `tb_sizes` VALUES ('6', '1.5LITRE', '');
+INSERT INTO `tb_sizes` VALUES ('7', '300ML', '');
 
-INSERT INTO `tb_sizes` (`SIZE_ID`, `SIZE_TYPE`, `ACTIVE`) VALUES
-  (1, 'SMALL', b'1'),
-  (2, 'MEDIUM', b'1'),
-  (3, 'LARGE', b'1'),
-  (4, '500ML', b'1'),
-  (5, '1LITRE', b'1'),
-  (6, '1.5LITRE', b'1'),
-  (7, '300ML', b'1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_status`
---
-
+-- ----------------------------
+-- Table structure for tb_status
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_status`;
 CREATE TABLE `tb_status` (
   `STATUS_NAME` varchar(30) NOT NULL,
   `STATUS_DESC` varchar(100) DEFAULT NULL,
   `COLOR` varchar(10) NOT NULL DEFAULT 'GREEN',
   `SCOPE` varchar(10) NOT NULL DEFAULT 'ALL',
-  `RANK` int(2) NOT NULL DEFAULT '1',
-  `WORKFLOW` int(2) NOT NULL DEFAULT '1'
+  `RANK` int(2) NOT NULL DEFAULT 1,
+  `WORKFLOW` int(2) NOT NULL DEFAULT 1,
+  UNIQUE KEY `STATUS_NAME` (`STATUS_NAME`) USING BTREE,
+  UNIQUE KEY `RANK` (`RANK`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_status`
---
+-- ----------------------------
+-- Records of tb_status
+-- ----------------------------
+INSERT INTO `tb_status` VALUES ('AWAITING RIDER', 'Awaiting Rider', 'BROWN', 'INACTIVE', '7', '3');
+INSERT INTO `tb_status` VALUES ('CHEF ASSIGNED', 'Assign Chef', 'GREEN', 'INACTIVE', '4', '0');
+INSERT INTO `tb_status` VALUES ('KITCHEN ALLOCATED', 'Transfer to Kitchen', 'GREEN', 'OFFICE', '3', '1');
+INSERT INTO `tb_status` VALUES ('ORDER CANCELLED', 'Cancel Order', 'RED', 'ALL', '0', '0');
+INSERT INTO `tb_status` VALUES ('ORDER CONFIRMED', 'Confirm Order', 'PURPLE', 'OFFICE', '2', '0');
+INSERT INTO `tb_status` VALUES ('ORDER DELIVERED', 'Order Delieverd', 'RED', 'RIDER', '10', '0');
+INSERT INTO `tb_status` VALUES ('ORDER PENDING', 'Awaiting Processing', '#ff69b4', 'ALL', '1', '0');
+INSERT INTO `tb_status` VALUES ('ORDER READY', 'Order Ready', 'GREEN', 'KITCHEN', '6', '2');
+INSERT INTO `tb_status` VALUES ('PAYMENT PENDING', 'Payment Not Confirmed', 'GREEN', 'OFFICE', '11', '2');
+INSERT INTO `tb_status` VALUES ('RIDER ASSIGNED', 'Assign Rider', 'GREEN', 'INACTIVE', '8', '4');
+INSERT INTO `tb_status` VALUES ('RIDER DISPATCHED', 'Assign & Dispatch Rider', 'GREEN', 'KITCHEN', '9', '5');
+INSERT INTO `tb_status` VALUES ('UNDER PREPARATION', 'Preparing Order', 'ORANGE', 'KITCHEN', '5', '1');
 
-INSERT INTO `tb_status` (`STATUS_NAME`, `STATUS_DESC`, `COLOR`, `SCOPE`, `RANK`, `WORKFLOW`) VALUES
-  ('AWAITING RIDER', 'Awaiting Rider', 'BROWN', 'INACTIVE', 7, 3),
-  ('CHEF ASSIGNED', 'Assign Chef', 'GREEN', 'INACTIVE', 4, 0),
-  ('KITCHEN ALLOCATED', 'Transfer to Kitchen', 'GREEN', 'OFFICE', 3, 1),
-  ('ORDER CANCELLED', 'Cancel Order', 'RED', 'ALL', 0, 0),
-  ('ORDER CONFIRMED', 'Confirm Order', 'PURPLE', 'OFFICE', 2, 0),
-  ('ORDER DELIVERED', 'Order Delieverd', 'RED', 'RIDER', 10, 0),
-  ('ORDER PENDING', 'Awaiting Processing', '#ff69b4', 'ALL', 1, 0),
-  ('ORDER READY', 'Order Ready', 'GREEN', 'KITCHEN', 6, 2),
-  ('PAYMENT PENDING', 'Payment Not Confirmed', 'GREEN', 'OFFICE', 11, 2),
-  ('RIDER ASSIGNED', 'Assign Rider', 'GREEN', 'INACTIVE', 8, 4),
-  ('RIDER DISPATCHED', 'Assign & Dispatch Rider', 'GREEN', 'KITCHEN', 9, 5),
-  ('UNDER PREPARATION', 'Preparing Order', 'ORANGE', 'KITCHEN', 5, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_users`
---
-
+-- ----------------------------
+-- Table structure for tb_users
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_users`;
 CREATE TABLE `tb_users` (
-  `USER_ID` bigint(20) NOT NULL,
+  `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `USER_NAME` varchar(100) NOT NULL,
   `USER_TYPE` bigint(20) NOT NULL,
   `SURNAME` varchar(100) NOT NULL,
   `OTHER_NAMES` varchar(100) NOT NULL,
   `MOBILE` int(20) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
-  `LOCATION_ID` bigint(20) NOT NULL,
+  `LOCATION_ID` bigint(20) DEFAULT NULL,
   `PASSWORD` varchar(100) NOT NULL,
   `DATE_REGISTERED` datetime DEFAULT NULL,
   `LAST_UPDATED` datetime DEFAULT NULL,
-  `CLIENT_TOKEN` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `CLIENT_TOKEN` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`),
+  KEY `LOCATION_ID_idx` (`LOCATION_ID`) USING BTREE,
+  KEY `USER_TYPE_idx` (`USER_TYPE`) USING BTREE,
+  CONSTRAINT `tb_users_ibfk_2` FOREIGN KEY (`USER_TYPE`) REFERENCES `user_type` (`USER_TYPE_ID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_users`
---
+-- ----------------------------
+-- Records of tb_users
+-- ----------------------------
+INSERT INTO `tb_users` VALUES ('5', 'pkyalo', '1', 'kingoo', 'Peter Kyalo', '724802220', 'petchaloo@gmail.com', '1', '834dfae0c40820faccf4f83580be800545dca3c1', null, null, null);
+INSERT INTO `tb_users` VALUES ('10', 'fatelord', '1', 'BARASA', 'SAMMY M', '1123', 'barsamms@gmail.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', null);
+INSERT INTO `tb_users` VALUES ('11', 'admin', '2', 'admin', 'admin', '123', 'admin@slice.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-11-10 13:11:43', '2017-11-10 13:11:49', null);
+INSERT INTO `tb_users` VALUES ('12', 'rider', '3', 'Hassan', 'Omar', '1123', 'rider@gmail.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', '');
+INSERT INTO `tb_users` VALUES ('24', 'kyalo', '1', 'kingoo', 'Peter kyalo', '2147483647', 'pkyalo@uonbi.ac.ke', '1', '834dfae0c40820faccf4f83580be800545dca3c1', '2017-12-20 12:38:11', '2017-12-20 12:38:11', null);
+INSERT INTO `tb_users` VALUES ('25', 'mohacpr', '1', 'Mohamed', 'Mohamed', '619000333', 'mohacpr@gmail.com', '1', '2d7d1969f957c467cfb161b81ff408af6b94a8ea', '2017-12-20 19:39:38', '2017-12-20 19:39:38', null);
+INSERT INTO `tb_users` VALUES ('29', 'Shumac', '1', 'Shumac', 'Shushuu', '2147483647', 'shumac55@gmail.com', '1', '513a7c4018127c653ce3b9037e29bdd9c03e29f7', '2017-12-21 13:50:19', '2017-12-21 13:50:19', null);
+INSERT INTO `tb_users` VALUES ('37', 'Aw-ali', '1', 'Kadar', 'Mohamed', '615417477', 'kadarfeyore1@gmail.com', '1', 'ae62e53fb3b2afe899a5dbd09cad2eac8a2487f1', '2017-12-21 15:46:08', '2017-12-21 15:46:08', null);
+INSERT INTO `tb_users` VALUES ('44', 'Abdikasim', '1', 'Moalim', 'Ahmed', '617999222', 'abdulkasimmoalim@gmail.com', '1', 'b82886f310d6c223dea476600babca5849670e21', '2017-12-21 17:27:14', '2017-12-21 17:27:14', null);
+INSERT INTO `tb_users` VALUES ('45', 'Sandheere', '1', 'Mohamed', 'Sandheere', '2147483647', 'sanka6016@gmail.com', '1', '890940a175fdd194c3f42a27e8ecbfefb983094d', '2017-12-21 17:48:20', '2017-12-21 17:48:20', null);
+INSERT INTO `tb_users` VALUES ('46', 'Sandheere10', '1', 'Mohamed', 'Sandheere', '2147483647', 'sanka6015@gmail.com', '1', '8238a351f035bc1f72a1a7cff337221a73dae6f2', '2017-12-21 18:02:10', '2017-12-21 18:02:10', null);
+INSERT INTO `tb_users` VALUES ('47', 'Mr. Vision', '1', 'Yasir', 'Baffo', '618309457', 'mr.vision2025@gmail.com', '1', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2017-12-21 18:32:22', '2017-12-21 18:32:22', null);
+INSERT INTO `tb_users` VALUES ('48', 'Aainab', '1', 'Ainab', 'Ahmed Abdi', '615513533', 'axmedcaynab@gmail.com', '1', '0fb641dff5070d488355f89a1ad0fdc8203e0f33', '2017-12-23 06:44:32', '2017-12-23 06:44:32', null);
+INSERT INTO `tb_users` VALUES ('49', 'ozgur.catal', '1', 'catal', 'ozgur', '612136659', 'ozgur.catal@hotmail.com', '1', '7a59c162217c6abbe65db58ecdfcb1765780af7b', '2017-12-24 13:08:46', '2017-12-24 13:08:46', null);
+INSERT INTO `tb_users` VALUES ('50', 'Rafiki01', '1', 'Rafik', 'Hassan', '618900015', 'hafarah1@gmail.com', '1', 'fa758a0c5aa550ebd7f7a09d2a8c9a335be7dcd0', '2017-12-24 15:22:41', '2017-12-24 15:22:41', null);
+INSERT INTO `tb_users` VALUES ('51', 'zuhuur', '1', 'Zahra', 'Zuu', '618812510', 'zahra@sostec.so', '1', '5ddf228c30669af17fb926a7d728c4e9d6c8df27', '2017-12-25 10:09:12', '2017-12-25 10:09:12', null);
+INSERT INTO `tb_users` VALUES ('52', 'zahradhaqane', '1', 'Dhaqane', 'Zahra Osman', '615533643', 'zahradhaqane@gmail.com', '1', 'e72fb1b6ffd172fef3a3c97b4555a0669cac4c7e', '2017-12-26 04:15:21', '2017-12-26 04:15:21', null);
+INSERT INTO `tb_users` VALUES ('53', 'Aallaa', '1', 'Aallaa', 'habad', '615888129', 'Aallaahabad@gmail.com', '1', '3edacb467448252d0f8f49c732ba00cc438b5895', '2017-12-26 16:49:26', '2017-12-26 16:49:26', null);
+INSERT INTO `tb_users` VALUES ('54', 'Badle', '1', 'Maxamuud Xamud', 'Badle', '617641354', 'badle7171@gmail.com', '1', 'c4f7d269ffa6b3c3c77fb0b3d14a3afdd0161182', '2017-12-27 07:41:24', '2017-12-27 07:41:24', null);
+INSERT INTO `tb_users` VALUES ('55', 'shiine', '1', 'mohamed', 'ali', '619616338', 'shiine318@hotmail.com', '1', '02ecc6c8afccd0dd029bddc56641cd309a171f3e', '2017-12-28 20:54:38', '2017-12-28 20:54:38', null);
+INSERT INTO `tb_users` VALUES ('56', 'Arafat', '1', 'Arafat', 'Abdullahi', '615518583', 'arafat.abdulahi@gmail.com', '1', '866e7caa1629cd75acb8af543d55cc3985c47212', '2018-01-01 19:14:05', '2018-01-01 19:14:05', null);
 
-INSERT INTO `tb_users` (`USER_ID`, `USER_NAME`, `USER_TYPE`, `SURNAME`, `OTHER_NAMES`, `MOBILE`, `EMAIL`, `LOCATION_ID`, `PASSWORD`, `DATE_REGISTERED`, `LAST_UPDATED`, `CLIENT_TOKEN`) VALUES
-  (5, 'pkyalo', 1, 'kingoo', 'Peter Kyalo', 724802220, 'petchaloo@gmail.com', 1, '834dfae0c40820faccf4f83580be800545dca3c1', NULL, NULL, NULL),
-  (10, 'fatelord', 1, 'BARASA', 'SAMMY M', 1123, 'barsamms@gmail.com', 1, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', NULL),
-  (11, 'admin', 2, 'admin', 'admin', 123, 'admin@slice.com', 1, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-11-10 13:11:43', '2017-11-10 13:11:49', NULL),
-  (12, 'rider', 3, 'Hassan', 'Omar', 1123, 'rider@gmail.com', 1, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51', '2017-10-09 07:06:51', ''),
-  (24, 'kyalo', 1, 'kingoo', 'Peter kyalo', 2147483647, 'pkyalo@uonbi.ac.ke', 1, '834dfae0c40820faccf4f83580be800545dca3c1', '2017-12-20 12:38:11', '2017-12-20 12:38:11', NULL),
-  (25, 'mohacpr', 1, 'Mohamed', 'Mohamed', 619000333, 'mohacpr@gmail.com', 1, '2d7d1969f957c467cfb161b81ff408af6b94a8ea', '2017-12-20 19:39:38', '2017-12-20 19:39:38', NULL),
-  (29, 'Shumac', 1, 'Shumac', 'Shushuu', 2147483647, 'shumac55@gmail.com', 1, '513a7c4018127c653ce3b9037e29bdd9c03e29f7', '2017-12-21 13:50:19', '2017-12-21 13:50:19', NULL),
-  (37, 'Aw-ali', 1, 'Kadar', 'Mohamed', 615417477, 'kadarfeyore1@gmail.com', 1, 'ae62e53fb3b2afe899a5dbd09cad2eac8a2487f1', '2017-12-21 15:46:08', '2017-12-21 15:46:08', NULL),
-  (44, 'Abdikasim', 1, 'Moalim', 'Ahmed', 617999222, 'abdulkasimmoalim@gmail.com', 1, 'b82886f310d6c223dea476600babca5849670e21', '2017-12-21 17:27:14', '2017-12-21 17:27:14', NULL),
-  (45, 'Sandheere', 1, 'Mohamed', 'Sandheere', 2147483647, 'sanka6016@gmail.com', 1, '890940a175fdd194c3f42a27e8ecbfefb983094d', '2017-12-21 17:48:20', '2017-12-21 17:48:20', NULL),
-  (46, 'Sandheere10', 1, 'Mohamed', 'Sandheere', 2147483647, 'sanka6015@gmail.com', 1, '8238a351f035bc1f72a1a7cff337221a73dae6f2', '2017-12-21 18:02:10', '2017-12-21 18:02:10', NULL),
-  (47, 'Mr. Vision', 1, 'Yasir', 'Baffo', 618309457, 'mr.vision2025@gmail.com', 1, '7c4a8d09ca3762af61e59520943dc26494f8941b', '2017-12-21 18:32:22', '2017-12-21 18:32:22', NULL),
-  (48, 'Aainab', 1, 'Ainab', 'Ahmed Abdi', 615513533, 'axmedcaynab@gmail.com', 1, '0fb641dff5070d488355f89a1ad0fdc8203e0f33', '2017-12-23 06:44:32', '2017-12-23 06:44:32', NULL),
-  (49, 'ozgur.catal', 1, 'catal', 'ozgur', 612136659, 'ozgur.catal@hotmail.com', 1, '7a59c162217c6abbe65db58ecdfcb1765780af7b', '2017-12-24 13:08:46', '2017-12-24 13:08:46', NULL),
-  (50, 'Rafiki01', 1, 'Rafik', 'Hassan', 618900015, 'hafarah1@gmail.com', 1, 'fa758a0c5aa550ebd7f7a09d2a8c9a335be7dcd0', '2017-12-24 15:22:41', '2017-12-24 15:22:41', NULL),
-  (51, 'zuhuur', 1, 'Zahra', 'Zuu', 618812510, 'zahra@sostec.so', 1, '5ddf228c30669af17fb926a7d728c4e9d6c8df27', '2017-12-25 10:09:12', '2017-12-25 10:09:12', NULL),
-  (52, 'zahradhaqane', 1, 'Dhaqane', 'Zahra Osman', 615533643, 'zahradhaqane@gmail.com', 1, 'e72fb1b6ffd172fef3a3c97b4555a0669cac4c7e', '2017-12-26 04:15:21', '2017-12-26 04:15:21', NULL),
-  (53, 'Aallaa', 1, 'Aallaa', 'habad', 615888129, 'Aallaahabad@gmail.com', 1, '3edacb467448252d0f8f49c732ba00cc438b5895', '2017-12-26 16:49:26', '2017-12-26 16:49:26', NULL),
-  (54, 'Badle', 1, 'Maxamuud Xamud', 'Badle', 617641354, 'badle7171@gmail.com', 1, 'c4f7d269ffa6b3c3c77fb0b3d14a3afdd0161182', '2017-12-27 07:41:24', '2017-12-27 07:41:24', NULL),
-  (55, 'shiine', 1, 'mohamed', 'ali', 619616338, 'shiine318@hotmail.com', 1, '02ecc6c8afccd0dd029bddc56641cd309a171f3e', '2017-12-28 20:54:38', '2017-12-28 20:54:38', NULL),
-  (56, 'Arafat', 1, 'Arafat', 'Abdullahi', 615518583, 'arafat.abdulahi@gmail.com', 1, '866e7caa1629cd75acb8af543d55cc3985c47212', '2018-01-01 19:14:05', '2018-01-01 19:14:05', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_type`
---
-
+-- ----------------------------
+-- Table structure for user_type
+-- ----------------------------
+DROP TABLE IF EXISTS `user_type`;
 CREATE TABLE `user_type` (
-  `USER_TYPE_ID` bigint(20) NOT NULL,
-  `USER_TYPE_NAME` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `USER_TYPE_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `USER_TYPE_NAME` varchar(255) NOT NULL,
+  PRIMARY KEY (`USER_TYPE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user_type`
---
+-- ----------------------------
+-- Records of user_type
+-- ----------------------------
+INSERT INTO `user_type` VALUES ('1', 'CUSTOMER');
+INSERT INTO `user_type` VALUES ('2', 'ADMIN');
+INSERT INTO `user_type` VALUES ('3', 'RIDER');
 
-INSERT INTO `user_type` (`USER_TYPE_ID`, `USER_TYPE_NAME`) VALUES
-  (1, 'CUSTOMER'),
-  (2, 'ADMIN'),
-  (3, 'RIDER');
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `vw_orders`
--- (See below for the actual view)
---
-CREATE TABLE `vw_orders` (
-   `ORDER_ID` bigint(20)
-  ,`USER_ID` bigint(20)
-  ,`KITCHEN_ID` bigint(10)
-  ,`CHEF_ID` bigint(10)
-  ,`RIDER_ID` bigint(10)
-  ,`MOBILE` int(20)
-  ,`SURNAME` varchar(100)
-  ,`OTHER_NAMES` varchar(100)
-  ,`ORDER_DATE` datetime
-  ,`ORDER_STATUS` varchar(30)
-  ,`PAYMENT_AMOUNT` decimal(10,2)
-  ,`PAYMENT_NUMBER` varchar(30)
-  ,`NOTES` varchar(255)
-  ,`ADDRESS_ID` bigint(20)
-  ,`PAYMENT_METHOD` varchar(20)
-  ,`CREATED_AT` datetime
-  ,`UPDATED_AT` datetime
-  ,`PAYMENT_DATE` datetime
-);
-
--- --------------------------------------------------------
-
---
--- Structure for view `vw_orders`
---
-DROP TABLE IF EXISTS `vw_orders`;
-
-CREATE VIEW `vw_orders`  AS  select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_address`.`ADDRESS_ID` AS `ADDRESS_ID`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE` from (((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) join `customer_address` on((`customer_order`.`ADDRESS_ID` = `customer_address`.`ADDRESS_ID`))) left join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `chef`
---
-ALTER TABLE `chef`
-  ADD PRIMARY KEY (`CHEF_ID`),
-  ADD KEY `Kitchen_ID` (`KITCHEN_ID`) USING BTREE;
-
---
--- Indexes for table `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`CITY_ID`),
-  ADD KEY `Country_ID` (`COUNTRY_ID`) USING BTREE;
-
---
--- Indexes for table `country`
---
-ALTER TABLE `country`
-  ADD PRIMARY KEY (`COUNRY_ID`);
-
---
--- Indexes for table `customer_address`
---
-ALTER TABLE `customer_address`
-  ADD PRIMARY KEY (`ADDRESS_ID`),
-  ADD KEY `customer_address_ibfk_1` (`USER_ID`) USING BTREE,
-  ADD KEY `customer_address_ibfk_2` (`LOCATION_ID`) USING BTREE;
-
---
--- Indexes for table `customer_order`
---
-ALTER TABLE `customer_order`
-  ADD PRIMARY KEY (`ORDER_ID`),
-  ADD KEY `User_ID` (`USER_ID`) USING BTREE,
-  ADD KEY `Location_ID` (`ADDRESS_ID`) USING BTREE,
-  ADD KEY `customer_order_ibfk_3` (`RIDER_ID`) USING BTREE,
-  ADD KEY `KITCHEN_ID` (`KITCHEN_ID`) USING BTREE,
-  ADD KEY `ORDER_STATUS` (`ORDER_STATUS`) USING BTREE,
-  ADD KEY `CHEF_ID` (`CHEF_ID`) USING BTREE;
-
---
--- Indexes for table `customer_order_item`
---
-ALTER TABLE `customer_order_item`
-  ADD PRIMARY KEY (`ORDER_ITEM_ID`),
-  ADD KEY `ORDER_ID` (`ORDER_ID`) USING BTREE,
-  ADD KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE;
-
---
--- Indexes for table `db_cache`
---
-ALTER TABLE `db_cache`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `expire` (`expire`);
-
---
--- Indexes for table `kitchen`
---
-ALTER TABLE `kitchen`
-  ADD PRIMARY KEY (`KITCHEN_ID`),
-  ADD KEY `City_ID` (`CITY_ID`) USING BTREE;
-
---
--- Indexes for table `location`
---
-ALTER TABLE `location`
-  ADD PRIMARY KEY (`LOCATION_ID`),
-  ADD KEY `CITY_ID` (`CITY_ID`);
-
---
--- Indexes for table `menu_category`
---
-ALTER TABLE `menu_category`
-  ADD PRIMARY KEY (`MENU_CAT_ID`),
-  ADD UNIQUE KEY `MENU_CAT_ID` (`MENU_CAT_ID`,`RANK`),
-  ADD UNIQUE KEY `MENU_CAT_NAME` (`MENU_CAT_NAME`),
-  ADD KEY `MENU_CAT_ID_2` (`MENU_CAT_ID`);
-
---
--- Indexes for table `menu_item`
---
-ALTER TABLE `menu_item`
-  ADD PRIMARY KEY (`MENU_ITEM_ID`),
-  ADD KEY `MENU_CAT_ID` (`MENU_CAT_ID`) USING BTREE;
-
---
--- Indexes for table `menu_item_type`
---
-ALTER TABLE `menu_item_type`
-  ADD PRIMARY KEY (`ITEM_TYPE_ID`),
-  ADD KEY `MENU_ITEM_ID` (`MENU_ITEM_ID`) USING BTREE,
-  ADD KEY `ITEM_TYPE_SIZE` (`ITEM_TYPE_SIZE`);
-
---
--- Indexes for table `my_session`
---
-ALTER TABLE `my_session`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `expire` (`expire`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `order_tracking`
---
-ALTER TABLE `order_tracking`
-  ADD PRIMARY KEY (`TRACKING_ID`),
-  ADD UNIQUE KEY `ORDER_ID` (`ORDER_ID`,`STATUS`) USING BTREE,
-  ADD KEY `STATUS` (`STATUS`) USING BTREE,
-  ADD KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE;
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`PAYMENT_ID`),
-  ADD KEY `payment_ibfk_1` (`PAYMENT_STATUS`) USING BTREE,
-  ADD KEY `payment_ibfk_2` (`ORDER_ID`) USING BTREE;
-
---
--- Indexes for table `riders`
---
-ALTER TABLE `riders`
-  ADD PRIMARY KEY (`RIDER_ID`),
-  ADD KEY `KITCHEN_ID` (`KITCHEN_ID`) USING BTREE,
-  ADD KEY `USER_ID` (`USER_ID`);
-
---
--- Indexes for table `tb_cart`
---
-ALTER TABLE `tb_cart`
-  ADD PRIMARY KEY (`CART_ITEM_ID`),
-  ADD KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
-  ADD KEY `USER_ID` (`USER_ID`) USING BTREE;
-
---
--- Indexes for table `tb_favs`
---
-ALTER TABLE `tb_favs`
-  ADD PRIMARY KEY (`FAV_ID`),
-  ADD KEY `MENU_ITEM_ID` (`MENU_ITEM_ID`),
-  ADD KEY `USER_ID` (`USER_ID`);
-
---
--- Indexes for table `tb_migration`
---
-ALTER TABLE `tb_migration`
-  ADD PRIMARY KEY (`version`);
-
---
--- Indexes for table `tb_sizes`
---
-ALTER TABLE `tb_sizes`
-  ADD PRIMARY KEY (`SIZE_ID`),
-  ADD UNIQUE KEY `SIZE_NAME` (`SIZE_TYPE`),
-  ADD KEY `SIZED_ID` (`SIZE_ID`);
-
---
--- Indexes for table `tb_status`
---
-ALTER TABLE `tb_status`
-  ADD UNIQUE KEY `STATUS_NAME` (`STATUS_NAME`) USING BTREE,
-  ADD UNIQUE KEY `RANK` (`RANK`) USING BTREE;
-
---
--- Indexes for table `tb_users`
---
-ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`USER_ID`),
-  ADD KEY `LOCATION_ID_idx` (`LOCATION_ID`) USING BTREE,
-  ADD KEY `USER_TYPE_idx` (`USER_TYPE`) USING BTREE;
-
---
--- Indexes for table `user_type`
---
-ALTER TABLE `user_type`
-  ADD PRIMARY KEY (`USER_TYPE_ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `chef`
---
-ALTER TABLE `chef`
-  MODIFY `CHEF_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `city`
---
-ALTER TABLE `city`
-  MODIFY `CITY_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `country`
---
-ALTER TABLE `country`
-  MODIFY `COUNRY_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `customer_address`
---
-ALTER TABLE `customer_address`
-  MODIFY `ADDRESS_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `customer_order`
---
-ALTER TABLE `customer_order`
-  MODIFY `ORDER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1207;
---
--- AUTO_INCREMENT for table `customer_order_item`
---
-ALTER TABLE `customer_order_item`
-  MODIFY `ORDER_ITEM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
---
--- AUTO_INCREMENT for table `kitchen`
---
-ALTER TABLE `kitchen`
-  MODIFY `KITCHEN_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `location`
---
-ALTER TABLE `location`
-  MODIFY `LOCATION_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `menu_category`
---
-ALTER TABLE `menu_category`
-  MODIFY `MENU_CAT_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `menu_item`
---
-ALTER TABLE `menu_item`
-  MODIFY `MENU_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `menu_item_type`
---
-ALTER TABLE `menu_item_type`
-  MODIFY `ITEM_TYPE_ID` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `order_tracking`
---
-ALTER TABLE `order_tracking`
-  MODIFY `TRACKING_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `PAYMENT_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
---
--- AUTO_INCREMENT for table `riders`
---
-ALTER TABLE `riders`
-  MODIFY `RIDER_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `tb_cart`
---
-ALTER TABLE `tb_cart`
-  MODIFY `CART_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
---
--- AUTO_INCREMENT for table `tb_favs`
---
-ALTER TABLE `tb_favs`
-  MODIFY `FAV_ID` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tb_sizes`
---
-ALTER TABLE `tb_sizes`
-  MODIFY `SIZE_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `tb_users`
---
-ALTER TABLE `tb_users`
-  MODIFY `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
---
--- AUTO_INCREMENT for table `user_type`
---
-ALTER TABLE `user_type`
-  MODIFY `USER_TYPE_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `chef`
---
-ALTER TABLE `chef`
-  ADD CONSTRAINT `chef_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`);
-
---
--- Constraints for table `city`
---
-ALTER TABLE `city`
-  ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`COUNTRY_ID`) REFERENCES `country` (`COUNRY_ID`);
-
---
--- Constraints for table `customer_address`
---
-ALTER TABLE `customer_address`
-  ADD CONSTRAINT `customer_address_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_address_ibfk_2` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `customer_order`
---
-ALTER TABLE `customer_order`
-  ADD CONSTRAINT `customer_order_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_order_ibfk_2` FOREIGN KEY (`ADDRESS_ID`) REFERENCES `customer_address` (`ADDRESS_ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_order_ibfk_3` FOREIGN KEY (`RIDER_ID`) REFERENCES `riders` (`RIDER_ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_order_ibfk_4` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE;
-
---
--- Constraints for table `customer_order_item`
---
-ALTER TABLE `customer_order_item`
-  ADD CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `kitchen`
---
-ALTER TABLE `kitchen`
-  ADD CONSTRAINT `kitchen_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`);
-
---
--- Constraints for table `location`
---
-ALTER TABLE `location`
-  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `menu_item`
---
-ALTER TABLE `menu_item`
-  ADD CONSTRAINT `menu_item_ibfk_1` FOREIGN KEY (`MENU_CAT_ID`) REFERENCES `menu_category` (`MENU_CAT_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `menu_item_type`
---
-ALTER TABLE `menu_item_type`
-  ADD CONSTRAINT `menu_item_type_ibfk_1` FOREIGN KEY (`MENU_ITEM_ID`) REFERENCES `menu_item` (`MENU_ITEM_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `menu_item_type_ibfk_2` FOREIGN KEY (`ITEM_TYPE_SIZE`) REFERENCES `tb_sizes` (`SIZE_TYPE`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `order_tracking`
---
-ALTER TABLE `order_tracking`
-  ADD CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE;
-
---
--- Constraints for table `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`PAYMENT_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `riders`
---
-ALTER TABLE `riders`
-  ADD CONSTRAINT `riders_ibfk_1` FOREIGN KEY (`KITCHEN_ID`) REFERENCES `kitchen` (`KITCHEN_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `riders_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tb_cart`
---
-ALTER TABLE `tb_cart`
-  ADD CONSTRAINT `tb_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_cart_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tb_favs`
---
-ALTER TABLE `tb_favs`
-  ADD CONSTRAINT `tb_favs_ibfk_1` FOREIGN KEY (`MENU_ITEM_ID`) REFERENCES `menu_item` (`MENU_ITEM_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_favs_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tb_users`
---
-ALTER TABLE `tb_users`
-  ADD CONSTRAINT `tb_users_ibfk_1` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`),
-  ADD CONSTRAINT `tb_users_ibfk_2` FOREIGN KEY (`USER_TYPE`) REFERENCES `user_type` (`USER_TYPE_ID`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- View structure for vw_orders
+-- ----------------------------
+DROP VIEW IF EXISTS `vw_orders`;
+CREATE VIEW `vw_orders` AS SELECT
+customer_order.ORDER_ID AS ORDER_ID,
+customer_order.USER_ID AS USER_ID,
+customer_order.KITCHEN_ID AS KITCHEN_ID,
+customer_order.CHEF_ID AS CHEF_ID,
+customer_order.RIDER_ID AS RIDER_ID,
+tb_users.MOBILE AS MOBILE,
+tb_users.SURNAME AS SURNAME,
+tb_users.OTHER_NAMES AS OTHER_NAMES,
+customer_order.ORDER_DATE AS ORDER_DATE,
+customer_order.ORDER_STATUS AS ORDER_STATUS,
+payment.PAYMENT_AMOUNT AS PAYMENT_AMOUNT,
+payment.PAYMENT_NUMBER AS PAYMENT_NUMBER,
+customer_order.NOTES AS NOTES,
+customer_order.PAYMENT_METHOD AS PAYMENT_METHOD,
+customer_order.CREATED_AT AS CREATED_AT,
+customer_order.UPDATED_AT AS UPDATED_AT,
+payment.PAYMENT_DATE AS PAYMENT_DATE,
+location.LOCATION_ID,
+location.LOCATION_NAME,
+location.ADDRESS,
+city.CITY_NAME,
+city.CITY_ID,
+country.COUNRY_ID,
+country.COUNTRY_NAME
+FROM
+(((customer_order
+JOIN tb_users ON ((customer_order.USER_ID = tb_users.USER_ID))))
+LEFT JOIN payment ON ((payment.ORDER_ID = customer_order.ORDER_ID)))
+INNER JOIN location ON customer_order.LOCATION_ID = location.LOCATION_ID
+INNER JOIN city ON location.CITY_ID = city.CITY_ID
+INNER JOIN country ON city.COUNTRY_ID = country.COUNRY_ID ;
