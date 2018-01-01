@@ -82,7 +82,7 @@ $gridColumns = [
     'SURNAME',
     'OTHER_NAMES',
     'MOBILE',
-    'PAYMENT_NUMBER',
+    //'PAYMENT_NUMBER',
     //'PAYMENT_AMOUNT',
     [
         'header' => 'Delivery Location',
@@ -90,7 +90,7 @@ $gridColumns = [
         'format' => 'raw',
         'value' => function ($model) {
             /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            $address = "{$model->aDDRESS->ADDRESS} <br/>{$model->aDDRESS->lOCATION->LOCATION_NAME}";
+            $address = "{$model->lOCATION->LOCATION_NAME} <br/> {$model->lOCATION->cITY->CITY_NAME}";
             return ucwords(strtolower($address));
         }
     ],

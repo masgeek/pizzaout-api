@@ -7,7 +7,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * OrdersSearch represents the model behind the search form of `app\model_extended\ORDER_VIEW_MODEL`.
+ * Class OrdersSearch
+ * @package app\models_search
  */
 class OrdersSearch extends ORDER_VIEW_MODEL
 {
@@ -17,7 +18,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
     public function rules()
     {
         return [
-            [['ORDER_ID', 'USER_ID', 'ADDRESS_ID', 'CHEF_ID',
+            [['ORDER_ID', 'USER_ID', 'LOCATION_ID', 'CHEF_ID',
                 'RIDER_ID', 'SURNAME', 'OTHER_NAMES', 'MOBILE',
                 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS',
                 'NOTES', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_NUMBER'
@@ -70,7 +71,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
         // grid filtering conditions
         $query->andFilterWhere([
             'USER_ID' => $this->USER_ID,
-            'ADDRESS_ID' => $this->ADDRESS_ID,
+            'LOCATION_ID' => $this->LOCATION_ID,
             'CHEF_ID' => $this->CHEF_ID,
             'RIDER_ID' => $this->RIDER_ID,
             'ORDER_DATE' => $this->ORDER_DATE,
@@ -121,7 +122,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
         $query->andFilterWhere([
             'ORDER_ID' => $this->ORDER_ID,
             'USER_ID' => $this->USER_ID,
-            'ADDRESS_ID' => $this->ADDRESS_ID,
+            'LOCATION_ID' => $this->LOCATION_ID,
             'CHEF_ID' => $this->CHEF_ID,
             'RIDER_ID' => $this->RIDER_ID,
             'ORDER_STATUS' => $this->ORDER_STATUS,
@@ -171,7 +172,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
         // grid filtering conditions
         $query->andFilterWhere([
             'USER_ID' => $this->USER_ID,
-            'ADDRESS_ID' => $this->ADDRESS_ID,
+            'LOCATION_ID' => $this->LOCATION_ID,
             'CHEF_ID' => $this->CHEF_ID,
             'RIDER_ID' => $this->RIDER_ID,
             // 'ORDER_DATE' => $this->ORDER_DATE,

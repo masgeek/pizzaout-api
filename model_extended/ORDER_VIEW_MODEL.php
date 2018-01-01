@@ -9,10 +9,12 @@
 namespace app\model_extended;
 
 
+use app\api\modules\v1\models\LOCATION_MODEL;
 use app\models\Chef;
 use app\models\CustomerAddress;
 use app\models\CustomerOrderItem;
 use app\models\Kitchen;
+use app\models\Location;
 use app\models\OrderTracking;
 use app\models\Payment;
 use app\models\Riders;
@@ -25,7 +27,7 @@ use app\models\VwOrders;
  *
  * @property string $ORDER_ID
  * @property string $USER_ID
- * @property string $ADDRESS_ID
+ * @property string $LOCATION_ID
  * @property string $KITCHEN_ID
  * @property string $CHEF_ID
  * @property string $RIDER_ID
@@ -55,7 +57,7 @@ class ORDER_VIEW_MODEL extends VwOrders
     public function attributeLabels()
     {
         $labels = parent::attributeLabels();
-        $labels['ADDRESS_ID'] = 'Delivery Address';
+        $labels['LOCATION_ID'] = 'Delivery Address';
         $labels['KITCHEN_ID'] = 'Assign Kitchen';
         $labels['CHEF_ID'] = 'Assign Chef';
         $labels['RIDER_ID'] = 'Assign Rider';
@@ -79,9 +81,9 @@ class ORDER_VIEW_MODEL extends VwOrders
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getADDRESS()
+    public function getLOCATION()
     {
-        return $this->hasOne(CustomerAddress::className(), ['ADDRESS_ID' => 'ADDRESS_ID']);
+        return $this->hasOne(Location::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 
     /**

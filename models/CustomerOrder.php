@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $ORDER_ID
  * @property int $USER_ID
- * @property int $ADDRESS_ID
+ * @property int $LOCATION_ID
  * @property int $KITCHEN_ID
  * @property int $CHEF_ID
  * @property int $RIDER_ID
@@ -21,11 +21,11 @@ use Yii;
  * @property string $UPDATED_AT
  *
  * @property Users $uSER
- * @property CustomerAddress $aDDRESS
  * @property Riders $rIDER
  * @property Kitchen $kITCHEN
  * @property Status $oRDERSTATUS
  * @property Chef $cHEF
+ * @property Location $lOCATION
  * @property CustomerOrderItem[] $customerOrderItems
  * @property OrderTracking[] $orderTrackings
  * @property Status[] $statuses
@@ -47,18 +47,18 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_ID', 'ADDRESS_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS'], 'required'],
-            [['USER_ID', 'ADDRESS_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID'], 'integer'],
+            [['USER_ID', 'LOCATION_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS'], 'required'],
+            [['USER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID'], 'integer'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
             [['PAYMENT_METHOD'], 'string', 'max' => 20],
             [['ORDER_STATUS'], 'string', 'max' => 30],
             [['NOTES'], 'string', 'max' => 255],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
-            [['ADDRESS_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerAddress::className(), 'targetAttribute' => ['ADDRESS_ID' => 'ADDRESS_ID']],
             [['RIDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Riders::className(), 'targetAttribute' => ['RIDER_ID' => 'RIDER_ID']],
             [['KITCHEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Kitchen::className(), 'targetAttribute' => ['KITCHEN_ID' => 'KITCHEN_ID']],
             [['ORDER_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['ORDER_STATUS' => 'STATUS_NAME']],
             [['CHEF_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Chef::className(), 'targetAttribute' => ['CHEF_ID' => 'CHEF_ID']],
+            [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
         ];
     }
 
@@ -70,7 +70,7 @@ class CustomerOrder extends \yii\db\ActiveRecord
         return [
             'ORDER_ID' => Yii::t('app', 'Order  ID'),
             'USER_ID' => Yii::t('app', 'User  ID'),
-            'ADDRESS_ID' => Yii::t('app', 'Address  ID'),
+            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
             'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
             'CHEF_ID' => Yii::t('app', 'Chef  ID'),
             'RIDER_ID' => Yii::t('app', 'Rider  ID'),
@@ -89,14 +89,6 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function getUSER()
     {
         return $this->hasOne(Users::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getADDRESS()
-    {
-        return $this->hasOne(CustomerAddress::className(), ['ADDRESS_ID' => 'ADDRESS_ID']);
     }
 
     /**
@@ -129,6 +121,14 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function getCHEF()
     {
         return $this->hasOne(Chef::className(), ['CHEF_ID' => 'CHEF_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLOCATION()
+    {
+        return $this->hasOne(Location::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 
     /**

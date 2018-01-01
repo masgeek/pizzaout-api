@@ -3,6 +3,7 @@
 namespace app\modules\customer\controllers;
 
 
+use app\api\modules\v1\models\LOCATION_MODEL;
 use yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -187,8 +188,10 @@ class DefaultController extends Controller
         $model = new CUSTOMER_ORDERS();
         $customer_order_items = new CUSTOMER_ORDER_ITEMS();
 
+        $location = LOCATION_MODEL::find()->one();
+
         $model->USER_ID = $user_id;
-        $model->ADDRESS_ID = 1;
+        $model->LOCATION_ID = $location->LOCATION_ID;
         $model->ORDER_DATE = APP_UTILS::GetCurrentDateTime();
         $model->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_PENDING;
 

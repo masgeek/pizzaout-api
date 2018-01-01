@@ -20,12 +20,10 @@ use Yii;
  * @property string $LAST_UPDATED
  * @property string $CLIENT_TOKEN
  *
- * @property CustomerAddress[] $customerAddresses
  * @property CustomerOrder[] $customerOrders
  * @property Riders[] $riders
  * @property Cart[] $carts
  * @property Favs[] $favs
- * @property Location $lOCATION
  * @property UserType $uSERTYPE
  */
 class Users extends \yii\db\ActiveRecord
@@ -44,12 +42,11 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'PASSWORD'], 'required'],
+            [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'PASSWORD'], 'required'],
             [['USER_TYPE', 'MOBILE', 'LOCATION_ID'], 'integer'],
             [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD'], 'string', 'max' => 100],
             [['CLIENT_TOKEN'], 'string', 'max' => 255],
-            [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
             [['USER_TYPE'], 'exist', 'skipOnError' => true, 'targetClass' => UserType::className(), 'targetAttribute' => ['USER_TYPE' => 'USER_TYPE_ID']],
         ];
     }
@@ -73,14 +70,6 @@ class Users extends \yii\db\ActiveRecord
             'LAST_UPDATED' => Yii::t('app', 'Last  Updated'),
             'CLIENT_TOKEN' => Yii::t('app', 'Client  Token'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomerAddresses()
-    {
-        return $this->hasMany(CustomerAddress::className(), ['USER_ID' => 'USER_ID']);
     }
 
     /**
@@ -113,14 +102,6 @@ class Users extends \yii\db\ActiveRecord
     public function getFavs()
     {
         return $this->hasMany(Favs::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLOCATION()
-    {
-        return $this->hasOne(Location::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 
     /**

@@ -38,7 +38,7 @@ $attributes = [
                 'attribute' => 'ADDRESS_ID',
                 'format' => 'raw',
                 'displayOnly' => true,
-                'value' => "<address>{$model->aDDRESS->ADDRESS}<br/>{$model->aDDRESS->lOCATION->LOCATION_NAME}</address>",
+                'value' => "<address>{$model->lOCATION->LOCATION_NAME} <br/> {$model->lOCATION->cITY->CITY_NAME}</address>",
             ],
             [
                 'attribute' => 'ORDER_STATUS',

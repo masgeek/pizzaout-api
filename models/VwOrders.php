@@ -20,11 +20,17 @@ use Yii;
  * @property string $PAYMENT_AMOUNT
  * @property string $PAYMENT_NUMBER
  * @property string $NOTES Can contain payment text from mobile transactions etc
- * @property int $ADDRESS_ID
  * @property string $PAYMENT_METHOD
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
  * @property string $PAYMENT_DATE
+ * @property int $LOCATION_ID
+ * @property string $LOCATION_NAME
+ * @property string $ADDRESS
+ * @property string $CITY_NAME
+ * @property int $CITY_ID
+ * @property int $COUNRY_ID
+ * @property string $COUNTRY_NAME
  */
 class VwOrders extends \yii\db\ActiveRecord
 {
@@ -42,13 +48,14 @@ class VwOrders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'MOBILE', 'ADDRESS_ID'], 'integer'],
-            [['USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_AMOUNT', 'PAYMENT_METHOD', 'PAYMENT_DATE'], 'required'],
+            [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'MOBILE', 'LOCATION_ID', 'CITY_ID', 'COUNRY_ID'], 'integer'],
+            [['USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_METHOD', 'LOCATION_NAME', 'CITY_NAME', 'COUNTRY_NAME'], 'required'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_DATE'], 'safe'],
             [['PAYMENT_AMOUNT'], 'number'],
-            [['SURNAME', 'OTHER_NAMES'], 'string', 'max' => 100],
+            [['ADDRESS'], 'string'],
+            [['SURNAME', 'OTHER_NAMES', 'CITY_NAME', 'COUNTRY_NAME'], 'string', 'max' => 100],
             [['ORDER_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
-            [['NOTES'], 'string', 'max' => 255],
+            [['NOTES', 'LOCATION_NAME'], 'string', 'max' => 255],
             [['PAYMENT_METHOD'], 'string', 'max' => 20],
         ];
     }
@@ -72,11 +79,17 @@ class VwOrders extends \yii\db\ActiveRecord
             'PAYMENT_AMOUNT' => Yii::t('app', 'Payment  Amount'),
             'PAYMENT_NUMBER' => Yii::t('app', 'Payment  Number'),
             'NOTES' => Yii::t('app', 'Can contain payment text from mobile transactions etc'),
-            'ADDRESS_ID' => Yii::t('app', 'Address  ID'),
             'PAYMENT_METHOD' => Yii::t('app', 'Payment  Method'),
             'CREATED_AT' => Yii::t('app', 'Created  At'),
             'UPDATED_AT' => Yii::t('app', 'Updated  At'),
             'PAYMENT_DATE' => Yii::t('app', 'Payment  Date'),
+            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
+            'LOCATION_NAME' => Yii::t('app', 'Location  Name'),
+            'ADDRESS' => Yii::t('app', 'Address'),
+            'CITY_NAME' => Yii::t('app', 'City  Name'),
+            'CITY_ID' => Yii::t('app', 'City  ID'),
+            'COUNRY_ID' => Yii::t('app', 'Counry  ID'),
+            'COUNTRY_NAME' => Yii::t('app', 'Country  Name'),
         ];
     }
 }

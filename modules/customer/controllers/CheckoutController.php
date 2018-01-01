@@ -44,15 +44,15 @@ class CheckoutController extends Controller
         $vpcVersion = $card->vpcVersion;
         $gatewayURL = $card->gatewayURL;
 
-        $merchantID = $card->merchantidKES;
-        $merchantCode = $card->merchantcodeKES;
+        $merchantID = $card->merchantidUSD;
+        $merchantCode = $card->merchantcodeUSD;
         $secureToken = $card->tokenUSD;
 
 
         $uniqueRefID = strtoupper(uniqid("{$id}-"));
         $uniqueOrderID = strtoupper(uniqid("{$id}-"));
 
-        $currency = 'KES';
+        $currency = 'USD';
 
         $paymentDataArr = array(
             "vpc_Amount" => $amountDue,//Final price should be multied by 100

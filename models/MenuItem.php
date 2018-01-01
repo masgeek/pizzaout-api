@@ -17,7 +17,6 @@ use Yii;
  * @property int $MAX_QTY Show the maximum number of quantities one can select from
  *
  * @property MenuCategory $mENUCAT
- * @property MenuCategory $mENUCAT0
  * @property MenuItemType[] $menuItemTypes
  * @property Favs[] $favs
  */
@@ -43,7 +42,6 @@ class MenuItem extends \yii\db\ActiveRecord
             [['HOT_DEAL', 'VEGETARIAN'], 'boolean'],
             [['MENU_ITEM_NAME', 'MENU_ITEM_IMAGE'], 'string', 'max' => 255],
             [['MENU_CAT_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuCategory::className(), 'targetAttribute' => ['MENU_CAT_ID' => 'MENU_CAT_ID']],
-            [['MENU_CAT_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuCategory::className(), 'targetAttribute' => ['MENU_CAT_ID' => 'MENU_CAT_ID']],
         ];
     }
 
@@ -68,14 +66,6 @@ class MenuItem extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getMENUCAT()
-    {
-        return $this->hasOne(MenuCategory::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMENUCAT0()
     {
         return $this->hasOne(MenuCategory::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
     }

@@ -8,114 +8,114 @@ use kartik\detail\DetailView;
 /* @var $form yii\widgets\ActiveForm */
 
 $attributes = [
-	[
-		'group' => true,
-		'label' => 'Order Details',
-		'rowOptions' => ['class' => 'success']
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'ORDER_ID',
+    [
+        'group' => true,
+        'label' => 'Order Details',
+        'rowOptions' => ['class' => 'success']
+    ],
+    [
+        'columns' => [
+            [
+                'attribute' => 'ORDER_ID',
 //'label'=>'Book #',
-				'displayOnly' => true,
-				'valueColOptions' => ['style' => 'width:30%']
-			],
-			[
-				'label' => 'Order Amount',
-				'attribute' => 'ORDER_ID',
-				'displayOnly' => true,
-				'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID),
-				'format' => 'currency',
-				'inputContainer' => ['class' => 'col-sm-6'],
-			],
+                'displayOnly' => true,
+                'valueColOptions' => ['style' => 'width:30%']
+            ],
+            [
+                'label' => 'Order Amount',
+                'attribute' => 'ORDER_ID',
+                'displayOnly' => true,
+                'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID),
+                'format' => 'currency',
+                'inputContainer' => ['class' => 'col-sm-6'],
+            ],
 
-		],
-	],
-	[
-		'columns' => [
-			[
-				'label' => 'Delivery Address',
-				'attribute' => 'ADDRESS_ID',
-				'format' => 'raw',
-				'displayOnly' => true,
-				'value' => "<address>{$model->aDDRESS->ADDRESS}<br/>{$model->aDDRESS->lOCATION->LOCATION_NAME}</address>",
-			],
-			[
-				'attribute' => 'ORDER_STATUS',
-				'format' => 'raw',
-				'displayOnly' => true,
-				'value' => "<span class='badge' style='background-color: {$model->oRDERSTATUS->COLOR};'> </span>  <code>" . $model->ORDER_STATUS . '</code>',
-				//'type' => DetailView::INPUT_COLOR,
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-	[
-		'columns' => [
-			['label' => 'Quantity',
-				'attribute' => 'ORDER_ID',
-				'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderQuantity($model->ORDER_ID),
-				'displayOnly' => true,
-			],
-			[
-				'attribute' => 'ORDER_DATE',
-				'displayOnly' => true,
-				'format' => 'datetime',
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-	[
-		'columns' => [
-			[
-				'label' => 'Assigned Rider',
-				'attribute' => 'RIDER_ID',
-				'displayOnly' => true,
-				'value' => $model->rIDER != null ? $model->rIDER->uSER->SURNAME : 'Not Assigned',
-			],
-			[
-				'label' => 'Assigned Chef',
-				'attribute' => 'CHEF_ID',
-				'displayOnly' => true,
-				'value' => $model->cHEF != null ? $model->cHEF->CHEF_NAME : 'Not Assigned',
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
-	[
-		'columns' => [
-			[
-				'label' => 'Assigned Kitchen',
-				'attribute' => 'KITCHEN_ID',
-				'displayOnly' => true,
-				'value' => $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'Not Assigned',
-			],
-		],
-	],
-	[
-		'columns' => [
-			[
-				'attribute' => 'PAYMENT_METHOD',
-				'displayOnly' => true,
-			],
-			[
-				'attribute' => 'NOTES',
-				'displayOnly' => true,
-				'valueColOptions' => ['style' => 'width:30%'],
-			],
-		],
-	],
+        ],
+    ],
+    [
+        'columns' => [
+            [
+                'label' => 'Delivery Address',
+                'attribute' => 'ADDRESS_ID',
+                'format' => 'raw',
+                'displayOnly' => true,
+                'value' => "<address>{$model->lOCATION->LOCATION_NAME} <br/> {$model->lOCATION->cITY->CITY_NAME}</address>",
+            ],
+            [
+                'attribute' => 'ORDER_STATUS',
+                'format' => 'raw',
+                'displayOnly' => true,
+                'value' => "<span class='badge' style='background-color: {$model->oRDERSTATUS->COLOR};'> </span>  <code>" . $model->ORDER_STATUS . '</code>',
+                //'type' => DetailView::INPUT_COLOR,
+                'valueColOptions' => ['style' => 'width:30%'],
+            ],
+        ],
+    ],
+    [
+        'columns' => [
+            ['label' => 'Quantity',
+                'attribute' => 'ORDER_ID',
+                'value' => \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderQuantity($model->ORDER_ID),
+                'displayOnly' => true,
+            ],
+            [
+                'attribute' => 'ORDER_DATE',
+                'displayOnly' => true,
+                'format' => 'datetime',
+                'valueColOptions' => ['style' => 'width:30%'],
+            ],
+        ],
+    ],
+    [
+        'columns' => [
+            [
+                'label' => 'Assigned Rider',
+                'attribute' => 'RIDER_ID',
+                'displayOnly' => true,
+                'value' => $model->rIDER != null ? $model->rIDER->uSER->SURNAME : 'Not Assigned',
+            ],
+            [
+                'label' => 'Assigned Chef',
+                'attribute' => 'CHEF_ID',
+                'displayOnly' => true,
+                'value' => $model->cHEF != null ? $model->cHEF->CHEF_NAME : 'Not Assigned',
+                'valueColOptions' => ['style' => 'width:30%'],
+            ],
+        ],
+    ],
+    [
+        'columns' => [
+            [
+                'label' => 'Assigned Kitchen',
+                'attribute' => 'KITCHEN_ID',
+                'displayOnly' => true,
+                'value' => $model->kITCHEN != null ? $model->kITCHEN->KITCHEN_NAME : 'Not Assigned',
+            ],
+        ],
+    ],
+    [
+        'columns' => [
+            [
+                'attribute' => 'PAYMENT_METHOD',
+                'displayOnly' => true,
+            ],
+            [
+                'attribute' => 'NOTES',
+                'displayOnly' => true,
+                'valueColOptions' => ['style' => 'width:30%'],
+            ],
+        ],
+    ],
 
 ];
 ?>
 
 <?= DetailView::widget([
-	'model' => $model,
-	'mode' => DetailView::MODE_VIEW,
-	'condensed' => true,
-	'bordered' => true,
-	'hover' => false,
+    'model' => $model,
+    'mode' => DetailView::MODE_VIEW,
+    'condensed' => true,
+    'bordered' => true,
+    'hover' => false,
     'panel' => [
         'heading' => 'Order Information # ' . $model->ORDER_ID,
         'type' => DetailView::TYPE_PRIMARY,
@@ -123,5 +123,5 @@ $attributes = [
             'template' => '{title}'
         ]
     ],
-	'attributes' => $attributes,
+    'attributes' => $attributes,
 ]) ?>

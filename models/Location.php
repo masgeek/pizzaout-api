@@ -12,9 +12,8 @@ use Yii;
  * @property string $LOCATION_NAME
  * @property string $ADDRESS
  *
- * @property CustomerAddress[] $customerAddresses
+ * @property CustomerOrder[] $customerOrders
  * @property City $cITY
- * @property Users[] $users
  */
 class Location extends \yii\db\ActiveRecord
 {
@@ -56,9 +55,9 @@ class Location extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCustomerAddresses()
+    public function getCustomerOrders()
     {
-        return $this->hasMany(CustomerAddress::className(), ['LOCATION_ID' => 'LOCATION_ID']);
+        return $this->hasMany(CustomerOrder::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 
     /**
@@ -67,13 +66,5 @@ class Location extends \yii\db\ActiveRecord
     public function getCITY()
     {
         return $this->hasOne(City::className(), ['CITY_ID' => 'CITY_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsers()
-    {
-        return $this->hasMany(Users::className(), ['LOCATION_ID' => 'LOCATION_ID']);
     }
 }
