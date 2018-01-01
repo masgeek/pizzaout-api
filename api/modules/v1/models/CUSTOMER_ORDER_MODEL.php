@@ -67,6 +67,16 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return $data;
         };
 
+        $fields['ORDER_TOTAL'] = function ($model) {
+            /* @var $model CUSTOMER_ORDER_MODEL */
+            $data = $model->customerOrderItems; //CUSTOMER_ORDER_ITEM::GetItemTypes($model->ORDER_ID);
+            $total = 0;
+            foreach ($data as $key => $value) {
+                $total = $total + (float)($value->SUBTOTAL);
+            }
+            return $total;
+        };
+
 
         return $fields;
     }
