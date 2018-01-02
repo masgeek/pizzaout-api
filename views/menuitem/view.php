@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\MENU_ITEMS */
 
-$this->title = $model->mENUCAT->MENU_CAT_NAME;
+$this->title = $model->MENU_ITEM_NAME;
 $this->params['breadcrumbs'][] = ['label' => 'Menu  Items', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mENUCAT.MENU_CAT_NAME',
             'MENU_ITEM_NAME',
             'MENU_ITEM_DESC:ntext',
-            //'MENU_ITEM_IMAGE',
+            'MENU_ITEM_IMAGE',
             'HOT_DEAL:boolean',
             'VEGETARIAN:boolean',
             'MAX_QTY',
