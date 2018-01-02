@@ -9,7 +9,7 @@ return [
     //'dsn' => 'dblib:host=localhost;dbname=mydatabase', // MS SQL Server, dblib driver
     //'dsn' => 'mssql:host=localhost;dbname=mydatabase', // MS SQL Server, mssql driver
     //'dsn' => 'oci:dbname=//localhost:1521/mydatabase', // Oracle
-    'tablePrefix'=>'tb_',
+    'tablePrefix' => 'tb_',
     'username' => 'tsobucok_pizza',
     'password' => 'Cyberhopper123',
     'charset' => 'utf8',
@@ -18,4 +18,8 @@ return [
     'schemaCacheDuration' => 3600,
     // Name of the cache component used to store schema information
     'schemaCache' => 'db_cache',
+    'on afterOpen' => function ($event) {
+        // $event->sender refers to the DB connection
+        $event->sender->createCommand("SET time_zone = '+03:00'")->execute();
+    }
 ];
