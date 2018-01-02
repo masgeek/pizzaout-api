@@ -82,7 +82,7 @@ class UserController extends ActiveController
 
         return [
             'RESET_SENT' => $user != null ? true : false,
-            'MESSAGE' => $user != null ? 'A Password reset link has been sent to your registered  email' : 'Please check your username'
+            'MESSAGE' => $user != null ? 'A Password reset link has been sent to your registered  email' : 'No matching username found, please check and try again'
         ];
     }
 
