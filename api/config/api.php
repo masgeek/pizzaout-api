@@ -201,6 +201,7 @@ $config = [
                         'GET,POST,PUT,DELETE push' => 'push',
                         'GET {user_id}/token' => 'token',
                         'POST login' => 'login',
+                        'POST recover' => 'recover',
                         'POST register' => 'register',
                         'POST add' => 'add',
                         'POST reserve' => 'reserve',
