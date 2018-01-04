@@ -8,12 +8,12 @@
 
 namespace app\helpers;
 
+use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDER_ITEMS;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\CUSTOMER_PAYMENTS;
-use Yii;
-use app\model_extended\CART_MODEL;
 use app\model_extended\STATUS_MODEL;
+use Yii;
 
 class ORDER_HELPER
 {
@@ -132,9 +132,25 @@ class ORDER_HELPER
     }
 
 
+    /**
+     * @return mixed
+     */
     public static function getUssdNumber()
     {
         return Yii::$app->params['ussdNumber'];
+    }
+
+    /**
+     * @return int
+     */
+    public static function getVatRate()
+    {
+        return Yii::$app->params['vatRate'];
+    }
+
+    public static function getTagLine()
+    {
+        return Yii::$app->params['tagLine'];
     }
 
     /**
@@ -145,6 +161,8 @@ class ORDER_HELPER
      * @return bool
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
+     *
+     * @deprecated
      */
     public static function CreateOrderFromCartOld($user_id, array $order_payment_arr, array $cart_items = [], $isCard = false)
     {

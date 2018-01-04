@@ -9,6 +9,7 @@
 namespace app\model_extended;
 
 
+use app\helpers\ORDER_HELPER;
 use app\helpers\ReceiptItem;
 use app\models\VwOrderItems;
 
@@ -23,23 +24,16 @@ class VW_ORDER_ITEMS extends VwOrderItems
      */
     public static function CreateReceiptObjects($order_id)
     {
-        $items = [];
+        $items = [
+            new ReceiptItem('ITEMS')
+        ];
 
         $orders = self::GetOrders($order_id);
-        if ($orders != null) {
-            /*$items = array(
-                new ReceiptItem("Example item #1", "4.00"),
-                new ReceiptItem("Another thing", "3.50"),
-                new ReceiptItem("Something else", "1.00"),
-                new ReceiptItem("A final item", "4.45"),
-            );*/
-            foreach ($orders as $key => $value) {
-                $price = $value->QUANTITY * (float)$value->PRICE;
-                $itemName = "{$value->MENU_ITEM_NAME} ({$value->MENU_CAT_NAME}";
+        foreach ($orders as $key => $value) {
+            $itemTotal = $value->QUANTITY * (float)$value->PRICE;
+            $itemName = "{$value->QUANTITY}x {$value->MENU_ITEM_NAME}-{$value->MENU_CAT_NAME}";
 
-                $items[] = new ReceiptItem($itemName, $price);
-
-            }
+            $items[] = new ReceiptItem($itemName, $itemTotal);
         }
 
         return $items;
@@ -55,26 +49,28 @@ class VW_ORDER_ITEMS extends VwOrderItems
         $subtotal = 0;
 
         $orders = self::GetOrders($order_id);
-        if ($orders != null) {
-            foreach ($orders as $key => $value) {
-                $subtotal = $subtotal + ($value->QUANTITY * (float)$value->PRICE);
-            }
+        foreach ($orders as $key => $value) {
+            $subtotal = $subtotal + ($value->QUANTITY * (float)$value->PRICE);
         }
 
         return new ReceiptItem('Subtotal', $subtotal);
     }
 
-    public static function CreateReceiptTax($order_id, $taxRate)
+    public static function CreateReceiptTax($subtotal)
     {
-        $subtotal = 0;
+        $vatRate = ORDER_HELPER::getVatRate();
+        $tax = ($subtotal * $vatRate) / 100;
 
-        $orders = self::GetOrders($order_id);
-        if ($orders != null) {
-            foreach ($orders as $key => $value) {
-                $subtotal = $subtotal + ($value->QUANTITY * (float)$value->PRICE);
-            }
-        }
+        $taxObject = new ReceiptItem('VAT', $tax);
+        $taxObject->TAX_AMOUNT = $tax;
 
-        return new ReceiptItem('Subtotal', $subtotal);
+        return $taxObject;
+    }
+
+    public static function CreateReceiptTotal($subtotal, $taxAmount)
+    {
+        $total = $subtotal + $taxAmount;
+
+        return new ReceiptItem('Total', $total, true);
     }
 }

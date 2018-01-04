@@ -14,6 +14,7 @@ $db2 = require_once(__DIR__ . '/db_2.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'Pizza Out',
     'basePath' => dirname(__DIR__),
     'timeZone' => $timezone,
     'bootstrap' => ['log'],

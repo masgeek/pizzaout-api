@@ -16,20 +16,24 @@ class ReceiptItem
     private $addCurrencySymbol;
     private $currency;
 
+    public $SUBTOTAL;
+    public $TAX_AMOUNT;
+
     /**
      * ReceiptItem constructor.
      * @param string $name
-     * @param int $price
+     * @param string $price
      * @param bool $addCurrencySymbol
      * @param string $currency
      */
-    public function __construct($name = '', $price = 0, $addCurrencySymbol = false, $currency = 'USD')
+    public function __construct($name = '', $price = '', $addCurrencySymbol = false, $currency = 'USD')
     {
         $this->name = $name;
         $this->price = $price;
         $this->currency = $currency;
 
         $this->addCurrencySymbol = $addCurrencySymbol;
+        $this->SUBTOTAL = $price;
     }
 
     /**
