@@ -39,6 +39,7 @@ class ReceiptController extends Controller
      */
     public function actionPrintReceipt($order_id)
     {
+        $this->view->title = 'Sample Print Receipt';
         //get the order information
         /* Information for the receipt */
         $orderitems = VW_ORDER_ITEMS::CreateReceiptObjects($order_id);
@@ -58,9 +59,9 @@ class ReceiptController extends Controller
 
         $readFile = $cleanBaseURL . '/' . $file;
 
+        $contents = file_get_contents($readFile);
 
-        echo '<pre>';
-        return file_get_contents($readFile);
+        return $this->render('receipt', ['message' => $contents]);
     }
 
     /**
