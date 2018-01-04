@@ -49,14 +49,14 @@ class APP_UTILS
     }
 
     /**
-     * @param bool $readable
+     * @param string $format
      * @return string
      * @throws \yii\base\InvalidConfigException
      */
-    public static function GetCurrentDateTime($readable = false)
+    public static function GetCurrentDateTime($format = 'yyyy-MM-dd HH:mm:ss')
     {
 
-        return $readable ? \Yii::$app->formatter->asDatetime('now', 'medium') : \Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd HH:mm:ss');
+        return \Yii::$app->formatter->asDatetime('now', $format);
 
     }
 

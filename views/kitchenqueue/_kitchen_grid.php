@@ -12,16 +12,37 @@ $gridColumns = [
     ['class' => 'yii\grid\SerialColumn'],
     [
         'class' => '\kartik\grid\ActionColumn',
-        'template' => '{update}',
+        'template' => '{update}{receipt}',
         'buttons' => [
             'update' => function ($url, $model, $key) {
                 return $url;
+            },
+            'receipt' => function ($url, $model, $key) {
+                return $url;
+            },
+        ],
+        'visibleButtons' => [
+            'update' => function ($model) {
+                return $model->ORDER_STATUS != \app\helpers\ORDER_HELPER::STATUS_ORDER_READY;
+            },
+            'receipt' => function ($model) {
+                return $model->ORDER_STATUS === \app\helpers\ORDER_HELPER::STATUS_ORDER_READY;
             },
         ],
         'urlCreator' => function ($action, $model, $key, $index) {
             /* @var $model app\models_search\OrdersSearch */
             $url = '#';
             $class = 'btn btn-sm ';
+            if ($action === 'receipt') {
+                switch ($model->ORDER_STATUS) {
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_READY:
+                        $class .= 'btn-primary';
+                        $action = 'Print Receipt';
+                        $url = \yii\helpers\Url::toRoute(['receipt/print-receipt', 'order_id' => $model->ORDER_ID]);
+                        break;
+                }
+
+            }
 
             if ($action === 'update') {
                 switch ($model->ORDER_STATUS) {
@@ -128,7 +149,7 @@ $gridColumns = [
     'ORDER_DATE:datetime',
     'PAYMENT_METHOD',
     'ORDER_STATUS',
-    'NOTES'
+    'NOTES',
 ];
 ?>
 

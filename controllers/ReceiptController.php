@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use app\helpers\APP_UTILS;
 use app\helpers\ReceiptItem;
+use app\model_extended\VW_ORDER_ITEMS;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
@@ -32,7 +33,13 @@ class ReceiptController extends Controller
      */
     public function actionPrintReceipt($order_id)
     {
-        return "Receipt printing";
+        $order_id = 1051;
+        //get the order information
+        $order = VW_ORDER_ITEMS::CreateReceiptObjects($order_id);
+
+        return VW_ORDER_ITEMS::CreateReceiptTax($order_id, 16);
+
+        return $this->renderPartial('error', ['message' => 'hello sammy']);
     }
 
     /**
@@ -58,7 +65,7 @@ class ReceiptController extends Controller
         $total = new ReceiptItem('Total', '14.25', true);
         /* Date is kept the same for testing */
 //$date = date('l jS \of F Y h:i:s A');
-        $date = APP_UTILS::GetCurrentDateTime(true);
+        $date = APP_UTILS::GetCurrentDateTime('full');
         /* Start the printer */
         $logo = EscposImage::load("images/app_images/logo.png", true);
         $printer = new Printer($connector);
@@ -212,7 +219,7 @@ class ReceiptController extends Controller
         $printer->cut();
         /* Graphics - this demo will not work on some non-Epson printers */
         try {
-            $logo = EscposImage::load("resources/escpos-php.png", false);
+            $logo = EscposImage::load("images/app_images/logo.png", false);
             $imgModes = array(
                 Printer::IMG_DEFAULT,
                 Printer::IMG_DOUBLE_WIDTH,
