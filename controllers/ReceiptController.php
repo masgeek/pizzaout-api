@@ -14,7 +14,6 @@ use app\helpers\ORDER_HELPER;
 use app\helpers\ReceiptItem;
 use app\model_extended\VW_ORDER_ITEMS;
 use Mike42\Escpos\EscposImage;
-use Mike42\Escpos\PrintConnectors\CupsPrintConnector;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
 use Yii;
@@ -70,8 +69,8 @@ class ReceiptController extends Controller
         $tagLine = ORDER_HELPER::getTagLine();
         $printDate = APP_UTILS::GetCurrentDateTime('medium');
 
-        $connector = new CupsPrintConnector('pizza');
-        //$connector = new FilePrintConnector($fileName);
+        //$connector = new CupsPrintConnector('pizza');
+        $connector = new FilePrintConnector($fileName);
 
         /* Start the printer */
         $printer = new Printer($connector);
