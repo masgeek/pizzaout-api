@@ -23,7 +23,7 @@ $gridColumns = [
         ],
         'visibleButtons' => [
             'update' => function ($model) {
-                return $model->ORDER_STATUS != \app\helpers\ORDER_HELPER::STATUS_ORDER_READY;
+                return true;//$model->ORDER_STATUS != \app\helpers\ORDER_HELPER::STATUS_ORDER_READY;
             },
             'receipt' => function ($model) {
                 return $model->ORDER_STATUS === \app\helpers\ORDER_HELPER::STATUS_ORDER_READY;
