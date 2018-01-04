@@ -55,9 +55,8 @@ class APP_UTILS
      */
     public static function GetCurrentDateTime($readable = false)
     {
-        $time = \Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd HH:mm:ss'); // 2014-10-06
 
-        return $readable ? \Yii::$app->formatter->asDatetime($time, 'full') : $time;
+        return $readable ? \Yii::$app->formatter->asDatetime('now', 'medium') : \Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd HH:mm:ss');
 
     }
 
