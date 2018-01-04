@@ -31,7 +31,7 @@ class VW_ORDER_ITEMS extends VwOrderItems
         $orders = self::GetOrders($order_id);
         foreach ($orders as $key => $value) {
             $itemTotal = $value->QUANTITY * (float)$value->PRICE;
-            $itemName = "{$value->QUANTITY}x {$value->MENU_ITEM_NAME}-{$value->MENU_CAT_NAME}";
+            $itemName = "{$value->MENU_ITEM_NAME} {$value->QUANTITY}x{$value->QUANTITY}";
 
             $items[] = new ReceiptItem($itemName, $itemTotal);
         }

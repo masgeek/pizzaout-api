@@ -8,7 +8,7 @@
 namespace app\commands;
 
 use Mike42\Escpos\EscposImage;
-use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
 use yii\console\Controller;
 
@@ -36,7 +36,8 @@ class HelloController extends Controller
      */
     public function actionDemo()
     {
-        $connector = new FilePrintConnector("php://stdout");
+        //$connector = new FilePrintConnector("php://stdout");
+        $connector = new WindowsPrintConnector('pizza');
         $printer = new Printer($connector);
         /* Initialize */
         $printer->initialize();

@@ -14,6 +14,7 @@ use app\helpers\ORDER_HELPER;
 use app\helpers\ReceiptItem;
 use app\model_extended\VW_ORDER_ITEMS;
 use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\CupsPrintConnector;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
 use Yii;
@@ -38,7 +39,6 @@ class ReceiptController extends Controller
      */
     public function actionPrintReceipt($order_id)
     {
-        $order_id = 1051;
         //get the order information
         /* Information for the receipt */
         $orderitems = VW_ORDER_ITEMS::CreateReceiptObjects($order_id);
@@ -60,7 +60,6 @@ class ReceiptController extends Controller
      * @param $subtotal
      * @param $tax
      * @param $total
-     * @param string $tagLine
      * @param string $fileName
      * @return int
      * @throws \Exception
@@ -71,9 +70,8 @@ class ReceiptController extends Controller
         $tagLine = ORDER_HELPER::getTagLine();
         $printDate = APP_UTILS::GetCurrentDateTime('medium');
 
-        //$connector = new WindowsPrintConnector("COM1");
-        $connector = new FilePrintConnector($fileName);
-
+        $connector = new CupsPrintConnector('pizza');
+        //$connector = new FilePrintConnector($fileName);
 
         /* Start the printer */
         $printer = new Printer($connector);
@@ -116,7 +114,7 @@ class ReceiptController extends Controller
         /* Footer */
         $printer->feed(2);
         $printer->setJustification(Printer::JUSTIFY_CENTER);
-        $printer->text("$shopName\n");
+        // $printer->text("$shopName\n");
         $printer->text("$tagLine\n");
         $printer->feed(2);
         $printer->text($printDate . "\n");
