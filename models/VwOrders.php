@@ -12,7 +12,7 @@ use Yii;
  * @property int $KITCHEN_ID
  * @property int $CHEF_ID
  * @property int $RIDER_ID
- * @property int $MOBILE
+ * @property string $MOBILE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
  * @property string $ORDER_DATE
@@ -48,11 +48,12 @@ class VwOrders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'MOBILE', 'LOCATION_ID', 'CITY_ID', 'COUNRY_ID'], 'integer'],
+            [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'LOCATION_ID', 'CITY_ID', 'COUNRY_ID'], 'integer'],
             [['USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_METHOD', 'LOCATION_NAME', 'CITY_NAME', 'COUNTRY_NAME'], 'required'],
             [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_DATE'], 'safe'],
             [['PAYMENT_AMOUNT'], 'number'],
             [['ADDRESS'], 'string'],
+            [['MOBILE'], 'string', 'max' => 25],
             [['SURNAME', 'OTHER_NAMES', 'CITY_NAME', 'COUNTRY_NAME'], 'string', 'max' => 100],
             [['ORDER_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
             [['NOTES', 'LOCATION_NAME'], 'string', 'max' => 255],

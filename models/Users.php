@@ -12,13 +12,15 @@ use Yii;
  * @property int $USER_TYPE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
- * @property int $MOBILE
+ * @property string $MOBILE
  * @property string $EMAIL
  * @property int $LOCATION_ID
  * @property string $PASSWORD
  * @property string $DATE_REGISTERED
  * @property string $LAST_UPDATED
  * @property string $CLIENT_TOKEN
+ * @property string $RESET_TOKEN
+ * @property string $TOKEN_EXPIRY
  *
  * @property CustomerOrder[] $customerOrders
  * @property Riders[] $riders
@@ -42,10 +44,11 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'PASSWORD'], 'required'],
-            [['USER_TYPE', 'MOBILE', 'LOCATION_ID'], 'integer'],
-            [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
-            [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD'], 'string', 'max' => 100],
+            [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'required'],
+            [['USER_TYPE', 'LOCATION_ID'], 'integer'],
+            [['DATE_REGISTERED', 'LAST_UPDATED', 'TOKEN_EXPIRY'], 'safe'],
+            [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'string', 'max' => 100],
+            [['MOBILE'], 'string', 'max' => 25],
             [['CLIENT_TOKEN'], 'string', 'max' => 255],
             [['USER_TYPE'], 'exist', 'skipOnError' => true, 'targetClass' => UserType::className(), 'targetAttribute' => ['USER_TYPE' => 'USER_TYPE_ID']],
         ];
@@ -69,6 +72,8 @@ class Users extends \yii\db\ActiveRecord
             'DATE_REGISTERED' => Yii::t('app', 'Date  Registered'),
             'LAST_UPDATED' => Yii::t('app', 'Last  Updated'),
             'CLIENT_TOKEN' => Yii::t('app', 'Client  Token'),
+            'RESET_TOKEN' => Yii::t('app', 'Reset  Token'),
+            'TOKEN_EXPIRY' => Yii::t('app', 'Token  Expiry'),
         ];
     }
 
