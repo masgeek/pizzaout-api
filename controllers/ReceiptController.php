@@ -17,6 +17,7 @@ use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
 use Yii;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class ReceiptController extends Controller
@@ -48,9 +49,18 @@ class ReceiptController extends Controller
         $total = VW_ORDER_ITEMS::CreateReceiptTotal($subtotal->SUBTOTAL, $tax->TAX_AMOUNT);
 
 
-        return $this->PrintReceipt(Yii::$app->name, $orderitems, $subtotal, $tax, $total);
+        $file = $this->PrintReceipt(Yii::$app->name . 'Order Number ' . $order_id, $orderitems, $subtotal, $tax, $total);
         //let us prepare the receipt
         //return $this->renderPartial('error', ['message' => 'hello sammy']);
+
+        $baseUrl = Url::to([null], true);
+        $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "receipt"));
+
+        $readFile = $cleanBaseURL . '/' . $file;
+
+
+        echo '<pre>';
+        return file_get_contents($readFile);
     }
 
     /**
@@ -124,7 +134,7 @@ class ReceiptController extends Controller
         $printer->pulse();
         $printer->close();
 
-        return 1;
+        return $fileName;
 
     }
 

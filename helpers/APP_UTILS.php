@@ -68,25 +68,26 @@ class APP_UTILS
 
     /**
      * @param $image_url
-     * @param string $alias
      * @param bool $fromApi
+     * @param string $alias
+     * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages')
+    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
     {
-        $imageFolder = "images";
+
         if ($alias != null) {
             $imageFolder = \Yii::getAlias($alias);
         }
 
         $baseUrl = Url::to([null], true);
 
+
         if ($fromApi) {
             $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
         } else {
             $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
         }
-
         $parsed = parse_url($cleanBaseURL);
         if (empty($parsed['scheme'])) {
             //$urlStr = 'http://' . ltrim($urlStr, '/');
