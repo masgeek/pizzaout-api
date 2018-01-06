@@ -73,7 +73,7 @@ class APP_UTILS
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
+    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images", $needle = "api")
     {
 
         if ($alias != null) {
