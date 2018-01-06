@@ -1,4 +1,5 @@
 <?php
+\Yii::setAlias('@logsfolder', dirname(__DIR__) . '/../logs');
 \Yii::setAlias('@foodimages', 'images/foodimages/');
 
 
@@ -8,6 +9,7 @@ $braintree = require_once(__DIR__ . '/../../config/braintree.php');
 $params = require_once(__DIR__ . '/../../config/params.php');
 $formatter = require_once(__DIR__ . '/../../config/formatter.php');
 $session = require_once(__DIR__ . '/../../config/session.php');
+$log = require_once(__DIR__ . '/../../config/logger.php');
 $config = [
     'id' => 'basic-api',
     'name' => 'PIZZA OUT API',
@@ -59,25 +61,7 @@ $config = [
                 //'application/json' => 'yii\web\JsonParser',
             ]
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                    // Create API log in the standard log dir
-                    // But in file 'api.log':
-                    'logFile' => '@app/runtime/logs/api.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    // Create API log in the standard log dir
-                    // But in file 'api.log':
-                    'logFile' => '@app/runtime/logs/trace.log',
-                ],
-            ],
-        ],
+        'log' => $log,
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
