@@ -10,6 +10,7 @@ namespace app\helpers;
 
 
 use app\model_extended\CART_MODEL;
+use Yii;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -76,6 +77,7 @@ class APP_UTILS
     public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
     {
 
+        return Yii::$app->homeUrl . '/j.png';
         if ($alias != null) {
             $imageFolder = \Yii::getAlias($alias);
             $baseUrl = Url::to([null], true);
