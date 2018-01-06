@@ -53,10 +53,6 @@ class UserController extends ActiveController
 
     public function actionLogin()
     {
-        $data = Yii::$app->request->headers->get("api_token");//->getBodyParams();
-
-        return $data;
-
         /* @var $request USER_MODEL */
         if (!Yii::$app->request->isPost) {
             throw new BadRequestHttpException('Please use POST');
