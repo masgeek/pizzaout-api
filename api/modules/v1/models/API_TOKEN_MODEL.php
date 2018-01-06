@@ -43,4 +43,9 @@ class API_TOKEN_MODEL extends ApiToken
         }
         return null;
     }
+
+    public static function IsValidToken($token, $user_id)
+    {
+        return false;
+    }
 }
