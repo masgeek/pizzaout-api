@@ -1,4 +1,10 @@
 <?php
+
+$token = 'ua49VXlkp8VI';
+$user = 'pizzaout_client';
+$database = 'pizzaout_db';
+
+
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;port=3306;dbname=tsobucok_pizza', // MySQL, MariaDB
