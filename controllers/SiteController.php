@@ -126,8 +126,6 @@ class SiteController extends Controller
      */
     public function actionTerms()
     {
-        $this->view->title = 'Terms & Conditions';
-        $this->layout = 'login_layout';
-        return $this->render('terms');
+
     }
 }
