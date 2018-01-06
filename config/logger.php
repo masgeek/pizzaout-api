@@ -22,11 +22,11 @@ return [
             'levels' => ['error', 'warning'],
             'logFile' => '@logsfolder/404.log',
         ],
-        'email' => [
+        /*'email' => [
             'class' => 'yii\log\EmailTarget',
             'except' => ['yii\web\HttpException:404'],
             'levels' => ['error', 'warning', 'info'],
             'message' => ['from' => 'developer@pizzaout.so', 'to' => 'barsamms@gmail.com'],
-        ],
+        ],*/
     ],
 ];

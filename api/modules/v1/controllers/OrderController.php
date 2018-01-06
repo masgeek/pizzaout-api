@@ -8,16 +8,15 @@
 
 namespace app\api\modules\v1\controllers;
 
-use app\api\modules\v1\models\LOCATION_MODEL;
-use Yii;
+use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
+use app\api\modules\v1\models\LOCATION_MODEL;
 use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
-use app\models_search\OrdersSearch;
+use Yii;
 use yii\data\ActiveDataProvider;
-use yii\db\Query;
 use yii\rest\ActiveController;
 
 class OrderController extends ActiveController
@@ -27,6 +26,33 @@ class OrderController extends ActiveController
      */
     public $modelClass = 'app\api\modules\v1\models\CUSTOMER_ORDER_MODEL';
 
+    /**
+     * Checks the privilege of the current user.
+     *
+     * This method should be overridden to check whether the current user has the privilege
+     * to run the specified action against the specified data model.
+     * If the user does not have access, a [[ForbiddenHttpException]] should be thrown.
+     *
+     * @param string $action the ID of the action to be executed
+     * @param \yii\base\Model $model the model to be accessed. If `null`, it means no specific model is being accessed.
+     * @param array $params additional parameters
+     * @throws ForbiddenHttpException if the user does not have access
+     * @throws \yii\web\ForbiddenHttpException
+     */
+    public function checkAccess($action, $model = null, $params = [])
+    {
+        $api_token = Yii::$app->request->headers->get("api_token", null);
+        $user_id = Yii::$app->request->headers->get("user_id", null);
+
+        if ($api_token == null && $user_id == null) {
+            throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
+        }
+        //check if the token is valid
+        if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
+            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+        }
+    }
+
 
     /**
      * @param $user_id
@@ -35,6 +61,7 @@ class OrderController extends ActiveController
      */
     public function actionPay($user_id)
     {
+        $this->checkAccess('pay');
         //create fictitious order
         $customerOrder = new CUSTOMER_ORDER_MODEL();
         $orderItems = new CUSTOMER_ORDER_ITEM();
@@ -102,6 +129,7 @@ class OrderController extends ActiveController
      */
     public function actionMyOrders($user_id)
     {
+        $this->checkAccess('my-orders');
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'CONFIRMED');
         $order_type = strtoupper($order_type_post);
         return $this->getOrders($order_type, $user_id);
@@ -113,6 +141,7 @@ class OrderController extends ActiveController
      */
     public function actionActiveOrders($user_id)
     {
+        $this->checkAccess('active-orders');
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
         $order_type = strtoupper($order_type_post);
         return $this->getOrders($order_type, $user_id);
@@ -124,6 +153,7 @@ class OrderController extends ActiveController
      */
     public function actionRiderOrders($rider_id)
     {
+        $this->checkAccess('rider-orders');
         $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
         $order_type = strtoupper($order_type_post);
         return $this->getOrders($order_type, $rider_id);

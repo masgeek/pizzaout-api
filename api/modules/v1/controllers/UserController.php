@@ -38,29 +38,39 @@ class UserController extends ActiveController
         return $actions;
     }
 
+    /**
+     * @param string $action
+     * @param null $model
+     * @param array $params
+     * @throws \yii\web\ForbiddenHttpException
+     */
     public function checkAccess($action, $model = null, $params = [])
     {
-        switch ($action) {
-            case 'create':
-            case 'index':
-            case 'delete':
-            default:
-                throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this product.');
-                break;
+
+        if ($action === 'create' or $action === 'update' or $action === 'delete' or $action === 'index' or $action === 'view') {
+            throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this product.');
         }
+
         $api_token = Yii::$app->request->headers->get("api_token", null);
         $user_id = Yii::$app->request->headers->get("user_id", null);
 
-        if ($api_token === null && $user_id === null) {
-            //throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this product.');
+        if ($api_token == null && $user_id == null) {
+            throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
         }
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
-            // throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
         }
 
+        throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
     }
 
+    /**
+     * @return array|null|static
+     * @throws BadRequestHttpException
+     * @throws \yii\base\Exception
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionLogin()
     {
         /* @var $request USER_MODEL */

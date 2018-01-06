@@ -8,13 +8,16 @@
 
 namespace app\api\modules\v1\controllers;
 
+use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\MENU_CAT_MODEL;
 use app\api\modules\v1\models\OFFERED_SERVICE_MODEL;
 use app\api\modules\v1\models\RESERVED_SERVICE_MODEL;
 use app\api\modules\v1\models\SALON_MODEL;
 use app\api\modules\v1\models\STAFF_MODEL;
+use Yii;
 use yii\rest\ActiveController;
 
+;
 
 class MenucategoryController extends ActiveController
 {
@@ -31,13 +34,43 @@ class MenucategoryController extends ActiveController
         return $actions;
     }
 
+    /**
+     * Checks the privilege of the current user.
+     *
+     * This method should be overridden to check whether the current user has the privilege
+     * to run the specified action against the specified data model.
+     * If the user does not have access, a [[ForbiddenHttpException]] should be thrown.
+     *
+     * @param string $action the ID of the action to be executed
+     * @param \yii\base\Model $model the model to be accessed. If `null`, it means no specific model is being accessed.
+     * @param array $params additional parameters
+     * @throws ForbiddenHttpException if the user does not have access
+     * @throws \yii\web\ForbiddenHttpException
+     */
+    public function checkAccess($action, $model = null, $params = [])
+    {
+        $api_token = Yii::$app->request->headers->get("api_token", null);
+        $user_id = Yii::$app->request->headers->get("user_id", null);
+
+        if ($api_token == null && $user_id == null) {
+            throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
+        }
+        //check if the token is valid
+        if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
+            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+        }
+    }
+
 
     /**
      * Return only the active categories
      * @return array|\yii\db\ActiveRecord[]
+     * @throws ForbiddenHttpException
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function actionIndex()
     {
+        $this->checkAccess('index');
         return MENU_CAT_MODEL::find()
             ->where(['ACTIVE' => 1])
             ->orderBy(['RANK' => SORT_ASC])
