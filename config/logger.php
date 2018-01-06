@@ -10,7 +10,11 @@ return [
         [
             'class' => 'yii\log\FileTarget',
             'levels' => ['info'],
-            //'logFile' => 'logs/trace.log',
+            'logVars' => ['_FILES'],
+            'logFile' => '@logsfolder/trace.log',
+            'prefix' => function ($message) {
+                return Yii::$app->id;
+            }
         ],
     ],
 ];

@@ -11,7 +11,7 @@ $formatter = require_once(__DIR__ . '/../../config/formatter.php');
 $session = require_once(__DIR__ . '/../../config/session.php');
 $log = require_once(__DIR__ . '/../../config/logger.php');
 $config = [
-    'id' => 'basic-api',
+    'id' => 'API',
     'name' => 'PIZZA OUT API',
     // Need to get one level up:
     'basePath' => dirname(__DIR__) . '/..',
