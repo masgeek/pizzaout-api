@@ -8,9 +8,7 @@
 
 namespace app\api\modules\v1\controllers;
 
-use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\TRACKING_MODEL;
-use Yii;
 use yii\rest\ActiveController;
 use yii\web\ForbiddenHttpException;
 
@@ -42,16 +40,16 @@ class TimelineController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
-        $api_token = Yii::$app->request->headers->get("api_token", null);
+        /*$api_token = Yii::$app->request->headers->get("api_token", null);
         $user_id = Yii::$app->request->headers->get("user_id", null);
 
         if ($api_token == null && $user_id == null) {
-            throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
+            throw new \yii\web\ForbiddenHttpException("You can't $action this section. $api_token");
         }
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
-        }
+        }*/
     }
 
     /**
