@@ -74,10 +74,9 @@ class APP_UTILS
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
+    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "@foodimages")
     {
 
-        $imageFolder = \Yii::getAlias($alias);
         return Yii::$app->homeUrl . '/' . $imageFolder;
         if ($alias != null) {
             $imageFolder = \Yii::getAlias($alias);
