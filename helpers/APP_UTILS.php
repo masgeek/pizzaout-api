@@ -73,27 +73,28 @@ class APP_UTILS
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images", $needle = "api")
+    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
     {
 
         if ($alias != null) {
             $imageFolder = \Yii::getAlias($alias);
-        }
-
-        $baseUrl = Url::to([null], true);
+            $baseUrl = Url::to([null], true);
 
 
-        if ($fromApi) {
-            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
+            if ($fromApi) {
+                $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
+            } else {
+                $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
+            }
+            $parsed = parse_url($cleanBaseURL);
+            if (empty($parsed['scheme'])) {
+                //$urlStr = 'http://' . ltrim($urlStr, '/');
+                $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
+            }
         } else {
-            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
+            $cleanBaseURL = Url::base(true);
+            $cleanBaseURL .= '/';
         }
-        $parsed = parse_url($cleanBaseURL);
-        if (empty($parsed['scheme'])) {
-            //$urlStr = 'http://' . ltrim($urlStr, '/');
-            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
-        }
-
         return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
 }

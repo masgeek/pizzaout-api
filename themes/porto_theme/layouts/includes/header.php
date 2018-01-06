@@ -6,8 +6,8 @@
 
 use yii\helpers\Html;
 
-$logo = \app\helpers\APP_UTILS::BuildImageUrl("logo.png", false, "@web");
-$user_image = \app\helpers\APP_UTILS::BuildImageUrl("!logged-user.jpg", false, "images/app_images");
+$logo = \app\helpers\APP_UTILS::BuildImageUrl("logo.png", false, null, "images/app_images");
+$user_image = \app\helpers\APP_UTILS::BuildImageUrl("!logged-user.jpg", false, null, "images/app_images");
 
 
 ?>
