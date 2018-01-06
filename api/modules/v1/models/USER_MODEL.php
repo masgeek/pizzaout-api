@@ -24,8 +24,12 @@ use app\helpers\APP_UTILS;
 use app\model_extended\RIDER_MODEL;
 use app\models\Users;
 use app\models\UserType;
-use yii\db\Expression;
 
+/**
+ * Class USER_MODEL
+ * @package app\api\modules\v1\models
+ * @property API_TOKEN_MODEL $apiToken
+ */
 class USER_MODEL extends Users
 {
     const SCENARIO_CREATE = 'create';
@@ -98,9 +102,25 @@ class USER_MODEL extends Users
             $rider = RIDER_MODEL::findOne(['USER_ID' => $model->USER_ID]);
             return $rider != null ? $rider->RIDER_ID : 0;
         };
+
+        $fields['API_TOKEN'] = function ($model) {
+            /* @var $model USER_MODEL */
+            $token = $model->apiToken;
+
+            return $token != null ? $token->API_TOKEN : 0;
+
+        };
         unset($fields['PASSWORD']); //remove the password field
 
         ksort($fields);
         return $fields;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApiToken()
+    {
+        return $this->hasOne(API_TOKEN_MODEL::className(), ['USER_ID' => 'USER_ID']);
     }
 }

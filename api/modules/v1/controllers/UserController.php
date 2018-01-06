@@ -9,6 +9,7 @@
 namespace app\api\modules\v1\controllers;
 
 use app\api\modules\v1\models\ACCOUNT_TYPE_MODEL;
+use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\SERVICE_MODEL;
 use app\api\modules\v1\models\USER_MODEL;
 use app\models\ContactForm;
@@ -54,6 +55,9 @@ class UserController extends ActiveController
 
         if ($user != null) {
             $message = $user;
+
+            //create the api token too
+            API_TOKEN_MODEL::CreateApiToken($user->USER_ID);
         } else {
             $message = [
                 'status' => false,

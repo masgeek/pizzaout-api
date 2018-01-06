@@ -49,18 +49,46 @@ class APP_UTILS
     }
 
     /**
+     * @param int $length
+     * @return string
+     * @throws \yii\base\Exception
+     */
+    public static function GenerateToken($length = 32)
+    {
+        $randomString = \Yii::$app->getSecurity()->generateRandomString($length);
+        return $randomString;
+    }
+
+    /**
      * @param string $format
      * @return string
      * @throws \yii\base\InvalidConfigException
      */
-    public static function GetCurrentDateTime($format = 'yyyy-MM-dd HH:mm:ss')
+    public
+    static function GetCurrentDateTime($format = 'yyyy-MM-dd HH:mm:ss')
     {
 
         return \Yii::$app->formatter->asDatetime('now', $format);
 
     }
 
-    public static function GetCartTimesTamp($user_id)
+    /**
+     * @param string $format
+     * @param int $period
+     * @param string $perodType
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public
+    static function GetFutureDateTime($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $perodType = 'M')
+    {
+
+        return \Yii::$app->formatter->asDatetime('now', $format);
+
+    }
+
+    public
+    static function GetCartTimesTamp($user_id)
     {
         $model = CART_MODEL::findOne(['USER_ID' => $user_id]);
         return $model != null ? $model->CART_TIMESTAMP : self::GetTimeStamp();
@@ -71,7 +99,8 @@ class APP_UTILS
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrlBase($image_url, $imageFolder = "@foodimages")
+    public
+    static function BuildImageUrlBase($image_url, $imageFolder = "@foodimages")
     {
 
         //return Yii::$app->homeUrl . '/' . $imageFolder;
@@ -88,7 +117,8 @@ class APP_UTILS
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
+    public
+    static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
     {
 
         if ($alias != null) {
