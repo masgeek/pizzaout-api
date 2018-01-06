@@ -57,7 +57,7 @@ class MenucategoryController extends ActiveController
         }
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
-            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+            throw new \yii\web\ForbiddenHttpException("Invalid token, access denied $api_token $user_id");
         }
     }
 

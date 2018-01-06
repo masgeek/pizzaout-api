@@ -44,8 +44,14 @@ class API_TOKEN_MODEL extends ApiToken
         return null;
     }
 
-    public static function IsValidToken($token, $user_id)
+    /**
+     * @param $api_token
+     * @param $user_id
+     * @return bool
+     */
+    public static function IsValidToken($api_token, $user_id)
     {
-        return false;
+        $token = self::findOne(['API_TOKEN' => $api_token, 'USER_ID' => $user_id]);
+        return $token != null ? true : false;
     }
 }

@@ -62,7 +62,6 @@ class UserController extends ActiveController
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
         }
 
-        throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
     }
 
     /**
