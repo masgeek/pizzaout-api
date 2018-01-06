@@ -75,8 +75,8 @@ class MenuitemController extends ActiveController
      */
     public function actionCatItem($menu_cat_id)
     {
-        $this->_apiToken = Yii::$app->request->headers->get("api-token", null);
-        $this->_userID = Yii::$app->request->headers->get("user-id", null);
+        //$this->_apiToken = Yii::$app->request->headers->get("api-token", null);
+        //$this->_userID = Yii::$app->request->headers->get("user-id", null);
         $this->checkAccess('cat-item');
         return MENU_ITEM_MODEL::find()
             ->where(['MENU_CAT_ID' => $menu_cat_id])
@@ -91,9 +91,6 @@ class MenuitemController extends ActiveController
      */
     public function actionSingleCat()
     {
-        $this->_apiToken = Yii::$app->request->headers->get("api_token", null);
-        $this->_userID = Yii::$app->request->headers->get("user_id", null);
-
         $this->checkAccess('single-cat');
         return MENU_ITEM_MODEL::find()
             ->orderBy(['MENU_ITEM_NAME' => SORT_ASC])
