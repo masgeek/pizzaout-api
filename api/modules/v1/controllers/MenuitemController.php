@@ -8,11 +8,13 @@
 
 namespace app\api\modules\v1\controllers;
 
+use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\MENU_ITEM_MODEL;
 use app\api\modules\v1\models\OFFERED_SERVICE_MODEL;
 use app\api\modules\v1\models\RESERVED_SERVICE_MODEL;
 use app\api\modules\v1\models\SALON_MODEL;
 use app\api\modules\v1\models\STAFF_MODEL;
+use Yii;
 use yii\rest\ActiveController;
 
 class MenuitemController extends ActiveController
@@ -21,6 +23,10 @@ class MenuitemController extends ActiveController
      * @var object
      */
     public $modelClass = 'app\api\modules\v1\models\MENU_ITEM_MODEL';
+
+    private $_apiToken = 0;
+    private $_userID = 0;
+
 
     public function actions()
     {
@@ -45,16 +51,19 @@ class MenuitemController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
-        /*$api_token = Yii::$app->request->headers->get("api_token", null);
-        $user_id = Yii::$app->request->headers->get("user_id", null);
 
-        if ($api_token == null && $user_id == null) {
-            throw new \yii\web\ForbiddenHttpException("You can't $action this section. $api_token");
+        if ($this->_apiToken == 0 or $this->_userID == 0) {
+            $this->_apiToken = Yii::$app->request->headers->get("api_token", null);
+            $this->_userID = Yii::$app->request->headers->get("user_id", null);
+        }
+
+        if ($this->_apiToken == null or $this->_userID == null) {
+            throw new \yii\web\ForbiddenHttpException("You can't $action this section. {$this->_apiToken} {$this->_userID} ");
         }
         //check if the token is valid
-        if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
+        if (!API_TOKEN_MODEL::IsValidToken($this->_apiToken, $this->_userID)) {
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
-        }*/
+        }
     }
 
 
@@ -80,6 +89,9 @@ class MenuitemController extends ActiveController
      */
     public function actionSingleCat()
     {
+        $this->_apiToken = Yii::$app->request->headers->get("api_token", null);
+        $this->_userID = Yii::$app->request->headers->get("user_id", null);
+
         $this->checkAccess('single-cat');
         return MENU_ITEM_MODEL::find()
             ->orderBy(['MENU_ITEM_NAME' => SORT_ASC])
