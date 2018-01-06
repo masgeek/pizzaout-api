@@ -10,10 +10,34 @@ Target Server Type    : MariaDB
 Target Server Version : 100211
 File Encoding         : 65001
 
-Date: 2018-01-06 08:02:21
+Date: 2018-01-06 08:43:50
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for api_token
+-- ----------------------------
+DROP TABLE IF EXISTS `api_token`;
+CREATE TABLE `api_token` (
+  `TOKEN_ID`     BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `USER_ID`      BIGINT(20)          DEFAULT NULL,
+  `API_TOKEN`    VARCHAR(255)        DEFAULT NULL,
+  `DATE_CREATED` DATETIME            DEFAULT NULL,
+  `EXPIRY_DATE`  DATETIME            DEFAULT NULL,
+  PRIMARY KEY (`TOKEN_ID`),
+  KEY `DATE_CREATED` (`DATE_CREATED`, `EXPIRY_DATE`),
+  KEY `USER_ID` (`USER_ID`),
+  CONSTRAINT `api_token_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Records of api_token
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for chef
@@ -587,11 +611,11 @@ CREATE TABLE `tb_users` (
   `LAST_UPDATED`    DATETIME              DEFAULT NULL,
   `CLIENT_TOKEN`    VARCHAR(255)          DEFAULT NULL,
   `RESET_TOKEN`     VARCHAR(100) NOT NULL,
-  `TOKEN_EXPIRY`    TIMESTAMP    NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `USER_STATUS`     BIT(1)                DEFAULT b'1'
+  COMMENT 'Indicate if user is active or not',
   PRIMARY KEY (`USER_ID`),
   KEY `LOCATION_ID_idx` (`LOCATION_ID`) USING BTREE,
   KEY `USER_TYPE_idx` (`USER_TYPE`) USING BTREE,
-  KEY `TOKEN_EXPIRY` (`TOKEN_EXPIRY`),
   KEY `DATE_REGISTERED` (`DATE_REGISTERED`),
   CONSTRAINT `tb_users_ibfk_2` FOREIGN KEY (`USER_TYPE`) REFERENCES `user_type` (`USER_TYPE_ID`)
     ON UPDATE CASCADE
@@ -600,73 +624,69 @@ CREATE TABLE `tb_users` (
 -- ----------------------------
 -- Records of tb_users
 -- ----------------------------
-INSERT INTO `tb_users` VALUES ('5', 'pkyalo', '1', 'kingoo', 'Peter Kyalo', '724802220', 'petchaloo@gmail.com', '1',
+INSERT INTO `tb_users` VALUES ('5', 'pkyalo', '1', 'KINGOO', 'PETER KYALO', '724802220', 'petchaloo@gmail.com', '1',
                                     '834dfae0c40820faccf4f83580be800545dca3c1', '2017-10-09 07:06:51',
-                                    '2017-10-09 07:06:51', NULL, '', '2018-01-06 07:22:00');
+                                    '2017-10-09 07:06:51', NULL, '', '');
 INSERT INTO `tb_users` VALUES ('10', 'fatelord', '1', 'BARASA', 'SAMMY M', '1123', 'barsamms@gmail.com', '1',
                                      '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-10-09 07:06:51',
-                                     '2017-10-09 07:06:51', NULL, '', '2018-01-04 11:09:23');
+                                     '2017-10-09 07:06:51', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('11', 'admin', '2', 'admin', 'admin', '123', 'admin@pizzaout.so', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef',
-         '2017-11-10 13:11:43', '2017-11-10 13:11:49', NULL, '', '2018-01-06 07:22:23');
+  ('11', 'admin', '2', 'ADMIN', 'ADMIN', '123', 'admin@pizzaout.so', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef',
+         '2017-11-10 13:11:43', '2017-11-10 13:11:49', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('12', 'rider', '3', 'Hassan', 'Omar', '1123', 'rider@gmail.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef',
-         '2017-10-09 07:06:51', '2017-10-09 07:06:51', NULL, '', '2018-01-06 07:22:09');
-INSERT INTO `tb_users` VALUES ('24', 'kyalo', '1', 'kingoo', 'Peter kyalo', '2147483647', 'pkyalo@uonbi.ac.ke', '1',
+  ('12', 'rider', '3', 'HASSAN', 'OMAR', '1123', 'rider@gmail.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef',
+         '2017-10-09 07:06:51', '2017-10-09 07:06:51', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('24', 'kyalo', '1', 'KINGOO', 'PETER KYALO', '2147483647', 'pkyalo@uonbi.ac.ke', '1',
                                      '834dfae0c40820faccf4f83580be800545dca3c1', '2017-12-20 12:38:11',
-                                     '2017-12-20 12:38:11', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('25', 'mohacpr', '1', 'Mohamed', 'Mohamed', '619000333', 'mohacpr@gmail.com', '1',
+                                     '2017-12-20 12:38:11', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('25', 'mohacpr', '1', 'MOHAMED', 'MOHAMED', '619000333', 'mohacpr@gmail.com', '1',
                                      '2d7d1969f957c467cfb161b81ff408af6b94a8ea', '2017-12-20 19:39:38',
-                                     '2017-12-20 19:39:38', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('29', 'Shumac', '1', 'Shumac', 'Shushuu', '2147483647', 'shumac55@gmail.com', '1',
+                                     '2017-12-20 19:39:38', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('29', 'shumac', '1', 'SHUMAC', 'SHUSHUU', '2147483647', 'shumac55@gmail.com', '1',
                                      '513a7c4018127c653ce3b9037e29bdd9c03e29f7', '2017-12-21 13:50:19',
-                                     '2017-12-21 13:50:19', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('37', 'Aw-ali', '1', 'Kadar', 'Mohamed', '615417477', 'kadarfeyore1@gmail.com', '1',
+                                     '2017-12-21 13:50:19', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('37', 'aw-ali', '1', 'KADAR', 'MOHAMED', '615417477', 'kadarfeyore1@gmail.com', '1',
                                      'ae62e53fb3b2afe899a5dbd09cad2eac8a2487f1', '2017-12-21 15:46:08',
-                                     '2017-12-21 15:46:08', NULL, '', '2018-01-04 11:09:23');
+                                     '2017-12-21 15:46:08', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('44', 'Abdikasim', '1', 'Moalim', 'Ahmed', '617999222', 'abdulkasimmoalim@gmail.com', '1',
-         'b82886f310d6c223dea476600babca5849670e21', '2017-12-21 17:27:14', '2017-12-21 17:27:14', NULL, '',
-   '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('45', 'Sandheere', '1', 'Mohamed', 'Sandheere', '2147483647', 'sanka6016@gmail.com', '1',
+  ('44', 'abdikasim', '1', 'MOALIM', 'AHMED', '617999222', 'abdulkasimmoalim@gmail.com', '1',
+         'b82886f310d6c223dea476600babca5849670e21', '2017-12-21 17:27:14', '2017-12-21 17:27:14', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('45', 'sandheere', '1', 'MOHAMED', 'SANDHEERE', '2147483647', 'sanka6016@gmail.com', '1',
                                      '890940a175fdd194c3f42a27e8ecbfefb983094d', '2017-12-21 17:48:20',
-                                     '2017-12-21 17:48:20', NULL, '', '2018-01-04 11:09:23');
+                                     '2017-12-21 17:48:20', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('46', 'Sandheere10', '1', 'Mohamed', 'Sandheere', '2147483647', 'sanka6015@gmail.com', '1',
-         '8238a351f035bc1f72a1a7cff337221a73dae6f2', '2017-12-21 18:02:10', '2017-12-21 18:02:10', NULL, '',
-   '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('47', 'Mr. Vision', '1', 'Yasir', 'Baffo', '618309457', 'mr.vision2025@gmail.com', '1',
+  ('46', 'sandheere10', '1', 'MOHAMED', 'SANDHEERE', '2147483647', 'sanka6015@gmail.com', '1',
+         '8238a351f035bc1f72a1a7cff337221a73dae6f2', '2017-12-21 18:02:10', '2017-12-21 18:02:10', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('47', 'mr. vision', '1', 'YASIR', 'BAFFO', '618309457', 'mr.vision2025@gmail.com', '1',
                                      '7c4a8d09ca3762af61e59520943dc26494f8941b', '2017-12-21 18:32:22',
-                                     '2017-12-21 18:32:22', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('48', 'Aainab', '1', 'Ainab', 'Ahmed Abdi', '615513533', 'axmedcaynab@gmail.com', '1',
+                                     '2017-12-21 18:32:22', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('48', 'aainab', '1', 'AINAB', 'AHMED ABDI', '615513533', 'axmedcaynab@gmail.com', '1',
                                      '0fb641dff5070d488355f89a1ad0fdc8203e0f33', '2017-12-23 06:44:32',
-                                     '2017-12-23 06:44:32', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('49', 'ozgur.catal', '1', 'catal', 'ozgur', '612136659', 'ozgur.catal@hotmail.com', '1',
+                                     '2017-12-23 06:44:32', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('49', 'ozgur.catal', '1', 'CATAL', 'OZGUR', '612136659', 'ozgur.catal@hotmail.com', '1',
                                      '7a59c162217c6abbe65db58ecdfcb1765780af7b', '2017-12-24 13:08:46',
-                                     '2017-12-24 13:08:46', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('50', 'Rafiki01', '1', 'Rafik', 'Hassan', '618900015', 'hafarah1@gmail.com', '1',
+                                     '2017-12-24 13:08:46', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('50', 'rafiki01', '1', 'RAFIK', 'HASSAN', '618900015', 'hafarah1@gmail.com', '1',
                                      'fa758a0c5aa550ebd7f7a09d2a8c9a335be7dcd0', '2017-12-24 15:22:41',
-                                     '2017-12-24 15:22:41', NULL, '', '2018-01-04 11:09:23');
+                                     '2017-12-24 15:22:41', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('51', 'zuhuur', '1', 'Zahra', 'Zuu', '618812510', 'zahra@sostec.so', '1', '5ddf228c30669af17fb926a7d728c4e9d6c8df27',
-         '2017-12-25 10:09:12', '2017-12-25 10:09:12', NULL, '', '2018-01-04 11:09:23');
+  ('51', 'zuhuur', '1', 'ZAHRA', 'ZUU', '618812510', 'zahra@sostec.so', '1', '5ddf228c30669af17fb926a7d728c4e9d6c8df27',
+         '2017-12-25 10:09:12', '2017-12-25 10:09:12', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('52', 'zahradhaqane', '1', 'Dhaqane', 'Zahra Osman', '615533643', 'zahradhaqane@gmail.com', '1',
-         'e72fb1b6ffd172fef3a3c97b4555a0669cac4c7e', '2017-12-26 04:15:21', '2017-12-26 04:15:21', NULL, '',
-   '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('53', 'Aallaa', '1', 'Aallaa', 'habad', '615888129', 'Aallaahabad@gmail.com', '1',
+  ('52', 'zahradhaqane', '1', 'DHAQANE', 'ZAHRA OSMAN', '615533643', 'zahradhaqane@gmail.com', '1',
+         'e72fb1b6ffd172fef3a3c97b4555a0669cac4c7e', '2017-12-26 04:15:21', '2017-12-26 04:15:21', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('53', 'aallaa', '1', 'AALLAA', 'HABAD', '615888129', 'Aallaahabad@gmail.com', '1',
                                      '3edacb467448252d0f8f49c732ba00cc438b5895', '2017-12-26 16:49:26',
-                                     '2017-12-26 16:49:26', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('54', 'Badle', '1', 'Maxamuud Xamud', 'Badle', '617641354', 'badle7171@gmail.com', '1',
+                                     '2017-12-26 16:49:26', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('54', 'badle', '1', 'MAXAMUUD XAMUD', 'BADLE', '617641354', 'badle7171@gmail.com', '1',
                                      'c4f7d269ffa6b3c3c77fb0b3d14a3afdd0161182', '2017-12-27 07:41:24',
-                                     '2017-12-27 07:41:24', NULL, '', '2018-01-04 11:09:23');
-INSERT INTO `tb_users` VALUES ('55', 'shiine', '1', 'mohamed', 'ali', '619616338', 'shiine318@hotmail.com', '1',
+                                     '2017-12-27 07:41:24', NULL, '', '');
+INSERT INTO `tb_users` VALUES ('55', 'shiine', '1', 'MOHAMED', 'ALI', '619616338', 'shiine318@hotmail.com', '1',
                                      '02ecc6c8afccd0dd029bddc56641cd309a171f3e', '2017-12-28 20:54:38',
-                                     '2017-12-28 20:54:38', NULL, '', '2018-01-04 11:09:23');
+                                     '2017-12-28 20:54:38', NULL, '', '');
 INSERT INTO `tb_users` VALUES
-  ('56', 'Arafat', '1', 'Arafat', 'Abdullahi', '615518583', 'arafat.abdulahi@gmail.com', '1',
-         '866e7caa1629cd75acb8af543d55cc3985c47212', '2018-01-01 19:14:05', '2018-01-01 19:14:05', NULL, '',
-   '2018-01-04 11:09:23');
+  ('56', 'arafat', '1', 'ARAFAT', 'ABDULLAHI', '615518583', 'arafat.abdulahi@gmail.com', '1',
+         '866e7caa1629cd75acb8af543d55cc3985c47212', '2018-01-01 19:14:05', '2018-01-01 19:14:05', NULL, '', '');
 
 -- ----------------------------
 -- Table structure for user_type
