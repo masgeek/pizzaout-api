@@ -2,7 +2,7 @@
 return [
     'traceLevel' => YII_DEBUG ? 3 : 0,
     'targets' => [
-        [
+        /*[
             'class' => 'yii\log\FileTarget',
             'levels' => ['error', 'warning'],
             'logFile' => '@logsfolder/api.log',
@@ -15,6 +15,18 @@ return [
             'prefix' => function ($message) {
                 return Yii::$app->id;
             }
+        ],*/
+        'file' => [
+            'class' => 'yii\log\FileTarget',
+            'categories' => ['yii\web\HttpException:404'],
+            'levels' => ['error', 'warning'],
+            'logFile' => '@logsfolder/404.log',
+        ],
+        'email' => [
+            'class' => 'yii\log\EmailTarget',
+            'except' => ['yii\web\HttpException:404'],
+            'levels' => ['error', 'warning', 'info'],
+            'message' => ['from' => 'developer@pizzaout.so', 'to' => 'barsamms@gmail.com'],
         ],
     ],
 ];

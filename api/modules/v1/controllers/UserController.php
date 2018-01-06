@@ -36,7 +36,7 @@ class UserController extends ActiveController
         return $actions;
     }
 
-    public function checkAccess($action, $model = null, $params = [])
+    /*public function checkAccess($action, $model = null, $params = [])
     {
         $api_token = Yii::$app->request->headers->get("api_token", null);
         $user_id = Yii::$app->request->headers->get("user_id", null);
@@ -49,7 +49,7 @@ class UserController extends ActiveController
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
         }
 
-    }
+    }*/
 
     public function actionLogin()
     {

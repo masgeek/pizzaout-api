@@ -11,6 +11,7 @@ $merchant = require_once(__DIR__ . '/card_merchant.php');
 $formatter = require_once(__DIR__ . '/formatter.php');
 $session = require_once(__DIR__ . '/session.php');
 $log = require_once(__DIR__ . '/logger.php');
+$mailer = require_once(__DIR__ . '/mailer.php');
 $db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.php');
 //$db2 = require_once(__DIR__ . '/db_2.php');
 
@@ -70,13 +71,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
-        ],
+        'mailer' => $mailer,
         'log' => $log,
         'db' => $db,
         //'db2' => $db2,
