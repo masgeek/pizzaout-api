@@ -10,7 +10,6 @@ namespace app\helpers;
 
 
 use app\model_extended\CART_MODEL;
-use Yii;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -69,34 +68,16 @@ class APP_UTILS
 
     /**
      * @param $image_url
-     * @param bool $fromApi
-     * @param string $alias
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrlNew($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "@foodimages")
+    public static function BuildImageUrlBase($image_url, $imageFolder = "@foodimages")
     {
 
-        return Yii::$app->homeUrl . '/' . $imageFolder;
-        if ($alias != null) {
-            $imageFolder = \Yii::getAlias($alias);
-            $baseUrl = Url::to([null], true);
+        //return Yii::$app->homeUrl . '/' . $imageFolder;
+        $cleanBaseURL = Url::base(true);
+        $cleanBaseURL .= '/';
 
-
-            if ($fromApi) {
-                $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
-            } else {
-                $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
-            }
-            $parsed = parse_url($cleanBaseURL);
-            if (empty($parsed['scheme'])) {
-                //$urlStr = 'http://' . ltrim($urlStr, '/');
-                $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
-            }
-        } else {
-            $cleanBaseURL = Url::base(true);
-            $cleanBaseURL .= '/';
-        }
         return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
 
