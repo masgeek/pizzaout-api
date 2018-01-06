@@ -41,7 +41,7 @@ class OrderController extends ActiveController
         $user_id = Yii::$app->request->headers->get("user_id", null);
 
         if ($api_token == null && $user_id == null) {
-            throw new \yii\web\ForbiddenHttpException("You can't $action  this section. $api_token");
+            throw new \yii\web\ForbiddenHttpException("You can't $action this section. $api_token");
         }
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
