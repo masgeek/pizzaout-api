@@ -9,11 +9,7 @@
 namespace app\api\modules\v1\controllers;
 
 use app\api\modules\v1\models\API_TOKEN_MODEL;
-use app\api\modules\v1\models\CUSTOMER_ORDER_ITEM;
 use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
-use app\api\modules\v1\models\LOCATION_MODEL;
-use app\api\modules\v1\models\PAYMENT_MODEL;
-use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -45,83 +41,13 @@ class OrderController extends ActiveController
         $user_id = Yii::$app->request->headers->get("user_id", null);
 
         if ($api_token == null && $user_id == null) {
-            throw new \yii\web\ForbiddenHttpException('You can\'t ' . $action . ' this section.');
+            throw new \yii\web\ForbiddenHttpException("You can't $action  this section. $api_token");
         }
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
         }
     }
-
-
-    /**
-     * @param $user_id
-     * @return CUSTOMER_ORDER_MODEL
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function actionPay($user_id)
-    {
-        $this->checkAccess('pay');
-        //create fictitious order
-        $customerOrder = new CUSTOMER_ORDER_MODEL();
-        $orderItems = new CUSTOMER_ORDER_ITEM();
-        $paymentDetail = new PAYMENT_MODEL();
-
-        $date = APP_UTILS::GetCurrentDateTime();
-
-        $order_status = ORDER_HELPER::STATUS_ORDER_PENDING;
-        $location = LOCATION_MODEL::find()->one();
-        $post = [
-            'PAYMENT_MODEL' => [
-                'PAYMENT_REF' => strtoupper(uniqid('PIZZA_')),
-                'PAYMENT_CHANNEL' => 'MOBILE',
-                'PAYMENT_AMOUNT' => 1200,
-                'PAYMENT_STATUS' => $order_status,
-                'PAYMENT_NUMBER' => '097895689',
-                'PAYMENT_NOTES' => 'N/A',
-            ],
-            'CUSTOMER_ORDER_ITEM' => [
-                'ITEM_TYPE_ID' => 1,
-                'QUANTITY' => 2,
-                'PRICE' => 15,
-                'SUBTOTAL' => 30,
-                'OPTIONS' => 'N/A',
-                'NOTES' => 'Test Order',
-            ],
-            'CUSTOMER_ORDER_MODEL' => [
-                'USER_ID' => $user_id,
-                'LOCATION_ID' => $location->LOCATION_ID,
-                //'ORDER_QUANTITY' => 2,
-                //'ORDER_PRICE' => 1200,
-                'PAYMENT_METHOD' => 'MOBILE',
-                'ORDER_STATUS' => $order_status,
-                'NOTES' => 'EXTRA CHEESE',
-            ]
-        ];
-
-        $customerOrder->load($post);
-        $orderItems->load($post);
-        $paymentDetail->load($post);
-
-        $customerOrder->ORDER_DATE = $date;
-
-        if ($customerOrder->save()) {
-            $orderItems->CREATED_AT = $date;
-            $orderItems->ORDER_ID = $customerOrder->ORDER_ID;
-
-            $paymentDetail->PAYMENT_DATE = $date;
-            $paymentDetail->ORDER_ID = $customerOrder->ORDER_ID;
-
-            $orderItems->save();
-            $paymentDetail->save();
-        }
-        $customerOrder->validate();
-        $orderItems->validate();
-        $paymentDetail->validate();
-
-        return $customerOrder;
-    }
-
 
     /**
      * @param $user_id
