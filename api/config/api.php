@@ -44,7 +44,7 @@ $config = [
             'destination' => \kartik\mpdf\Pdf::DEST_BROWSER,
             // refer settings section for all configuration options
         ],
-        'response' => [
+        /*'response' => [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
@@ -56,7 +56,7 @@ $config = [
                     $response->statusCode = 200;
                 }
             },
-        ],
+        ],*/
         'request' => [
             'cookieValidationKey' => 'Qq0fIK5vB6mseTKoYXX-dVdwHQFYrEXC',
             'parsers' => [
