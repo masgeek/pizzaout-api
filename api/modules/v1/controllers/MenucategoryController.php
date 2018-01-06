@@ -70,7 +70,7 @@ class MenucategoryController extends ActiveController
      */
     public function actionIndex()
     {
-        $this->checkAccess('index');
+        //$this->checkAccess('index');
         return MENU_CAT_MODEL::find()
             ->where(['ACTIVE' => 1])
             ->orderBy(['RANK' => SORT_ASC])
