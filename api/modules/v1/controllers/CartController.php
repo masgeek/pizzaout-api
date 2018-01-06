@@ -8,6 +8,7 @@
 
 namespace app\api\modules\v1\controllers;
 
+use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\CART_MODEL;
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
@@ -23,32 +24,31 @@ class CartController extends ActiveController
      */
     public $modelClass = 'app\api\modules\v1\models\CART_MODEL';
 
+    private $_apiToken = 0;
+    private $_userID = 0;
 
     /**
-     * Checks the privilege of the current user.
-     *
-     * This method should be overridden to check whether the current user has the privilege
-     * to run the specified action against the specified data model.
-     * If the user does not have access, a [[ForbiddenHttpException]] should be thrown.
-     *
-     * @param string $action the ID of the action to be executed
-     * @param \yii\base\Model $model the model to be accessed. If `null`, it means no specific model is being accessed.
-     * @param array $params additional parameters
-     * @throws ForbiddenHttpException if the user does not have access
+     * @param string $action
+     * @param null $model
+     * @param array $params
      * @throws \yii\web\ForbiddenHttpException
      */
     public function checkAccess($action, $model = null, $params = [])
     {
-        /*$api_token = Yii::$app->request->headers->get("api_token", null);
-        $user_id = Yii::$app->request->headers->get("user_id", null);
+        //private $_apiToken = 0;
+        //private $_userID = 0;
+        if ($this->_apiToken == 0 or $this->_userID == 0) {
+            $this->_apiToken = Yii::$app->request->headers->get("api-token", null);
+            $this->_userID = Yii::$app->request->headers->get("user-id", null);
+        }
 
-        if ($api_token == null && $user_id == null) {
-            throw new \yii\web\ForbiddenHttpException("You can't $action this section. $api_token");
+        if ($this->_apiToken == null or $this->_userID == null) {
+            throw new \yii\web\ForbiddenHttpException("You can't $action this section. {$this->_apiToken} {$this->_userID} ");
         }
         //check if the token is valid
-        if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
+        if (!API_TOKEN_MODEL::IsValidToken($this->_apiToken, $this->_userID)) {
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
-        }*/
+        }
     }
 
     public function actionCreateOld()
@@ -67,6 +67,7 @@ class CartController extends ActiveController
 
     public function actionItems($user_id)
     {
+        $this->checkAccess('items');
         $cartItems = CART_MODEL::find()
             ->where(['USER_ID' => $user_id])
             ->all();
@@ -74,8 +75,15 @@ class CartController extends ActiveController
         return $cartItems;
     }
 
+    /**
+     * @param $item_type_id
+     * @param $user_id
+     * @return CART_MODEL|array|null|\yii\db\ActiveRecord
+     * @throws ForbiddenHttpException
+     */
     public function actionInCart($item_type_id, $user_id)
     {
+        $this->checkAccess('in-cart');
         $size = \Yii::$app->request->post('ITEM_TYPE_SIZE', null); //'MEDIUM';
         $inCart = CART_MODEL::find()
             ->where(['ITEM_TYPE_ID' => $item_type_id])
@@ -93,6 +101,7 @@ class CartController extends ActiveController
      */
     public function actionCreateOrder()
     {
+        $this->checkAccess('create-order');
         //$cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP', 0);
         $user_id = Yii::$app->request->post('USER_ID', 0);
         $location_id = Yii::$app->request->post('LOCATION_ID', 0);
@@ -115,6 +124,7 @@ class CartController extends ActiveController
 
     public function actionUssd()
     {
+        $this->checkAccess('ussd');
         return ['USSD_NUMBER' => ORDER_HELPER::getUssdNumber()];
     }
 

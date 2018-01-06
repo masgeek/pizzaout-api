@@ -8,22 +8,11 @@
 
 namespace app\api\modules\v1\controllers;
 
-use app\api\modules\v1\models\ACCOUNT_TYPE_MODEL;
+use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\CUSTOMER_ADDRESS_MODEL;
-use app\api\modules\v1\models\SERVICE_MODEL;
-use app\api\modules\v1\models\USER_MODEL;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\db\Expression;
-use yii\filters\AccessControl;
 use yii\rest\ActiveController;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use yii\rest\Controller;
-use yii\web\BadRequestHttpException;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
+
 
 class AddressController extends ActiveController
 {
@@ -31,16 +20,31 @@ class AddressController extends ActiveController
      * @var object
      */
     public $modelClass = 'app\api\modules\v1\models\CUSTOMER_ADDRESS_MODEL';
+    private $_apiToken = 0;
+    private $_userID = 0;
 
     /**
-     * @return array
+     * @param string $action
+     * @param null $model
+     * @param array $params
+     * @throws \yii\web\ForbiddenHttpException
      */
-    public function actions()
+    public function checkAccess($action, $model = null, $params = [])
     {
-        $actions = parent::actions();
-        //unset($actions['create']);
-        //unset($actions['update']);
-        return $actions;
+        //private $_apiToken = 0;
+        //private $_userID = 0;
+        if ($this->_apiToken == 0 or $this->_userID == 0) {
+            $this->_apiToken = Yii::$app->request->headers->get("api-token", null);
+            $this->_userID = Yii::$app->request->headers->get("user-id", null);
+        }
+
+        if ($this->_apiToken == null or $this->_userID == null) {
+            throw new \yii\web\ForbiddenHttpException("You can't $action this section. {$this->_apiToken} {$this->_userID} ");
+        }
+        //check if the token is valid
+        if (!API_TOKEN_MODEL::IsValidToken($this->_apiToken, $this->_userID)) {
+            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+        }
     }
 
     public function actionMyAddress($user_id)

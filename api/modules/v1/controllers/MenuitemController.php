@@ -36,17 +36,11 @@ class MenuitemController extends ActiveController
         return $actions;
     }
 
+
     /**
-     * Checks the privilege of the current user.
-     *
-     * This method should be overridden to check whether the current user has the privilege
-     * to run the specified action against the specified data model.
-     * If the user does not have access, a [[ForbiddenHttpException]] should be thrown.
-     *
-     * @param string $action the ID of the action to be executed
-     * @param \yii\base\Model $model the model to be accessed. If `null`, it means no specific model is being accessed.
-     * @param array $params additional parameters
-     * @throws ForbiddenHttpException if the user does not have access
+     * @param string $action
+     * @param null $model
+     * @param array $params
      * @throws \yii\web\ForbiddenHttpException
      */
     public function checkAccess($action, $model = null, $params = [])
@@ -91,6 +85,8 @@ class MenuitemController extends ActiveController
      */
     public function actionSingleCat()
     {
+        //$this->_apiToken = Yii::$app->request->headers->get("api-token", null);
+        //$this->_userID = Yii::$app->request->headers->get("user-id", null);
         $this->checkAccess('single-cat');
         return MENU_ITEM_MODEL::find()
             ->orderBy(['MENU_ITEM_NAME' => SORT_ASC])
