@@ -74,7 +74,7 @@ class APP_UTILS
      * @param string $imageFolder
      * @return string
      */
-    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "@foodimages")
+    public static function BuildImageUrlNew($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "@foodimages")
     {
 
         return Yii::$app->homeUrl . '/' . $imageFolder;
@@ -97,6 +97,37 @@ class APP_UTILS
             $cleanBaseURL = Url::base(true);
             $cleanBaseURL .= '/';
         }
+        return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
+    }
+
+    /**
+     * @param $image_url
+     * @param bool $fromApi
+     * @param string $alias
+     * @param string $imageFolder
+     * @return string
+     */
+    public static function BuildImageUrl($image_url, $fromApi = true, $alias = '@foodimages', $imageFolder = "images")
+    {
+
+        if ($alias != null) {
+            $imageFolder = \Yii::getAlias($alias);
+        }
+
+        $baseUrl = Url::to([null], true);
+
+
+        if ($fromApi) {
+            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "api"));
+        } else {
+            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "customer"));
+        }
+        $parsed = parse_url($cleanBaseURL);
+        if (empty($parsed['scheme'])) {
+            //$urlStr = 'http://' . ltrim($urlStr, '/');
+            $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
+        }
+
         return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
 }
