@@ -21,6 +21,7 @@ use Yii;
  * @property string $CLIENT_TOKEN
  * @property string $RESET_TOKEN
  * @property bool $USER_STATUS Indicate if user is active or not
+ * @property string $TOKEN_EXPPIRY
  *
  * @property ApiToken[] $apiTokens
  * @property CustomerOrder[] $customerOrders
@@ -47,7 +48,7 @@ class Users extends \yii\db\ActiveRecord
         return [
             [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'required'],
             [['USER_TYPE', 'LOCATION_ID'], 'integer'],
-            [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
+            [['DATE_REGISTERED', 'LAST_UPDATED', 'TOKEN_EXPPIRY'], 'safe'],
             [['USER_STATUS'], 'boolean'],
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'string', 'max' => 100],
             [['MOBILE'], 'string', 'max' => 25],
@@ -76,6 +77,7 @@ class Users extends \yii\db\ActiveRecord
             'CLIENT_TOKEN' => Yii::t('app', 'Client  Token'),
             'RESET_TOKEN' => Yii::t('app', 'Reset  Token'),
             'USER_STATUS' => Yii::t('app', 'Indicate if user is active or not'),
+            'TOKEN_EXPPIRY' => Yii::t('app', 'Token  Exppiry'),
         ];
     }
 
