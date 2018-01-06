@@ -20,8 +20,9 @@ use Yii;
  * @property string $LAST_UPDATED
  * @property string $CLIENT_TOKEN
  * @property string $RESET_TOKEN
- * @property string $TOKEN_EXPIRY
+ * @property bool $USER_STATUS Indicate if user is active or not
  *
+ * @property ApiToken[] $apiTokens
  * @property CustomerOrder[] $customerOrders
  * @property Riders[] $riders
  * @property Cart[] $carts
@@ -46,7 +47,8 @@ class Users extends \yii\db\ActiveRecord
         return [
             [['USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'required'],
             [['USER_TYPE', 'LOCATION_ID'], 'integer'],
-            [['DATE_REGISTERED', 'LAST_UPDATED', 'TOKEN_EXPIRY'], 'safe'],
+            [['DATE_REGISTERED', 'LAST_UPDATED'], 'safe'],
+            [['USER_STATUS'], 'boolean'],
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'string', 'max' => 100],
             [['MOBILE'], 'string', 'max' => 25],
             [['CLIENT_TOKEN'], 'string', 'max' => 255],
@@ -73,8 +75,16 @@ class Users extends \yii\db\ActiveRecord
             'LAST_UPDATED' => Yii::t('app', 'Last  Updated'),
             'CLIENT_TOKEN' => Yii::t('app', 'Client  Token'),
             'RESET_TOKEN' => Yii::t('app', 'Reset  Token'),
-            'TOKEN_EXPIRY' => Yii::t('app', 'Token  Expiry'),
+            'USER_STATUS' => Yii::t('app', 'Indicate if user is active or not'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApiTokens()
+    {
+        return $this->hasMany(ApiToken::className(), ['USER_ID' => 'USER_ID']);
     }
 
     /**

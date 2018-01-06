@@ -14,4 +14,12 @@ use app\models\MenuItemType;
 class MENU_ITEM_TYPE extends MenuItemType
 {
 
+    public function rules()
+    {
+        $rules = parent::rules();
+
+        $rules[] = [['AVAILABLE'], 'boolean'];
+
+        return $rules;
+    }
 }
