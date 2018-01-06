@@ -75,6 +75,9 @@ class MenuitemController extends ActiveController
      */
     public function actionCatItem($menu_cat_id)
     {
+        $this->_apiToken = Yii::$app->request->headers->get("api_token", null);
+        $this->_userID = Yii::$app->request->headers->get("user_id", null);
+
         $this->checkAccess('cat-item');
         return MENU_ITEM_MODEL::find()
             ->where(['MENU_CAT_ID' => $menu_cat_id])
