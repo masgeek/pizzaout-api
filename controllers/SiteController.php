@@ -73,7 +73,7 @@ class SiteController extends Controller
         ]);
 
 
-        $this->view->title = 'Pizza Slice';
+        $this->view->title = Yii::$app->name;
         if (!Yii::$app->user->isGuest) {
             $userType = Yii::$app->user->identity->usertype;
             //check user Type and redirect accordingly
@@ -126,6 +126,7 @@ class SiteController extends Controller
      */
     public function actionTerms()
     {
+        $this->view->title = 'Terms & Conditions';
         $this->layout = 'login_layout';
         return $this->render('terms');
     }
