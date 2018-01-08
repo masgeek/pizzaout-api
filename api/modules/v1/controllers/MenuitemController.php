@@ -16,6 +16,7 @@ use app\api\modules\v1\models\SALON_MODEL;
 use app\api\modules\v1\models\STAFF_MODEL;
 use Yii;
 use yii\rest\ActiveController;
+use yii\web\ForbiddenHttpException;
 
 class MenuitemController extends ActiveController
 {
@@ -52,11 +53,11 @@ class MenuitemController extends ActiveController
         }
 
         if ($this->_apiToken == null or $this->_userID == null) {
-            throw new \yii\web\ForbiddenHttpException("You can't $action this section. {$this->_apiToken} {$this->_userID} ");
+            throw new ForbiddenHttpException("You can't $action this section. {$this->_apiToken} {$this->_userID} ");
         }
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($this->_apiToken, $this->_userID)) {
-            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+            throw new ForbiddenHttpException('Invalid token, access denied');
         }
     }
 
