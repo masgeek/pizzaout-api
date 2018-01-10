@@ -226,20 +226,17 @@ class UserController extends ActiveController
         $name = 'Samm';
         $email = "barsamms@gmail.com";
         $subject = 'Subject here';
-        $body = 'Mesage body';
+        $body = '<h2>Mesage body</h2>';
 
-        $mailer = Yii::$app->mailer->compose([
-            'htmlLayout' => 'layouts/welcome',
-            'textLayout' => 'layouts/text',
-        ],
+        $mailer = Yii::$app->mailer->compose('layouts/welcome',
             ['name' => $name,
                 'email' => $email,
                 'subject' => $subject,
                 'content' => $body])
             ->setTo($email)
-            ->setFrom('support@pizzaout.so')
+            ->setFrom(['noreply@pizzaout.so' => 'Pizza Out'])
+            ->setReplyTo(['support@pizzaout.so' => 'Pizza Out'])
             ->setSubject($subject)
-            ->setTextBody('Plain text content')
             ->send();
 
 

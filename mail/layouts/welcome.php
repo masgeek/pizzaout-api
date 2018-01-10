@@ -17,6 +17,7 @@ use yii\helpers\Html;
 <body>
 <?php $this->beginBody() ?>
 <?= $content ?>
+Youres sincerely
 <?php $this->endBody() ?>
 </body>
 </html>
