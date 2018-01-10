@@ -1,12 +1,45 @@
 <?php
 
+use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->params['breadcrumbs'][] = $this->title;
+
+$gridColumns = [
+    ['class' => 'yii\grid\SerialColumn'],
+    [
+        'class' => '\kartik\grid\ActionColumn',
+        'template' => '{update}{view}{delete}',
+    ],
+    [
+        'class' => '\kartik\grid\ActionColumn',
+        'template' => '{orders}',
+        'buttons' => [
+            'orders' => function ($url, $model, $key) {
+                $url = \yii\helpers\Url::toRoute(['rider/rider-orders', 'id' => $model->RIDER_ID]);
+                return Html::a('View Orders', $url);;
+            },
+        ],
+    ],
+    //'RIDER_ID',
+    'USER_ID',
+    'KITCHEN_ID',
+    'uSER.USER_NAME',
+    'RIDER_STATUS:boolean',
+    [
+        // 'header' => 'Rider',
+        'filter' => false,
+        'attribute' => 'RIDER_ID',
+        'value' => function ($model) {
+            /* @var $model \app\model_extended\RIDER_MODEL */
+            return $model->uSER->USER_NAME;
+        }
+    ],
+];
+
 ?>
 <div class="rider--model-index">
 
@@ -16,17 +49,35 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Add New Rider'), ['rider/add-rider'], ['class' => 'btn btn-primary']) ?>
     </p>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'RIDER_ID',
-            'USER_ID',
-            'KITCHEN_ID',
-            'RIDER_STATUS:boolean',
-
-            ['class' => 'yii\grid\ActionColumn'],
+        //'filterModel' => $searchModel,
+        'columns' => $gridColumns,
+        'beforeHeader' => [
+            [
+                'columns' => [
+                    ['content' => $this->title, 'options' => ['colspan' => 4, 'class' => 'text-center warning']],
+                ],
+                'options' => ['class' => 'skip-export'] // remove this row from export
+            ]
         ],
+        'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Riders",
+        'bordered' => true,
+        'striped' => true,
+        'condensed' => true,
+        'responsive' => true,
+        'hover' => true,
+        'floatHeader' => false,
+        'showPageSummary' => false,
+        'panel' => false,
+        'resizableColumns' => true,
+        'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
+        'pjax' => false,
+        'pjaxSettings' => [
+            'neverTimeout' => true,
+            //'beforeGrid' => 'My fancy content before.',
+            //'afterGrid' => 'My fancy content after.',
+        ]
     ]); ?>
 </div>

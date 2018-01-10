@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\RIDER_MODEL */
 
-$this->title = Yii::t('app', 'Create Rider  Model');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Rider  Models'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Rider');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Riders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rider--model-create">

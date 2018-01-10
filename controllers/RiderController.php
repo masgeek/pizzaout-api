@@ -2,19 +2,49 @@
 
 namespace app\controllers;
 
-use app\model_extended\USERS_MODEL;
-use Yii;
 use app\model_extended\RIDER_MODEL;
-use yii\data\ActiveDataProvider;
+use app\model_extended\USERS_MODEL;
+use app\models_search\OrdersSearch;
+use app\models_search\RiderSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * RiderController implements the CRUD actions for RIDER_MODEL model.
  */
 class RiderController extends Controller
 {
+    /**
+     * Lists all RIDER_MODEL models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $this->view->title = Yii::t('app', 'Riders');
+        $searchModel = new RiderSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionRiderOrders($id)
+    {
+        $this->view->title = Yii::t('app', 'Rider Orders');
+        $searchModel = new OrdersSearch();
+
+        $dataProvider = $searchModel->searchRiderOrders(Yii::$app->request->queryParams, $id);
+
+        return $this->render('_riders-orders', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * @inheritdoc
      */
@@ -28,23 +58,6 @@ class RiderController extends Controller
                 ],
             ],
         ];
-    }
-
-    /**
-     * Lists all RIDER_MODEL models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $this->view->title = Yii::t('app', 'Riders');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => RIDER_MODEL::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
     }
 
     /**
@@ -84,18 +97,38 @@ class RiderController extends Controller
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \yii\db\Exception
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $this->view->title = Yii::t('app', 'Update Rider');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->RIDER_ID]);
+        $connection = \Yii::$app->db;
+        $model = $this->findModel($id);
+        $userModel = $model->uSER;
+        if ($model->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
+            //debug here
+            //begin transactional saving
+            $transaction = $connection->beginTransaction();
+            $userModel->RESET_TOKEN = 'NONE';
+
+            if ($userModel->save()) {
+                $model->USER_ID = $userModel->USER_ID;
+                //save the rider details on the table
+                if ($model->save()) {
+                    $transaction->commit();
+                    return $this->redirect(['rider/index']);
+                }
+            } else {
+                $transaction->rollBack(); //roll back in case we have an error
+                // $this->refresh(); //reset the submissions
+            }
+
         }
 
         return $this->render('update', [
             'model' => $model,
-            'userModel' => $model->uSER,
+            'userModel' => $userModel
         ]);
     }
 
@@ -106,6 +139,7 @@ class RiderController extends Controller
     public function actionAddRider()
     {
         $this->view->title = Yii::t('app', 'Add New Rider');
+
         $connection = \Yii::$app->db;
         $model = new RIDER_MODEL();
         $userModel = new USERS_MODEL();
