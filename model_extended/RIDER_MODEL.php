@@ -11,9 +11,31 @@ namespace app\model_extended;
 
 use app\models\Riders;
 use yii\helpers\ArrayHelper;
+use Yii;
 
 class RIDER_MODEL extends Riders
 {
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+
+        $labels['KITCHEN_ID'] = Yii::t('app', 'Designated Kitchen');
+        $labels['USER_ID'] = Yii::t('app', 'User Name');
+
+        return $labels;
+    }
+
+    public function rules()
+    {
+        $rules = parent::rules();
+        $rules[] = [['KITCHEN_ID'], 'required'];
+
+        return $rules;
+    }
+
     public static function GetRiders($kitchen_id)
     {
         $riders = self::find()

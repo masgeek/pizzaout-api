@@ -2,10 +2,10 @@
 
 namespace app\controllers;
 
+use app\model_extended\USERS_MODEL;
 use Yii;
 use app\model_extended\RIDER_MODEL;
 use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,17 +24,8 @@ class RiderController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ]
             ],
         ];
     }
@@ -58,6 +49,7 @@ class RiderController extends Controller
      * Displays a single RIDER_MODEL model.
      * @param string $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
@@ -89,6 +81,7 @@ class RiderController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
@@ -103,11 +96,31 @@ class RiderController extends Controller
         ]);
     }
 
+    public function actionAddRider()
+    {
+        $this->view->title = Yii::t('app', 'Add New Rider');
+        $model = new RIDER_MODEL();
+        $userModel = new USERS_MODEL();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['rider/index']);
+        }
+
+        return $this->render('add-rider', [
+            'model' => $model,
+            'userModel' => $userModel,
+        ]);
+    }
+
     /**
      * Deletes an existing RIDER_MODEL model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
@@ -129,6 +142,6 @@ class RiderController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

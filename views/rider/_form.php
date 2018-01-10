@@ -12,14 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'RIDER_NAME')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'USER_ID')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'RIDER_MOBILE')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'KITCHEN_ID')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'RIDER_STATUS')->textInput() ?>
+    <?= $form->field($model, 'RIDER_STATUS')->checkbox() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

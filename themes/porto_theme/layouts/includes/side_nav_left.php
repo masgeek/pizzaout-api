@@ -57,6 +57,9 @@ use yii\helpers\Html;
                             <li>
                                 <?= Html::a('Menu Item Types', ['//menuitemtype'], ['title' => 'Menu Item Type']); ?>
                             </li>
+                            <li>
+                                <?= Html::a('Add Rider', ['//rider/add-rider'], ['title' => 'Add Rider']); ?>
+                            </li>
                         </ul>
                     </li>
                 </ul>

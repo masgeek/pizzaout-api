@@ -5,10 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\RIDER_MODEL */
 
-$this->title = 'Update Rider  Model: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Rider  Models', 'url' => ['index']];
+$this->title = Yii::t('app', 'Update Rider  Model: {nameAttribute}', [
+    'nameAttribute' => $model->RIDER_ID,
+]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Rider  Models'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->RIDER_ID, 'url' => ['view', 'id' => $model->RIDER_ID]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="rider--model-update">
 
