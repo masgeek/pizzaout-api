@@ -70,14 +70,15 @@ TEMPLATE;
             ]) ?>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <?= $form->field($userModel, 'PASSWORD', ['template' => $field_template])->passwordInput([
-                'autofocus' => true, 'class' => 'form-control input-lg'
-            ]) ?>
+    <?php if ($userModel->isNewRecord) : ?>
+        <div class="row">
+            <div class="col-md-12">
+                <?= $form->field($userModel, 'PASSWORD', ['template' => $field_template])->passwordInput([
+                    'autofocus' => true, 'class' => 'form-control input-lg'
+                ]) ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
     <?= $form->field($model, 'RIDER_STATUS')->checkbox() ?>
 
     <div class="form-group">

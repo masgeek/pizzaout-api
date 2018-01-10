@@ -36,6 +36,8 @@ class RiderController extends Controller
      */
     public function actionIndex()
     {
+        $this->view->title = Yii::t('app', 'Riders');
+
         $dataProvider = new ActiveDataProvider([
             'query' => RIDER_MODEL::find(),
         ]);
@@ -93,6 +95,7 @@ class RiderController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'userModel' => $model->uSER,
         ]);
     }
 
@@ -147,8 +150,9 @@ class RiderController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $rider = $this->findModel($id);
+        $rider->delete();
+        $rider->uSER->delete();
         return $this->redirect(['index']);
     }
 
