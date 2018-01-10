@@ -94,13 +94,14 @@ class UserController extends Controller
 
         $model = new USERS_MODEL();
 
-        $model->USER_TYPE = 1;
-        $model->LOCATION_ID = 1;
+        //$model->USER_TYPE = 1;
+        //$model->LOCATION_ID = 1;
         if ($model->load(Yii::$app->request->post())) {
 
             $post = Yii::$app->request->post('USERS_MODEL');
             $password = $post['PASSWORD'];
             $model->PASSWORD = sha1($password);
+            $model->RESET_TOKEN = 'NONE';
             if ($model->save()) {
                 //go to login page
                 return $this->redirect(['//site/login']);

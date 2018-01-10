@@ -96,14 +96,37 @@ class RiderController extends Controller
         ]);
     }
 
+    /**
+     * @return string|\yii\web\Response
+     * @throws \yii\db\Exception
+     */
     public function actionAddRider()
     {
         $this->view->title = Yii::t('app', 'Add New Rider');
+        $connection = \Yii::$app->db;
         $model = new RIDER_MODEL();
         $userModel = new USERS_MODEL();
+        $model->RIDER_STATUS = true;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['rider/index']);
+        if ($model->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
+            //debug here
+            //begin transactional saving
+            $transaction = $connection->beginTransaction();
+
+            $userModel->RESET_TOKEN = 'NONE';
+
+            if ($userModel->save()) {
+                $model->USER_ID = $userModel->USER_ID;
+                //save the rider details on the table
+                if ($model->save()) {
+                    $transaction->commit();
+                    return $this->redirect(['rider/index']);
+                }
+            } else {
+                $transaction->rollBack(); //roll back in case we have an error
+                // $this->refresh(); //reset the submissions
+            }
+
         }
 
         return $this->render('add-rider', [

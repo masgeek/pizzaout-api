@@ -7,6 +7,17 @@ use yii\widgets\ActiveForm;
 /* @var $model app\model_extended\RIDER_MODEL */
 /* @var $userModel app\model_extended\USERS_MODEL */
 /* @var $form yii\widgets\ActiveForm */
+
+$field_template = <<<TEMPLATE
+<label>{label}</label>
+<div class="input-group input-group-icon">
+     {input} 
+    <span class="input-group-addon">
+        <span class="icon icon-lg"><i class="fa fa-cog"></i></span>
+    </span>
+</div>
+    {error}{hint}
+TEMPLATE;
 ?>
 
 <div class="rider-model-form">
@@ -14,31 +25,59 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-        <?= $form->field($userModel, 'USER_NAME')->textInput(['maxlength' => true]) ?>
+        <div class="col-md-6">
+            <?= $form->field($userModel, 'USER_NAME', ['template' => $field_template])->textInput([
+                'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
+
+        <div class="col-md-6">
+            <?= $form->field($userModel, 'USER_TYPE', ['template' => $field_template])->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes(['ADMIN', 'CUSTOMER']), [
+                'prompt' => Yii::t('app', 'Select Account Type'), 'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
     </div>
 
     <div class="row">
-        <?= $form->field($userModel, 'USER_TYPE')->hiddenInput(['maxlength' => true])->label(false) ?>
+        <div class="col-md-6">
+            <?= $form->field($userModel, 'SURNAME', ['template' => $field_template])->textInput([
+                'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($userModel, 'OTHER_NAMES', ['template' => $field_template])->textInput([
+                'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($userModel, 'MOBILE', ['template' => $field_template])->textInput([
+                'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($userModel, 'EMAIL', ['template' => $field_template])->textInput([
+                'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
+                'prompt' => Yii::t('app', 'Select Kitchen'),
+                'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
     </div>
 
     <div class="row">
-        <?= $form->field($userModel, 'SURNAME')->textInput(['maxlength' => true]) ?>
+        <div class="col-md-12">
+            <?= $form->field($userModel, 'PASSWORD', ['template' => $field_template])->passwordInput([
+                'autofocus' => true, 'class' => 'form-control input-lg'
+            ]) ?>
+        </div>
     </div>
-    <div class="row">
-        <?= $form->field($userModel, 'OTHER_NAMES')->textInput(['maxlength' => true]) ?>
-    </div>
-    <div class="row">
-        <?= $form->field($userModel, 'MOBILE')->textInput() ?>
-    </div>
-    <div class="row">
-        <?= $form->field($userModel, 'EMAIL')->textInput(['maxlength' => true]) ?>
-    </div>
-    <div class="row">
-        <?= $form->field($userModel, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
-    </div>
-
-    <?= $form->field($model, 'KITCHEN_ID')->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), ['prompt' => Yii::t('app', 'Select Kitchen')]) ?>
-
     <?= $form->field($model, 'RIDER_STATUS')->checkbox() ?>
 
     <div class="form-group">

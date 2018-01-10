@@ -84,13 +84,19 @@ class USERS_MODEL extends Users implements IdentityInterface
     }
 
 
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+            $date = APP_UTILS::GetCurrentDateTime();
             if ($this->isNewRecord) {
-                $this->DATE_REGISTERED = APP_UTILS::GetCurrentDateTime();
+                $this->DATE_REGISTERED = $date;
             }
-            $this->LAST_UPDATED = APP_UTILS::GetCurrentDateTime();
+            $this->LAST_UPDATED = $date;
             return true;
         }
         return false;
@@ -106,6 +112,10 @@ class USERS_MODEL extends Users implements IdentityInterface
         return $this->PASSWORD === sha1($password);
     }
 
+    /**
+     * @param $password
+     * @throws \yii\base\Exception
+     */
     public function setPassword($password)
     {
         $this->PASSWORD = Security::generatePasswordHash($password);

@@ -23,7 +23,8 @@ class RIDER_MODEL extends Riders
         $labels = parent::attributeLabels();
 
         $labels['KITCHEN_ID'] = Yii::t('app', 'Designated Kitchen');
-        $labels['USER_ID'] = Yii::t('app', 'User Name');
+        $labels['USER_ID'] = Yii::t('app', 'Rider Name');
+        $labels['RIDER_STATUS'] = Yii::t('app', 'Rider Active');
 
         return $labels;
     }

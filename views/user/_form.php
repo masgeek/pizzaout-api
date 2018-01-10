@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row">
-        <?= $form->field($model, 'USER_TYPE')->hiddenInput(['maxlength' => true])->label(false) ?>
+        <?= $form->field($model, 'USER_TYPE')->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes()) ?>
     </div>
 
     <div class="row">
