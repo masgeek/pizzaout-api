@@ -228,7 +228,10 @@ class UserController extends ActiveController
         $subject = 'Subject here';
         $body = 'Mesage body';
 
-        $mailer = Yii::$app->mailer->compose('layouts/welcome',
+        $mailer = Yii::$app->mailer->compose([
+            'htmlLayout' => 'layouts/welcome',
+            'textLayout' => 'layouts/text',
+        ],
             ['name' => $name,
                 'email' => $email,
                 'subject' => $subject,
