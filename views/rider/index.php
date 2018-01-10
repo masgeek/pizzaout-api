@@ -20,24 +20,29 @@ $gridColumns = [
         'buttons' => [
             'orders' => function ($url, $model, $key) {
                 $url = \yii\helpers\Url::toRoute(['rider/rider-orders', 'id' => $model->RIDER_ID]);
-                return Html::a('View Orders', $url);;
+                return Html::a('View Orders', $url, ['class' => 'btn btn-primary btn-xs btn-block']);;
             },
         ],
     ],
-    //'RIDER_ID',
-    'USER_ID',
-    'KITCHEN_ID',
-    'uSER.USER_NAME',
-    'RIDER_STATUS:boolean',
     [
         // 'header' => 'Rider',
         'filter' => false,
-        'attribute' => 'RIDER_ID',
+        'attribute' => 'USER_ID',
         'value' => function ($model) {
             /* @var $model \app\model_extended\RIDER_MODEL */
             return $model->uSER->USER_NAME;
         }
     ],
+    [
+        // 'header' => 'Rider',
+        'filter' => false,
+        'attribute' => 'KITCHEN_ID',
+        'value' => function ($model) {
+            /* @var $model \app\model_extended\RIDER_MODEL */
+            return $model->kITCHEN->KITCHEN_NAME;
+        }
+    ],
+    'RIDER_STATUS:boolean',
 ];
 
 ?>

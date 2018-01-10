@@ -113,6 +113,9 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Riders'), 'url' => [
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<p>
+    <?= Html::a(Yii::t('app', 'Riders'), ['rider/index'], ['class' => 'btn btn-primary']) ?>
+</p>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,

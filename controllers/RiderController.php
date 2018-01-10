@@ -7,6 +7,7 @@ use app\model_extended\USERS_MODEL;
 use app\models_search\OrdersSearch;
 use app\models_search\RiderSearch;
 use Yii;
+use yii\db\Exception;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -184,9 +185,15 @@ class RiderController extends Controller
      */
     public function actionDelete($id)
     {
-        $rider = $this->findModel($id);
-        $rider->delete();
-        $rider->uSER->delete();
+        try {
+            $rider = $this->findModel($id);
+            $rider->delete();
+            $rider->uSER->delete();
+        } catch (Exception $ex) {
+            return new Exception($ex->getMessage(), $ex->errorInfo, $ex->getCode());
+        } catch (\Exception $ex) {
+            return new Exception($ex->getMessage(), $ex->errorInfo, $ex->getCode());
+        }
         return $this->redirect(['index']);
     }
 
