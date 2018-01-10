@@ -184,6 +184,7 @@ $config = [
                         '{menu_cat_id}' => '<menu_cat_id:\\w+>',
                     ],
                     'extraPatterns' => [
+                        'POST' => 'mail',
                         'GET,POST all' => 'all',
                         'GET,POST,PUT,DELETE push' => 'push',
                         'GET {user_id}/token' => 'token',

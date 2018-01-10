@@ -15,10 +15,11 @@ return [
     'useFileTransport' => true,
     'transport' => [
         'class' => 'Swift_SmtpTransport',
-        'host' => 'mail.eoction.com',
-        'username' => 'noreply@eoction.com',
-        'password' => 'PSeOction',
-        'port' => '587',
+        'host' => 'mail.pizzaout.so',
+        //'host' => 'r8.websitewelcome.com',
+        'username' => 'support@pizzaout.so',
+        'password' => 'PQ*8Z(^V?ho}',
+        'port' => 25,//465,
         //'encryption' => 'tls',
     ],
 ];

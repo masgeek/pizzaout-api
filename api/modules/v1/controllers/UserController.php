@@ -35,7 +35,7 @@ class UserController extends ActiveController
         $actions = parent::actions();
 
         //unset($actions['create']);
-        //unset($actions['index']);
+        unset($actions['index']);
         //unset($actions['delete']);
         return $actions;
     }
@@ -213,5 +213,34 @@ class UserController extends ActiveController
         return [
             'CUSTOMER', 'RIDER'
         ];
+    }
+
+
+    /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $name = 'Samm';
+        $email = "barsamms@gmail.com";
+        $subject = 'Subject here';
+        $body = 'Mesage body';
+
+        $mailer = Yii::$app->mailer->compose('layouts/welcome',
+            ['name' => $name,
+                'email' => $email,
+                'subject' => $subject,
+                'content' => $body])
+            ->setTo($email)
+            ->setFrom('support@pizzaout.so')
+            ->setSubject($subject)
+            ->setTextBody('Plain text content')
+            ->send();
+
+
+        return $mailer;
+
     }
 }

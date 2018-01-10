@@ -124,8 +124,16 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionTerms()
+    public function actionMail()
     {
+        $mailer = Yii::$app->mailer->compose('welcome')
+            ->setFrom('support@pizzaout.so')
+            ->setTo('barsamms@gmail.com')
+            ->setSubject('Message subject')
+            ->setTextBody('Plain text content')
+            ->setHtmlBody('<b>HTML content</b>');
+
+        return 'mail herre';
 
     }
 }
