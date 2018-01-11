@@ -17,7 +17,11 @@ use yii\helpers\Html;
 <body>
 <?php $this->beginBody() ?>
 <?= $content ?>
-Youres sincerely
+<hr/>
+<p style="font-weight: bold;">
+    Yours Sincerely<br/>
+    Pizza Out Team
+</p>
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -12,6 +12,7 @@ use app\api\modules\v1\models\ACCOUNT_TYPE_MODEL;
 use app\api\modules\v1\models\API_TOKEN_MODEL;
 use app\api\modules\v1\models\SERVICE_MODEL;
 use app\api\modules\v1\models\USER_MODEL;
+use app\helpers\APP_UTILS;
 use app\models\ContactForm;
 use Yii;
 use yii\rest\ActiveController;
@@ -223,12 +224,11 @@ class UserController extends ActiveController
      */
     public function actionIndex()
     {
-        $name = 'Samm';
-        $email = "barsamms@gmail.com";
+        $recipient = ["barsamms@gmail.com" => 'Sammy Barasa'];
         $subject = 'Subject here';
         $body = '<h2>Mesage body</h2>';
 
-        $mailer = Yii::$app->mailer->compose('layouts/welcome',
+        /*$mailer = Yii::$app->mailer->compose('layouts/welcome',
             ['name' => $name,
                 'email' => $email,
                 'subject' => $subject,
@@ -237,7 +237,8 @@ class UserController extends ActiveController
             ->setFrom(['noreply@pizzaout.so' => 'Pizza Out'])
             ->setReplyTo(['support@pizzaout.so' => 'Pizza Out'])
             ->setSubject($subject)
-            ->send();
+            ->send();*/
+        $mailer = APP_UTILS::SendEmail($subject, $body, $recipient);
 
 
         return $mailer;

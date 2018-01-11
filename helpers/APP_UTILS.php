@@ -141,4 +141,29 @@ class APP_UTILS
 
         return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
+
+    /**
+     * @param $subject
+     * @param $body
+     * @param array $recipient
+     * @param string $layout
+     * @param array $replyTo
+     * @return bool
+     */
+    public static function SendEmail($subject, $body, array $recipient, $layout = 'layouts/welcome', array $replyTo = ['support@pizzaout.so' => 'Pizza Out'])
+    {
+        $mailer = \Yii::$app->mailer->compose($layout,
+            [
+                'email' => $recipient,
+                'subject' => $subject,
+                'content' => $body])
+            ->setTo($recipient)
+            ->setFrom(['noreply@pizzaout.so' => 'Pizza Out'])
+            ->setReplyTo($replyTo)
+            ->setSubject($subject)
+            ->send();
+
+
+        return $mailer;
+    }
 }
