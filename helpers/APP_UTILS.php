@@ -66,7 +66,7 @@ class APP_UTILS
      * @return void
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function SendRecoveryEmailOld($userModel)
+    public static function SendRecoveryEmail($userModel)
     {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
@@ -105,7 +105,7 @@ class APP_UTILS
         }
     }
 
-    public static function SendRecoveryEmail($userModel)
+    public static function SendRecoveryEmailOld($userModel)
     {
         $randomString = self::GenerateToken();
         $recipient = [$userModel->EMAIL => $userModel->SURNAME];
