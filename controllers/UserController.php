@@ -138,23 +138,24 @@ class UserController extends Controller
         $this->layout = 'login_layout';
         $this->view->title = 'Change Password';
         $model = USERS_MODEL::findByToken($token);
-        //$model->USER_TYPE = 1;
-        //$model->LOCATION_ID = 1;
-        if ($model->load(Yii::$app->request->post())) {
+        if($model!=null) {
+            if ($model->load(Yii::$app->request->post())) {
 
-            $post = Yii::$app->request->post('USERS_MODEL');
-            $password = $post['PASSWORD'];
-            $model->PASSWORD = sha1($password);
-            $model->RESET_TOKEN = 'NONE';
-            if ($model->save()) {
-                //go to login page
-                return $this->redirect(['//site/login']);
+                $post = Yii::$app->request->post('USERS_MODEL');
+                $password = $post['PASSWORD'];
+                $model->PASSWORD = sha1($password);
+                $model->RESET_TOKEN = 'NONE';
+                if ($model->save()) {
+                    //go to login page
+                    return $this->redirect(['//site/login']);
+                }
             }
-        }
 
-        return $this->render('_change-password', [
-            'model' => $model,
-        ]);
+            return $this->render('_change-password', [
+                'model' => $model,
+            ]);
+        }
+        return $this->redirect(['//site/login']);
     }
 
     /**
