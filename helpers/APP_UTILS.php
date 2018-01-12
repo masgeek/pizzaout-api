@@ -92,8 +92,8 @@ class APP_UTILS
                 //'content' => $body
             ];
 
-            $link = Url::to("@web/user/reset-pass?token=$randomString", true);
-            $body = 'Use this <a href="'.$link.'" target="_blank">link</a> to reset your password';
+            $link = "http://pizzaout.so/user/reset-pass?token=$randomString";//Url::to("@web/user/reset-pass?token=$randomString", true);
+            $body = 'Use this <a href="' . $link . '" target="_blank">link</a> to reset your password';
 
 
             $userModel->RESET_TOKEN = $randomString;
