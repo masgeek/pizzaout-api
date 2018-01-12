@@ -66,7 +66,7 @@ class APP_UTILS
      * @return void
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function SendRecoveryEmailOld($userModel)
+    public static function SendRecoveryEmail($userModel)
     {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
@@ -83,22 +83,27 @@ class APP_UTILS
             $randomString = self::GenerateToken();
             $recipient = [$userModel->EMAIL => $userModel->SURNAME];
             $subject = 'Password Recovery';
-            $body = null;
 
             $params = [
                 'name' => $userModel->SURNAME,
                 'email' => $recipient,
                 'subject' => $subject,
-                'link' => Url::to("@web/user/reset-pass?token=$randomString", true),
-                'content' => $body
+                //'link' => $link,
+                //'content' => $body
             ];
+
+            $link = Url::to("@web/user/reset-pass?token=$randomString", true);
+            $body = <<<HTML
+Use this <a href="$link" target="_blank">link</a> to reset your password
+;
+    
 
             $userModel->RESET_TOKEN = $randomString;
             $userModel->save();
 
             //Recipients
             $mail->setFrom('support@pizzaout.so', 'PIZZA OUT');
-            $mail->addAddress('barsamms@gmail.com', 'Joe User');     // Add a recipient
+            $mail->addAddress('barsamms@gmail.com', $userModel->SURNAME);     // Add a recipient
             $mail->addReplyTo('support@pizzaout.so', 'PIZZA OUT');
 
             //Attachments
@@ -107,8 +112,8 @@ class APP_UTILS
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body = 'This is the HTML message body <b>in bold!</b>';
+            $mail->Subject = $subject;
+            $mail->Body = $body;
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
@@ -120,7 +125,7 @@ class APP_UTILS
         return false;
     }
 
-    public static function SendRecoveryEmail($userModel)
+    public static function SendRecoveryEmailOld($userModel)
     {
         $randomString = self::GenerateToken();
         $recipient = [$userModel->EMAIL => $userModel->SURNAME];
@@ -222,7 +227,10 @@ class APP_UTILS
             $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
         }
 
-        return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
+        return "{
+                $cleanBaseURL}{
+                $imageFolder}/{
+                $image_url}";
     }
 
     /**
