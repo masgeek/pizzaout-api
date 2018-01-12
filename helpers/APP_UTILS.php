@@ -66,7 +66,7 @@ class APP_UTILS
      * @return void
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function SendRecoveryEmail($userModel)
+    public static function SendRecoveryEmailOld($userModel)
     {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
@@ -79,6 +79,22 @@ class APP_UTILS
             $mail->Password = 'PQ*8Z(^V?ho}';                           // SMTP password
             //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 25;//587;                                    // TCP port to connect to
+
+            $randomString = self::GenerateToken();
+            $recipient = [$userModel->EMAIL => $userModel->SURNAME];
+            $subject = 'Password Recovery';
+            $body = null;
+
+            $params = [
+                'name' => $userModel->SURNAME,
+                'email' => $recipient,
+                'subject' => $subject,
+                'link' => Url::to("@web/user/reset-pass?token=$randomString", true),
+                'content' => $body
+            ];
+
+            $userModel->RESET_TOKEN = $randomString;
+            $userModel->save();
 
             //Recipients
             $mail->setFrom('support@pizzaout.so', 'PIZZA OUT');
@@ -96,14 +112,15 @@ class APP_UTILS
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            echo 'Message has been sent';
+            return true;
         } catch (Exception $e) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            //echo 'Message could not be sent.';
+            //echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
+        return false;
     }
 
-    public static function SendRecoveryEmailOld($userModel)
+    public static function SendRecoveryEmail($userModel)
     {
         $randomString = self::GenerateToken();
         $recipient = [$userModel->EMAIL => $userModel->SURNAME];
