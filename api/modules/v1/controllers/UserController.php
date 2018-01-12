@@ -106,6 +106,7 @@ class UserController extends ActiveController
     /**
      * @return array
      * @throws BadRequestHttpException
+     * @throws \yii\base\Exception
      */
     public function actionRecover()
     {
@@ -115,14 +116,17 @@ class UserController extends ActiveController
         }
         $username = Yii::$app->request->post('USER_NAME');
 
-        $user = USER_MODEL::findOne(['USER_NAME' => $username]);
+        $user = USER_MODEL::find()
+            ->where(['USER_NAME' => $username])
+            ->orWhere(['EMAIL' => $username])
+            ->one();//findOne(['USER_NAME' => $username]);
 
-        //return $user;
+        $emailsent = APP_UTILS::SendRecoveryEmail($user);
 
 
         return [
-            'RESET_SENT' => $user != null ? true : false,
-            'MESSAGE' => $user != null ? 'A Password reset link has been sent to your registered  email' : 'No matching username found, please check and try again'
+            'RESET_SENT' => $emailsent ? true : false,
+            'MESSAGE' => $emailsent ? 'A Password reset link has been sent to your registered  email' : 'No matching username found, please check and try again'
         ];
     }
 
