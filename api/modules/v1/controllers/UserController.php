@@ -15,6 +15,7 @@ use app\api\modules\v1\models\USER_MODEL;
 use app\helpers\APP_UTILS;
 use app\models\ContactForm;
 use Yii;
+use yii\helpers\Url;
 use yii\rest\ActiveController;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
@@ -228,17 +229,14 @@ class UserController extends ActiveController
         $subject = 'Subject here';
         $body = '<h2>Mesage body</h2>';
 
-        /*$mailer = Yii::$app->mailer->compose('layouts/welcome',
-            ['name' => $name,
-                'email' => $email,
-                'subject' => $subject,
-                'content' => $body])
-            ->setTo($email)
-            ->setFrom(['noreply@pizzaout.so' => 'Pizza Out'])
-            ->setReplyTo(['support@pizzaout.so' => 'Pizza Out'])
-            ->setSubject($subject)
-            ->send();*/
-        $mailer = APP_UTILS::SendEmail($subject, $body, $recipient);
+        $params = [
+            'name' => 'Sammy Barasa M',
+            'email' => $recipient,
+            'subject' => $subject,
+            'link' => Url::to('@web/user/recover', true),
+            'content' => $body
+        ];
+        $mailer = APP_UTILS::SendEmail($subject, $recipient, $params, 'layouts/password_recovery');
 
 
         return $mailer;

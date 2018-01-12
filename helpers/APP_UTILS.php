@@ -144,19 +144,15 @@ class APP_UTILS
 
     /**
      * @param $subject
-     * @param $body
+     * @param array $params
      * @param array $recipient
      * @param string $layout
      * @param array $replyTo
      * @return bool
      */
-    public static function SendEmail($subject, $body, array $recipient, $layout = 'layouts/welcome', array $replyTo = ['support@pizzaout.so' => 'Pizza Out'])
+    public static function SendEmail($subject, array $recipient, array $params, $layout = 'layouts/welcome', array $replyTo = ['support@pizzaout.so' => 'Pizza Out'])
     {
-        $mailer = \Yii::$app->mailer->compose($layout,
-            [
-                'email' => $recipient,
-                'subject' => $subject,
-                'content' => $body])
+        $mailer = \Yii::$app->mailer->compose($layout, $params)
             ->setTo($recipient)
             ->setFrom(['noreply@pizzaout.so' => 'Pizza Out'])
             ->setReplyTo($replyTo)
