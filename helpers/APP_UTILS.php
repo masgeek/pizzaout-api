@@ -81,11 +81,9 @@ class APP_UTILS
             $mail->Port = 25;//587;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
+            $mail->setFrom('support@pizzaout.so', 'PIZZA OUT');
             $mail->addAddress('barsamms@gmail.com', 'Joe User');     // Add a recipient
-            $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addCC('cc@example.com');
-            $mail->addBCC('bcc@example.com');
+            $mail->addReplyTo('support@pizzaout.so', 'PIZZA OUT');
 
             //Attachments
             //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
