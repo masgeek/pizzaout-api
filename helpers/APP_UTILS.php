@@ -93,10 +93,8 @@ class APP_UTILS
             ];
 
             $link = Url::to("@web/user/reset-pass?token=$randomString", true);
-            $body = <<<HTML
-Use this <a href="$link" target="_blank">link</a> to reset your password
-;
-    
+            $body = 'Use this <a href="'.$link.'" target="_blank">link</a> to reset your password';
+
 
             $userModel->RESET_TOKEN = $randomString;
             $userModel->save();
