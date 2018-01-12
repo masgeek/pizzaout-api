@@ -11,6 +11,7 @@ namespace app\helpers;
 
 use app\model_extended\CART_MODEL;
 use app\model_extended\USERS_MODEL;
+use PHPMailer\PHPMailer\PHPMailer;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -62,10 +63,49 @@ class APP_UTILS
 
     /**
      * @param $userModel USERS_MODEL
-     * @return bool
-     * @throws \yii\base\Exception
+     * @return void
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public static function SendRecoveryEmail($userModel)
+    {
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'mail.pizzaout.so';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;
+            $mail->Username = 'support@pizzaout.so';                 // SMTP username
+            $mail->Password = 'PQ*8Z(^V?ho}';                           // SMTP password
+            //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;//587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('from@example.com', 'Mailer');
+            $mail->addAddress('barsamms@gmail.com', 'Joe User');     // Add a recipient
+            $mail->addReplyTo('info@example.com', 'Information');
+            $mail->addCC('cc@example.com');
+            $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Here is the subject';
+            $mail->Body = 'This is the HTML message body <b>in bold!</b>';
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        }
+    }
+
+    public static function SendRecoveryEmailOld($userModel)
     {
         $randomString = self::GenerateToken();
         $recipient = [$userModel->EMAIL => $userModel->SURNAME];
@@ -186,7 +226,6 @@ class APP_UTILS
             ->setReplyTo($replyTo)
             ->setSubject($subject)
             ->send();
-
 
         return $mailer;
     }
