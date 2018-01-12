@@ -83,6 +83,39 @@ class USERS_MODEL extends Users implements IdentityInterface
         return $account_found;
     }
 
+    public static function findByEmail($email)
+    {
+        /* @var $userModel $this */
+
+        $account_found = null;
+        //$userModel = UserProfile::findOne(['USER_NAME' => $username, 'EMAIL_ADDRESS'=>$username]);
+        $userModel = self::find()
+            ->select(['USER_ID', 'EMAIL'])//select only specific fields
+            ->where(['EMAIL' => $email])
+            ->one();
+
+        if ($userModel != null) {
+            $account_found = static::findOne(['USER_ID' => $userModel->USER_ID]);
+        }
+        return $account_found;
+    }
+
+    public static function findByToken($token)
+    {
+        /* @var $userModel $this */
+
+        $account_found = null;
+        //$userModel = UserProfile::findOne(['USER_NAME' => $username, 'EMAIL_ADDRESS'=>$username]);
+        $userModel = self::find()
+            ->select(['USER_ID', 'EMAIL'])//select only specific fields
+            ->where(['RESET_TOKEN' => $token])
+            ->one();
+
+        if ($userModel != null) {
+            $account_found = static::findOne(['USER_ID' => $userModel->USER_ID]);
+        }
+        return $account_found;
+    }
 
     /**
      * @param bool $insert

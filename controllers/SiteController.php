@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\api\modules\v1\models\USER_MODEL;
 use app\helpers\APP_UTILS;
+use app\model_extended\USERS_MODEL;
 use app\models\ContactForm;
 use app\models\LoginForm;
 use Yii;
@@ -119,6 +121,32 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionRecover()
+    {
+        $this->layout = 'login_layout';
+        $this->view->title = 'Password Recovery';
+        $message = '';
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $recover = (object)Yii::$app->request->post('LoginForm');
+            $userModel = $model->recover($recover->email);
+            if ($userModel != null) {
+                //Generate recovery token
+                APP_UTILS::SendRecoveryEmail($userModel);
+                $message = '<strong>Success!</strong> A recovery email with instructions has been sent to your registered email';
+
+            } else {
+                $message = '<strong>Email Not Found!</strong> The Email you provided oes not appear to be registed on our system';
+            }
+            //$this->refresh();
+        }
+        return $this->render('recover', [
+            'model' => $model,
+            'message' => $message
+        ]);
+
+    }
+
     /**
      * Displays about page.
      *
@@ -127,11 +155,11 @@ class SiteController extends Controller
     public function actionMail()
     {
         $mailer = Yii::$app->mailer->compose('welcome')
-            ->setFrom('support@pizzaout.so')
-            ->setTo('barsamms@gmail.com')
+            ->setFrom('support@pizzaout . so')
+            ->setTo('barsamms@gmail . com')
             ->setSubject('Message subject')
             ->setTextBody('Plain text content')
-            ->setHtmlBody('<b>HTML content</b>');
+            ->setHtmlBody(' < b>HTML content </b > ');
 
         return 'mail herre';
 

@@ -5,6 +5,8 @@
 
 /* @var $model app\models\LoginForm */
 
+/* @var $message */
+
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
@@ -60,40 +62,22 @@ TEMPLATE;
         </h2>
     </div>
     <div class="panel-body">
+        <?php if ($message != null): ?>
+            <div class="alert alert-info">
+                <?= $message ?>
+            </div>
+        <?php endif; ?>
         <div class="form-group mb-lg">
-            <?= $form->field($model, 'username', ['template' => $field_template])
+            <?= $form->field($model, 'email', ['template' => $field_template])
                 ->textInput(['autofocus' => true, 'class' => 'form-control input-lg']) ?>
         </div>
 
-        <div class="form-group mb-lg">
-            <?= $form->field($model, 'password', ['template' => $password_field_template])
-                ->passwordInput(['class' => 'form-control input-lg']) ?>
-        </div>
-
         <div class="row">
-            <!--<div class="col-sm-8">
-                <div class="checkbox-custom checkbox-default">
-                    <?= $form->field($model, 'rememberMe')->checkbox(['template' => $checkboxTemplate]) ?>
-                </div>
-            </div>-->
             <div class="col-sm-12 text-right">
-                <!--<button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
-                <button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>-->
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-success hidden-xs btn-block', 'name' => 'login-button']) ?>
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block btn-lg visible-xs mt-lg btn-block', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Recover Password', ['class' => 'btn btn-success hidden-xs btn-block', 'name' => 'recover-button']) ?>
+                <?= Html::submitButton('Recover Password', ['class' => 'btn btn-primary btn-block btn-lg visible-xs mt-lg btn-block', 'name' => 'recover-button']) ?>
             </div>
         </div>
-
-        <span class="mt-lg mb-lg line-thru text-center text-uppercase">
-            <span>or</span>
-        </span>
-        <!--
-                <div class="mb-xs text-center">
-                    <a class="btn btn-facebook mb-md ml-xs mr-xs">Connect with <i class="fa fa-facebook"></i></a>
-                    <a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
-                </div>
-        -->
-        <p class="text-center">Don't have an account yet? <?= Html::a('Sign Up!!', $registerLink) ?></p>
     </div>
 </div>
 <?php ActiveForm::end(); ?>

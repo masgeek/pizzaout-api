@@ -16,6 +16,7 @@ use yii\base\Model;
 class LoginForm extends Model
 {
     public $username;
+    public $email;
     public $password;
     public $rememberMe = true;
 
@@ -62,9 +63,18 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;
+    }
+
+    /**
+     * @param $email
+     * @return null|static
+     */
+    public function recover($email)
+    {
+        return USERS_MODEL::findByEmail($email);
     }
 
     /**

@@ -10,6 +10,7 @@ namespace app\helpers;
 
 
 use app\model_extended\CART_MODEL;
+use app\model_extended\USERS_MODEL;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -57,6 +58,33 @@ class APP_UTILS
     {
         $randomString = \Yii::$app->getSecurity()->generateRandomString($length);
         return $randomString;
+    }
+
+    /**
+     * @param $userModel USERS_MODEL
+     * @return bool
+     * @throws \yii\base\Exception
+     */
+    public static function SendRecoveryEmail($userModel)
+    {
+        $randomString = self::GenerateToken();
+        $recipient = [$userModel->EMAIL => $userModel->SURNAME];
+        $subject = 'Password Recovery';
+        $body = null;
+
+        $params = [
+            'name' => $userModel->SURNAME,
+            'email' => $recipient,
+            'subject' => $subject,
+            'link' => Url::to("@web/user/reset-pass?token=$randomString", true),
+            'content' => $body
+        ];
+
+        $userModel->RESET_TOKEN = $randomString;
+        $userModel->save();
+        $mailer = self::SendEmail($subject, $recipient, $params, 'layouts/password_recovery');
+
+        return $mailer;
     }
 
     /**
