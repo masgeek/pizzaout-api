@@ -71,7 +71,7 @@ class APP_UTILS
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'mail.pizzaout.so';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;
