@@ -124,7 +124,6 @@ class UserController extends ActiveController
 
         $emailsent = APP_UTILS::SendRecoveryEmail($user);
 
-return $emailsent;
         return [
             'RESET_SENT' => $emailsent ? true : false,
             'MESSAGE' => $emailsent ? 'A Password reset link has been sent to your registered  email' : 'No matching username found, please check and try again'
