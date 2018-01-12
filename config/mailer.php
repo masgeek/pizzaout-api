@@ -15,11 +15,11 @@ return [
     'useFileTransport' => false,
     'transport' => [
         'class' => 'Swift_SmtpTransport',
-        //'host' => 'mail.pizzaout.so',
-        'host' => 'r8.websitewelcome.com',
+        'host' => 'mail.pizzaout.so',
+        //'host' => 'r8.websitewelcome.com',
         'username' => 'support@pizzaout.so',
         'password' => 'PQ*8Z(^V?ho}',
         'port' => 25,//465,
-        'encryption' => 'tls',
+        //'encryption' => 'tls',
     ],
 ];
