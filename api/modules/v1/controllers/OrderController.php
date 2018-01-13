@@ -79,25 +79,26 @@ class OrderController extends ActiveController
      */
     public function actionRiderOrders($rider_id)
     {
-        $this->checkAccess('rider-orders');
-        $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'ACTIVE');
+        //$this->checkAccess('rider-orders');
+        $order_type_post = Yii::$app->request->post('ORDER_TYPE', 'UNPAID');
         $order_type = strtoupper($order_type_post);
-        return $this->getOrders($order_type, $rider_id);
+        return $this->getOrders($order_type, null, $rider_id);
     }
 
     /**
      * @param $order_type
      * @param $user_id
-     * @param null $rider_id
+     * @param int $rider_id
      * @return array|ActiveDataProvider
      */
     private function getOrders($order_type, $user_id, $rider_id = null)
     {
+
         $query = CUSTOMER_ORDER_MODEL::find();
         if ($rider_id != null) {
-            $query->andWhere(['RIDER_ID' => $rider_id]);
+            $query->where(['RIDER_ID' => $rider_id]);
         } else {
-            $query->andWhere(['USER_ID' => $user_id]);
+            $query->where(['USER_ID' => $user_id]);
         }
 
         switch ($order_type) {
