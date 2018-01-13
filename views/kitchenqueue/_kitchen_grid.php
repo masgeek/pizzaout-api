@@ -1,9 +1,8 @@
 <?php
 
 use kartik\grid\GridView;
-use kartik\export\ExportMenu;
 use yii\helpers\Html;
-
+use kartik\export\ExportMenu;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -264,7 +263,6 @@ $gridColumns = [
     ],
     'persistResize' => false,
     'toggleDataOptions' => ['minCount' => 10],
-    'exportConfig' => $exportConfig,
     'itemLabelSingle' => 'Order',
     'itemLabelPlural' => 'Orders'
 ]) ?>
