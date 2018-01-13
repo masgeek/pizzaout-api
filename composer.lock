@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0745d938733b1d58fbf7466412142435",
+    "content-hash": "f40c393b191c4a88a3a78efc513fbe68",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -658,12 +658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "47c634744659a47a61d78acdc49324990f941c4a"
+                "reference": "af82b0872939237aab7a831bd916cd11c12b529f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/47c634744659a47a61d78acdc49324990f941c4a",
-                "reference": "47c634744659a47a61d78acdc49324990f941c4a",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/af82b0872939237aab7a831bd916cd11c12b529f",
+                "reference": "af82b0872939237aab7a831bd916cd11c12b529f",
                 "shasum": ""
             },
             "type": "library",
@@ -703,7 +703,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-12-09T05:49:47+00:00"
+            "time": "2018-01-12T10:12:45+00:00"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -1174,19 +1174,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-export.git",
-                "reference": "42fd901373f03dd983481b8fb2ce537e6fa0577e"
+                "reference": "24bd7033a0d8b82d0dc3492675f23f302c778800"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/42fd901373f03dd983481b8fb2ce537e6fa0577e",
-                "reference": "42fd901373f03dd983481b8fb2ce537e6fa0577e",
+                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/24bd7033a0d8b82d0dc3492675f23f302c778800",
+                "reference": "24bd7033a0d8b82d0dc3492675f23f302c778800",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/yii2-dialog": "~1.0",
                 "kartik-v/yii2-dynagrid": ">=1.4.5",
                 "kartik-v/yii2-mpdf": "~1.0",
-                "phpoffice/phpexcel": "~1.8"
+                "phpoffice/phpspreadsheet": "~1.0"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1227,7 +1227,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2017-11-19T18:30:55+00:00"
+            "time": "2018-01-11T16:12:23+00:00"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -1235,12 +1235,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "ae4ecc6656c523228711c243bdcbc2d4a4295409"
+                "reference": "aba039087dffa688729cbc881ff2665074c0d279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/ae4ecc6656c523228711c243bdcbc2d4a4295409",
-                "reference": "ae4ecc6656c523228711c243bdcbc2d4a4295409",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/aba039087dffa688729cbc881ff2665074c0d279",
+                "reference": "aba039087dffa688729cbc881ff2665074c0d279",
                 "shasum": ""
             },
             "require": {
@@ -1280,7 +1280,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-01-04T11:21:06+00:00"
+            "time": "2018-01-08T11:00:44+00:00"
         },
         {
             "name": "kartik-v/yii2-helpers",
@@ -2851,12 +2851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "3f35526a02617a096395845569f5b52f7e99f0b5"
+                "reference": "766026b16e1cb281c43085094f6d712474679c81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/3f35526a02617a096395845569f5b52f7e99f0b5",
-                "reference": "3f35526a02617a096395845569f5b52f7e99f0b5",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/766026b16e1cb281c43085094f6d712474679c81",
+                "reference": "766026b16e1cb281c43085094f6d712474679c81",
                 "shasum": ""
             },
             "require": {
@@ -2892,7 +2892,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2017-12-15T16:00:12+00:00"
+            "time": "2018-01-09T17:57:18+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -2961,32 +2961,56 @@
             "time": "2018-01-10T23:29:45+00:00"
         },
         {
-            "name": "phpoffice/phpexcel",
-            "version": "1.8.x-dev",
+            "name": "phpoffice/phpspreadsheet",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PHPOffice/PHPExcel.git",
-                "reference": "c269793ee715fb5a15f0b2ad25c064d9ee6e8e53"
+                "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
+                "reference": "691b68de9b87cf6e398df46482741a4f667a9391"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/c269793ee715fb5a15f0b2ad25c064d9ee6e8e53",
-                "reference": "c269793ee715fb5a15f0b2ad25c064d9ee6e8e53",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/691b68de9b87cf6e398df46482741a4f667a9391",
+                "reference": "691b68de9b87cf6e398df46482741a4f667a9391",
                 "shasum": ""
             },
             "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
+                "ext-gd": "*",
+                "ext-iconv": "*",
+                "ext-libxml": "*",
                 "ext-mbstring": "*",
+                "ext-simplexml": "*",
                 "ext-xml": "*",
+                "ext-xmlreader": "*",
                 "ext-xmlwriter": "*",
-                "php": "^5.2|^7.0"
+                "ext-zip": "*",
+                "ext-zlib": "*",
+                "php": "^5.6|^7.0",
+                "psr/simple-cache": "^1.0"
             },
             "require-dev": {
-                "squizlabs/php_codesniffer": "2.*"
+                "dompdf/dompdf": "^0.8.0",
+                "friendsofphp/php-cs-fixer": "^2.7",
+                "jpgraph/jpgraph": "^4.0",
+                "mpdf/mpdf": "^7.0.0",
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^2.7",
+                "tecnickcom/tcpdf": "^6.2"
+            },
+            "suggest": {
+                "dompdf/dompdf": "Option for rendering PDF with PDF Writer",
+                "ext-dom": "Option to read and write HTML files",
+                "ext-gd": "Required for exact column width autocalculation",
+                "jpgraph/jpgraph": "Option for rendering charts, or including charts with PDF or HTML Writers",
+                "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
+                "tecnick.com/tcpdf": "Option for rendering PDF with PDF Writer"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "PHPExcel": "Classes/"
+                "psr-4": {
+                    "PhpOffice\\PhpSpreadsheet\\": "src/PhpSpreadsheet"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3010,17 +3034,19 @@
                     "homepage": "http://markbakeruk.net"
                 }
             ],
-            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
-            "homepage": "https://github.com/PHPOffice/PHPExcel",
+            "description": "PHPSpreadsheet - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "https://github.com/PHPOffice/PhpSpreadsheet",
             "keywords": [
                 "OpenXML",
                 "excel",
+                "gnumeric",
+                "ods",
                 "php",
                 "spreadsheet",
                 "xls",
                 "xlsx"
             ],
-            "time": "2017-12-25T02:39:38+00:00"
+            "time": "2017-12-25T01:53:53+00:00"
         },
         {
             "name": "psr/http-message",
@@ -3118,6 +3144,54 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
+            "name": "psr/simple-cache",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "time": "2017-10-23T01:57:42+00:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -3317,12 +3391,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "6593a5d8cd75050a595a0bff8fb7d1b3c183eb0b"
+                "reference": "2fb0bc759e4d45637046ef38f1963e7d0bbd42c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6593a5d8cd75050a595a0bff8fb7d1b3c183eb0b",
-                "reference": "6593a5d8cd75050a595a0bff8fb7d1b3c183eb0b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2fb0bc759e4d45637046ef38f1963e7d0bbd42c0",
+                "reference": "2fb0bc759e4d45637046ef38f1963e7d0bbd42c0",
                 "shasum": ""
             },
             "require": {
@@ -3409,7 +3483,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2018-01-03T13:46:15+00:00"
+            "time": "2018-01-12T13:30:21+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -3469,12 +3543,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "c330c0e2c1fe67c489041180db0f2a94f5def22e"
+                "reference": "b89e9f4bc78255839a74a64dc4cd06daf1a3d7ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/c330c0e2c1fe67c489041180db0f2a94f5def22e",
-                "reference": "c330c0e2c1fe67c489041180db0f2a94f5def22e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/b89e9f4bc78255839a74a64dc4cd06daf1a3d7ec",
+                "reference": "b89e9f4bc78255839a74a64dc4cd06daf1a3d7ec",
                 "shasum": ""
             },
             "require": {
@@ -3498,8 +3572,22 @@
             ],
             "authors": [
                 {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                },
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                },
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                },
+                {
                     "name": "Qiang Xue",
-                    "email": "qiang.xue@gmail.com"
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/"
                 }
             ],
             "description": "The Twitter Bootstrap extension for the Yii framework",
@@ -3507,7 +3595,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2017-10-19T10:18:15+00:00"
+            "time": "2018-01-12T15:11:42+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -3655,6 +3743,50 @@
                 "yii2"
             ],
             "time": "2017-05-01T08:29:00+00:00"
+        },
+        {
+            "name": "zyx/zyx-phpmailer",
+            "version": "0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SDKiller/zyx-phpmailer.git",
+                "reference": "9aeb227a2ee952d202b58a4c4cfadb391b77b8e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SDKiller/zyx-phpmailer/zipball/9aeb227a2ee952d202b58a4c4cfadb391b77b8e7",
+                "reference": "9aeb227a2ee952d202b58a4c4cfadb391b77b8e7",
+                "shasum": ""
+            },
+            "require": {
+                "phpmailer/phpmailer": "@stable",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "zyx\\phpmailer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Serge Postrash aka SDKiller",
+                    "email": "jexy.ru@gmail.com"
+                }
+            ],
+            "description": "PHPMailer integration for Yii 2 framework",
+            "keywords": [
+                "email",
+                "mail",
+                "mailer",
+                "phpmailer",
+                "yii2"
+            ],
+            "time": "2014-05-06T17:23:36+00:00"
         }
     ],
     "packages-dev": [
@@ -3975,12 +4107,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "a39ec0abd28cde2337b7fbe06885231edd99d34a"
+                "reference": "251ec160bcbb54141cb0d707fd56898fd01bdbdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/a39ec0abd28cde2337b7fbe06885231edd99d34a",
-                "reference": "a39ec0abd28cde2337b7fbe06885231edd99d34a",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/251ec160bcbb54141cb0d707fd56898fd01bdbdb",
+                "reference": "251ec160bcbb54141cb0d707fd56898fd01bdbdb",
                 "shasum": ""
             },
             "require": {
@@ -4017,7 +4149,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-12-30T09:39:42+00:00"
+            "time": "2018-01-08T16:49:22+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4066,7 +4198,7 @@
         },
         {
             "name": "phpdocumentor/reflection-common",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
@@ -4464,16 +4596,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "dev-master",
+            "version": "1.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "d107f347d368dd8a384601398280c7c608390ab7"
+                "reference": "9513098641797ce5f459dbc1de5a54c29b0ec1fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/d107f347d368dd8a384601398280c7c608390ab7",
-                "reference": "d107f347d368dd8a384601398280c7c608390ab7",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/9513098641797ce5f459dbc1de5a54c29b0ec1fb",
+                "reference": "9513098641797ce5f459dbc1de5a54c29b0ec1fb",
                 "shasum": ""
             },
             "require": {
@@ -4509,7 +4641,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-03-07T15:42:04+00:00"
+            "time": "2018-01-06T05:27:16+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4566,12 +4698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "4e8f3129f450973c6dda07297bab6919fbb9f81f"
+                "reference": "32f4c99ed190da7bb8fa2e8a140a174353dae05c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4e8f3129f450973c6dda07297bab6919fbb9f81f",
-                "reference": "4e8f3129f450973c6dda07297bab6919fbb9f81f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/32f4c99ed190da7bb8fa2e8a140a174353dae05c",
+                "reference": "32f4c99ed190da7bb8fa2e8a140a174353dae05c",
                 "shasum": ""
             },
             "require": {
@@ -4640,7 +4772,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-01-01T07:03:09+00:00"
+            "time": "2018-01-06T07:01:59+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5938,7 +6070,8 @@
         "pafelin/laravel-nonce": 20,
         "yiisoft/yii2-authclient": 20,
         "mike42/escpos-php": 20,
-        "phpmailer/phpmailer": 20
+        "phpmailer/phpmailer": 20,
+        "zyx/zyx-phpmailer": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,

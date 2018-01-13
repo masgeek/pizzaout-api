@@ -225,10 +225,7 @@ class APP_UTILS
             $cleanBaseURL = substr($baseUrl, 0, strpos($baseUrl, "site"));
         }
 
-        return "{
-                $cleanBaseURL}{
-                $imageFolder}/{
-                $image_url}";
+        return "{$cleanBaseURL}{$imageFolder}/{$image_url}";
     }
 
     /**
