@@ -46,7 +46,8 @@
     "paypal/rest-api-sdk-php": "*",
     "kartik-v/yii2-tabs-x": "*",
     "mike42/escpos-php": "dev-master",
-    "phpmailer/phpmailer": "dev-master"
+    "phpmailer/phpmailer": "dev-master",
+    "zyx/zyx-phpmailer": "@stable"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
