@@ -38,7 +38,10 @@ use yii\helpers\Html;
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <?= Html::a('Kitchen Queue', ['//kitchenqueue'], ['title' => 'Items in kitchen queue']); ?>
+                                <?= Html::a('Kitchen', ['//kitchenqueue'], ['title' => 'Items in kitchen ']); ?>
+                            </li>
+                            <li>
+                                <?= Html::a('Kitchen Display Queue', ['//kitchenqueue/display'], ['title' => 'Kitchen display queue']); ?>
                             </li>
                         </ul>
                     </li>

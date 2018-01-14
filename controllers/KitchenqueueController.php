@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
+use app\model_extended\CHEF_MODEL;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\STATUS_TRACKING_MODEL;
 use app\models_search\OrdersSearch;
@@ -34,7 +35,7 @@ class KitchenqueueController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['error', 'display'],
                         'allow' => true,
                     ],
                     [
@@ -51,9 +52,36 @@ class KitchenqueueController extends Controller
      * Lists all CUSTOMER_ORDERS models.
      * @return mixed
      */
+    public function actionDisplay()
+    {
+        $this->layout = 'queue_layout';
+
+        $this->view->title = Yii::t('app', 'Kitchen Queue');
+        $searchModel = new OrdersSearch();
+        $filterParams = [
+            ORDER_HELPER::STATUS_KITCHEN_ASSIGNED,
+            ORDER_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION,
+            ORDER_HELPER::STATUS_ORDER_READY,
+        ];
+
+        $chefCount = CHEF_MODEL::GetChefCount();
+        $pageSize = ['pageSize' => $chefCount];
+
+        $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, $filterParams, $pageSize);
+        return $this->render('/kitchenqueue/queue', [
+            'dataProvider' => $kitchenAllocated,
+            'time' => date('H:i:s'),
+        ]);
+    }
+
+    /**
+     * Lists all CUSTOMER_ORDERS models.
+     * @return mixed
+     */
     public function actionIndex()
     {
-        $this->view->title = 'Kitchen Queue';
+        $this->view->title = Yii::t('app', 'Kitchen Management');
         $searchModel = new OrdersSearch();
         $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_KITCHEN_ASSIGNED]);
         $chefAssigned = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_CHEF_ASSIGNED]);

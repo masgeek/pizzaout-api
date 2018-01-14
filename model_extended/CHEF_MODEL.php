@@ -14,14 +14,25 @@ use yii\helpers\ArrayHelper;
 
 class CHEF_MODEL extends Chef
 {
-	public static function GetChefs($kitchen_id)
-	{
-		$chefs = self::find()
-			->where(['KITCHEN_ID' => $kitchen_id])
-			->all();
+    public static function GetChefs($kitchen_id)
+    {
+        $chefs = self::find()
+            ->where(['KITCHEN_ID' => $kitchen_id])
+            ->all();
 
-		$listData = ArrayHelper::map($chefs, 'CHEF_ID', 'CHEF_NAME');
+        $listData = ArrayHelper::map($chefs, 'CHEF_ID', 'CHEF_NAME');
 
-		return $listData;
-	}
+        return $listData;
+    }
+
+    /**
+     * @return int|string
+     */
+    public static function GetChefCount()
+    {
+        $chefs = self::find()->count();
+
+
+        return $chefs < 8 ? 8 : $chefs;
+    }
 }

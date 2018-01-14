@@ -154,7 +154,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
      * @param array $order_status
      * @return ActiveDataProvider
      */
-    public function searchKitchenQueue(array $params, array $order_status)
+    public function searchKitchenQueue(array $params, array $order_status, $pagination = ['pageSize' => 20,])
     {
         $query = ORDER_VIEW_MODEL::find();
 
@@ -164,6 +164,7 @@ class OrdersSearch extends ORDER_VIEW_MODEL
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => $pagination,
             'sort' => [
                 'defaultOrder' => [
                     'ORDER_DATE' => SORT_DESC
