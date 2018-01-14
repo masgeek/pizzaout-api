@@ -61,8 +61,7 @@ class KitchenqueueController extends Controller
         $filterParams = [
             ORDER_HELPER::STATUS_KITCHEN_ASSIGNED,
             ORDER_HELPER::STATUS_CHEF_ASSIGNED,
-            ORDER_HELPER::STATUS_UNDER_PREPARATION,
-            ORDER_HELPER::STATUS_ORDER_READY,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION
         ];
 
         $chefCount = CHEF_MODEL::GetChefCount();

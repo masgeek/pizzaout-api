@@ -33,7 +33,7 @@ $this->registerJs($script);
             'class' => 'list-wrapper',
             'id' => 'list-wrapper',
         ],
-        'itemOptions' => ['class' => 'item'],
+        //'itemOptions' => ['class' => 'item'],
         'layout' => "{items}",
         'itemView' => '_queueView.php',
     ]) ?>
