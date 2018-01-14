@@ -47,7 +47,8 @@
     "kartik-v/yii2-tabs-x": "*",
     "mike42/escpos-php": "dev-master",
     "phpmailer/phpmailer": "dev-master",
-    "zyx/zyx-phpmailer": "@stable"
+    "zyx/zyx-phpmailer": "@stable",
+    "limion/yii2-jquery-fileupload-widget": "~1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
