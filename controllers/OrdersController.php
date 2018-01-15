@@ -209,6 +209,7 @@ class OrdersController extends Controller
      */
     public function actionPrint($id)
     {
+        $this->view->title = 'Order Receipt #' . $id;
         return $this->render('print-receipt', [
             'model' => $this->findModel($id),
         ]);

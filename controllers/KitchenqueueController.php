@@ -82,7 +82,7 @@ class KitchenqueueController extends Controller
     {
         $this->view->title = Yii::t('app', 'Kitchen Management');
         $searchModel = new OrdersSearch();
-        $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_KITCHEN_ASSIGNED]);
+        $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_KITCHEN_ASSIGNED,ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
         $chefAssigned = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_CHEF_ASSIGNED]);
         $preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION]);
         $orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_READY]);

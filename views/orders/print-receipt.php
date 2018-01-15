@@ -15,8 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customer--orders-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= PrintThis::widget([
         'htmlOptions' => [
             'id' => 'PrintThis',
@@ -37,9 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'formValues' => true,
         ]
     ]) ?>
+    <hr/>
     <div id="PrintThis">
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?= $this->render('/receipt/a4-receipt', ['model' => $model,]) ?>
         <?= $this->render('/orders/_order_items', ['model' => $model]) ?>
-        <hr/>
-        <!--?= $this->render('/receipt/a4-receipt', ['model' => $model,]) ?-->
     </div>
 </div>
