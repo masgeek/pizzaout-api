@@ -60,7 +60,7 @@ class OrdersController extends Controller
 
         $pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING, ORDER_HELPER::STATUS_PAYMENT_PENDING]);
         $confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
-        $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION]);
+        $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION,ORDER_HELPER::STATUS_CHEF_ASSIGNED]);
 
         $orderReady = $searchModel->search(Yii::$app->request->queryParams, [
             ORDER_HELPER::STATUS_ORDER_READY]);
