@@ -59,6 +59,7 @@ class KitchenqueueController extends Controller
         $this->view->title = Yii::t('app', 'Kitchen Queue');
         $searchModel = new OrdersSearch();
         $filterParams = [
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
             ORDER_HELPER::STATUS_KITCHEN_ASSIGNED,
             ORDER_HELPER::STATUS_CHEF_ASSIGNED,
             ORDER_HELPER::STATUS_UNDER_PREPARATION
