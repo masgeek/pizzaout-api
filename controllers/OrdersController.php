@@ -191,7 +191,6 @@ class OrdersController extends Controller
             }
         }
 
-
         $scope = [
             APP_UTILS::OFFICE_SCOPE,
             APP_UTILS::ALL_SCOPE

@@ -81,11 +81,18 @@ class KitchenqueueController extends Controller
      */
     public function actionIndex()
     {
+        $filterParams = [
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_KITCHEN_ASSIGNED,
+            ORDER_HELPER::STATUS_CHEF_ASSIGNED,
+            ORDER_HELPER::STATUS_UNDER_PREPARATION
+        ];
+
         $this->view->title = Yii::t('app', 'Kitchen Management');
         $searchModel = new OrdersSearch();
         $kitchenAllocated = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_KITCHEN_ASSIGNED,ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
         $chefAssigned = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_CHEF_ASSIGNED,ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
-        $preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION]);
+        $preparingOrder = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, $filterParams);
         $orderReady = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_READY]);
         $awaitingRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_AWAITING_RIDER]);
         $allocatedRider = $searchModel->searchKitchenQueue(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_RIDER_ASSIGNED]);
