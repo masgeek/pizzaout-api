@@ -21,7 +21,7 @@ $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-book"></i> Kitchen Allocated',
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $kitchenAllocated]),
-		'active' => true
+        'visible' => false,
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-book"></i> Chef Assigned',

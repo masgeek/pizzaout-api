@@ -183,9 +183,12 @@ class OrdersController extends Controller
         $model = $this->findModel($id);
         $model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             //goto receipt printing
-            return $this->redirect(['orders/view', 'id' => $id]);
+            $model->ORDER_STATUS = ORDER_HELPER::STATUS_CHEF_ASSIGNED;
+            if ($model->save()) {
+                return $this->redirect(['orders/view', 'id' => $id]);
+            }
         }
 
 
