@@ -40,7 +40,7 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         <?= JQueryFileUpload::widget([
             'model' => $model,
             'attribute' => 'MENU_ITEM_IMAGE',
-            'url' => ['upload', 'someparam' => 'somevalue'], // your route for saving images,
+            'url' => ['//upload'], // your route for saving images,
             'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
             'gallery' => true, // whether to use the Bluimp Gallery on the images or not
             'formId' => $form->id,
