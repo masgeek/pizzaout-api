@@ -187,7 +187,7 @@ class OrdersController extends Controller
             //goto receipt printing
             $model->ORDER_STATUS = ORDER_HELPER::STATUS_CHEF_ASSIGNED;
             if ($model->save()) {
-                return $this->redirect(['orders/view', 'id' => $id]);
+                return $this->redirect(['orders/print', 'id' => $id]);
             }
         }
 
