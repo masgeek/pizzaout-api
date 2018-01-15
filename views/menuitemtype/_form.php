@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use limion\jqueryfileupload\JQueryFileUpload;
 
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\MENU_ITEM_TYPE */
@@ -19,7 +20,7 @@ $field_template = <<<TEMPLATE
 TEMPLATE;
 ?>
 
-<div class="menu--item--type-form">
+<div class="menu-item-type-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

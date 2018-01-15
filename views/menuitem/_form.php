@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use limion\jqueryfileupload\JQueryFileUpload;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\MENU_ITEMS */
 /* @var $form yii\widgets\ActiveForm */
@@ -36,6 +36,25 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
     </div>
     <div class="row">
         <?= $form->field($model, 'MENU_ITEM_IMAGE')->textInput(['maxlength' => true])->hint("Please upload an image") ?>
+
+        <?= JQueryFileUpload::widget([
+            'model' => $model,
+            'attribute' => 'MENU_ITEM_IMAGE',
+            'url' => ['upload', 'someparam' => 'somevalue'], // your route for saving images,
+            'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
+            'gallery' => true, // whether to use the Bluimp Gallery on the images or not
+            'formId' => $form->id,
+            'options' => [
+                'accept' => 'image/*'
+            ],
+            'clientOptions' => [
+                'maxFileSize' => 2000000,
+                'dataType' => 'json',
+                'acceptFileTypes' => new yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),
+                'autoUpload' => false
+            ]
+        ]); ?>
+
     </div>
     <div class="row">
         <?= $form->field($model, 'HOT_DEAL')->checkbox() ?>
