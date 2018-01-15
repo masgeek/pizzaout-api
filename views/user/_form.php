@@ -14,11 +14,12 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <?= $form->field($model, 'USER_NAME')->textInput(['maxlength' => true]) ?>
     </div>
-
+    <div class="row">
+        <?= $form->field($model, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
+    </div>
     <div class="row">
         <?= $form->field($model, 'USER_TYPE')->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes()) ?>
     </div>
-
     <div class="row">
         <?= $form->field($model, 'SURNAME')->textInput(['maxlength' => true]) ?>
     </div>
@@ -30,12 +31,6 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <?= $form->field($model, 'EMAIL')->textInput(['maxlength' => true]) ?>
-    </div>
-    <div class="row">
-        <?= $form->field($model, 'LOCATION_ID')->hiddenInput(['maxlength' => true])->label(false) ?>
-    </div>
-    <div class="row">
-        <?= $form->field($model, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
     </div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Sign Up' : 'Update Profile', ['class' => 'btn btn-success btn-lg btn-block']) ?>
