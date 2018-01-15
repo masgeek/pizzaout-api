@@ -27,13 +27,14 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
 ?>
 <div class="customer-orders-form">
     <?php $form = ActiveForm::begin(); ?>
-    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER): ?>
+    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER || $model->scenario ==  \app\helpers\APP_UTILS::SCENARIO_PREPARE_ORDER): ?>
         <div class="col-md-12">
             <?= $form->field($model, 'RIDER_ID', ['template' => $field_template])->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
                     'prompt' => '--- SELECT RIDER ---',
                 ]
             ) ?>
         </div>
+    <?php else: ?>
         <div class="col-md-12">
             <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
                     'prompt' => '--- SELECT KITCHEN ---',
@@ -42,7 +43,6 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
                 ]
             ) ?>
         </div>
-    <?php else: ?>
         <div class="col-md-12">
             <?=
             $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
