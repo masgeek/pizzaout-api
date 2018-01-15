@@ -3,6 +3,7 @@
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -23,18 +24,7 @@ $exportConfig = [
         //'writer' => 'CSV'
     ],
     ExportMenu::FORMAT_TEXT => false,
-    ExportMenu::FORMAT_PDF => [
-        'label' => Yii::t('app', 'PDF'),
-        'icon' => $isFa ? 'file-pdf-o' : 'floppy-disk',
-        'iconOptions' => ['class' => 'text-danger'],
-        'linkOptions' => [],
-        'options' => ['title' => Yii::t('app', 'Portable Document Format')],
-        'alertMsg' => Yii::t('app', 'The PDF export file will be generated for download.'),
-        'mime' => 'application/pdf',
-        'extension' => 'pdf',
-        'filename' => 'sammy',
-        //'writer' => 'PDF'
-    ],
+    ExportMenu::FORMAT_PDF => false,
     ExportMenu::FORMAT_EXCEL => [
         'label' => Yii::t('app', 'Excel 95 +'),
         'icon' => $isFa ? 'file-excel-o' : 'floppy-remove',
