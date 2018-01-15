@@ -88,31 +88,11 @@ $gridColumns = [
             if ($action === 'update') {
                 switch ($model->ORDER_STATUS) {
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_CANCELLED:
-                        $action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
-                        break;
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
-                        $action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
-                        break;
                     case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
-                        $action = '<i class="fa fa-cutlery fa-1x"></i><br/>Assign Kitchen';
-                        $class .= 'btn-warning';
-                        $url = \yii\helpers\Url::toRoute(['assign-kitchen', 'id' => $model->ORDER_ID]);
-                        break;
                     case \app\helpers\ORDER_HELPER::STATUS_KITCHEN_ASSIGNED:
-                        $action = '<i class="fa fa-building fa-1x"></i><br/>Assign Chef';
-                        $class .= 'btn-default';
-                        $url = \yii\helpers\Url::toRoute(['assign-chef', 'id' => $model->ORDER_ID]);
-                        break;
                     case \app\helpers\ORDER_HELPER::STATUS_CHEF_ASSIGNED:
-                        $action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>Prepare Order';
-                        $class .= 'btn-primary';
-                        $url = \yii\helpers\Url::toRoute(['prepare-order', 'id' => $model->ORDER_ID]);
-                        break;
                     case \app\helpers\ORDER_HELPER::STATUS_UNDER_PREPARATION:
                         $action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>Order Ready';
                         $class .= 'btn-primary';
