@@ -14,27 +14,28 @@ use kartik\tabs\TabsX;
 $this->params['breadcrumbs'][] = $this->title;
 
 $items = [
-	[
-		'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
-		'active' => true
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
-	],
-	[
-		'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
-		'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
-	],
+    [
+        'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
+        'active' => true
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
+        'visible' => false,
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
+    ],
 ];
 ?>
 
@@ -42,10 +43,10 @@ $items = [
 
 <?=
 TabsX::widget([
-	'items' => $items,
-	'position' => TabsX::POS_ABOVE,
-	'encodeLabels' => false,
-	'bordered' => true,
+    'items' => $items,
+    'position' => TabsX::POS_ABOVE,
+    'encodeLabels' => false,
+    'bordered' => true,
 ]);
 ?>
 

@@ -184,6 +184,7 @@ class OrdersController extends Controller
         $model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //goto receipt printing
             return $this->redirect(['index']);
         }
 
