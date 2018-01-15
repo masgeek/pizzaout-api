@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr/>
     <div id="PrintThis">
         <h1><?= Html::encode($this->title) ?></h1>
+        <h5><?= date('D-M-Y H:i:s') ?></h5>
         <?= $this->render('/receipt/a4-receipt', ['model' => $model,]) ?>
         <?= $this->render('/orders/_order_items', ['model' => $model]) ?>
     </div>

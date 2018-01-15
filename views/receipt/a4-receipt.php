@@ -14,10 +14,16 @@ use yii\helpers\Html;
 <table data-height="auto" class="table table-condensed table-border">
     <tbody>
     <tr>
-        <td>Name <?= "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}"; ?></td>
+        <td>NAME</td>
+        <td><?= "{$model->uSER->SURNAME} {$model->uSER->OTHER_NAMES}"; ?></td>
     </tr>
     <tr>
-        <td>Address <?= "{$model->lOCATION->LOCATION_NAME} {$model->lOCATION->ADDRESS}"; ?></td>
+        <td>MOBILE</td>
+        <td><?="{$model->uSER->MOBILE}"; ?></td>
+    </tr>
+    <tr>
+        <td>ADDRESS</td>
+        <td><?= "{$model->lOCATION->LOCATION_NAME} {$model->lOCATION->ADDRESS}"; ?></td>
     </tr>
 
     </tr>
