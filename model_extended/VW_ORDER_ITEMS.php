@@ -9,6 +9,7 @@
 namespace app\model_extended;
 
 
+use app\api\modules\v1\models\CUSTOMER_ORDER_MODEL;
 use app\helpers\ORDER_HELPER;
 use app\helpers\ReceiptItem;
 use app\models\VwOrderItems;
@@ -42,6 +43,20 @@ class VW_ORDER_ITEMS extends VwOrderItems
     public static function GetOrders($order_id)
     {
         return self::findAll(['ORDER_ID' => $order_id]);
+    }
+
+    public static function CreateReceiptCustomer($order_id)
+    {
+        $orders = CUSTOMER_ORDER_MODEL::findOne($order_id);
+        return new ReceiptItem('Customer Name', $orders->uSER->SURNAME . ' ' . $orders->uSER->OTHER_NAMES);
+    }
+
+    public static function CreateReceiptCustomerAddress($order_id)
+    {
+
+        $orders = CUSTOMER_ORDER_MODEL::findOne($order_id);
+
+        return new ReceiptItem('Address', $orders->lOCATION->LOCATION_NAME . ' ' . $orders->lOCATION->ADDRESS);
     }
 
     public static function CreateReceiptSubtotal($order_id)

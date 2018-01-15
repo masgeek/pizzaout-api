@@ -39,10 +39,12 @@ class ReceiptController extends Controller
      */
     public function actionPrintReceipt($order_id)
     {
-        $this->view->title = 'Sample Print Receipt';
+        $this->view->title = 'Print Receipt';
         //get the order information
         /* Information for the receipt */
         $orderitems = VW_ORDER_ITEMS::CreateReceiptObjects($order_id);
+        $customer = VW_ORDER_ITEMS::CreateReceiptCustomer($order_id);
+        $address = VW_ORDER_ITEMS::CreateReceiptCustomerAddress($order_id);
 
 
         $subtotal = VW_ORDER_ITEMS::CreateReceiptSubtotal($order_id);
@@ -50,7 +52,7 @@ class ReceiptController extends Controller
         $total = VW_ORDER_ITEMS::CreateReceiptTotal($subtotal->SUBTOTAL, $tax->TAX_AMOUNT);
 
 
-        $file = $this->PrintReceipt(Yii::$app->name . 'Order Number ' . $order_id, $orderitems, $subtotal, $tax, $total);
+        $file = $this->PrintReceipt(Yii::$app->name . 'Order Number ' . $order_id, $orderitems, $subtotal, $tax, $total, $customer, $address);
         //let us prepare the receipt
         //return $this->renderPartial('error', ['message' => 'hello sammy']);
 
@@ -75,7 +77,7 @@ class ReceiptController extends Controller
      * @throws \Exception
      * @throws \yii\base\InvalidConfigException
      */
-    public function PrintReceipt($shopName, $items, $subtotal, $tax, $total, $fileName = "sammy.txt")
+    public function PrintReceipt($shopName, $items, $subtotal, $tax, $total, $customer, $address, $fileName = "sammy.txt")
     {
         $tagLine = ORDER_HELPER::getTagLine();
         $printDate = APP_UTILS::GetCurrentDateTime('medium');
@@ -101,7 +103,8 @@ class ReceiptController extends Controller
         $printer->setEmphasis(true);
         $printer->text("SALES RECEIPT\n");
         $printer->setEmphasis(false);
-
+        $printer->text($customer);
+        $printer->text($address);
 
         /* Items */
         //$printer->setJustification(Printer::JUSTIFY_LEFT);
