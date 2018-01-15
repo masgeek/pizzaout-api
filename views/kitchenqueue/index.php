@@ -29,6 +29,7 @@ $items = [
         'visible' => false,
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Preparing Order',
+        'active'=>true,
 		'content' => $this->render('_kitchen_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
 	], [
 		'label' => '<i class="glyphicon glyphicon-book"></i> Order Ready',
