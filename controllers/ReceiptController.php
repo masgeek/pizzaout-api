@@ -64,6 +64,8 @@ class ReceiptController extends Controller
         $contents = file_get_contents($readFile);
 
         return $this->render('receipt', ['message' => $contents]);
+
+        //return $this->renderFile(Yii::getAlias('@app') . '/' . $file);
     }
 
     /**

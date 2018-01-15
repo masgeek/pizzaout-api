@@ -49,7 +49,7 @@
     "phpmailer/phpmailer": "dev-master",
     "zyx/zyx-phpmailer": "@stable",
     "limion/yii2-jquery-fileupload-widget": "~1.0",
-    "projectufa/yii2-mprint": "dev-master"
+    "projectufa/yii2-mprint": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
