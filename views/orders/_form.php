@@ -27,29 +27,6 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
 ?>
 <div class="customer-orders-form">
     <?php $form = ActiveForm::begin(); ?>
-    <div class="col-md-12">
-        <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
-                'prompt' => '--- SELECT KITCHEN ---',
-                'class' => 'form-control',
-                'id' => 'cat-id'
-            ]
-        ) ?>
-    </div>
-
-    <div class="col-md-12">
-        <?=
-        $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
-            'options' => ['id' => 'subcat-id'],
-            'pluginOptions' => [
-                'depends' => ['cat-id'],
-                'placeholder' => '--- SELECT CHEF ---',
-                'url' => Url::to(['get-kitchen'])
-            ]
-        ]); ?>'
-
-    </div>
-
-
     <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER): ?>
         <div class="col-md-12">
             <?= $form->field($model, 'RIDER_ID', ['template' => $field_template])->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
@@ -57,6 +34,29 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
                 ]
             ) ?>
         </div>
+        <div class="col-md-12">
+            <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
+                    'prompt' => '--- SELECT KITCHEN ---',
+                    'class' => 'form-control',
+                    'id' => 'cat-id'
+                ]
+            ) ?>
+        </div>
+    <?php else: ?>
+        <div class="col-md-12">
+            <?=
+            $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
+                'options' => ['id' => 'subcat-id'],
+                'pluginOptions' => [
+                    'depends' => ['cat-id'],
+                    'placeholder' => '--- SELECT CHEF ---',
+                    'url' => Url::to(['get-kitchen'])
+                ]
+            ]); ?>'
+
+        </div>
+
+
     <?php endif; ?>
 
     <div class="col-md-12">
