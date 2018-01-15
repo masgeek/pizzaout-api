@@ -185,7 +185,7 @@ class OrdersController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //goto receipt printing
-            return $this->redirect(['index']);
+            return $this->redirect(['orders/view', 'id' => $id]);
         }
 
 
@@ -199,6 +199,18 @@ class OrdersController extends Controller
             'model' => $model,
             'scope' => $scope,
             'workflow' => $workflow
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionPrint($id)
+    {
+        return $this->render('print-receipt', [
+            'model' => $this->findModel($id),
         ]);
     }
 
