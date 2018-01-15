@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
 class CHEF_MODEL extends Chef
 {
-    public static function GetChefs($kitchen_id)
+    public static function GetChefs($kitchen_id, $asModel = false)
     {
         $chefs = self::find()
             ->where(['KITCHEN_ID' => $kitchen_id])
@@ -22,7 +22,7 @@ class CHEF_MODEL extends Chef
 
         $listData = ArrayHelper::map($chefs, 'CHEF_ID', 'CHEF_NAME');
 
-        return $listData;
+        return $asModel ? $chefs : $listData;
     }
 
     /**

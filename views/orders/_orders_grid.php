@@ -75,7 +75,7 @@ $gridColumns = [
                     case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
                         $action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
                         $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['update', 'id' => $model->ORDER_ID]);
+                        $url = \yii\helpers\Url::toRoute(['orders/confirm-order', 'id' => $model->ORDER_ID]);
                         break;
                     case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:

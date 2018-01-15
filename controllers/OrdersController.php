@@ -10,6 +10,7 @@ use app\models_search\OrdersSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -57,7 +58,7 @@ class OrdersController extends Controller
             ORDER_HELPER::STATUS_RIDER_DISPATCHED
         ]);
 
-        $pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING,ORDER_HELPER::STATUS_PAYMENT_PENDING]);
+        $pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING, ORDER_HELPER::STATUS_PAYMENT_PENDING]);
         $confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
         $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION]);
 
@@ -167,6 +168,39 @@ class OrdersController extends Controller
         ]);
     }
 
+
+    /**
+     * Updates an existing CUSTOMER_ORDERS model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionConfirmOrder($id)
+    {
+
+        $this->view->title = "Order #{$id}";
+        $model = $this->findModel($id);
+        $model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+
+        $scope = [
+            APP_UTILS::OFFICE_SCOPE,
+            APP_UTILS::ALL_SCOPE
+        ];
+        $workflow = ORDER_HELPER::NextWorkFlow($id, $scope);
+
+        return $this->render('confirm-order', [
+            'model' => $model,
+            'scope' => $scope,
+            'workflow' => $workflow
+        ]);
+    }
+
     public function actionAssignKitchen($id)
     {
         $this->view->title = "Order #{$id}";
@@ -195,6 +229,27 @@ class OrdersController extends Controller
             'workflow' => $workflow
         ]);
     }
+
+    public function actionGetKitchen()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $cat_id = $parents[0];
+                $chefs = \app\model_extended\CHEF_MODEL::GetChefs($cat_id, true);
+                foreach ($chefs as $key => $value) {
+                    $out[] = [
+                        'id' => $value->CHEF_ID,
+                        'name' => $value->CHEF_NAME
+                    ];
+                }
+                return Json::encode(['output' => $out, 'selected' => '']);
+            }
+        }
+        return Json::encode(['output' => '', 'selected' => '']);
+    }
+
 
     /**
      * Deletes an existing CUSTOMER_ORDERS model.

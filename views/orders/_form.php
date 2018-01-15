@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\depdrop\DepDrop;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CUSTOMER_ORDERS */
@@ -25,26 +27,27 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
 ?>
 <div class="customer-orders-form">
     <?php $form = ActiveForm::begin(); ?>
+    <div class="col-md-12">
+        <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
+                'prompt' => '--- SELECT KITCHEN ---',
+                'class' => 'form-control',
+                'id' => 'cat-id'
+            ]
+        ) ?>
+    </div>
 
-    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ALLOCATE_KITCHEN): ?>
-        <div class="col-md-12">
-            <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
-                    'prompt' => '--- SELECT KITCHEN ---',
-                    'class' => 'form-control'
-                ]
-            ) ?>
-        </div>
+    <div class="col-md-12">
+        <?=
+        $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
+            'options' => ['id' => 'subcat-id'],
+            'pluginOptions' => [
+                'depends' => ['cat-id'],
+                'placeholder' => '--- SELECT CHEF ---',
+                'url' => Url::to(['get-kitchen'])
+            ]
+        ]); ?>'
 
-    <?php endif; ?>
-
-    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_CHEF): ?>
-        <div class="col-md-12">
-            <?= $form->field($model, 'CHEF_ID', ['template' => $field_template])->dropDownList(\app\model_extended\CHEF_MODEL::GetChefs($model->KITCHEN_ID), [
-                    'prompt' => '--- SELECT CHEF ---',
-                ]
-            ) ?>
-        </div>
-    <?php endif; ?>
+    </div>
 
 
     <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER): ?>
