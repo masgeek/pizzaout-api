@@ -14,6 +14,7 @@ use yii\helpers\ArrayHelper;
 
 class MENU_ITEMS extends MenuItem
 {
+    public $IMAGE_FILE;
     public static function GetMenuItems($menu_cat_id)
     {
 

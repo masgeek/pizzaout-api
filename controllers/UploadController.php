@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\model_extended\MENU_ITEMS;
 use app\model_extended\USERS_MODEL;
 use Yii;
 use yii\web\Controller;
@@ -23,11 +24,12 @@ class UploadController extends Controller
      */
 public function actionIndex()
 {
-    $model = new USERS_MODEL();
+    $model = new MENU_ITEMS();
 
-    $imageFile = UploadedFile::getInstance($model, 'image');
+    $imageFile = UploadedFile::getInstance($model, 'IMAGE_FILE');
 
-    $directory = Yii::getAlias('@frontend/web/img/temp') . DIRECTORY_SEPARATOR . Yii::$app->session->id . DIRECTORY_SEPARATOR;
+    $directory = Yii::getAlias('@foodimages') . DIRECTORY_SEPARATOR;
+
     if (!is_dir($directory)) {
         FileHelper::createDirectory($directory);
     }
@@ -36,6 +38,8 @@ public function actionIndex()
         $uid = uniqid(time(), true);
         $fileName = $uid . '.' . $imageFile->extension;
         $filePath = $directory . $fileName;
+
+        return $filePath;
         if ($imageFile->saveAs($filePath)) {
             $path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
             return Json::encode([

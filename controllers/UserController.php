@@ -120,6 +120,19 @@ class UserController extends Controller
      * @return mixed
      * @throws NotFoundHttpException
      */
+    public function actionPromote($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->USER_ID]);
+        }
+
+        return $this->render('promote', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -132,7 +145,6 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
-
     public function actionResetPass($token)
     {
         $this->layout = 'login_layout';

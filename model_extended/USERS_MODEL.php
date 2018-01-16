@@ -20,6 +20,7 @@ class USERS_MODEL extends Users implements IdentityInterface
     public $ACCOUNT_AUTH_KEY;
     public $PASSWORD_RESET_TOKEN;
     public $CONFIRM_PASSWORD;
+    public $FULL_NAMES;
 
     /**
      * Finds an identity by the given ID.
