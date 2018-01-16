@@ -124,10 +124,10 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->RESET_TOKEN = 'NONE';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);//(['view', 'id' => $model->USER_ID]);
         }
-
         return $this->render('promote', [
             'model' => $model,
         ]);
@@ -137,6 +137,7 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->RESET_TOKEN = 'NONE';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->USER_ID]);
         }
@@ -145,12 +146,13 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
+
     public function actionResetPass($token)
     {
         $this->layout = 'login_layout';
         $this->view->title = 'Change Password';
         $model = USERS_MODEL::findByToken($token);
-        if($model!=null) {
+        if ($model != null) {
             if ($model->load(Yii::$app->request->post())) {
 
                 $post = Yii::$app->request->post('USERS_MODEL');
