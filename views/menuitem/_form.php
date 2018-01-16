@@ -36,14 +36,14 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         <?= $form->field($model, 'MENU_ITEM_DESC', ['template' => $field_template])->textarea(['rows' => 6]) ?>
     </div>
     <div class="row">
-        <?= $form->field($model, 'MENU_ITEM_IMAGE', ['template' => $field_template])->hiddenInput(['id' => 'filename', 'maxlength' => true])->label(false) ?>
+        <?= $form->field($model, 'MENU_ITEM_IMAGE')->hiddenInput(['id' => 'filename', 'maxlength' => true])->label(false) ?>
 
         <?= JQueryFileUpload::widget([
             'model' => $model,
             'attribute' => 'IMAGE_FILE',
             'url' => ['//upload','rank' => 'menuitem'], // your route for saving images,
             'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
-            'gallery' => false, // whether to use the Bluimp Gallery on the images or not
+            'gallery' => true, // whether to use the Bluimp Gallery on the images or not
             'formId' => $form->id,
             'options' => [
                 'multiple' => false,
