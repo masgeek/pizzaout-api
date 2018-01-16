@@ -1,4 +1,5 @@
 <?php
+\Yii::setAlias('@foodimageupload', 'images' . DIRECTORY_SEPARATOR . 'foodimages' . DIRECTORY_SEPARATOR);
 \Yii::setAlias('@foodimages', 'images/foodimages/');
 \Yii::setAlias('@appimages', 'images/app_images/');
 \Yii::setAlias('@logsfolder', 'logs');

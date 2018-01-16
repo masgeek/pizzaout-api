@@ -22,43 +22,43 @@ class UploadController extends Controller
      * @return string
      * @throws \yii\base\Exception
      */
-public function actionIndex()
-{
-    $model = new MENU_ITEMS();
+    public function actionIndex()
+    {
+        $model = new MENU_ITEMS();
 
-    $imageFile = UploadedFile::getInstance($model, 'IMAGE_FILE');
+        $imageFile = UploadedFile::getInstance($model, 'IMAGE_FILE');
 
-    $directory = Yii::getAlias('@foodimages') . DIRECTORY_SEPARATOR;
+        $directoryA = Yii::getAlias('@app') . DIRECTORY_SEPARATOR;
+        $directoryB = Yii::getAlias('@foodimageupload') . DIRECTORY_SEPARATOR;
+        $directory = $directoryA . $directoryB;
 
-    if (!is_dir($directory)) {
-        FileHelper::createDirectory($directory);
-    }
-
-    if ($imageFile) {
-        $uid = uniqid(time(), true);
-        $fileName = $uid . '.' . $imageFile->extension;
-        $filePath = $directory . $fileName;
-
-        return $filePath;
-        if ($imageFile->saveAs($filePath)) {
-            $path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
-            return Json::encode([
-                'files' => [
-                    [
-                        'name' => $fileName,
-                        'size' => $imageFile->size,
-                        'url' => $path,
-                        'thumbnailUrl' => $path,
-                        'deleteUrl' => 'image-delete?name=' . $fileName,
-                        'deleteType' => 'POST',
-                    ],
-                ],
-            ]);
+        if (!is_dir($directory)) {
+            FileHelper::createDirectory($directory);
         }
-    }
 
-    return '';
-}
+        if ($imageFile) {
+            $uid = uniqid(time(), true);
+            $fileName = $uid . '.' . $imageFile->extension;
+            $filePath = $directory . $fileName;
+            if ($imageFile->saveAs($filePath)) {
+                $path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
+                return Json::encode([
+                    'files' => [
+                        [
+                            'name' => $fileName,
+                            'size' => $imageFile->size,
+                            'url' => $path,
+                            'thumbnailUrl' => $path,
+                            'deleteUrl' => 'image-delete?name=' . $fileName,
+                            'deleteType' => 'POST',
+                        ],
+                    ],
+                ]);
+            }
+        }
+
+        return '';
+    }
 
     public function actionImageDelete($name)
     {

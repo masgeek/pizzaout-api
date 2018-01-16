@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\USERS_MODEL */
 
-$this->title = 'Update Users  Model: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Users  Models', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->USER_ID, 'url' => ['view', 'id' => $model->USER_ID]];
+$this->title = 'Update Users:';
+$this->params['breadcrumbs'][] = ['label' => 'Users Management', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->USER_NAME, 'url' => ['view', 'id' => $model->USER_ID]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="users--model-update">
