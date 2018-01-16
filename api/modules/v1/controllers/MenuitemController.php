@@ -46,7 +46,7 @@ class MenuitemController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
-
+/*
         if ($this->_apiToken == 0 or $this->_userID == 0) {
             $this->_apiToken = Yii::$app->request->headers->get("api-token", null);
             $this->_userID = Yii::$app->request->headers->get("user-id", null);
@@ -58,7 +58,7 @@ class MenuitemController extends ActiveController
         //check if the token is valid
         if (!API_TOKEN_MODEL::IsValidToken($this->_apiToken, $this->_userID)) {
             throw new ForbiddenHttpException('Invalid token, access denied');
-        }
+        }*/
     }
 
 
