@@ -36,17 +36,17 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         <?= $form->field($model, 'MENU_ITEM_DESC', ['template' => $field_template])->textarea(['rows' => 6]) ?>
     </div>
     <div class="row">
-        <?= $form->field($model, 'MENU_ITEM_IMAGE')->textInput(['maxlength' => true])->hint("Please upload an image") ?>
+        <?= $form->field($model, 'MENU_ITEM_IMAGE', ['template' => $field_template])->hiddenInput(['id' => 'filename', 'maxlength' => true])->label(false) ?>
 
         <?= JQueryFileUpload::widget([
             'model' => $model,
             'attribute' => 'IMAGE_FILE',
             'url' => ['//upload'], // your route for saving images,
-
             'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
-            'gallery' => true, // whether to use the Bluimp Gallery on the images or not
+            'gallery' => false, // whether to use the Bluimp Gallery on the images or not
             'formId' => $form->id,
             'options' => [
+                'multiple' => false,
                 'accept' => 'image/*'
             ],
             'clientOptions' => [
@@ -58,20 +58,15 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
             ], 'clientEvents' => [
                 'done' => "function (e, data) {
                 $.each(data.result.files, function (index, file) {
-                    $('<p/>').text(file.name).appendTo('#files');
+                    ///$('<p/>').text(file.name).appendTo('#sam');
+                   $('#filename').val(file.name);
                 });
-            }",
-                'progressall' => "function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .progress-bar').css(
-                    'width',
-                    progress + '%'
-                );
             }"
             ]
         ]); ?>
 
     </div>
+    <div id="sam"></div>
     <div class="row">
         <?= $form->field($model, 'HOT_DEAL')->checkbox() ?>
     </div>
@@ -81,7 +76,7 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
     <div class="row">
         <?= $form->field($model, 'MAX_QTY', ['template' => $field_template])->textInput() ?>
     </div>
-    <div class="form-group">
+    <div class="form - group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
