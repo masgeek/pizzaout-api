@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use limion\jqueryfileupload\JQueryFileUpload;
+
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\MENU_ITEMS */
 /* @var $form yii\widgets\ActiveForm */
@@ -35,12 +36,13 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         <?= $form->field($model, 'MENU_ITEM_DESC', ['template' => $field_template])->textarea(['rows' => 6]) ?>
     </div>
     <div class="row">
-        <!--?= $form->field($model, 'MENU_ITEM_IMAGE')->textInput(['maxlength' => true])->hint("Please upload an image") ?-->
+        <?= $form->field($model, 'MENU_ITEM_IMAGE')->textInput(['maxlength' => true])->hint("Please upload an image") ?>
 
         <?= JQueryFileUpload::widget([
             'model' => $model,
             'attribute' => 'IMAGE_FILE',
             'url' => ['//upload'], // your route for saving images,
+
             'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
             'gallery' => true, // whether to use the Bluimp Gallery on the images or not
             'formId' => $form->id,
@@ -48,10 +50,24 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
                 'accept' => 'image/*'
             ],
             'clientOptions' => [
+                'multiple' => false,
                 'maxFileSize' => 2000000,
                 'dataType' => 'json',
                 'acceptFileTypes' => new yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),
                 'autoUpload' => false
+            ], 'clientEvents' => [
+                'done' => "function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo('#files');
+                });
+            }",
+                'progressall' => "function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }"
             ]
         ]); ?>
 
