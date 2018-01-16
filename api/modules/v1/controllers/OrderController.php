@@ -32,22 +32,19 @@ class OrderController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
+        /*$api_token = Yii::$app->request->headers->get("api_token", null);
+        $user_id = Yii::$app->request->headers->get("user_id", null);
 
-        //private $_apiToken = 0;
-        //private $_userID = 0;
-        if ($this->_apiToken == 0 or $this->_userID == 0) {
-            $this->_apiToken = Yii::$app->request->headers->get("api-token", null);
-            $this->_userID = Yii::$app->request->headers->get("user-id", null);
-        }
-
-        if ($this->_apiToken == null or $this->_userID == null) {
-            // throw new \yii\web\ForbiddenHttpException("You can't $action this section. {$this->_apiToken} {$this->_userID}");
+        if ($api_token == null && $user_id == null) {
+            throw new \yii\web\ForbiddenHttpException("You can't $action this section. $api_token");
         }
         //check if the token is valid
-        if (!API_TOKEN_MODEL::IsValidToken($this->_apiToken, $this->_userID)) {
-            throw new \yii\web\ForbiddenHttpException("Invalid token, access  {$this->_apiToken} {$this->_userID}");
-        }
+        if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
+            throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
+        }*/
     }
+
+
 
     public function actions()
     {
