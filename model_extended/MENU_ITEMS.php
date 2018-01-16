@@ -11,7 +11,7 @@ namespace app\model_extended;
 
 use app\models\MenuItem;
 use yii\helpers\ArrayHelper;
-
+use Yii;
 class MENU_ITEMS extends MenuItem
 {
     public $IMAGE_FILE;
@@ -35,4 +35,27 @@ class MENU_ITEMS extends MenuItem
             ->all();
         return ArrayHelper::map($sizes, 'SIZE_TYPE', 'SIZE_TYPE');
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'MENU_ITEM_ID' => Yii::t('app', 'Menu Item'),
+            'MENU_CAT_ID' => Yii::t('app', 'Menu Category'),
+            'MENU_ITEM_NAME' => Yii::t('app', 'Menu Item Name'),
+            'MENU_ITEM_DESC' => Yii::t('app', 'Description'),
+            'MENU_ITEM_IMAGE' => Yii::t('app', 'Image'),
+            'HOT_DEAL' => Yii::t('app', 'Hot Deal'),
+            'VEGETARIAN' => Yii::t('app', 'Vegetarian'),
+            'MAX_QTY' => Yii::t('app', 'Max Item Per Customer'),
+        ];
+    }
+
+    /*
+    public function attributeLabels()
+    {
+        $label =  parent::attributeLabels();
+        $label['MAX_QTY'] = 'Max Item Per Customer';
+        $label['MAX_QTY'] = 'Max Item Per Customer';
+        return $label;
+    }*/
 }

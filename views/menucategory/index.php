@@ -27,10 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'MENU_CAT_ID',
             'MENU_CAT_NAME',
-            //'MENU_CAT_IMAGE',
             'ACTIVE:boolean',
             'RANK',
-
+            'MENU_CAT_IMAGE',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
