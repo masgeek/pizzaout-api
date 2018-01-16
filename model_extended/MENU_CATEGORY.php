@@ -14,6 +14,8 @@ use yii\helpers\ArrayHelper;
 
 class MENU_CATEGORY extends MenuCategory
 {
+    public $IMAGE_FILE;
+
     public static function GetMenuCategories()
     {
 

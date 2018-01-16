@@ -41,7 +41,7 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         <?= JQueryFileUpload::widget([
             'model' => $model,
             'attribute' => 'IMAGE_FILE',
-            'url' => ['//upload'], // your route for saving images,
+            'url' => ['//upload','rank' => 'menuitem'], // your route for saving images,
             'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
             'gallery' => false, // whether to use the Bluimp Gallery on the images or not
             'formId' => $form->id,
@@ -66,7 +66,7 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
         ]); ?>
 
     </div>
-    <div id="sam"></div>
+
     <div class="row">
         <?= $form->field($model, 'HOT_DEAL')->checkbox() ?>
     </div>

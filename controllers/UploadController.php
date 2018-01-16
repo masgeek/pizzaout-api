@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\model_extended\MENU_CATEGORY;
 use app\model_extended\MENU_ITEMS;
 use app\model_extended\USERS_MODEL;
 use Yii;
@@ -22,9 +23,13 @@ class UploadController extends Controller
      * @return string
      * @throws \yii\base\Exception
      */
-    public function actionIndex()
+    public function actionIndex($rank)
     {
-        $model = new MENU_ITEMS();
+        if ($rank == 'category') {
+            $model = new MENU_CATEGORY();
+        } elseif ($rank == 'menuitem') {
+            $model = new MENU_ITEMS();
+        }
 
         $imageFile = UploadedFile::getInstance($model, 'IMAGE_FILE');
 
