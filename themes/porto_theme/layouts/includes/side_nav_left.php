@@ -47,7 +47,7 @@ use yii\helpers\Html;
                     </li>
                     <li class="nav-parent nav-expanded nav-active">
                         <a>
-                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <i class="fa fa-wrench" aria-hidden="true"></i>
                             <span>Setup</span>
                         </a>
                         <ul class="nav nav-children">
