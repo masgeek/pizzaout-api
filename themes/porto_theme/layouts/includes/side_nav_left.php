@@ -84,6 +84,9 @@ use yii\helpers\Html;
                             <li>
                                 <?= Html::a('Manage Countries', ['//country'], ['title' => 'Countries']); ?>
                             </li>
+                            <li>
+                                <?= Html::a('Manage Status', ['//status'], ['title' => 'Status']); ?>
+                            </li>
                         </ul>
                     </li>
                 </ul>

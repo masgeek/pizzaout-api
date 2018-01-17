@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'COLOR',
             'SCOPE',
             'RANK',
-            //'WORKFLOW',
+            'WORKFLOW',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
