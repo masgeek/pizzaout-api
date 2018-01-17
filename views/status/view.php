@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'STATUS_NAME',
             'STATUS_DESC',
-            'COLOR',
+            [
+                'label' => 'COLOR',
+                'format'=>'raw',
+                'value' => "<span class='badge' style='background-color: {$model->COLOR}'> </span>  <code>" . $model->COLOR . '</code>'
+            ],
             'SCOPE',
             'RANK',
             'WORKFLOW',
