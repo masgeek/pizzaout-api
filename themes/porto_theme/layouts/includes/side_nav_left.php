@@ -31,7 +31,7 @@ use yii\helpers\Html;
                             <li><?= Html::a('Orders', ['//orders/index'], ['title' => 'View Orders']); ?></li>
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent">
                         <a>
                             <i class="fa fa-cutlery" aria-hidden="true"></i>
                             <span>Kitchen</span>
@@ -45,7 +45,7 @@ use yii\helpers\Html;
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent">
                         <a>
                             <i class="fa fa-wrench" aria-hidden="true"></i>
                             <span>Setup</span>
