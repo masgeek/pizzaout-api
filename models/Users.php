@@ -53,6 +53,8 @@ class Users extends \yii\db\ActiveRecord
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL', 'PASSWORD', 'RESET_TOKEN'], 'string', 'max' => 100],
             [['MOBILE'], 'string', 'max' => 25],
             [['CLIENT_TOKEN'], 'string', 'max' => 255],
+            [['USER_NAME'], 'unique'],
+            [['EMAIL'], 'unique'],
             [['USER_TYPE'], 'exist', 'skipOnError' => true, 'targetClass' => UserType::className(), 'targetAttribute' => ['USER_TYPE' => 'USER_TYPE_ID']],
         ];
     }

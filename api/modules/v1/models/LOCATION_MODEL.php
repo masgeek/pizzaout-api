@@ -14,6 +14,12 @@ use yii\data\ActiveDataProvider;
 
 class LOCATION_MODEL extends Location
 {
+    public function rules()
+    {
+        $rules =  parent::rules();
+        return $rules;
+    }
+
     /**
      * Creates data provider instance with search query applied
      *
