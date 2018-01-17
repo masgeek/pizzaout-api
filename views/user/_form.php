@@ -37,26 +37,24 @@ TEMPLATE;
         </div>
     <?php endif; ?>
     <div class="row">
-        <div class="row">
-            <?= $form->field($model, 'SURNAME', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="row">
-            <?= $form->field($model, 'OTHER_NAMES', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="row">
-            <?= $form->field($model, 'MOBILE', ['template' => $field_template])->textInput() ?>
-        </div>
-        <div class="row">
-            <?= $form->field($model, 'EMAIL', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="row hidden">
-            <?= $form->field($model, 'USER_TYPE', ['template' => $field_template])->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes()) ?>
-        </div>
-
-        <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Sign Up' : 'Update Profile', ['class' => 'btn btn-success btn-lg btn-block']) ?>
-        </div>
-
-        <?php ActiveForm::end(); ?>
-
+        <?= $form->field($model, 'SURNAME', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
     </div>
+    <div class="row">
+        <?= $form->field($model, 'OTHER_NAMES', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="row">
+        <?= $form->field($model, 'MOBILE', ['template' => $field_template])->textInput() ?>
+    </div>
+    <div class="row">
+        <?= $form->field($model, 'EMAIL', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="row hidden">
+        <?= $form->field($model, 'USER_TYPE', ['template' => $field_template])->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes()) ?>
+    </div>
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Sign Up' : 'Update Profile', ['class' => 'btn btn-success btn-lg btn-block']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
