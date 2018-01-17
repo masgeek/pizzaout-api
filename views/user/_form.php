@@ -50,7 +50,7 @@ TEMPLATE;
             <?= $form->field($model, 'EMAIL', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
         </div>
         <div class="row">
-            <?= $form->field($model, 'USER_TYPE', ['template' => $field_template])->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes([])) ?>
+            <?= $form->field($model, 'USER_TYPE', ['template' => $field_template])->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes()) ?>
         </div>
 
         <div class="form-group">
