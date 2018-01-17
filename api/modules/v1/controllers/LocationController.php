@@ -9,6 +9,7 @@
 namespace app\api\modules\v1\controllers;
 
 use app\api\modules\v1\models\ACCOUNT_TYPE_MODEL;
+use app\api\modules\v1\models\LOCATION_MODEL;
 use app\api\modules\v1\models\SERVICE_MODEL;
 use app\models\ContactForm;
 use yii\rest\ActiveController;
@@ -45,5 +46,21 @@ class LocationController extends ActiveController
         if (!API_TOKEN_MODEL::IsValidToken($api_token, $user_id)) {
             throw new \yii\web\ForbiddenHttpException('Invalid token, access denied');
         }*/
+    }
+
+    public function actions()
+    {
+        $actions = parent::actions();
+        unset($actions['delete'], $actions['create']);
+        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+        return $actions;
+    }
+
+    public function prepareDataProvider()
+    {
+
+        $searchModel = new LOCATION_MODEL();
+        
+        return $searchModel->search(\Yii::$app->request->queryParams);
     }
 }
