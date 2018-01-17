@@ -1,12 +1,29 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->params['breadcrumbs'][] = $this->title;
+
+$gridColumns = [['class' => 'yii\grid\SerialColumn'],
+
+    'STATUS_NAME',
+    'STATUS_DESC',
+    [
+        'attribute' => 'COLOR',
+        'value' => function ($model, $key, $index, $widget) {
+            return "<span class='badge' style='background-color: {$model->COLOR}'> </span>  <code>" . $model->COLOR . '</code>';
+        },
+        'vAlign' => 'middle',
+        'format' => 'raw',
+    ],
+    'SCOPE',
+    'RANK',
+    'WORKFLOW',
+    ['class' => 'yii\grid\ActionColumn'],];
 ?>
 <div class="status--model-index">
 
@@ -18,17 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'STATUS_NAME',
-            'STATUS_DESC',
-            'COLOR',
-            'SCOPE',
-            'RANK',
-            'WORKFLOW',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+        'columns' => $gridColumns,
     ]); ?>
 </div>
