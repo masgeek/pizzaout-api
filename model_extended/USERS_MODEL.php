@@ -179,7 +179,7 @@ class USERS_MODEL extends Users implements IdentityInterface
     //fields to return common stuff
     public function getUsername()
     {
-        return $this->SURNAME;
+        return $this->USER_NAME;
     }
 
     public function getFullNames()
