@@ -72,6 +72,15 @@ use yii\helpers\Html;
                             <li>
                                 <?= Html::a('Manage Riders', ['//rider'], ['title' => 'Riders']); ?>
                             </li>
+                            <li>
+                                <?= Html::a('Manage Locations', ['//location'], ['title' => 'Locations']); ?>
+                            </li>
+                            <li>
+                                <?= Html::a('Manage Cities', ['//city'], ['title' => 'Cities']); ?>
+                            </li>
+                            <li>
+                                <?= Html::a('Manage Countries', ['//country'], ['title' => 'Countries']); ?>
+                            </li>
                         </ul>
                     </li>
                 </ul>
