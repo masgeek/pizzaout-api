@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\model_extended\SIZES_MODEL */
 
 $this->title = $model->SIZE_ID;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sizes  Models'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sizes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sizes--model-view">

@@ -18,7 +18,8 @@ $db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.
 
 $config = [
     'id' => 'WEB',
-    'name' => 'Pizza Out',
+    'language'=>'so', // SOMALI
+    'name' => Yii::t('app', 'Pizza Out'),
     'basePath' => dirname(__DIR__),
     'timeZone' => $timezone,
     'bootstrap' => ['log'],
