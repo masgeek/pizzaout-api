@@ -5,11 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\KITCHEN_MODEL */
 
-$this->title = Yii::t('app', 'Update Kitchen  Model: {nameAttribute}', [
-    'nameAttribute' => $model->KITCHEN_ID,
+$this->title = Yii::t('app', 'Update Kitchen : {nameAttribute}', [
+    'nameAttribute' => $model->KITCHEN_NAME,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kitchen  Models'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->KITCHEN_ID, 'url' => ['view', 'id' => $model->KITCHEN_ID]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kitchens'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->KITCHEN_NAME, 'url' => ['view', 'id' => $model->KITCHEN_ID]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="kitchen--model-update">
