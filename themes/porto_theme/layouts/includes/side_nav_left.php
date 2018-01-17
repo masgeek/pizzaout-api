@@ -55,6 +55,9 @@ use yii\helpers\Html;
                                 <?= Html::a('Menu Categories', ['//menucategory'], ['title' => 'Menu Categories']); ?>
                             </li>
                             <li>
+                                <?= Html::a('Manage Sizes', ['//size'], ['title' => 'Sizes']); ?>
+                            </li>
+                            <li>
                                 <?= Html::a('Menu Items', ['//menuitem'], ['title' => 'Menu Items']); ?>
                             </li>
                             <li>
