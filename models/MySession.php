@@ -10,7 +10,7 @@ use Yii;
  * @property string $id
  * @property int $expire
  * @property resource $data
- * @property int $user_id
+ * @property string $user_id
  * @property string $user_name
  */
 class MySession extends \yii\db\ActiveRecord
@@ -44,11 +44,11 @@ class MySession extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'expire' => Yii::t('app', 'Expire'),
-            'data' => Yii::t('app', 'Data'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'user_name' => Yii::t('app', 'User Name'),
+            'id' => 'ID',
+            'expire' => 'Expire',
+            'data' => 'Data',
+            'user_id' => 'User ID',
+            'user_name' => 'User Name',
         ];
     }
 }

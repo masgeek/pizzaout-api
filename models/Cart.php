@@ -7,14 +7,14 @@ use Yii;
 /**
  * This is the model class for table "{{%cart}}".
  *
- * @property int $CART_ITEM_ID
- * @property int $USER_ID
- * @property int $ITEM_TYPE_ID
+ * @property string $CART_ITEM_ID
+ * @property string $USER_ID
+ * @property string $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $ITEM_PRICE
  * @property string $ITEM_TYPE_SIZE
  * @property string $NOTES
- * @property int $CART_TIMESTAMP
+ * @property string $CART_TIMESTAMP
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
  *
@@ -54,16 +54,16 @@ class Cart extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'CART_ITEM_ID' => Yii::t('app', 'Cart  Item  ID'),
-            'USER_ID' => Yii::t('app', 'User  ID'),
-            'ITEM_TYPE_ID' => Yii::t('app', 'Item  Type  ID'),
-            'QUANTITY' => Yii::t('app', 'Quantity'),
-            'ITEM_PRICE' => Yii::t('app', 'Item  Price'),
-            'ITEM_TYPE_SIZE' => Yii::t('app', 'Item  Type  Size'),
-            'NOTES' => Yii::t('app', 'Notes'),
-            'CART_TIMESTAMP' => Yii::t('app', 'Cart  Timestamp'),
-            'CREATED_AT' => Yii::t('app', 'Created  At'),
-            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
+            'CART_ITEM_ID' => 'Cart  Item  ID',
+            'USER_ID' => 'User  ID',
+            'ITEM_TYPE_ID' => 'Item  Type  ID',
+            'QUANTITY' => 'Quantity',
+            'ITEM_PRICE' => 'Item  Price',
+            'ITEM_TYPE_SIZE' => 'Item  Type  Size',
+            'NOTES' => 'Notes',
+            'CART_TIMESTAMP' => 'Cart  Timestamp',
+            'CREATED_AT' => 'Created  At',
+            'UPDATED_AT' => 'Updated  At',
         ];
     }
 

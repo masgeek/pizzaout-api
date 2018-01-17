@@ -29,8 +29,9 @@ TEMPLATE;
 
     <?= $form->field($model, 'ADDRESS', ['template' => $field_template])->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'ACTIVE')->checkbox() ?>
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

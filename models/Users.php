@@ -7,14 +7,14 @@ use Yii;
 /**
  * This is the model class for table "{{%users}}".
  *
- * @property int $USER_ID
+ * @property string $USER_ID
  * @property string $USER_NAME
- * @property int $USER_TYPE
+ * @property string $USER_TYPE
  * @property string $SURNAME
  * @property string $OTHER_NAMES
  * @property string $MOBILE
  * @property string $EMAIL
- * @property int $LOCATION_ID
+ * @property string $LOCATION_ID
  * @property string $PASSWORD
  * @property string $DATE_REGISTERED
  * @property string $LAST_UPDATED
@@ -63,21 +63,21 @@ class Users extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'USER_ID' => Yii::t('app', 'User  ID'),
-            'USER_NAME' => Yii::t('app', 'User  Name'),
-            'USER_TYPE' => Yii::t('app', 'User  Type'),
-            'SURNAME' => Yii::t('app', 'Surname'),
-            'OTHER_NAMES' => Yii::t('app', 'Other  Names'),
-            'MOBILE' => Yii::t('app', 'Mobile'),
-            'EMAIL' => Yii::t('app', 'Email'),
-            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
-            'PASSWORD' => Yii::t('app', 'Password'),
-            'DATE_REGISTERED' => Yii::t('app', 'Date  Registered'),
-            'LAST_UPDATED' => Yii::t('app', 'Last  Updated'),
-            'CLIENT_TOKEN' => Yii::t('app', 'Client  Token'),
-            'RESET_TOKEN' => Yii::t('app', 'Reset  Token'),
-            'USER_STATUS' => Yii::t('app', 'Indicate if user is active or not'),
-            'TOKEN_EXPPIRY' => Yii::t('app', 'Token  Exppiry'),
+            'USER_ID' => 'User  ID',
+            'USER_NAME' => 'User  Name',
+            'USER_TYPE' => 'User  Type',
+            'SURNAME' => 'Surname',
+            'OTHER_NAMES' => 'Other  Names',
+            'MOBILE' => 'Mobile',
+            'EMAIL' => 'Email',
+            'LOCATION_ID' => 'Location  ID',
+            'PASSWORD' => 'Password',
+            'DATE_REGISTERED' => 'Date  Registered',
+            'LAST_UPDATED' => 'Last  Updated',
+            'CLIENT_TOKEN' => 'Client  Token',
+            'RESET_TOKEN' => 'Reset  Token',
+            'USER_STATUS' => 'Indicate if user is active or not',
+            'TOKEN_EXPPIRY' => 'Token  Exppiry',
         ];
     }
 

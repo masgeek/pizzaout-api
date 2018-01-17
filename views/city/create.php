@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CITY_MODEL */
 
-$this->title = Yii::t('app', 'Create City  Model');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'City  Models'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create City');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="city--model-create">

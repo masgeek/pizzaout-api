@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'cITY.CITY_NAME',
             'LOCATION_NAME',
             'ADDRESS:ntext',
+            'ACTIVE:boolean',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

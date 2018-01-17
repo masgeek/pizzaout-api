@@ -5,11 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\model_extended\CITY_MODEL */
 
-$this->title = Yii::t('app', 'Update City  Model: {nameAttribute}', [
-    'nameAttribute' => $model->CITY_ID,
+$this->title = Yii::t('app', 'Update City: {nameAttribute}', [
+    'nameAttribute' => $model->CITY_NAME,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'City  Models'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->CITY_ID, 'url' => ['view', 'id' => $model->CITY_ID]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cities'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->CITY_NAME, 'url' => ['view', 'id' => $model->CITY_ID]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="city--model-update">
