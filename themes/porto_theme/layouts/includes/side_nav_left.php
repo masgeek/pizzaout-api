@@ -67,6 +67,9 @@ use yii\helpers\Html;
                                 <?= Html::a('Manage Orders Status', ['//status'], ['title' => 'Status Setup']); ?>
                             </li>
                             <li>
+                                <?= Html::a('Manage Kitchen', ['//kitchen'], ['title' => 'Kitchens']); ?>
+                            </li>
+                            <li>
                                 <?= Html::a('Manage Chefs', ['//chef'], ['title' => 'Chefs']); ?>
                             </li>
                             <li>

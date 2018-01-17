@@ -14,13 +14,21 @@ use yii\helpers\ArrayHelper;
 
 class KITCHEN_MODEL extends Kitchen
 {
-	public static function GetKitchens()
-	{
-		$kitchen = self::find()
-			->all();
 
-		$listData = ArrayHelper::map($kitchen, 'KITCHEN_ID', 'KITCHEN_NAME');
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['CITY_ID'] = \Yii::t('app', 'Kitchen City');
+        return $labels;
+    }
 
-		return $listData;
-	}
+    public static function GetKitchens()
+    {
+        $kitchen = self::find()
+            ->all();
+
+        $listData = ArrayHelper::map($kitchen, 'KITCHEN_ID', 'KITCHEN_NAME');
+
+        return $listData;
+    }
 }
