@@ -148,9 +148,11 @@ class RiderController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $userModel->load(Yii::$app->request->post())) {
             //debug here
+            $post = Yii::$app->request->post('USERS_MODEL');
             //begin transactional saving
             $transaction = $connection->beginTransaction();
-
+            $password = $post['PASSWORD'];
+            $userModel->PASSWORD = sha1($password);
             $userModel->RESET_TOKEN = 'NONE';
 
             if ($userModel->save()) {
