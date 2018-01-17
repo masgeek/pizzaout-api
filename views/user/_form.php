@@ -49,7 +49,7 @@ TEMPLATE;
         <div class="row">
             <?= $form->field($model, 'EMAIL', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="row">
+        <div class="row hidden">
             <?= $form->field($model, 'USER_TYPE', ['template' => $field_template])->dropDownList(\app\model_extended\USER_TYPE_MODEL::GetUserTypes()) ?>
         </div>
 
