@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "{{%favs}}".
  *
- * @property string $FAV_ID
- * @property string $MENU_ITEM_ID
- * @property string $USER_ID
+ * @property int $FAV_ID
+ * @property int $MENU_ITEM_ID
+ * @property int $USER_ID
  *
  * @property MenuItem $mENUITEM
  * @property Users $uSER
@@ -42,9 +42,9 @@ class Favs extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'FAV_ID' => 'Fav  ID',
-            'MENU_ITEM_ID' => 'Menu  Item  ID',
-            'USER_ID' => 'User  ID',
+            'FAV_ID' => Yii::t('app', 'Fav  ID'),
+            'MENU_ITEM_ID' => Yii::t('app', 'Menu  Item  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
         ];
     }
 

@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "location".
  *
- * @property string $LOCATION_ID
- * @property string $CITY_ID
+ * @property int $LOCATION_ID
+ * @property int $CITY_ID
  * @property string $LOCATION_NAME
  * @property string $ADDRESS
  * @property bool $ACTIVE
@@ -47,11 +47,11 @@ class Location extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'LOCATION_ID' => 'Location  ID',
-            'CITY_ID' => 'City  ID',
-            'LOCATION_NAME' => 'Location  Name',
-            'ADDRESS' => 'Address',
-            'ACTIVE' => 'Active',
+            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
+            'CITY_ID' => Yii::t('app', 'City  ID'),
+            'LOCATION_NAME' => Yii::t('app', 'Location  Name'),
+            'ADDRESS' => Yii::t('app', 'Address'),
+            'ACTIVE' => Yii::t('app', 'Active'),
         ];
     }
 
