@@ -101,7 +101,7 @@ class APP_UTILS
 
             //Recipients
             $mail->setFrom('support@pizzaout.so', 'PIZZA OUT');
-            $mail->addAddress('barsamms@gmail.com', $userModel->SURNAME);     // Add a recipient
+            $mail->addAddress($userModel->EMAIL, $userModel->SURNAME);     // Add a recipient
             $mail->addReplyTo('support@pizzaout.so', 'PIZZA OUT');
 
             //Attachments
