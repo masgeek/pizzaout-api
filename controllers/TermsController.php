@@ -15,7 +15,7 @@ class TermsController extends Controller
 {
     public function actionIndex()
     {
-        $this->view->title = 'Terms & Conditions';
+        $this->view->title = \Yii::t('app', 'Terms & Conditions');
         $this->layout = 'login_layout';
         return $this->render('//site/terms');
     }
