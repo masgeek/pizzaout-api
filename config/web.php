@@ -66,9 +66,9 @@ $config = [
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
             'enableAutoLogin' => false,
-            'authTimeout' => 3600 * 10,
+            'authTimeout' => 300,
             'enableSession' => true,
-            'autoRenewCookie' => true,
+            'autoRenewCookie' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
