@@ -19,7 +19,7 @@ return [
     'writeCallback' => function ($session) {
         return [
             'user_id' => Yii::$app->user->id != null ? Yii::$app->user->id : 0,
-            'user_name' => Yii::$app->user->identity != null ? Yii::$app->user->identity->username : 0
+            'user_name' => Yii::$app->user->identity != null ? Yii::$app->user->identity->username : 'guest'
         ];
     },
 ];
