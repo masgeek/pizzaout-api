@@ -18,8 +18,6 @@ $field_template = <<<TEMPLATE
 </div>
     {error}{hint}
 TEMPLATE;
-
-$model->MENU_ITEM_IMAGE = '1.jpg';
 ?>
 
 <div class="menu--items-form">
@@ -38,32 +36,24 @@ $model->MENU_ITEM_IMAGE = '1.jpg';
     <div class="row">
         <?= $form->field($model, 'MENU_ITEM_IMAGE')->hiddenInput(['id' => 'filename', 'maxlength' => true])->label(false) ?>
 
-        <?= JQueryFileUpload::widget([
-            'model' => $model,
+        <?= JQueryFileUpload::widget(['model' => $model,
             'attribute' => 'IMAGE_FILE',
-            'url' => ['//upload','rank' => 'menuitem'], // your route for saving images,
+            'url' => ['//upload', 'rank' => 'menuitem'], // your route for saving images,
             'appearance' => 'ui', // available values: 'ui','plus' or 'basic'
             'gallery' => true, // whether to use the Bluimp Gallery on the images or not
             'formId' => $form->id,
-            'options' => [
-                'multiple' => false,
-                'accept' => 'image/*'
-            ],
-            'clientOptions' => [
-                'multiple' => false,
+            'options' => ['multiple' => false,
+                'accept' => 'image/*'],
+            'clientOptions' => ['multiple' => false,
                 'maxFileSize' => 2000000,
                 'dataType' => 'json',
                 'acceptFileTypes' => new yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),
-                'autoUpload' => false
-            ], 'clientEvents' => [
-                'done' => "function (e, data) {
+                'autoUpload' => false], 'clientEvents' => ['done' => "function (e, data) {
                 $.each(data.result.files, function (index, file) {
                     ///$('<p/>').text(file.name).appendTo('#sam');
                    $('#filename').val(file.name);
                 });
-            }"
-            ]
-        ]); ?>
+            }"]]); ?>
 
     </div>
 
