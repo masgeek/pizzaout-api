@@ -56,7 +56,7 @@ class ORDER_HELPER
      * @param array $order_payment_arr
      * @param array $cart_items
      * @param bool $isCard
-     * @return array
+     * @return array|bool
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
