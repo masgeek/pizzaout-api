@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "menu_category".
  *
- * @property int $MENU_CAT_ID
+ * @property string $MENU_CAT_ID
  * @property string $MENU_CAT_NAME
  * @property string $MENU_CAT_IMAGE
  * @property int $ACTIVE
@@ -45,11 +45,11 @@ class MenuCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'MENU_CAT_ID' => Yii::t('app', 'Menu  Cat  ID'),
-            'MENU_CAT_NAME' => Yii::t('app', 'Menu  Cat  Name'),
-            'MENU_CAT_IMAGE' => Yii::t('app', 'Menu  Cat  Image'),
-            'ACTIVE' => Yii::t('app', 'Active'),
-            'RANK' => Yii::t('app', 'Rank'),
+            'MENU_CAT_ID' => 'Menu  Cat  ID',
+            'MENU_CAT_NAME' => 'Menu  Cat  Name',
+            'MENU_CAT_IMAGE' => 'Menu  Cat  Image',
+            'ACTIVE' => 'Active',
+            'RANK' => 'Rank',
         ];
     }
 

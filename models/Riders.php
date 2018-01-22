@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "riders".
  *
- * @property int $RIDER_ID
- * @property int $USER_ID
- * @property int $KITCHEN_ID
+ * @property string $RIDER_ID
+ * @property string $USER_ID
+ * @property string $KITCHEN_ID
  * @property bool $RIDER_STATUS
  *
  * @property CustomerOrder[] $customerOrders
@@ -45,10 +45,10 @@ class Riders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'RIDER_ID' => Yii::t('app', 'Rider  ID'),
-            'USER_ID' => Yii::t('app', 'User  ID'),
-            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
-            'RIDER_STATUS' => Yii::t('app', 'Rider  Status'),
+            'RIDER_ID' => 'Rider  ID',
+            'USER_ID' => 'User  ID',
+            'KITCHEN_ID' => 'Kitchen  ID',
+            'RIDER_STATUS' => 'Rider  Status',
         ];
     }
 

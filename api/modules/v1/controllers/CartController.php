@@ -48,7 +48,6 @@ class CartController extends ActiveController
     }
 
 
-
     public function actionCreateOld()
     {
         $post = Yii::$app->request->post();
@@ -103,6 +102,7 @@ class CartController extends ActiveController
         //$cart_timestamp = Yii::$app->request->post('CART_TIMESTAMP', 0);
         $user_id = Yii::$app->request->post('USER_ID', 0);
         $location_id = Yii::$app->request->post('LOCATION_ID', 0);
+        $order_time = Yii::$app->request->post('ORDER_TIME', 0);
         $payment_channel = Yii::$app->request->post('PAYMENT_CHANNEL', APP_UTILS::PAYMENT_METHOD_MOBILE);
 
 
@@ -112,7 +112,8 @@ class CartController extends ActiveController
                 'USER_ID' => $user_id,
                 'LOCATION_ID' => $location_id,
                 'PAYMENT_METHOD' => $payment_channel,
-                'ORDER_DATE' => $date
+                'ORDER_DATE' => $date,
+                'ORDER_TIME' => $order_time
             ]
         ];
 

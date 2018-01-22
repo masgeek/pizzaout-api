@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "menu_item".
  *
- * @property int $MENU_ITEM_ID
- * @property int $MENU_CAT_ID
+ * @property string $MENU_ITEM_ID
+ * @property string $MENU_CAT_ID
  * @property string $MENU_ITEM_NAME
  * @property string $MENU_ITEM_DESC
  * @property string $MENU_ITEM_IMAGE
@@ -51,14 +51,14 @@ class MenuItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'MENU_ITEM_ID' => Yii::t('app', 'Menu  Item  ID'),
-            'MENU_CAT_ID' => Yii::t('app', 'Menu  Cat  ID'),
-            'MENU_ITEM_NAME' => Yii::t('app', 'Menu  Item  Name'),
-            'MENU_ITEM_DESC' => Yii::t('app', 'Menu  Item  Desc'),
-            'MENU_ITEM_IMAGE' => Yii::t('app', 'Menu  Item  Image'),
-            'HOT_DEAL' => Yii::t('app', 'Hot  Deal'),
-            'VEGETARIAN' => Yii::t('app', 'Vegetarian'),
-            'MAX_QTY' => Yii::t('app', 'Show the maximum number of quantities one can select from'),
+            'MENU_ITEM_ID' => 'Menu  Item  ID',
+            'MENU_CAT_ID' => 'Menu  Cat  ID',
+            'MENU_ITEM_NAME' => 'Menu  Item  Name',
+            'MENU_ITEM_DESC' => 'Menu  Item  Desc',
+            'MENU_ITEM_IMAGE' => 'Menu  Item  Image',
+            'HOT_DEAL' => 'Hot  Deal',
+            'VEGETARIAN' => 'Vegetarian',
+            'MAX_QTY' => 'Show the maximum number of quantities one can select from',
         ];
     }
 

@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "customer_order_item".
  *
  * @property int $ORDER_ITEM_ID
- * @property int $ORDER_ID
- * @property int $ITEM_TYPE_ID
+ * @property string $ORDER_ID
+ * @property string $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $PRICE
  * @property string $SUBTOTAL
@@ -54,16 +54,16 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ORDER_ITEM_ID' => Yii::t('app', 'Order  Item  ID'),
-            'ORDER_ID' => Yii::t('app', 'Order  ID'),
-            'ITEM_TYPE_ID' => Yii::t('app', 'Item  Type  ID'),
-            'QUANTITY' => Yii::t('app', 'Quantity'),
-            'PRICE' => Yii::t('app', 'Price'),
-            'SUBTOTAL' => Yii::t('app', 'Subtotal'),
-            'OPTIONS' => Yii::t('app', 'Options'),
-            'NOTES' => Yii::t('app', 'Notes'),
-            'CREATED_AT' => Yii::t('app', 'Created  At'),
-            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
+            'ORDER_ITEM_ID' => 'Order  Item  ID',
+            'ORDER_ID' => 'Order  ID',
+            'ITEM_TYPE_ID' => 'Item  Type  ID',
+            'QUANTITY' => 'Quantity',
+            'PRICE' => 'Price',
+            'SUBTOTAL' => 'Subtotal',
+            'OPTIONS' => 'Options',
+            'NOTES' => 'Notes',
+            'CREATED_AT' => 'Created  At',
+            'UPDATED_AT' => 'Updated  At',
         ];
     }
 

@@ -51,12 +51,12 @@ class Status extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'STATUS_NAME' => Yii::t('app', 'Status  Name'),
-            'STATUS_DESC' => Yii::t('app', 'Status  Desc'),
-            'COLOR' => Yii::t('app', 'Color'),
-            'SCOPE' => Yii::t('app', 'Scope'),
-            'RANK' => Yii::t('app', 'Rank'),
-            'WORKFLOW' => Yii::t('app', 'Workflow'),
+            'STATUS_NAME' => 'Status  Name',
+            'STATUS_DESC' => 'Status  Desc',
+            'COLOR' => 'Color',
+            'SCOPE' => 'Scope',
+            'RANK' => 'Rank',
+            'WORKFLOW' => 'Workflow',
         ];
     }
 
