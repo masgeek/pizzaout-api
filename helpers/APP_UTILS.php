@@ -66,7 +66,7 @@ class APP_UTILS
      * @return void
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function SendRecoveryEmail($userModel)
+    public static function SendRecoveryEmail($userModel,$baseUrl ='http://pizzaout.so/')
     {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
@@ -92,7 +92,7 @@ class APP_UTILS
                 //'content' => $body
             ];
 
-            $link = "http://pizzaout.so/user/reset-pass?token=$randomString";//Url::to("@web/user/reset-pass?token=$randomString", true);
+            $link = "{$baseUrl}user/reset-pass?token=$randomString";//Url::to("@web/user/reset-pass?token=$randomString", true);
             $body = 'Use this <a href="' . $link . '" target="_blank">link</a> to reset your password';
 
 
