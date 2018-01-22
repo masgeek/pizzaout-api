@@ -183,7 +183,7 @@ class OrderController extends ActiveController
 
     private function unpaidOrders()
     {
-        return [ORDER_HELPER::STATUS_PAYMENT_PENDING];
+        return [ORDER_HELPER::STATUS_PAYMENT_PENDING,ORDER_HELPER::STATUS_ORDER_PENDING];
 
     }
 
