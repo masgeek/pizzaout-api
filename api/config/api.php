@@ -206,6 +206,17 @@ $config = [
                         'POST generate' => 'generate',
                     ],
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v1/delivery'=>'v1/delivery',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>',
+                    ],
+                    'extraPatterns' => [
+                    ]
+                ]
             ],
         ],
         //formatting class
