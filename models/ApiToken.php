@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "api_token".
  *
- * @property string $TOKEN_ID
- * @property string $USER_ID
+ * @property int $TOKEN_ID
+ * @property int $USER_ID
  * @property string $API_TOKEN
  * @property string $DATE_CREATED
  * @property string $EXPIRY_DATE
@@ -44,11 +44,11 @@ class ApiToken extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'TOKEN_ID' => 'Token  ID',
-            'USER_ID' => 'User  ID',
-            'API_TOKEN' => 'Api  Token',
-            'DATE_CREATED' => 'Date  Created',
-            'EXPIRY_DATE' => 'Expiry  Date',
+            'TOKEN_ID' => Yii::t('app', 'Token  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'API_TOKEN' => Yii::t('app', 'Api  Token'),
+            'DATE_CREATED' => Yii::t('app', 'Date  Created'),
+            'EXPIRY_DATE' => Yii::t('app', 'Expiry  Date'),
         ];
     }
 

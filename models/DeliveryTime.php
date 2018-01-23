@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%delivery_time}}".
  *
- * @property string $TIME_ID
+ * @property int $TIME_ID
  * @property string $DELIVERY_TIME
  */
 class DeliveryTime extends \yii\db\ActiveRecord
@@ -37,8 +37,8 @@ class DeliveryTime extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'TIME_ID' => 'Time  ID',
-            'DELIVERY_TIME' => 'Delivery  Time',
+            'TIME_ID' => Yii::t('app', 'Time  ID'),
+            'DELIVERY_TIME' => Yii::t('app', 'Delivery  Time'),
         ];
     }
 }

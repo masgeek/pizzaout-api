@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "kitchen".
  *
- * @property string $KITCHEN_ID
+ * @property int $KITCHEN_ID
  * @property string $KITCHEN_NAME
- * @property string $CITY_ID
+ * @property int $CITY_ID
  * @property string $OPENING_TIME
  * @property string $CLOSING_TIME
  * @property string $ADDRESS
@@ -50,12 +50,12 @@ class Kitchen extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'KITCHEN_ID' => 'Kitchen  ID',
-            'KITCHEN_NAME' => 'Kitchen  Name',
-            'CITY_ID' => 'City  ID',
-            'OPENING_TIME' => 'Opening  Time',
-            'CLOSING_TIME' => 'Closing  Time',
-            'ADDRESS' => 'Address',
+            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
+            'KITCHEN_NAME' => Yii::t('app', 'Kitchen  Name'),
+            'CITY_ID' => Yii::t('app', 'City  ID'),
+            'OPENING_TIME' => Yii::t('app', 'Opening  Time'),
+            'CLOSING_TIME' => Yii::t('app', 'Closing  Time'),
+            'ADDRESS' => Yii::t('app', 'Address'),
         ];
     }
 

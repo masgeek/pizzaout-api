@@ -33,6 +33,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $labels['ORDER_STATUS'] = 'Status';
         $labels['ALERT_USER'] = 'Notify Customer';
         $labels['ORDER_ID'] = 'Order ID #';
+        $labels['ORDER_TIME'] = 'Delivery Time';
 
         return $labels;
     }

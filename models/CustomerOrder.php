@@ -7,12 +7,12 @@ use Yii;
 /**
  * This is the model class for table "customer_order".
  *
- * @property string $ORDER_ID
- * @property string $USER_ID
- * @property string $LOCATION_ID
- * @property string $KITCHEN_ID
- * @property string $CHEF_ID
- * @property string $RIDER_ID
+ * @property int $ORDER_ID
+ * @property int $USER_ID
+ * @property int $LOCATION_ID
+ * @property int $KITCHEN_ID
+ * @property int $CHEF_ID
+ * @property int $RIDER_ID
  * @property string $ORDER_DATE
  * @property string $PAYMENT_METHOD
  * @property string $ORDER_STATUS Status of the order
@@ -69,19 +69,19 @@ class CustomerOrder extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ORDER_ID' => 'Order  ID',
-            'USER_ID' => 'User  ID',
-            'LOCATION_ID' => 'Location  ID',
-            'KITCHEN_ID' => 'Kitchen  ID',
-            'CHEF_ID' => 'Chef  ID',
-            'RIDER_ID' => 'Rider  ID',
-            'ORDER_DATE' => 'Order  Date',
-            'PAYMENT_METHOD' => 'Payment  Method',
-            'ORDER_STATUS' => 'Status of the order',
-            'ORDER_TIME' => 'Order  Time',
-            'NOTES' => 'Can contain payment text from mobile transactions etc',
-            'CREATED_AT' => 'Created  At',
-            'UPDATED_AT' => 'Updated  At',
+            'ORDER_ID' => Yii::t('app', 'Order  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
+            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
+            'CHEF_ID' => Yii::t('app', 'Chef  ID'),
+            'RIDER_ID' => Yii::t('app', 'Rider  ID'),
+            'ORDER_DATE' => Yii::t('app', 'Order  Date'),
+            'PAYMENT_METHOD' => Yii::t('app', 'Payment  Method'),
+            'ORDER_STATUS' => Yii::t('app', 'Status of the order'),
+            'ORDER_TIME' => Yii::t('app', 'Order  Time'),
+            'NOTES' => Yii::t('app', 'Can contain payment text from mobile transactions etc'),
+            'CREATED_AT' => Yii::t('app', 'Created  At'),
+            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
         ];
     }
 

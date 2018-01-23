@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "city".
  *
- * @property string $CITY_ID
+ * @property int $CITY_ID
  * @property string $CITY_NAME
- * @property string $COUNTRY_ID
+ * @property int $COUNTRY_ID
  *
  * @property Country $cOUNTRY
  * @property Kitchen[] $kitchens
@@ -44,9 +44,9 @@ class City extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'CITY_ID' => 'City  ID',
-            'CITY_NAME' => 'City  Name',
-            'COUNTRY_ID' => 'Country  ID',
+            'CITY_ID' => Yii::t('app', 'City  ID'),
+            'CITY_NAME' => Yii::t('app', 'City  Name'),
+            'COUNTRY_ID' => Yii::t('app', 'Country  ID'),
         ];
     }
 

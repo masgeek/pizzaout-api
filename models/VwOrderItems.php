@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "vw_order_items".
  *
- * @property string $ORDER_ID
+ * @property int $ORDER_ID
  * @property int $QUANTITY
  * @property string $PRICE
  * @property string $SUBTOTAL
@@ -16,7 +16,7 @@ use Yii;
  * @property string $MENU_CAT_NAME
  * @property string $MENU_CAT_IMAGE
  * @property string $MENU_ITEM_IMAGE
- * @property string $USER_ID
+ * @property int $USER_ID
  */
 class VwOrderItems extends \yii\db\ActiveRecord
 {
@@ -49,16 +49,16 @@ class VwOrderItems extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ORDER_ID' => 'Order  ID',
-            'QUANTITY' => 'Quantity',
-            'PRICE' => 'Price',
-            'SUBTOTAL' => 'Subtotal',
-            'ITEM_TYPE_SIZE' => 'Item  Type  Size',
-            'MENU_ITEM_NAME' => 'Menu  Item  Name',
-            'MENU_CAT_NAME' => 'Menu  Cat  Name',
-            'MENU_CAT_IMAGE' => 'Menu  Cat  Image',
-            'MENU_ITEM_IMAGE' => 'Menu  Item  Image',
-            'USER_ID' => 'User  ID',
+            'ORDER_ID' => Yii::t('app', 'Order  ID'),
+            'QUANTITY' => Yii::t('app', 'Quantity'),
+            'PRICE' => Yii::t('app', 'Price'),
+            'SUBTOTAL' => Yii::t('app', 'Subtotal'),
+            'ITEM_TYPE_SIZE' => Yii::t('app', 'Item  Type  Size'),
+            'MENU_ITEM_NAME' => Yii::t('app', 'Menu  Item  Name'),
+            'MENU_CAT_NAME' => Yii::t('app', 'Menu  Cat  Name'),
+            'MENU_CAT_IMAGE' => Yii::t('app', 'Menu  Cat  Image'),
+            'MENU_ITEM_IMAGE' => Yii::t('app', 'Menu  Item  Image'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
         ];
     }
 }

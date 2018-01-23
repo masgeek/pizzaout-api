@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "menu_item_type".
  *
- * @property string $ITEM_TYPE_ID
- * @property string $MENU_ITEM_ID
+ * @property int $ITEM_TYPE_ID
+ * @property int $MENU_ITEM_ID
  * @property string $ITEM_TYPE_SIZE
  * @property string $PRICE
  * @property bool $AVAILABLE
@@ -50,11 +50,11 @@ class MenuItemType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ITEM_TYPE_ID' => 'Item  Type  ID',
-            'MENU_ITEM_ID' => 'Menu  Item  ID',
-            'ITEM_TYPE_SIZE' => 'Item  Type  Size',
-            'PRICE' => 'Price',
-            'AVAILABLE' => 'Available',
+            'ITEM_TYPE_ID' => Yii::t('app', 'Item  Type  ID'),
+            'MENU_ITEM_ID' => Yii::t('app', 'Menu  Item  ID'),
+            'ITEM_TYPE_SIZE' => Yii::t('app', 'Item  Type  Size'),
+            'PRICE' => Yii::t('app', 'Price'),
+            'AVAILABLE' => Yii::t('app', 'Available'),
         ];
     }
 

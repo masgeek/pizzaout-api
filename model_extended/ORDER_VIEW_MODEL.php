@@ -66,6 +66,8 @@ class ORDER_VIEW_MODEL extends VwOrders
         $labels['PAYMENT_METHOD'] = 'Payment';
         $labels['ORDER_STATUS'] = 'Status';
         $labels['ORDER_ID'] = 'Order ID #';
+        $labels['ORDER_TIME'] = 'Delivery Time';
+
 
         return $labels;
     }
