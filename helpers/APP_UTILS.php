@@ -12,6 +12,7 @@ namespace app\helpers;
 use app\model_extended\CART_MODEL;
 use app\model_extended\USERS_MODEL;
 use PHPMailer\PHPMailer\PHPMailer;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -66,7 +67,7 @@ class APP_UTILS
      * @return void
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function SendRecoveryEmail($userModel,$baseUrl ='http://pizzaout.so/')
+    public static function SendRecoveryEmail($userModel, $baseUrl = 'http://pizzaout.so/')
     {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
@@ -153,9 +154,8 @@ class APP_UTILS
     public
     static function GetCurrentDateTime($format = 'yyyy-MM-dd HH:mm:ss')
     {
-
-        return \Yii::$app->formatter->asDatetime('now', $format);
-
+        $date = date('Y-m-d H:i:s');
+        return $date;
     }
 
     /**
@@ -170,6 +170,20 @@ class APP_UTILS
     {
 
         return \Yii::$app->formatter->asDatetime('now', $format);
+
+    }
+
+    public
+    static function FormatDateTime($datetime, $timeOnly = false)
+    {
+        $formatter = \Yii::$app->formatter;
+        $tz = $formatter->timeZone;
+
+        $date = date_create($datetime, timezone_open($tz));
+
+        return $timeOnly ?date_format($date, 'H:i:s') :date_format($date, 'M d, Y, H:i:s');
+
+
 
     }
 

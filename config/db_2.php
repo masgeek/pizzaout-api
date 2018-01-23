@@ -21,6 +21,6 @@ return [
     'schemaCache' => 'db_cache',
     'on afterOpen' => function ($event) {
         // $event->sender refers to the DB connection
-       // $event->sender->createCommand("SET time_zone = '+00:00'")->execute();
+        //$event->sender->createCommand("SET time_zone = '+00:00'")->execute();
     }
 ];

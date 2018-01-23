@@ -22,7 +22,7 @@ $formatter = \Yii::$app->formatter;
             <td><?= $orderTracking->STATUS ?></td>
             <td><?= $orderTracking->COMMENTS != null ? $orderTracking->COMMENTS : 'N/A' ?></td>
             <td><?= $orderTracking->USER_VISIBLE ? 'Yes' : 'No' ?></td>
-            <td><?= $formatter->asDatetime($orderTracking->TRACKING_DATE) ?></td>
+            <td><?= \app\helpers\APP_UTILS::FormatDateTime($orderTracking->TRACKING_DATE) ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

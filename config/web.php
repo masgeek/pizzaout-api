@@ -1,4 +1,5 @@
 <?php
+//date_default_timezone_set('Africa/Nairobi');
 \Yii::setAlias('@foodimageupload', 'images' . DIRECTORY_SEPARATOR . 'foodimages' . DIRECTORY_SEPARATOR);
 \Yii::setAlias('@foodimages', 'images/foodimages/');
 \Yii::setAlias('@appimages', 'images/app_images/');
@@ -66,7 +67,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
             'enableAutoLogin' => false,
-            'authTimeout' => 300,
+            'authTimeout' => YII_ENV_DEV ? 40000 :300,
             'enableSession' => true,
             'autoRenewCookie' => false,
         ],

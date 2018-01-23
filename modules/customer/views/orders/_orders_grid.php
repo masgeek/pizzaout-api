@@ -46,6 +46,19 @@ $gridColumns = [
     ],
     'ORDER_STATUS',
     //'ORDER_DATE:datetime',
+
+    [
+
+
+        'filter' => true,
+        //'format' => 'datetime',
+        'attribute' => 'ORDER_TIME',
+        //'visible'=>false,
+        'value' => function ($model) {
+            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
+            return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE,true);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+        }
+    ],
     [
         'attribute' => 'ORDER_DATE',
         'format' => 'date',

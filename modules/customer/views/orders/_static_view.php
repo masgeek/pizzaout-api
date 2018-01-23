@@ -61,6 +61,7 @@ $attributes = [
                 'attribute' => 'ORDER_DATE',
                 'displayOnly' => true,
                 //'format' => 'datetime',
+                'value'=>\app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE),
                 'valueColOptions' => ['style' => 'width:30%'],
             ],
         ],

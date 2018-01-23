@@ -13,8 +13,8 @@ return [
     // 'db' => 'mydb',
     // To override default session table, set the following
     'sessionTable' => 'my_session',
-    'cookieParams' => ['httponly' => true, 'lifetime' => 300],
-    'timeout' => 300, //session expire
+    'cookieParams' => ['httponly' => true, 'lifetime' => YII_ENV_DEV ? 40000 :300,],
+    'timeout' => YII_ENV_DEV ? 40000 :300, //session expire
     'useCookies' => true,
     'writeCallback' => function ($session) {
         return [
