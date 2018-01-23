@@ -18,7 +18,8 @@ $attributes = [
         'columns' => [
             [
                 'attribute' => 'ORDER_DATE',
-                'format' => 'datetime',
+                //'format' => 'datetime',
+                'value' => \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE),
                 'valueColOptions' => ['style' => 'width:60%;text-align:left'],
             ],
         ],
