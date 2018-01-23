@@ -102,8 +102,8 @@ $gridColumns = [
             return ucwords(strtolower($address));
         }
     ],
-    'ORDER_DATE:datetime',
-    'UPDATED_AT:datetime',
+    'ORDER_DATE',
+    'UPDATED_AT',
     //'PAYMENT_METHOD',
     'ORDER_STATUS',
     //'NOTES'

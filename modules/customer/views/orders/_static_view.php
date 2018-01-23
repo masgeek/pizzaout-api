@@ -60,7 +60,7 @@ $attributes = [
             [
                 'attribute' => 'ORDER_DATE',
                 'displayOnly' => true,
-                'format' => 'datetime',
+                //'format' => 'datetime',
                 'valueColOptions' => ['style' => 'width:30%'],
             ],
         ],

@@ -159,12 +159,13 @@ $gridColumns = [
         'filter' => false,
         'format' => 'datetime',
         'attribute' => 'ORDER_DATE',
+        'visible'=>false,
         'value' => function ($model) {
             /* @var $model \app\model_extended\CUSTOMER_ORDERS */
             return  \app\helpers\APP_UTILS::GetCurrentDateTime();// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
         }
     ],
-    'ORDER_DATE:datetime',
+    'ORDER_DATE',
     'PAYMENT_METHOD',
     'ORDER_STATUS',
     //'NOTES'
