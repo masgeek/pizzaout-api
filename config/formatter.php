@@ -1,6 +1,6 @@
 <?php
-$timezone = 'Africa/Mogadishu';
-//$timezone = 'UTC';
+//$timezone = 'Africa/Mogadishu';
+$timezone = 'UTC';
 
 return
     [

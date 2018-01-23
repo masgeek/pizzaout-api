@@ -153,15 +153,15 @@ $gridColumns = [
             /* @var $model \app\model_extended\CUSTOMER_ORDERS */
             return $model->rIDER != null ? $model->rIDER->uSER->SURNAME : 'N/A';
         }
-    ],
-    [
-        'header' => 'Cost',
+    ], [
+
+
         'filter' => false,
-        'format' => 'currency',
-        'attribute' => 'ORDER_ID',
+        'format' => 'datetime',
+        'attribute' => 'ORDER_DATE',
         'value' => function ($model) {
             /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            return \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+            return  \app\helpers\APP_UTILS::GetCurrentDateTime();// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
         }
     ],
     'ORDER_DATE:datetime',
