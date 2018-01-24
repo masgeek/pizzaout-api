@@ -60,7 +60,7 @@ class OrdersController extends Controller
 
         $pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING, ORDER_HELPER::STATUS_PAYMENT_PENDING]);
         $confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
-        $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION,ORDER_HELPER::STATUS_CHEF_ASSIGNED]);
+        $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION, ORDER_HELPER::STATUS_CHEF_ASSIGNED]);
 
         $orderReady = $searchModel->search(Yii::$app->request->queryParams, [
             ORDER_HELPER::STATUS_ORDER_READY]);
@@ -183,11 +183,16 @@ class OrdersController extends Controller
         $model = $this->findModel($id);
         $model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
+        $orderCancelled = false;
         if ($model->load(Yii::$app->request->post())) {
             //goto receipt printing
-            $model->ORDER_STATUS = ORDER_HELPER::STATUS_CHEF_ASSIGNED;
+            if ($model->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_CANCELLED) {
+                $orderCancelled = true;
+            } else {
+                $model->ORDER_STATUS = ORDER_HELPER::STATUS_CHEF_ASSIGNED;
+            }
             if ($model->save()) {
-                return $this->redirect(['orders/print', 'id' => $id]);
+                return $orderCancelled ? $this->redirect(['orders/index']) : $this->redirect(['orders/print', 'id' => $id]);
             }
         }
 
