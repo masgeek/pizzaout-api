@@ -37,7 +37,7 @@ class UserController extends ActiveController
         $actions = parent::actions();
 
         //unset($actions['create']);
-        unset($actions['index']);
+        //unset($actions['index']);
         unset($actions['delete']);
         return $actions;
     }
@@ -217,31 +217,5 @@ class UserController extends ActiveController
         return [
             'CUSTOMER', 'RIDER'
         ];
-    }
-
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        $recipient = ["barsamms@gmail.com" => 'Sammy Barasa'];
-        $subject = 'Subject here';
-        $body = '<h2>Mesage body</h2>';
-
-        $params = [
-            'name' => 'Sammy Barasa M',
-            'email' => $recipient,
-            'subject' => $subject,
-            'link' => Url::to('@web/user/recover', true),
-            'content' => $body
-        ];
-        $mailer = APP_UTILS::SendEmail($subject, $recipient, $params, 'layouts/password_recovery');
-
-
-        return $mailer;
-
     }
 }
