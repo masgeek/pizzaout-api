@@ -9,6 +9,7 @@ use app\models_search\RiderSearch;
 use Yii;
 use yii\db\Exception;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -173,6 +174,30 @@ class RiderController extends Controller
             'model' => $model,
             'userModel' => $userModel,
         ]);
+    }
+
+    public function actionGetRider()
+    {
+        /* @var $value RIDER_MODEL*/
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $rider_id = $parents[0];
+
+
+                $chefs = \app\model_extended\RIDER_MODEL::GetRiders($rider_id, true);
+
+                foreach ($chefs as $key => $value) {
+                    $out[] = [
+                        'id' => $value->RIDER_ID,
+                        'name' =>"{$value->uSER->SURNAME}, {$value->uSER->OTHER_NAMES}"
+                    ];
+                }
+                return Json::encode(['output' => $out, 'selected' => '']);
+            }
+        }
+        return Json::encode(['output' => '', 'selected' => '']);
     }
 
     /**

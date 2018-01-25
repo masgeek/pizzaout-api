@@ -27,36 +27,51 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
 ?>
 <div class="customer-orders-form">
     <?php $form = ActiveForm::begin(); ?>
-    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER || $model->scenario ==  \app\helpers\APP_UTILS::SCENARIO_PREPARE_ORDER): ?>
-        <div class="col-md-12">
-            <?= $form->field($model, 'RIDER_ID', ['template' => $field_template])->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
-                    'prompt' => '--- SELECT RIDER ---',
-                ]
-            ) ?>
-        </div>
-    <?php else: ?>
+    <?php if ($model->KITCHEN_ID == null || $model->CHEF_ID == null): ?>
         <div class="col-md-12">
             <?= $form->field($model, 'KITCHEN_ID', ['template' => $field_template])->dropDownList(\app\model_extended\KITCHEN_MODEL::GetKitchens(), [
                     'prompt' => '--- SELECT KITCHEN ---',
                     'class' => 'form-control',
-                    'id' => 'cat-id'
+                    'id' => 'kitchen'
                 ]
             ) ?>
         </div>
         <div class="col-md-12">
             <?=
             $form->field($model, 'CHEF_ID')->widget(DepDrop::classname(), [
-                'options' => ['id' => 'subcat-id'],
+                'options' => ['id' => 'chef-id'],
                 'pluginOptions' => [
-                    'depends' => ['cat-id'],
+                    'depends' => ['kitchen'],
                     'placeholder' => '--- SELECT CHEF ---',
-                    'url' => Url::to(['get-kitchen'])
+                    'url' => Url::to(['orders/get-kitchen'])
                 ]
             ]); ?>'
 
         </div>
 
 
+    <?php endif; ?>
+
+    <?php if ($model->scenario == \app\helpers\APP_UTILS::SCENARIO_ASSIGN_RIDER || $model->scenario == \app\helpers\APP_UTILS::SCENARIO_PREPARE_ORDER): ?>
+        <div class="col-md-12">
+            <?=
+            $form->field($model, 'RIDER_ID', ['template' => $field_template])->widget(DepDrop::classname(), [
+                'options' => [
+                    'id' => 'rider',
+                ],
+                'data' => \app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID),
+                'pluginOptions' => [
+                    'depends' => ['kitchen'],
+                    'placeholder' => '--- SELECT RIDER ---',
+                    'url' => Url::to(['rider/get-rider'])
+                ]
+            ]); ?>'
+
+            <!--?= $form->field($model, 'RIDER_ID', ['template' => $field_template])->dropDownList(\app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID), [
+                    'prompt' => '--- SELECT RIDER ---',
+                ]
+            ) ?-->
+        </div>
     <?php endif; ?>
 
     <div class="col-md-12">

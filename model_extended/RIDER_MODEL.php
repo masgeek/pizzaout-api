@@ -37,7 +37,7 @@ class RIDER_MODEL extends Riders
         return $rules;
     }
 
-    public static function GetRiders($kitchen_id)
+    public static function GetRiders($kitchen_id,$asModel = false)
     {
         $riders = self::find()
             ->with('uSER')
@@ -50,6 +50,7 @@ class RIDER_MODEL extends Riders
             $riders_arr[$rider->RIDER_ID] = "{$rider->uSER->SURNAME}, {$rider->uSER->OTHER_NAMES}";
         }
 
-        return $riders_arr;
+
+        return $asModel ? $riders : $riders_arr;
     }
 }
