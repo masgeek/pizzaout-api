@@ -43,6 +43,7 @@ class STATUS_MODEL extends Status
 	 */
 	public static function StatusExclusionList($order_id)
 	{
+	    return [];
 		$exclusion_list = [];
 		$tracked_status = STATUS_TRACKING_MODEL::find()
 			->select(['STATUS'])
