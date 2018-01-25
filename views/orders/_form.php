@@ -43,7 +43,7 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
                 'pluginOptions' => [
                     'depends' => ['kitchen'],
                     'placeholder' => '--- SELECT CHEF ---',
-                    'url' => Url::to(['orders/get-kitchen'])
+                    'url' => Url::to(['chef/chef-list'])
                 ]
             ]); ?>'
 
@@ -62,6 +62,7 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
                 'data' => \app\model_extended\RIDER_MODEL::GetRiders($model->KITCHEN_ID),
                 'pluginOptions' => [
                     'depends' => ['kitchen'],
+                    'initialize' => true,
                     'placeholder' => '--- SELECT RIDER ---',
                     'url' => Url::to(['rider/get-rider'])
                 ]
