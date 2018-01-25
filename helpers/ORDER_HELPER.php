@@ -46,7 +46,7 @@ class ORDER_HELPER
             ->andWhere(['NOT IN', 'STATUS_NAME', $usedFlows])
             ->orderBy(['RANK' => SORT_ASC])
             ->one();
-
+RETURN  0;
         return $status != null ? $status->WORKFLOW : 0;
     }
 
