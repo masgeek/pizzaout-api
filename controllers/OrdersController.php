@@ -186,12 +186,10 @@ class OrdersController extends Controller
         $orderCancelled = false;
         if ($model->load(Yii::$app->request->post())) {
             //goto receipt printing
-            if ($model->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_CANCELLED) {
-                $orderCancelled = true;
-            } else {
-                $model->ORDER_STATUS = ORDER_HELPER::STATUS_CHEF_ASSIGNED;
-            }
             if ($model->save()) {
+                if ($model->ORDER_STATUS === ORDER_HELPER::STATUS_ORDER_CANCELLED) {
+                    $orderCancelled = true;
+                }
                 return $orderCancelled ? $this->redirect(['orders/index']) : $this->redirect(['orders/print', 'id' => $id]);
             }
         }
