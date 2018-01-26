@@ -1,16 +1,16 @@
 /*
-Navicat MariaDB Data Transfer
+Navicat MySQL Data Transfer
 
-Source Server         : MARIA
-Source Server Version : 100211
-Source Host           : localhost:3306
+Source Server         : D_MYSQL Local
+Source Server Version : 50714
+Source Host           : 127.0.0.1:3306
 Source Database       : tsobucok_pizza
 
-Target Server Type    : MariaDB
-Target Server Version : 100211
+Target Server Type    : MYSQL
+Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-01-23 20:10:27
+Date: 2018-01-26 12:22:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `api_token` (
   KEY `DATE_CREATED` (`DATE_CREATED`,`EXPIRY_DATE`),
   KEY `USER_ID` (`USER_ID`),
   CONSTRAINT `api_token_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of api_token
@@ -39,8 +39,8 @@ INSERT INTO `api_token` VALUES ('2', '5', 'AswKCdHzmC_Qt3OSva_Q-AbrHTYDuvrn', '2
 INSERT INTO `api_token` VALUES ('3', '57', 'a0nKvn3_l_opCOYxgNmLWNEK4z7tsuQJ', '2018-01-11 06:38:41', '2018-01-11 06:38:42');
 INSERT INTO `api_token` VALUES ('4', '25', 'M0r3dWSsSK-Kxlbonup0zSJllCoNNEmr', '2018-01-20 00:17:45', '2018-01-20 00:17:45');
 INSERT INTO `api_token` VALUES ('5', '58', 'tISoX9J_nQjrV1FoC0qAlxQH6WR2h27I', '2018-01-14 14:44:41', '2018-01-14 14:44:41');
-INSERT INTO `api_token` VALUES ('6', '56', '-JSZcBuu3Ql0lbNhc8xtpYtlaK9r-_dn', '2018-01-18 00:39:32', '2018-01-18 00:39:32');
-INSERT INTO `api_token` VALUES ('7', '49', 'gcuC54pQvBtUDEz-t5FXrewUZ1rhbbeV', '2018-01-14 22:56:20', '2018-01-14 22:56:20');
+INSERT INTO `api_token` VALUES ('6', '56', '2kIh98vJNf_WbmKpTJvxww8oI2CafzFt', '2018-01-24 19:58:08', '2018-01-24 19:58:08');
+INSERT INTO `api_token` VALUES ('7', '49', 'SZCAoVkkkJHIj_T71eTbZcAmGwUVyHLJ', '2018-01-25 19:24:04', '2018-01-25 19:24:04');
 INSERT INTO `api_token` VALUES ('8', '60', 'zYt574rj01G2Uzvr3zdt29yGsjznRG1o', '2018-01-15 09:49:05', '2018-01-15 09:49:05');
 INSERT INTO `api_token` VALUES ('9', '59', 'Juzf-7UJte0j6U8VffVvrJD744T0RJu3', '2018-01-15 09:50:43', '2018-01-15 09:50:43');
 INSERT INTO `api_token` VALUES ('10', '61', 'OcOHZl0kwkP02pZqZhhJ7XBKzNiDfpoH', '2018-01-15 15:28:18', '2018-01-15 15:28:18');
@@ -73,7 +73,7 @@ INSERT INTO `api_token` VALUES ('36', '93', 'yKU_NPMsAOeYtN39J2K8nw5IPeyK4PYo', 
 INSERT INTO `api_token` VALUES ('37', '94', 'vrI52TcK2CrJnIHpzJ9BApAsWnW7U1nM', '2018-01-21 22:08:00', '2018-01-21 22:08:00');
 INSERT INTO `api_token` VALUES ('38', '95', 'CsPBW_Ql2TEiLh5XHr6Yy4HJFYjXas9q', '2018-01-21 22:26:11', '2018-01-21 22:26:11');
 INSERT INTO `api_token` VALUES ('39', '96', 'sobdmgPs9Egc_JJ-gLZKPI9ArgRpTbEl', '2018-01-21 22:45:38', '2018-01-21 22:45:38');
-INSERT INTO `api_token` VALUES ('40', '97', 'Z23i3zPwBiNG_g41kul0Xrtgj4L8UNJ5', '2018-01-22 09:12:16', '2018-01-22 09:12:16');
+INSERT INTO `api_token` VALUES ('40', '97', '3qdL1c6RsyFC0WA4qfTqQGiXj9tVRAVe', '2018-01-25 11:13:20', '2018-01-25 11:13:20');
 INSERT INTO `api_token` VALUES ('41', '98', '6Djzx1lDQPwFEU8VAtz5K1-pBMTAZzwo', '2018-01-22 14:58:21', '2018-01-22 14:58:21');
 INSERT INTO `api_token` VALUES ('42', '99', 'kQYlWcjmNoQFB4Nqe__B2flqo-ophg9S', '2018-01-22 17:59:37', '2018-01-22 17:59:37');
 INSERT INTO `api_token` VALUES ('43', '100', 'BY2XkHrN5vbNaoCczX6_9s-8EZmnC94m', '2018-01-22 18:13:53', '2018-01-22 18:13:53');
@@ -102,6 +102,33 @@ INSERT INTO `api_token` VALUES ('65', '128', 'DX2gj9TZrETKnLZfK2nnHpN3U_ZlRdLm',
 INSERT INTO `api_token` VALUES ('66', '129', 'LrKs1HQXRItJYG143vltKuXILfmDTyUH', '2018-01-23 15:20:55', '2018-01-23 15:20:55');
 INSERT INTO `api_token` VALUES ('67', '130', 'O348jBSE7wcAKgehFluL5jN0iIYwuT_J', '2018-01-23 15:57:42', '2018-01-23 15:57:42');
 INSERT INTO `api_token` VALUES ('68', '131', 'knzx66o7SiXiA94f96ig-u76o4urh5zh', '2018-01-23 16:50:45', '2018-01-23 16:50:45');
+INSERT INTO `api_token` VALUES ('69', '133', 'HD8d9k8TAFrgD3QAkNW_4ogocgsNHqzL', '2018-01-23 18:51:53', '2018-01-23 18:51:53');
+INSERT INTO `api_token` VALUES ('70', '134', 'dEZATPqXtKKCS3iypfuXTkMqmyv9kF4I', '2018-01-23 16:41:29', '2018-01-23 16:41:29');
+INSERT INTO `api_token` VALUES ('71', '135', 'tUtlFbeEWehJi0p7XbJNAKiGdD7ru9EC', '2018-01-23 20:42:21', '2018-01-23 20:42:21');
+INSERT INTO `api_token` VALUES ('72', '137', '-lKNuV5nDedjA3Q7mcDcod8l1UMZBqA0', '2018-01-23 21:12:51', '2018-01-23 21:12:51');
+INSERT INTO `api_token` VALUES ('73', '139', 'z7vSU1B5ylTngKa4nJEpYAdl9IWuI5o_', '2018-01-23 22:06:00', '2018-01-23 22:06:00');
+INSERT INTO `api_token` VALUES ('74', '140', 'TC_ZHkChsZv_3ZyN3GDxen34XCwM6L6j', '2018-01-23 22:12:18', '2018-01-23 22:12:18');
+INSERT INTO `api_token` VALUES ('75', '141', 'z9f7hrEffxhkLbz3xf4Ami0F6xw9ccoF', '2018-01-23 23:45:48', '2018-01-23 23:45:48');
+INSERT INTO `api_token` VALUES ('76', '142', 'xn5HEPEZs1jNyK73NHbyCgve_5_-yAuQ', '2018-01-24 01:12:14', '2018-01-24 01:12:14');
+INSERT INTO `api_token` VALUES ('77', '143', 'yOVRr86CO2j5BjZDYNi7o-ORSwh-RLoY', '2018-01-24 02:47:24', '2018-01-24 02:47:24');
+INSERT INTO `api_token` VALUES ('78', '138', 'Yc50nS7PMKg_DxGLcvCrr1bm13mOMwCY', '2018-01-24 10:32:17', '2018-01-24 10:32:17');
+INSERT INTO `api_token` VALUES ('80', '147', 'Vxwk0mB9xuCeXPRxE5iTu6TT_yv4dMUa', '2018-01-24 16:48:11', '2018-01-24 16:48:11');
+INSERT INTO `api_token` VALUES ('81', '148', '0r3c2ipD_XxjD-DlzUXzJSD_-Qktmjgi', '2018-01-24 16:59:59', '2018-01-24 16:59:59');
+INSERT INTO `api_token` VALUES ('82', '149', 'KVpKfkZ-iuQ8_DcIzA1LO7oYoK_mL_oC', '2018-01-24 17:17:23', '2018-01-24 17:17:23');
+INSERT INTO `api_token` VALUES ('83', '150', 'm6Kvuoup9_6aYAy0NVlNatnQNmvnraVy', '2018-01-24 17:48:04', '2018-01-24 17:48:04');
+INSERT INTO `api_token` VALUES ('84', '151', '2oBYLA2qq-RZ_0QIEDloEXAPIm1hSPoJ', '2018-01-24 18:11:15', '2018-01-24 18:11:15');
+INSERT INTO `api_token` VALUES ('85', '153', 'X_7Gd6ryMnUpMjq1fcorrjtTKcWh1Qj0', '2018-01-24 18:28:44', '2018-01-24 18:28:44');
+INSERT INTO `api_token` VALUES ('86', '154', 'zxlgeGudlJTFDSBSRPe0xLm4K2ZcNkFa', '2018-01-25 23:16:45', '2018-01-25 23:16:45');
+INSERT INTO `api_token` VALUES ('87', '155', 'iKorWN-_m1yqZMFVXTEmYYRBmTiFpgB4', '2018-01-24 20:54:34', '2018-01-24 20:54:34');
+INSERT INTO `api_token` VALUES ('88', '156', '17LY_MCmGZ2FlqGTASFczpxJ4_5G-Nan', '2018-01-24 20:53:36', '2018-01-24 20:53:36');
+INSERT INTO `api_token` VALUES ('89', '157', 'AwQFKrideIGxYtdmDaYUcnDBh3Ih_mmm', '2018-01-25 01:32:20', '2018-01-25 01:32:20');
+INSERT INTO `api_token` VALUES ('90', '158', 'xtQSTDyoud-4EPuqEt3BzhU0W0GJj7BN', '2018-01-25 11:23:22', '2018-01-25 11:23:22');
+INSERT INTO `api_token` VALUES ('91', '159', 'YZpnc1UE1iVynVSunwc6ZL8QoQjst2s9', '2018-01-25 11:35:30', '2018-01-25 11:35:30');
+INSERT INTO `api_token` VALUES ('92', '160', '7stj-YLJs6503h3Zao2UWPmv9Uo5N1s3', '2018-01-25 12:04:33', '2018-01-25 12:04:33');
+INSERT INTO `api_token` VALUES ('93', '163', 'JWlqDWfs0oO1hgZPkLwZaRnxOzGE5J2s', '2018-01-25 16:34:32', '2018-01-25 16:34:32');
+INSERT INTO `api_token` VALUES ('94', '165', 'zZl2lxCWBhK-XrEQySG3nNwUvy7vxysA', '2018-01-25 17:19:52', '2018-01-25 17:19:52');
+INSERT INTO `api_token` VALUES ('95', '166', 'MmxCFA8-9AE5Oi7LmV1qAsdsc4JahwMk', '2018-01-25 23:17:27', '2018-01-25 23:17:27');
+INSERT INTO `api_token` VALUES ('96', '167', 'tfjepPmOAgGal90PnZBxtpYK5-q_5uyS', '2018-01-25 23:49:11', '2018-01-25 23:49:11');
 
 -- ----------------------------
 -- Table structure for chef
@@ -190,12 +217,107 @@ CREATE TABLE `customer_order` (
   CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_7` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1061 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1107 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of customer_order
 -- ----------------------------
-INSERT INTO `customer_order` VALUES ('1060', '10', '1', '1', '4', null, '2018-01-23 19:50:21', 'MOBILE', 'CHEF ASSIGNED', null, '423', '2018-01-23 19:50:21', '2018-01-23 19:53:03');
+INSERT INTO `customer_order` VALUES ('1000', '65', '14', '1', '4', null, '2018-01-17 13:23:08', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-17 13:23:08', '2018-01-22 17:47:47');
+INSERT INTO `customer_order` VALUES ('1001', '25', '3', '1', '4', '5', '2018-01-17 13:25:08', 'MOBILE', 'ORDER READY', null, null, '2018-01-17 13:25:08', '2018-01-18 13:31:38');
+INSERT INTO `customer_order` VALUES ('1002', '25', '2', '1', '4', '5', '2018-01-17 14:22:09', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-17 14:22:09', '2018-01-17 14:39:10');
+INSERT INTO `customer_order` VALUES ('1003', '25', '1', '1', '4', null, '2018-01-17 14:44:26', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-17 14:44:26', '2018-01-22 17:49:27');
+INSERT INTO `customer_order` VALUES ('1004', '70', '5', '1', '4', null, '2018-01-17 15:39:20', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-17 15:39:20', '2018-01-22 17:50:14');
+INSERT INTO `customer_order` VALUES ('1005', '63', '5', '1', '4', '5', '2018-01-17 15:47:14', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-17 15:47:15', '2018-01-17 18:34:42');
+INSERT INTO `customer_order` VALUES ('1006', '71', '6', '1', '4', null, '2018-01-17 16:15:23', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-17 16:15:23', '2018-01-22 17:50:38');
+INSERT INTO `customer_order` VALUES ('1007', '25', '15', '1', '4', '6', '2018-01-17 16:19:45', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-17 16:19:45', '2018-01-17 16:54:10');
+INSERT INTO `customer_order` VALUES ('1008', '72', '6', '1', '4', '5', '2018-01-17 16:25:03', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-17 16:25:03', '2018-01-17 16:56:31');
+INSERT INTO `customer_order` VALUES ('1009', '53', '13', '1', '4', '5', '2018-01-17 17:48:31', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-17 17:48:31', '2018-01-17 18:34:29');
+INSERT INTO `customer_order` VALUES ('1010', '49', '2', '1', '4', '6', '2018-01-17 18:44:37', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-17 18:44:38', '2018-01-17 18:47:33');
+INSERT INTO `customer_order` VALUES ('1011', '80', '5', '1', '4', null, '2018-01-18 10:05:57', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 10:05:58', '2018-01-22 17:51:00');
+INSERT INTO `customer_order` VALUES ('1012', '83', '12', '1', '4', null, '2018-01-18 13:40:26', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 13:40:26', '2018-01-22 17:51:59');
+INSERT INTO `customer_order` VALUES ('1013', '60', '5', '1', '4', null, '2018-01-18 14:20:10', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 14:20:10', '2018-01-22 17:52:52');
+INSERT INTO `customer_order` VALUES ('1014', '82', '5', '1', '4', '6', '2018-01-18 16:49:07', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-18 16:49:07', '2018-01-18 18:26:29');
+INSERT INTO `customer_order` VALUES ('1015', '84', '3', '1', '4', null, '2018-01-18 16:53:56', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 16:53:56', '2018-01-22 17:53:45');
+INSERT INTO `customer_order` VALUES ('1016', '29', '6', '1', '4', null, '2018-01-18 17:05:49', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 17:05:49', '2018-01-20 16:08:57');
+INSERT INTO `customer_order` VALUES ('1017', '85', '5', '1', '4', null, '2018-01-18 17:17:33', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 17:17:33', '2018-01-22 17:54:08');
+INSERT INTO `customer_order` VALUES ('1018', '25', '2', '1', '4', null, '2018-01-18 20:01:28', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 20:01:28', '2018-01-22 17:53:23');
+INSERT INTO `customer_order` VALUES ('1019', '86', '12', '1', '4', null, '2018-01-18 20:17:23', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-18 20:17:23', '2018-01-20 16:03:22');
+INSERT INTO `customer_order` VALUES ('1020', '25', '15', '1', '4', null, '2018-01-19 14:25:35', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-19 14:25:36', '2018-01-20 15:23:32');
+INSERT INTO `customer_order` VALUES ('1021', '82', '5', '1', '4', null, '2018-01-19 18:51:13', 'MOBILE', 'ORDER CONFIRMED', null, null, '2018-01-19 18:51:14', '2018-01-25 17:09:00');
+INSERT INTO `customer_order` VALUES ('1022', '25', '1', '1', '4', null, '2018-01-19 22:14:14', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-19 22:14:15', '2018-01-22 17:52:31');
+INSERT INTO `customer_order` VALUES ('1023', '80', '5', '1', '4', null, '2018-01-19 23:07:03', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-19 23:07:04', '2018-01-22 17:51:34');
+INSERT INTO `customer_order` VALUES ('1024', '57', '12', '1', '4', null, '2018-01-20 11:50:00', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-20 11:50:00', '2018-01-22 17:48:13');
+INSERT INTO `customer_order` VALUES ('1025', '57', '12', '1', '4', null, '2018-01-20 11:57:57', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-20 11:57:57', '2018-01-20 12:00:59');
+INSERT INTO `customer_order` VALUES ('1026', '57', '12', '1', '4', '6', '2018-01-20 12:11:09', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-20 12:11:09', '2018-01-20 16:56:50');
+INSERT INTO `customer_order` VALUES ('1027', '25', '2', '1', '4', null, '2018-01-20 15:59:10', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-20 15:59:11', '2018-01-20 16:05:18');
+INSERT INTO `customer_order` VALUES ('1028', '84', '16', '1', '4', '6', '2018-01-20 16:20:16', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-20 16:20:17', '2018-01-20 19:06:51');
+INSERT INTO `customer_order` VALUES ('1029', '29', '12', '1', '4', '6', '2018-01-20 16:50:24', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-20 16:50:24', '2018-01-20 17:11:48');
+INSERT INTO `customer_order` VALUES ('1030', '72', '6', '1', '4', null, '2018-01-20 18:40:39', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-20 18:40:39', '2018-01-22 17:47:09');
+INSERT INTO `customer_order` VALUES ('1031', '72', '6', '1', '4', '6', '2018-01-20 18:41:57', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-20 18:41:57', '2018-01-20 19:04:21');
+INSERT INTO `customer_order` VALUES ('1032', '88', '6', '1', '4', null, '2018-01-20 18:48:49', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-20 18:48:49', '2018-01-21 15:55:41');
+INSERT INTO `customer_order` VALUES ('1033', '83', '6', '1', null, '6', '2018-01-20 19:58:46', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-20 19:58:46', '2018-01-20 20:26:38');
+INSERT INTO `customer_order` VALUES ('1034', '84', '16', '1', '4', '5', '2018-01-20 20:13:26', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-20 20:13:27', '2018-01-20 20:26:59');
+INSERT INTO `customer_order` VALUES ('1035', '71', '6', '1', '4', '6', '2018-01-21 13:03:13', 'MOBILE', 'RIDER DISPATCHED', null, null, '2018-01-21 13:03:13', '2018-01-21 16:13:52');
+INSERT INTO `customer_order` VALUES ('1036', '94', '5', '1', '4', null, '2018-01-21 22:09:56', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-21 22:09:56', '2018-01-22 17:45:12');
+INSERT INTO `customer_order` VALUES ('1037', '84', '16', '1', '4', null, '2018-01-22 12:24:53', 'MOBILE', 'CHEF ASSIGNED', null, null, '2018-01-22 12:24:53', '2018-01-22 17:46:47');
+INSERT INTO `customer_order` VALUES ('1039', '98', '12', '1', '4', null, '2018-01-22 14:59:38', 'MOBILE', 'CHEF ASSIGNED', '15:00', null, '2018-01-22 14:59:39', '2018-01-22 17:46:22');
+INSERT INTO `customer_order` VALUES ('1040', '99', '16', '1', '4', null, '2018-01-22 18:03:14', 'MOBILE', 'CHEF ASSIGNED', '19:00', null, '2018-01-22 18:03:14', '2018-01-22 19:33:32');
+INSERT INTO `customer_order` VALUES ('1041', '100', '13', '1', '4', '5', '2018-01-22 18:19:04', 'MOBILE', 'RIDER DISPATCHED', '19:00', null, '2018-01-22 18:19:04', '2018-01-22 19:09:59');
+INSERT INTO `customer_order` VALUES ('1042', '99', '16', '1', '4', '5', '2018-01-22 18:36:53', 'MOBILE', 'RIDER DISPATCHED', '19:00', null, '2018-01-22 18:36:53', '2018-01-22 19:09:15');
+INSERT INTO `customer_order` VALUES ('1043', '108', '14', '1', '4', '6', '2018-01-22 19:06:56', 'MOBILE', 'RIDER DISPATCHED', '07:00', null, '2018-01-22 19:06:56', '2018-01-25 20:28:48');
+INSERT INTO `customer_order` VALUES ('1044', '109', '16', '1', '4', '5', '2018-01-22 19:10:40', 'MOBILE', 'RIDER DISPATCHED', '20:00', null, '2018-01-22 19:10:41', '2018-01-22 20:39:41');
+INSERT INTO `customer_order` VALUES ('1045', '110', '5', '1', '4', null, '2018-01-22 19:41:18', 'MOBILE', 'CHEF ASSIGNED', '00:00', null, '2018-01-22 19:41:18', '2018-01-23 18:35:15');
+INSERT INTO `customer_order` VALUES ('1047', '64', '14', '1', null, '5', '2018-01-22 21:09:29', 'MOBILE', 'RIDER DISPATCHED', '01:00', null, '2018-01-22 21:09:30', '2018-01-22 21:41:10');
+INSERT INTO `customer_order` VALUES ('1048', '64', '4', '1', '4', '7', '2018-01-22 21:19:58', 'MOBILE', 'RIDER DISPATCHED', '03:00', null, '2018-01-22 21:19:58', '2018-01-25 20:31:17');
+INSERT INTO `customer_order` VALUES ('1049', '64', '5', '1', '4', '5', '2018-01-22 21:28:19', 'MOBILE', 'RIDER DISPATCHED', '01:00', null, '2018-01-22 21:28:20', '2018-01-22 21:37:24');
+INSERT INTO `customer_order` VALUES ('1050', '122', '4', '1', '4', null, '2018-01-23 09:01:01', 'MOBILE', 'CHEF ASSIGNED', '07:00', null, '2018-01-23 09:01:03', '2018-01-23 18:37:09');
+INSERT INTO `customer_order` VALUES ('1051', '124', '5', '1', '4', null, '2018-01-23 11:28:26', 'MOBILE', 'CHEF ASSIGNED', '03:00', null, '2018-01-23 11:28:26', '2018-01-23 18:37:32');
+INSERT INTO `customer_order` VALUES ('1052', '125', '11', '1', '4', null, '2018-01-23 11:49:08', 'MOBILE', 'CHEF ASSIGNED', '21:00', null, '2018-01-23 11:49:08', '2018-01-23 18:37:52');
+INSERT INTO `customer_order` VALUES ('1053', '29', '5', '1', '4', '5', '2018-01-23 15:52:53', 'MOBILE', 'RIDER DISPATCHED', '04:00', null, '2018-01-23 15:52:54', '2018-01-23 16:21:36');
+INSERT INTO `customer_order` VALUES ('1055', '113', '16', '1', '4', null, '2018-01-23 16:44:17', 'MOBILE', 'CHEF ASSIGNED', '17:00', null, '2018-01-23 16:44:17', '2018-01-23 18:38:47');
+INSERT INTO `customer_order` VALUES ('1056', '131', '16', '1', '4', '5', '2018-01-23 16:54:11', 'MOBILE', 'RIDER DISPATCHED', '17:00', null, '2018-01-23 16:54:11', '2018-01-23 17:27:22');
+INSERT INTO `customer_order` VALUES ('1058', '124', '5', '1', '4', '7', '2018-01-23 17:47:06', 'MOBILE', 'RIDER DISPATCHED', '07:00', null, '2018-01-23 17:47:06', '2018-01-23 18:02:01');
+INSERT INTO `customer_order` VALUES ('1060', '25', '4', '1', '4', null, '2018-01-23 16:36:38', 'MOBILE', 'CHEF ASSIGNED', '08:00', null, '2018-01-23 16:36:38', '2018-01-23 16:37:14');
+INSERT INTO `customer_order` VALUES ('1061', '64', '2', '1', '4', null, '2018-01-24 13:06:23', 'MOBILE', 'CHEF ASSIGNED', '03:00', null, '2018-01-24 13:06:23', '2018-01-24 13:08:09');
+INSERT INTO `customer_order` VALUES ('1062', '64', '2', '1', '4', null, '2018-01-24 13:06:56', 'MOBILE', 'CHEF ASSIGNED', '01:00', null, '2018-01-24 13:06:56', '2018-01-24 13:08:37');
+INSERT INTO `customer_order` VALUES ('1063', '29', '6', '1', '4', '7', '2018-01-24 16:30:59', 'MOBILE', 'RIDER DISPATCHED', '05:00', null, '2018-01-24 16:31:00', '2018-01-24 17:10:15');
+INSERT INTO `customer_order` VALUES ('1064', '147', '6', '1', '4', null, '2018-01-24 16:48:45', 'MOBILE', 'CHEF ASSIGNED', '07:00', null, '2018-01-24 16:48:45', '2018-01-24 18:10:33');
+INSERT INTO `customer_order` VALUES ('1065', '150', '12', '1', '4', '5', '2018-01-24 17:51:32', 'MOBILE', 'RIDER DISPATCHED', '20:00', null, '2018-01-24 17:51:32', '2018-01-24 18:18:00');
+INSERT INTO `customer_order` VALUES ('1066', '64', '6', '1', '4', '7', '2018-01-24 18:05:47', 'MOBILE', 'RIDER DISPATCHED', '18:00', null, '2018-01-24 18:05:47', '2018-01-24 18:36:24');
+INSERT INTO `customer_order` VALUES ('1067', '151', '6', '1', '4', null, '2018-01-24 18:12:28', 'MOBILE', 'CHEF ASSIGNED', '07:00', null, '2018-01-24 18:12:28', '2018-01-24 19:22:50');
+INSERT INTO `customer_order` VALUES ('1068', '29', '6', '1', '4', '5', '2018-01-24 18:21:59', 'MOBILE', 'RIDER DISPATCHED', '06:00', null, '2018-01-24 18:21:59', '2018-01-24 19:21:12');
+INSERT INTO `customer_order` VALUES ('1069', '139', '15', '1', '4', '5', '2018-01-24 19:04:02', 'MOBILE', 'RIDER DISPATCHED', '10:00', null, '2018-01-24 19:04:02', '2018-01-24 19:22:08');
+INSERT INTO `customer_order` VALUES ('1071', '64', '16', null, null, null, '2018-01-24 20:15:51', 'MOBILE', 'ORDER CANCELLED', '08:00', null, '2018-01-24 20:15:51', '2018-01-25 20:54:28');
+INSERT INTO `customer_order` VALUES ('1072', '64', '16', '1', '4', '7', '2018-01-24 20:16:27', 'MOBILE', 'RIDER DISPATCHED', '08:00', null, '2018-01-24 20:16:27', '2018-01-24 22:06:58');
+INSERT INTO `customer_order` VALUES ('1073', '155', '1', '1', '4', '7', '2018-01-24 20:43:57', 'MOBILE', 'RIDER DISPATCHED', '21:00', null, '2018-01-24 20:43:58', '2018-01-24 22:06:41');
+INSERT INTO `customer_order` VALUES ('1074', '155', '6', '1', '4', '7', '2018-01-24 21:02:02', 'MOBILE', 'RIDER DISPATCHED', '21:00', null, '2018-01-24 21:02:02', '2018-01-24 22:06:18');
+INSERT INTO `customer_order` VALUES ('1075', '64', '6', '1', '4', '7', '2018-01-24 21:23:27', 'MOBILE', 'RIDER DISPATCHED', '21:00', null, '2018-01-24 21:23:27', '2018-01-24 22:05:57');
+INSERT INTO `customer_order` VALUES ('1076', '64', '4', '1', '4', '7', '2018-01-24 21:34:52', 'MOBILE', 'RIDER DISPATCHED', '21:00', null, '2018-01-24 21:34:52', '2018-01-24 22:05:43');
+INSERT INTO `customer_order` VALUES ('1077', '64', '16', '1', '4', '7', '2018-01-24 21:49:09', 'MOBILE', 'RIDER DISPATCHED', '21:00', null, '2018-01-24 21:49:09', '2018-01-24 22:05:24');
+INSERT INTO `customer_order` VALUES ('1078', '157', '12', null, null, null, '2018-01-25 01:36:31', 'MOBILE', 'PAYMENT PENDING', '04:00', null, '2018-01-25 01:36:31', '2018-01-25 14:33:44');
+INSERT INTO `customer_order` VALUES ('1079', '29', '5', '1', '4', null, '2018-01-25 14:37:01', 'MOBILE', 'PAYMENT PENDING', '06:00', null, '2018-01-25 14:37:01', '2018-01-25 16:47:12');
+INSERT INTO `customer_order` VALUES ('1080', '157', '13', '1', '4', null, '2018-01-25 15:03:41', 'MOBILE', 'PAYMENT PENDING', '03:00', null, '2018-01-25 15:03:41', '2018-01-25 16:41:33');
+INSERT INTO `customer_order` VALUES ('1081', '64', '5', null, null, null, '2018-01-25 16:37:58', 'MOBILE', 'PAYMENT PENDING', '04:00', null, '2018-01-25 16:37:58', '2018-01-25 20:15:55');
+INSERT INTO `customer_order` VALUES ('1082', '64', '5', '1', '4', null, '2018-01-25 16:40:25', 'MOBILE', 'PAYMENT PENDING', '04:00', null, '2018-01-25 16:40:25', '2018-01-25 16:40:44');
+INSERT INTO `customer_order` VALUES ('1083', '64', '5', '1', '4', null, '2018-01-25 16:43:23', 'MOBILE', 'PAYMENT PENDING', '05:00', null, '2018-01-25 16:43:24', '2018-01-25 16:44:25');
+INSERT INTO `customer_order` VALUES ('1084', '64', '5', '1', '4', null, '2018-01-25 16:46:13', 'MOBILE', 'PAYMENT PENDING', '06:00', null, '2018-01-25 16:46:13', '2018-01-25 16:46:34');
+INSERT INTO `customer_order` VALUES ('1085', '64', '5', '1', '4', null, '2018-01-25 16:53:31', 'MOBILE', 'PAYMENT PENDING', '05:00', null, '2018-01-25 16:53:31', '2018-01-25 16:53:54');
+INSERT INTO `customer_order` VALUES ('1086', '64', '5', '1', '4', null, '2018-01-25 16:56:26', 'MOBILE', 'ORDER CONFIRMED', '05:00', null, '2018-01-25 16:56:26', '2018-01-25 20:52:06');
+INSERT INTO `customer_order` VALUES ('1088', '25', '4', '1', '4', '5', '2018-01-25 17:05:40', 'MOBILE', 'RIDER DISPATCHED', '04:00', null, '2018-01-25 17:05:40', '2018-01-25 20:38:49');
+INSERT INTO `customer_order` VALUES ('1089', '25', '2', '1', '4', null, '2018-01-25 17:09:58', 'MOBILE', 'ORDER CANCELLED', '07:00', null, '2018-01-25 17:09:58', '2018-01-25 18:44:37');
+INSERT INTO `customer_order` VALUES ('1090', '65', '5', '1', '4', null, '2018-01-25 17:14:10', 'MOBILE', 'CHEF ASSIGNED', '08:00', null, '2018-01-25 17:14:11', '2018-01-25 18:57:09');
+INSERT INTO `customer_order` VALUES ('1091', '64', '5', '1', '4', null, '2018-01-25 17:15:30', 'MOBILE', 'ORDER CANCELLED', '04:00', null, '2018-01-25 17:15:30', '2018-01-25 18:43:51');
+INSERT INTO `customer_order` VALUES ('1092', '165', '16', '1', '4', null, '2018-01-25 17:20:50', 'MOBILE', 'ORDER CANCELLED', '05:00', null, '2018-01-25 17:20:50', '2018-01-25 18:43:36');
+INSERT INTO `customer_order` VALUES ('1093', '165', '16', '1', '4', null, '2018-01-25 17:22:21', 'MOBILE', 'ORDER CANCELLED', '07:00', null, '2018-01-25 17:22:21', '2018-01-25 18:43:20');
+INSERT INTO `customer_order` VALUES ('1094', '64', '16', '1', '4', null, '2018-01-25 17:26:36', 'MOBILE', 'ORDER CANCELLED', '06:00', null, '2018-01-25 17:26:36', '2018-01-25 18:42:56');
+INSERT INTO `customer_order` VALUES ('1096', '64', '5', '1', '4', null, '2018-01-25 18:21:59', 'MOBILE', 'ORDER CONFIRMED', '05:00', null, '2018-01-25 18:21:59', '2018-01-25 18:22:24');
+INSERT INTO `customer_order` VALUES ('1098', '64', '16', '1', '4', '7', '2018-01-25 18:26:59', 'MOBILE', 'RIDER DISPATCHED', '05:00', null, '2018-01-25 18:26:59', '2018-01-25 20:29:23');
+INSERT INTO `customer_order` VALUES ('1101', '84', '16', '1', '4', null, '2018-01-25 19:23:46', 'MOBILE', 'ORDER CANCELLED', '20:00', null, '2018-01-25 19:23:46', '2018-01-25 20:20:47');
+INSERT INTO `customer_order` VALUES ('1102', '84', '6', '1', '4', null, '2018-01-25 19:25:53', 'MOBILE', 'ORDER CANCELLED', '20:00', null, '2018-01-25 19:25:53', '2018-01-25 20:20:34');
+INSERT INTO `customer_order` VALUES ('1103', '64', '16', '1', null, null, '2018-01-25 19:27:11', 'MOBILE', 'ORDER CANCELLED', '05:00', null, '2018-01-25 19:27:11', '2018-01-25 20:20:15');
+INSERT INTO `customer_order` VALUES ('1104', '25', '1', '1', '4', null, '2018-01-25 20:45:27', 'MOBILE', 'ORDER CANCELLED', '11:00', null, '2018-01-25 20:45:27', '2018-01-25 20:46:35');
+INSERT INTO `customer_order` VALUES ('1105', '64', '4', '1', '4', null, '2018-01-25 20:48:38', 'MOBILE', 'ORDER CONFIRMED', '05:00', null, '2018-01-25 20:48:38', '2018-01-25 20:49:10');
+INSERT INTO `customer_order` VALUES ('1106', '166', '12', null, null, null, '2018-01-25 23:22:39', 'MOBILE', 'PAYMENT PENDING', '01:00', null, '2018-01-25 23:22:39', '2018-01-25 23:22:39');
 
 -- ----------------------------
 -- Table structure for customer_order_item
@@ -217,12 +339,123 @@ CREATE TABLE `customer_order_item` (
   KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
   CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customer_order_item
 -- ----------------------------
-INSERT INTO `customer_order_item` VALUES ('298', '1060', '34', '1', '13', '13', 'N/A', 'Test Order Here', '2018-01-23 19:50:21', null);
+INSERT INTO `customer_order_item` VALUES ('221', '1000', '37', '1', '11', '11', 'N/A', null, '2018-01-17 13:23:08', null);
+INSERT INTO `customer_order_item` VALUES ('222', '1000', '3', '1', '13', '13', 'N/A', null, '2018-01-17 13:23:08', null);
+INSERT INTO `customer_order_item` VALUES ('223', '1000', '3', '1', '13', '13', 'N/A', null, '2018-01-17 13:23:08', null);
+INSERT INTO `customer_order_item` VALUES ('224', '1000', '27', '1', '1', '1', 'N/A', null, '2018-01-17 13:23:08', null);
+INSERT INTO `customer_order_item` VALUES ('225', '1001', '23', '1', '1', '1', 'N/A', null, '2018-01-17 13:25:08', null);
+INSERT INTO `customer_order_item` VALUES ('226', '1002', '3', '1', '13', '13', 'N/A', null, '2018-01-17 14:22:09', null);
+INSERT INTO `customer_order_item` VALUES ('227', '1003', '23', '1', '1', '1', 'N/A', null, '2018-01-17 14:44:26', null);
+INSERT INTO `customer_order_item` VALUES ('228', '1004', '5', '1', '13', '13', 'N/A', null, '2018-01-17 15:39:20', null);
+INSERT INTO `customer_order_item` VALUES ('229', '1005', '38', '1', '13', '13', 'N/A', null, '2018-01-17 15:47:14', null);
+INSERT INTO `customer_order_item` VALUES ('230', '1006', '36', '1', '13', '13', 'N/A', null, '2018-01-17 16:15:23', null);
+INSERT INTO `customer_order_item` VALUES ('231', '1007', '10', '1', '15', '15', 'N/A', null, '2018-01-17 16:19:45', null);
+INSERT INTO `customer_order_item` VALUES ('232', '1008', '7', '1', '11', '11', 'N/A', null, '2018-01-17 16:25:03', null);
+INSERT INTO `customer_order_item` VALUES ('233', '1009', '10', '1', '15', '15', 'N/A', null, '2018-01-17 17:48:31', null);
+INSERT INTO `customer_order_item` VALUES ('234', '1010', '4', '1', '15', '15', 'N/A', null, '2018-01-17 18:44:38', null);
+INSERT INTO `customer_order_item` VALUES ('235', '1011', '1', '1', '15', '15', 'N/A', null, '2018-01-18 10:05:57', null);
+INSERT INTO `customer_order_item` VALUES ('236', '1012', '37', '1', '11', '11', 'N/A', null, '2018-01-18 13:40:26', null);
+INSERT INTO `customer_order_item` VALUES ('237', '1012', '27', '1', '1', '1', 'N/A', null, '2018-01-18 13:40:26', null);
+INSERT INTO `customer_order_item` VALUES ('238', '1013', '9', '2', '11', '22', 'N/A', null, '2018-01-18 14:20:10', null);
+INSERT INTO `customer_order_item` VALUES ('239', '1013', '5', '1', '13', '13', 'N/A', null, '2018-01-18 14:20:10', null);
+INSERT INTO `customer_order_item` VALUES ('240', '1014', '3', '1', '13', '13', 'N/A', null, '2018-01-18 16:49:07', null);
+INSERT INTO `customer_order_item` VALUES ('241', '1015', '3', '1', '13', '13', 'N/A', null, '2018-01-18 16:53:56', null);
+INSERT INTO `customer_order_item` VALUES ('242', '1016', '3', '1', '13', '13', 'N/A', null, '2018-01-18 17:05:49', null);
+INSERT INTO `customer_order_item` VALUES ('243', '1016', '5', '1', '13', '13', 'N/A', null, '2018-01-18 17:05:49', null);
+INSERT INTO `customer_order_item` VALUES ('244', '1017', '39', '1', '15', '15', 'N/A', null, '2018-01-18 17:17:33', null);
+INSERT INTO `customer_order_item` VALUES ('245', '1018', '3', '1', '13', '13', 'N/A', null, '2018-01-18 20:01:28', null);
+INSERT INTO `customer_order_item` VALUES ('246', '1019', '5', '1', '13', '13', 'N/A', null, '2018-01-18 20:17:23', null);
+INSERT INTO `customer_order_item` VALUES ('247', '1019', '33', '1', '11', '11', 'N/A', null, '2018-01-18 20:17:23', null);
+INSERT INTO `customer_order_item` VALUES ('248', '1020', '3', '4', '13', '52', 'N/A', null, '2018-01-19 14:25:36', null);
+INSERT INTO `customer_order_item` VALUES ('249', '1021', '4', '2', '15', '30', 'N/A', null, '2018-01-19 18:51:14', null);
+INSERT INTO `customer_order_item` VALUES ('250', '1022', '35', '1', '15', '15', 'N/A', null, '2018-01-19 22:14:14', null);
+INSERT INTO `customer_order_item` VALUES ('251', '1023', '40', '1', '11', '11', 'N/A', null, '2018-01-19 23:07:04', null);
+INSERT INTO `customer_order_item` VALUES ('252', '1023', '5', '1', '13', '13', 'N/A', null, '2018-01-19 23:07:04', null);
+INSERT INTO `customer_order_item` VALUES ('253', '1023', '10', '1', '15', '15', 'N/A', null, '2018-01-19 23:07:04', null);
+INSERT INTO `customer_order_item` VALUES ('254', '1024', '3', '1', '13', '13', 'N/A', null, '2018-01-20 11:50:00', null);
+INSERT INTO `customer_order_item` VALUES ('255', '1024', '4', '1', '15', '15', 'N/A', null, '2018-01-20 11:50:00', null);
+INSERT INTO `customer_order_item` VALUES ('256', '1025', '19', '1', '1', '1', 'N/A', null, '2018-01-20 11:57:57', null);
+INSERT INTO `customer_order_item` VALUES ('257', '1025', '8', '1', '15', '15', 'N/A', null, '2018-01-20 11:57:57', null);
+INSERT INTO `customer_order_item` VALUES ('258', '1026', '8', '1', '15', '15', 'N/A', null, '2018-01-20 12:11:09', null);
+INSERT INTO `customer_order_item` VALUES ('259', '1026', '19', '1', '1', '1', 'N/A', null, '2018-01-20 12:11:09', null);
+INSERT INTO `customer_order_item` VALUES ('260', '1027', '3', '1', '13', '13', 'N/A', null, '2018-01-20 15:59:11', null);
+INSERT INTO `customer_order_item` VALUES ('261', '1027', '7', '1', '11', '11', 'N/A', null, '2018-01-20 15:59:11', null);
+INSERT INTO `customer_order_item` VALUES ('262', '1028', '43', '1', '11', '11', 'N/A', null, '2018-01-20 16:20:17', null);
+INSERT INTO `customer_order_item` VALUES ('263', '1029', '8', '1', '15', '15', 'N/A', null, '2018-01-20 16:50:24', null);
+INSERT INTO `customer_order_item` VALUES ('264', '1030', '44', '1', '13', '13', 'N/A', null, '2018-01-20 18:40:39', null);
+INSERT INTO `customer_order_item` VALUES ('265', '1030', '4', '1', '15', '15', 'N/A', null, '2018-01-20 18:40:39', null);
+INSERT INTO `customer_order_item` VALUES ('266', '1031', '44', '1', '13', '13', 'N/A', null, '2018-01-20 18:41:57', null);
+INSERT INTO `customer_order_item` VALUES ('267', '1032', '44', '1', '13', '13', 'N/A', null, '2018-01-20 18:48:49', null);
+INSERT INTO `customer_order_item` VALUES ('268', '1033', '39', '1', '15', '15', 'N/A', null, '2018-01-20 19:58:46', null);
+INSERT INTO `customer_order_item` VALUES ('269', '1033', '23', '2', '1', '2', 'N/A', null, '2018-01-20 19:58:46', null);
+INSERT INTO `customer_order_item` VALUES ('270', '1034', '44', '2', '13', '26', 'N/A', null, '2018-01-20 20:13:27', null);
+INSERT INTO `customer_order_item` VALUES ('271', '1035', '38', '1', '13', '13', 'N/A', null, '2018-01-21 13:03:13', null);
+INSERT INTO `customer_order_item` VALUES ('272', '1036', '7', '1', '11', '11', 'N/A', null, '2018-01-21 22:09:56', null);
+INSERT INTO `customer_order_item` VALUES ('273', '1037', '4', '1', '15', '15', 'N/A', null, '2018-01-22 12:24:53', null);
+INSERT INTO `customer_order_item` VALUES ('276', '1039', '19', '1', '1', '1', 'N/A', null, '2018-01-22 14:59:38', null);
+INSERT INTO `customer_order_item` VALUES ('277', '1040', '6', '1', '13', '13', 'N/A', null, '2018-01-22 18:03:14', null);
+INSERT INTO `customer_order_item` VALUES ('278', '1041', '10', '1', '15', '15', 'N/A', null, '2018-01-22 18:19:04', null);
+INSERT INTO `customer_order_item` VALUES ('279', '1042', '1', '1', '15', '15', 'N/A', null, '2018-01-22 18:36:53', null);
+INSERT INTO `customer_order_item` VALUES ('280', '1043', '10', '1', '15', '15', 'N/A', null, '2018-01-22 19:06:56', null);
+INSERT INTO `customer_order_item` VALUES ('281', '1044', '39', '1', '15', '15', 'N/A', null, '2018-01-22 19:10:40', null);
+INSERT INTO `customer_order_item` VALUES ('282', '1045', '2', '1', '11', '11', 'N/A', null, '2018-01-22 19:41:18', null);
+INSERT INTO `customer_order_item` VALUES ('284', '1047', '10', '1', '15', '15', 'N/A', null, '2018-01-22 21:09:30', null);
+INSERT INTO `customer_order_item` VALUES ('285', '1048', '10', '1', '15', '15', 'N/A', null, '2018-01-22 21:19:58', null);
+INSERT INTO `customer_order_item` VALUES ('286', '1049', '8', '1', '15', '15', 'N/A', null, '2018-01-22 21:28:20', null);
+INSERT INTO `customer_order_item` VALUES ('287', '1050', '10', '1', '15', '15', 'N/A', null, '2018-01-23 09:01:03', null);
+INSERT INTO `customer_order_item` VALUES ('288', '1051', '44', '1', '13', '13', 'N/A', null, '2018-01-23 11:28:26', null);
+INSERT INTO `customer_order_item` VALUES ('289', '1052', '5', '1', '13', '13', 'N/A', null, '2018-01-23 11:49:08', null);
+INSERT INTO `customer_order_item` VALUES ('290', '1052', '3', '1', '13', '13', 'N/A', null, '2018-01-23 11:49:08', null);
+INSERT INTO `customer_order_item` VALUES ('291', '1053', '3', '1', '13', '13', 'N/A', null, '2018-01-23 15:52:53', null);
+INSERT INTO `customer_order_item` VALUES ('293', '1055', '4', '1', '15', '15', 'N/A', null, '2018-01-23 16:44:17', null);
+INSERT INTO `customer_order_item` VALUES ('294', '1056', '4', '1', '15', '15', 'N/A', null, '2018-01-23 16:54:11', null);
+INSERT INTO `customer_order_item` VALUES ('296', '1058', '5', '1', '13', '13', 'N/A', null, '2018-01-23 17:47:06', null);
+INSERT INTO `customer_order_item` VALUES ('298', '1060', '23', '1', '1', '1', 'N/A', null, '2018-01-23 16:36:38', null);
+INSERT INTO `customer_order_item` VALUES ('299', '1061', '5', '1', '13', '13', 'N/A', null, '2018-01-24 13:06:23', null);
+INSERT INTO `customer_order_item` VALUES ('300', '1062', '23', '1', '1', '1', 'N/A', null, '2018-01-24 13:06:56', null);
+INSERT INTO `customer_order_item` VALUES ('301', '1063', '6', '1', '13', '13', 'N/A', null, '2018-01-24 16:30:59', null);
+INSERT INTO `customer_order_item` VALUES ('302', '1064', '3', '1', '13', '13', 'N/A', null, '2018-01-24 16:48:45', null);
+INSERT INTO `customer_order_item` VALUES ('303', '1065', '39', '1', '15', '15', 'N/A', null, '2018-01-24 17:51:32', null);
+INSERT INTO `customer_order_item` VALUES ('304', '1066', '8', '1', '15', '15', 'N/A', null, '2018-01-24 18:05:47', null);
+INSERT INTO `customer_order_item` VALUES ('305', '1067', '9', '1', '11', '11', 'N/A', null, '2018-01-24 18:12:28', null);
+INSERT INTO `customer_order_item` VALUES ('306', '1068', '38', '1', '13', '13', 'N/A', null, '2018-01-24 18:21:59', null);
+INSERT INTO `customer_order_item` VALUES ('307', '1069', '9', '1', '11', '11', 'N/A', null, '2018-01-24 19:04:02', null);
+INSERT INTO `customer_order_item` VALUES ('309', '1071', '10', '1', '15', '15', 'N/A', null, '2018-01-24 20:15:51', null);
+INSERT INTO `customer_order_item` VALUES ('310', '1072', '10', '1', '15', '15', 'N/A', null, '2018-01-24 20:16:27', null);
+INSERT INTO `customer_order_item` VALUES ('311', '1073', '8', '1', '15', '15', 'N/A', null, '2018-01-24 20:43:57', null);
+INSERT INTO `customer_order_item` VALUES ('312', '1074', '4', '1', '15', '15', 'N/A', null, '2018-01-24 21:02:02', null);
+INSERT INTO `customer_order_item` VALUES ('313', '1075', '33', '1', '11', '11', 'N/A', null, '2018-01-24 21:23:27', null);
+INSERT INTO `customer_order_item` VALUES ('314', '1076', '9', '1', '11', '11', 'N/A', null, '2018-01-24 21:34:52', null);
+INSERT INTO `customer_order_item` VALUES ('315', '1077', '3', '1', '13', '13', 'N/A', null, '2018-01-24 21:49:09', null);
+INSERT INTO `customer_order_item` VALUES ('316', '1078', '43', '1', '11', '11', 'N/A', null, '2018-01-25 01:36:31', null);
+INSERT INTO `customer_order_item` VALUES ('317', '1079', '8', '1', '15', '15', 'N/A', null, '2018-01-25 14:37:01', null);
+INSERT INTO `customer_order_item` VALUES ('318', '1080', '7', '1', '11', '11', 'N/A', null, '2018-01-25 15:03:41', null);
+INSERT INTO `customer_order_item` VALUES ('319', '1081', '10', '1', '15', '15', 'N/A', null, '2018-01-25 16:37:58', null);
+INSERT INTO `customer_order_item` VALUES ('320', '1082', '10', '1', '15', '15', 'N/A', null, '2018-01-25 16:40:25', null);
+INSERT INTO `customer_order_item` VALUES ('321', '1083', '10', '1', '15', '15', 'N/A', null, '2018-01-25 16:43:23', null);
+INSERT INTO `customer_order_item` VALUES ('322', '1085', '10', '1', '15', '15', 'N/A', null, '2018-01-25 16:53:31', null);
+INSERT INTO `customer_order_item` VALUES ('323', '1086', '10', '1', '15', '15', 'N/A', null, '2018-01-25 16:56:26', null);
+INSERT INTO `customer_order_item` VALUES ('324', '1088', '5', '1', '13', '13', 'N/A', null, '2018-01-25 17:05:40', null);
+INSERT INTO `customer_order_item` VALUES ('325', '1088', '5', '1', '13', '13', 'N/A', null, '2018-01-25 17:05:40', null);
+INSERT INTO `customer_order_item` VALUES ('326', '1090', '23', '1', '1', '1', 'N/A', null, '2018-01-25 17:14:10', null);
+INSERT INTO `customer_order_item` VALUES ('327', '1090', '19', '1', '1', '1', 'N/A', null, '2018-01-25 17:14:10', null);
+INSERT INTO `customer_order_item` VALUES ('328', '1090', '27', '1', '1', '1', 'N/A', null, '2018-01-25 17:14:10', null);
+INSERT INTO `customer_order_item` VALUES ('329', '1090', '3', '1', '13', '13', 'N/A', null, '2018-01-25 17:14:10', null);
+INSERT INTO `customer_order_item` VALUES ('330', '1091', '10', '1', '15', '15', 'N/A', null, '2018-01-25 17:15:30', null);
+INSERT INTO `customer_order_item` VALUES ('331', '1092', '10', '1', '15', '15', 'N/A', null, '2018-01-25 17:20:50', null);
+INSERT INTO `customer_order_item` VALUES ('332', '1094', '31', '1', '1', '1', 'N/A', null, '2018-01-25 17:26:36', null);
+INSERT INTO `customer_order_item` VALUES ('333', '1096', '5', '1', '13', '13', 'N/A', null, '2018-01-25 18:21:59', null);
+INSERT INTO `customer_order_item` VALUES ('334', '1098', '10', '1', '15', '15', 'N/A', null, '2018-01-25 18:26:59', null);
+INSERT INTO `customer_order_item` VALUES ('336', '1101', '19', '5', '1', '5', 'N/A', null, '2018-01-25 19:23:46', null);
+INSERT INTO `customer_order_item` VALUES ('337', '1102', '5', '1', '13', '13', 'N/A', null, '2018-01-25 19:25:53', null);
+INSERT INTO `customer_order_item` VALUES ('338', '1103', '5', '1', '13', '13', 'N/A', null, '2018-01-25 19:27:11', null);
+INSERT INTO `customer_order_item` VALUES ('339', '1104', '5', '1', '13', '13', 'N/A', null, '2018-01-25 20:45:27', null);
+INSERT INTO `customer_order_item` VALUES ('340', '1105', '5', '1', '13', '13', 'N/A', null, '2018-01-25 20:48:38', null);
 
 -- ----------------------------
 -- Table structure for db_cache
@@ -231,7 +464,7 @@ DROP TABLE IF EXISTS `db_cache`;
 CREATE TABLE `db_cache` (
   `id` char(128) NOT NULL,
   `expire` int(11) DEFAULT NULL,
-  `data` blob DEFAULT NULL,
+  `data` blob,
   PRIMARY KEY (`id`),
   KEY `expire` (`expire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -251,7 +484,7 @@ CREATE TABLE `kitchen` (
   `CITY_ID` bigint(20) NOT NULL,
   `OPENING_TIME` time DEFAULT NULL,
   `CLOSING_TIME` time DEFAULT NULL,
-  `ADDRESS` text DEFAULT NULL,
+  `ADDRESS` text,
   PRIMARY KEY (`KITCHEN_ID`),
   KEY `City_ID` (`CITY_ID`) USING BTREE,
   CONSTRAINT `kitchen_ibfk_1` FOREIGN KEY (`CITY_ID`) REFERENCES `city` (`CITY_ID`)
@@ -270,7 +503,7 @@ CREATE TABLE `location` (
   `LOCATION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CITY_ID` bigint(20) DEFAULT NULL,
   `LOCATION_NAME` varchar(255) NOT NULL,
-  `ADDRESS` text DEFAULT NULL,
+  `ADDRESS` text,
   `ACTIVE` bit(1) DEFAULT b'0',
   PRIMARY KEY (`LOCATION_ID`),
   KEY `CITY_ID` (`CITY_ID`),
@@ -306,7 +539,7 @@ CREATE TABLE `menu_category` (
   `MENU_CAT_ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `MENU_CAT_NAME` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `MENU_CAT_IMAGE` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ACTIVE` int(1) NOT NULL DEFAULT 1,
+  `ACTIVE` int(1) NOT NULL DEFAULT '1',
   `RANK` int(2) NOT NULL,
   PRIMARY KEY (`MENU_CAT_ID`),
   UNIQUE KEY `MENU_CAT_ID` (`MENU_CAT_ID`,`RANK`),
@@ -336,7 +569,7 @@ CREATE TABLE `menu_item` (
   `MENU_ITEM_IMAGE` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `HOT_DEAL` bit(1) NOT NULL DEFAULT b'0',
   `VEGETARIAN` bit(1) NOT NULL DEFAULT b'0',
-  `MAX_QTY` int(2) NOT NULL DEFAULT 10 COMMENT 'Show the maximum number of quantities one can select from',
+  `MAX_QTY` int(2) NOT NULL DEFAULT '10' COMMENT 'Show the maximum number of quantities one can select from',
   PRIMARY KEY (`MENU_ITEM_ID`),
   KEY `MENU_CAT_ID` (`MENU_CAT_ID`) USING BTREE,
   CONSTRAINT `menu_item_ibfk_1` FOREIGN KEY (`MENU_CAT_ID`) REFERENCES `menu_category` (`MENU_CAT_ID`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -411,7 +644,7 @@ DROP TABLE IF EXISTS `my_session`;
 CREATE TABLE `my_session` (
   `id` char(60) NOT NULL,
   `expire` int(11) DEFAULT NULL,
-  `data` longblob DEFAULT NULL,
+  `data` longblob,
   `user_id` bigint(20) DEFAULT NULL,
   `user_name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -423,31 +656,21 @@ CREATE TABLE `my_session` (
 -- ----------------------------
 -- Records of my_session
 -- ----------------------------
-INSERT INTO `my_session` VALUES ('1a4b0b1cedad99ae65ea48b83265a5d3', '1516722251', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31383A222F6F72646572732F7072696E742F31303531223B, '0', 'guest');
-INSERT INTO `my_session` VALUES ('24e3d74a1a680ebb257bddf3865af085', '1516722245', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31383A222F6F72646572732F7072696E742F31303532223B, '0', 'guest');
-INSERT INTO `my_session` VALUES ('2c42e6941317327661d024cfae79ce7b', '1516722097', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
-INSERT INTO `my_session` VALUES ('411331379592055480a40fef069ce867', '1516721552', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
-INSERT INTO `my_session` VALUES ('4a93f758a35eeb6e35f8179f96a57298', '1516722271', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F6F72646572732F696E646578223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732323237303B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('5eb1s6shh7kt9d008qjtgakme3', '1516767168', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A33353A222F70697A7A612F637573746F6D65722F6F72646572732F766965773F69643D31303539223B5F5F69647C693A31303B5F5F6578706972657C693A313531363736373136383B, '10', 'fatelord');
-INSERT INTO `my_session` VALUES ('68defe305b247c4ae3fdd6a2b28f2106', '1516722319', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F6F72646572732F696E646578223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732323331383B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('83599d9eb9734687b5cfeb7245145581', '1516722577', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
-INSERT INTO `my_session` VALUES ('8951f3183d4b76a4c6437979dff8255b', '1516722027', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31313B5F5F6578706972657C693A313531363732323032363B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('8l4h4ntq65b8fdq8l9bkcmq1q4', '1516723687', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F70697A7A612F6F7264657273223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732333638373B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('9577fe661acb3c65fd404a9cb2af9534', '1516721619', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31313B5F5F6578706972657C693A313531363732313631383B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('a0bfd01129d777f4377ed60918751640', '1516721960', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F6B69746368656E7175657565223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732313936303B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('b1e52ea7497df8c12943d478915e08ac', '1516721796', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
-INSERT INTO `my_session` VALUES ('b45b1960e4971625b7d92a603d3f5a84', '1516722450', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F6F72646572732F696E646578223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732323435303B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('b9o4d9p5q6rdaehlu12qfb8ia5', '1516724694', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F6578706972657C693A313531363732343639343B, '10', 'fatelord');
-INSERT INTO `my_session` VALUES ('c9i556ci5ktmkmtup0lksv3ee7', '1516723351', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F70697A7A612F6F7264657273223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732333335313B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('f00a2401f1dcbce329b9436dc5b66106', '1516721862', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31313B5F5F6578706972657C693A313531363732313836323B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('f54c89e2c4fedf7496332380fb4686a3', '1516721811', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F6578706972657C693A313531363732313831313B, '10', 'fatelord');
-INSERT INTO `my_session` VALUES ('f5884fc4afe7e5bcfe1b2d81b7f36945', '1516722269', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31383A222F6F72646572732F7072696E742F31303530223B, '0', 'guest');
-INSERT INTO `my_session` VALUES ('fba78c4d9a52b32a3a6d9659fa5245db', '1516722457', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
-INSERT INTO `my_session` VALUES ('h4dkb7fpqbqgblp5tp415tplp3', '1516764732', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31393A222F70697A7A612F6F72646572732F696E646578223B5F5F69647C693A31313B5F5F6578706972657C693A313531363736343733323B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('i83kfl0jcqd43v5m6helpnqe07', '1516723050', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31313B5F5F6578706972657C693A313531363732333035303B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('qal88chr9dr0ccrosr1u9cm971', '1516724627', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F70697A7A612F6F7264657273223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732343632373B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('r5g8mi0rtmtepr530krqqubkn3', '1516767355', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31393A222F70697A7A612F6F72646572732F696E646578223B5F5F69647C693A31313B5F5F6578706972657C693A313531363736373335353B, '11', 'admin');
-INSERT INTO `my_session` VALUES ('u4ke34hrhm4o4uctk1fu2vdre7', '1516723986', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A31333A222F70697A7A612F6F7264657273223B5F5F69647C693A31313B5F5F6578706972657C693A313531363732333938363B, '11', 'admin');
+INSERT INTO `my_session` VALUES ('2698eba6322b930a6132f1e5ee51fd99', '1516946562', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('2c241edc4367e145075187e6fac76908', '1516949030', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('359caed1219e7c67fad5e124d49eeafb', '1516948309', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('3dcef3caed1e1a27fa57572ecf3895c9', '1516947589', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('53368ce60b1e57fa4380b13c30baa9aa', '1516948669', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('53d4cbde7993c9460e5ade09556857c1', '1516949749', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('5de2cbda480cba8a1dd3095f79d74a17', '1516945597', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('882a49103643c75b0b2959dba517b544', '1516947949', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('91b453b586bf56d3c86313596ccc2888', '1516949868', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('a5e4917f33ba015938efa8f797856d11', '1516945353', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('b7ac770c1211c9daa90cc70aee32c4f5', '1516947229', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('bd80be8e20d238fdd00fcaf8912658f2', '1516949389', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('c9654295efd5bea2beab479ca01177aa', '1516945959', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('d3efb5165be5ac3113dccc942ddbe208', '1516946869', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
+INSERT INTO `my_session` VALUES ('e3665f6e84433c16df0dc47b284644d3', '1516946203', 0x5F5F666C6173687C613A303A7B7D, '0', 'guest');
 
 -- ----------------------------
 -- Table structure for order_tracking
@@ -466,13 +689,274 @@ CREATE TABLE `order_tracking` (
   KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=623 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=759 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of order_tracking
 -- ----------------------------
-INSERT INTO `order_tracking` VALUES ('621', '1060', null, 'ORDER PENDING', '2018-01-23 19:50:21', '');
-INSERT INTO `order_tracking` VALUES ('622', '1060', null, 'CHEF ASSIGNED', '2018-01-23 19:53:03', '');
+INSERT INTO `order_tracking` VALUES ('457', '1000', null, 'PAYMENT PENDING', '2018-01-17 13:23:08', '');
+INSERT INTO `order_tracking` VALUES ('458', '1001', null, 'PAYMENT PENDING', '2018-01-17 13:25:08', '');
+INSERT INTO `order_tracking` VALUES ('459', '1002', null, 'PAYMENT PENDING', '2018-01-17 14:22:10', '');
+INSERT INTO `order_tracking` VALUES ('460', '1002', null, 'CHEF ASSIGNED', '2018-01-17 14:23:34', '');
+INSERT INTO `order_tracking` VALUES ('461', '1001', null, 'CHEF ASSIGNED', '2018-01-17 14:38:05', '');
+INSERT INTO `order_tracking` VALUES ('462', '1002', null, 'ORDER READY', '2018-01-17 14:38:55', '');
+INSERT INTO `order_tracking` VALUES ('463', '1002', null, 'RIDER DISPATCHED', '2018-01-17 14:39:10', '');
+INSERT INTO `order_tracking` VALUES ('464', '1003', null, 'PAYMENT PENDING', '2018-01-17 14:44:26', '');
+INSERT INTO `order_tracking` VALUES ('465', '1004', null, 'PAYMENT PENDING', '2018-01-17 15:39:20', '');
+INSERT INTO `order_tracking` VALUES ('466', '1005', null, 'PAYMENT PENDING', '2018-01-17 15:47:15', '');
+INSERT INTO `order_tracking` VALUES ('467', '1006', null, 'PAYMENT PENDING', '2018-01-17 16:15:23', '');
+INSERT INTO `order_tracking` VALUES ('468', '1007', null, 'PAYMENT PENDING', '2018-01-17 16:19:45', '');
+INSERT INTO `order_tracking` VALUES ('469', '1007', null, 'CHEF ASSIGNED', '2018-01-17 16:22:53', '');
+INSERT INTO `order_tracking` VALUES ('470', '1008', null, 'PAYMENT PENDING', '2018-01-17 16:25:04', '');
+INSERT INTO `order_tracking` VALUES ('471', '1005', null, 'CHEF ASSIGNED', '2018-01-17 16:36:25', '');
+INSERT INTO `order_tracking` VALUES ('472', '1008', null, 'CHEF ASSIGNED', '2018-01-17 16:37:26', '');
+INSERT INTO `order_tracking` VALUES ('473', '1007', null, 'ORDER READY', '2018-01-17 16:52:40', '');
+INSERT INTO `order_tracking` VALUES ('474', '1007', null, 'RIDER DISPATCHED', '2018-01-17 16:54:10', '');
+INSERT INTO `order_tracking` VALUES ('475', '1008', null, 'ORDER READY', '2018-01-17 16:56:09', '');
+INSERT INTO `order_tracking` VALUES ('476', '1008', null, 'RIDER DISPATCHED', '2018-01-17 16:56:31', '');
+INSERT INTO `order_tracking` VALUES ('477', '1009', null, 'PAYMENT PENDING', '2018-01-17 17:48:31', '');
+INSERT INTO `order_tracking` VALUES ('478', '1009', null, 'CHEF ASSIGNED', '2018-01-17 18:00:28', '');
+INSERT INTO `order_tracking` VALUES ('479', '1005', null, 'ORDER READY', '2018-01-17 18:33:15', '');
+INSERT INTO `order_tracking` VALUES ('480', '1009', null, 'ORDER READY', '2018-01-17 18:33:32', '');
+INSERT INTO `order_tracking` VALUES ('481', '1009', null, 'RIDER DISPATCHED', '2018-01-17 18:34:29', '');
+INSERT INTO `order_tracking` VALUES ('482', '1005', null, 'RIDER DISPATCHED', '2018-01-17 18:34:42', '');
+INSERT INTO `order_tracking` VALUES ('483', '1010', null, 'PAYMENT PENDING', '2018-01-17 18:44:38', '');
+INSERT INTO `order_tracking` VALUES ('484', '1010', null, 'CHEF ASSIGNED', '2018-01-17 18:45:21', '');
+INSERT INTO `order_tracking` VALUES ('485', '1010', null, 'ORDER READY', '2018-01-17 18:47:13', '');
+INSERT INTO `order_tracking` VALUES ('486', '1010', null, 'RIDER DISPATCHED', '2018-01-17 18:47:33', '');
+INSERT INTO `order_tracking` VALUES ('487', '1011', null, 'PAYMENT PENDING', '2018-01-18 10:05:58', '');
+INSERT INTO `order_tracking` VALUES ('488', '1001', null, 'ORDER READY', '2018-01-18 13:31:38', '');
+INSERT INTO `order_tracking` VALUES ('489', '1012', null, 'PAYMENT PENDING', '2018-01-18 13:40:26', '');
+INSERT INTO `order_tracking` VALUES ('490', '1013', null, 'PAYMENT PENDING', '2018-01-18 14:20:10', '');
+INSERT INTO `order_tracking` VALUES ('491', '1014', null, 'PAYMENT PENDING', '2018-01-18 16:49:08', '');
+INSERT INTO `order_tracking` VALUES ('492', '1015', null, 'PAYMENT PENDING', '2018-01-18 16:53:56', '');
+INSERT INTO `order_tracking` VALUES ('493', '1014', null, 'CHEF ASSIGNED', '2018-01-18 16:58:05', '');
+INSERT INTO `order_tracking` VALUES ('494', '1016', null, 'PAYMENT PENDING', '2018-01-18 17:05:49', '');
+INSERT INTO `order_tracking` VALUES ('495', '1017', null, 'PAYMENT PENDING', '2018-01-18 17:17:33', '');
+INSERT INTO `order_tracking` VALUES ('496', '1014', null, 'ORDER READY', '2018-01-18 18:25:49', '');
+INSERT INTO `order_tracking` VALUES ('497', '1014', null, 'RIDER DISPATCHED', '2018-01-18 18:26:29', '');
+INSERT INTO `order_tracking` VALUES ('498', '1018', null, 'PAYMENT PENDING', '2018-01-18 20:01:28', '');
+INSERT INTO `order_tracking` VALUES ('499', '1019', null, 'PAYMENT PENDING', '2018-01-18 20:17:23', '');
+INSERT INTO `order_tracking` VALUES ('500', '1020', null, 'PAYMENT PENDING', '2018-01-19 14:25:36', '');
+INSERT INTO `order_tracking` VALUES ('501', '1021', null, 'PAYMENT PENDING', '2018-01-19 18:51:14', '');
+INSERT INTO `order_tracking` VALUES ('502', '1022', null, 'PAYMENT PENDING', '2018-01-19 22:14:15', '');
+INSERT INTO `order_tracking` VALUES ('503', '1023', null, 'PAYMENT PENDING', '2018-01-19 23:07:04', '');
+INSERT INTO `order_tracking` VALUES ('504', '1024', null, 'PAYMENT PENDING', '2018-01-20 11:50:01', '');
+INSERT INTO `order_tracking` VALUES ('505', '1025', null, 'PAYMENT PENDING', '2018-01-20 11:57:57', '');
+INSERT INTO `order_tracking` VALUES ('506', '1025', null, 'CHEF ASSIGNED', '2018-01-20 12:00:59', '');
+INSERT INTO `order_tracking` VALUES ('507', '1026', null, 'PAYMENT PENDING', '2018-01-20 12:11:09', '');
+INSERT INTO `order_tracking` VALUES ('508', '1020', null, 'CHEF ASSIGNED', '2018-01-20 15:23:32', '');
+INSERT INTO `order_tracking` VALUES ('509', '1027', null, 'PAYMENT PENDING', '2018-01-20 15:59:11', '');
+INSERT INTO `order_tracking` VALUES ('510', '1019', null, 'CHEF ASSIGNED', '2018-01-20 16:03:22', '');
+INSERT INTO `order_tracking` VALUES ('511', '1027', null, 'CHEF ASSIGNED', '2018-01-20 16:05:18', '');
+INSERT INTO `order_tracking` VALUES ('512', '1016', null, 'CHEF ASSIGNED', '2018-01-20 16:08:57', '');
+INSERT INTO `order_tracking` VALUES ('513', '1028', null, 'PAYMENT PENDING', '2018-01-20 16:20:17', '');
+INSERT INTO `order_tracking` VALUES ('514', '1028', null, 'CHEF ASSIGNED', '2018-01-20 16:28:36', '');
+INSERT INTO `order_tracking` VALUES ('515', '1026', null, 'CHEF ASSIGNED', '2018-01-20 16:36:21', '');
+INSERT INTO `order_tracking` VALUES ('516', '1029', null, 'PAYMENT PENDING', '2018-01-20 16:50:24', '');
+INSERT INTO `order_tracking` VALUES ('517', '1029', null, 'CHEF ASSIGNED', '2018-01-20 16:53:08', '');
+INSERT INTO `order_tracking` VALUES ('518', '1026', null, 'ORDER READY', '2018-01-20 16:56:25', '');
+INSERT INTO `order_tracking` VALUES ('519', '1026', null, 'RIDER DISPATCHED', '2018-01-20 16:56:50', '');
+INSERT INTO `order_tracking` VALUES ('520', '1029', null, 'ORDER READY', '2018-01-20 17:11:33', '');
+INSERT INTO `order_tracking` VALUES ('521', '1029', null, 'RIDER DISPATCHED', '2018-01-20 17:11:48', '');
+INSERT INTO `order_tracking` VALUES ('522', '1030', null, 'PAYMENT PENDING', '2018-01-20 18:40:39', '');
+INSERT INTO `order_tracking` VALUES ('523', '1031', null, 'PAYMENT PENDING', '2018-01-20 18:41:57', '');
+INSERT INTO `order_tracking` VALUES ('524', '1031', null, 'CHEF ASSIGNED', '2018-01-20 18:48:01', '');
+INSERT INTO `order_tracking` VALUES ('525', '1032', null, 'PAYMENT PENDING', '2018-01-20 18:48:49', '');
+INSERT INTO `order_tracking` VALUES ('526', '1031', null, 'ORDER READY', '2018-01-20 19:03:54', '');
+INSERT INTO `order_tracking` VALUES ('527', '1031', null, 'RIDER DISPATCHED', '2018-01-20 19:04:21', '');
+INSERT INTO `order_tracking` VALUES ('528', '1028', null, 'ORDER READY', '2018-01-20 19:06:27', '');
+INSERT INTO `order_tracking` VALUES ('529', '1028', null, 'RIDER DISPATCHED', '2018-01-20 19:06:51', '');
+INSERT INTO `order_tracking` VALUES ('530', '1033', null, 'PAYMENT PENDING', '2018-01-20 19:58:46', '');
+INSERT INTO `order_tracking` VALUES ('531', '1033', null, 'CHEF ASSIGNED', '2018-01-20 20:04:12', '');
+INSERT INTO `order_tracking` VALUES ('532', '1034', null, 'PAYMENT PENDING', '2018-01-20 20:13:27', '');
+INSERT INTO `order_tracking` VALUES ('533', '1034', null, 'CHEF ASSIGNED', '2018-01-20 20:17:45', '');
+INSERT INTO `order_tracking` VALUES ('534', '1033', null, 'ORDER READY', '2018-01-20 20:25:41', '');
+INSERT INTO `order_tracking` VALUES ('535', '1034', null, 'ORDER READY', '2018-01-20 20:25:58', '');
+INSERT INTO `order_tracking` VALUES ('536', '1033', null, 'RIDER DISPATCHED', '2018-01-20 20:26:38', '');
+INSERT INTO `order_tracking` VALUES ('537', '1034', null, 'RIDER DISPATCHED', '2018-01-20 20:26:59', '');
+INSERT INTO `order_tracking` VALUES ('538', '1035', null, 'PAYMENT PENDING', '2018-01-21 13:03:13', '');
+INSERT INTO `order_tracking` VALUES ('539', '1035', null, 'CHEF ASSIGNED', '2018-01-21 14:56:49', '');
+INSERT INTO `order_tracking` VALUES ('540', '1032', null, 'CHEF ASSIGNED', '2018-01-21 15:55:41', '');
+INSERT INTO `order_tracking` VALUES ('541', '1035', null, 'ORDER READY', '2018-01-21 16:12:43', '');
+INSERT INTO `order_tracking` VALUES ('542', '1035', null, 'RIDER DISPATCHED', '2018-01-21 16:13:52', '');
+INSERT INTO `order_tracking` VALUES ('543', '1036', null, 'PAYMENT PENDING', '2018-01-21 22:09:56', '');
+INSERT INTO `order_tracking` VALUES ('544', '1037', null, 'PAYMENT PENDING', '2018-01-22 12:24:54', '');
+INSERT INTO `order_tracking` VALUES ('546', '1039', null, 'PAYMENT PENDING', '2018-01-22 14:59:39', '');
+INSERT INTO `order_tracking` VALUES ('547', '1036', null, 'CHEF ASSIGNED', '2018-01-22 17:45:12', '');
+INSERT INTO `order_tracking` VALUES ('549', '1039', null, 'CHEF ASSIGNED', '2018-01-22 17:46:22', '');
+INSERT INTO `order_tracking` VALUES ('550', '1037', null, 'CHEF ASSIGNED', '2018-01-22 17:46:47', '');
+INSERT INTO `order_tracking` VALUES ('551', '1030', null, 'CHEF ASSIGNED', '2018-01-22 17:47:10', '');
+INSERT INTO `order_tracking` VALUES ('552', '1000', null, 'CHEF ASSIGNED', '2018-01-22 17:47:47', '');
+INSERT INTO `order_tracking` VALUES ('553', '1024', null, 'CHEF ASSIGNED', '2018-01-22 17:48:13', '');
+INSERT INTO `order_tracking` VALUES ('554', '1003', null, 'CHEF ASSIGNED', '2018-01-22 17:49:27', '');
+INSERT INTO `order_tracking` VALUES ('555', '1004', null, 'CHEF ASSIGNED', '2018-01-22 17:50:14', '');
+INSERT INTO `order_tracking` VALUES ('556', '1006', null, 'CHEF ASSIGNED', '2018-01-22 17:50:38', '');
+INSERT INTO `order_tracking` VALUES ('557', '1011', null, 'CHEF ASSIGNED', '2018-01-22 17:51:00', '');
+INSERT INTO `order_tracking` VALUES ('558', '1023', null, 'CHEF ASSIGNED', '2018-01-22 17:51:34', '');
+INSERT INTO `order_tracking` VALUES ('559', '1012', null, 'CHEF ASSIGNED', '2018-01-22 17:51:59', '');
+INSERT INTO `order_tracking` VALUES ('560', '1022', null, 'CHEF ASSIGNED', '2018-01-22 17:52:31', '');
+INSERT INTO `order_tracking` VALUES ('561', '1013', null, 'CHEF ASSIGNED', '2018-01-22 17:52:52', '');
+INSERT INTO `order_tracking` VALUES ('562', '1018', null, 'CHEF ASSIGNED', '2018-01-22 17:53:23', '');
+INSERT INTO `order_tracking` VALUES ('563', '1015', null, 'CHEF ASSIGNED', '2018-01-22 17:53:45', '');
+INSERT INTO `order_tracking` VALUES ('564', '1017', null, 'CHEF ASSIGNED', '2018-01-22 17:54:08', '');
+INSERT INTO `order_tracking` VALUES ('565', '1040', null, 'PAYMENT PENDING', '2018-01-22 18:03:14', '');
+INSERT INTO `order_tracking` VALUES ('566', '1041', null, 'PAYMENT PENDING', '2018-01-22 18:19:04', '');
+INSERT INTO `order_tracking` VALUES ('567', '1041', null, 'CHEF ASSIGNED', '2018-01-22 18:35:50', '');
+INSERT INTO `order_tracking` VALUES ('568', '1042', null, 'PAYMENT PENDING', '2018-01-22 18:36:53', '');
+INSERT INTO `order_tracking` VALUES ('569', '1042', null, 'CHEF ASSIGNED', '2018-01-22 18:44:33', '');
+INSERT INTO `order_tracking` VALUES ('570', '1043', null, 'PAYMENT PENDING', '2018-01-22 19:06:56', '');
+INSERT INTO `order_tracking` VALUES ('571', '1042', null, 'ORDER READY', '2018-01-22 19:08:28', '');
+INSERT INTO `order_tracking` VALUES ('572', '1041', null, 'ORDER READY', '2018-01-22 19:08:56', '');
+INSERT INTO `order_tracking` VALUES ('573', '1042', null, 'RIDER DISPATCHED', '2018-01-22 19:09:15', '');
+INSERT INTO `order_tracking` VALUES ('574', '1041', null, 'RIDER DISPATCHED', '2018-01-22 19:09:57', '');
+INSERT INTO `order_tracking` VALUES ('575', '1044', null, 'PAYMENT PENDING', '2018-01-22 19:10:41', '');
+INSERT INTO `order_tracking` VALUES ('576', '1044', null, 'CHEF ASSIGNED', '2018-01-22 19:28:15', '');
+INSERT INTO `order_tracking` VALUES ('577', '1043', null, 'CHEF ASSIGNED', '2018-01-22 19:29:37', '');
+INSERT INTO `order_tracking` VALUES ('578', '1040', null, 'CHEF ASSIGNED', '2018-01-22 19:33:32', '');
+INSERT INTO `order_tracking` VALUES ('579', '1045', null, 'PAYMENT PENDING', '2018-01-22 19:41:18', '');
+INSERT INTO `order_tracking` VALUES ('580', '1044', null, 'ORDER READY', '2018-01-22 20:39:17', '');
+INSERT INTO `order_tracking` VALUES ('581', '1044', null, 'RIDER DISPATCHED', '2018-01-22 20:39:41', '');
+INSERT INTO `order_tracking` VALUES ('582', '1043', null, 'ORDER READY', '2018-01-22 20:40:29', '');
+INSERT INTO `order_tracking` VALUES ('584', '1047', null, 'PAYMENT PENDING', '2018-01-22 21:09:30', '');
+INSERT INTO `order_tracking` VALUES ('585', '1047', null, 'CHEF ASSIGNED', '2018-01-22 21:11:04', '');
+INSERT INTO `order_tracking` VALUES ('586', '1048', null, 'PAYMENT PENDING', '2018-01-22 21:19:58', '');
+INSERT INTO `order_tracking` VALUES ('587', '1048', null, 'CHEF ASSIGNED', '2018-01-22 21:20:44', '');
+INSERT INTO `order_tracking` VALUES ('588', '1049', null, 'PAYMENT PENDING', '2018-01-22 21:28:20', '');
+INSERT INTO `order_tracking` VALUES ('589', '1049', null, 'CHEF ASSIGNED', '2018-01-22 21:30:05', '');
+INSERT INTO `order_tracking` VALUES ('590', '1049', null, 'ORDER READY', '2018-01-22 21:36:19', '');
+INSERT INTO `order_tracking` VALUES ('591', '1047', null, 'ORDER READY', '2018-01-22 21:36:36', '');
+INSERT INTO `order_tracking` VALUES ('592', '1049', null, 'RIDER DISPATCHED', '2018-01-22 21:37:24', '');
+INSERT INTO `order_tracking` VALUES ('593', '1047', null, 'RIDER DISPATCHED', '2018-01-22 21:41:10', '');
+INSERT INTO `order_tracking` VALUES ('594', '1050', null, 'PAYMENT PENDING', '2018-01-23 09:01:04', '');
+INSERT INTO `order_tracking` VALUES ('595', '1051', null, 'PAYMENT PENDING', '2018-01-23 11:28:26', '');
+INSERT INTO `order_tracking` VALUES ('596', '1052', null, 'PAYMENT PENDING', '2018-01-23 11:49:08', '');
+INSERT INTO `order_tracking` VALUES ('597', '1053', null, 'PAYMENT PENDING', '2018-01-23 15:52:54', '');
+INSERT INTO `order_tracking` VALUES ('598', '1053', null, 'CHEF ASSIGNED', '2018-01-23 15:57:08', '');
+INSERT INTO `order_tracking` VALUES ('599', '1053', null, 'ORDER READY', '2018-01-23 16:21:21', '');
+INSERT INTO `order_tracking` VALUES ('600', '1053', null, 'RIDER DISPATCHED', '2018-01-23 16:21:36', '');
+INSERT INTO `order_tracking` VALUES ('602', '1055', null, 'PAYMENT PENDING', '2018-01-23 16:44:17', '');
+INSERT INTO `order_tracking` VALUES ('603', '1056', null, 'PAYMENT PENDING', '2018-01-23 16:54:11', '');
+INSERT INTO `order_tracking` VALUES ('605', '1056', null, 'CHEF ASSIGNED', '2018-01-23 17:23:23', '');
+INSERT INTO `order_tracking` VALUES ('606', '1056', null, 'ORDER READY', '2018-01-23 17:25:41', '');
+INSERT INTO `order_tracking` VALUES ('607', '1056', null, 'RIDER DISPATCHED', '2018-01-23 17:27:22', '');
+INSERT INTO `order_tracking` VALUES ('608', '1058', null, 'PAYMENT PENDING', '2018-01-23 17:47:06', '');
+INSERT INTO `order_tracking` VALUES ('609', '1058', null, 'CHEF ASSIGNED', '2018-01-23 17:51:58', '');
+INSERT INTO `order_tracking` VALUES ('610', '1058', null, 'ORDER READY', '2018-01-23 18:01:21', '');
+INSERT INTO `order_tracking` VALUES ('611', '1058', null, 'RIDER DISPATCHED', '2018-01-23 18:02:01', '');
+INSERT INTO `order_tracking` VALUES ('612', '1045', null, 'CHEF ASSIGNED', '2018-01-23 18:35:15', '');
+INSERT INTO `order_tracking` VALUES ('615', '1050', null, 'CHEF ASSIGNED', '2018-01-23 18:37:09', '');
+INSERT INTO `order_tracking` VALUES ('616', '1051', null, 'CHEF ASSIGNED', '2018-01-23 18:37:32', '');
+INSERT INTO `order_tracking` VALUES ('617', '1052', null, 'CHEF ASSIGNED', '2018-01-23 18:37:52', '');
+INSERT INTO `order_tracking` VALUES ('619', '1055', null, 'CHEF ASSIGNED', '2018-01-23 18:38:47', '');
+INSERT INTO `order_tracking` VALUES ('621', '1060', null, 'PAYMENT PENDING', '2018-01-23 16:36:38', '');
+INSERT INTO `order_tracking` VALUES ('622', '1060', null, 'CHEF ASSIGNED', '2018-01-23 16:37:14', '');
+INSERT INTO `order_tracking` VALUES ('623', '1061', null, 'PAYMENT PENDING', '2018-01-24 13:06:23', '');
+INSERT INTO `order_tracking` VALUES ('624', '1062', null, 'PAYMENT PENDING', '2018-01-24 13:06:56', '');
+INSERT INTO `order_tracking` VALUES ('625', '1061', null, 'CHEF ASSIGNED', '2018-01-24 13:08:09', '');
+INSERT INTO `order_tracking` VALUES ('626', '1062', null, 'CHEF ASSIGNED', '2018-01-24 13:08:37', '');
+INSERT INTO `order_tracking` VALUES ('627', '1063', null, 'PAYMENT PENDING', '2018-01-24 16:31:00', '');
+INSERT INTO `order_tracking` VALUES ('628', '1063', null, 'CHEF ASSIGNED', '2018-01-24 16:47:06', '');
+INSERT INTO `order_tracking` VALUES ('629', '1064', null, 'PAYMENT PENDING', '2018-01-24 16:48:45', '');
+INSERT INTO `order_tracking` VALUES ('630', '1063', null, 'ORDER READY', '2018-01-24 17:09:58', '');
+INSERT INTO `order_tracking` VALUES ('631', '1063', null, 'RIDER DISPATCHED', '2018-01-24 17:10:15', '');
+INSERT INTO `order_tracking` VALUES ('632', '1065', null, 'PAYMENT PENDING', '2018-01-24 17:51:32', '');
+INSERT INTO `order_tracking` VALUES ('633', '1065', null, 'CHEF ASSIGNED', '2018-01-24 17:56:24', '');
+INSERT INTO `order_tracking` VALUES ('634', '1066', null, 'PAYMENT PENDING', '2018-01-24 18:05:48', '');
+INSERT INTO `order_tracking` VALUES ('635', '1066', null, 'CHEF ASSIGNED', '2018-01-24 18:09:45', '');
+INSERT INTO `order_tracking` VALUES ('636', '1064', null, 'CHEF ASSIGNED', '2018-01-24 18:10:33', '');
+INSERT INTO `order_tracking` VALUES ('637', '1067', null, 'PAYMENT PENDING', '2018-01-24 18:12:28', '');
+INSERT INTO `order_tracking` VALUES ('638', '1065', null, 'ORDER READY', '2018-01-24 18:17:41', '');
+INSERT INTO `order_tracking` VALUES ('639', '1065', null, 'RIDER DISPATCHED', '2018-01-24 18:18:00', '');
+INSERT INTO `order_tracking` VALUES ('640', '1068', null, 'PAYMENT PENDING', '2018-01-24 18:21:59', '');
+INSERT INTO `order_tracking` VALUES ('641', '1068', null, 'CHEF ASSIGNED', '2018-01-24 18:25:12', '');
+INSERT INTO `order_tracking` VALUES ('642', '1066', null, 'ORDER READY', '2018-01-24 18:36:01', '');
+INSERT INTO `order_tracking` VALUES ('643', '1066', null, 'RIDER DISPATCHED', '2018-01-24 18:36:24', '');
+INSERT INTO `order_tracking` VALUES ('644', '1069', null, 'PAYMENT PENDING', '2018-01-24 19:04:02', '');
+INSERT INTO `order_tracking` VALUES ('645', '1069', null, 'CHEF ASSIGNED', '2018-01-24 19:09:27', '');
+INSERT INTO `order_tracking` VALUES ('646', '1068', null, 'ORDER READY', '2018-01-24 19:20:47', '');
+INSERT INTO `order_tracking` VALUES ('647', '1068', null, 'RIDER DISPATCHED', '2018-01-24 19:21:12', '');
+INSERT INTO `order_tracking` VALUES ('648', '1069', null, 'ORDER READY', '2018-01-24 19:21:38', '');
+INSERT INTO `order_tracking` VALUES ('649', '1069', null, 'RIDER DISPATCHED', '2018-01-24 19:22:08', '');
+INSERT INTO `order_tracking` VALUES ('650', '1067', null, 'CHEF ASSIGNED', '2018-01-24 19:22:50', '');
+INSERT INTO `order_tracking` VALUES ('653', '1071', null, 'PAYMENT PENDING', '2018-01-24 20:15:51', '');
+INSERT INTO `order_tracking` VALUES ('654', '1072', null, 'PAYMENT PENDING', '2018-01-24 20:16:27', '');
+INSERT INTO `order_tracking` VALUES ('655', '1072', null, 'CHEF ASSIGNED', '2018-01-24 20:17:37', '');
+INSERT INTO `order_tracking` VALUES ('656', '1073', null, 'PAYMENT PENDING', '2018-01-24 20:43:58', '');
+INSERT INTO `order_tracking` VALUES ('657', '1073', null, 'CHEF ASSIGNED', '2018-01-24 20:49:36', '');
+INSERT INTO `order_tracking` VALUES ('658', '1074', null, 'PAYMENT PENDING', '2018-01-24 21:02:02', '');
+INSERT INTO `order_tracking` VALUES ('659', '1074', null, 'CHEF ASSIGNED', '2018-01-24 21:08:06', '');
+INSERT INTO `order_tracking` VALUES ('660', '1071', null, 'CHEF ASSIGNED', '2018-01-24 21:14:29', '');
+INSERT INTO `order_tracking` VALUES ('661', '1075', null, 'PAYMENT PENDING', '2018-01-24 21:23:27', '');
+INSERT INTO `order_tracking` VALUES ('662', '1075', null, 'CHEF ASSIGNED', '2018-01-24 21:24:28', '');
+INSERT INTO `order_tracking` VALUES ('663', '1076', null, 'PAYMENT PENDING', '2018-01-24 21:34:52', '');
+INSERT INTO `order_tracking` VALUES ('664', '1076', null, 'CHEF ASSIGNED', '2018-01-24 21:35:55', '');
+INSERT INTO `order_tracking` VALUES ('665', '1077', null, 'PAYMENT PENDING', '2018-01-24 21:49:09', '');
+INSERT INTO `order_tracking` VALUES ('666', '1077', null, 'CHEF ASSIGNED', '2018-01-24 21:50:20', '');
+INSERT INTO `order_tracking` VALUES ('667', '1077', null, 'ORDER READY', '2018-01-24 22:02:13', '');
+INSERT INTO `order_tracking` VALUES ('668', '1076', null, 'ORDER READY', '2018-01-24 22:02:49', '');
+INSERT INTO `order_tracking` VALUES ('669', '1075', null, 'ORDER READY', '2018-01-24 22:03:03', '');
+INSERT INTO `order_tracking` VALUES ('670', '1074', null, 'ORDER READY', '2018-01-24 22:03:30', '');
+INSERT INTO `order_tracking` VALUES ('671', '1073', null, 'ORDER READY', '2018-01-24 22:03:43', '');
+INSERT INTO `order_tracking` VALUES ('672', '1072', null, 'ORDER READY', '2018-01-24 22:04:22', '');
+INSERT INTO `order_tracking` VALUES ('673', '1071', null, 'ORDER READY', '2018-01-24 22:04:43', '');
+INSERT INTO `order_tracking` VALUES ('674', '1077', null, 'RIDER DISPATCHED', '2018-01-24 22:05:21', '');
+INSERT INTO `order_tracking` VALUES ('675', '1076', null, 'RIDER DISPATCHED', '2018-01-24 22:05:43', '');
+INSERT INTO `order_tracking` VALUES ('676', '1075', null, 'RIDER DISPATCHED', '2018-01-24 22:05:57', '');
+INSERT INTO `order_tracking` VALUES ('677', '1074', null, 'RIDER DISPATCHED', '2018-01-24 22:06:18', '');
+INSERT INTO `order_tracking` VALUES ('678', '1073', null, 'RIDER DISPATCHED', '2018-01-24 22:06:41', '');
+INSERT INTO `order_tracking` VALUES ('679', '1072', null, 'RIDER DISPATCHED', '2018-01-24 22:06:58', '');
+INSERT INTO `order_tracking` VALUES ('680', '1078', null, 'PAYMENT PENDING', '2018-01-25 01:36:31', '');
+INSERT INTO `order_tracking` VALUES ('681', '1078', null, 'ORDER CANCELLED', '2018-01-25 14:33:44', '');
+INSERT INTO `order_tracking` VALUES ('682', '1079', null, 'PAYMENT PENDING', '2018-01-25 14:37:01', '');
+INSERT INTO `order_tracking` VALUES ('683', '1080', null, 'PAYMENT PENDING', '2018-01-25 15:03:41', '');
+INSERT INTO `order_tracking` VALUES ('684', '1081', null, 'PAYMENT PENDING', '2018-01-25 16:37:58', '');
+INSERT INTO `order_tracking` VALUES ('685', '1081', null, 'ORDER CANCELLED', '2018-01-25 16:38:37', '');
+INSERT INTO `order_tracking` VALUES ('686', '1082', null, 'PAYMENT PENDING', '2018-01-25 16:40:25', '');
+INSERT INTO `order_tracking` VALUES ('687', '1082', null, 'ORDER CANCELLED', '2018-01-25 16:40:44', '');
+INSERT INTO `order_tracking` VALUES ('688', '1080', null, 'ORDER CANCELLED', '2018-01-25 16:41:33', '');
+INSERT INTO `order_tracking` VALUES ('689', '1083', null, 'PAYMENT PENDING', '2018-01-25 16:43:24', '');
+INSERT INTO `order_tracking` VALUES ('690', '1083', null, 'ORDER CANCELLED', '2018-01-25 16:44:25', '');
+INSERT INTO `order_tracking` VALUES ('691', '1084', null, 'PAYMENT PENDING', '2018-01-25 16:46:13', '');
+INSERT INTO `order_tracking` VALUES ('692', '1084', null, 'ORDER CANCELLED', '2018-01-25 16:46:34', '');
+INSERT INTO `order_tracking` VALUES ('693', '1079', null, 'ORDER CANCELLED', '2018-01-25 16:47:12', '');
+INSERT INTO `order_tracking` VALUES ('694', '1085', null, 'PAYMENT PENDING', '2018-01-25 16:53:31', '');
+INSERT INTO `order_tracking` VALUES ('695', '1085', null, 'ORDER CANCELLED', '2018-01-25 16:53:54', '');
+INSERT INTO `order_tracking` VALUES ('696', '1086', null, 'PAYMENT PENDING', '2018-01-25 16:56:26', '');
+INSERT INTO `order_tracking` VALUES ('697', '1086', null, 'ORDER CANCELLED', '2018-01-25 16:57:08', '');
+INSERT INTO `order_tracking` VALUES ('700', '1088', null, 'PAYMENT PENDING', '2018-01-25 17:05:40', '');
+INSERT INTO `order_tracking` VALUES ('701', '1088', null, 'ORDER CANCELLED', '2018-01-25 17:06:11', '');
+INSERT INTO `order_tracking` VALUES ('725', '1094', null, 'ORDER CANCELLED', '2018-01-25 18:42:56', '');
+INSERT INTO `order_tracking` VALUES ('726', '1093', null, 'ORDER CANCELLED', '2018-01-25 18:43:20', '');
+INSERT INTO `order_tracking` VALUES ('727', '1092', null, 'ORDER CANCELLED', '2018-01-25 18:43:36', '');
+INSERT INTO `order_tracking` VALUES ('728', '1091', null, 'ORDER CANCELLED', '2018-01-25 18:43:51', '');
+INSERT INTO `order_tracking` VALUES ('729', '1090', null, 'ORDER CANCELLED', '2018-01-25 18:44:20', '');
+INSERT INTO `order_tracking` VALUES ('730', '1089', null, 'ORDER CANCELLED', '2018-01-25 18:44:37', '');
+INSERT INTO `order_tracking` VALUES ('731', '1088', null, 'ORDER CONFIRMED', '2018-01-25 18:44:58', '');
+INSERT INTO `order_tracking` VALUES ('734', '1090', null, 'ORDER CONFIRMED', '2018-01-25 18:57:09', '');
+INSERT INTO `order_tracking` VALUES ('735', '1101', null, 'PAYMENT PENDING', '2018-01-25 19:23:46', '');
+INSERT INTO `order_tracking` VALUES ('736', '1102', null, 'PAYMENT PENDING', '2018-01-25 19:25:53', '');
+INSERT INTO `order_tracking` VALUES ('737', '1103', null, 'PAYMENT PENDING', '2018-01-25 19:27:11', '');
+INSERT INTO `order_tracking` VALUES ('738', '1081', null, 'ORDER CONFIRMED', '2018-01-25 20:15:55', '');
+INSERT INTO `order_tracking` VALUES ('739', '1103', null, 'ORDER CANCELLED', '2018-01-25 20:20:15', '');
+INSERT INTO `order_tracking` VALUES ('740', '1102', null, 'ORDER CANCELLED', '2018-01-25 20:20:34', '');
+INSERT INTO `order_tracking` VALUES ('741', '1101', null, 'ORDER CANCELLED', '2018-01-25 20:20:47', '');
+INSERT INTO `order_tracking` VALUES ('742', '1043', null, 'ORDER CONFIRMED', '2018-01-25 20:27:03', '');
+INSERT INTO `order_tracking` VALUES ('743', '1043', null, 'RIDER DISPATCHED', '2018-01-25 20:28:48', '');
+INSERT INTO `order_tracking` VALUES ('744', '1098', null, 'ORDER READY', '2018-01-25 20:29:07', '');
+INSERT INTO `order_tracking` VALUES ('745', '1098', null, 'RIDER DISPATCHED', '2018-01-25 20:29:23', '');
+INSERT INTO `order_tracking` VALUES ('746', '1048', null, 'ORDER READY', '2018-01-25 20:31:05', '');
+INSERT INTO `order_tracking` VALUES ('747', '1048', null, 'RIDER DISPATCHED', '2018-01-25 20:31:17', '');
+INSERT INTO `order_tracking` VALUES ('748', '1088', null, 'ORDER READY', '2018-01-25 20:38:25', '');
+INSERT INTO `order_tracking` VALUES ('749', '1088', null, 'RIDER DISPATCHED', '2018-01-25 20:38:49', '');
+INSERT INTO `order_tracking` VALUES ('751', '1104', null, 'PAYMENT PENDING', '2018-01-25 20:45:27', '');
+INSERT INTO `order_tracking` VALUES ('752', '1104', null, 'ORDER CONFIRMED', '2018-01-25 20:46:00', '');
+INSERT INTO `order_tracking` VALUES ('753', '1104', null, 'ORDER CANCELLED', '2018-01-25 20:46:35', '');
+INSERT INTO `order_tracking` VALUES ('754', '1105', null, 'PAYMENT PENDING', '2018-01-25 20:48:38', '');
+INSERT INTO `order_tracking` VALUES ('755', '1105', null, 'ORDER CONFIRMED', '2018-01-25 20:49:11', '');
+INSERT INTO `order_tracking` VALUES ('756', '1086', null, 'ORDER CONFIRMED', '2018-01-25 20:52:06', '');
+INSERT INTO `order_tracking` VALUES ('757', '1071', null, 'ORDER CANCELLED', '2018-01-25 20:54:28', '');
+INSERT INTO `order_tracking` VALUES ('758', '1106', null, 'PAYMENT PENDING', '2018-01-25 23:22:39', '');
 
 -- ----------------------------
 -- Table structure for payment
@@ -542,20 +1026,14 @@ CREATE TABLE `tb_cart` (
   KEY `USER_ID` (`USER_ID`) USING BTREE,
   CONSTRAINT `tb_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_cart_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=391 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=471 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tb_cart
 -- ----------------------------
-INSERT INTO `tb_cart` VALUES ('235', '5', '1', '2', '15', 'LARGE', null, '1515925132', '2018-01-14 13:18:52', '2018-01-14 13:29:38');
 INSERT INTO `tb_cart` VALUES ('239', '58', '4', '2', '15', 'LARGE', null, '1515946110', '2018-01-14 19:08:30', '2018-01-14 19:08:30');
-INSERT INTO `tb_cart` VALUES ('240', '5', '23', '1', '1', '500ML', null, '1515925132', '2018-01-16 09:57:29', '2018-01-16 09:57:29');
 INSERT INTO `tb_cart` VALUES ('284', '70', '19', '1', '1', '500ML', null, '1516209474', '2018-01-17 20:17:54', '2018-01-17 20:17:54');
 INSERT INTO `tb_cart` VALUES ('318', '57', '3', '1', '13', 'MEDIUM', null, '1516439634', '2018-01-20 12:13:54', '2018-01-20 12:13:54');
-INSERT INTO `tb_cart` VALUES ('324', '5', '19', '1', '1', '500ML', null, '1515925132', '2018-01-20 16:50:11', '2018-01-20 16:50:11');
-INSERT INTO `tb_cart` VALUES ('329', '5', '35', '1', '15', 'LARGE', null, '1515925132', '2018-01-20 18:59:54', '2018-01-20 18:59:54');
-INSERT INTO `tb_cart` VALUES ('339', '5', '31', '1', '1', '500ML', null, '1515925132', '2018-01-21 18:38:03', '2018-01-21 18:38:03');
-INSERT INTO `tb_cart` VALUES ('347', '65', '3', '1', '13', 'MEDIUM', null, '1516628318', '2018-01-22 16:38:38', '2018-01-22 16:38:38');
 INSERT INTO `tb_cart` VALUES ('363', '72', '33', '1', '11', 'SMALL', null, '1516645395', '2018-01-22 21:23:13', '2018-01-22 21:23:15');
 INSERT INTO `tb_cart` VALUES ('364', '72', '2', '1', '11', 'SMALL', null, '1516645395', '2018-01-22 21:23:29', '2018-01-22 21:23:29');
 INSERT INTO `tb_cart` VALUES ('365', '72', '23', '1', '1', '500ML', null, '1516645395', '2018-01-22 21:23:48', '2018-01-22 21:23:48');
@@ -564,9 +1042,20 @@ INSERT INTO `tb_cart` VALUES ('370', '119', '43', '1', '11', 'SMALL', null, '151
 INSERT INTO `tb_cart` VALUES ('374', '99', '1', '1', '15', 'LARGE', null, '1516696395', '2018-01-23 11:33:15', '2018-01-23 11:33:15');
 INSERT INTO `tb_cart` VALUES ('377', '126', '4', '1', '15', 'LARGE', null, '1516700085', '2018-01-23 12:34:45', '2018-01-23 12:34:45');
 INSERT INTO `tb_cart` VALUES ('378', '128', '5', '1', '13', 'MEDIUM', null, '1516706837', '2018-01-23 14:27:17', '2018-01-23 14:27:17');
-INSERT INTO `tb_cart` VALUES ('379', '128', '9', '1', '11', 'SMALL', null, '1516706837', '2018-01-23 14:28:56', '2018-01-23 14:29:17');
+INSERT INTO `tb_cart` VALUES ('379', '128', '9', '1', '11', 'SMALL', null, '1516706837', '2018-01-23 14:28:56', '2018-01-23 21:00:56');
 INSERT INTO `tb_cart` VALUES ('380', '125', '9', '1', '11', 'SMALL', null, '1516709030', '2018-01-23 15:03:50', '2018-01-23 15:03:50');
 INSERT INTO `tb_cart` VALUES ('387', '131', '40', '1', '11', 'SMALL', null, '1516717575', '2018-01-23 17:26:15', '2018-01-23 17:26:15');
+INSERT INTO `tb_cart` VALUES ('393', '141', '35', '1', '15', 'LARGE', null, '1516740513', '2018-01-23 23:48:33', '2018-01-23 23:48:33');
+INSERT INTO `tb_cart` VALUES ('394', '142', '3', '1', '13', 'MEDIUM', null, '1516745550', '2018-01-24 01:12:30', '2018-01-24 01:12:30');
+INSERT INTO `tb_cart` VALUES ('401', '130', '38', '1', '13', 'MEDIUM', null, '1516796452', '2018-01-24 15:20:52', '2018-01-24 15:20:52');
+INSERT INTO `tb_cart` VALUES ('408', '137', '37', '1', '11', 'SMALL', null, '1516806553', '2018-01-24 18:09:13', '2018-01-24 18:09:34');
+INSERT INTO `tb_cart` VALUES ('414', '63', '5', '1', '13', 'MEDIUM', null, '1516810320', '2018-01-24 19:12:00', '2018-01-24 19:40:58');
+INSERT INTO `tb_cart` VALUES ('416', '63', '33', '1', '11', 'SMALL', null, '1516810320', '2018-01-24 19:40:40', '2018-01-24 19:40:40');
+INSERT INTO `tb_cart` VALUES ('446', '65', '3', '1', '13', 'MEDIUM', null, '1516890462', '2018-01-25 17:27:42', '2018-01-25 17:29:24');
+INSERT INTO `tb_cart` VALUES ('453', '49', '19', '5', '1', '500ML', null, '1516897504', '2018-01-25 19:25:04', '2018-01-25 19:25:04');
+INSERT INTO `tb_cart` VALUES ('457', '58', '39', '1', '15', 'LARGE', null, '1515946110', '2018-01-25 19:29:36', '2018-01-25 19:29:36');
+INSERT INTO `tb_cart` VALUES ('459', '25', '5', '1', '13', 'MEDIUM', null, '1516902333', '2018-01-25 20:45:33', '2018-01-25 20:45:33');
+INSERT INTO `tb_cart` VALUES ('470', '165', '40', '1', '11', 'SMALL', null, '1516946977', '2018-01-26 09:09:37', '2018-01-26 09:09:37');
 
 -- ----------------------------
 -- Table structure for tb_delivery_time
@@ -673,8 +1162,8 @@ CREATE TABLE `tb_status` (
   `STATUS_DESC` varchar(100) DEFAULT NULL,
   `COLOR` varchar(10) NOT NULL DEFAULT 'GREEN',
   `SCOPE` varchar(10) NOT NULL DEFAULT 'ALL',
-  `RANK` int(2) NOT NULL DEFAULT 1,
-  `WORKFLOW` int(2) NOT NULL DEFAULT 1,
+  `RANK` int(2) NOT NULL DEFAULT '1',
+  `WORKFLOW` int(2) NOT NULL DEFAULT '1',
   UNIQUE KEY `STATUS_NAME` (`STATUS_NAME`) USING BTREE,
   UNIQUE KEY `RANK` (`RANK`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -723,7 +1212,7 @@ CREATE TABLE `tb_users` (
   KEY `USER_TYPE_idx` (`USER_TYPE`) USING BTREE,
   KEY `DATE_REGISTERED` (`DATE_REGISTERED`),
   CONSTRAINT `tb_users_ibfk_2` FOREIGN KEY (`USER_TYPE`) REFERENCES `user_type` (`USER_TYPE_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_users
@@ -818,6 +1307,40 @@ INSERT INTO `tb_users` VALUES ('129', 'abdiwali', '1', 'Hassan', 'Faroole', '004
 INSERT INTO `tb_users` VALUES ('130', 'mudu', '1', 'Mohamud', 'Ismail', '+252619698596', 'mohamud.merit@gmail.com', '1', 'ced239067f20b6d83f5804ce05c23b68c2291fbe', '2018-01-23 15:57:29', '2018-01-23 15:57:29', null, '', '', null);
 INSERT INTO `tb_users` VALUES ('131', 'mohamed yakub', '1', 'yardimeli', 'yakub', '00252617005988', 'mohamedyardim@gmail.com', '1', '9118c2aaa316da6f0f1e20a8a183a16c50ab9214', '2018-01-23 16:50:06', '2018-01-23 16:50:06', null, '', '', null);
 INSERT INTO `tb_users` VALUES ('132', 'Abdirahmaan', '3', 'mohamuud', 'Duaale', '061 5548417', 'abc', null, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2018-01-23 17:58:00', '2018-01-23 17:58:00', null, 'NONE', '', null);
+INSERT INTO `tb_users` VALUES ('133', 'abshir', '1', 'Abshir10', 'Mo\'alim', '0617050869', 'Cagtaxaaji10@gmail.com', '1', '138423ac94fdd69a8c31f63939666a3bc8c3c74c', '2018-01-23 18:51:30', '2018-01-23 18:51:30', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('134', 'Amina Zahra', '1', 'Arale', 'N/A', '0615565518', 'dalbiloa@gmail.com', '1', '2e342f6954a48fda0ef5966f3467f55c15f05282', '2018-01-23 16:40:37', '2018-01-23 16:40:37', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('135', 'yuusuf', '1', 'yusuf deeko', 'cabdullahi', '615177819', 'yusufcabdulahi@gmail.com', '1', '26f601a30cfc7b69f0f0a7c77811ba0cdd48b075', '2018-01-23 20:41:35', '2018-01-23 20:41:35', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('136', 'salad', '1', 'Ibrahim', 'Taruri', '615911131', 'Saladibrahim@gmail.com', '1', '67f325ea93239ab4cf1f3c023372081d9369521d', '2018-01-23 20:43:11', '2018-01-23 20:43:11', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('137', 'khadija', '1', 'abdullahi', 'jii', '0615841565', 'drskhadija@gmail.com', '1', 'd6fb70f8a9ab2f43ed54a636fb3b31484fde59b4', '2018-01-23 21:12:32', '2018-01-23 21:12:32', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('138', 'hmtha othman', '1', 'hmtha othman', 'hmtha', '0618373021', 'xmthaothman92@gmail.com', '1', '14ee89653384cc020134342d0058220684297263', '2018-01-23 21:29:05', '2018-01-23 21:29:05', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('139', 'axmedciise12', '1', 'Ahmed', 'Isse', '615583399', 'axmedciise12@gmail.com', '1', '9f8317377294312f543a0d7264cf7dfad1110d3f', '2018-01-23 22:05:44', '2018-01-23 22:05:44', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('140', 'shiidka', '1', 'yare', 'ismaciil', '0619050000', 'otaange@hotmail.com', '1', '39dfa55283318d31afe5a3ff4a0e3253e2045e43', '2018-01-23 22:11:22', '2018-01-23 22:11:22', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('141', 'nasteha', '1', 'abdi', 'warsame', '252615172218', 'badriyo110@hotmail.com', '1', '00427fa5df615e871c793ff907236f41d9520f21', '2018-01-23 23:45:30', '2018-01-23 23:45:30', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('142', 'salmanshurie', '1', 'salman', 'bashi', '0046700158885', 'iamsaleban@gmail.com', '1', '32a3e0a0b025bca99f691223cade905969cc323b', '2018-01-24 01:11:54', '2018-01-24 01:11:54', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('143', 'badee007', '1', 'Dipeolu', 'Charles', '4044543637', 'baydee007@gmail.com', '1', 'd54d9ef475022a4703910a234327b7d49525614d', '2018-01-24 02:46:39', '2018-01-24 02:46:39', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('144', 'hmtha yazin', '1', 'hmtha yazin', 'hmtha', '0618373021', 'hana_caday1@hotmail.com', '1', 'c27b6731687641bc44003224ea20b1e9647614c8', '2018-01-24 10:31:11', '2018-01-24 10:31:11', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('145', 'hamse', '1', 'hamse', 'mahamed', '619339235', 'hamse8889@gmail.com', '1', '717d8d71766b2dc8682457e7cf5d40db0b0cb08a', '2018-01-24 14:16:09', '2018-01-24 14:16:09', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('147', 'ramla', '1', 'mire', 'ramla', '0615545113', 'ramlamire1@gmail.com', '1', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2018-01-24 16:48:01', '2018-01-24 16:48:01', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('148', 'abdiwahab', '1', 'hababa', 'botaan', '0617366060', 'abdulwahaab101@gmail.com', '1', 'ef1797609f3d457493bb86dd6a96d5eb81a7bf84', '2018-01-24 16:58:43', '2018-01-24 16:58:43', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('149', 'mohamsic', '1', 'idiris', 'arale', '615030692', 'araale4me@gmail.com', '1', '3d2547fddb822df5cd4c87ae722ff6d18abe99f6', '2018-01-24 17:16:07', '2018-01-24 17:16:07', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('150', 'salbayare', '1', 'Bashir', 'Abikar Hussein', '+252615472121', 'salbatoyo@gmail.com', '1', '0fe33d993fa545854b2148e2a5d316330dfd7c04', '2018-01-24 17:47:53', '2018-01-24 17:47:53', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('151', 'abukar', '1', 'saahil', 'muriidi', '0615700044', 'muriidi98@hotmail.com', '1', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2018-01-24 18:10:56', '2018-01-24 18:10:56', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('152', 'Muna', '1', 'Osman', 'Hussein', '618931493', 'munaazi.qaali@gmai.com', '1', 'e5846216b405501a1d543b1a26869d1c82548967', '2018-01-24 18:11:47', '2018-01-24 18:11:47', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('153', 'Abdullahi', '1', 'Abdullahi Sorrey', 'Abdullahi Sorrey', '0618552121', 'soorey55@gmail.com', '1', 'b4b5601ec11c12fe7620cf80e8b02180b530d931', '2018-01-24 18:28:27', '2018-01-24 18:28:27', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('154', 'Nimonita', '1', 'abdina', 'abdi', '0612741613', 'nimonita7@gmail.com', '1', '7a5ee08eaa2e130f519baa71dc65a7296900b57b', '2018-01-24 20:37:35', '2018-01-24 20:37:35', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('155', 'MoAli', '1', 'Abdulle', 'Ali', '0615821009', 'mo.aliabdulle@gmail.com', '1', '079f980e8793c97f25b8a6824eed3b4dd0a0ad22', '2018-01-24 20:40:26', '2018-01-24 20:40:26', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('156', 'yasin', '1', 'Hassan', 'Yusuf', '615526166', 'yaasiin28@hotmail.com', '1', '850f57b67dcae835f9003cac412df0687ea02b1d', '2018-01-24 20:53:28', '2018-01-24 20:53:28', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('157', 'xarbicade11', '1', 'ahmed', 'Abdulkadir', '+252615336770', 'xarbicade11@gmail.com', '1', '2ba294b4bab1a8d261474796a61e9b796a210d17', '2018-01-25 01:32:08', '2018-01-25 01:32:08', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('158', 'Sowda', '1', 'Hassan', 'Osoble', '00252615223223', 'Sowdastar99@gmail.com', '1', 'c42eacbf1cc33383db609093eceddcd1a6a21ed2', '2018-01-25 11:23:07', '2018-01-25 11:23:07', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('159', 'munaazi', '1', 'osman', 'qaali', '618931493', 'munaazi.osman@gmail.com', '1', 'f6d842cc817d70dfb9e98a8a3b07c81ba919d40d', '2018-01-25 11:34:45', '2018-01-25 11:34:45', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('160', 'muminmayow', '1', 'Mayow', 'Mumin', '0615345456', 'mmmayow@gmail.com', '1', '0cee66b1b981325d6746b6ff78f74e44a26fd8e4', '2018-01-25 12:04:30', '2018-01-25 12:04:30', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('161', 'abdulahi', '1', 'abdiqadir', 'giraa', '0615897272', 'giraa.1234@gmail.com', '1', '5b437c6d8f5e3f236062a6c2f8163cc6c25d5847', '2018-01-25 12:18:01', '2018-01-25 12:18:01', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('162', 'Cumar', '1', 'Ahmed', 'Leyte', '0615456985', 'leeyte11@hotmail.com', '1', '29b7f7f4a7601f5e22d03997639253e625a5fa53', '2018-01-25 13:20:45', '2018-01-25 13:20:45', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('163', 'Sanka', '1', 'Mohamed', 'Ahmed', '616337577', 'sanka1430@gmail.com', '1', 'd8234363dd0bd73fa36b4f3f5afc2c9e7492b322', '2018-01-25 16:34:10', '2018-01-25 16:34:10', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('164', 'cusman', '1', 'maxamed', 'cabdi', '0615554301', 'cusmaanmaamow1@gmail.com', '1', '6900c0a3aaf36b4543ddf002dbdbbdd7496daea5', '2018-01-25 17:09:12', '2018-01-25 17:09:12', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('165', 'cosman', '1', 'maxamed', 'cabdu', '0615554301', 'cusmanmamow1@gmail.com', '1', '6900c0a3aaf36b4543ddf002dbdbbdd7496daea5', '2018-01-25 17:18:50', '2018-01-25 17:18:50', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('166', 'eng shuuriye', '1', 'Abdikarin', 'Ahmed shurie', '+252615927185', 'aamaac@gmail.com', '1', '7c222fb2927d828af22f592134e8932480637c0d', '2018-01-25 23:17:24', '2018-01-25 23:17:24', null, '', '', null);
+INSERT INTO `tb_users` VALUES ('167', 'rage', '1', 'Rage', 'Adam', '00252615537321', 'raage09@gmail.com', '1', '5526f4caffd0ff2374ed5f59108d13a628abf894', '2018-01-25 23:48:54', '2018-01-25 23:48:54', null, '', '', null);
 
 -- ----------------------------
 -- Table structure for user_type
@@ -840,36 +1363,10 @@ INSERT INTO `user_type` VALUES ('3', 'RIDER');
 -- View structure for vw_orders
 -- ----------------------------
 DROP VIEW IF EXISTS `vw_orders`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`pizzaout`@`localhost` SQL SECURITY DEFINER  VIEW `vw_orders` AS SELECT
-customer_order.ORDER_ID AS ORDER_ID,
-customer_order.USER_ID AS USER_ID,
-customer_order.KITCHEN_ID AS KITCHEN_ID,
-customer_order.CHEF_ID AS CHEF_ID,
-customer_order.RIDER_ID AS RIDER_ID,
-tb_users.MOBILE AS MOBILE,
-tb_users.SURNAME AS SURNAME,
-tb_users.OTHER_NAMES AS OTHER_NAMES,
-customer_order.ORDER_DATE AS ORDER_DATE,
-customer_order.ORDER_STATUS AS ORDER_STATUS,
-payment.PAYMENT_AMOUNT AS PAYMENT_AMOUNT,
-payment.PAYMENT_NUMBER AS PAYMENT_NUMBER,
-customer_order.NOTES AS NOTES,
-customer_order.PAYMENT_METHOD AS PAYMENT_METHOD,
-customer_order.CREATED_AT AS CREATED_AT,
-customer_order.UPDATED_AT AS UPDATED_AT,
-payment.PAYMENT_DATE AS PAYMENT_DATE,
-location.LOCATION_ID AS LOCATION_ID,
-location.LOCATION_NAME AS LOCATION_NAME,
-location.ADDRESS AS ADDRESS,
-city.CITY_NAME AS CITY_NAME,
-city.CITY_ID AS CITY_ID,
-country.COUNRY_ID AS COUNRY_ID,
-country.COUNTRY_NAME AS COUNTRY_NAME,
-customer_order.ORDER_TIME
-from (((((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) left join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) join `location` on((`customer_order`.`LOCATION_ID` = `location`.`LOCATION_ID`))) join `city` on((`location`.`CITY_ID` = `city`.`CITY_ID`))) join `country` on((`city`.`COUNTRY_ID` = `country`.`COUNRY_ID`))) ;
+CREATE VIEW `vw_orders` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order`.`USER_ID` AS `USER_ID`,`customer_order`.`KITCHEN_ID` AS `KITCHEN_ID`,`customer_order`.`CHEF_ID` AS `CHEF_ID`,`customer_order`.`RIDER_ID` AS `RIDER_ID`,`tb_users`.`MOBILE` AS `MOBILE`,`tb_users`.`SURNAME` AS `SURNAME`,`tb_users`.`OTHER_NAMES` AS `OTHER_NAMES`,`customer_order`.`ORDER_DATE` AS `ORDER_DATE`,`customer_order`.`ORDER_STATUS` AS `ORDER_STATUS`,`payment`.`PAYMENT_AMOUNT` AS `PAYMENT_AMOUNT`,`payment`.`PAYMENT_NUMBER` AS `PAYMENT_NUMBER`,`customer_order`.`NOTES` AS `NOTES`,`customer_order`.`PAYMENT_METHOD` AS `PAYMENT_METHOD`,`customer_order`.`CREATED_AT` AS `CREATED_AT`,`customer_order`.`UPDATED_AT` AS `UPDATED_AT`,`payment`.`PAYMENT_DATE` AS `PAYMENT_DATE`,`location`.`LOCATION_ID` AS `LOCATION_ID`,`location`.`LOCATION_NAME` AS `LOCATION_NAME`,`location`.`ADDRESS` AS `ADDRESS`,`city`.`CITY_NAME` AS `CITY_NAME`,`city`.`CITY_ID` AS `CITY_ID`,`country`.`COUNRY_ID` AS `COUNRY_ID`,`country`.`COUNTRY_NAME` AS `COUNTRY_NAME`,`customer_order`.`ORDER_TIME` AS `ORDER_TIME` from (((((`customer_order` join `tb_users` on((`customer_order`.`USER_ID` = `tb_users`.`USER_ID`))) left join `payment` on((`payment`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) join `location` on((`customer_order`.`LOCATION_ID` = `location`.`LOCATION_ID`))) join `city` on((`location`.`CITY_ID` = `city`.`CITY_ID`))) join `country` on((`city`.`COUNTRY_ID` = `country`.`COUNRY_ID`))) ;
 
 -- ----------------------------
 -- View structure for vw_order_items
 -- ----------------------------
 DROP VIEW IF EXISTS `vw_order_items`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`pizzaout`@`localhost` SQL SECURITY DEFINER  VIEW `vw_order_items` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order_item`.`QUANTITY` AS `QUANTITY`,`customer_order_item`.`PRICE` AS `PRICE`,`customer_order_item`.`SUBTOTAL` AS `SUBTOTAL`,`menu_item_type`.`ITEM_TYPE_SIZE` AS `ITEM_TYPE_SIZE`,`menu_item`.`MENU_ITEM_NAME` AS `MENU_ITEM_NAME`,`menu_category`.`MENU_CAT_NAME` AS `MENU_CAT_NAME`,`menu_category`.`MENU_CAT_IMAGE` AS `MENU_CAT_IMAGE`,`menu_item`.`MENU_ITEM_IMAGE` AS `MENU_ITEM_IMAGE`,`customer_order`.`USER_ID` AS `USER_ID` from ((((`customer_order` join `customer_order_item` on((`customer_order_item`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) join `menu_item_type` on((`customer_order_item`.`ITEM_TYPE_ID` = `menu_item_type`.`ITEM_TYPE_ID`))) join `menu_item` on((`menu_item_type`.`MENU_ITEM_ID` = `menu_item`.`MENU_ITEM_ID`))) join `menu_category` on((`menu_item`.`MENU_CAT_ID` = `menu_category`.`MENU_CAT_ID`))) ;
+CREATE VIEW `vw_order_items` AS select `customer_order`.`ORDER_ID` AS `ORDER_ID`,`customer_order_item`.`QUANTITY` AS `QUANTITY`,`customer_order_item`.`PRICE` AS `PRICE`,`customer_order_item`.`SUBTOTAL` AS `SUBTOTAL`,`menu_item_type`.`ITEM_TYPE_SIZE` AS `ITEM_TYPE_SIZE`,`menu_item`.`MENU_ITEM_NAME` AS `MENU_ITEM_NAME`,`menu_category`.`MENU_CAT_NAME` AS `MENU_CAT_NAME`,`menu_category`.`MENU_CAT_IMAGE` AS `MENU_CAT_IMAGE`,`menu_item`.`MENU_ITEM_IMAGE` AS `MENU_ITEM_IMAGE`,`customer_order`.`USER_ID` AS `USER_ID` from ((((`customer_order` join `customer_order_item` on((`customer_order_item`.`ORDER_ID` = `customer_order`.`ORDER_ID`))) join `menu_item_type` on((`customer_order_item`.`ITEM_TYPE_ID` = `menu_item_type`.`ITEM_TYPE_ID`))) join `menu_item` on((`menu_item_type`.`MENU_ITEM_ID` = `menu_item`.`MENU_ITEM_ID`))) join `menu_category` on((`menu_item`.`MENU_CAT_ID` = `menu_category`.`MENU_CAT_ID`))) ;
