@@ -70,7 +70,7 @@ class USER_MODEL extends Users
         $date = APP_UTILS::GetCurrentDateTime();
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-                $this->DATE_REGISTERED = $date;;
+                $this->DATE_REGISTERED = $date;
             }
             $this->LAST_UPDATED = $date;
             return true;
