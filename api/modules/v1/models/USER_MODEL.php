@@ -42,8 +42,8 @@ class USER_MODEL extends Users
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[APP_UTILS::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
-        $scenarios[APP_UTILS::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE'];
+        $scenarios[APP_UTILS::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE','RESET_TOKEN','USER_STATUS'];
+        $scenarios[APP_UTILS::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE','RESET_TOKEN','USER_STATUS'];
 
         return $scenarios;
     }
@@ -56,7 +56,7 @@ class USER_MODEL extends Users
         $rules = parent::rules();
 
         $rules[] = [['EMAIL', 'USER_NAME'], 'unique', 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
-        $rules[] = [['PASSWORD'], 'string', 'min' => 3, 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
+        $rules[] = [['PASSWORD'], 'string', 'min' => 6, 'on' => [APP_UTILS::SCENARIO_CREATE, APP_UTILS::SCENARIO_UPDATE]];
         return $rules;
     }
 
@@ -70,7 +70,7 @@ class USER_MODEL extends Users
         $date = APP_UTILS::GetCurrentDateTime();
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-                $this->DATE_REGISTERED = $date;;
+                $this->DATE_REGISTERED = $date;
             }
             $this->LAST_UPDATED = $date;
             return true;
@@ -106,7 +106,6 @@ class USER_MODEL extends Users
         $fields['API_TOKEN'] = function ($model) {
             /* @var $model USER_MODEL */
             $token = $model->apiToken;
-
             return $token != null ? $token->API_TOKEN : 0;
 
         };
