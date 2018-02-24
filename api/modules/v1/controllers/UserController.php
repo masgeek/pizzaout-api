@@ -146,6 +146,7 @@ class UserController extends ActiveController
         $user = new USER_MODEL();
         $user->setScenario(USER_MODEL::SCENARIO_CREATE);
         $user->load($request);
+        $user->RESET_TOKEN = '1234';
         if ($user->validate()) {
             $user->PASSWORD = sha1($plain_pass);
             if ($user->save()) {
