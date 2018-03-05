@@ -33,6 +33,7 @@ class MENU_ITEM_MODEL extends MenuItem //implements Linkable
             /* @var $model MENU_ITEM_MODEL */
             return MENU_ITEM_TYPE::find()
                 ->where(['MENU_ITEM_ID' => $model->MENU_ITEM_ID])
+                ->andWhere(['AVAILABLE' => 1])
                 ->asArray()
                 ->all();
         };

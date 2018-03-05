@@ -42,7 +42,6 @@ class MenuitemController extends ActiveController
      * @param string $action
      * @param null $model
      * @param array $params
-     * @throws ForbiddenHttpException
      */
     public function checkAccess($action, $model = null, $params = [])
     {
@@ -65,7 +64,6 @@ class MenuitemController extends ActiveController
     /**
      * @param $menu_cat_id
      * @return MENU_ITEM_MODEL[]|array|\yii\db\ActiveRecord[]
-     * @throws ForbiddenHttpException
      */
     public function actionCatItem($menu_cat_id)
     {
