@@ -182,10 +182,14 @@ class APP_UTILS
         $date = date_create($datetime, timezone_open($tz));
 
         //return $timeOnly ?date_format($date, 'H:i:s A') :date_format($date, 'M d, Y, H:i:s A');
-        return $timeOnly ?date_format($date, 'H:i:s') :date_format($date, 'M d, Y, H:i:s');
+        return $timeOnly ? date_format($date, 'H:i:s') : date_format($date, 'M d, Y, H:i:s');
 
 
+    }
 
+    public static function isValidDate($string)
+    {
+        return (date('Y-m-d H:i:s', strtotime($string)) == $string);
     }
 
     public
