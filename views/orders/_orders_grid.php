@@ -174,7 +174,7 @@ $gridColumns = [
             /* @var $model \app\model_extended\CUSTOMER_ORDERS */
             $validDate = \app\helpers\APP_UTILS::isValidDate($model->ORDER_TIME);
 
-            return $validDate;
+
             return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_TIME, !$validDate);
         }
     ],
