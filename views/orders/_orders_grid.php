@@ -166,7 +166,7 @@ $gridColumns = [
             return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
         }
     ],
-    'ORDER_TIME',
+    'ORDER_TIME:datetime',
     //'ORDER_DATE',
     'PAYMENT_METHOD',
     'ORDER_STATUS',
