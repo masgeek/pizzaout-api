@@ -49,7 +49,7 @@
     "phpmailer/phpmailer": "dev-master",
     "zyx/zyx-phpmailer": "@stable",
     "limion/yii2-jquery-fileupload-widget": "~1.0",
-    "yii2assets/yii2-printthis": "dev-master"
+    "yii2assets/yii2-printthis": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
