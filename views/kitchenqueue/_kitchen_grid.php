@@ -179,6 +179,18 @@ $gridColumns = [
             return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
         }
     ],
+    [
+        'filter' => false,
+        'attribute' => 'ORDER_TIME',
+        //'visible'=>false,
+        'value' => function ($model) {
+            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
+            $validDate = \app\helpers\APP_UTILS::isValidDate($model->ORDER_TIME);
+
+
+            return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_TIME, !$validDate);
+        }
+    ],
     'PAYMENT_METHOD',
     'ORDER_STATUS',
     'NOTES',
