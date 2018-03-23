@@ -33,3 +33,6 @@ phploy.log
 vendor.zip
 assets2/*
 sammy.txt
+sh.exe.stackdump
+api/logs/
+apilogs/
