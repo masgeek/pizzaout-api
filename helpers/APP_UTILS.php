@@ -64,50 +64,95 @@ class APP_UTILS
 
     /**
      * @param $userModel USERS_MODEL
-     * @return void
+     * @param $orderNumber
+     * @param bool $attachReceipt
+     * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
+     */
+    public static function SendOrderEmailWithReceipt($userModel, $orderNumber, $orderStatus, $attachReceipt = false)
+    {
+        $subject = 'Order Confirmed';
+
+        $body = <<<BODY
+Dear<strong>$userModel->SURNAME</strong>
+<p>
+Your order $orderNumber has been $orderStatus.
+</p>
+<p>
+Please find your receipt attached.
+</p>
+<p>
+Thank you for your business, we value your feedback. Our Call Center Number is: 2040
+</p>
+<p>
+Regards,
+Pizzaout Team
+</p>
+BODY;
+
+        return self::SendEmailBkp('barsamms@gmail.com', $userModel->SURNAME, $body, $subject);
+        // return self::SendEmailBkp($userModel->EMAIL, $userModel->SURNAME, $body, $subject);
+    }
+
+    /**
+     * @param $userModel USERS_MODEL
+     * @param string $baseUrl
+     * @return bool
+     * @throws \PHPMailer\PHPMailer\Exception
+     * @throws \yii\base\Exception
      */
     public static function SendRecoveryEmail($userModel, $baseUrl = 'http://pizzaout.so/')
     {
-        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        $randomString = self::GenerateToken();
+        $subject = 'Password Recovery';
+
+        $link = "{$baseUrl}user/reset-pass?token=$randomString";//Url::to("@web/user/reset-pass?token=$randomString", true);
+        $body = 'Use this <a href="' . $link . '" target="_blank">link</a> to reset your password';
+
+        $userModel->RESET_TOKEN = $randomString;
+        $userModel->save();
+
+        return self::SendEmailBkp($userModel->EMAIL, $userModel->SURNAME, $body, $subject);
+
+    }
+
+    /**
+     * @param $toemail
+     * @param $toname
+     * @param $body
+     * @param $subject
+     * @param null $attachment
+     * @return bool
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
+    private static function SendEmailBkp($toemail, $toname, $body, $subject, $attachment = null)
+    {
+        $mail = new PHPMailer(false);                              // Passing `true` enables exceptions
         try {
             //Server settings
-            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            echo  '<pre>';
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'mail.pizzaout.so';  // Specify main and backup SMTP servers
+            //$mail->Host = 'r8.websitewelcome.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;
             $mail->Username = 'support@pizzaout.so';                 // SMTP username
             $mail->Password = 'PQ*8Z(^V?ho}';                           // SMTP password
             //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 25;//587;                                    // TCP port to connect to
+            $mail->Port = 25;                                   // TCP port to connect to
+            //$mail->Port = 465;                                   // TCP port to connect to
 
-            $randomString = self::GenerateToken();
-            $recipient = [$userModel->EMAIL => $userModel->SURNAME];
-            $subject = 'Password Recovery';
-
-            $params = [
-                'name' => $userModel->SURNAME,
-                'email' => $recipient,
-                'subject' => $subject,
-                //'link' => $link,
-                //'content' => $body
-            ];
-
-            $link = "{$baseUrl}user/reset-pass?token=$randomString";//Url::to("@web/user/reset-pass?token=$randomString", true);
-            $body = 'Use this <a href="' . $link . '" target="_blank">link</a> to reset your password';
-
-
-            $userModel->RESET_TOKEN = $randomString;
-            $userModel->save();
 
             //Recipients
             $mail->setFrom('support@pizzaout.so', 'PIZZA OUT');
-            $mail->addAddress($userModel->EMAIL, $userModel->SURNAME);     // Add a recipient
+            $mail->addAddress($toemail, $toname);     // Add a recipient
             $mail->addReplyTo('support@pizzaout.so', 'PIZZA OUT');
 
             //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+            if ($attachment != null) {
+                //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+            }
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
@@ -124,32 +169,9 @@ class APP_UTILS
         return false;
     }
 
-    public static function SendRecoveryEmailOld($userModel)
-    {
-        $randomString = self::GenerateToken();
-        $recipient = [$userModel->EMAIL => $userModel->SURNAME];
-        $subject = 'Password Recovery';
-        $body = null;
-
-        $params = [
-            'name' => $userModel->SURNAME,
-            'email' => $recipient,
-            'subject' => $subject,
-            'link' => Url::to("@web/user/reset-pass?token=$randomString", true),
-            'content' => $body
-        ];
-
-        $userModel->RESET_TOKEN = $randomString;
-        $userModel->save();
-        $mailer = self::SendEmail($subject, $recipient, $params, 'layouts/password_recovery');
-
-        return $mailer;
-    }
-
     /**
      * @param string $format
      * @return string
-     * @throws \yii\base\InvalidConfigException
      */
     public
     static function GetCurrentDateTime($format = 'yyyy-MM-dd HH:mm:ss')

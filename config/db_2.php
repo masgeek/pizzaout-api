@@ -12,7 +12,7 @@ return [
     //'dsn' => 'oci:dbname=//localhost:1521/mydatabase', // Oracle
     'tablePrefix' => 'tb_',
     'username' => 'tsobucok_pizza',
-    'password' => 'Cyberhopper123',
+    'password' => 'tsobucok_pizza',
     'charset' => 'utf8',
     'enableSchemaCache' => true,
     // Duration of schema cache.
