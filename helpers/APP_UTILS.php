@@ -74,7 +74,7 @@ class APP_UTILS
     {
         $subject = 'Order Confirmed';
 
-        $link = "{$baseUrl}orders/print?token=$orderNumber&fromMail=YES";
+        $link = "{$baseUrl}orders/print?id=$orderNumber&fromMail=YES";
 
         $receiptLink = '<a href="' . $link . '" target="_blank">Receipt Here</a>';
 
