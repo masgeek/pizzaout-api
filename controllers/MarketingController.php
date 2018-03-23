@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Html2Text\Html2Text;
 use Yii;
 use app\model_extended\MailList;
 use yii\helpers\Html;
@@ -17,7 +18,7 @@ class MarketingController extends \yii\web\Controller
             //let us save in sequence
             $category = $model->category;
             $subject = $model->subject;
-            $body = Html::encode($model->body);
+            $body = $model->body;
 
             $model->sent = false;
             $customers = $model->EvaluateCategory();
@@ -40,8 +41,10 @@ class MarketingController extends \yii\web\Controller
                 if ($model->sms) {
                     $model->isNewRecord = true;
                     $model->mail_id = null;
+                    $plainText = new Html2Text($body);
+
                     $model->receipent = $customer->MOBILE;
-                    //$model->body = strip_tags($body);
+                    $model->body = $plainText->getText();
                     $model->type = 'SMS';
                     $model->save();
                 }
