@@ -222,12 +222,13 @@ class OrdersController extends Controller
 
     /**
      * @param $id
+     * @param null $token
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionPrint($id, $fromMail = false)
+    public function actionPrint($id, $token = null)
     {
-        if ($fromMail == 'YES') {
+        if ($token != null) {
             //change layout
             $this->layout = 'register_layout';
         }

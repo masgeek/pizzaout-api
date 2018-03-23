@@ -72,6 +72,11 @@ class APP_UTILS
      */
     public static function SendOrderEmailWithReceipt($userModel, $orderNumber, $orderStatus, $baseUrl = 'http://pizzaout.so/')
     {
+        $emailStatus = [
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_RIDER_ASSIGNED,
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED,
+        ];
         $subject = 'Order Confirmed';
 
         $link = "{$baseUrl}orders/print?id=$orderNumber&fromMail=YES";
@@ -96,7 +101,11 @@ Pizzaout Team
 </p>
 BODY;
 
-        return self::SendEmailBkp('barsamms@gmail.com', $userModel->SURNAME, $body, $subject);
+        if (in_array($orderStatus, $emailStatus)) {
+            return self::SendEmailBkp('barsamms@gmail.com', $userModel->SURNAME, $body, $subject);
+        }
+
+        return false;
         // return self::SendEmailBkp($userModel->EMAIL, $userModel->SURNAME, $body, $subject);
     }
 
