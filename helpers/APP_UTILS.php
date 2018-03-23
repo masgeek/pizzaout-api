@@ -65,24 +65,30 @@ class APP_UTILS
     /**
      * @param $userModel USERS_MODEL
      * @param $orderNumber
-     * @param bool $attachReceipt
+     * @param $orderStatus
+     * @param string $baseUrl
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function SendOrderEmailWithReceipt($userModel, $orderNumber, $orderStatus, $attachReceipt = false)
+    public static function SendOrderEmailWithReceipt($userModel, $orderNumber, $orderStatus, $baseUrl = 'http://pizzaout.so/')
     {
         $subject = 'Order Confirmed';
 
+        $link = "{$baseUrl}orders/print?token=$orderNumber&fromMail=YES";
+
+        $receiptLink = '<a href="' . $link . '" target="_blank">Receipt Here</a>';
+
         $body = <<<BODY
-Dear<strong>$userModel->SURNAME</strong>
+Dear <strong>$userModel->SURNAME</strong>
 <p>
-Your order $orderNumber has been $orderStatus.
+Your order $orderNumber status is $orderStatus.
 </p>
 <p>
-Please find your receipt attached.
+Please find your $receiptLink.
 </p>
 <p>
-Thank you for your business, we value your feedback. Our Call Center Number is: 2040
+Thank you for your business, we value your feedback. <br/>
+Our Call Center Number is: <strong>2040</strong>
 </p>
 <p>
 Regards,

@@ -225,8 +225,12 @@ class OrdersController extends Controller
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionPrint($id)
+    public function actionPrint($id, $fromMail = false)
     {
+        if ($fromMail == 'YES') {
+            //change layout
+            $this->layout = 'register_layout';
+        }
         $this->view->title = 'Order Receipt #' . $id;
         return $this->render('print-receipt', [
             'model' => $this->findModel($id),
