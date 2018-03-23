@@ -69,6 +69,7 @@ class APP_UTILS
      * @param string $baseUrl
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
+     * @throws \yii\base\Exception
      */
     public static function SendOrderEmailWithReceipt($userModel, $orderNumber, $orderStatus, $baseUrl = 'http://pizzaout.so/')
     {
@@ -79,7 +80,9 @@ class APP_UTILS
         ];
         $subject = 'Order Confirmed';
 
-        $link = "{$baseUrl}orders/print?id=$orderNumber&fromMail=YES";
+        $randomString = self::GenerateToken();
+
+        $link = "{$baseUrl}orders/print?id=$orderNumber&token=$randomString";
 
         $receiptLink = '<a href="' . $link . '" target="_blank">Receipt Here</a>';
 
