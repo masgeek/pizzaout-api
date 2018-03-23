@@ -68,7 +68,7 @@ class MarketingController extends \yii\web\Controller
     public function actionQueue()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => MailList::find()
+            'query' => MailList::find()->where(['sent' => false])
         ]);
 
         return $this->render('index', [
