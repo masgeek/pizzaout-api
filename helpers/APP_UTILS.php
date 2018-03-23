@@ -96,13 +96,13 @@ Thank you for your business, we value your feedback. <br/>
 Our Call Center Number is: <strong>2040</strong>
 </p>
 <p>
-Regards,
+Regards,<br/>
 Pizzaout Team
 </p>
 BODY;
 
         if (in_array($orderStatus, $emailStatus)) {
-            return self::SendEmailBkp('barsamms@gmail.com', $userModel->SURNAME, $body, $subject);
+            return self::SendEmailBkp($userModel->EMAIL, $userModel->SURNAME, $body, $subject);
         }
 
         return false;
