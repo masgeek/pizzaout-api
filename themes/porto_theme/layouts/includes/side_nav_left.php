@@ -22,8 +22,20 @@ use yii\helpers\Html;
                     <li>
                         <?= Html::a('<i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span>', ['//'], ['title' => 'Dashboard']); ?>
                     </li>
-                    <li>
-                        <?= Html::a('<i class="fa fa-envelope-o" aria-hidden="true"></i><span>Send Emails</span>', ['//marketing'], ['title' => 'Marketing Emails']); ?>
+
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <span>Emails &amp; SMS</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <?= Html::a('<i class="fa fa-line-chart" aria-hidden="true"></i><span>View Queue</span>', ['//marketing/queue'], ['title' => 'Message Queue']); ?>
+                            </li>
+                            <li>
+                                <?= Html::a('<i class="fa fa-envelope-o" aria-hidden="true"></i><span>Send Emails &amp; SMS</span>', ['//marketing'], ['title' => 'Marketing Emails & SMS']); ?>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-parent">
                         <a>

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Html2Text\Html2Text;
 use Yii;
 use app\model_extended\MailList;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 
@@ -30,10 +31,10 @@ class MarketingController extends \yii\web\Controller
 
                 $names = strtolower(ucfirst($customer->SURNAME));
                 if ($model->email) {
-                    $recipient = "{$names}<{$customer->EMAIL}>";
+                    //$recipient = "{$names}<{$customer->EMAIL}>";
                     $model->isNewRecord = true;
                     $model->mail_id = null;
-                    $model->receipent = $recipient;
+                    $model->receipent = $customer->EMAIL;
                     //$model->body = $body;
                     $model->type = 'EMAIL';
                     $model->save();
@@ -51,12 +52,27 @@ class MarketingController extends \yii\web\Controller
             }
 
             //evaluate if we are to send sms or email or both
-            return $category;
+            return $this->redirect(['marketing/queue']);
         }
 
-        return $this->render('index', [
+        return $this->render('create-message', [
             'model' => $model,
         ]);
     }
 
+
+    /**
+     * Lists all MailList models.
+     * @return mixed
+     */
+    public function actionQueue()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => MailList::find()
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }

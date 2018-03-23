@@ -1,51 +1,38 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use dosamigos\ckeditor\CKEditor;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\model_extended\MailList */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$field_template = <<<TEMPLATE
-<label><h5>{label}</h5></label>
-<div class="input-group input-group-icon">
-     {input} 
-    <span class="input-group-addon">
-        <span class="icon"><i class="fa fa-cog"></i></span>
-    </span>
-</div>
-    {error}{hint}
-TEMPLATE;
-
+$this->title = 'Message Queue';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="mail-list-index">
 
-<div class="location--model-form">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'category', ['template' => $field_template])->dropDownList(\app\model_extended\MailList::GetCustCategories(), ['prompt' => 'Select Category']) ?>
+    <p>
+        <?= Html::a('Create New Message', ['marketing/index'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-    <?= $form->field($model, 'subject', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
-    <?= $form->field($model, 'body',['template' => $field_template])->widget(CKEditor::className(), [
-        'options' => ['rows' => 15],
-        'preset' => 'basic'
-    ]) ?>
-
-    <div class="row">
-        <div class="col-md-6">
-            <?= $form->field($model, 'email')->checkbox() ?>
-        </div>
-        <div class="col-md-6">
-            <?= $form->field($model, 'sms')->checkbox() ?>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg btn-block']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+            //'mail_id',
+            'receipent:email',
+            'subject:ntext',
+            [
+                'attribute' => 'body',
+                'format' => 'raw'
+            ],
+            'sent:boolean',
+            'type',
+            'created_at:datetime',
+            'updated_at:datetime',
+        ],
+    ]); ?>
 </div>
