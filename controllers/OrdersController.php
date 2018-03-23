@@ -183,7 +183,7 @@ class OrdersController extends Controller
         $model = $this->findModel($id);
         $model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
-        return APP_UTILS::SendOrderEmailWithReceipt($model->uSER, $model->ORDER_ID, $model->oRDERSTATUS->STATUS_NAME, true);
+        APP_UTILS::SendOrderEmailWithReceipt($model->uSER, $model->ORDER_ID, $model->oRDERSTATUS->STATUS_NAME, true);
 
         $orderCancelled = false;
         if ($model->load(Yii::$app->request->post())) {

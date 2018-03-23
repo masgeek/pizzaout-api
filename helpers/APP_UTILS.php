@@ -127,20 +127,17 @@ BODY;
      */
     private static function SendEmailBkp($toemail, $toname, $body, $subject, $attachment = null)
     {
-        $mail = new PHPMailer(false);                              // Passing `true` enables exceptions
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
-            echo  '<pre>';
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'mail.pizzaout.so';  // Specify main and backup SMTP servers
-            //$mail->Host = 'r8.websitewelcome.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;
             $mail->Username = 'support@pizzaout.so';                 // SMTP username
             $mail->Password = 'PQ*8Z(^V?ho}';                           // SMTP password
             //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 25;                                   // TCP port to connect to
-            //$mail->Port = 465;                                   // TCP port to connect to
+            $mail->Port = 25;//587;                                    // TCP port to connect to                                 // TCP port to connect to
 
 
             //Recipients
