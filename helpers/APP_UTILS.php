@@ -104,7 +104,7 @@ BODY;
     public static function SendRecoveryEmail($userModel, $baseUrl = 'http://pizzaout.so/')
     {
         $randomString = self::GenerateToken();
-        $subject = 'Password Recovery';
+        $subject = 'Password Recovery for ' . $userModel->SURNAME;
 
         $link = "{$baseUrl}user/reset-pass?token=$randomString";//Url::to("@web/user/reset-pass?token=$randomString", true);
         $body = 'Use this <a href="' . $link . '" target="_blank">link</a> to reset your password';
