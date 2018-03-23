@@ -41,5 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <h5><?= date('d-M-Y H:i:s') ?></h5>
         <?= $this->render('/receipt/a4-receipt', ['model' => $model,]) ?>
         <?= $this->render('/orders/_order_items', ['model' => $model]) ?>
+
+        <p>
+            Thank you for your business, we value your feedback.</p>
+        <p>
+            Our Call Center Number is: <strong>2040</strong>
+        </p>
     </div>
 </div>

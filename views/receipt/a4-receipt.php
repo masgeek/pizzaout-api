@@ -19,13 +19,11 @@ use yii\helpers\Html;
     </tr>
     <tr>
         <td>MOBILE</td>
-        <td><?="{$model->uSER->MOBILE}"; ?></td>
+        <td><?= "{$model->uSER->MOBILE}"; ?></td>
     </tr>
     <tr>
         <td>ADDRESS</td>
         <td><?= "{$model->lOCATION->LOCATION_NAME} {$model->lOCATION->ADDRESS}"; ?></td>
-    </tr>
-
     </tr>
     </tbody>
 </table>

@@ -23,7 +23,7 @@ use yii\helpers\Html;
                         <?= Html::a('<i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span>', ['//'], ['title' => 'Dashboard']); ?>
                     </li>
                     <li>
-                        <?= Html::a('<i class="fa fa-home" aria-hidden="true"></i><span>Send Emails</span>', ['//marketing'], ['title' => 'Marketing Emails']); ?>
+                        <?= Html::a('<i class="fa fa-envelope-o" aria-hidden="true"></i><span>Send Emails</span>', ['//marketing'], ['title' => 'Marketing Emails']); ?>
                     </li>
                     <li class="nav-parent">
                         <a>
