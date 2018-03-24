@@ -23,8 +23,6 @@ class MarketingController extends \yii\web\Controller
 
             $model->sent = false;
             $customers = $model->EvaluateCategory();
-            echo '<pre>';
-
             //isert to table
 
             foreach ($customers as $key => $customer) {
