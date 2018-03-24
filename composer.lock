@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "258e73188f309e1a3fcf4f1b1c795d85",
+    "content-hash": "701a0b01cc1be57f70bb336b79a3ee07",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -629,6 +629,50 @@
             "time": "2018-03-16T08:23:43+00:00"
         },
         {
+            "name": "cinghie/yii2-mailchimp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cinghie/yii2-mailchimp.git",
+                "reference": "cc47f9c0d65957305439165e501e34af5a92f9e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cinghie/yii2-mailchimp/zipball/cc47f9c0d65957305439165e501e34af5a92f9e6",
+                "reference": "cc47f9c0d65957305439165e501e34af5a92f9e6",
+                "shasum": ""
+            },
+            "require": {
+                "drewm/mailchimp-api": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cinghie\\mailchimp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Gogodigital.it",
+                    "email": "info@gogodigital.it",
+                    "homepage": "http://www.gogodigital.it/"
+                }
+            ],
+            "description": "Yii2 Mailchimp to manage Mailchimp Email Platform in a Yii2 site.",
+            "homepage": "https://github.com/cinghie/yii2-mailchimp",
+            "keywords": [
+                "mailchimp",
+                "yii2 mailchimp",
+                "yii2 newsletter"
+            ],
+            "time": "2018-02-28T23:20:51+00:00"
+        },
+        {
             "name": "ckeditor/ckeditor",
             "version": "dev-full/4.7.x",
             "source": {
@@ -668,6 +712,49 @@
                 "wysiwyg"
             ],
             "time": "2017-09-13T13:08:14+00:00"
+        },
+        {
+            "name": "drewm/mailchimp-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drewm/mailchimp-api.git",
+                "reference": "e3febc93dbe8047f0a14fea19c1efe79cecc7e98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/e3febc93dbe8047f0a14fea19c1efe79cecc7e98",
+                "reference": "e3febc93dbe8047f0a14fea19c1efe79cecc7e98",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.0.*",
+                "vlucas/phpdotenv": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DrewM\\MailChimp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drew McLellan",
+                    "email": "drew.mclellan@gmail.com",
+                    "homepage": "http://allinthehead.com/"
+                }
+            ],
+            "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
+            "homepage": "https://github.com/drewm/mailchimp-api",
+            "time": "2018-02-23T09:45:38+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -6637,7 +6724,8 @@
         "phpmailer/phpmailer": 20,
         "zyx/zyx-phpmailer": 0,
         "2amigos/yii2-ckeditor-widget": 20,
-        "html2text/html2text": 20
+        "html2text/html2text": 20,
+        "cinghie/yii2-mailchimp": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
