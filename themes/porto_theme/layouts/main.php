@@ -5,6 +5,7 @@
 /* @var $content string */
 
 use yii\widgets\Breadcrumbs;
+use kartik\alert\AlertBlock;
 
 \app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
@@ -51,6 +52,12 @@ use yii\widgets\Breadcrumbs;
                     <!--<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>-->
                 </div>
             </header>
+
+            <?=AlertBlock::widget([
+                'useSessionFlash' => true,
+                'delay' => 5000,
+                'type' => AlertBlock::TYPE_ALERT
+            ]);?>
 
             <!-- start: page -->
 			<?= $content ?>

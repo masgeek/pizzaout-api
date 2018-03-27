@@ -16,7 +16,7 @@ class MarketingController extends \yii\web\Controller
     {
         /* @var $mc MailchimpComponent */
         $model = new MailList();
-
+        $campaign_id = 0;
         if ($model->load(Yii::$app->request->post())) {
             //let us save in sequence
             $category = $model->category;
@@ -42,7 +42,9 @@ class MarketingController extends \yii\web\Controller
                 } elseif ($category == MailList::CUST_ALL) {
                     $mailChimp->AddSubscribers($category, $customers);
                 }
-                $res = $mailChimp->ComposeCampaignMessage($category, $subject, $body, $plainText->getText(), 'campaign' . date('YmdHis'));
+                $campaign_id = 'campaign' . date('YmdHis');
+
+                $mailChimp->ComposeCampaignMessage($category, $subject, $body, $plainText->getText(), $campaign_id);
             }
             foreach ($customers as $key => $customer) {
                 if ($model->sms) {
@@ -57,9 +59,12 @@ class MarketingController extends \yii\web\Controller
                 }
             }
             //evaluate if we are to send sms or email or both
+            //Yii::$app()->session->setFlash();
+            $message = "Campaign id <strong>{$campaign_id}</strong> created and sent successfully. <strong>" . count($customers) . "</strong> customers messaged";
+            Yii::$app->session->setFlash('success', $message);
             return $this->redirect(['marketing/queue']);
         }
-
+        $model->email = true;
         return $this->render('create-message', [
             'model' => $model,
         ]);
