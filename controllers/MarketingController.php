@@ -22,7 +22,7 @@ class MarketingController extends \yii\web\Controller
             $category = $model->category;
             $subject = $model->subject;
             $body = $model->body;
-
+            $plainText = new Html2Text($body);
             $mailChimp = new MailchimpComponent();
 
             $model->sent = false;
@@ -40,17 +40,15 @@ class MarketingController extends \yii\web\Controller
                     $deactivationList = $model->GetWithNoOrders();
                     $mailChimp->DeactivateMembers($category, $deactivationList);
                 } elseif ($category == MailList::CUST_ALL) {
-
+                    $mailChimp->AddSubscribers($category, $customers);
                 }
-                //$res = $mailChimp->AddSubscribers($category, $customers);
-
-                $res = $mailChimp->ComposeCampaignMessage($category, $subject, $body, 'Message text', 'campaign' . date('YmdHis'));
+                $res = $mailChimp->ComposeCampaignMessage($category, $subject, $body, $plainText->getText(), 'campaign' . date('YmdHis'));
             }
             foreach ($customers as $key => $customer) {
                 if ($model->sms) {
                     $model->isNewRecord = true;
                     $model->mail_id = null;
-                    $plainText = new Html2Text($body);
+
 
                     $model->receipent = $customer->MOBILE;
                     $model->body = $plainText->getText();
