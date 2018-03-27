@@ -19,7 +19,7 @@ $db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.
 
 $config = [
     'id' => 'WEB',
-    'language'=>'en', // SOMALI
+    'language' => 'en', // SOMALI
     'name' => Yii::t('app', 'Pizza Out'),
     'basePath' => dirname(__DIR__),
     'timeZone' => $timezone,
@@ -67,7 +67,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
             'enableAutoLogin' => false,
-            'authTimeout' => YII_ENV_DEV ? 40000 :300,
+            'authTimeout' => YII_ENV_DEV ? 40000 : 300,
             'enableSession' => true,
             'autoRenewCookie' => false,
         ],

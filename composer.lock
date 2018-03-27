@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "701a0b01cc1be57f70bb336b79a3ee07",
+    "content-hash": "4b580744e70de9d570346eb9fbba6062",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -522,64 +522,17 @@
             "time": "2017-10-14T08:42:41+00:00"
         },
         {
-            "name": "braintree/braintree_php",
-            "version": "3.25.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/braintree/braintree_php.git",
-                "reference": "8c8785b8876d5b2f4b4f78c5768ad245a7c43feb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/8c8785b8876d5b2f4b4f78c5768ad245a7c43feb",
-                "reference": "8c8785b8876d5b2f4b4f78c5768ad245a7c43feb",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-dom": "*",
-                "ext-hash": "*",
-                "ext-openssl": "*",
-                "ext-xmlwriter": "*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Braintree": "lib/"
-                },
-                "psr-4": {
-                    "Braintree\\": "lib/Braintree"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Braintree",
-                    "homepage": "http://www.braintreepayments.com"
-                }
-            ],
-            "description": "Braintree PHP Client Library",
-            "time": "2017-08-25T19:38:09+00:00"
-        },
-        {
             "name": "cebe/markdown",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cebe/markdown.git",
-                "reference": "dcbe54990df62a9cf9ce7f196761e6e318b27c44"
+                "reference": "7b158880b9c128de39d1102dc26e68082d1c4aa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cebe/markdown/zipball/dcbe54990df62a9cf9ce7f196761e6e318b27c44",
-                "reference": "dcbe54990df62a9cf9ce7f196761e6e318b27c44",
+                "url": "https://api.github.com/repos/cebe/markdown/zipball/7b158880b9c128de39d1102dc26e68082d1c4aa9",
+                "reference": "7b158880b9c128de39d1102dc26e68082d1c4aa9",
                 "shasum": ""
             },
             "require": {
@@ -626,51 +579,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2018-03-16T08:23:43+00:00"
-        },
-        {
-            "name": "cinghie/yii2-mailchimp",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cinghie/yii2-mailchimp.git",
-                "reference": "cc47f9c0d65957305439165e501e34af5a92f9e6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cinghie/yii2-mailchimp/zipball/cc47f9c0d65957305439165e501e34af5a92f9e6",
-                "reference": "cc47f9c0d65957305439165e501e34af5a92f9e6",
-                "shasum": ""
-            },
-            "require": {
-                "drewm/mailchimp-api": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "cinghie\\mailchimp\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Gogodigital.it",
-                    "email": "info@gogodigital.it",
-                    "homepage": "http://www.gogodigital.it/"
-                }
-            ],
-            "description": "Yii2 Mailchimp to manage Mailchimp Email Platform in a Yii2 site.",
-            "homepage": "https://github.com/cinghie/yii2-mailchimp",
-            "keywords": [
-                "mailchimp",
-                "yii2 mailchimp",
-                "yii2 newsletter"
-            ],
-            "time": "2018-02-28T23:20:51+00:00"
+            "time": "2018-03-26T11:25:22+00:00"
         },
         {
             "name": "ckeditor/ckeditor",
@@ -857,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "ba1bce30baab94dddde21c4ae93872b1762d39fa"
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ba1bce30baab94dddde21c4ae93872b1762d39fa",
-                "reference": "ba1bce30baab94dddde21c4ae93872b1762d39fa",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
                 "shasum": ""
             },
             "require": {
@@ -914,7 +823,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-03-11T15:03:34+00:00"
+            "time": "2018-03-26T16:33:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -922,12 +831,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "0940c910fd14a68bd24a8b7c4a5528415a479c42"
+                "reference": "136531aa4e42f9b1971a47fb0faf60da00d2fefa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/0940c910fd14a68bd24a8b7c4a5528415a479c42",
-                "reference": "0940c910fd14a68bd24a8b7c4a5528415a479c42",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/136531aa4e42f9b1971a47fb0faf60da00d2fefa",
+                "reference": "136531aa4e42f9b1971a47fb0faf60da00d2fefa",
                 "shasum": ""
             },
             "require": {
@@ -965,7 +874,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2018-02-28T07:24:33+00:00"
+            "time": "2018-03-25T01:26:01+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -973,12 +882,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "59f1a30206f753cb29b2e4c8352c10968dadb5e7"
+                "reference": "99bfec281379c040f37dc3c3e9312476875a2f62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/59f1a30206f753cb29b2e4c8352c10968dadb5e7",
-                "reference": "59f1a30206f753cb29b2e4c8352c10968dadb5e7",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/99bfec281379c040f37dc3c3e9312476875a2f62",
+                "reference": "99bfec281379c040f37dc3c3e9312476875a2f62",
                 "shasum": ""
             },
             "require": {
@@ -1030,7 +939,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-03-21T13:09:20+00:00"
+            "time": "2018-03-26T16:50:35+00:00"
         },
         {
             "name": "html2text/html2text",
@@ -1478,12 +1387,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-dynagrid.git",
-                "reference": "109b96e133beabe989f71864db137e3bff2ffe8d"
+                "reference": "39c8fe1b6df10981411c2da063397213ebb8fa6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-dynagrid/zipball/109b96e133beabe989f71864db137e3bff2ffe8d",
-                "reference": "109b96e133beabe989f71864db137e3bff2ffe8d",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dynagrid/zipball/39c8fe1b6df10981411c2da063397213ebb8fa6c",
+                "reference": "39c8fe1b6df10981411c2da063397213ebb8fa6c",
                 "shasum": ""
             },
             "require": {
@@ -1530,7 +1439,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-02-15T17:31:12+00:00"
+            "time": "2018-03-24T11:50:33+00:00"
         },
         {
             "name": "kartik-v/yii2-editable",
@@ -1652,12 +1561,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "dea240a4a5ae62060087d850c4facddaa352da18"
+                "reference": "11d73b6ecc66558a6c5b835c16c7439382094256"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/dea240a4a5ae62060087d850c4facddaa352da18",
-                "reference": "dea240a4a5ae62060087d850c4facddaa352da18",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/11d73b6ecc66558a6c5b835c16c7439382094256",
+                "reference": "11d73b6ecc66558a6c5b835c16c7439382094256",
                 "shasum": ""
             },
             "require": {
@@ -1697,7 +1606,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-03-21T11:11:20+00:00"
+            "time": "2018-03-24T04:49:51+00:00"
         },
         {
             "name": "kartik-v/yii2-helpers",
@@ -2320,12 +2229,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-depdrop.git",
-                "reference": "aacc064f76911ee295227058c689967d50c61fcd"
+                "reference": "a86b48bdb350c4db9f6e070a07471889171196b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/aacc064f76911ee295227058c689967d50c61fcd",
-                "reference": "aacc064f76911ee295227058c689967d50c61fcd",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/a86b48bdb350c4db9f6e070a07471889171196b8",
+                "reference": "a86b48bdb350c4db9f6e070a07471889171196b8",
                 "shasum": ""
             },
             "require": {
@@ -2361,7 +2270,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-02-20T09:27:10+00:00"
+            "time": "2018-03-24T08:46:26+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -3167,17 +3076,17 @@
             "time": "2018-03-09T09:51:52+00:00"
         },
         {
-            "name": "pafelin/laravel-nonce",
+            "name": "neitanod/forceutf8",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pafelin/laravel4-nonces.git",
-                "reference": "34d2fe8a8af19070bbae68b8ab05faadb36eb89b"
+                "url": "https://github.com/neitanod/forceutf8.git",
+                "reference": "e1f383c7b5331b575c41c6e936e321095017cd35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pafelin/laravel4-nonces/zipball/34d2fe8a8af19070bbae68b8ab05faadb36eb89b",
-                "reference": "34d2fe8a8af19070bbae68b8ab05faadb36eb89b",
+                "url": "https://api.github.com/repos/neitanod/forceutf8/zipball/e1f383c7b5331b575c41c6e936e321095017cd35",
+                "reference": "e1f383c7b5331b575c41c6e936e321095017cd35",
                 "shasum": ""
             },
             "require": {
@@ -3186,28 +3095,19 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Pafelin\\LaravelNonce": "src/"
+                    "ForceUTF8\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
-                    "name": "Pavel Genov",
-                    "email": "pavel@taskprocess.com",
-                    "role": "Developer"
+                    "name": "Sebastián Grignoli",
+                    "email": "grignoli@gmail.com"
                 }
             ],
-            "description": "Generete nonces",
-            "keywords": [
-                "generator",
-                "illuminate",
-                "laravel4",
-                "nonce"
-            ],
-            "time": "2013-10-23T15:10:15+00:00"
+            "description": "PHP Class Encoding featuring popular Encoding::toUTF8() function --formerly known as forceUTF8()-- that fixes mixed encoded strings.",
+            "homepage": "https://github.com/neitanod/forceutf8",
+            "time": "2017-09-21T21:00:15+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3316,66 +3216,17 @@
             "time": "2016-08-18T11:47:56+00:00"
         },
         {
-            "name": "paypal/rest-api-sdk-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "219390b7932a4000a1b7d90cc54b52569dd66f22"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/219390b7932a4000a1b7d90cc54b52569dd66f22",
-                "reference": "219390b7932a4000a1b7d90cc54b52569dd66f22",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.3.0",
-                "psr/log": "^1.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PayPal": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "PayPal",
-                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
-                }
-            ],
-            "description": "PayPal's PHP SDK for REST APIs",
-            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
-            "keywords": [
-                "payments",
-                "paypal",
-                "rest",
-                "sdk"
-            ],
-            "time": "2018-02-14T21:19:37+00:00"
-        },
-        {
             "name": "phpmailer/phpmailer",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "4fd620776848f480f71354f7424c260ec2e4f92d"
+                "reference": "cb3ea134d4d3729e7857737d5f320cce9caf4d32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/4fd620776848f480f71354f7424c260ec2e4f92d",
-                "reference": "4fd620776848f480f71354f7424c260ec2e4f92d",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/cb3ea134d4d3729e7857737d5f320cce9caf4d32",
+                "reference": "cb3ea134d4d3729e7857737d5f320cce9caf4d32",
                 "shasum": ""
             },
             "require": {
@@ -3428,7 +3279,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2018-03-21T13:39:59+00:00"
+            "time": "2018-03-27T13:49:45+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -3906,12 +3757,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "ee3988ed7fa3bf260592506999ae960827ce2446"
+                "reference": "69960cfab469c0e1d9fccd2afb58718b7d4a7069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ee3988ed7fa3bf260592506999ae960827ce2446",
-                "reference": "ee3988ed7fa3bf260592506999ae960827ce2446",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/69960cfab469c0e1d9fccd2afb58718b7d4a7069",
+                "reference": "69960cfab469c0e1d9fccd2afb58718b7d4a7069",
                 "shasum": ""
             },
             "require": {
@@ -3998,7 +3849,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2018-03-21T18:41:35+00:00"
+            "time": "2018-03-27T13:30:49+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -6718,14 +6569,14 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "pafelin/laravel-nonce": 20,
         "yiisoft/yii2-authclient": 20,
         "mike42/escpos-php": 20,
         "phpmailer/phpmailer": 20,
         "zyx/zyx-phpmailer": 0,
         "2amigos/yii2-ckeditor-widget": 20,
         "html2text/html2text": 20,
-        "cinghie/yii2-mailchimp": 20
+        "drewm/mailchimp-api": 20,
+        "neitanod/forceutf8": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

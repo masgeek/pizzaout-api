@@ -9,14 +9,16 @@
 namespace app\model_extended;
 
 
+use app\components\MailchimpComponent;
 use app\helpers\APP_UTILS;
 use app\models\MailQueue;
+use app\models\Users;
 
 class MailList extends MailQueue
 {
-    const  CUST_ALL = 'all';
-    const  CUST_PAST_ORDERS = 'past_orders';
-    const  CUST_NO_ORDERS = 'no_orders';
+    const  CUST_ALL = 'c87f26c5f9';
+    const  CUST_PAST_ORDERS = '4c1ec5446c';
+    const  CUST_NO_ORDERS = 'ca9bf24cf7';
 
     public $category;
 
@@ -49,13 +51,24 @@ class MailList extends MailQueue
         return false;
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public static function GetCustCategories()
     {
-        return [
-            self::CUST_ALL => 'All customers',
-            self::CUST_PAST_ORDERS => 'Customers With Past Orders',
-            self::CUST_NO_ORDERS => 'Customers with no orders'
-        ];
+
+        $mc = new MailchimpComponent();
+
+        //c87f26c5f9
+        return $mc->GetLists();
+
+        /*
+                return [
+                    self::CUST_ALL => 'All Customers',
+                    self::CUST_PAST_ORDERS => 'Customers With Past Orders',
+                    self::CUST_NO_ORDERS => 'Customers with no orders'
+                ];*/
     }
 
     /**
@@ -97,7 +110,7 @@ class MailList extends MailQueue
     /**
      * @return \app\api\modules\v1\models\USER_MODEL[]|CUSTOMER_ORDERS[]|USERS_MODEL[]|array|\yii\db\ActiveRecord[]
      */
-    private function GetWithOrders()
+    public function GetWithOrders()
     {
         $filterList = [];
         //first get the orders list
@@ -114,10 +127,11 @@ class MailList extends MailQueue
         return $users;
     }
 
+
     /**
      * @return \app\api\modules\v1\models\USER_MODEL[]|CUSTOMER_ORDERS[]|USERS_MODEL[]|array|\yii\db\ActiveRecord[]
      */
-    private function GetWithNoOrders()
+    public function GetWithNoOrders()
     {
         $filterList = [];
         //first get the orders list

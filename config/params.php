@@ -6,6 +6,7 @@ return [
     'vatRate' => 0, //tax Rate in percentage
     'uploadsFolder' => '/useruploads/',
     'tagLine' => 'Fresh, Fast, Tasty',
+    'mailchimp' => 'fa88ded0913d6a3c450fd52f2c0fc396-us12'
 ];
 
 
