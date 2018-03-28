@@ -31,30 +31,14 @@ class MarketingController extends \yii\web\Controller
             //isert to table
 
             if ($model->email) {
-                //if with order and nor orders purge the mailing list first
-                if (($list_id == MailList::CUST_NO_ORDERS)) {
-                    //purge the list first
-                    $deactivationList = $model->GetWithOrders();
-                    $mailChimp->DeactivateMembers($list_id, $deactivationList);
-                } elseif ($list_id == MailList::CUST_NO_ORDERS) {
-                    //purge the list first
-                    $deactivationList = $model->GetWithNoOrders();
-                    $mailChimp->DeactivateMembers($list_id, $deactivationList);
-                } elseif ($list_id == MailList::CUST_ALL) {
-                    $mailChimp->AddSubscribers($list_id, $customers);
-                }
-                $campaign_id = 'campaign' . date('YmdHis');
-
                 $mailChimp->ComposeCampaignMessage($list_id, $subject, $body, $plainText->getText(), $campaign_id);
             }
             foreach ($customers as $key => $customer) {
                 if ($model->sms) {
                     $model->isNewRecord = true;
                     $model->mail_id = null;
-
-
                     $model->receipent = $customer->MOBILE;
-                    $model->body = $plainText->getText();
+                    $model->body = $model->sms_text;
                     $model->type = 'SMS';
                     //$model->save();
                 }
@@ -91,8 +75,6 @@ class MarketingController extends \yii\web\Controller
         } elseif ($list_id === MailList::CUST_NO_ORDERS) {
             //purge the list first
             $deactivationList = $model->GetWithOrders();
-        } elseif ($list_id == MailList::CUST_ALL) {
-            $resp = $mailChimp->AddSubscribers($list_id, $customers);
         }
 
         if (count($deactivationList) > 0) {
