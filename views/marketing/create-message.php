@@ -32,7 +32,7 @@ alert('Please specify list to send emails');
 return false;
 }
   $.ajax({
-       url: 'marketing/update-list',
+       url: '/marketing/update-list',
        dataType: 'json',
        method:'GET',
        data: {list_id: _list_id},
@@ -50,7 +50,7 @@ $("#batch-status").click(function(){
 var _batch_id = $('#batch-id').val() 
 $("#statusList").empty();
   $.ajax({
-       url: 'marketing/batch-status',
+       url: '/marketing/batch-status',
        dataType: 'json',
        method:'GET',
        data: {batch_id: _batch_id},
@@ -82,7 +82,7 @@ return false;
 }
 
   $.ajax({
-       url: 'marketing/add-customers',
+       url: '/marketing/add-customers',
        dataType: 'json',
        method:'GET',
        data: {list_id: _list_id},
