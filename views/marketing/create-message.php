@@ -22,7 +22,17 @@ TEMPLATE;
 $ajaxUrl = \yii\helpers\Url::to(['marketing/update-list']);
 
 $ajaxScript = <<<AJAX
-    
+
+updateCountdown();
+$('#sms-text').change(updateCountdown);
+$('#sms-text').keyup(updateCountdown);
+
+function updateCountdown() {
+    // 140 is the max message length
+    var remaining = 160 - jQuery('#sms-text').val().length;
+    jQuery('#sms-count').text(remaining + ' characters remaining.');
+}
+        
 $("#update-lists").click(function(){
 $("#statusList").empty();
 var _list_id = $('#list_name').val() 
@@ -205,14 +215,6 @@ $tabs = [
 <?php ActiveForm::end(); ?>
 <script>
     $(document).ready(function () {
-        updateCountdown();
-        $('#sms-text').change(updateCountdown);
-        $('#sms-text').keyup(updateCountdown);
 
-        function updateCountdown() {
-            // 140 is the max message length
-            var remaining = 160 - jQuery('#sms-text').val().length;
-            jQuery('#sms-count').text(remaining + ' characters remaining.');
-        }
     });
 </script>
