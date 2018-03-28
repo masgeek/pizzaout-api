@@ -215,17 +215,20 @@ $tabs = [
         $('#sms-text').simplyCountable({
                 counter: '#sms-count',
                 countType: 'characters',
-                maxCount: 10,
+                maxCount: 2,
                 strictMax: false,
                 countDirection: 'down',
                 safeClass: 'text text-success',
                 overClass: 'text text-danger',
                 thousandSeparator: ',',
                 onOverCount: function (count, countable, counter) {
+                    //counter.text('Count is '+count+' Countable '+countable);
                 },
                 onSafeCount: function (count, countable, counter) {
+                    //counter.text('Count is '+count+' Countable '+countable);
                 },
                 onMaxCount: function (count, countable, counter) {
+                    //counter.text('Count is '+count+' Countable '+countable);
                 }
             }
         );
