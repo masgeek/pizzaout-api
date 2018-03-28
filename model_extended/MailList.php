@@ -17,8 +17,8 @@ use app\models\Users;
 class MailList extends MailQueue
 {
     const  CUST_ALL = 'c87f26c5f9';
-    const  CUST_PAST_ORDERS = '4c1ec5446c';
-    const  CUST_NO_ORDERS = 'ca9bf24cf7';
+    const  CUST_PAST_ORDERS = 'ca9bf24cf7';
+    const  CUST_NO_ORDERS = '4c1ec5446c';
 
     public $category;
 
