@@ -18,7 +18,10 @@ use dosamigos\ckeditor\CKEditor;
         ]) ?>
     </div>
     <div class="col-md-6">
-        <?= $form->field($model, 'sms_text', ['template' => $field_template])->textarea(['id' => 'sms-text', 'rows' => 11]) ?>
+        <?= $form->field($model, 'sms_text', ['template' => $field_template])
+            ->textarea(['id' => 'sms-text', 'rows' => 11])
+            ->hint('Hello', ['id' => 'sms-count'])
+        ?>
     </div>
 </div>
 

@@ -22,6 +22,7 @@ TEMPLATE;
 $ajaxUrl = \yii\helpers\Url::to(['marketing/update-list']);
 
 $ajaxScript = <<<AJAX
+    
 $("#update-lists").click(function(){
 $("#statusList").empty();
 var _list_id = $('#list_name').val() 
@@ -202,4 +203,16 @@ $tabs = [
 
 <?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-lg btn-block', 'style' => 'margin-top:10px;']) ?>
 <?php ActiveForm::end(); ?>
+<script>
+    $(document).ready(function () {
+        updateCountdown();
+        $('#sms-text').change(updateCountdown);
+        $('#sms-text').keyup(updateCountdown);
 
+        function updateCountdown() {
+            // 140 is the max message length
+            var remaining = 160 - jQuery('#sms-count').val().length;
+            jQuery('#sms-count').text(remaining + ' characters remaining.');
+        }
+    });
+</script>
