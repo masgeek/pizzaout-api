@@ -213,8 +213,3 @@ $tabs = [
 
 <?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-lg btn-block', 'style' => 'margin-top:10px;']) ?>
 <?php ActiveForm::end(); ?>
-<script>
-    $(document).ready(function () {
-
-    });
-</script>
