@@ -25,7 +25,7 @@ $ajaxScript = <<<AJAX
 $("#update-lists").click(function(){
 $("#statusList").empty();
 var _list_id = $('#list_name').val() 
-
+$('#batch-status').html('Check Status');
 if(_list_id.length==0){
 alert('Please specify list to send emails');
 
@@ -48,6 +48,12 @@ return false;
 
 $("#batch-status").click(function(){
 var _batch_id = $('#batch-id').val() 
+
+if(_batch_id.length==0){
+alert('Please update list first');
+
+return false;
+}
 $("#statusList").empty();
   $.ajax({
        url: '/marketing/batch-status',
@@ -67,6 +73,7 @@ $("#statusList").empty();
            $('#statusList').append('<li class="list-group-item">Finished Operations : <span class="badge">'+data.finished_operations+'</span></li>');
            //$('#status').text(data.status) 
            //$('#batch-id').val(data.id);
+           $('#batch-status').html(data.status);
        }
     });
  
@@ -75,6 +82,7 @@ $("#statusList").empty();
 $("#add-customers").click(function(){
 var _list_id = $('#list_name').val();
 
+$('#batch-status').html('Check Status');
 if(_list_id.length==0){
 alert('Please specify list to send emails');
 
@@ -99,6 +107,7 @@ return false;
            $('#statusList').append('<li class="list-group-item">Finished Operations : <span class="badge">'+data.finished_operations+'</span></li>');
            //$('#status').text(data.status) 
            $('#batch-id').val(data.id);
+           $('#batch-status').html(data.status);
        }
     });
  
@@ -129,18 +138,19 @@ echo $this->registerJs($ajaxScript);
         <li>
             <mark>
                 Click on check status button
-                until the Batch Status message says <span class="label label-danger">finished</span>
+                until the message says <span class="label label-danger">finished</span>
             </mark>
         </li>
-        <li>Proceed to <span class="label label-success">Add Customers</span> tab</li>
+        <li>Proceed to <span class="label label-success">Add Customers</span> tab or click Next</li>
         <li>Click on <span class="label label-success">Add customers to campaign</span> to add new customers&nbsp; after
             the update
             <mark>
                 (Click on check status button
-                until the Batch Status message says <span class="label label-danger">finished</span>)
+                until the message says <span class="label label-danger">finished</span>)
             </mark>
+            click Next to proceed
         </li>
-        <li>Compose your message</li>
+        <li>Compose your message then click Next</li>
         <li>Click on <span class="label label-primary">Send Message</span></li>
         <li>Login to mailchimp to monitor the sending status and user response</li>
     </ol>
@@ -188,6 +198,7 @@ $tabs = [
 
 <?= \chd7well\wizard\Wizard::widget(['tabs' => $tabs]); ?>
 <?= Html::textInput('batch_id', null, ['id' => 'batch-id', 'class' => 'form-control', 'readonly' => true, 'placeholder' => 'List Number']) ?>
+
 <?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-block', 'style' => 'margin-bottom:10px;']) ?>
 <?php ActiveForm::end(); ?>
 
