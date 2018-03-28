@@ -198,8 +198,8 @@ $tabs = [
 
 
 <?= \chd7well\wizard\Wizard::widget(['tabs' => $tabs]); ?>
-<?= Html::textInput('batch_id', null, ['id' => 'batch-id', 'class' => 'form-control', 'readonly' => true, 'placeholder' => 'List Number']) ?>
+<?= Html::hiddenInput('batch_id', null, ['id' => 'batch-id', 'class' => 'form-control', 'readonly' => true, 'placeholder' => 'List Number']) ?>
 
-<?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-block', 'style' => 'margin-bottom:10px;']) ?>
+<?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-lg btn-block', 'style' => 'margin-top:10px;']) ?>
 <?php ActiveForm::end(); ?>
 
