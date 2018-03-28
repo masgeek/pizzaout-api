@@ -81,6 +81,7 @@ alert('Please specify list to send emails');
 return false;
 }
 
+  $('#send-campaign').prop("disabled",true);
   $.ajax({
        url: '/marketing/add-customers',
        dataType: 'json',
