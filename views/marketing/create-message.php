@@ -110,49 +110,37 @@ echo $this->registerJs($ajaxScript);
 
 <?php $form = ActiveForm::begin(); ?>
 <?php
-$wizard_config = [
-    'id' => 'stepwizard',
-    'steps' => [
-        1 => [
-            'title' => 'Update Lists',
-            'icon' => 'glyphicon glyphicon-cloud-download',
-            'content' => $this->render('wizard/update-lists', [
-                'model' => $model,
-                'form' => $form,
-                'field_template' => $field_template
-            ]),
-            /*'buttons' => [
-                'next' => [
-                    'title' => 'Forward',
-                    'options' => [
-                            'class' => 'disabled'
-                    ],
-                ],
-            ],*/
-        ],
-        2 => [
-            'title' => 'Add Customers',
-            'icon' => 'glyphicon glyphicon-cloud-upload',
-            'content' => $this->render('wizard/create-subscribers', [
-                'model' => $model,
-                'form' => $form,
-                'field_template' => $field_template
-            ]),
-            'skippable' => false,
-        ],
-        3 => [
-            'title' => 'Compose Message',
-            'icon' => 'glyphicon glyphicon-transfer',
-            'content' => $this->render('wizard/compose-message', [
-                'model' => $model,
-                'form' => $form,
-                'field_template' => $field_template
-            ]),
-        ],
+$tabs = [
+    [
+        'tabtitle' => 'Update Selected List',
+        'tabcontent' => $this->render('wizard/update-lists', [
+            'model' => $model,
+            'form' => $form,
+            'field_template' => $field_template
+        ]),
     ],
-    'complete_content' => Html::submitButton(Yii::t('app', 'Send Message'), ['class' => 'btn btn-success btn-lg btn-block', 'disabled' => true, 'id' => 'send-campaign']),
-    //'start_step' => 2, // Optional, start with a specific step
+    [
+        'tabtitle' => 'Add Customers to list',
+        'tabcontent' => $this->render('wizard/create-subscribers', [
+            'model' => $model,
+            'form' => $form,
+            'field_template' => $field_template
+        ]),
+    ],
+    [
+        'tabtitle' => 'Compose Message',
+        'tabcontent' => $this->render('wizard/compose-message', [
+            'model' => $model,
+            'form' => $form,
+            'field_template' => $field_template
+        ]),
+    ],
+    [
+        'tabtitle' => 'Send Message',
+        'tabcontent' => Html::submitButton(Yii::t('app', 'Send Message'), ['class' => 'btn btn-success btn-lg btn-block', 'disabled' => true, 'id' => 'send-campaign']),
+    ],
 ];
+
 ?>
 <ul class="list-group" id="statusList">
     <!-- add list items with jquery -->
@@ -160,7 +148,8 @@ $wizard_config = [
 
 <?= $form->errorSummary($model) ?>
 
-<?= \drsdre\wizardwidget\WizardWidget::widget($wizard_config); ?>
+
+<?= \chd7well\wizard\Wizard::widget(['tabs' => $tabs]); ?>
 <?= Html::textInput('batch_id', null, ['id' => 'batch-id', 'class' => 'form-control', 'readonly' => true, 'placeholder' => 'List Number']) ?>
 <?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-block', 'style' => 'margin-bottom:10px;']) ?>
 <?php ActiveForm::end(); ?>
