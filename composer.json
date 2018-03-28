@@ -52,7 +52,6 @@
     "drewm/mailchimp-api": "dev-master",
     "neitanod/forceutf8": "dev-master",
     "kartik-v/yii2-widget-alert": "^1.1@dev",
-    "drsdre/yii2-wizardwidget": "dev-master",
     "chd7well/yii2-wizard": "dev-master"
   },
   "require-dev": {

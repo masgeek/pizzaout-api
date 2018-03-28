@@ -41,7 +41,11 @@ class MailList extends MailQueue
     public function attributeLabels()
     {
         return [
-            'category' => 'Customer Category'
+            'category' => 'Customer Category',
+            'body' => 'Email Message',
+            'sms_text' => 'SMS Message',
+            'email' => 'Send Email',
+            'sms' => 'Send SMS',
         ];
     }
 

@@ -10,10 +10,17 @@ use dosamigos\ckeditor\CKEditor;
 ?>
 <?= $form->field($model, 'subject', ['template' => $field_template])->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'body', ['template' => $field_template])->widget(CKEditor::className(), [
-    'options' => ['rows' => 15],
-    'preset' => 'basic'
-]) ?>
+<div class="row">
+    <div class="col-md-6">
+        <?= $form->field($model, 'body', ['template' => $field_template])->widget(CKEditor::className(), [
+            'options' => ['rows' => 15],
+            'preset' => 'basic'
+        ]) ?>
+    </div>
+    <div class="col-md-6">
+        <?= $form->field($model, 'sms_text', ['template' => $field_template])->textarea(['id' => 'sms-text', 'rows' => 11]) ?>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-6">
