@@ -119,7 +119,7 @@ $("#compose-sms").click(function(){
   // this function will get executed every time the #sms element is clicked (or tab-spacebar changed)
     if($(this).is(":checked")) // "this" refers to the element that fired the event
     {
-        alert('home is checked');
+        //alert('home is checked');
     }
 });
 AJAX;
@@ -211,7 +211,7 @@ $tabs = [
 
         function updateCountdown() {
             // 140 is the max message length
-            var remaining = 160 - jQuery('#sms-count').val().length;
+            var remaining = 160 - jQuery('#sms-text').val().length;
             jQuery('#sms-count').text(remaining + ' characters remaining.');
         }
     });
