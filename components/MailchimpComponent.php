@@ -12,6 +12,8 @@ use app\models\Users;
 use DrewM\MailChimp\MailChimp;
 use ForceUTF8\Encoding;
 use Yii;
+use yii\caching\FileCache;
+use yii\caching\FileDependency;
 use yii\validators\EmailValidator;
 
 class MailchimpComponent
@@ -33,15 +35,31 @@ class MailchimpComponent
 
     public function GetLists()
     {
+        $cache = new FileCache();
         $mailingLists = [];
-        $result = $this->mc->get('lists');
 
-        $lists = isset($result['lists']) ? $result['lists'] : [];
-        foreach ($lists as $key => $list) {
-            $mailingLists[$list['id']] = $list['name'];
+        $dependency = new FileDependency(['fileName' => 'customer_lists.txt']);
+
+        $cacheKey = 'lists';
+
+        $data = $cache->get($cacheKey);
+        if ($data === false) {
+            // $data is not found in cache, calculate it from scratch
+            $result = $this->mc->get('lists');
+
+            $lists = isset($result['lists']) ? $result['lists'] : [];
+            foreach ($lists as $key => $list) {
+                $mailingLists[$list['id']] = $list['name'];
+            }
+
+            asort($mailingLists);
+            // store $data in cache so that it can be retrieved next time
+            //keep for 3600 seconds
+            $cache->set($cacheKey, $mailingLists, '3600', $dependency);
+        } else {
+
+            $mailingLists = $data;
         }
-
-        asort($mailingLists);
         return $mailingLists;
     }
 
@@ -76,11 +94,19 @@ class MailchimpComponent
         foreach ($membersToRemove as $key => $customer) {
             $email = strtolower($customer->EMAIL);
             $subscriber_hash = $this->mc->subscriberHash($email);
+
             $batch->delete("op{$key}", "lists/$list_id/members/$subscriber_hash");
         }
-        $result = $batch->execute();
+
+        $result = (object)$batch->execute();
 
         return $result;
+    }
+
+    public function CheckBatchStatus($batch_id)
+    {
+        $batch = $this->mc->new_batch($batch_id);
+        return $batch->check_status();
     }
 
     public function ComposeCampaignMessage($list_id, $subject, $htmlMessage, $textMessage, $title, $replyTo = 'support@pizzaout.so')

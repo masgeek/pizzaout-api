@@ -51,7 +51,8 @@
     "html2text/html2text": "dev-master",
     "drewm/mailchimp-api": "dev-master",
     "neitanod/forceutf8": "dev-master",
-    "kartik-v/yii2-widget-alert": "^1.1@dev"
+    "kartik-v/yii2-widget-alert": "^1.1@dev",
+    "drsdre/yii2-wizardwidget": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

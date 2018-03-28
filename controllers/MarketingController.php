@@ -12,6 +12,7 @@ use yii\helpers\Json;
 
 class MarketingController extends \yii\web\Controller
 {
+
     public function actionIndex()
     {
         /* @var $mc MailchimpComponent */
@@ -19,7 +20,7 @@ class MarketingController extends \yii\web\Controller
         $campaign_id = 0;
         if ($model->load(Yii::$app->request->post())) {
             //let us save in sequence
-            $category = $model->category;
+            $list_id = $model->category;
             $subject = $model->subject;
             $body = $model->body;
             $plainText = new Html2Text($body);
@@ -31,20 +32,20 @@ class MarketingController extends \yii\web\Controller
 
             if ($model->email) {
                 //if with order and nor orders purge the mailing list first
-                if (($category == MailList::CUST_NO_ORDERS)) {
+                if (($list_id == MailList::CUST_NO_ORDERS)) {
                     //purge the list first
                     $deactivationList = $model->GetWithOrders();
-                    $mailChimp->DeactivateMembers($category, $deactivationList);
-                } elseif ($category == MailList::CUST_NO_ORDERS) {
+                    $mailChimp->DeactivateMembers($list_id, $deactivationList);
+                } elseif ($list_id == MailList::CUST_NO_ORDERS) {
                     //purge the list first
                     $deactivationList = $model->GetWithNoOrders();
-                    $mailChimp->DeactivateMembers($category, $deactivationList);
-                } elseif ($category == MailList::CUST_ALL) {
-                    $mailChimp->AddSubscribers($category, $customers);
+                    $mailChimp->DeactivateMembers($list_id, $deactivationList);
+                } elseif ($list_id == MailList::CUST_ALL) {
+                    $mailChimp->AddSubscribers($list_id, $customers);
                 }
                 $campaign_id = 'campaign' . date('YmdHis');
 
-                $mailChimp->ComposeCampaignMessage($category, $subject, $body, $plainText->getText(), $campaign_id);
+                $mailChimp->ComposeCampaignMessage($list_id, $subject, $body, $plainText->getText(), $campaign_id);
             }
             foreach ($customers as $key => $customer) {
                 if ($model->sms) {
@@ -70,53 +71,68 @@ class MarketingController extends \yii\web\Controller
         ]);
     }
 
-    public function actionIndexOld()
+    /**
+     * @param $list_id
+     * @return string
+     * @throws \Exception
+     */
+    public function actionUpdateList($list_id)
     {
+        $mailChimp = new MailchimpComponent();
         $model = new MailList();
+        $resp = [];
+        $model->category = $list_id;
+        $customers = $model->EvaluateCategory();
+        $deactivationList = [];
 
-        if ($model->load(Yii::$app->request->post())) {
-            //let us save in sequence
-            $category = $model->category;
-            $subject = $model->subject;
-            $body = $model->body;
-
-            $model->sent = false;
-            $customers = $model->EvaluateCategory();
-            //isert to table
-
-            foreach ($customers as $key => $customer) {
-
-                $names = strtolower(ucfirst($customer->SURNAME));
-                if ($model->email) {
-                    //$recipient = "{$names}<{$customer->EMAIL}>";
-                    $model->isNewRecord = true;
-                    $model->mail_id = null;
-                    $model->receipent = $customer->EMAIL;
-                    //$model->body = $body;
-                    $model->type = 'EMAIL';
-                    $model->save();
-                }
-                if ($model->sms) {
-                    $model->isNewRecord = true;
-                    $model->mail_id = null;
-                    $plainText = new Html2Text($body);
-
-                    $model->receipent = $customer->MOBILE;
-                    $model->body = $plainText->getText();
-                    $model->type = 'SMS';
-                    $model->save();
-                }
-            }
-
-            //evaluate if we are to send sms or email or both
-            return $this->redirect(['marketing/queue']);
+        if (($list_id === MailList::CUST_PAST_ORDERS)) {
+            //purge the list first
+            $deactivationList = $model->GetWithNoOrders();
+        } elseif ($list_id === MailList::CUST_NO_ORDERS) {
+            //purge the list first
+            $deactivationList = $model->GetWithOrders();
+        } elseif ($list_id == MailList::CUST_ALL) {
+            $resp = $mailChimp->AddSubscribers($list_id, $customers);
         }
 
-        return $this->render('create-message', [
-            'model' => $model,
-        ]);
+        if (count($deactivationList) > 0) {
+            $resp = $mailChimp->DeactivateMembers($list_id, $deactivationList);
+        }
+
+        return Json::encode($resp);
     }
 
+    /**
+     * @param $list_id
+     * @return string
+     * @throws \Exception
+     */
+    public function actionAddCustomers($list_id)
+    {
+        $mailChimp = new MailchimpComponent();
+        $model = new MailList();
+
+        $model->category = $list_id;
+        $customers = $model->EvaluateCategory();
+
+        $resp = $mailChimp->AddSubscribers($list_id, $customers);
+
+        return Json::encode($resp);
+    }
+
+    /**
+     * @param $batch_id
+     * @return string
+     * @throws \Exception
+     */
+    public function actionBatchStatus($batch_id)
+    {
+        $mailChimp = new MailchimpComponent();
+
+        $resp = $mailChimp->CheckBatchStatus($batch_id);
+
+        return Json::encode($resp);
+    }
 
     /**
      * Lists all MailList models.

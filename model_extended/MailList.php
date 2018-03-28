@@ -22,6 +22,7 @@ class MailList extends MailQueue
 
     public $category;
 
+    public $sms_text;
     public $email;
     public $sms;
 
@@ -57,18 +58,8 @@ class MailList extends MailQueue
      */
     public static function GetCustCategories()
     {
-
         $mc = new MailchimpComponent();
-
-        //c87f26c5f9
         return $mc->GetLists();
-
-        /*
-                return [
-                    self::CUST_ALL => 'All Customers',
-                    self::CUST_PAST_ORDERS => 'Customers With Past Orders',
-                    self::CUST_NO_ORDERS => 'Customers with no orders'
-                ];*/
     }
 
     /**
