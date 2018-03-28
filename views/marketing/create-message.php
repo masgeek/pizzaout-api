@@ -121,7 +121,7 @@ echo $this->registerJs($ajaxScript);
     <h1>How to send email campaigns</h1>
     <ol>
         <li>Select the <span class="label label-primary">Customer Category</span> from the dropdown list</li>
-        <li>Click on update list to update the mailing list
+        <li>Click on <span class="label label-success">update selected list</span> to update the mailing list
             <mark>(This is important in order for new customer who had not
                 ordered and ordered in between last campaign to be moved to the correct list)
             </mark>
@@ -133,7 +133,8 @@ echo $this->registerJs($ajaxScript);
             </mark>
         </li>
         <li>Proceed to <span class="label label-success">Add Customers</span> tab</li>
-        <li>Click on add customers to campaign to add new customers&nbsp; after the update
+        <li>Click on <span class="label label-success">Add customers to campaign</span> to add new customers&nbsp; after
+            the update
             <mark>
                 (Click on check status button
                 until the Batch Status message says <span class="label label-danger">finished</span>)
