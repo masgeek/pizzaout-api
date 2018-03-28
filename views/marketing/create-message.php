@@ -59,7 +59,7 @@ $("#statusList").empty();
            //console.log(data);
            if(data.status==='finished'){
                 //clear
-                $('#send-campaign').prop("disabled",true);
+                $('#send-campaign').prop("disabled",false);
                 
            }
            //------------END------------//
