@@ -39,8 +39,9 @@ return false;
        success: function(data) {
            // process data
             $('#batch-id').val(data.id);
-            
+           
             $('#statusList').append('<li class="list-group-item active">Batch Status : '+data.status+'</li>');
+            $('#batch-status').html(data.status);
        }
     });
  
