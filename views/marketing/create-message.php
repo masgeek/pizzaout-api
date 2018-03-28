@@ -103,12 +103,47 @@ return false;
     });
  
 });
+
+$("#compose-sms").click(function(){
+  // this function will get executed every time the #sms element is clicked (or tab-spacebar changed)
+    if($(this).is(":checked")) // "this" refers to the element that fired the event
+    {
+        alert('home is checked');
+    }
+});
 AJAX;
 
 
 echo $this->registerJs($ajaxScript);
 ?>
 
+<div>
+    <h1>How to send email campaigns</h1>
+    <ol>
+        <li>Select the <span class="label label-primary">Customer Category</span> from the dropdown list</li>
+        <li>Click on update list to update the mailing list
+            <mark>(This is important in order for new customer who had not
+                ordered and ordered in between last campaign to be moved to the correct list)
+            </mark>
+        </li>
+        <li>
+            <mark>
+                Click on check status button
+                until the Batch Status message says <span class="label label-danger">finished</span>
+            </mark>
+        </li>
+        <li>Proceed to <span class="label label-success">Add Customers</span> tab</li>
+        <li>Click on add customers to campaign to add new customers&nbsp; after the update
+            <mark>
+                (Click on check status button
+                until the Batch Status message says <span class="label label-danger">finished</span>)
+            </mark>
+        </li>
+        <li>Compose your message</li>
+        <li>Click on <span class="label label-primary">Send Message</span></li>
+        <li>Login to mailchimp to monitor the sending status and user response</li>
+    </ol>
+</div>
 <?php $form = ActiveForm::begin(); ?>
 <?php
 $tabs = [

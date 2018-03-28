@@ -38,6 +38,13 @@ class MailList extends MailQueue
         return $rules;
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'category' => 'Customer Category'
+        ];
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

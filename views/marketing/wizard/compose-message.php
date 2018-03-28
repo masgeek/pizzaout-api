@@ -20,6 +20,6 @@ use dosamigos\ckeditor\CKEditor;
         <?= $form->field($model, 'email')->checkbox() ?>
     </div>
     <div class="col-md-6">
-        <?= $form->field($model, 'sms')->checkbox() ?>
+        <?= $form->field($model, 'sms')->checkbox(['id' => 'compose-sms']) ?>
     </div>
 </div>
