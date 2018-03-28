@@ -215,7 +215,7 @@ $tabs = [
         $('#sms-text').simplyCountable({
                 counter: '#sms-count',
                 countType: 'characters',
-                maxCount: 2,
+                maxCount: 160,
                 strictMax: false,
                 countDirection: 'down',
                 safeClass: 'text text-success',
