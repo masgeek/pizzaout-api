@@ -33,7 +33,7 @@ class BowerAsset extends AssetBundle
     ];
     public $js = [
         'modernizer/modernizr.js',
-        //'countable/Countable.min.js',
+        'jquery-simply-countable/jquery.simplyCountable.js',
         'bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
         'magnific-popup/dist/jquery.magnific-popup.js',
         'nanoscroller/bin/javascripts/jquery.nanoscroller.js',

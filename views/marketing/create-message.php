@@ -23,10 +23,6 @@ $ajaxUrl = \yii\helpers\Url::to(['marketing/update-list']);
 
 $ajaxScript = <<<AJAX
 
-updateCountdown();
-$('#sms-text').change(updateCountdown);
-$('#sms-text').keyup(updateCountdown);
-
 function updateCountdown() {
     // 140 is the max message length
     var remaining = 160 - jQuery('#sms-text').val().length;
@@ -138,7 +134,7 @@ AJAX;
 echo $this->registerJs($ajaxScript);
 ?>
 
-<div>
+<div class="row">
     <h1>How to send email campaigns</h1>
     <ol>
         <li>Select the <span class="label label-primary">Customer Category</span> from the dropdown list</li>
@@ -213,3 +209,25 @@ $tabs = [
 
 <?= Html::button('Check Status', ['id' => 'batch-status', 'class' => 'btn btn-danger btn-lg btn-block', 'style' => 'margin-top:10px;']) ?>
 <?php ActiveForm::end(); ?>
+
+<script>
+    $(document).ready(function () {
+        $('#sms-text').simplyCountable({
+                counter: '#sms-count',
+                countType: 'characters',
+                maxCount: 10,
+                strictMax: false,
+                countDirection: 'down',
+                safeClass: 'text text-success',
+                overClass: 'text text-danger',
+                thousandSeparator: ',',
+                onOverCount: function (count, countable, counter) {
+                },
+                onSafeCount: function (count, countable, counter) {
+                },
+                onMaxCount: function (count, countable, counter) {
+                }
+            }
+        );
+    });
+</script>
