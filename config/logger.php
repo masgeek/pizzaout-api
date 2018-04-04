@@ -22,6 +22,11 @@ return [
             'levels' => ['error', 'warning'],
             'logFile' => '@logsfolder/404.log',
         ],
+        [
+            'class' => 'yii\log\FileTarget',
+            'logFile' => '@runtime/logs/http-request.log',
+            'categories' => ['yii\httpclient\*'],
+        ],
         /*'email' => [
             'class' => 'yii\log\EmailTarget',
             'except' => ['yii\web\HttpException:404'],

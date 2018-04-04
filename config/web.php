@@ -34,6 +34,16 @@ $config = [
         ],
     ],
     'components' => [
+        /*SMS Components*/
+        'sms' => [
+            'class' => 'app\components\SmsComponent',
+            'from' => 'Pizza Out',
+            'apiKey' => 'xz2b2Fo32fFIBiBz5LhtTzusde9tZc3z',
+            'apiToken' => 'B6tU1522871594',
+            'baseUrl' => 'http://yooltech.com/sadar/portal',
+            'endpoint' => '/smsAPI'
+        ],
+
         /* custom view template*/
         'view' => [
             'theme' => [

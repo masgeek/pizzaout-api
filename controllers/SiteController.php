@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\api\modules\v1\models\USER_MODEL;
+use app\components\SmsComponent;
 use app\helpers\APP_UTILS;
 use app\model_extended\USERS_MODEL;
 use app\models\ContactForm;
@@ -64,7 +65,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /* @var $sms SmsComponent */
+        $sms = Yii::$app->sms;
 
+        $params = [
+            'to' => '254713196504',
+            'text' => 'hello world iam here',
+        ];
+
+        $sms->SendSms($params);
+        return $sms->apiToken;
 
         Yii::$app->getView()->theme = new Theme([
             'basePath' => '@app/themes/omnifood',
