@@ -66,8 +66,9 @@ class SmsComponent extends Component
 
         $newPhone = $this->validatePhoneNumber($userParams['to']);
 
-        echo $newPhone;
-        die;
+
+        $userParams['to'] = $newPhone;
+
         $params = array_merge($userParams, $paramsStatic);
 
 
