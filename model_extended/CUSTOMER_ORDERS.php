@@ -75,7 +75,6 @@ class CUSTOMER_ORDERS extends CustomerOrder
                 //trigger email sending on every action
                 APP_UTILS::SendOrderEmailWithReceipt($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
                 APP_UTILS::SendSMS($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
-
             }
             $this->UPDATED_AT = $date;
 
