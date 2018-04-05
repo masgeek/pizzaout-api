@@ -29,6 +29,7 @@ class SmsComponent extends Component
      */
     public $apiToken;
     public $baseUrl;
+    public $defaultPrefix;
 
     public $endpoint;
     public $type;
@@ -63,6 +64,10 @@ class SmsComponent extends Component
 
         echo '<pre>';
 
+        $newPhone = $this->validatePhoneNumber($userParams['to']);
+
+        echo $newPhone;
+        die;
         $params = array_merge($userParams, $paramsStatic);
 
 
@@ -78,6 +83,25 @@ class SmsComponent extends Component
             ->send();
 
         var_dump($response);
+    }
+
+    private function validatePhoneNumber($phone_number_raw)
+    {
+
+        $phone_number_raw = trim($phone_number_raw);
+
+        $phone_number = preg_replace('/^0/', $this->defaultPrefix, $phone_number_raw);
+
+        return strpos($phone_number_raw, $this->defaultPrefix);
+
+        if (strpos($phone_number_raw, $this->defaultPrefix)) {
+            // It starts with 'http'
+            return 6;
+        } elseif (strpos($phone_number_raw, '+' . $this->defaultPrefix) === 0) {
+            $phone_number = str_replace('+', '', $phone_number_raw);
+        }
+        //$phone_number = preg_replace('/^'.$this->numberPrefix.'/', 'woah', $phone_number);
+        return $phone_number;
     }
 
     /**

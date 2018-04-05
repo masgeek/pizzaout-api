@@ -65,6 +65,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /* @var $sms SmsComponent */
+        $sms = Yii::$app->sms;
+
+        $params = [
+            //'to' => '0619000333',
+            'to'=>'+252615336770',
+            'text' => 'Test of pizaout sms',
+        ];
+
+        $sms->SendSms($params);
+        return $sms->apiToken;
+
         Yii::$app->getView()->theme = new Theme([
             'basePath' => '@app/themes/omnifood',
             'baseUrl' => '@web/themes/omnifood',

@@ -40,6 +40,7 @@ $config = [
             'from' => 'Pizza Out',
             'apiKey' => 'xz2b2Fo32fFIBiBz5LhtTzusde9tZc3z',
             'apiToken' => 'B6tU1522871594',
+            'defaultPrefix' =>'252',
             'baseUrl' => 'http://yooltech.com/sadar/portal',
             'endpoint' => '/smsAPI'
         ],
