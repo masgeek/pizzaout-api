@@ -196,7 +196,7 @@ $gridColumns = [
             $class = 'btn btn-xs ';
             if ($action === 'print') {
                 switch ($model->ORDER_STATUS) {
-                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
+                    //case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
                     case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
                     case \app\helpers\ORDER_HELPER::STATUS_KITCHEN_ASSIGNED:
@@ -265,7 +265,7 @@ $gridColumns = [
     'panel' => false,
     'resizableColumns' => true,
     'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
-    'pjax' => true,
+    'pjax' => false,
     'pjaxSettings' => [
         'neverTimeout' => true,
         //'beforeGrid' => 'My fancy content before.',
