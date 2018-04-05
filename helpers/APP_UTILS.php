@@ -88,7 +88,7 @@ class APP_UTILS
         ];
 
         if (in_array($orderStatus, $smsStatus)) {
-            //$sms->SendSms($params);
+            $sms->SendSms($params);
             return true;
         }
 

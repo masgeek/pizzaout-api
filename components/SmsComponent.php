@@ -62,7 +62,6 @@ class SmsComponent extends Component
             'from' => $this->from,
         ];
 
-        echo '<pre>';
 
         $newPhone = $this->validatePhoneNumber($userParams['to']);
 
@@ -74,16 +73,18 @@ class SmsComponent extends Component
 
         $queryString = $this->build_http_query($params);
 
-        $ursl = $this->apiUrl . '?sendsms&' . $queryString;
-        //die($ursl);
+        //$ursl = $this->apiUrl . '?sendsms&' . $queryString;
         $client = new Client(['baseUrl' => $this->baseUrl]);
         $response = $client->createRequest()
             //->setFormat(Client::FORMAT_JSON)
             ->setUrl($this->endpoint . '?sendsms')
             ->setData($params)
             ->send();
-
-        var_dump($response);
+        if (!$response->isOk) {
+            //throw new \Exception('Unable to add user.');\
+            return false;
+        }
+        return true;//$response->data['id'];
     }
 
     /**
