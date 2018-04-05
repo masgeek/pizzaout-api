@@ -178,7 +178,7 @@ BODY;
      */
     private static function SendEmailBkp($toemail, $toname, $body, $subject, $attachment = null)
     {
-        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        $mail = new PHPMailer(false);                              // Passing `true` enables exceptions
         try {
             //Server settings
             //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
