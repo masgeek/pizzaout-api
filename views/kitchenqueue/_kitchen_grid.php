@@ -194,6 +194,44 @@ $gridColumns = [
     'PAYMENT_METHOD',
     'ORDER_STATUS',
     'NOTES',
+    [
+        'class' => '\kartik\grid\ActionColumn',
+        'template' => '{print}',
+
+        'buttons' => [
+            'print' => function ($url, $model, $key) {
+                return $url;
+            },
+        ],
+        'urlCreator' => function ($action, $model, $key, $index) {
+            $url = '#';
+            $class = 'btn btn-xs ';
+            if ($action === 'print') {
+                switch ($model->ORDER_STATUS) {
+                    //case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
+                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
+                    case \app\helpers\ORDER_HELPER::STATUS_KITCHEN_ASSIGNED:
+                    case \app\helpers\ORDER_HELPER::STATUS_CHEF_ASSIGNED:
+                    case \app\helpers\ORDER_HELPER::STATUS_UNDER_PREPARATION:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_READY:
+                    case \app\helpers\ORDER_HELPER::STATUS_AWAITING_RIDER:
+                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_ASSIGNED:
+                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_DISPATCHED:
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_DELIVERED:
+                        $action = 'Receipt';
+                        $class .= 'btn-primary';
+                        $url = \yii\helpers\Url::toRoute(['orders/print', 'id' => $model->ORDER_ID]);
+                        break;
+                    default:
+                        $class .= 'btn-primary hidden';
+                        break;
+                }
+
+            }
+            return Html::a($action, $url, ['class' => $class, 'target' => '_blank']);
+        }
+    ]
 ];
 ?>
 
