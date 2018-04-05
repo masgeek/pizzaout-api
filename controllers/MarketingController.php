@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 
+use app\components\SmsComponent;
 use Html2Text\Html2Text;
 use Yii;
 use app\components\MailchimpComponent;
@@ -13,10 +14,17 @@ use yii\helpers\Json;
 class MarketingController extends \yii\web\Controller
 {
 
+    /**
+     * @return string|\yii\web\Response
+     * @throws \Exception
+     */
     public function actionIndex()
     {
         /* @var $mc MailchimpComponent */
         $model = new MailList();
+        /* @var $sms SmsComponent */
+        $sms = Yii::$app->sms;
+
         $campaign_id = 0;
         if ($model->load(Yii::$app->request->post())) {
             //let us save in sequence
@@ -35,12 +43,12 @@ class MarketingController extends \yii\web\Controller
             }
             foreach ($customers as $key => $customer) {
                 if ($model->sms) {
-                    $model->isNewRecord = true;
-                    $model->mail_id = null;
-                    $model->receipent = $customer->MOBILE;
-                    $model->body = $model->sms_text;
-                    $model->type = 'SMS';
-                    //$model->save();
+                    $params = [
+                        'to' => $customer->MOBILE,
+                        'text' => $model->sms_text,
+                    ];
+
+                    $sms->SendSms($params);
                 }
             }
             //evaluate if we are to send sms or email or both

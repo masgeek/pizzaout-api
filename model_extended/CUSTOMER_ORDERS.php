@@ -63,6 +63,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
      * @param bool $insert
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
+     * @throws \yii\base\Exception
      */
     public function beforeSave($insert)
     {
@@ -73,6 +74,8 @@ class CUSTOMER_ORDERS extends CustomerOrder
             } else {
                 //trigger email sending on every action
                 APP_UTILS::SendOrderEmailWithReceipt($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
+                APP_UTILS::SendSMS($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
+
             }
             $this->UPDATED_AT = $date;
 

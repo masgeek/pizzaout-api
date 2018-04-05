@@ -8,11 +8,11 @@
 
 namespace app\helpers;
 
-
+use app\components\SmsComponent;
+use Yii;
 use app\model_extended\CART_MODEL;
 use app\model_extended\USERS_MODEL;
 use PHPMailer\PHPMailer\PHPMailer;
-use PhpOffice\PhpSpreadsheet\Shared\Date;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -63,6 +63,39 @@ class APP_UTILS
     }
 
     /**
+     * @param $userModel
+     * @param $orderNumber
+     * @param $orderStatus
+     * @return bool
+     */
+    public static function SendSMS($userModel, $orderNumber, $orderStatus)
+    {
+        /* @var $sms SmsComponent */
+        $sms = Yii::$app->sms;
+
+        $smsStatus = [
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
+            ORDER_HELPER::STATUS_RIDER_ASSIGNED,
+            ORDER_HELPER::STATUS_RIDER_DISPATCHED,
+        ];
+
+        $sms_text = "Your order $orderNumber status is $orderStatus.";
+
+
+        $params = [
+            'to' => $userModel->MOBILE,
+            'text' => $sms_text,
+        ];
+
+        if (in_array($orderStatus, $smsStatus)) {
+            $sms->SendSms($params);
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param $userModel USERS_MODEL
      * @param $orderNumber
      * @param $orderStatus
@@ -78,7 +111,7 @@ class APP_UTILS
             ORDER_HELPER::STATUS_RIDER_ASSIGNED,
             ORDER_HELPER::STATUS_RIDER_DISPATCHED,
         ];
-        $subject = 'Order Confirmed';
+        $subject = 'Pizza Out Order Alert';
 
         $randomString = self::GenerateToken();
 

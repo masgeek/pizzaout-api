@@ -10,35 +10,54 @@ namespace app\components;
 
 
 use yii\base\Component;
+use yii\base\InvalidConfigException;
 use yii\httpclient\Client;
 
 class SmsComponent extends Component
 {
+    /**
+     * @var string $from Alphanumeric sender id, has to be registered
+     */
     public $from;
 
+    /**
+     * @var string $apiKey Key for the URL
+     */
     public $apiKey;
+    /**
+     * @var string $apiToken Token for the URL
+     */
     public $apiToken;
     public $baseUrl;
 
     public $endpoint;
-
+    public $type;
     private $apiUrl;
 
     public function init()
     {
         parent::init();
+        if ($this->baseUrl == null) {
+            throw new InvalidConfigException('Please specify the baseUrl');
+        }
+
+        if ($this->endpoint == null) {
+            $this->endpoint = '/smsAPI';
+        }
+        if ($this->type == null) {
+            $this->type = 'sms';
+        }
+
         $this->apiUrl = $this->baseUrl . $this->endpoint;
     }
 
-
     public function SendSms(array $userParams)
     {
-        $test = "http://yooltech.com/sadar/portal/smsAPI?sendsms&apikey=Your_API_KEY&apitoken=YOUR_API_TOKEN&type=sms&from=SENDERID&to=123456&text=My+first+text";
         $paramsStatic = [
             //'sendsms',
             'apikey' => $this->apiKey,
             'apitoken' => $this->apiToken,
-            'type' => 'sms',
+            'type' => $this->type,
             'from' => $this->from,
         ];
 
@@ -47,8 +66,6 @@ class SmsComponent extends Component
         $params = array_merge($userParams, $paramsStatic);
 
 
-        var_dump($params);
-        die;
         $queryString = $this->build_http_query($params);
 
         $ursl = $this->apiUrl . '?sendsms&' . $queryString;
