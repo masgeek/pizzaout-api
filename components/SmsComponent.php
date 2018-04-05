@@ -85,23 +85,33 @@ class SmsComponent extends Component
         var_dump($response);
     }
 
+    /**
+     * @param $phone_number_raw
+     * @return mixed|string
+     */
     private function validatePhoneNumber($phone_number_raw)
     {
 
+        //+252 yxx xxxx, +252 yy xxx xxx or +252 yyy xxx xxx
         $phone_number_raw = trim($phone_number_raw);
 
-        $phone_number = preg_replace('/^0/', $this->defaultPrefix, $phone_number_raw);
+        $phone_number_raw = str_replace('+', null, $phone_number_raw);
 
-        return strpos($phone_number_raw, $this->defaultPrefix);
 
-        if (strpos($phone_number_raw, $this->defaultPrefix)) {
-            // It starts with 'http'
-            return 6;
-        } elseif (strpos($phone_number_raw, '+' . $this->defaultPrefix) === 0) {
-            $phone_number = str_replace('+', '', $phone_number_raw);
+        if (preg_match('#^' . $this->defaultPrefix . '#', $phone_number_raw)) {
+            return $phone_number_raw;
         }
-        //$phone_number = preg_replace('/^'.$this->numberPrefix.'/', 'woah', $phone_number);
-        return $phone_number;
+
+        //evaluate the phone numbers by length o determine if country prefix is p[laced
+        if (strlen($phone_number_raw) >= 12) {
+            //means it has international code
+            return $phone_number_raw;
+        }
+
+        //else replace teh zero and prefix default international code
+        $phone_number = preg_replace('/^0/', null, $phone_number_raw);
+
+        return "{$this->defaultPrefix}{$phone_number}";
     }
 
     /**

@@ -70,11 +70,12 @@ class SiteController extends Controller
 
         $params = [
             //'to' => '0619000333',
-            'to'=>'+252615336770',
+            'to'=>'0713196504',
             'text' => 'Test of pizaout sms',
         ];
 
         $sms->SendSms($params);
+
         return $sms->apiToken;
 
         Yii::$app->getView()->theme = new Theme([
