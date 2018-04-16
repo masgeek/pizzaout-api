@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cacf71853916f4f09ba6b36c61107341",
+    "content-hash": "3fb702053af462560a5b4e3559009986",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -677,6 +677,49 @@
             "time": "2015-02-20T19:54:25+00:00"
         },
         {
+            "name": "chrisb34/yii2-report-grid",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chrisb34/yii2-reportgrid.git",
+                "reference": "59812a2b5b699483fe92392cfe5a6059a7fc4aa7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chrisb34/yii2-reportgrid/zipball/59812a2b5b699483fe92392cfe5a6059a7fc4aa7",
+                "reference": "59812a2b5b699483fe92392cfe5a6059a7fc4aa7",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "chrisb34\\ReportGrid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Backhouse",
+                    "email": "support@chris-backhouse.com"
+                }
+            ],
+            "description": "Yii-Framework gridview widget for totalling reports",
+            "keywords": [
+                "extension",
+                "gridview",
+                "report",
+                "totals",
+                "yii2"
+            ],
+            "time": "2017-09-18T16:04:22+00:00"
+        },
+        {
             "name": "ckeditor/ckeditor",
             "version": "dev-full/4.7.x",
             "source": {
@@ -759,51 +802,6 @@
             "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
             "time": "2018-02-23T09:45:38+00:00"
-        },
-        {
-            "name": "drsdre/yii2-wizardwidget",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/drsdre/yii2-wizardwidget.git",
-                "reference": "51ef01d315875830af2565121fe1f3b1bf32850c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drsdre/yii2-wizardwidget/zipball/51ef01d315875830af2565121fe1f3b1bf32850c",
-                "reference": "51ef01d315875830af2565121fe1f3b1bf32850c",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": ">=2.0.6",
-                "yiisoft/yii2-bootstrap": "~2.0.0"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "drsdre\\wizardwidget\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "A.F.Schuurman",
-                    "email": "andre.schuurman+yii2-wizardwidget@gmail.com"
-                }
-            ],
-            "description": "Multi step wizard widget using tabs to guide a user through steps to complete a task. Based on the Form wizard (using tabs) from lukepzak (see http://bootsnipp.com/snippets/featured/form-wizard-using-tabs).",
-            "keywords": [
-                "extension",
-                "tabs",
-                "ui",
-                "widget",
-                "wizard",
-                "yii2"
-            ],
-            "time": "2016-12-28T13:00:02+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -4744,6 +4742,51 @@
             "time": "2015-06-14T21:17:01+00:00"
         },
         {
+            "name": "drsdre/yii2-wizardwidget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drsdre/yii2-wizardwidget.git",
+                "reference": "51ef01d315875830af2565121fe1f3b1bf32850c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drsdre/yii2-wizardwidget/zipball/51ef01d315875830af2565121fe1f3b1bf32850c",
+                "reference": "51ef01d315875830af2565121fe1f3b1bf32850c",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">=2.0.6",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "drsdre\\wizardwidget\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "A.F.Schuurman",
+                    "email": "andre.schuurman+yii2-wizardwidget@gmail.com"
+                }
+            ],
+            "description": "Multi step wizard widget using tabs to guide a user through steps to complete a task. Based on the Form wizard (using tabs) from lukepzak (see http://bootsnipp.com/snippets/featured/form-wizard-using-tabs).",
+            "keywords": [
+                "extension",
+                "tabs",
+                "ui",
+                "widget",
+                "wizard",
+                "yii2"
+            ],
+            "time": "2016-12-28T13:00:02+00:00"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "dev-master",
             "source": {
@@ -6718,8 +6761,8 @@
         "drewm/mailchimp-api": 20,
         "neitanod/forceutf8": 20,
         "kartik-v/yii2-widget-alert": 20,
-        "drsdre/yii2-wizardwidget": 20,
-        "chd7well/yii2-wizard": 20
+        "chd7well/yii2-wizard": 20,
+        "chrisb34/yii2-report-grid": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

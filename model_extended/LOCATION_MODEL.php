@@ -14,10 +14,20 @@ use yii\helpers\ArrayHelper;
 
 class LOCATION_MODEL extends Location
 {
-    public static function GetLocation()
+    public static function GetActiveLocation()
     {
         $location = self::find()
             ->where(['ACTIVE' => true])
+            ->all();
+
+        $listData = ArrayHelper::map($location, 'LOCATION_ID', 'LOCATION_NAME');
+
+        return $listData;
+    }
+
+    public static function GetAllLocations()
+    {
+        $location = self::find()
             ->all();
 
         $listData = ArrayHelper::map($location, 'LOCATION_ID', 'LOCATION_NAME');

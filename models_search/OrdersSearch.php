@@ -249,9 +249,10 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             $this->START_DATE = trim($date[0]);
             $this->END_DATE = trim($date[1]);
         } else {
-            $this->START_DATE = $this->FirstDayOfMonth(); //date('Y-m-d');
-            $this->END_DATE = $this->LastDayOfMonth(); //date('Y-m-d');
+            $this->START_DATE = $this->FirstDayOfMonth();
+            $this->END_DATE = $this->LastDayOfMonth();
         }
+
 
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
             ->andFilterWhere(['like', 'ORDER_ID', $this->ORDER_ID])

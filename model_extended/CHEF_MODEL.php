@@ -25,6 +25,14 @@ class CHEF_MODEL extends Chef
         return $asModel ? $chefs : $listData;
     }
 
+    public static function GetAllChefs()
+    {
+        $kitchen = self::find()
+            ->all();
+        $listData = ArrayHelper::map($kitchen, 'CHEF_ID', 'CHEF_NAME');
+
+        return $listData;
+    }
     /**
      * @return int|string
      */

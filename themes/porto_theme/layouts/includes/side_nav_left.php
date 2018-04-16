@@ -62,6 +62,19 @@ use yii\helpers\Html;
                     </li>
                     <li class="nav-parent">
                         <a>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <span>Reports</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li><?= Html::a('General Reports', ['//reports/report/general-reports'], []); ?></li>
+                            <li><?= Html::a('Sales Reports', ['//reports/report/sales-reports'], []); ?></li>
+                            <li><?= Html::a('Chef Reports', ['//reports/report/chef-reports'], []); ?></li>
+                            <li><?= Html::a('Rider Reports', ['//reports/report/rider-reports'], []); ?></li>
+                            <li><?= Html::a('District Reports', ['//reports/report/district-reports'], []); ?></li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent">
+                        <a>
                             <i class="fa fa-wrench" aria-hidden="true"></i>
                             <span>Setup</span>
                         </a>
