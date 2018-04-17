@@ -121,12 +121,10 @@ TEMPLATE;
     <?php // echo $form->field($model, 'CHEF_NAME') ?>
 
     <div class="form-group">
-        <div class="col-md-6">
-            <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-block']) ?>
-        </div>
-        <div class="col-md-6">
-            <?= Html::resetButton('Reset', ['class' => 'btn btn-default btn-block']) ?>
-        </div>
+
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default btn-block hidden']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

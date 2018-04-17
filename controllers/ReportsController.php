@@ -26,7 +26,7 @@ class ReportsController extends Controller
 	    $title = 'Registered User Report';
 	    
         $searchModel = new ReportSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
 
         $content =  $this->renderPartial('all-reservations', [
             'searchModel' => $searchModel,

@@ -14,7 +14,7 @@ class ReportController extends \yii\web\Controller
         $this->view->title = 'Sales & General Reports';
 
         $searchModel = new ReportSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
 
         return $this->render('general-reports', [
             'searchModel' => $searchModel,
@@ -23,20 +23,47 @@ class ReportController extends \yii\web\Controller
         ]);
     }
 
-    public function actionChefReports()
+    public function actionChefReports($chef_id = null)
     {
-        return $this->render('chef-reports');
+        $this->view->title = 'Chef Reports';
+
+        $searchModel = new ReportSearch();
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
+
+        return $this->render('general-reports', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'context' => ReportModel::CONTEXT_CHEF,
+        ]);
     }
 
-    public function actionDistrictReports()
+    public function actionDistrictReports($location_id = null)
     {
-        return $this->render('district-reports');
+        $this->view->title = 'Location/District Reports';
+
+        $searchModel = new ReportSearch();
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
+
+        return $this->render('general-reports', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'context' => ReportModel::CONTEXT_LOCATION,
+        ]);
     }
 
 
-    public function actionRiderReports()
+    public function actionRiderReports($rider_id=null)
     {
-        return $this->render('rider-reports');
+        $this->view->title = 'Rider Reports';
+
+        $searchModel = new ReportSearch();
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
+
+        return $this->render('general-reports', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'context' => ReportModel::CONTEXT_RIDER,
+        ]);
     }
 
     public function actionSalesReports()

@@ -39,7 +39,7 @@ class ReportSearch extends ReportModel
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function GeneralSearch($params)
     {
         $query = ReportModel::find();
 
@@ -82,9 +82,6 @@ class ReportSearch extends ReportModel
             'KITCHEN_ID' => $this->KITCHEN_ID,
             'CHEF_ID' => $this->CHEF_ID,
             'RIDER_ID' => $this->RIDER_ID,
-            //'ORDER_DATE' => $this->ORDER_DATE,
-            //'CREATED_AT' => $this->CREATED_AT,
-            //'UPDATED_AT' => $this->UPDATED_AT,
             'USER_ID' => $this->USER_ID,
             'USER_TYPE' => $this->USER_TYPE,
             'COUNTRY_ID' => $this->COUNTRY_ID,

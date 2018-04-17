@@ -66,8 +66,8 @@ use yii\helpers\Html;
                             <span>Reports</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li><?= Html::a('General Reports', ['//reports/report/general-reports'], []); ?></li>
-                            <li><?= Html::a('Sales Reports', ['//reports/report/sales-reports'], []); ?></li>
+                            <li><?= Html::a('General & Sales Reports', ['//reports/report/general-reports'], []); ?></li>
+                            <li><?= Html::a('Sales Reports', ['//reports/report/sales-reports'], ['class'=>'hidden']); ?></li>
                             <li><?= Html::a('Chef Reports', ['//reports/report/chef-reports'], []); ?></li>
                             <li><?= Html::a('Rider Reports', ['//reports/report/rider-reports'], []); ?></li>
                             <li><?= Html::a('District Reports', ['//reports/report/district-reports'], []); ?></li>
