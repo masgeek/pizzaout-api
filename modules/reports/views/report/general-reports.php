@@ -79,6 +79,9 @@ $gridColumns = [
     //'RIDER_ID',
     [
         'attribute' => 'ORDER_ID',
+        'vAlign'=>'middle',
+        'headerOptions'=>['class'=>'text-center'],
+        'contentOptions'=>['class'=>'text-center'],
     ],
     [
         'class' => 'kartik\grid\DataColumn',
