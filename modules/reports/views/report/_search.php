@@ -18,6 +18,8 @@ $field_template = <<<TEMPLATE
 </div>
     {error}{hint}
 TEMPLATE;
+
+phpinfo();
 ?>
 
 <div class="report-model-search">
