@@ -79,6 +79,7 @@ $gridColumns = [
     //'RIDER_ID',
     [
         'attribute' => 'ORDER_ID',
+        'header' => 'OrderNO',
         'vAlign'=>'middle',
         'headerOptions'=>['class'=>'text-center'],
         'contentOptions'=>['class'=>'text-center'],
@@ -186,6 +187,7 @@ $gridColumns = [
     [
         'class' => 'kartik\grid\DataColumn',
         'attribute' => 'ORDER_STATUS',
+        'header' => 'Status',
         //'headerOptions'=>['class'=>'noprint'],
         //'contentOptions'=>['class'=>'noprint'],
         'hiddenFromExport' => true,
