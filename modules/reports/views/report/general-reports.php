@@ -11,6 +11,59 @@ use kartik\export\ExportMenu;
 
 $this->params['breadcrumbs'][] = $this->title;
 
+
+$isFa = true;
+
+$exportConfig = [
+    ExportMenu::FORMAT_HTML => false,
+    ExportMenu::FORMAT_CSV => [
+        'label' => Yii::t('app', 'CSV'),
+        'icon' => $isFa ? 'file-code-o' : 'floppy-open',
+        'iconOptions' => ['class' => 'text-primary'],
+        'linkOptions' => [],
+        'options' => ['title' => Yii::t('app', 'Comma Separated Values')],
+        'alertMsg' => Yii::t('app', 'The CSV export file will be generated for download.'),
+        'mime' => 'application/csv',
+        'extension' => 'csv',
+        //'writer' => 'CSV'
+    ],
+    ExportMenu::FORMAT_TEXT => false,
+    ExportMenu::FORMAT_PDF => [
+        'label' => Yii::t('kvexport', 'PDF'),
+        'icon' => $isFa ? 'file-pdf-o' : 'floppy-disk',
+        'iconOptions' => ['class' => 'text-danger'],
+        'linkOptions' => [],
+        'options' => ['title' => Yii::t('kvexport', 'Portable Document Format')],
+        'alertMsg' => Yii::t('kvexport', 'The PDF export file will be generated for download.'),
+        'mime' => 'application/pdf',
+        'extension' => 'pdf',
+        'writer' => ExportMenu::FORMAT_PDF
+    ],
+    ExportMenu::FORMAT_EXCEL => [
+        'label' => Yii::t('app', 'Excel 95 +'),
+        'icon' => $isFa ? 'file-excel-o' : 'floppy-remove',
+        'iconOptions' => ['class' => 'text-success'],
+        'linkOptions' => [],
+        'options' => ['title' => Yii::t('app', 'Microsoft Excel 95+ (xls)')],
+        'alertMsg' => Yii::t('app', 'The EXCEL 95+ (xls) export file will be generated for download.'),
+        'mime' => 'application/vnd.ms-excel',
+        'extension' => 'xls',
+        //'writer' => 'Excel5'
+    ],
+    ExportMenu::FORMAT_EXCEL_X => [
+        'label' => Yii::t('app', 'Excel 2007+'),
+        'icon' => $isFa ? 'file-excel-o' : 'floppy-remove',
+        'iconOptions' => ['class' => 'text-success'],
+        'linkOptions' => [],
+        'options' => ['title' => Yii::t('app', 'Microsoft Excel 2007+ (xlsx)')],
+        'alertMsg' => Yii::t('app', 'The EXCEL 2007+ (xlsx) export file will be generated for download.'),
+        'mime' => 'application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'extension' => 'xlsx',
+        //'writer' => 'Excel2007'
+    ],
+];
+
+
 $gridColumns = [
     /*[
         'class' => 'kartik\grid\SerialColumn',
@@ -156,25 +209,54 @@ $gridColumns = [
         <!--// Renders a export dropdown menu -->
         <div class="">
             <?= ExportMenu::widget([
-                'enableFormatter' => true,
-                //'stripHtml'=>true,
                 'dataProvider' => $dataProvider,
-                'columns' => $gridColumns
-            ]) ?>
+                //'stripHtml'=>true,
+                'columns' => $gridColumns,
+                'columnSelectorOptions' => [
+                    'label' => 'Columns',
+                    'class' => 'btn btn-danger'
+                ],
+                'filename' => strtolower($this->title),
+                'fontAwesome' => $isFa,
+                'dropdownOptions' => [
+                    'label' => 'Export All',
+                    'class' => 'btn btn-primary'
+                ],
+                'exportConfig' => $exportConfig,
+            ]); ?>
         </div>
     </div>
 
     <div class="row">
-
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             //'filterModel' => $searchModel,
-            'condensed' => true,
-            //'itemLabelSingle' => 'smmy',
-            //'itemLabelPlural' => 'we',
-            'bordered' => true,
             'columns' => $gridColumns,
-            'export' => false,
+            'beforeHeader' => [
+                [
+                    'columns' => [
+                        ['content' => $this->title, 'options' => ['colspan' => 4, 'class' => 'text-center success']],
+                    ],
+                    'options' => ['class' => 'skip-export'] // remove this row from export
+                ]
+            ],
+            'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Orders",
+            'bordered' => true,
+            'striped' => true,
+            'condensed' => true,
+            'responsive' => true,
+            'hover' => true,
+            'floatHeader' => false,
+            'showPageSummary' => false,
+            'panel' => false,
+            'resizableColumns' => true,
+            'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
+            'pjax' => false,
+            'pjaxSettings' => [
+                'neverTimeout' => true,
+                //'beforeGrid' => 'My fancy content before.',
+                //'afterGrid' => 'My fancy content after.',
+            ]
         ]); ?>
     </div>
 </div>
