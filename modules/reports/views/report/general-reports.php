@@ -186,6 +186,8 @@ $gridColumns = [
     [
         'class' => 'kartik\grid\DataColumn',
         'attribute' => 'ORDER_STATUS',
+        'headerOptions'=>['class'=>'noprint'],
+        'contentOptions'=>['class'=>'noprint'],
         'hiddenFromExport' => true,
     ],
     //'ORDER_TIME',
@@ -195,7 +197,7 @@ $gridColumns = [
     [
         'class' => 'kartik\grid\DataColumn',
         'attribute' => 'ORDER_TOTAL',
-        'header' => 'Order Total',
+        'header' => 'Total',
         'format' => 'currency',
         'value' => function ($model) {
             /* @var $model \app\model_extended\ReportModel */
