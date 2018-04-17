@@ -288,7 +288,7 @@ $gridColumns = [
         </div>
 
         <hr/>
-        <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
+        <h2 class="text-center"><?= Html::encode($this->title) ?></h2>
 
         <div class="row">
             <?= GridView::widget([
