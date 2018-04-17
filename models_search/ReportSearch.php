@@ -77,7 +77,6 @@ class ReportSearch extends ReportModel
             $this->START_DATE = $startDate;
             $this->END_DATE = $endDate;
 
-
         } else {
             $this->START_DATE = $this->FirstDayOfMonth(); //date('Y-m-d');
             $this->END_DATE = $this->LastDayOfMonth(); //date('Y-m-d');
