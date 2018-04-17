@@ -30,7 +30,7 @@ TEMPLATE;
     <?= $form->field($model, 'ORDER_DATE', [
         'addon' => ['append' => ['content' => '<i class="glyphicon glyphicon-calendar"></i>']],
         'options' => ['class' => 'drp-container form-group']
-    ])->widget(\kartik\daterange\DateRangePicker::class, [
+    ])->widget(\kartik\daterange\DateRangePicker::className(), [
         'useWithAddon' => true,
         'convertFormat' => true,
         'startAttribute' => 'START_DATE',
