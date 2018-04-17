@@ -186,8 +186,8 @@ $gridColumns = [
     [
         'class' => 'kartik\grid\DataColumn',
         'attribute' => 'ORDER_STATUS',
-        'headerOptions'=>['class'=>'noprint'],
-        'contentOptions'=>['class'=>'noprint'],
+        //'headerOptions'=>['class'=>'noprint'],
+        //'contentOptions'=>['class'=>'noprint'],
         'hiddenFromExport' => true,
     ],
     //'ORDER_TIME',
