@@ -112,7 +112,7 @@ $gridColumns = [
         },
         //'hiddenFromExport' => true,
     ],
-    'ORDER_DATE:date',
+    'ORDER_DATE:datetime',
     'PAYMENT_METHOD',
     'ORDER_STATUS',
     //'ORDER_TIME',
