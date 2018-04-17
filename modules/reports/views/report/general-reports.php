@@ -29,15 +29,15 @@ $exportConfig = [
     ],
     ExportMenu::FORMAT_TEXT => false,
     ExportMenu::FORMAT_PDF => [
-        'label' => Yii::t('kvexport', 'PDF'),
+        'label' => Yii::t('app', 'PDF'),
         'icon' => $isFa ? 'file-pdf-o' : 'floppy-disk',
         'iconOptions' => ['class' => 'text-danger'],
         'linkOptions' => [],
-        'options' => ['title' => Yii::t('kvexport', 'Portable Document Format')],
-        'alertMsg' => Yii::t('kvexport', 'The PDF export file will be generated for download.'),
+        'options' => ['title' => Yii::t('app', 'Portable Document Format')],
+        'alertMsg' => Yii::t('app', 'The PDF export file will be generated for download.'),
         'mime' => 'application/pdf',
         'extension' => 'pdf',
-        'writer' => ExportMenu::FORMAT_PDF
+        //'writer' => ExportMenu::FORMAT_PDF
     ],
     ExportMenu::FORMAT_EXCEL => [
         'label' => Yii::t('app', 'Excel 95 +'),
@@ -166,7 +166,15 @@ $gridColumns = [
         //'hiddenFromExport' => true,
     ],
     //'ORDER_DATE:datetime',
-    'ORDER_DATE',
+    //'ORDER_DATE',
+    [
+        'attribute' => 'ORDER_DATE',
+        //'visible'=>false,
+        'value' => function ($model) {
+            /* @var $model \app\model_extended\ReportModel */
+            return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+        }
+    ],
     'PAYMENT_METHOD',
     'ORDER_STATUS',
     //'ORDER_TIME',
