@@ -191,7 +191,7 @@ $gridColumns = [
     //'UPDATED_AT',
     [
         'class' => 'kartik\grid\DataColumn',
-        'attribute' => 'ORDER_ID',
+        'attribute' => 'ORDER_TOTAL',
         'header' => 'Order Total',
         'format' => 'currency',
         'value' => function ($model) {
@@ -200,7 +200,28 @@ $gridColumns = [
             return \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
         },
         //'hiddenFromExport' => true,
+        //'mergeHeader' => true,
+        'pageSummary' => true,
+        'pageSummaryFunc' => GridView::F_SUM,
+        'footer' => false,
     ],
+    /*[
+        'class' => 'kartik\grid\FormulaColumn',
+        'header' => 'Buy %<br>(100 * B/BS)',
+        'vAlign' => 'middle',
+        'hAlign' => 'right',
+        'width' => '7%',
+        'value' => function ($model, $key, $index, $widget) {
+            $p = compact('model', 'key', 'index');
+            return $widget->col(9, $p) != 0 ? $widget->col(7, $p) * 100 / $widget->col(9, $p) : 0;
+        },
+        'format' => ['decimal', 2],
+        'headerOptions' => ['class' => 'kartik-sheet-style'],
+        'mergeHeader' => true,
+        'pageSummary' => true,
+        'pageSummaryFunc' => GridView::F_AVG,
+        'footer' => true
+    ],*/
 
     //'USER_ID',
     //'USER_NAME',
@@ -262,16 +283,15 @@ $gridColumns = [
             'condensed' => true,
             'responsive' => true,
             'hover' => true,
+            'showFooter' => true,
             'floatHeader' => false,
-            'showPageSummary' => false,
+            'showPageSummary' => true,
             'panel' => false,
             'resizableColumns' => true,
             'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
             'pjax' => false,
             'pjaxSettings' => [
                 'neverTimeout' => true,
-                //'beforeGrid' => 'My fancy content before.',
-                //'afterGrid' => 'My fancy content after.',
             ]
         ]); ?>
     </div>

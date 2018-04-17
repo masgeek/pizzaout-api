@@ -34,6 +34,7 @@ class ReportModel extends VwSalesReports
 {
     public $START_DATE;
     public $END_DATE;
+    public $ORDER_TOTAL;
 
     const CONTEXT_GENERAL = 'general-search';
     const CONTEXT_SALES = 'sales-search';

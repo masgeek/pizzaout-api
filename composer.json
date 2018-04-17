@@ -53,7 +53,8 @@
     "neitanod/forceutf8": "dev-master",
     "kartik-v/yii2-widget-alert": "^1.1@dev",
     "chd7well/yii2-wizard": "dev-master",
-    "chrisb34/yii2-report-grid": "dev-master"
+    "chrisb34/yii2-report-grid": "dev-master",
+    "reportico/yii2-reportico": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

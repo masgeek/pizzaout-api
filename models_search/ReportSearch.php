@@ -55,9 +55,11 @@ class ReportSearch extends ReportModel
         $query->andWhere(['NOT IN', 'ORDER_STATUS', $order_status]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => false,
             'sort' => false
         ]);
 
+        $query->orderBy(['ORDER_DATE'=>SORT_DESC]);
         $this->load($params);
 
         if (!$this->validate()) {
