@@ -179,7 +179,7 @@ $gridColumns = [
         //'visible'=>false,
         'value' => function ($model) {
             /* @var $model \app\model_extended\ReportModel */
-            return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+            return \app\helpers\APP_UTILS::FormatDate($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
         }
     ],
     'PAYMENT_METHOD',
