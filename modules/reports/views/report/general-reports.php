@@ -319,7 +319,9 @@ $gridColumns = [
                 'showFooter' => true,
                 'floatHeader' => false,
                 'showPageSummary' => true,
-                'panel' => false,
+                'panel' => [
+                        'success'
+                ],
                 'resizableColumns' => true,
                 'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
                 'pjax' => false,
