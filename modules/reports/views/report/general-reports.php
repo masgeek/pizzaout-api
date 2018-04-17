@@ -258,13 +258,13 @@ $gridColumns = [
                     'columns' => $gridColumns,
                     'columnSelectorOptions' => [
                         'label' => 'Columns',
-                        'class' => 'btn btn-danger'
+                        'class' => 'btn btn-danger hidden'
                     ],
                     'filename' => strtolower($this->title),
                     'fontAwesome' => $isFa,
                     'dropdownOptions' => [
                         'label' => 'Export All',
-                        'class' => 'btn btn-primary'
+                        'class' => 'btn btn-primary hidden'
                     ],
                     'exportConfig' => $exportConfig,
                 ]); ?>
