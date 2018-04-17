@@ -2,6 +2,7 @@
 
 namespace app\models_search;
 
+use app\helpers\ORDER_HELPER;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -39,13 +40,19 @@ class ReportSearch extends ReportModel
      *
      * @return ActiveDataProvider
      */
-    public function GeneralSearch($params)
+    public function GeneralSearch($params, $order_status = [])
     {
+        $order_status = [
+            ORDER_HELPER::STATUS_ORDER_CANCELLED,
+            ORDER_HELPER::STATUS_ORDER_PENDING,
+            ORDER_HELPER::STATUS_PAYMENT_PENDING,
+        ];
         $query = ReportModel::find();
 
         // add conditions that should always apply here
 
-
+        //$query->andWhere(['ORDER_STATUS','' => $order_status]);
+        $query->andWhere(['NOT IN', 'ORDER_STATUS', $order_status]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => false
@@ -75,7 +82,7 @@ class ReportSearch extends ReportModel
         }
 
 
-        // grid filtering conditions
+// grid filtering conditions
         $query->andFilterWhere([
             'ORDER_ID' => $this->ORDER_ID,
             'LOCATION_ID' => $this->LOCATION_ID,
@@ -101,12 +108,14 @@ class ReportSearch extends ReportModel
         return $dataProvider;
     }
 
-    private function FirstDayOfMonth($format = 'Y-m-d 00:00:00')
+    private
+    function FirstDayOfMonth($format = 'Y-m-d 00:00:00')
     {
         return date($format, strtotime('first day of this month'));
     }
 
-    private function LastDayOfMonth($format = 'Y-m-d 23:59:59')
+    private
+    function LastDayOfMonth($format = 'Y-m-d 23:59:59')
     {
         return date($format, strtotime('last day of this month'));
     }

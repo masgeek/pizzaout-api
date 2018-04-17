@@ -37,6 +37,9 @@ $exportConfig = [
         'alertMsg' => Yii::t('app', 'The PDF export file will be generated for download.'),
         'mime' => 'application/pdf',
         'extension' => 'pdf',
+        'pdfConfig' => [
+            'orientation' => 'L',
+        ],
         //'writer' => ExportMenu::FORMAT_PDF
     ],
     ExportMenu::FORMAT_EXCEL => [
@@ -176,7 +179,12 @@ $gridColumns = [
         }
     ],
     'PAYMENT_METHOD',
-    'ORDER_STATUS',
+    //'ORDER_STATUS',
+    [
+        'class' => 'kartik\grid\DataColumn',
+        'attribute' => 'ORDER_STATUS',
+        'hiddenFromExport' => true,
+    ],
     //'ORDER_TIME',
     //'NOTES',
     //'CREATED_AT',
