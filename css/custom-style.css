@@ -68,3 +68,11 @@ table .id, table .id .sort {
 .input-group-addon.beautiful input[type="radio"] {
     display: none;
 }
+
+@media print {
+    .noprint {display:none !important;}
+    a:link:after, a:visited:after {
+        display: none;
+        content: "";
+    }
+}

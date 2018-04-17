@@ -2,6 +2,7 @@
 
 namespace app\modules\reports\controllers;
 
+use app\helpers\APP_UTILS;
 use app\model_extended\ReportModel;
 use Yii;
 use app\models_search\ReportSearch;
@@ -15,6 +16,26 @@ class ReportController extends \yii\web\Controller
 
         $searchModel = new ReportSearch();
         $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
+
+        if (Yii::$app->request->isGet) {
+            //set the title
+            $search = Yii::$app->request->get('ReportSearch');
+
+            $orderDate = $search['ORDER_DATE'];
+
+            $date = explode("TO", $orderDate);
+
+            $start = isset($date[0]) ? $date[0] : null;
+            $end = isset($date[1]) ? $date[1] : null;
+
+            $start = APP_UTILS::FormatDate(trim($start));
+            $end = APP_UTILS::FormatDate(trim($end));
+
+
+            if (strlen($start) > 2 && strlen($end) > 2) {
+                $this->view->title = "Sales & General Reports between {$start} and {$end}";
+            }
+        }
 
         return $this->render('general-reports', [
             'searchModel' => $searchModel,
@@ -52,7 +73,7 @@ class ReportController extends \yii\web\Controller
     }
 
 
-    public function actionRiderReports($rider_id=null)
+    public function actionRiderReports($rider_id = null)
     {
         $this->view->title = 'Rider Reports';
 

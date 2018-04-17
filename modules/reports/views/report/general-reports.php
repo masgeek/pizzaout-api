@@ -237,62 +237,89 @@ $gridColumns = [
 ?>
 <div class="report-model-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <div class="row">
-        <?php echo $this->render('_search', ['model' => $searchModel, 'context' => $context]); ?>
-    </div>
+    <div id="PrintThis">
+        <div class="row noprint">
+            <?php echo $this->render('_search', ['model' => $searchModel, 'context' => $context]); ?>
+        </div>
 
-    <div class="row" style="margin-top: 10px;">
-        <!--// Renders a export dropdown menu -->
-        <div class="">
-            <?= ExportMenu::widget([
+        <div class="row noprint" style="margin-top: 10px;">
+            <!--// Renders a export drop down menu -->
+            <div class="col-md-6">
+                <?= ExportMenu::widget([
+                    'dataProvider' => $dataProvider,
+                    //'stripHtml'=>true,
+                    'columns' => $gridColumns,
+                    'columnSelectorOptions' => [
+                        'label' => 'Columns',
+                        'class' => 'btn btn-danger'
+                    ],
+                    'filename' => strtolower($this->title),
+                    'fontAwesome' => $isFa,
+                    'dropdownOptions' => [
+                        'label' => 'Export All',
+                        'class' => 'btn btn-primary'
+                    ],
+                    'exportConfig' => $exportConfig,
+                ]); ?>
+            </div>
+            <div class="col-md-6">
+                <?= \yii2assets\printthis\PrintThis::widget([
+                    'htmlOptions' => [
+                        'id' => 'PrintThis',
+                        'btnClass' => 'btn btn-info pull-right',
+                        'btnId' => 'btnPrintThis',
+                        'btnText' => 'Print',
+                        'btnIcon' => 'fa fa-print'
+                    ],
+                    'options' => [
+                        'debug' => false,
+                        'importCSS' => true,
+                        'importStyle' => false,
+                        //'loadCSS' => "path/to/my.css",
+                        'pageTitle' => "",
+                        'removeInline' => false,
+                        'printDelay' => 333,
+                        'header' => null,
+                        'formValues' => true,
+                    ]
+                ]);
+                ?>
+            </div>
+        </div>
+
+        <hr/>
+        <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
+
+        <div class="row">
+            <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                //'stripHtml'=>true,
+                //'filterModel' => $searchModel,
                 'columns' => $gridColumns,
-                'columnSelectorOptions' => [
-                    'label' => 'Columns',
-                    'class' => 'btn btn-danger'
+                'beforeHeader' => [
+                    [
+                        'columns' => [
+                            ['content' => $this->title, 'options' => ['colspan' => 4, 'class' => 'text-center success noprint']],
+                        ],
+                        'options' => ['class' => 'skip-export noprint'] // remove this row from export
+                    ]
                 ],
-                'filename' => strtolower($this->title),
-                'fontAwesome' => $isFa,
-                'dropdownOptions' => [
-                    'label' => 'Export All',
-                    'class' => 'btn btn-primary'
-                ],
-                'exportConfig' => $exportConfig,
+                'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Orders",
+                'bordered' => true,
+                'striped' => true,
+                'condensed' => true,
+                'responsive' => true,
+                'hover' => true,
+                'showFooter' => true,
+                'floatHeader' => false,
+                'showPageSummary' => true,
+                'panel' => false,
+                'resizableColumns' => true,
+                'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
+                'pjax' => false,
+                'pjaxSettings' => [
+                    'neverTimeout' => true,
+                ]
             ]); ?>
         </div>
-    </div>
-
-    <div class="row">
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            //'filterModel' => $searchModel,
-            'columns' => $gridColumns,
-            'beforeHeader' => [
-                [
-                    'columns' => [
-                        ['content' => $this->title, 'options' => ['colspan' => 4, 'class' => 'text-center success']],
-                    ],
-                    'options' => ['class' => 'skip-export'] // remove this row from export
-                ]
-            ],
-            'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Orders",
-            'bordered' => true,
-            'striped' => true,
-            'condensed' => true,
-            'responsive' => true,
-            'hover' => true,
-            'showFooter' => true,
-            'floatHeader' => false,
-            'showPageSummary' => true,
-            'panel' => false,
-            'resizableColumns' => true,
-            'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
-            'pjax' => false,
-            'pjaxSettings' => [
-                'neverTimeout' => true,
-            ]
-        ]); ?>
     </div>
 </div>

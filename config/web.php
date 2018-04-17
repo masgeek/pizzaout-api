@@ -5,9 +5,10 @@
 \Yii::setAlias('@appimages', 'images/app_images/');
 \Yii::setAlias('@logsfolder', 'logs');
 
+
 $params = require_once(__DIR__ . '/params.php');
 $fcm = require_once(__DIR__ . '/fcm.php');
-$braintree = require_once(__DIR__ . '/braintree.php');
+$brain_tree = require_once(__DIR__ . '/braintree.php');
 $aliases = require_once(__DIR__ . '/aliases.php');
 $merchant = require_once(__DIR__ . '/card_merchant.php');
 $formatter = require_once(__DIR__ . '/formatter.php');
@@ -23,7 +24,9 @@ $config = [
     'name' => Yii::t('app', 'Pizza Out'),
     'basePath' => dirname(__DIR__),
     'timeZone' => $timezone,
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log'
+    ],
     'aliases' => $aliases,
     'modules' => [
         'gridview' => [
@@ -37,7 +40,7 @@ $config = [
         ],
     ],
     'components' => [
-        /*SMS Components*/
+        /* SMS Components */
         'sms' => [
             'class' => 'app\components\SmsComponent',
             'from' => 'Pizza Out',
@@ -48,7 +51,7 @@ $config = [
             'endpoint' => '/smsAPI'
         ],
 
-        /* custom view template*/
+        /* custom view template */
         'view' => [
             'theme' => [
                 'pathMap' => [
