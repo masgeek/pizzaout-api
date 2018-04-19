@@ -50,7 +50,7 @@ class PizzaReportSearch extends PizzaReportModel
         $query->andWhere(['NOT IN', 'ORDER_STATUS', $order_status]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            //'pagination' => false,
+            'pagination' => false,
             'sort' => false
         ]);
 

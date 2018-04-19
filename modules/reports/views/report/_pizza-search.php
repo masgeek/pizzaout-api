@@ -63,7 +63,7 @@ TEMPLATE;
         </div>
 
         <div class="col-md-4">
-            <?= $form->field($model, 'MENU_ITEM_NAME')->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems(true),
+            <?= $form->field($model, 'MENU_ITEM_NAME')->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems(null, true),
                 [
                     'prompt' => '--- ALL MENU ITEMS ---',
                     'class' => 'form-control',
