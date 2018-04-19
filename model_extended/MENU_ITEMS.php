@@ -17,14 +17,14 @@ class MENU_ITEMS extends MenuItem
 {
     public $IMAGE_FILE;
 
-    public static function GetMenuItems($menu_cat_id = null)
+    public static function GetMenuItems($menu_cat_id = null, $textSearch = false)
     {
 
         $chefs = self::find()
             //->where(['MENU_CAT_ID' => $menu_cat_id])
             ->all();
 
-        $listData = ArrayHelper::map($chefs, 'MENU_ITEM_ID', 'MENU_ITEM_NAME');
+        $listData = $textSearch ? ArrayHelper::map($chefs, 'MENU_ITEM_NAME', 'MENU_ITEM_NAME') : ArrayHelper::map($chefs, 'MENU_ITEM_ID', 'MENU_ITEM_NAME');
 
         return $listData;
     }

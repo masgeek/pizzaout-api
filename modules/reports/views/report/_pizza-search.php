@@ -47,25 +47,38 @@ TEMPLATE;
     ])->hint('Orders Date range period'); ?>
 
 
-    <?= $form->field($model, 'CHEF_ID', ['template' => $field_template])->dropDownList(\app\model_extended\CHEF_MODEL::GetAllChefs(), [
+    <!--?= $form->field($model, 'CHEF_ID', ['template' => $field_template])->dropDownList(\app\model_extended\CHEF_MODEL::GetAllChefs(), [
             'prompt' => '--- ALL CHEFS ---',
             'class' => 'form-control',
         ]
-    ) ?>
+    ) ?-->
 
-    <?= $form->field($model, 'MENU_ITEM_NAME')->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems()) ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'MENU_CAT_NAME')->dropDownList(\app\model_extended\MENU_CATEGORY::GetMenuCategories(true),
+                [
+                    'prompt' => '--- ALL CATEGORIES ---',
+                    'class' => 'form-control',
+                ]) ?>
+        </div>
 
-    <?= $form->field($model, 'MENU_CAT_NAME')->dropDownList(\app\model_extended\MENU_CATEGORY::GetMenuCategories()) ?>
+        <div class="col-md-4">
+            <?= $form->field($model, 'MENU_ITEM_NAME')->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems(true),
+                [
+                    'prompt' => '--- ALL MENU ITEMS ---',
+                    'class' => 'form-control',
+                ]) ?>
+        </div>
 
-    <?= $form->field($model, 'ITEM_TYPE_SIZE')->dropDownList(\app\model_extended\MENU_ITEM_TYPE::getMenuItems()) ?>
 
-
-
-    <?php // echo $form->field($model, 'MENU_ITEM_ID') ?>
-
-    <?php // echo $form->field($model, 'MENU_CAT_ID') ?>
-
-    <?php // echo $form->field($model, 'ITEM_TYPE_ID') ?>
+        <div class="col-md-4">
+            <?= $form->field($model, 'ITEM_TYPE_SIZE')->dropDownList(\app\model_extended\MENU_ITEM_TYPE::getMenuItems(),
+                [
+                    'prompt' => '--- ALL SIZES ---',
+                    'class' => 'form-control',
+                ]) ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-block']) ?>

@@ -16,7 +16,7 @@ class MENU_CATEGORY extends MenuCategory
 {
     public $IMAGE_FILE;
 
-    public static function GetMenuCategories()
+    public static function GetMenuCategories($textSearch = false)
     {
 
         $chefs = self::find()
@@ -24,7 +24,8 @@ class MENU_CATEGORY extends MenuCategory
             ->where(['ACTIVE' => 1])
             ->all();
 
-        $listData = ArrayHelper::map($chefs, 'MENU_CAT_ID', 'MENU_CAT_NAME');
+
+        $listData = $textSearch ? ArrayHelper::map($chefs, 'MENU_CAT_NAME', 'MENU_CAT_NAME') : ArrayHelper::map($chefs, 'MENU_CAT_ID', 'MENU_CAT_NAME');
 
         return $listData;
     }

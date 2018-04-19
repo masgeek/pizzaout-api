@@ -21,9 +21,7 @@ class PizzaReportSearch extends PizzaReportModel
     {
         return [
             [['ORDER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'USER_ID', 'USER_TYPE', 'COUNTRY_ID', 'QUANTITY', 'MENU_ITEM_ID', 'MENU_CAT_ID', 'ITEM_TYPE_ID'], 'integer'],
-            [['ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'ORDER_TIME', 'NOTES', 'CREATED_AT', 'UPDATED_AT',
-                'USER_NAME', 'SURNAME', 'OTHER_NAMES', 'LOCATION_NAME', 'CHEF_NAME', 'MENU_ITEM_NAME', 'MENU_ITEM_DESC',
-                'MENU_CAT_NAME', 'ITEM_TYPE_SIZE', 'START_DATE', 'END_DATE'], 'safe'],
+            [['ORDER_DATE', 'MENU_ITEM_NAME', 'MENU_ITEM_DESC','MENU_CAT_NAME', 'ITEM_TYPE_SIZE', 'START_DATE', 'END_DATE'], 'safe'],
             [['PRICE'], 'number'],
         ];
     }
@@ -52,7 +50,7 @@ class PizzaReportSearch extends PizzaReportModel
         $query->andWhere(['NOT IN', 'ORDER_STATUS', $order_status]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => false,
+            //'pagination' => false,
             'sort' => false
         ]);
 
@@ -83,32 +81,32 @@ class PizzaReportSearch extends PizzaReportModel
 // grid filtering conditions
         // grid filtering conditions
         $query->andFilterWhere([
-            'ORDER_ID' => $this->ORDER_ID,
-            'LOCATION_ID' => $this->LOCATION_ID,
-            'KITCHEN_ID' => $this->KITCHEN_ID,
-            'CHEF_ID' => $this->CHEF_ID,
-            'RIDER_ID' => $this->RIDER_ID,
+            //'ORDER_ID' => $this->ORDER_ID,
+            //'LOCATION_ID' => $this->LOCATION_ID,
+            //'KITCHEN_ID' => $this->KITCHEN_ID,
+            //'CHEF_ID' => $this->CHEF_ID,
+            //'RIDER_ID' => $this->RIDER_ID,
             //'ORDER_DATE' => $this->ORDER_DATE,
-            'CREATED_AT' => $this->CREATED_AT,
-            'UPDATED_AT' => $this->UPDATED_AT,
-            'USER_ID' => $this->USER_ID,
-            'USER_TYPE' => $this->USER_TYPE,
-            'COUNTRY_ID' => $this->COUNTRY_ID,
-            'QUANTITY' => $this->QUANTITY,
-            'PRICE' => $this->PRICE,
+            //'CREATED_AT' => $this->CREATED_AT,
+            //'UPDATED_AT' => $this->UPDATED_AT,
+            //'USER_ID' => $this->USER_ID,
+            //'USER_TYPE' => $this->USER_TYPE,
+            //'COUNTRY_ID' => $this->COUNTRY_ID,
+            //'QUANTITY' => $this->QUANTITY,
+            //'PRICE' => $this->PRICE,
         ]);
 
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
-            ->andFilterWhere(['like', 'ORDER_STATUS', $this->ORDER_STATUS])
-            ->andFilterWhere(['like', 'ORDER_TIME', $this->ORDER_TIME])
-            ->andFilterWhere(['like', 'NOTES', $this->NOTES])
-            ->andFilterWhere(['like', 'USER_NAME', $this->USER_NAME])
-            ->andFilterWhere(['like', 'SURNAME', $this->SURNAME])
-            ->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
-            ->andFilterWhere(['like', 'LOCATION_NAME', $this->LOCATION_NAME])
-            ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME])
+            //->andFilterWhere(['like', 'ORDER_STATUS', $this->ORDER_STATUS])
+            //->andFilterWhere(['like', 'ORDER_TIME', $this->ORDER_TIME])
+            //->andFilterWhere(['like', 'NOTES', $this->NOTES])
+            //->andFilterWhere(['like', 'USER_NAME', $this->USER_NAME])
+            //->andFilterWhere(['like', 'SURNAME', $this->SURNAME])
+            //->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
+            //->andFilterWhere(['like', 'LOCATION_NAME', $this->LOCATION_NAME])
+            //->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME])
             ->andFilterWhere(['like', 'MENU_ITEM_NAME', $this->MENU_ITEM_NAME])
-            ->andFilterWhere(['like', 'MENU_ITEM_DESC', $this->MENU_ITEM_DESC])
+            ->andFilterWhere(['like', 'ITEM_TYPE_SIZE', $this->ITEM_TYPE_SIZE])
             ->andFilterWhere(['like', 'MENU_CAT_NAME', $this->MENU_CAT_NAME])
             ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
 
