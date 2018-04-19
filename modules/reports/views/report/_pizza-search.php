@@ -55,11 +55,10 @@ TEMPLATE;
 
     <?= $form->field($model, 'MENU_ITEM_NAME')->dropDownList(\app\model_extended\MENU_ITEMS::GetMenuItems()) ?>
 
-    <?= $form->field($model, 'MENU_ITEM_DESC') ?>
+    <?= $form->field($model, 'MENU_CAT_NAME')->dropDownList(\app\model_extended\MENU_CATEGORY::GetMenuCategories()) ?>
 
-    <?= $form->field($model, 'MENU_CAT_NAME') ?>
+    <?= $form->field($model, 'ITEM_TYPE_SIZE')->dropDownList(\app\model_extended\MENU_ITEM_TYPE::getMenuItems()) ?>
 
-    <?=$form->field($model, 'ITEM_TYPE_SIZE') ?>
 
 
     <?php // echo $form->field($model, 'MENU_ITEM_ID') ?>

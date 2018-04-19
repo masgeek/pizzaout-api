@@ -10,6 +10,7 @@ namespace app\model_extended;
 
 
 use app\models\MenuItemType;
+use yii\helpers\ArrayHelper;
 
 class MENU_ITEM_TYPE extends MenuItemType
 {
@@ -24,9 +25,9 @@ class MENU_ITEM_TYPE extends MenuItemType
     }
 
     public static function getMenuItems(){
-        $menuItem = self::find()
-            ->all();
-        $listData = ArrayHelper::map($menuItem, 'CHEF_ID', 'CHEF_NAME');
+        $menuItem = self::find()->all();
+
+        $listData = ArrayHelper::map($menuItem, 'ITEM_TYPE_SIZE', 'ITEM_TYPE_SIZE');
 
         return $listData;
     }
