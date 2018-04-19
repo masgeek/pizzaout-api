@@ -4,6 +4,7 @@ namespace app\modules\reports\controllers;
 
 use app\helpers\APP_UTILS;
 use app\model_extended\ReportModel;
+use app\models_search\PizzaReportSearch;
 use Yii;
 use app\models_search\ReportSearch;
 
@@ -143,6 +144,40 @@ class ReportController extends \yii\web\Controller
         }
 
         return $this->render('general-reports', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'context' => ReportModel::CONTEXT_RIDER,
+        ]);
+    }
+
+    public function actionPizzaReports()
+    {
+        $this->view->title = 'Pizza Sales Reports';
+
+        $searchModel = new PizzaReportSearch();
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams);
+
+        if (Yii::$app->request->isGet) {
+            //set the title
+            $search = Yii::$app->request->get('ReportSearch');
+
+            $orderDate = $search['ORDER_DATE'];
+
+            $date = explode("TO", $orderDate);
+
+            $start = isset($date[0]) ? $date[0] : null;
+            $end = isset($date[1]) ? $date[1] : null;
+
+            $startDate = $start != null ? APP_UTILS::FormatDate(trim($start)) : null;
+            $endDate = $end != null ? APP_UTILS::FormatDate(trim($end)) : null;
+
+
+            if (strlen($startDate) > 2 && strlen($endDate) > 2) {
+                $this->view->title = "Pizza Types Reports between {$startDate} and {$endDate}";
+            }
+        }
+
+        return $this->render('pizza-reports', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'context' => ReportModel::CONTEXT_RIDER,

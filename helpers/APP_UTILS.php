@@ -266,10 +266,11 @@ BODY;
         $date = date_create($datetime, timezone_open($tz));
 
         //return $timeOnly ?date_format($date, 'H:i:s A') :date_format($date, 'M d, Y, H:i:s A');
-        return  date_format($date, 'M d, Y');
+        return date_format($date, 'M d, Y');
 
 
     }
+
     public static function isValidDate($string)
     {
         return (date('Y-m-d H:i:s', strtotime($string)) == $string);
@@ -348,5 +349,16 @@ BODY;
             ->send();
 
         return $mailer;
+    }
+
+    public static function FirstDayOfMonth($format = 'Y-m-d 00:00:00')
+    {
+        return date($format, strtotime('first day of this month'));
+    }
+
+
+    public static function LastDayOfMonth($format = 'Y-m-d 23:59:59')
+    {
+        return date($format, strtotime('last day of this month'));
     }
 }

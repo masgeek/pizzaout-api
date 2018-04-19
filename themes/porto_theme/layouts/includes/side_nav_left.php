@@ -71,6 +71,7 @@ use yii\helpers\Html;
                             <li><?= Html::a('Chef Reports', ['//reports/report/chef-reports'], []); ?></li>
                             <li><?= Html::a('Rider Reports', ['//reports/report/rider-reports'], []); ?></li>
                             <li><?= Html::a('District Reports', ['//reports/report/district-reports'], []); ?></li>
+                            <li><?= Html::a('Pizza Reports', ['//reports/report/pizza-reports'], []); ?></li>
                         </ul>
                     </li>
                     <li class="nav-parent">

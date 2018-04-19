@@ -7,12 +7,12 @@ use app\helpers\ORDER_HELPER;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\model_extended\ReportModel;
+use app\model_extended\PizzaReportModel;
 
 /**
- * ReportSearch represents the model behind the search form of `app\model_extended\ReportModel`.
+ * PizzaReportSearch represents the model behind the search form of `app\model_extended\PizzaReportModel`.
  */
-class ReportSearch extends ReportModel
+class PizzaReportSearch extends PizzaReportModel
 {
     /**
      * {@inheritdoc}
@@ -20,8 +20,11 @@ class ReportSearch extends ReportModel
     public function rules()
     {
         return [
-            [['ORDER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'USER_ID', 'USER_TYPE', 'COUNTRY_ID'], 'integer'],
-            [['ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'ORDER_TIME', 'NOTES', 'CREATED_AT', 'UPDATED_AT', 'USER_NAME', 'SURNAME', 'OTHER_NAMES', 'LOCATION_NAME', 'CHEF_NAME'], 'safe'],
+            [['ORDER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'USER_ID', 'USER_TYPE', 'COUNTRY_ID', 'QUANTITY', 'MENU_ITEM_ID', 'MENU_CAT_ID', 'ITEM_TYPE_ID'], 'integer'],
+            [['ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'ORDER_TIME', 'NOTES', 'CREATED_AT', 'UPDATED_AT',
+                'USER_NAME', 'SURNAME', 'OTHER_NAMES', 'LOCATION_NAME', 'CHEF_NAME', 'MENU_ITEM_NAME', 'MENU_ITEM_DESC',
+                'MENU_CAT_NAME', 'ITEM_TYPE_SIZE', 'START_DATE', 'END_DATE'], 'safe'],
+            [['PRICE'], 'number'],
         ];
     }
 
@@ -34,21 +37,14 @@ class ReportSearch extends ReportModel
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function GeneralSearch($params, $order_status = [])
+    public function GeneralSearch($params)
     {
         $order_status = [
             ORDER_HELPER::STATUS_ORDER_CANCELLED,
             ORDER_HELPER::STATUS_ORDER_PENDING,
             ORDER_HELPER::STATUS_PAYMENT_PENDING,
         ];
-        $query = ReportModel::find();
+        $query = PizzaReportModel::find();
 
         // add conditions that should always apply here
 
@@ -60,7 +56,7 @@ class ReportSearch extends ReportModel
             'sort' => false
         ]);
 
-        $query->orderBy(['ORDER_DATE' => SORT_DESC]);
+        $query->orderBy(['ORDER_ID' => SORT_DESC]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -85,15 +81,21 @@ class ReportSearch extends ReportModel
 
 
 // grid filtering conditions
+        // grid filtering conditions
         $query->andFilterWhere([
             'ORDER_ID' => $this->ORDER_ID,
             'LOCATION_ID' => $this->LOCATION_ID,
             'KITCHEN_ID' => $this->KITCHEN_ID,
             'CHEF_ID' => $this->CHEF_ID,
             'RIDER_ID' => $this->RIDER_ID,
+            //'ORDER_DATE' => $this->ORDER_DATE,
+            'CREATED_AT' => $this->CREATED_AT,
+            'UPDATED_AT' => $this->UPDATED_AT,
             'USER_ID' => $this->USER_ID,
             'USER_TYPE' => $this->USER_TYPE,
             'COUNTRY_ID' => $this->COUNTRY_ID,
+            'QUANTITY' => $this->QUANTITY,
+            'PRICE' => $this->PRICE,
         ]);
 
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
@@ -105,6 +107,9 @@ class ReportSearch extends ReportModel
             ->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
             ->andFilterWhere(['like', 'LOCATION_NAME', $this->LOCATION_NAME])
             ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME])
+            ->andFilterWhere(['like', 'MENU_ITEM_NAME', $this->MENU_ITEM_NAME])
+            ->andFilterWhere(['like', 'MENU_ITEM_DESC', $this->MENU_ITEM_DESC])
+            ->andFilterWhere(['like', 'MENU_CAT_NAME', $this->MENU_CAT_NAME])
             ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
 
         return $dataProvider;

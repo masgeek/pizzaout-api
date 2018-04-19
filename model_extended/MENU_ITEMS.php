@@ -12,10 +12,12 @@ namespace app\model_extended;
 use app\models\MenuItem;
 use yii\helpers\ArrayHelper;
 use Yii;
+
 class MENU_ITEMS extends MenuItem
 {
     public $IMAGE_FILE;
-    public static function GetMenuItems($menu_cat_id)
+
+    public static function GetMenuItems($menu_cat_id = null)
     {
 
         $chefs = self::find()

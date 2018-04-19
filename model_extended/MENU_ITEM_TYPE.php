@@ -22,4 +22,12 @@ class MENU_ITEM_TYPE extends MenuItemType
 
         return $rules;
     }
+
+    public static function getMenuItems(){
+        $menuItem = self::find()
+            ->all();
+        $listData = ArrayHelper::map($menuItem, 'CHEF_ID', 'CHEF_NAME');
+
+        return $listData;
+    }
 }
