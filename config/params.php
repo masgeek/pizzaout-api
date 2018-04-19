@@ -3,7 +3,7 @@
 return [
     'adminEmail' => 'support@pizzaout.so', //support email
     //'ussdNumber' => '*799*31722313*', //payment USSD number
-    'ussdNumber' => '*799*615873385*', //payment USSD number
+    'ussdNumber' => '*712*615873385*', //payment USSD number
     'vatRate' => 0, //tax Rate in percentage
     'uploadsFolder' => '/useruploads/',
     'tagLine' => 'Fresh, Fast, Tasty',
