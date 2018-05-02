@@ -204,7 +204,9 @@ $gridColumns = [
         'value' => function ($model) {
             /* @var $model \app\model_extended\ReportModel */
             //$orderItems = $model->customerOrderItems;
-            return \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+            $orderTotal = \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+
+            return $model->ORDER_STATUS===\app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING ? 0 -$orderTotal : $orderTotal;
         },
         //'hiddenFromExport' => true,
         //'mergeHeader' => true,

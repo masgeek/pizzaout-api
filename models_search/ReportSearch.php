@@ -39,9 +39,11 @@ class ReportSearch extends ReportModel
      *
      * @param array $params
      *
+     * @param array $order_status
+     * @param bool $allOrders
      * @return ActiveDataProvider
      */
-    public function GeneralSearch($params, $order_status = [])
+    public function GeneralSearch($params, $order_status = [], $allOrders = false)
     {
         $order_status = [
             ORDER_HELPER::STATUS_ORDER_CANCELLED,
@@ -53,12 +55,24 @@ class ReportSearch extends ReportModel
         // add conditions that should always apply here
 
         //$query->andWhere(['ORDER_STATUS','' => $order_status]);
-        $query->andWhere(['NOT IN', 'ORDER_STATUS', $order_status]);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => false,
-            'sort' => false
-        ]);
+        if ($allOrders) {
+            $query->andFilterWhere(['like', 'ORDER_STATUS', $this->ORDER_STATUS]);
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => 250
+                ],
+                'sort' => false
+            ]);
+        } else {
+            $query->andWhere(['NOT IN', 'ORDER_STATUS', $order_status]);
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => false,
+                'sort' => false
+            ]);
+        }
+
 
         $query->orderBy(['ORDER_DATE' => SORT_DESC]);
         $this->load($params);
@@ -104,8 +118,8 @@ class ReportSearch extends ReportModel
             ->andFilterWhere(['like', 'SURNAME', $this->SURNAME])
             ->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
             ->andFilterWhere(['like', 'LOCATION_NAME', $this->LOCATION_NAME])
-            ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME])
-            ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
+            ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME]);
+        // ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
 
         return $dataProvider;
     }

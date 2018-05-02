@@ -11,6 +11,41 @@ use app\models_search\ReportSearch;
 class ReportController extends \yii\web\Controller
 {
 
+    public function actionOrderReports()
+    {
+        $this->view->title = 'Orders Reports';
+
+        $searchModel = new ReportSearch();
+        $dataProvider = $searchModel->GeneralSearch(Yii::$app->request->queryParams,[],true);
+
+        if (Yii::$app->request->isGet) {
+            //set the title
+            $search = Yii::$app->request->get('ReportSearch');
+
+            $orderDate = $search['ORDER_DATE'];
+
+            $date = explode("TO", $orderDate);
+
+            $start = isset($date[0]) ? $date[0] : null;
+            $end = isset($date[1]) ? $date[1] : null;
+
+
+            $startDate = $start != null ? APP_UTILS::FormatDate(trim($start)) : null;
+            $endDate = $end != null ? APP_UTILS::FormatDate(trim($end)) : null;
+
+
+            if (strlen($startDate) > 2 && strlen($endDate) > 2) {
+                $this->view->title = "Report for orders between {$startDate} and {$endDate}";
+            }
+        }
+
+        return $this->render('general-reports', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'context' => ReportModel::CONTEXT_ORDERS,
+        ]);
+    }
+
     public function actionGeneralReports()
     {
         $this->view->title = 'Sales & General Reports';
