@@ -80,9 +80,9 @@ $gridColumns = [
     [
         'attribute' => 'ORDER_ID',
         'header' => 'OrderNO',
-        'vAlign'=>'middle',
-        'headerOptions'=>['class'=>'text-center'],
-        'contentOptions'=>['class'=>'text-center'],
+        'vAlign' => 'middle',
+        'headerOptions' => ['class' => 'text-center'],
+        'contentOptions' => ['class' => 'text-center'],
     ],
     [
         'class' => 'kartik\grid\DataColumn',
@@ -205,8 +205,11 @@ $gridColumns = [
             /* @var $model \app\model_extended\ReportModel */
             //$orderItems = $model->customerOrderItems;
             $orderTotal = \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
+            if ($model->ORDER_STATUS === \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING || $model->ORDER_STATUS === \app\helpers\ORDER_HELPER::STATUS_ORDER_CANCELLED) {
+                $orderTotal = 0 - $orderTotal;
 
-            return $model->ORDER_STATUS===\app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING ? 0 -$orderTotal : $orderTotal;
+            }
+            return $orderTotal;
         },
         //'hiddenFromExport' => true,
         //'mergeHeader' => true,
@@ -322,7 +325,7 @@ $gridColumns = [
                 'floatHeader' => false,
                 'showPageSummary' => true,
                 'panel' => [
-                        'success'
+                    'success'
                 ],
                 'resizableColumns' => true,
                 'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
