@@ -52,9 +52,12 @@ class CartController extends ActiveController
     {
         $post = Yii::$app->request->post();
 
-        $cart = new CART_MODEL();
+        $cart = CART_MODEL::findOne($id);
 
-        $cart->load(['CART_MODEL' => $post]);
+        if ($cart->load(['CART_MODEL' => $post]) && $cart->save()) {
+            return "YES";
+
+        }
 
         $cart->validate();
 
