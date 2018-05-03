@@ -48,6 +48,12 @@ TEMPLATE;
 
     <?php if ($context === \app\model_extended\ReportModel::CONTEXT_GENERAL): ?>
 
+    <?php elseif ($context === \app\model_extended\ReportModel::CONTEXT_ORDERS): ?>
+        <?= $form->field($model, 'ORDER_STATUS', ['template' => $field_template])->dropDownList(\app\model_extended\ReportModel::getOrderStatuses(), [
+                'prompt' => '--- ALL STATUS ---',
+                'class' => 'form-control'
+            ]
+        ) ?>
     <?php elseif ($context === \app\model_extended\ReportModel::CONTEXT_SALES): ?>
 
     <?php elseif ($context === \app\model_extended\ReportModel::CONTEXT_LOCATION): ?>
