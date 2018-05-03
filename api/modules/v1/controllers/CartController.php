@@ -48,7 +48,7 @@ class CartController extends ActiveController
     }
 
 
-    public function actionCreateOld()
+    public function actionUpdateCart($id)
     {
         $post = Yii::$app->request->post();
 
@@ -61,6 +61,7 @@ class CartController extends ActiveController
 
         return $cart;
     }
+
 
     public function actionItems($user_id)
     {
