@@ -55,13 +55,12 @@ class CartController extends ActiveController
         $cart = CART_MODEL::findOne($id);
 
         if ($cart->load(['CART_MODEL' => $post]) && $cart->save()) {
-            return "YES";
-
+            return $cart;
         }
 
         $cart->validate();
 
-        return $cart;
+        return $cart->getErrors();
     }
 
 
