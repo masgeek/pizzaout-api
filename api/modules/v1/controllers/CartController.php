@@ -57,7 +57,6 @@ class CartController extends ActiveController
         $cart->load(['CART_MODEL' => $post]);
 
         $cart->validate();
-        return $cart->getErrors();
 
         return $cart;
     }
