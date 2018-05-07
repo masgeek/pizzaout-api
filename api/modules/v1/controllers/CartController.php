@@ -48,19 +48,21 @@ class CartController extends ActiveController
     }
 
 
-    public function actionCreateOld()
+    public function actionUpdateCart($id)
     {
         $post = Yii::$app->request->post();
 
-        $cart = new CART_MODEL();
+        $cart = CART_MODEL::findOne($id);
 
-        $cart->load(['CART_MODEL' => $post]);
+        if ($cart->load(['CART_MODEL' => $post]) && $cart->save()) {
+            return $cart;
+        }
 
         $cart->validate();
-        return $cart->getErrors();
 
-        return $cart;
+        return $cart->getErrors();
     }
+
 
     public function actionItems($user_id)
     {
