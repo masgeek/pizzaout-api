@@ -129,7 +129,7 @@ class UserController extends ActiveController
     }
 
     /**
-     * @return array
+     * @return USER_MODEL|array
      * @throws BadRequestHttpException
      */
     public function actionRegister()
@@ -150,6 +150,9 @@ class UserController extends ActiveController
         if ($user->validate()) {
             $user->PASSWORD = sha1($plain_pass);
             if ($user->save()) {
+                if($user->RETURN_MODEL){
+                    return $user;
+                }
                 $message = [$user];
             }
         } else {

@@ -35,6 +35,7 @@ class USER_MODEL extends Users
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
     public $CHANGE_PASSWORD;
+    public $RETURN_MODEL;
 
     /**
      * @return array
