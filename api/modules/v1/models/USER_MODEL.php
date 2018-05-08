@@ -104,6 +104,11 @@ class USER_MODEL extends Users
             return $rider != null ? $rider->RIDER_ID : 0;
         };
 
+        $fields['USER_STATUS'] = function ($model) {
+            /* @var $model USER_MODEL */
+            return (boolean)$model->USER_STATUS;
+        };
+
         $fields['API_TOKEN'] = function ($model) {
             /* @var $model USER_MODEL */
             $token = $model->apiToken;
