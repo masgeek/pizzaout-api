@@ -9,6 +9,7 @@
 namespace app\api\modules\v1\models;
 
 
+use app\helpers\APP_UTILS;
 use app\model_extended\CUSTOMER_ORDERS;
 
 /**
@@ -43,6 +44,17 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
         $fields['ADDRESS'] = function ($model) {
             /* @var $model $this */
             return 'NONE';
+        };
+
+
+        $fields['ORDER_TIME'] = function ($model) {
+            /* @var $model $this */
+            return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'H:i');
+        };
+
+        $fields['ORDER_DATE'] = function ($model) {
+            /* @var $model $this */
+            return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'d-m-Y');
         };
 
         $fields['LOCATION'] = function ($model) {

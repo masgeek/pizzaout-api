@@ -244,15 +244,13 @@ BODY;
     }
 
     public
-    static function FormatDateTime($datetime, $timeOnly = false)
+    static function FormatDateTime($datetime, $timeOnly = false,$format='M d, Y, H:i:s')
     {
         $formatter = \Yii::$app->formatter;
         $tz = $formatter->timeZone;
 
         $date = date_create($datetime, timezone_open($tz));
-
-        //return $timeOnly ?date_format($date, 'H:i:s A') :date_format($date, 'M d, Y, H:i:s A');
-        return $timeOnly ? date_format($date, 'H:i:s') : date_format($date, 'M d, Y, H:i:s');
+        return $timeOnly ? date_format($date, $format) : date_format($date, $format);
 
 
     }
