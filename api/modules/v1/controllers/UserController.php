@@ -143,9 +143,8 @@ class UserController extends ActiveController
         $request = ['USER_MODEL' => Yii::$app->request->post()];
 
         $plain_pass = Yii::$app->request->post('PASSWORD');
-        $return = Yii::$app->request->post('RETURN_MODEL',false);
+        $returnModel = Yii::$app->request->post('RETURN_MODEL',false);
 
-        return $return;
         $user = new USER_MODEL();
         $user->setScenario(USER_MODEL::SCENARIO_CREATE);
         $user->load($request);
@@ -153,7 +152,7 @@ class UserController extends ActiveController
         if ($user->validate()) {
             $user->PASSWORD = sha1($plain_pass);
             if ($user->save()) {
-                if($return){
+                if($returnModel==='YES'){
                     return $user;
                 }
 
