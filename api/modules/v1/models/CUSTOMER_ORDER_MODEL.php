@@ -10,7 +10,9 @@ namespace app\api\modules\v1\models;
 
 
 use app\helpers\APP_UTILS;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
+use Symfony\Component\Console\Helper\Helper;
 
 /**
  *
@@ -40,6 +42,11 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
         $fields['USSD_NUMBER'] = function ($model) {
             /* @var $model $this */
             return \Yii::$app->params['ussdNumber'];
+        };
+
+        $fields['PAY_ORDER'] = function ($model) {
+            /* @var $model $this */
+            return $model->ORDER_STATUS ===ORDER_HELPER::STATUS_PAYMENT_PENDING ? true : false;
         };
         ksort($fields);
 
