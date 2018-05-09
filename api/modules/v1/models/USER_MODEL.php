@@ -115,6 +115,11 @@ class USER_MODEL extends Users
             return $token != null ? $token->API_TOKEN : 0;
 
         };
+
+        $fields['HELPLINE'] = function ($model) {
+            /* @var $model $this */
+            return \Yii::$app->params['helpLine'];
+        };
         unset($fields['PASSWORD']); //remove the password field
 
         ksort($fields);

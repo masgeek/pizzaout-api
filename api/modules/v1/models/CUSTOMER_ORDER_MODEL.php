@@ -19,7 +19,6 @@ use app\model_extended\CUSTOMER_ORDERS;
 class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 {
 
-
     public function fields()
     {
         $fields = parent::fields();
@@ -38,6 +37,10 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return $model->kITCHEN != null ? $model->KITCHEN_ID : 0;
         };
 
+        $fields['USSD_NUMBER'] = function ($model) {
+            /* @var $model $this */
+            return \Yii::$app->params['ussdNumber'];
+        };
         ksort($fields);
 
 
@@ -52,9 +55,9 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'H:i');
         };
 
-        $fields['ORDER_DATE'] = function ($model) {
+        $fields['ORDER_DATE_TIME'] = function ($model) {
             /* @var $model $this */
-            return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'d-m-Y');
+            return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'Y-m-d H:i:s');
         };
 
         $fields['LOCATION'] = function ($model) {
