@@ -121,6 +121,7 @@ class USER_MODEL extends Users
             return \Yii::$app->params['helpLine'];
         };
         unset($fields['PASSWORD']); //remove the password field
+        //unset($fields['RESET_TOKEN']); //remove the password field
 
         ksort($fields);
         return $fields;
