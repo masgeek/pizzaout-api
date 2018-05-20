@@ -35,6 +35,7 @@ class USER_MODEL extends Users
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
     public $CHANGE_PASSWORD;
+    public $RETURN_MODEL;
 
     /**
      * @return array
@@ -103,13 +104,24 @@ class USER_MODEL extends Users
             return $rider != null ? $rider->RIDER_ID : 0;
         };
 
+        $fields['USER_STATUS'] = function ($model) {
+            /* @var $model USER_MODEL */
+            return (boolean)$model->USER_STATUS;
+        };
+
         $fields['API_TOKEN'] = function ($model) {
             /* @var $model USER_MODEL */
             $token = $model->apiToken;
             return $token != null ? $token->API_TOKEN : 0;
 
         };
+
+        $fields['HELPLINE'] = function ($model) {
+            /* @var $model $this */
+            return \Yii::$app->params['helpLine'];
+        };
         unset($fields['PASSWORD']); //remove the password field
+        //unset($fields['RESET_TOKEN']); //remove the password field
 
         ksort($fields);
         return $fields;

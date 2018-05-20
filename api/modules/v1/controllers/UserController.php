@@ -129,7 +129,7 @@ class UserController extends ActiveController
     }
 
     /**
-     * @return array
+     * @return USER_MODEL|array
      * @throws BadRequestHttpException
      */
     public function actionRegister()
@@ -143,13 +143,22 @@ class UserController extends ActiveController
         $request = ['USER_MODEL' => Yii::$app->request->post()];
 
         $plain_pass = Yii::$app->request->post('PASSWORD');
+        $returnModel = Yii::$app->request->post('RETURN_MODEL',false);
+        $userStatus = Yii::$app->request->post('USER_STATUS',false);
+
+
         $user = new USER_MODEL();
         $user->setScenario(USER_MODEL::SCENARIO_CREATE);
         $user->load($request);
         $user->RESET_TOKEN = '1234';
+        $user->USER_STATUS = (boolean)$userStatus;
         if ($user->validate()) {
             $user->PASSWORD = sha1($plain_pass);
             if ($user->save()) {
+                if($returnModel==='YES'){
+                    return $user;
+                }
+
                 $message = [$user];
             }
         } else {

@@ -9,7 +9,10 @@
 namespace app\api\modules\v1\models;
 
 
+use app\helpers\APP_UTILS;
+use app\helpers\ORDER_HELPER;
 use app\model_extended\CUSTOMER_ORDERS;
+use Symfony\Component\Console\Helper\Helper;
 
 /**
  *
@@ -17,7 +20,6 @@ use app\model_extended\CUSTOMER_ORDERS;
  */
 class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 {
-
 
     public function fields()
     {
@@ -37,12 +39,32 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
             return $model->kITCHEN != null ? $model->KITCHEN_ID : 0;
         };
 
+        $fields['USSD_NUMBER'] = function ($model) {
+            /* @var $model $this */
+            return \Yii::$app->params['ussdNumber'];
+        };
+
+        $fields['PAY_ORDER'] = function ($model) {
+            /* @var $model $this */
+            return $model->ORDER_STATUS ===ORDER_HELPER::STATUS_PAYMENT_PENDING ? true : false;
+        };
         ksort($fields);
 
 
         $fields['ADDRESS'] = function ($model) {
             /* @var $model $this */
             return 'NONE';
+        };
+
+
+        $fields['ORDER_TIME'] = function ($model) {
+            /* @var $model $this */
+            return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'H:i');
+        };
+
+        $fields['ORDER_DATE_TIME'] = function ($model) {
+            /* @var $model $this */
+            return APP_UTILS::FormatDateTime($model->ORDER_TIME,true,'Y-m-d H:i:s');
         };
 
         $fields['LOCATION'] = function ($model) {
