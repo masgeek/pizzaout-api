@@ -124,7 +124,7 @@ class USER_MODEL extends Users
         $fields['MIN_PRICE'] = function ($model) {
             /* @var $model $this */
             $min_price =  \Yii::$app->params['min_price'];
-            return (float)$min_price;
+            return \Yii::$app->formatter->asDecimal($min_price,2);
         };
         unset($fields['PASSWORD']); //remove the password field
         //unset($fields['RESET_TOKEN']); //remove the password field
