@@ -112,11 +112,11 @@ $drink4 = \app\helpers\APP_UTILS::BuildImageUrl("drinks2.png", false, "images/fo
                 <p>Enjoy your meal after less than 60 minutes. See you the next time!</p>
             </div>
 
-            <a href="#" class="btn-app">
-                <?= Html::img('@omnifood/img/download-app.svg', ['alt' => 'Pizza Out']); ?>
+            <a href="https://goo.gl/2F34Uj" class="btn-app" target="_blank">
+                <?= Html::img('@omnifood/img/download-app.svg', ['alt' => 'Pizza Out IOS']); ?>
             </a>
             <a href="https://goo.gl/8vAwpM" target="_blank" class="btn-app">
-                <?= Html::img('@omnifood/img/download-app-android.png', ['alt' => 'Pizza Out']); ?>
+                <?= Html::img('@omnifood/img/download-app-android.png', ['alt' => 'Pizza Out Android']); ?>
             </a>
         </div>
     </div>
