@@ -38,8 +38,21 @@ $config = [
         'reports' => [
             'class' => 'app\modules\reports\Module',
         ],
+        'wpcart' => [
+            'class' => 'app\modules\wpcart\cart',
+        ],
     ],
     'components' => [
+        /* CSRF VALIDATION */
+        'request'=> [
+            'enableCsrfValidation'=>true,
+            //'class'=>'HttpRequest',
+            'class' => 'app\components\Request',
+            'noCsrfRoutes'=> [
+                'controller/action1',
+                'controller/action2',
+            ],
+        ],
         /* SMS Components */
         'sms' => [
             'class' => 'app\components\SmsComponent',
