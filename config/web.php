@@ -45,6 +45,8 @@ $config = [
     'components' => [
         /* CSRF VALIDATION */
         'request'=> [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'IAyw-vu_u-ruH_LfDNEFS-LEQR88cAdM',
             'enableCsrfValidation'=>true,
             //'class'=>'HttpRequest',
             'class' => 'app\components\Request',
@@ -82,10 +84,6 @@ $config = [
             'orientation' => \kartik\mpdf\Pdf::ORIENT_PORTRAIT,
             'destination' => \kartik\mpdf\Pdf::DEST_BROWSER,
             // refer settings section for all configuration options
-        ],
-        'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'IAyw-vu_u-ruH_LfDNEFS-LEQR88cAdM',
         ],
         'cache' => [
             //'class' => 'yii\caching\FileCache',

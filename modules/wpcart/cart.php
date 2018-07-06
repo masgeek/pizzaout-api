@@ -20,5 +20,8 @@ class cart extends \yii\base\Module
         parent::init();
 
         // custom initialization code goes here
+        //set custom theme for the customer module
+        $this->layoutPath = \Yii::getAlias('@app/themes/porto_theme/layouts/');
+        $this->layout = 'wp_cart';
     }
 }
