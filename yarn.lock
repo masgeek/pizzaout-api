@@ -305,6 +305,10 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
+printthis@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/printthis/-/printthis-0.1.5.tgz#9d10b17537f278f0f10c4bcbe8d199e48ccb538d"
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"

@@ -13,6 +13,7 @@
     "node_modules",
     "bower_components",
     "vendor/bower",
+    "vendor/bower-asset",
     "test",
     "tests"
   ],
@@ -28,7 +29,8 @@
     "jquery-sparkline": "^2.1.3",
     "jqvmap": "^1.5.1",
     "bootstrap-multiselect": "^0.9.13",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "printthis": "^1.12.3"
   },
   "resolutions": {
     "jquery": ">= 1.2.6"
