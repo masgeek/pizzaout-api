@@ -12,7 +12,6 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-//$baseUrl = Yii::$app->request->baseUrl . '/omnifood/img/';
 $image = \app\helpers\APP_UTILS::BuildImageUrl($model->MENU_ITEM_IMAGE, false);
 $prevCat = null;
 ?>

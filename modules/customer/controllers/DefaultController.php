@@ -63,7 +63,7 @@ class DefaultController extends Controller
 
         //lets get the list of pizzas on offer
         $menu_item = new ActiveDataProvider([
-            'query' => MENU_ITEMS::find(),
+            'query' => MENU_ITEMS::find()->orderBy(['MENU_CAT_ID' => SORT_ASC]),
         ]);
 
         return $this->render('view', [

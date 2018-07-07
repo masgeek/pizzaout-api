@@ -17,6 +17,11 @@ class MENU_ITEMS extends MenuItem
 {
     public $IMAGE_FILE;
 
+    /**
+     * @param null $menu_cat_id
+     * @param bool $textSearch
+     * @return array
+     */
     public static function GetMenuItems($menu_cat_id = null, $textSearch = false)
     {
 
@@ -29,6 +34,9 @@ class MENU_ITEMS extends MenuItem
         return $listData;
     }
 
+    /**
+     * @return array
+     */
     public static function GetItemSizes()
     {
 
@@ -38,6 +46,9 @@ class MENU_ITEMS extends MenuItem
         return ArrayHelper::map($sizes, 'SIZE_TYPE', 'SIZE_TYPE');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [

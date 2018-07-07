@@ -23,5 +23,6 @@ class cart extends \yii\base\Module
         //set custom theme for the customer module
         $this->layoutPath = \Yii::getAlias('@app/themes/porto_theme/layouts/');
         $this->layout = 'wp_cart';
+
     }
 }
