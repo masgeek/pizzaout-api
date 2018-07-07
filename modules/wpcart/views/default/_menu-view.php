@@ -46,10 +46,10 @@ $prevCat = null;
                                 </p>
                             </td>
                             <td class="text-center">
-                                <?= Html::textInput('QTY', '1', [
+                                <?= Html::textInput('QTY', 1, [
                                     'id' => 'QTY_' . $itemType->ITEM_TYPE_ID,
-                                    'min'=>1,
-                                    'type'=>'number',
+                                    'min' => 1,
+                                    'type' => 'number',
                                     'class' => 'form-control',
                                     'onchange' => new JsExpression('
                                         var itemTypeId = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_ID) . ';
@@ -71,14 +71,25 @@ $prevCat = null;
                                     //'success' => new \yii\web\JsExpression('function(data, textStatus, jqXHR) {alert(data)}'),
                                     //'error' => new JsExpression('function(jqXHR, textStatus, errorThrown) {alert(errorThrown)}'),
                                     'beforeSend' => new JsExpression('function(data,jqXHR, settings) {
-                                        var itemTypeId = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_ID) . ';
-                                        var qty = $("#QTY_"+itemTypeId).val();
-                                        var price = $("#PRICE_"+itemTypeId).val();
+                                        var MENU_ITEM_ID = ' . \yii\helpers\Json::htmlEncode($itemType->MENU_ITEM_ID) . ';
+                                        var ITEM_TYPE_SIZE = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_SIZE) . ';
+                                        var ITEM_PRICE = ' . \yii\helpers\Json::htmlEncode($itemType->PRICE) . ';
+                                        var ITEM_TYPE_ID = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_ID) . ';
+                                        
+                                        var qty = $("#QTY_"+ITEM_TYPE_ID).val();
+                     
                                        
-                                        var subtotal = qty*price;
+                                        var subtotal = qty*ITEM_PRICE;
                             
-                                        this.data += \'&\' + $.param({ QUANTITY:qty});
-                                        this.data += \'&\' + $.param({ SUB_TOTAL:subtotal});
+                                        this.data += \'&\' + $.param({ 
+                                            MENU_ITEM_ID:MENU_ITEM_ID,
+                                            ITEM_TYPE_SIZE:ITEM_TYPE_SIZE,
+                                            ITEM_PRICE:ITEM_PRICE,
+                                            ITEM_TYPE_ID:ITEM_TYPE_ID,
+                                            QUANTITY:qty,
+                                            SUB_TOTAL:subtotal
+                                        });
+                            
                                         console.log(data);
                                     }'),
                                     //'complete' => new JsExpression('function(jqXHR, textStatus) {alert("Complete.")}'),
@@ -91,12 +102,7 @@ $prevCat = null;
                                         'class' => 'btn btn-primary',
                                         'data-ajax' => 1,
                                         'ajax-method' => 'POST',
-                                        'ajax-data' => [
-                                            'MENU_ITEM_ID' => $model->MENU_ITEM_ID,
-                                            'ITEM_TYPE_ID' => $itemType->ITEM_TYPE_ID,
-                                            'ITEM_TYPE_SIZE' => $itemType->ITEM_TYPE_SIZE,
-                                            'ITEM_PRICE' => $itemType->PRICE,
-                                        ],
+                                        'ajax-data' => []
                                     ]) ?>
                                 <?php Ajax::end() ?>
                             </td>

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "wp_cart".
  *
  * @property int $CART_ITEM_ID
- * @property string $SESSION_ID
+ * @property string $CART_GUID
  * @property int $ITEM_TYPE_ID
  * @property int $QUANTITY
  * @property string $ITEM_PRICE
@@ -32,10 +32,10 @@ class WpCart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['SESSION_ID', 'ITEM_TYPE_ID', 'QUANTITY', 'ITEM_PRICE', 'ITEM_TYPE_SIZE'], 'required'],
+            [['CART_GUID'], 'string'],
+            [['ITEM_TYPE_ID', 'QUANTITY', 'ITEM_PRICE', 'ITEM_TYPE_SIZE'], 'required'],
             [['ITEM_TYPE_ID', 'QUANTITY'], 'integer'],
             [['ITEM_PRICE'], 'number'],
-            [['SESSION_ID'], 'string', 'max' => 20],
             [['ITEM_TYPE_SIZE'], 'string', 'max' => 15],
             [['ITEM_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MenuItemType::className(), 'targetAttribute' => ['ITEM_TYPE_ID' => 'ITEM_TYPE_ID']],
         ];
@@ -48,7 +48,7 @@ class WpCart extends \yii\db\ActiveRecord
     {
         return [
             'CART_ITEM_ID' => 'C A R T I T E M I D',
-            'SESSION_ID' => 'S E S S I O N I D',
+            'CART_GUID' => 'C A R T G U I D',
             'ITEM_TYPE_ID' => 'I T E M T Y P E I D',
             'QUANTITY' => 'Q U A N T I T Y',
             'ITEM_PRICE' => 'I T E M P R I C E',
