@@ -10,6 +10,7 @@ namespace app\model_extended;
 
 
 use app\models\MenuItem;
+use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -25,13 +26,42 @@ class MENU_ITEMS extends MenuItem
     public static function GetMenuItems($menu_cat_id = null, $textSearch = false)
     {
 
-        $chefs = self::find()
+        $MENU_ITEMS = self::find()
             //->where(['MENU_CAT_ID' => $menu_cat_id])
             ->all();
 
-        $listData = $textSearch ? ArrayHelper::map($chefs, 'MENU_ITEM_NAME', 'MENU_ITEM_NAME') : ArrayHelper::map($chefs, 'MENU_ITEM_ID', 'MENU_ITEM_NAME');
+        $listData = $textSearch ? ArrayHelper::map($MENU_ITEMS, 'MENU_ITEM_NAME', 'MENU_ITEM_NAME') : ArrayHelper::map($MENU_ITEMS, 'MENU_ITEM_ID', 'MENU_ITEM_NAME');
 
         return $listData;
+    }
+
+    /**
+     * @return ActiveDataProvider
+     */
+    public static function GetPizzaList()
+    {
+        return self::GetMenuList(1);
+    }
+
+    /**
+     * @return ActiveDataProvider
+     */
+    public static function GetDrinksList()
+    {
+        return self::GetMenuList(6);
+    }
+
+    /**
+     * @param $menu_item_id
+     * @return ActiveDataProvider
+     */
+    private static function GetMenuList($menu_item_id)
+    {
+        return new ActiveDataProvider([
+            'query' => MENU_ITEMS::find()
+                ->where(['MENU_CAT_ID' => $menu_item_id])
+                ->orderBy(['MENU_ITEM_NAME' => SORT_ASC]),
+        ]);
     }
 
     /**
@@ -62,13 +92,4 @@ class MENU_ITEMS extends MenuItem
             'MAX_QTY' => Yii::t('app', 'Max Item Per Customer'),
         ];
     }
-
-    /*
-    public function attributeLabels()
-    {
-        $label =  parent::attributeLabels();
-        $label['MAX_QTY'] = 'Max Item Per Customer';
-        $label['MAX_QTY'] = 'Max Item Per Customer';
-        return $label;
-    }*/
 }

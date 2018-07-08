@@ -23,12 +23,13 @@ class DefaultController extends Controller
         $this->view->title = 'WP Menu';
         //show the menu
         //lets get the list of pizzas on offer
-        $menu_item = new ActiveDataProvider([
-            'query' => MENU_ITEMS::find()->orderBy(['MENU_CAT_ID' => SORT_ASC]),
-        ]);
+        $drinksDataProvider = MENU_ITEMS::GetDrinksList();
+        $pizzaDataProvider = MENU_ITEMS::GetPizzaList();
+
 
         return $this->render('menu', [
-            'dataProvider' => $menu_item
+            'drinksDataProvider' => $drinksDataProvider,
+            'pizzaDataProvider' => $pizzaDataProvider,
         ]);
     }
 

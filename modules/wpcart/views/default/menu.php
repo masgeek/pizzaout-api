@@ -9,7 +9,6 @@ $this->registerCssFile("@web/css/wpcart/css/menu-animation.css", [
 ?>
 
 
-
 <?= TabsX::widget([
     'position' => TabsX::POS_ABOVE,
     'align' => TabsX::ALIGN_LEFT,
@@ -17,16 +16,18 @@ $this->registerCssFile("@web/css/wpcart/css/menu-animation.css", [
         [
             'label' => 'Pizza',
             'content' => $this->render('menu-view', [
-                'dataProvider' => $dataProvider
+                'dataProvider' => $pizzaDataProvider
             ]),
             'active' => true
         ],
-        /*[
+        [
             'label' => 'Drinks',
-            'content' => $this->render('_menu-view'),
+            'content' => $this->render('menu-view', [
+                'dataProvider' => $drinksDataProvider
+            ]),
             'headerOptions' => ['style' => 'font-weight:bold'],
             'options' => ['id' => 'myveryownID'],
-        ],*/
+        ],
     ],
 ]);
 ?>
