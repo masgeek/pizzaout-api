@@ -1,16 +1,16 @@
 /*
 Navicat MariaDB Data Transfer
 
-Source Server         : LOCAL
+Source Server         : MARIA
 Source Server Version : 100214
-Source Host           : localhost:3306
+Source Host           : localhost:3307
 Source Database       : pizzaout_db
 
 Target Server Type    : MariaDB
 Target Server Version : 100214
 File Encoding         : 65001
 
-Date: 2018-04-17 11:03:45
+Date: 2018-07-09 22:09:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -616,7 +616,7 @@ CREATE TABLE `customer_order` (
   CONSTRAINT `customer_order_ibfk_5` FOREIGN KEY (`ORDER_STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_6` FOREIGN KEY (`CHEF_ID`) REFERENCES `chef` (`CHEF_ID`) ON UPDATE CASCADE,
   CONSTRAINT `customer_order_ibfk_7` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2048 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2050 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of customer_order
@@ -1658,6 +1658,7 @@ INSERT INTO `customer_order` VALUES ('2044', '387', '1', null, null, null, '2018
 INSERT INTO `customer_order` VALUES ('2045', '627', '1', '1', '4', '10', '2018-04-15 15:37:33', 'MOBILE', 'RIDER DISPATCHED', '2018-04-15 15:00:00', null, '2018-04-15 15:37:33', '2018-04-15 17:13:07');
 INSERT INTO `customer_order` VALUES ('2046', '65', '16', '1', '4', '8', '2018-04-15 18:33:15', 'MOBILE', 'RIDER DISPATCHED', '2018-04-15 15:00:00', null, '2018-04-15 18:33:15', '2018-04-15 18:48:10');
 INSERT INTO `customer_order` VALUES ('2047', '627', '10', '1', '4', '6', '2018-04-15 20:55:10', 'MOBILE', 'RIDER DISPATCHED', '2018-04-15 21:00:00', null, '2018-04-15 20:55:10', '2018-04-15 21:25:30');
+INSERT INTO `customer_order` VALUES ('2048', '10', '1', null, null, null, '2018-07-09 21:08:13', 'CARD', 'ORDER PENDING', null, null, '2018-07-09 21:08:13', '2018-07-09 21:08:13');
 
 -- ----------------------------
 -- Table structure for customer_order_item
@@ -1679,7 +1680,7 @@ CREATE TABLE `customer_order_item` (
   KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
   CONSTRAINT `customer_order_item_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `customer_order_item_ibfk_2` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1421 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1426 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customer_order_item
@@ -2831,6 +2832,7 @@ INSERT INTO `customer_order_item` VALUES ('1417', '2044', '39', '1', '15', '15',
 INSERT INTO `customer_order_item` VALUES ('1418', '2045', '39', '1', '15', '15', 'N/A', null, '2018-04-15 15:37:33', null);
 INSERT INTO `customer_order_item` VALUES ('1419', '2046', '38', '1', '13', '13', 'N/A', null, '2018-04-15 18:33:15', null);
 INSERT INTO `customer_order_item` VALUES ('1420', '2047', '10', '1', '15', '15', 'N/A', null, '2018-04-15 20:55:10', null);
+INSERT INTO `customer_order_item` VALUES ('1421', '2048', '34', '1', '13', '13', 'N/A', 'Test Order Here', '2018-07-09 21:08:13', null);
 
 -- ----------------------------
 -- Table structure for db_cache
@@ -2978,16 +2980,16 @@ CREATE TABLE `menu_item` (
 -- ----------------------------
 -- Records of menu_item
 -- ----------------------------
-INSERT INTO `menu_item` VALUES ('1', '1', 'MARGHERITA', 'Tomatos\r\nOnion\r\nMozzarella Cheese\r\nSpecial Pizza out Sauce', '15182766225a7f100e4f8669.14369304.jpg', '', '\0', '20');
+INSERT INTO `menu_item` VALUES ('1', '1', 'MARGHERITA', 'Tomatos\r\nOnion\r\nMozzarella Cheese\r\nSpecial Pizza out Sauce', 'pizza8.jpg', '', '\0', '20');
 INSERT INTO `menu_item` VALUES ('2', '1', 'HAWAIIAN', 'Salami\r\nTomato Sauce\r\nGreen pepper\r\nPineapple\r\nMozzarella Cheese\r\nMushroom\r\nSpecial Pizza out Sauce', 'pizza2.jpg', '\0', '\0', '20');
 INSERT INTO `menu_item` VALUES ('3', '1', 'CHICKEN TIKKA MASALA', 'Chicken meat with curry sauce\r\nTomato\r\nGreen pepper\r\nSweet corn\r\nOlive\r\nMozzarella Cheese\r\nMushroom\r\nRed pepper\r\nSpecial Pizza out  Sauce', 'pizza3.jpg', '\0', '\0', '20');
 INSERT INTO `menu_item` VALUES ('4', '1', 'SUPREME', 'Salami\r\nTomatoes\r\nGreen pepper\r\nRed pepper\r\nSweet Corn\r\nOlive\r\nMozzarella Cheese\r\nMushrooms\r\nSpecial Pizza out Sauce', 'pizza8.jpg', '\0', '\0', '20');
-INSERT INTO `menu_item` VALUES ('11', '6', 'MARINDA', 'Soft Drink', '15204236575a9fd2e9d20ee4.34221349.jpg', '', '\0', '20');
-INSERT INTO `menu_item` VALUES ('12', '6', 'PEPSI', 'Soft Drink', '15204237405a9fd33c83ce61.80516411.jpg', '\0', '\0', '20');
-INSERT INTO `menu_item` VALUES ('13', '6', '7 UP', 'Soft Drink', '15204240765a9fd48c8adc65.07227010.jpg', '\0', '\0', '20');
-INSERT INTO `menu_item` VALUES ('16', '1', 'TUNA PIZZA', 'Tuna fish\r\nGreen pepper\r\nSweet corn\r\nMozzarella cheese\r\nSpecial Pizza out Souce', '15161043705a5deab26d2118.51038676.jpg', '', '\0', '20');
-INSERT INTO `menu_item` VALUES ('17', '1', 'PIZZA GEEL', 'Camel Meat\r\nOnion\r\nGreen pepper\r\nRed pepper\r\nMozzarella Cheese\r\nSpecial Pizza out  Sauce', '15165025105a63fdeeb95ef6.05377409.jpg', '', '\0', '20');
-INSERT INTO `menu_item` VALUES ('18', '1', 'INDIAN PIZZA (Very Spicy)', 'Hot pepper\r\nCurry\r\nSweet Corn\r\nMozzarella Cheese\r\nGreen Pepper\r\nRed pepper\r\nSpecial Pizza out  Sauce\r\nGinger', '15161046125a5deba452f3c5.77619894.png', '', '', '20');
+INSERT INTO `menu_item` VALUES ('11', '6', 'MARINDA', 'Soft Drink', 'drinks2.jpg', '', '\0', '20');
+INSERT INTO `menu_item` VALUES ('12', '6', 'PEPSI', 'Soft Drink', 'drinks2.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('13', '6', '7 UP', 'Soft Drink', 'drinks2.jpg', '\0', '\0', '20');
+INSERT INTO `menu_item` VALUES ('16', '1', 'TUNA PIZZA', 'Tuna fish\r\nGreen pepper\r\nSweet corn\r\nMozzarella cheese\r\nSpecial Pizza out Souce', 'pizza5.jpg', '', '\0', '20');
+INSERT INTO `menu_item` VALUES ('17', '1', 'PIZZA GEEL', 'Camel Meat\r\nOnion\r\nGreen pepper\r\nRed pepper\r\nMozzarella Cheese\r\nSpecial Pizza out  Sauce', 'pizza5.jpg', '', '\0', '20');
+INSERT INTO `menu_item` VALUES ('18', '1', 'INDIAN PIZZA (Very Spicy)', 'Hot pepper\r\nCurry\r\nSweet Corn\r\nMozzarella Cheese\r\nGreen Pepper\r\nRed pepper\r\nSpecial Pizza out  Sauce\r\nGinger', 'pizza5.jpg', '', '', '20');
 
 -- ----------------------------
 -- Table structure for menu_item_type
@@ -3053,7 +3055,11 @@ CREATE TABLE `my_session` (
 -- ----------------------------
 -- Records of my_session
 -- ----------------------------
-INSERT INTO `my_session` VALUES ('l2623q0lnk34rokb50cqfj7vc0', '1523941327', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A323A223130223B5F5F6578706972657C693A313532333934313332373B, '10', 'fatelord');
+INSERT INTO `my_session` VALUES ('0961fn5hj15quk27s24153m4pn', '1531116004', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F6578706972657C693A313533313131363030343B, '10', 'fatelord');
+INSERT INTO `my_session` VALUES ('60tdvdldqf5rh08rgn3psanlvu', '1531038180', 0x5F5F666C6173687C613A303A7B7D, '0', '::1');
+INSERT INTO `my_session` VALUES ('kgfo3ad1r0srcka6331gbrerng', '1530956508', 0x5F5F666C6173687C613A303A7B7D, '0', '::1');
+INSERT INTO `my_session` VALUES ('s7jfp59ne1922bbprocnkuds21', '1531199709', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F6578706972657C693A313533313139393730383B434152545F54494D455354414D507C693A313533303938363830353B, '10', 'fatelord');
+INSERT INTO `my_session` VALUES ('sd3nhmuq5lvqo5ke4ekk741dl7', '1531203223', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A32323A222F70697A7A616F75742D6170692F637573746F6D6572223B5F5F69647C693A31303B5F5F6578706972657C693A313533313230333232333B, '10', 'fatelord');
 
 -- ----------------------------
 -- Table structure for order_tracking
@@ -3072,7 +3078,7 @@ CREATE TABLE `order_tracking` (
   KEY `order_tracking_ibfk_1` (`ORDER_ID`) USING BTREE,
   CONSTRAINT `order_tracking_ibfk_1` FOREIGN KEY (`ORDER_ID`) REFERENCES `customer_order` (`ORDER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_tracking_ibfk_2` FOREIGN KEY (`STATUS`) REFERENCES `tb_status` (`STATUS_NAME`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3942 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3944 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of order_tracking
@@ -6523,6 +6529,7 @@ INSERT INTO `order_tracking` VALUES ('3938', '2047', null, 'ORDER CONFIRMED', '2
 INSERT INTO `order_tracking` VALUES ('3939', '2047', null, 'ORDER READY', '2018-04-15 21:25:18', '');
 INSERT INTO `order_tracking` VALUES ('3940', '2047', null, 'RIDER DISPATCHED', '2018-04-15 21:25:33', '');
 INSERT INTO `order_tracking` VALUES ('3941', '2044', null, 'ORDER CANCELLED', '2018-04-16 15:07:20', '');
+INSERT INTO `order_tracking` VALUES ('3942', '2048', null, 'ORDER PENDING', '2018-07-09 21:08:13', '');
 
 -- ----------------------------
 -- Table structure for payment
@@ -6595,218 +6602,12 @@ CREATE TABLE `tb_cart` (
   KEY `USER_ID` (`USER_ID`) USING BTREE,
   CONSTRAINT `tb_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_cart_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `tb_users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2096 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2100 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tb_cart
 -- ----------------------------
-INSERT INTO `tb_cart` VALUES ('284', '70', '19', '1', '1', '500ML', null, '1516209474', '2018-01-17 20:17:54', '2018-01-17 20:17:54');
-INSERT INTO `tb_cart` VALUES ('363', '72', '33', '1', '11', 'SMALL', null, '1516645395', '2018-01-22 21:23:13', '2018-01-22 21:23:15');
-INSERT INTO `tb_cart` VALUES ('364', '72', '2', '1', '11', 'SMALL', null, '1516645395', '2018-01-22 21:23:29', '2018-01-22 21:23:29');
-INSERT INTO `tb_cart` VALUES ('365', '72', '23', '1', '1', '500ML', null, '1516645395', '2018-01-22 21:23:48', '2018-01-22 21:23:48');
-INSERT INTO `tb_cart` VALUES ('369', '118', '3', '1', '13', 'MEDIUM', null, '1516649358', '2018-01-22 22:29:18', '2018-01-22 22:29:18');
-INSERT INTO `tb_cart` VALUES ('370', '119', '43', '1', '11', 'SMALL', null, '1516651223', '2018-01-22 23:00:20', '2018-01-22 23:00:23');
-INSERT INTO `tb_cart` VALUES ('377', '126', '4', '1', '15', 'LARGE', null, '1516700085', '2018-01-23 12:34:45', '2018-01-23 12:34:45');
-INSERT INTO `tb_cart` VALUES ('378', '128', '5', '1', '13', 'MEDIUM', null, '1516706837', '2018-01-23 14:27:17', '2018-01-23 14:27:17');
-INSERT INTO `tb_cart` VALUES ('393', '141', '35', '1', '15', 'LARGE', null, '1516740513', '2018-01-23 23:48:33', '2018-01-23 23:48:33');
-INSERT INTO `tb_cart` VALUES ('394', '142', '3', '1', '13', 'MEDIUM', null, '1516745550', '2018-01-24 01:12:30', '2018-01-24 01:12:30');
-INSERT INTO `tb_cart` VALUES ('401', '130', '38', '1', '13', 'MEDIUM', null, '1516796452', '2018-01-24 15:20:52', '2018-01-24 15:20:52');
-INSERT INTO `tb_cart` VALUES ('453', '49', '19', '5', '1', '500ML', null, '1516897504', '2018-01-25 19:25:04', '2018-01-25 19:25:04');
-INSERT INTO `tb_cart` VALUES ('470', '165', '40', '1', '11', 'SMALL', null, '1516946977', '2018-01-26 09:09:37', '2018-01-26 09:09:37');
-INSERT INTO `tb_cart` VALUES ('472', '165', '42', '1', '15', 'LARGE', null, '1516946977', '2018-01-26 17:14:00', '2018-01-26 17:14:00');
-INSERT INTO `tb_cart` VALUES ('473', '165', '23', '1', '1', '500ML', null, '1516946977', '2018-01-26 17:19:06', '2018-01-26 17:19:06');
-INSERT INTO `tb_cart` VALUES ('491', '165', '27', '1', '1', '500ML', null, '1516946977', '2018-01-27 14:21:45', '2018-01-27 14:21:45');
-INSERT INTO `tb_cart` VALUES ('503', '154', '5', '1', '13', 'MEDIUM', null, '1517123357', '2018-01-28 10:09:17', '2018-03-18 00:36:32');
-INSERT INTO `tb_cart` VALUES ('504', '125', '44', '2', '13', 'MEDIUM', null, '1516709030', '2018-01-28 13:32:17', '2018-01-28 13:32:17');
-INSERT INTO `tb_cart` VALUES ('505', '159', '40', '1', '11', 'SMALL', null, '1517135882', '2018-01-28 13:38:02', '2018-01-28 13:38:02');
-INSERT INTO `tb_cart` VALUES ('519', '179', '33', '1', '11', 'SMALL', null, '1517210953', '2018-01-29 10:29:13', '2018-01-29 10:29:13');
-INSERT INTO `tb_cart` VALUES ('520', '176', '10', '1', '15', 'LARGE', null, '1517211124', '2018-01-29 10:32:04', '2018-01-29 10:32:04');
-INSERT INTO `tb_cart` VALUES ('521', '89', '4', '1', '15', 'LARGE', null, '1517220081', '2018-01-29 13:01:21', '2018-01-29 13:01:21');
-INSERT INTO `tb_cart` VALUES ('525', '128', '43', '1', '11', 'SMALL', null, '1516706837', '2018-01-29 16:29:59', '2018-01-29 16:29:59');
-INSERT INTO `tb_cart` VALUES ('531', '60', '10', '2', '15', 'LARGE', null, '1517243739', '2018-01-29 19:35:39', '2018-01-29 19:35:39');
-INSERT INTO `tb_cart` VALUES ('537', '185', '36', '1', '13', 'MEDIUM', null, '1517280731', '2018-01-30 05:52:11', '2018-01-30 05:52:11');
-INSERT INTO `tb_cart` VALUES ('562', '189', '5', '1', '13', 'MEDIUM', null, '1517490677', '2018-02-01 16:11:17', '2018-02-10 15:40:57');
-INSERT INTO `tb_cart` VALUES ('570', '193', '40', '1', '11', 'SMALL', null, '1517754410', '2018-02-04 17:26:50', '2018-02-04 17:26:50');
-INSERT INTO `tb_cart` VALUES ('574', '125', '38', '2', '13', 'MEDIUM', null, '1516709030', '2018-02-04 22:20:24', '2018-02-04 22:20:24');
-INSERT INTO `tb_cart` VALUES ('575', '194', '5', '1', '13', 'MEDIUM', null, '1517775663', '2018-02-04 23:21:03', '2018-02-04 23:21:10');
-INSERT INTO `tb_cart` VALUES ('592', '135', '3', '1', '13', 'MEDIUM', null, '1518012646', '2018-02-07 17:10:46', '2018-02-07 17:10:46');
-INSERT INTO `tb_cart` VALUES ('596', '203', '40', '1', '11', 'SMALL', null, '1518099657', '2018-02-08 17:20:57', '2018-02-08 17:20:57');
-INSERT INTO `tb_cart` VALUES ('597', '71', '5', '1', '13', 'MEDIUM', null, '1518102249', '2018-02-08 18:04:09', '2018-02-08 18:04:21');
-INSERT INTO `tb_cart` VALUES ('607', '207', '8', '1', '15', 'LARGE', null, '1518290483', '2018-02-10 22:21:23', '2018-02-10 22:21:23');
-INSERT INTO `tb_cart` VALUES ('608', '165', '4', '1', '15', 'LARGE', null, '1516946977', '2018-02-10 22:39:14', '2018-02-10 22:40:30');
-INSERT INTO `tb_cart` VALUES ('609', '165', '44', '1', '13', 'MEDIUM', null, '1516946977', '2018-02-10 22:40:19', '2018-02-10 22:40:19');
-INSERT INTO `tb_cart` VALUES ('619', '203', '37', '1', '11', 'SMALL', null, '1518099657', '2018-02-11 14:48:44', '2018-02-11 14:48:44');
-INSERT INTO `tb_cart` VALUES ('689', '220', '5', '1', '13', 'MEDIUM', null, '1518633312', '2018-02-14 21:35:12', '2018-02-14 21:35:12');
-INSERT INTO `tb_cart` VALUES ('712', '131', '3', '1', '13', 'MEDIUM', null, '1519063572', '2018-02-19 21:06:12', '2018-02-19 21:06:12');
-INSERT INTO `tb_cart` VALUES ('735', '221', '1', '1', '15', 'LARGE', null, '1519372595', '2018-02-23 10:56:35', '2018-02-23 10:56:35');
-INSERT INTO `tb_cart` VALUES ('760', '238', '23', '1', '1', '500ML', null, '1519713199', '2018-02-27 09:33:53', '2018-02-27 09:33:53');
-INSERT INTO `tb_cart` VALUES ('767', '241', '41', '1', '13', 'MEDIUM', null, '1519731703', '2018-02-27 14:41:43', '2018-02-27 14:42:00');
-INSERT INTO `tb_cart` VALUES ('774', '245', '3', '2', '13', 'MEDIUM', null, '1519746811', '2018-02-27 18:53:31', '2018-02-27 18:53:31');
-INSERT INTO `tb_cart` VALUES ('775', '246', '8', '1', '15', 'LARGE', null, '1519747580', '2018-02-27 19:06:20', '2018-02-27 19:14:20');
-INSERT INTO `tb_cart` VALUES ('806', '246', '7', '1', '11', 'SMALL', null, '1519747580', '2018-03-01 00:01:39', '2018-03-01 00:01:39');
-INSERT INTO `tb_cart` VALUES ('807', '257', '33', '1', '11', 'SMALL', null, '1519852315', '2018-03-01 00:11:55', '2018-03-01 00:11:55');
-INSERT INTO `tb_cart` VALUES ('808', '257', '8', '1', '15', 'LARGE', null, '1519852315', '2018-03-01 00:13:20', '2018-03-01 00:13:20');
-INSERT INTO `tb_cart` VALUES ('809', '257', '8', '1', '15', 'LARGE', null, '1519852315', '2018-03-01 00:13:23', '2018-03-01 00:13:23');
-INSERT INTO `tb_cart` VALUES ('833', '267', '5', '1', '13', 'MEDIUM', null, '1519969819', '2018-03-02 08:50:19', '2018-03-02 08:50:19');
-INSERT INTO `tb_cart` VALUES ('834', '267', '19', '1', '1', '500ML', null, '1519969819', '2018-03-02 08:50:48', '2018-03-02 08:50:48');
-INSERT INTO `tb_cart` VALUES ('835', '149', '5', '1', '13', 'MEDIUM', null, '1519991316', '2018-03-02 14:48:36', '2018-03-02 14:49:09');
-INSERT INTO `tb_cart` VALUES ('847', '268', '40', '1', '11', 'SMALL', null, '1520007699', '2018-03-02 19:21:39', '2018-03-02 19:21:39');
-INSERT INTO `tb_cart` VALUES ('853', '278', '10', '2', '15', 'LARGE', null, '1520139030', '2018-03-04 07:50:30', '2018-03-04 07:50:30');
-INSERT INTO `tb_cart` VALUES ('869', '292', '33', '1', '11', 'SMALL', null, '1520184132', '2018-03-04 20:22:46', '2018-03-04 20:22:46');
-INSERT INTO `tb_cart` VALUES ('875', '297', '8', '1', '15', 'LARGE', null, '1520198279', '2018-03-05 00:17:59', '2018-03-05 00:17:59');
-INSERT INTO `tb_cart` VALUES ('887', '303', '37', '1', '11', 'SMALL', null, '1520232880', '2018-03-05 09:54:40', '2018-03-05 09:54:40');
-INSERT INTO `tb_cart` VALUES ('889', '297', '10', '1', '15', 'LARGE', null, '1520198279', '2018-03-05 11:24:23', '2018-03-05 11:24:23');
-INSERT INTO `tb_cart` VALUES ('893', '317', '37', '2', '11', 'SMALL', null, '1520245084', '2018-03-05 13:18:04', '2018-03-05 13:18:04');
-INSERT INTO `tb_cart` VALUES ('902', '281', '19', '1', '1', '500ML', null, '1520251481', '2018-03-05 15:04:41', '2018-03-05 15:05:11');
-INSERT INTO `tb_cart` VALUES ('904', '98', '1', '1', '15', 'LARGE', null, '1520252464', '2018-03-05 15:21:04', '2018-03-05 15:21:04');
-INSERT INTO `tb_cart` VALUES ('905', '98', '40', '1', '11', 'SMALL', null, '1520252464', '2018-03-05 15:21:17', '2018-03-05 15:21:17');
-INSERT INTO `tb_cart` VALUES ('906', '98', '8', '1', '15', 'LARGE', null, '1520252464', '2018-03-05 15:21:49', '2018-03-05 15:21:49');
-INSERT INTO `tb_cart` VALUES ('907', '98', '37', '1', '11', 'SMALL', null, '1520252464', '2018-03-05 15:21:55', '2018-03-05 15:21:55');
-INSERT INTO `tb_cart` VALUES ('909', '328', '3', '1', '13', 'MEDIUM', null, '1520253269', '2018-03-05 15:34:29', '2018-03-05 15:34:29');
-INSERT INTO `tb_cart` VALUES ('911', '329', '33', '1', '11', 'SMALL', null, '1520253460', '2018-03-05 15:37:40', '2018-03-05 15:37:40');
-INSERT INTO `tb_cart` VALUES ('912', '329', '7', '1', '11', 'SMALL', null, '1520253460', '2018-03-05 15:38:00', '2018-03-05 15:38:00');
-INSERT INTO `tb_cart` VALUES ('915', '334', '5', '1', '13', 'MEDIUM', null, '1520262952', '2018-03-05 18:16:11', '2018-03-05 18:16:11');
-INSERT INTO `tb_cart` VALUES ('917', '335', '5', '1', '13', 'MEDIUM', null, '1520263425', '2018-03-05 18:23:45', '2018-03-05 18:23:45');
-INSERT INTO `tb_cart` VALUES ('927', '341', '5', '1', '13', 'MEDIUM', null, '1520267295', '2018-03-05 19:28:15', '2018-03-05 19:28:15');
-INSERT INTO `tb_cart` VALUES ('928', '342', '40', '1', '11', 'SMALL', null, '1520267553', '2018-03-05 19:32:33', '2018-03-05 19:32:33');
-INSERT INTO `tb_cart` VALUES ('929', '342', '23', '1', '1', '500ML', null, '1520267553', '2018-03-05 19:32:58', '2018-03-05 19:32:58');
-INSERT INTO `tb_cart` VALUES ('936', '347', '37', '1', '11', 'SMALL', null, '1520273830', '2018-03-05 21:17:10', '2018-03-05 21:17:10');
-INSERT INTO `tb_cart` VALUES ('939', '349', '19', '1', '1', '500ML', null, '1520278261', '2018-03-05 22:31:01', '2018-03-05 22:31:01');
-INSERT INTO `tb_cart` VALUES ('942', '352', '38', '1', '15', 'MEDIUM', null, '1520315092', '2018-03-06 08:44:52', '2018-03-06 08:44:52');
-INSERT INTO `tb_cart` VALUES ('944', '354', '41', '2', '15', 'MEDIUM', null, '1520319132', '2018-03-06 09:52:12', '2018-03-06 09:52:12');
-INSERT INTO `tb_cart` VALUES ('945', '354', '38', '1', '15', 'MEDIUM', null, '1520319132', '2018-03-06 09:52:40', '2018-03-06 09:52:51');
-INSERT INTO `tb_cart` VALUES ('946', '354', '23', '2', '1', '500ML', null, '1520319132', '2018-03-06 09:54:00', '2018-03-06 09:54:00');
-INSERT INTO `tb_cart` VALUES ('959', '361', '5', '1', '15', 'MEDIUM', null, '1520336150', '2018-03-06 14:35:50', '2018-03-06 14:35:50');
-INSERT INTO `tb_cart` VALUES ('961', '361', '19', '1', '1', '500ML', null, '1520336150', '2018-03-06 14:36:22', '2018-03-06 14:36:22');
-INSERT INTO `tb_cart` VALUES ('977', '364', '10', '1', '20', 'LARGE', null, '1520345200', '2018-03-06 17:06:40', '2018-03-06 17:06:40');
-INSERT INTO `tb_cart` VALUES ('979', '364', '5', '1', '15', 'MEDIUM', null, '1520345200', '2018-03-06 17:12:52', '2018-03-06 17:12:52');
-INSERT INTO `tb_cart` VALUES ('980', '364', '5', '1', '15', 'MEDIUM', null, '1520345200', '2018-03-06 17:12:57', '2018-03-06 17:12:57');
-INSERT INTO `tb_cart` VALUES ('1015', '331', '5', '1', '15', 'MEDIUM', null, '1520362016', '2018-03-06 21:46:56', '2018-03-06 21:46:56');
-INSERT INTO `tb_cart` VALUES ('1025', '371', '5', '1', '13', 'MEDIUM', null, '1520369144', '2018-03-06 23:45:44', '2018-03-06 23:46:02');
-INSERT INTO `tb_cart` VALUES ('1026', '373', '1', '1', '15', 'LARGE', null, '1520399838', '2018-03-07 08:17:18', '2018-03-07 08:17:35');
-INSERT INTO `tb_cart` VALUES ('1028', '377', '36', '1', '13', 'MEDIUM', null, '1520419130', '2018-03-07 13:38:50', '2018-03-07 13:38:50');
-INSERT INTO `tb_cart` VALUES ('1037', '345', '27', '1', '1', '300ML', null, '1520428760', '2018-03-07 16:19:20', '2018-03-07 16:19:20');
-INSERT INTO `tb_cart` VALUES ('1042', '386', '10', '1', '15', 'LARGE', null, '1520435397', '2018-03-07 18:09:57', '2018-03-07 18:19:32');
-INSERT INTO `tb_cart` VALUES ('1073', '391', '5', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-08 11:41:17', '2018-04-04 03:49:37');
-INSERT INTO `tb_cart` VALUES ('1074', '391', '3', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-08 12:21:47', '2018-03-08 12:21:47');
-INSERT INTO `tb_cart` VALUES ('1075', '391', '3', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-08 12:50:06', '2018-03-08 12:50:06');
-INSERT INTO `tb_cart` VALUES ('1085', '391', '27', '1', '1', '300ML', null, '1520498477', '2018-03-08 15:02:41', '2018-03-08 15:12:51');
-INSERT INTO `tb_cart` VALUES ('1089', '391', '5', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-08 15:29:17', '2018-03-08 15:29:17');
-INSERT INTO `tb_cart` VALUES ('1090', '391', '40', '1', '11', 'SMALL', null, '1520498477', '2018-03-08 15:41:20', '2018-04-04 03:49:41');
-INSERT INTO `tb_cart` VALUES ('1091', '391', '37', '1', '11', 'SMALL', null, '1520498477', '2018-03-08 15:55:43', '2018-03-09 11:27:36');
-INSERT INTO `tb_cart` VALUES ('1092', '391', '37', '1', '11', 'SMALL', null, '1520498477', '2018-03-08 16:20:46', '2018-03-08 16:20:46');
-INSERT INTO `tb_cart` VALUES ('1094', '391', '4', '1', '15', 'LARGE', null, '1520498477', '2018-03-08 16:40:43', '2018-03-08 16:40:43');
-INSERT INTO `tb_cart` VALUES ('1100', '259', '43', '1', '11', 'SMALL', null, '1520522411', '2018-03-08 18:20:11', '2018-03-08 18:20:11');
-INSERT INTO `tb_cart` VALUES ('1101', '259', '37', '1', '11', 'SMALL', null, '1520522411', '2018-03-08 18:24:54', '2018-03-08 18:24:54');
-INSERT INTO `tb_cart` VALUES ('1128', '391', '5', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-09 11:02:08', '2018-03-09 11:02:08');
-INSERT INTO `tb_cart` VALUES ('1132', '391', '33', '1', '11', 'SMALL', null, '1520498477', '2018-03-09 11:43:35', '2018-03-09 14:49:11');
-INSERT INTO `tb_cart` VALUES ('1133', '281', '42', '1', '15', 'LARGE', null, '1520251481', '2018-03-09 11:56:19', '2018-03-09 11:56:19');
-INSERT INTO `tb_cart` VALUES ('1134', '391', '5', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-09 13:10:44', '2018-03-09 13:10:44');
-INSERT INTO `tb_cart` VALUES ('1135', '391', '3', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-09 13:14:17', '2018-03-09 13:14:17');
-INSERT INTO `tb_cart` VALUES ('1136', '391', '5', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-09 13:20:56', '2018-03-09 13:20:56');
-INSERT INTO `tb_cart` VALUES ('1137', '168', '5', '5', '13', 'MEDIUM', null, '1520593993', '2018-03-09 14:13:13', '2018-03-09 14:13:13');
-INSERT INTO `tb_cart` VALUES ('1138', '391', '33', '1', '11', 'SMALL', null, '1520498477', '2018-03-09 14:24:49', '2018-03-09 14:24:49');
-INSERT INTO `tb_cart` VALUES ('1142', '391', '5', '1', '13', 'MEDIUM', null, '1520498477', '2018-03-09 15:39:08', '2018-03-09 15:39:08');
-INSERT INTO `tb_cart` VALUES ('1143', '391', '40', '1', '11', 'SMALL', null, '1520498477', '2018-03-09 15:57:25', '2018-03-09 15:57:25');
-INSERT INTO `tb_cart` VALUES ('1156', '268', '35', '1', '15', 'LARGE', null, '1520007699', '2018-03-09 21:33:29', '2018-03-09 21:33:29');
-INSERT INTO `tb_cart` VALUES ('1162', '326', '19', '1', '1', '300ML', null, '1520666646', '2018-03-10 10:24:06', '2018-03-10 10:24:06');
-INSERT INTO `tb_cart` VALUES ('1169', '414', '3', '1', '13', 'MEDIUM', null, '1520691943', '2018-03-10 17:25:43', '2018-03-10 17:26:47');
-INSERT INTO `tb_cart` VALUES ('1170', '418', '3', '1', '13', 'MEDIUM', null, '1520692419', '2018-03-10 17:33:39', '2018-03-10 17:33:39');
-INSERT INTO `tb_cart` VALUES ('1175', '419', '3', '1', '13', 'MEDIUM', null, '1520699842', '2018-03-10 19:37:22', '2018-03-10 19:37:22');
-INSERT INTO `tb_cart` VALUES ('1182', '424', '10', '20', '15', 'LARGE', null, '1520703150', '2018-03-10 20:35:11', '2018-03-10 20:35:11');
-INSERT INTO `tb_cart` VALUES ('1183', '424', '43', '1', '11', 'SMALL', null, '1520703150', '2018-03-10 20:35:53', '2018-03-10 20:35:53');
-INSERT INTO `tb_cart` VALUES ('1184', '424', '3', '20', '13', 'MEDIUM', null, '1520703150', '2018-03-10 20:36:48', '2018-03-10 20:36:48');
-INSERT INTO `tb_cart` VALUES ('1185', '424', '33', '1', '11', 'SMALL', null, '1520703150', '2018-03-10 20:50:20', '2018-03-10 20:50:20');
-INSERT INTO `tb_cart` VALUES ('1186', '424', '43', '1', '11', 'SMALL', null, '1520703150', '2018-03-10 20:50:55', '2018-03-10 20:50:55');
-INSERT INTO `tb_cart` VALUES ('1187', '424', '37', '1', '11', 'SMALL', null, '1520703150', '2018-03-10 20:51:22', '2018-03-10 20:51:22');
-INSERT INTO `tb_cart` VALUES ('1188', '424', '38', '2', '13', 'MEDIUM', null, '1520703150', '2018-03-10 20:51:42', '2018-03-10 20:51:42');
-INSERT INTO `tb_cart` VALUES ('1189', '424', '2', '20', '11', 'SMALL', null, '1520703150', '2018-03-10 20:52:04', '2018-03-10 20:52:04');
-INSERT INTO `tb_cart` VALUES ('1193', '429', '5', '1', '13', 'MEDIUM', null, '1520716078', '2018-03-11 00:07:58', '2018-03-11 00:07:58');
-INSERT INTO `tb_cart` VALUES ('1194', '429', '5', '1', '13', 'MEDIUM', null, '1520716078', '2018-03-11 00:08:13', '2018-03-11 00:08:13');
-INSERT INTO `tb_cart` VALUES ('1197', '428', '5', '1', '13', 'MEDIUM', null, '1520741770', '2018-03-11 07:16:10', '2018-03-11 07:16:10');
-INSERT INTO `tb_cart` VALUES ('1210', '447', '33', '1', '11', 'SMALL', null, '1520769445', '2018-03-11 14:57:25', '2018-03-11 14:57:25');
-INSERT INTO `tb_cart` VALUES ('1219', '454', '3', '1', '13', 'MEDIUM', null, '1520779399', '2018-03-11 17:43:19', '2018-03-11 17:43:19');
-INSERT INTO `tb_cart` VALUES ('1221', '425', '37', '1', '11', 'SMALL', null, '1520780135', '2018-03-11 17:55:35', '2018-03-11 17:55:35');
-INSERT INTO `tb_cart` VALUES ('1225', '456', '33', '1', '11', 'SMALL', null, '1520786779', '2018-03-11 19:46:19', '2018-03-11 19:46:19');
-INSERT INTO `tb_cart` VALUES ('1226', '457', '33', '1', '11', 'SMALL', null, '1520787383', '2018-03-11 19:56:23', '2018-03-11 19:56:23');
-INSERT INTO `tb_cart` VALUES ('1232', '471', '33', '1', '11', 'SMALL', null, '1520843640', '2018-03-12 11:34:00', '2018-03-12 11:34:00');
-INSERT INTO `tb_cart` VALUES ('1233', '471', '3', '1', '13', 'MEDIUM', null, '1520843640', '2018-03-12 11:34:11', '2018-03-12 11:34:37');
-INSERT INTO `tb_cart` VALUES ('1253', '476', '4', '1', '15', 'LARGE', null, '1520879432', '2018-03-12 21:30:32', '2018-03-12 21:30:41');
-INSERT INTO `tb_cart` VALUES ('1254', '476', '33', '1', '11', 'SMALL', null, '1520879432', '2018-03-12 21:30:44', '2018-03-12 21:30:44');
-INSERT INTO `tb_cart` VALUES ('1255', '485', '37', '1', '11', 'SMALL', null, '1520881343', '2018-03-12 22:02:23', '2018-03-12 22:02:23');
-INSERT INTO `tb_cart` VALUES ('1256', '485', '37', '1', '11', 'SMALL', null, '1520881343', '2018-03-12 22:02:27', '2018-03-12 22:02:27');
-INSERT INTO `tb_cart` VALUES ('1257', '485', '38', '1', '13', 'MEDIUM', null, '1520881343', '2018-03-12 22:15:45', '2018-03-12 22:15:45');
-INSERT INTO `tb_cart` VALUES ('1258', '347', '3', '1', '13', 'MEDIUM', null, '1520273830', '2018-03-12 22:36:38', '2018-03-12 22:36:49');
-INSERT INTO `tb_cart` VALUES ('1267', '488', '44', '1', '15', 'MEDIUM', null, '1520930370', '2018-03-13 11:39:30', '2018-03-13 11:39:30');
-INSERT INTO `tb_cart` VALUES ('1268', '488', '3', '1', '15', 'MEDIUM', null, '1520930370', '2018-03-13 11:46:24', '2018-03-13 11:46:24');
-INSERT INTO `tb_cart` VALUES ('1283', '493', '5', '1', '15', 'MEDIUM', null, '1520942856', '2018-03-13 15:07:36', '2018-03-13 15:07:36');
-INSERT INTO `tb_cart` VALUES ('1291', '497', '3', '1', '15', 'MEDIUM', null, '1520947100', '2018-03-13 16:18:20', '2018-03-13 16:18:20');
-INSERT INTO `tb_cart` VALUES ('1298', '500', '43', '1', '11', 'SMALL', null, '1520949551', '2018-03-13 16:59:52', '2018-03-13 16:59:52');
-INSERT INTO `tb_cart` VALUES ('1353', '518', '5', '1', '13', 'MEDIUM', null, '1521030906', '2018-03-14 15:35:06', '2018-03-14 15:35:06');
-INSERT INTO `tb_cart` VALUES ('1355', '517', '1', '1', '15', 'LARGE', null, '1521034112', '2018-03-14 16:28:32', '2018-03-14 16:28:32');
-INSERT INTO `tb_cart` VALUES ('1356', '517', '33', '1', '11', 'SMALL', null, '1521034112', '2018-03-14 16:28:56', '2018-03-14 16:28:56');
-INSERT INTO `tb_cart` VALUES ('1373', '29', '3', '1', '13', 'MEDIUM', null, '1521091648', '2018-03-15 08:27:28', '2018-03-15 08:27:28');
-INSERT INTO `tb_cart` VALUES ('1416', '541', '5', '1', '13', 'MEDIUM', null, '1521215006', '2018-03-16 18:43:26', '2018-03-16 18:48:06');
-INSERT INTO `tb_cart` VALUES ('1437', '282', '5', '1', '13', 'MEDIUM', null, '1521352586', '2018-03-18 08:56:26', '2018-03-18 08:56:26');
-INSERT INTO `tb_cart` VALUES ('1438', '544', '5', '1', '13', 'MEDIUM', null, '1521360454', '2018-03-18 11:07:34', '2018-03-18 11:07:34');
-INSERT INTO `tb_cart` VALUES ('1439', '546', '3', '1', '13', 'MEDIUM', null, '1521365106', '2018-03-18 12:25:06', '2018-03-18 12:25:06');
-INSERT INTO `tb_cart` VALUES ('1440', '546', '5', '1', '13', 'MEDIUM', null, '1521365106', '2018-03-18 12:25:42', '2018-03-18 12:25:42');
-INSERT INTO `tb_cart` VALUES ('1444', '417', '39', '1', '15', 'LARGE', null, '1521378330', '2018-03-18 16:05:30', '2018-03-18 19:35:21');
-INSERT INTO `tb_cart` VALUES ('1445', '417', '19', '8', '1', '300ML', null, '1521378330', '2018-03-18 16:06:11', '2018-03-18 16:06:11');
-INSERT INTO `tb_cart` VALUES ('1446', '417', '23', '1', '1', '300ML', null, '1521378330', '2018-03-18 16:06:18', '2018-03-18 16:06:18');
-INSERT INTO `tb_cart` VALUES ('1485', '544', '23', '1', '1', '300ML', null, '1521360454', '2018-03-19 21:24:30', '2018-03-19 21:24:30');
-INSERT INTO `tb_cart` VALUES ('1494', '564', '39', '1', '20', 'LARGE', null, '1521540127', '2018-03-20 13:02:07', '2018-03-20 13:02:07');
-INSERT INTO `tb_cart` VALUES ('1498', '431', '4', '1', '20', 'LARGE', null, '1521541583', '2018-03-20 13:26:23', '2018-03-20 13:26:23');
-INSERT INTO `tb_cart` VALUES ('1566', '570', '1', '1', '15', 'LARGE', null, '1521633168', '2018-03-21 14:52:48', '2018-03-21 14:52:48');
-INSERT INTO `tb_cart` VALUES ('1580', '571', '1', '1', '15', 'LARGE', null, '1521671537', '2018-03-22 01:32:17', '2018-03-22 01:32:17');
-INSERT INTO `tb_cart` VALUES ('1581', '571', '4', '1', '15', 'LARGE', null, '1521671537', '2018-03-22 01:35:25', '2018-03-22 01:35:25');
-INSERT INTO `tb_cart` VALUES ('1595', '330', '39', '1', '15', 'LARGE', null, '1521727313', '2018-03-22 17:01:53', '2018-03-22 17:01:53');
-INSERT INTO `tb_cart` VALUES ('1615', '578', '10', '1', '15', 'LARGE', null, '1521823960', '2018-03-23 19:52:40', '2018-03-23 19:53:16');
-INSERT INTO `tb_cart` VALUES ('1623', '580', '1', '1', '15', 'LARGE', null, '1521868666', '2018-03-24 08:17:46', '2018-03-24 08:17:46');
-INSERT INTO `tb_cart` VALUES ('1625', '581', '35', '2', '15', 'LARGE', null, '1521888384', '2018-03-24 13:46:24', '2018-03-24 13:46:24');
-INSERT INTO `tb_cart` VALUES ('1626', '419', '5', '1', '13', 'MEDIUM', null, '1520699842', '2018-03-24 13:53:24', '2018-03-24 13:53:24');
-INSERT INTO `tb_cart` VALUES ('1648', '220', '44', '1', '13', 'MEDIUM', null, '1518633312', '2018-03-25 20:47:02', '2018-03-25 20:47:02');
-INSERT INTO `tb_cart` VALUES ('1655', '306', '23', '1', '1', '300ML', null, '1522054956', '2018-03-26 12:02:36', '2018-03-26 12:02:36');
-INSERT INTO `tb_cart` VALUES ('1699', '586', '10', '1', '20', 'LARGE', null, '1522167236', '2018-03-27 19:13:56', '2018-03-27 19:13:56');
-INSERT INTO `tb_cart` VALUES ('1717', '548', '23', '1', '1', '300ML', null, '1522251666', '2018-03-28 18:41:06', '2018-03-28 18:41:06');
-INSERT INTO `tb_cart` VALUES ('1725', '140', '37', '1', '11', 'SMALL', null, '1522264041', '2018-03-28 22:08:32', '2018-03-28 22:08:32');
-INSERT INTO `tb_cart` VALUES ('1727', '208', '5', '1', '13', 'MEDIUM', null, '1519629455', '2018-03-28 23:48:21', '2018-03-28 23:48:21');
-INSERT INTO `tb_cart` VALUES ('1743', '5', '19', '17', '1', '300ML', null, '1522397145', '2018-03-30 11:05:45', '2018-03-30 11:05:45');
-INSERT INTO `tb_cart` VALUES ('1744', '528', '45', '1', '11', 'SMALL', null, '1522413886', '2018-03-30 15:44:46', '2018-03-30 15:44:46');
-INSERT INTO `tb_cart` VALUES ('1776', '604', '19', '1', '1', '300ML', null, '1522638990', '2018-04-02 06:16:30', '2018-04-02 06:16:30');
-INSERT INTO `tb_cart` VALUES ('1777', '605', '37', '1', '11', 'SMALL', null, '1522648602', '2018-04-02 08:56:42', '2018-04-02 08:56:42');
-INSERT INTO `tb_cart` VALUES ('1786', '340', '3', '1', '13', 'MEDIUM', null, '1522680682', '2018-04-02 17:51:22', '2018-04-02 17:53:11');
-INSERT INTO `tb_cart` VALUES ('1787', '340', '5', '1', '13', 'MEDIUM', null, '1522680682', '2018-04-02 17:53:49', '2018-04-02 17:53:49');
-INSERT INTO `tb_cart` VALUES ('1838', '614', '27', '1', '1', '300ML', null, '1522770194', '2018-04-03 18:43:14', '2018-04-03 18:43:14');
-INSERT INTO `tb_cart` VALUES ('1853', '615', '10', '1', '20', 'LARGE', null, '1522776478', '2018-04-03 20:27:58', '2018-04-03 20:28:34');
-INSERT INTO `tb_cart` VALUES ('1854', '615', '4', '1', '20', 'LARGE', null, '1522776478', '2018-04-03 20:28:07', '2018-04-03 20:28:07');
-INSERT INTO `tb_cart` VALUES ('1857', '616', '3', '1', '15', 'MEDIUM', null, '1522777572', '2018-04-03 20:46:12', '2018-04-03 20:46:12');
-INSERT INTO `tb_cart` VALUES ('1860', '572', '33', '1', '11', 'SMALL', null, '1522810658', '2018-04-04 05:57:38', '2018-04-04 05:57:38');
-INSERT INTO `tb_cart` VALUES ('1861', '592', '27', '1', '1', '300ML', null, '1522846561', '2018-04-04 15:56:01', '2018-04-04 15:56:01');
-INSERT INTO `tb_cart` VALUES ('1868', '532', '5', '1', '13', 'MEDIUM', null, '1522922650', '2018-04-05 13:04:10', '2018-04-05 13:04:10');
-INSERT INTO `tb_cart` VALUES ('1869', '208', '1', '1', '15', 'LARGE', null, '1519629455', '2018-04-05 13:43:52', '2018-04-05 13:43:52');
-INSERT INTO `tb_cart` VALUES ('1902', '621', '45', '2', '11', 'SMALL', null, '1523035842', '2018-04-06 20:31:31', '2018-04-06 20:31:31');
-INSERT INTO `tb_cart` VALUES ('1903', '621', '5', '11', '13', 'MEDIUM', null, '1523035842', '2018-04-06 20:33:00', '2018-04-06 20:33:00');
-INSERT INTO `tb_cart` VALUES ('1906', '561', '8', '10', '15', 'LARGE', null, '1523090649', '2018-04-07 11:44:09', '2018-04-07 11:44:09');
-INSERT INTO `tb_cart` VALUES ('1915', '521', '33', '1', '11', 'SMALL', null, '1523106016', '2018-04-07 16:00:16', '2018-04-09 18:53:31');
-INSERT INTO `tb_cart` VALUES ('1921', '622', '33', '1', '11', 'SMALL', null, '1523118040', '2018-04-07 19:20:40', '2018-04-07 19:20:40');
-INSERT INTO `tb_cart` VALUES ('1927', '277', '37', '1', '11', 'SMALL', null, '1523184354', '2018-04-08 13:45:54', '2018-04-08 13:45:54');
-INSERT INTO `tb_cart` VALUES ('1933', '184', '10', '1', '15', 'LARGE', null, '1523195423', '2018-04-08 16:50:23', '2018-04-08 16:50:37');
-INSERT INTO `tb_cart` VALUES ('1950', '277', '10', '1', '15', 'LARGE', null, '1523184354', '2018-04-08 20:23:41', '2018-04-08 20:23:41');
-INSERT INTO `tb_cart` VALUES ('1953', '282', '19', '1', '1', '300ML', null, '1521352586', '2018-04-09 12:13:41', '2018-04-09 12:13:41');
-INSERT INTO `tb_cart` VALUES ('1956', '279', '1', '1', '15', 'LARGE', null, '1523281633', '2018-04-09 16:47:13', '2018-04-09 16:47:13');
-INSERT INTO `tb_cart` VALUES ('1957', '279', '4', '1', '15', 'LARGE', null, '1523281633', '2018-04-09 16:47:19', '2018-04-09 16:47:19');
-INSERT INTO `tb_cart` VALUES ('1960', '521', '23', '1', '1', '300ML', null, '1523106016', '2018-04-09 18:45:01', '2018-04-09 18:45:07');
-INSERT INTO `tb_cart` VALUES ('1975', '505', '5', '1', '15', 'MEDIUM', null, '1523364227', '2018-04-10 15:43:47', '2018-04-10 15:43:47');
-INSERT INTO `tb_cart` VALUES ('2007', '140', '1', '1', '20', 'LARGE', null, '1522264041', '2018-04-10 20:31:28', '2018-04-10 20:31:28');
-INSERT INTO `tb_cart` VALUES ('2033', '635', '39', '1', '15', 'LARGE', null, '1523531600', '2018-04-12 14:13:20', '2018-04-12 14:13:20');
-INSERT INTO `tb_cart` VALUES ('2036', '237', '8', '1', '15', 'LARGE', null, '1523541818', '2018-04-12 17:03:38', '2018-04-12 17:04:43');
-INSERT INTO `tb_cart` VALUES ('2044', '637', '10', '1', '15', 'LARGE', null, '1523548888', '2018-04-12 19:01:28', '2018-04-12 19:01:28');
-INSERT INTO `tb_cart` VALUES ('2072', '229', '5', '1', '13', 'MEDIUM', null, '1523642914', '2018-04-13 21:08:34', '2018-04-13 21:08:34');
-INSERT INTO `tb_cart` VALUES ('2073', '521', '5', '1', '13', 'MEDIUM', null, '1523106016', '2018-04-14 08:59:45', '2018-04-14 08:59:45');
-INSERT INTO `tb_cart` VALUES ('2074', '448', '4', '1', '15', 'LARGE', null, '1523687052', '2018-04-14 09:24:12', '2018-04-14 09:24:12');
-INSERT INTO `tb_cart` VALUES ('2077', '642', '3', '1', '13', 'MEDIUM', null, '1523699325', '2018-04-14 12:48:45', '2018-04-14 12:48:45');
-INSERT INTO `tb_cart` VALUES ('2090', '644', '43', '1', '11', 'SMALL', null, '1523787013', '2018-04-15 13:10:13', '2018-04-15 13:10:13');
+INSERT INTO `tb_cart` VALUES ('2099', '10', '34', '1', '13', 'MEDIUM', null, '1530986805', '2018-07-07 21:06:45', '2018-07-07 21:06:45');
 
 -- ----------------------------
 -- Table structure for tb_delivery_time
@@ -6960,7 +6761,7 @@ CREATE TABLE `tb_users` (
 -- Records of tb_users
 -- ----------------------------
 INSERT INTO `tb_users` VALUES ('5', 'pkyalo', '1', 'KINGOO', 'PETER KYALO', '724802220', 'petchaloo@gmail.com', '1', '834dfae0c40820faccf4f83580be800545dca3c1', '2017-10-09 07:06:51', '2017-10-09 07:06:51', null, '', '', null);
-INSERT INTO `tb_users` VALUES ('10', 'fatelord', '2', 'BARASA', 'SAMMY M', '1123', 'barsamms@gmail.com', '1', '63aaa47cb0b76f0b157c40cdba9bf78653a7af37', '2017-10-09 07:06:51', '2018-03-23 23:13:11', null, 'tNfNLBO7TXyu_sPnZZ9Ih4rJdhkecUty', '', null);
+INSERT INTO `tb_users` VALUES ('10', 'fatelord', '1', 'BARASA', 'SAMMY M', '1123', 'barsamms@gmail.com', '1', '63aaa47cb0b76f0b157c40cdba9bf78653a7af37', '2017-10-09 07:06:51', '2018-03-23 23:13:11', null, 'tNfNLBO7TXyu_sPnZZ9Ih4rJdhkecUty', '', null);
 INSERT INTO `tb_users` VALUES ('11', 'admin', '2', 'ADMIN', 'ADMIN', '123', 'admin@pizzaout.so', '1', '354b5a8c25b9e8825288d1fea29009507081c3be', '2017-11-10 13:11:43', '2017-11-10 13:11:49', null, '', '', null);
 INSERT INTO `tb_users` VALUES ('24', 'kyalo', '1', 'KINGOO', 'PETER KYALO', '2147483647', 'pkyalo@uonbi.ac.ke', '1', '834dfae0c40820faccf4f83580be800545dca3c1', '2017-12-20 12:38:11', '2017-12-20 12:38:11', null, '', '', null);
 INSERT INTO `tb_users` VALUES ('25', 'mohacpr', '1', 'MOHAMED', 'MOHAMED', '619000333', 'mohacpr@gmail.com', '1', '2d7d1969f957c467cfb161b81ff408af6b94a8ea', '2017-12-20 19:39:38', '2017-12-20 19:39:38', null, '', '', null);
@@ -7571,6 +7372,30 @@ CREATE TABLE `user_type` (
 INSERT INTO `user_type` VALUES ('1', 'CUSTOMER');
 INSERT INTO `user_type` VALUES ('2', 'ADMIN');
 INSERT INTO `user_type` VALUES ('3', 'RIDER');
+
+-- ----------------------------
+-- Table structure for wp_cart
+-- ----------------------------
+DROP TABLE IF EXISTS `wp_cart`;
+CREATE TABLE `wp_cart` (
+  `CART_ITEM_ID` bigint(10) NOT NULL AUTO_INCREMENT,
+  `CART_GUID` tinytext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ITEM_TYPE_ID` bigint(10) NOT NULL,
+  `QUANTITY` int(4) NOT NULL,
+  `ITEM_PRICE` decimal(10,0) NOT NULL,
+  `ITEM_TYPE_SIZE` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`CART_ITEM_ID`),
+  KEY `order_item_ibfk_2` (`ITEM_TYPE_ID`) USING BTREE,
+  CONSTRAINT `wp_cart_ibfk_1` FOREIGN KEY (`ITEM_TYPE_ID`) REFERENCES `menu_item_type` (`ITEM_TYPE_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2154 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of wp_cart
+-- ----------------------------
+INSERT INTO `wp_cart` VALUES ('2144', 'UJxga8QEWf3iqRmjSsUsteS9tpjrQsGj', '45', '1', '11', 'SMALL');
+INSERT INTO `wp_cart` VALUES ('2145', 'UJxga8QEWf3iqRmjSsUsteS9tpjrQsGj', '5', '4', '13', 'MEDIUM');
+INSERT INTO `wp_cart` VALUES ('2152', 'UJxga8QEWf3iqRmjSsUsteS9tpjrQsGj', '23', '1', '1', '300ML');
+INSERT INTO `wp_cart` VALUES ('2153', 'UJxga8QEWf3iqRmjSsUsteS9tpjrQsGj', '19', '8', '1', '300ML');
 
 -- ----------------------------
 -- View structure for vw_orders

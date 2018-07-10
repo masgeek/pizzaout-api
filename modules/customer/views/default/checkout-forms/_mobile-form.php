@@ -17,6 +17,7 @@ use yii\helpers\Url;
 
 $model->PAYMENT_METHOD = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
 $paymentModel->PAYMENT_CHANNEL = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
+$paymentModel->PAYMENT_NUMBER = Yii::$app->user->identity->mobile;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 
@@ -28,7 +29,9 @@ $paymentModel->PAYMENT_CHANNEL = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
 
 <?= $form->field($model, 'NOTES', ['template' => $field_template])->textInput(['class' => 'form-control input-lg']) ?>
 
-<?= $form->field($paymentModel, 'PAYMENT_NUMBER', ['template' => $field_template])->textInput(['class' => 'form-control input-lg']) ?>
+<?= $form->field($paymentModel, 'PAYMENT_NUMBER', ['template' => $field_template])->textInput([
+        'class' => 'form-control input-lg'
+]) ?>
 
 <?= $form->field($paymentModel, 'PAYMENT_AMOUNT')->hiddenInput(['value' => $orderTotal, 'readonly' => true])->label(false) ?>
 

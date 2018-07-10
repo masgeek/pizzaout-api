@@ -192,6 +192,10 @@ class USERS_MODEL extends Users implements IdentityInterface
         return $this->EMAIL;
     }
 
+    public function getMobile()
+    {
+        return $this->MOBILE;
+    }
     public function getUserType()
     {
         return UserType::findOne($this->USER_TYPE)->USER_TYPE_NAME;

@@ -19,6 +19,14 @@ class WP_CART_MODEL extends WpCart
 {
 
 
+    public function rules()
+    {
+        $rules = parent::rules();
+
+        $rules[] = [['QUANTITY'], 'number', 'min' => 1];
+        return $rules;
+    }
+
     /**
      * @return mixed|string
      * @throws \yii\base\Exception
@@ -52,9 +60,15 @@ class WP_CART_MODEL extends WpCart
         $cookies->add(new \yii\web\Cookie([
             'name' => $cookieKey,
             'value' => $guid,
-            'expire' => time() + (60*60*24) // 24 hours
+            'expire' => time() + (60 * 60 * 24) // 24 hours
         ]));
 
         return $cookies->getValue($cookieKey);
+    }
+
+    public static function ClearCart($cart_guid)
+    {
+        //remove the cart item
+        self::deleteAll(['CART_GUID' => $cart_guid]);
     }
 }

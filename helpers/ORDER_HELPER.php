@@ -13,6 +13,7 @@ use app\model_extended\CUSTOMER_ORDER_ITEMS;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\CUSTOMER_PAYMENTS;
 use app\model_extended\STATUS_MODEL;
+use app\model_extended\WP_CART_MODEL;
 use Yii;
 
 class ORDER_HELPER
@@ -233,11 +234,28 @@ class ORDER_HELPER
         return $saveSuccessful;
     }
 
+    /**
+     * @param $user_id
+     * @return CART_MODEL[]|WP_CART_MODEL[]|array|\yii\db\ActiveRecord[]
+     */
     public static function GetCartItems($user_id)
     {
         $cart_items = CART_MODEL::find()
             ->where(['USER_ID' => $user_id])
             ->all();
+        return $cart_items;
+    }
+
+    /**
+     * @param $cart_guid
+     * @return CART_MODEL[]|WP_CART_MODEL[]|array|\yii\db\ActiveRecord[]
+     */
+    public static function GetWpCartItems($cart_guid)
+    {
+        $cart_items = WP_CART_MODEL::find()
+            ->where(['CART_GUID' => $cart_guid])
+            ->all();
+
         return $cart_items;
     }
 }

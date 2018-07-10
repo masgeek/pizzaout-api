@@ -104,7 +104,8 @@ TEMPLATE;
         [
             'label' => '<i class="glyphicon glyphicon-credit-card"></i> Card Payment',
             'content' => $this->render('checkout-forms/_card-form', ['paymentModel' => $paymentModel, 'model' => $model, 'orderTotal' => $orderTotal]),
-           // 'active' => true
+            'visible' => false,
+            // 'active' => true
         ],
     ];
     ?>
