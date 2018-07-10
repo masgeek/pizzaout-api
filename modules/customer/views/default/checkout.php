@@ -14,6 +14,11 @@
 
 /* @var $model \app\model_extended\CUSTOMER_ORDERS */
 
+/* @var boolean $order_created */
+
+/* @var string $paymentNumber */
+
+
 use kartik\tabs\TabsX;
 
 $vat = 0;
@@ -100,10 +105,18 @@ TEMPLATE;
         [
             'label' => '<i class="glyphicon glyphicon-phone"></i> Mobile Payment',
             'content' => $this->render('checkout-forms/_mobile-form', ['paymentModel' => $paymentModel, 'model' => $model, 'orderTotal' => $orderTotal, 'field_template' => $field_template]),
+            'visible' => $order_created ? false : true, //visible if order has not been created
+            'active' => $order_created ? false : true //active if order has not been created
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-file"></i> Payment Instructions',
+            'content' => $this->render('checkout-forms/_instructions_form', ['model' => $model]),
+            'visible' => $order_created ? true : false, //visible when the order has been created
+            'active' => $order_created ? true : false, //active when the order has been created
         ],
         [
             'label' => '<i class="glyphicon glyphicon-credit-card"></i> Card Payment',
-            'content' => $this->render('checkout-forms/_card-form', ['paymentModel' => $paymentModel, 'model' => $model, 'orderTotal' => $orderTotal]),
+            'content' => $this->render('checkout-forms/_card-form', ['paymentModel' => $paymentModel, 'model' => $model, 'orderTotal' => $formatter->asCurrency($orderTotal)]),
             'visible' => false,
             // 'active' => true
         ],

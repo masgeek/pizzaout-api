@@ -20,6 +20,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 
     public $COMMENTS;
     public $ALERT_USER = true;
+    public $PAYMENT_NUMBER;
 
     public function attributeLabels()
     {
@@ -35,6 +36,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $labels['ORDER_STATUS'] = 'Status';
         $labels['ALERT_USER'] = 'Notify Customer';
         $labels['ORDER_ID'] = 'Order ID #';
+        $labels['PAYMENT_NUMBER'] = 'Order Payment Number';
         $labels['ORDER_TIME'] = 'Delivery Time';
 
         return $labels;
@@ -98,7 +100,12 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $tracker->save();
     }
 
-    public function ComputeOrderTotal()
+    /**
+     * @param bool $formatted
+     * @return float|int|string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function ComputeOrderTotal($formatted = false)
     {
         /* @var $model CUSTOMER_ORDERS */
         $data = $this->customerOrderItems;
@@ -106,7 +113,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
         foreach ($data as $key => $value) {
             $total = $total + (float)($value->SUBTOTAL);
         }
-        return $total;
+        return $formatted ? \Yii::$app->formatter->asCurrency($total) : $total;
     }
 
     /**

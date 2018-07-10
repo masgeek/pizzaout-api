@@ -35,17 +35,17 @@ class DefaultController extends Controller
                 ],
             ],
             'access' => [
-                 'class' => AccessControl::className(),
-                 'except' => ['index', 'logout', 'login','add-to-cart','my-cart',],
-                 'rules' => [
-                     // allow authenticated users
-                     [
-                         'allow' => true,
-                         'roles' => ['@'],
-                     ],
-                     // everything else is denied
-                 ],
-             ],
+                'class' => AccessControl::className(),
+                'except' => ['index', 'logout', 'login', 'add-to-cart', 'my-cart',],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
         ];
     }
 
@@ -193,6 +193,8 @@ class DefaultController extends Controller
         $formatter = \Yii::$app->formatter;
         $user_id = Yii::$app->user->id;
 
+        $order_created = false;
+        $paymentNumber = null;
         $saveSuccessful = false;
 
         $cart_guid = WP_CART_MODEL::getCartCookie();
@@ -246,22 +248,26 @@ class DefaultController extends Controller
                 //remove the cart item
                 //CART_MODEL::ClearCart($orderItems->CART_TIMESTAMP);
 
-                $transaction->commit();
+                //$transaction->commit();
                 //render the payment instructions
                 //concatentate the payment info
-                var_dump($model->ComputeOrderTotal());
-                $paymentnumber = \Yii::$app->params['ussdNumber']."*{$model->ORDER_ID}#";
+                //var_dump($model->ComputeOrderTotal());
+                $order_created = true;
 
-                return $paymentnumber;
+                //return $paymentNumber;
+            } else {
+                $transaction->rollback();
+                $this->refresh();
             }
-            $transaction->rollback();
-            $this->refresh();
+
+
         }
 
         return $this->render('@app/modules/customer/views/default/checkout', [
             'formatter' => $formatter,
             'cart_items' => $cart_items,
             'model' => $model,
-            'paymentModel' => $paymentModel]);
+            'paymentModel' => $paymentModel,
+            'order_created' => $order_created]);
     }
 }
