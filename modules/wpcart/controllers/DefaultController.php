@@ -246,15 +246,10 @@ class DefaultController extends Controller
             }
             if ($saveSuccessful) {
                 //remove the cart item
-                //CART_MODEL::ClearCart($orderItems->CART_TIMESTAMP);
-
-                //$transaction->commit();
+                WP_CART_MODEL::ClearCart($cart_guid);
+                $transaction->commit();
                 //render the payment instructions
-                //concatentate the payment info
-                //var_dump($model->ComputeOrderTotal());
                 $order_created = true;
-
-                //return $paymentNumber;
             } else {
                 $transaction->rollback();
                 $this->refresh();
