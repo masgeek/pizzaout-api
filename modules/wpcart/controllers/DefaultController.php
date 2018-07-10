@@ -12,6 +12,8 @@ use app\model_extended\LOCATION_MODEL;
 use app\model_extended\MENU_ITEMS;
 use app\model_extended\WP_CART_MODEL;
 use app\models\LoginForm;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;
 
@@ -20,6 +22,33 @@ use Yii;
  */
 class DefaultController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+            'access' => [
+                 'class' => AccessControl::className(),
+                 'except' => ['index', 'logout', 'login','add-to-cart','my-cart',],
+                 'rules' => [
+                     // allow authenticated users
+                     [
+                         'allow' => true,
+                         'roles' => ['@'],
+                     ],
+                     // everything else is denied
+                 ],
+             ],
+        ];
+    }
+
     /**
      * Renders the index view for the module
      * @return string
@@ -219,8 +248,11 @@ class DefaultController extends Controller
 
                 $transaction->commit();
                 //render the payment instructions
-                var_dump($model);
-                return 4;
+                //concatentate the payment info
+                var_dump($model->ComputeOrderTotal());
+                $paymentnumber = \Yii::$app->params['ussdNumber']."*{$model->ORDER_ID}#";
+
+                return $paymentnumber;
             }
             $transaction->rollback();
             $this->refresh();

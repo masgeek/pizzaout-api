@@ -9,6 +9,7 @@
 namespace app\model_extended;
 
 
+use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\api\modules\v1\models\USER_MODEL;
 use app\helpers\APP_UTILS;
 use app\models\CustomerOrder;
@@ -97,12 +98,32 @@ class CUSTOMER_ORDERS extends CustomerOrder
         $tracker->save();
     }
 
+    public function ComputeOrderTotal()
+    {
+        /* @var $model CUSTOMER_ORDERS */
+        $data = $this->customerOrderItems;
+        $total = 0;
+        foreach ($data as $key => $value) {
+            $total = $total + (float)($value->SUBTOTAL);
+        }
+        return $total;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getOrderTrackings()
     {
         return $this->hasMany(OrderTracking::className(), ['ORDER_ID' => 'ORDER_ID'])->orderBy(['TRACKING_DATE' => SORT_DESC]);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPayment()
+    {
+        return $this->hasOne(PAYMENT_MODEL::className(), ['ORDER_ID' => 'ORDER_ID']);
     }
 
 }

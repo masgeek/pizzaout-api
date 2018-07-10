@@ -91,24 +91,11 @@ class CUSTOMER_ORDER_MODEL extends CUSTOMER_ORDERS
 
         $fields['ORDER_TOTAL'] = function ($model) {
             /* @var $model CUSTOMER_ORDER_MODEL */
-            $data = $model->customerOrderItems;
-            $total = 0;
-            foreach ($data as $key => $value) {
-                $total = $total + (float)($value->SUBTOTAL);
-            }
-            return $total;
+            return $model->ComputeOrderTotal();
         };
 
 
         return $fields;
     }
 
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPayment()
-    {
-        return $this->hasOne(PAYMENT_MODEL::className(), ['ORDER_ID' => 'ORDER_ID']);
-    }
 }

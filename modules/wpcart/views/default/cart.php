@@ -125,8 +125,8 @@ $this->registerJsFile('@web/css/wpcart/js/update-wp-cart.js', ['depends' => [\yi
                     ]) ?>
                 </td>
                 <td>
-                    <?= Html::a('<i class="glyphicon glyphicon-play"></i> Continue Shopping', ['checkout'], [
-                        'class' => 'btn btn-success'
+                    <?= Html::a('<i class="glyphicon glyphicon-play"></i> Checkout', ['checkout'], [
+                        'class' => 'btn btn-success btn-block'
                     ]) ?>
                 </td>
             </tr>
