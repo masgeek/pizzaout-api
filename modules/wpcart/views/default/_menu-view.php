@@ -101,6 +101,8 @@ $prevCat = null;
                                         var $cartSpan = $("#add_to_cart_span_"+ITEM_TYPE_ID);
                                         var $qtyInput = $("#QTY_"+ITEM_TYPE_ID);
                                         var $messageSpan = $("#message_"+MENU_ITEM_ID);
+                                        var $cartCount = $("#cart_count");
+                                        
                                         if(data.ADDED===true){
                                             $cart.removeClass("btn-primary btn-danger").addClass("btn-success");
                                             $cartSpan.removeClass("fa-plus-circle fa-remove").addClass("fa-check");
@@ -110,6 +112,8 @@ $prevCat = null;
                                             $cartSpan.removeClass("fa-plus-circle fa-check").addClass("fa-remove");
                                             $qtyInput.removeClass("cart-success").addClass("cart-error");
                                         }
+                                        $messageSpan.html(data.MESSAGE);
+                                        $cartCount.html(data.CART_COUNT);
                                     }'),
                                     'error' => new JsExpression('function(jqXHR, ajaxOptions,thrownError) {
                                         var ITEM_TYPE_ID = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_ID) . ';
@@ -141,7 +145,7 @@ $prevCat = null;
             </div>
         </div>
         <div class="panel panel-footer">
-           <span id="message_<?= $model->MENU_ITEM_ID ?>">Message</span>
+            <h4><span id="message_<?= $model->MENU_ITEM_ID ?>">Message</span></h4>
         </div>
     </div>
 </div>

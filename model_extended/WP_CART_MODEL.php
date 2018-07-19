@@ -41,9 +41,22 @@ class WP_CART_MODEL extends WpCart
             if ($cookies->has($cookieKey)) {
                 return $cookies->getValue($cookieKey);
             }
-        } else {
-            return self::setCartCookie();
         }
+        return self::setCartCookie();
+    }
+
+    /**
+     * @return int|string
+     * @throws \yii\base\Exception
+     */
+    public static function getCartItemsCount()
+    {
+        //$guid = self::getCartCookie();
+        $items = self::find()
+            //->where(['CART_GUID' => $guid])
+            ->count('CART_GUID');
+
+        return (int)$items;
     }
 
     /**

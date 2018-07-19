@@ -9,8 +9,9 @@ $this->registerCssFile("@web/css/wpcart/css/menu-animation.css", [
 ?>
 <hr/>
 <div class="row">
-    <?= \yii\helpers\Html::a('My Cart', ['default/my-cart'], [
-        'class' => 'btn btn-success btn-block btn-lg'
+    <?= \yii\helpers\Html::a('My Cart <span class="badge" id="cart_count">' . $cart_count . '</span>', ['default/my-cart'], [
+        'class' => 'btn btn-primary btn-block btn-lg',
+        'id' => 'cart_button'
     ]) ?>
 </div>
 <br/>

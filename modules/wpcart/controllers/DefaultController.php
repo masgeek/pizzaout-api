@@ -29,13 +29,13 @@ class DefaultController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'except' => ['index', 'logout', 'login', 'add-to-cart', 'my-cart',],
                 'rules' => [
                     // allow authenticated users
@@ -52,6 +52,7 @@ class DefaultController extends Controller
     /**
      * Renders the index view for the module
      * @return string
+     * @throws \yii\base\Exception
      */
     public function actionIndex()
     {
@@ -60,11 +61,12 @@ class DefaultController extends Controller
         //lets get the list of pizzas on offer
         $drinksDataProvider = MENU_ITEMS::GetDrinksList();
         $pizzaDataProvider = MENU_ITEMS::GetPizzaList();
-
+        $cart_count = WP_CART_MODEL::getCartItemsCount();
 
         return $this->render('menu', [
             'drinksDataProvider' => $drinksDataProvider,
             'pizzaDataProvider' => $pizzaDataProvider,
+            'cart_count' => $cart_count
         ]);
     }
 
@@ -81,7 +83,6 @@ class DefaultController extends Controller
             'MESSAGE' => 'Item not added successfully to cart'
         ];
 
-        return json_encode($resp);
         $session_id = WP_CART_MODEL::getCartCookie();
         $item_type_id = Yii::$app->request->post('ITEM_TYPE_ID', 0);
         $item_price = Yii::$app->request->post('ITEM_PRICE', 0);
@@ -100,7 +101,7 @@ class DefaultController extends Controller
                 if ($cartModel->save()) {
                     $resp = [
                         'ADDED' => true,
-                        'MESSAGE' => $cartModel->CART_GUID
+                        'MESSAGE' => $cartModel->iTEMTYPE->mENUITEM->MENU_ITEM_NAME
                     ];
                 } else {
                     $cartModel->validate();
@@ -120,7 +121,7 @@ class DefaultController extends Controller
                 if ($cartModel->save()) {
                     $resp = [
                         'ADDED' => true,
-                        'MESSAGE' => $cartModel->CART_GUID
+                        'MESSAGE' => $cartModel->iTEMTYPE->mENUITEM->MENU_ITEM_NAME
                     ];
                 } else {
                     $cartModel->validate();
@@ -137,6 +138,8 @@ class DefaultController extends Controller
                 ];
             }
         }
+
+        $resp['CART_COUNT'] = WP_CART_MODEL::getCartItemsCount();
         return json_encode($resp);
     }
 
