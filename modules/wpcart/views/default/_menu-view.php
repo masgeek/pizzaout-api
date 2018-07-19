@@ -68,6 +68,7 @@ $prevCat = null;
                             <td class="text-center">
                                 <?php Ajax::begin(['clientOptions' => [
                                     'method' => 'POST',
+                                    'dataType' => 'json',
                                     //'success' => new \yii\web\JsExpression('function(data, textStatus, jqXHR) {alert(data)}'),
                                     //'error' => new JsExpression('function(jqXHR, textStatus, errorThrown) {alert(errorThrown)}'),
                                     'beforeSend' => new JsExpression('function(data,jqXHR, settings) {
@@ -81,7 +82,7 @@ $prevCat = null;
                                        
                                         var subtotal = qty*ITEM_PRICE;
                             
-                                        this.data += \'&\' + $.param({ 
+                                        this.data += "&" + $.param({ 
                                             MENU_ITEM_ID:MENU_ITEM_ID,
                                             ITEM_TYPE_SIZE:ITEM_TYPE_SIZE,
                                             ITEM_PRICE:ITEM_PRICE,
@@ -90,15 +91,43 @@ $prevCat = null;
                                             SUB_TOTAL:subtotal
                                         });
                             
-                                        console.log(data);
+                                        //console.log(data);
+                                    }'),
+                                    'success' => new JsExpression('function(data) {
+                                        var ITEM_TYPE_ID = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_ID) . ';
+                                        var MENU_ITEM_ID = ' . \yii\helpers\Json::htmlEncode($itemType->MENU_ITEM_ID) . ';
+                                        
+                                        var $cart = $("#add_to_cart_"+ITEM_TYPE_ID);
+                                        var $cartSpan = $("#add_to_cart_span_"+ITEM_TYPE_ID);
+                                        var $qtyInput = $("#QTY_"+ITEM_TYPE_ID);
+                                        var $messageSpan = $("#message_"+MENU_ITEM_ID);
+                                        if(data.ADDED===true){
+                                            $cart.removeClass("btn-primary btn-danger").addClass("btn-success");
+                                            $cartSpan.removeClass("fa-plus-circle fa-remove").addClass("fa-check");
+                                            $qtyInput.removeClass("cart-error").addClass("cart-success");
+                                        }else{
+                                            $cart.removeClass("btn-primary btn-success").addClass("btn-danger");
+                                            $cartSpan.removeClass("fa-plus-circle fa-check").addClass("fa-remove");
+                                            $qtyInput.removeClass("cart-success").addClass("cart-error");
+                                        }
+                                    }'),
+                                    'error' => new JsExpression('function(jqXHR, ajaxOptions,thrownError) {
+                                        var ITEM_TYPE_ID = ' . \yii\helpers\Json::htmlEncode($itemType->ITEM_TYPE_ID) . ';
+                                        var $cart = $("#add_to_cart_"+ITEM_TYPE_ID);
+                                        var $cartSpan = $("#add_to_cart_span_"+ITEM_TYPE_ID);
+                                        var $qtyInput = $("#QTY_"+ITEM_TYPE_ID);
+                                        
+                                        $cart.removeClass("btn-primary").addClass("btn-danger");
+                                        $cartSpan.removeClass("fa-plus-circle").addClass("fa-remove");
+                                        $qtyInput.addClass("cart-error");
                                     }'),
                                     //'complete' => new JsExpression('function(jqXHR, textStatus) {alert("Complete.")}'),
                                     'timeout' => 10000
                                 ]]) ?>
-                                <!--a href="<?= Url::to(['site/response']) ?>" data-ajax="1" class="btn btn-default"><i class="fa fa-plus-circle"></i></a-->
 
-                                <?= Html::a('<i class="fa fa-plus-circle"></i>',
+                                <?= Html::a('<i class="fa fa-plus-circle" id="add_to_cart_span_' . $itemType->ITEM_TYPE_ID . '"></i>',
                                     ['add-to-cart'], [
+                                        'id' => 'add_to_cart_' . $itemType->ITEM_TYPE_ID,
                                         'class' => 'btn btn-primary',
                                         'data-ajax' => 1,
                                         'ajax-method' => 'POST',
@@ -110,6 +139,9 @@ $prevCat = null;
                     <?php endforeach; ?>
                 </table>
             </div>
+        </div>
+        <div class="panel panel-footer">
+           <span id="message_<?= $model->MENU_ITEM_ID ?>">Message</span>
         </div>
     </div>
 </div>

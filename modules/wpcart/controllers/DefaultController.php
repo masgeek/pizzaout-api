@@ -75,10 +75,13 @@ class DefaultController extends Controller
     public function actionAddToCart()
     {
 
+        //sleep(40);
         $resp = [
             'ADDED' => false,
-            'MESSAGE' => null
+            'MESSAGE' => 'Item not added successfully to cart'
         ];
+
+        return json_encode($resp);
         $session_id = WP_CART_MODEL::getCartCookie();
         $item_type_id = Yii::$app->request->post('ITEM_TYPE_ID', 0);
         $item_price = Yii::$app->request->post('ITEM_PRICE', 0);
