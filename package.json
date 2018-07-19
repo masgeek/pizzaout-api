@@ -25,6 +25,7 @@
     "modernizr": "^3.5.0",
     "nanoscroller": "^0.8.7",
     "printthis": "^0.1.5",
+    "toastr": "^2.1.4",
     "wolfy87-eventemitter": "^4.3.0"
   }
 }
