@@ -19,6 +19,10 @@ use yii\helpers\Url;
 $model->PAYMENT_METHOD = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
 $paymentModel->PAYMENT_CHANNEL = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
 $paymentModel->PAYMENT_NUMBER = Yii::$app->user->identity->mobile;
+
+if ($model->isNewRecord) {
+    $model->ORDER_DATE = date('Y-m-d'); //default to current date
+}
 ?>
 <?php $form = ActiveForm::begin(); ?>
 
@@ -35,6 +39,7 @@ $paymentModel->PAYMENT_NUMBER = Yii::$app->user->identity->mobile;
 <?= DatePicker::widget([
     'model' => $model,
     'attribute' => 'ORDER_DATE',
+    'removeButton' => false,
     'options' => [
         'class' => 'form-control input-lg',
         'placeholder' => 'Enter delivery date...'
