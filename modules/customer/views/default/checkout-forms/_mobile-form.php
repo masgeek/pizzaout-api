@@ -32,9 +32,12 @@ if ($model->isNewRecord) {
     <?= $form->field($model, 'PAYMENT_METHOD')->hiddenInput(['readonly' => true])->label(false) ?>
 </div>
 
-<?= $form->field($model, 'LOCATION_ID', ['template' => $field_template])->textInput(['class' => 'form-control input-lg']) ?>
+<?= $form->field($model, 'LOCATION_ID', ['template' => $field_template])->dropDownList(\app\model_extended\LOCATION_MODEL::GetActiveLocation(), [
+    'class' => 'form-control input-lg',
+    'prompt' => 'Please select delivery location'
+]) ?>
 
-<?= $form->field($model, 'ORDER_TIME', ['template' => $field_template])->dropDownList([], ['class' => 'form-control input-lg']) ?>
+<?= $form->field($model, 'ORDER_TIME', ['template' => $field_template])->dropDownList(\app\model_extended\LOCATION_MODEL::GetActiveLocation(), ['class' => 'form-control input-lg']) ?>
 
 <?= DatePicker::widget([
     'model' => $model,
@@ -46,8 +49,9 @@ if ($model->isNewRecord) {
     ],
     'pluginOptions' => [
         'todayHighlight' => true,
-        'startDate'=>date('Y-m-d'),
-        'endDate'=>date('Y-m-d'),
+        'todayBtn' => true,
+        'startDate' => date('Y-m-d'), //min date is today
+        //'endDate'=>date('Y-m-d'),
         'autoclose' => true,
         'format' => 'yyyy-mm-dd'
     ]

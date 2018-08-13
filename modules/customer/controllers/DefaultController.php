@@ -180,7 +180,7 @@ class DefaultController extends Controller
         $this->view->title = 'Order Checkout';
         $formatter = \Yii::$app->formatter;
         $user_id = Yii::$app->user->id;
-
+        $order_created = false;
         $saveSuccessful = false;
         $cart_items = ORDER_HELPER::GetCartItems($user_id);
 
@@ -246,6 +246,6 @@ class DefaultController extends Controller
             'formatter' => $formatter,
             'cart_items' => $cart_items,
             'model' => $model,
-            'paymentModel' => $paymentModel]);
+            'paymentModel' => $paymentModel, 'order_created' => $order_created]);
     }
 }
