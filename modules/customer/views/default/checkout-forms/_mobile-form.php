@@ -46,6 +46,8 @@ if ($model->isNewRecord) {
     ],
     'pluginOptions' => [
         'todayHighlight' => true,
+        'startDate'=>date('Y-m-d'),
+        'endDate'=>date('Y-m-d'),
         'autoclose' => true,
         'format' => 'yyyy-mm-dd'
     ]
