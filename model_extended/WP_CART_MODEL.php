@@ -27,23 +27,6 @@ class WP_CART_MODEL extends WpCart
         return $rules;
     }
 
-    /**
-     * @return mixed|string
-     * @throws \yii\base\Exception
-     */
-    public static function getCartCookie()
-    {
-        $cookieKey = 'CART_GUID';
-        $cookies = Yii::$app->request->cookies;
-
-        $username = $cookies->getValue($cookieKey, null);
-        if ($username != null) {
-            if ($cookies->has($cookieKey)) {
-                return $cookies->getValue($cookieKey);
-            }
-        }
-        return self::setCartCookie();
-    }
 
     /**
      * @return int|string
@@ -51,9 +34,9 @@ class WP_CART_MODEL extends WpCart
      */
     public static function getCartItemsCount()
     {
-        //$guid = self::getCartCookie();
+        $guid = self::getCartCookie();
         $items = self::find()
-            //->where(['CART_GUID' => $guid])
+            ->where(['CART_GUID' => $guid])
             ->count('CART_GUID');
 
         return (int)$items;
@@ -77,6 +60,26 @@ class WP_CART_MODEL extends WpCart
         ]));
 
         return $cookies->getValue($cookieKey);
+    }
+
+    /**
+     * @param bool $skip_generation
+     * @return mixed|string
+     * @throws \yii\base\Exception
+     */
+    public static function getCartCookie($skip_generation = false)
+    {
+        $cookieKey = 'CART_GUID';
+        $cookies = Yii::$app->request->cookies;
+
+        $cookie_value = $cookies->getValue($cookieKey, null);
+
+        if ($cookie_value != null) {
+            if ($cookies->has($cookieKey)) {
+                return $cookies->getValue($cookieKey);
+            }
+        }
+        return $skip_generation ? null : self::setCartCookie();
     }
 
     public static function ClearCart($cart_guid)

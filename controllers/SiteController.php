@@ -6,6 +6,7 @@ use app\api\modules\v1\models\USER_MODEL;
 use app\components\SmsComponent;
 use app\helpers\APP_UTILS;
 use app\model_extended\USERS_MODEL;
+use app\model_extended\WP_CART_MODEL;
 use app\models\ContactForm;
 use app\models\LoginForm;
 use Yii;
@@ -80,6 +81,11 @@ class SiteController extends Controller
             $userType = Yii::$app->user->identity->usertype;
             //check user Type and redirect accordingly
             if ($userType === APP_UTILS::USER_TYPE_CUSTOMER) {
+                //also check if wp cart has an item and redirect to the next selection stage
+                $cartCookie = WP_CART_MODEL::getCartCookie(true);
+                if ($cartCookie != null) {
+                    return $this->redirect(['//wpcart']); //redirect to the customer dashboard
+                }
                 return $this->redirect(['//customer']); //redirect to the customer dashboard
             } elseif ($userType == APP_UTILS::USER_TYPE_ADMIN) {
                 return $this->redirect(['//orders']); //redirect to orders management

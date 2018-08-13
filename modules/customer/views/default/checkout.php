@@ -25,14 +25,20 @@ $vat = 0;
 $deliveryFee = 0;
 $orderTotal = 0;
 
-$field_template = <<<TEMPLATE
+$field_template_ = <<<TEMPLATE
 <label>{label}</label>
 <div class="input-group input-group-icon">
      {input} 
     <span class="input-group-addon">
-        <span class="icon icon-lg"><i class="fa fa-mobile"></i></span>
+        <span><i class="fa fa-money fa-2x"></i></span>
     </span>
 </div>
+    {error}{hint}
+TEMPLATE;
+
+$field_template = <<<TEMPLATE
+<label>{label}</label>
+     {input} 
     {error}{hint}
 TEMPLATE;
 ?>

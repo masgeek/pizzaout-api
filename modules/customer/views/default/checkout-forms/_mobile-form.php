@@ -13,6 +13,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use kartik\widgets\DatePicker;
 use yii\helpers\Url;
 
 $model->PAYMENT_METHOD = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
@@ -27,10 +28,28 @@ $paymentModel->PAYMENT_NUMBER = Yii::$app->user->identity->mobile;
     <?= $form->field($model, 'PAYMENT_METHOD')->hiddenInput(['readonly' => true])->label(false) ?>
 </div>
 
+<?= $form->field($model, 'LOCATION_ID', ['template' => $field_template])->textInput(['class' => 'form-control input-lg']) ?>
+
+<?= $form->field($model, 'ORDER_TIME', ['template' => $field_template])->dropDownList([], ['class' => 'form-control input-lg']) ?>
+
+<?= DatePicker::widget([
+    'model' => $model,
+    'attribute' => 'ORDER_DATE',
+    'options' => [
+        'class' => 'form-control input-lg',
+        'placeholder' => 'Enter delivery date...'
+    ],
+    'pluginOptions' => [
+        'todayHighlight' => true,
+        'autoclose' => true,
+        'format' => 'yyyy-mm-dd'
+    ]
+]); ?>
+
 <?= $form->field($model, 'NOTES', ['template' => $field_template])->textInput(['class' => 'form-control input-lg']) ?>
 
 <?= $form->field($paymentModel, 'PAYMENT_NUMBER', ['template' => $field_template])->textInput([
-        'class' => 'form-control input-lg'
+    'class' => 'form-control input-lg'
 ]) ?>
 
 <?= $form->field($paymentModel, 'PAYMENT_AMOUNT')->hiddenInput(['value' => $orderTotal, 'readonly' => true])->label(false) ?>

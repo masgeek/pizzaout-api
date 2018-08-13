@@ -56,7 +56,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $this->view->title = 'WP Menu';
+        $this->view->title = 'Pizza Out Wordpress Menu';
         //show the menu
         //lets get the list of pizzas on offer
         $drinksDataProvider = MENU_ITEMS::GetDrinksList();
@@ -260,7 +260,6 @@ class DefaultController extends Controller
                 $transaction->rollback();
                 $this->refresh();
             }
-
 
         }
 
