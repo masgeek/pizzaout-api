@@ -48,7 +48,7 @@ class DeliveryTime extends \yii\db\ActiveRecord
         $deliveryTimes = self::find()
             ->all();
 
-        $listData = ArrayHelper::map($deliveryTimes, 'TIME_ID', 'DELIVERY_TIME');
+        $listData = ArrayHelper::map($deliveryTimes, 'DELIVERY_TIME', 'DELIVERY_TIME');
 
         return $listData;
     }

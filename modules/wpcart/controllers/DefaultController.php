@@ -222,8 +222,10 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $transaction = $connection->beginTransaction();
             $paymentModel->load(Yii::$app->request->post());
-            if ($model->save()) {
+            //append the order date and creation time
+            $model->ORDER_TIME = "{$model->ORDER_DATE} {$model->ORDER_TIME}:00";
 
+            if ($model->save()) {
                 foreach ($cart_items as $key => $orderItems):
                     $customer_order_items->isNewRecord = true;
                     $customer_order_items->ORDER_ITEM_ID = null;
@@ -268,6 +270,7 @@ class DefaultController extends Controller
             'cart_items' => $cart_items,
             'model' => $model,
             'paymentModel' => $paymentModel,
-            'order_created' => $order_created]);
+            'order_created' => $order_created
+        ]);
     }
 }

@@ -22,7 +22,7 @@ $paymentModel->PAYMENT_CHANNEL = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
 $paymentModel->PAYMENT_NUMBER = Yii::$app->user->identity->mobile;
 
 if ($model->isNewRecord) {
-    $model->ORDER_DATE = date('Y-m-d'); //default to current date
+    $model->ORDER_DATE = date('Y-m-d'); //default to current date if it is a new record
 }
 ?>
 <?php $form = ActiveForm::begin(); ?>
