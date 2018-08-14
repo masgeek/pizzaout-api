@@ -13,6 +13,7 @@ use Yii;
 use app\model_extended\CART_MODEL;
 use app\model_extended\USERS_MODEL;
 use PHPMailer\PHPMailer\PHPMailer;
+use yii\base\Exception;
 use yii\helpers\Url;
 
 class APP_UTILS
@@ -257,13 +258,15 @@ BODY;
     public
     static function FormatDateTime($datetime, $timeOnly = false, $format = 'M d, Y, H:i:s')
     {
-        return $datetime;
-        $formatter = \Yii::$app->formatter;
-        $tz = $formatter->timeZone;
+        try {
+            $formatter = \Yii::$app->formatter;
+            $tz = $formatter->timeZone;
 
-        $date = date_create($datetime, timezone_open($tz));
-        return $timeOnly ? date_format($date, $format) : date_format($date, $format);
-
+            $date = date_create($datetime, timezone_open($tz));
+            return $timeOnly ? date_format($date, $format) : date_format($date, $format);
+        } catch (Exception $ex) {
+            return $datetime;
+        }
 
     }
 
