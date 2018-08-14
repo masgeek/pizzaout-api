@@ -238,6 +238,13 @@ BODY;
     public static function GetFutureDateTime($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
     {
 
+        return \Yii::$app->formatter->asDatetime('now', $format);
+
+    }
+
+    public static function GetFutureDateTimeNew($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
+    {
+
         //return \Yii::$app->formatter->asDatetime('now', $format);
         $D = intval($period);
         $DC = strtoupper($durationType);
@@ -252,7 +259,6 @@ BODY;
         return \Yii::$app->formatter->asDatetime($dueDate, $format);
 
     }
-
     public
     static function FormatDateTime($datetime, $timeOnly = false, $format = 'M d, Y, H:i:s')
     {
