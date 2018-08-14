@@ -82,8 +82,8 @@ class SiteController extends Controller
             //check user Type and redirect accordingly
             if ($userType === APP_UTILS::USER_TYPE_CUSTOMER) {
                 //also check if wp cart has an item and redirect to the next selection stage
-                $cartCookie = WP_CART_MODEL::getCartCookie(true);
-                if ($cartCookie != null) {
+                $hasCartItems = WP_CART_MODEL::hasCartItems();
+                if ($hasCartItems != null) {
                     return $this->redirect(['//wpcart']); //redirect to the customer dashboard
                 }
                 return $this->redirect(['//customer']); //redirect to the customer dashboard

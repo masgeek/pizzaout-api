@@ -82,6 +82,23 @@ class WP_CART_MODEL extends WpCart
         return $skip_generation ? null : self::setCartCookie();
     }
 
+    /**Check if user has cart items then proceed to cart view or just normal user view
+     * @return bool
+     * @throws \yii\base\Exception
+     */
+    public static function hasCartItems()
+    {
+        $hasCookie = self::getCartCookie(true);
+        if ($hasCookie != null) {
+            //check if cart has items
+            $cartitems = self::getCartItemsCount();
+            if ($cartitems > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static function ClearCart($cart_guid)
     {
         //remove the cart item
