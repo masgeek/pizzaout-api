@@ -238,11 +238,22 @@ BODY;
     public static function GetFutureDateTime($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
     {
 
-        return \Yii::$app->formatter->asDatetime('now', $format);
+        //return \Yii::$app->formatter->asDatetime('now', $format);
+        $D = intval($period);
+        $DC = strtoupper($durationType);
+
+        $currentDate = date('d-M-Y'); //$this->getCourseFinishDate($regNumber);
+
+
+        $date = new \DateTime($currentDate);
+        $date->add(new \DateInterval('P' . $D . $DC)); //M Y W D
+        $dueDate = $date->format('d-M-Y');
+
+        return \Yii::$app->formatter->asDatetime($dueDate, $format);
 
     }
 
-    public static function GetFutureDateTimeNew($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
+    public static function GetFutureDateTime($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
     {
 
         //return \Yii::$app->formatter->asDatetime('now', $format);
@@ -259,9 +270,11 @@ BODY;
         return \Yii::$app->formatter->asDatetime($dueDate, $format);
 
     }
+
     public
     static function FormatDateTime($datetime, $timeOnly = false, $format = 'M d, Y, H:i:s')
     {
+        return $datetime;
         $formatter = \Yii::$app->formatter;
         $tz = $formatter->timeZone;
 
