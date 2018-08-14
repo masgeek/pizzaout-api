@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%delivery_time}}".
@@ -37,8 +38,18 @@ class DeliveryTime extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'TIME_ID' => Yii::t('app', 'Time  ID'),
-            'DELIVERY_TIME' => Yii::t('app', 'Delivery  Time'),
+            'TIME_ID' => Yii::t('app', 'Delivery Time'),
+            'DELIVERY_TIME' => Yii::t('app', 'Delivery Time'),
         ];
+    }
+
+    public static function GetDeliveryTime()
+    {
+        $deliveryTimes = self::find()
+            ->all();
+
+        $listData = ArrayHelper::map($deliveryTimes, 'TIME_ID', 'DELIVERY_TIME');
+
+        return $listData;
     }
 }

@@ -14,7 +14,8 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use kartik\widgets\DatePicker;
-use yii\helpers\Url;
+
+$future = \app\helpers\APP_UTILS::GetFutureDateTime('yyyy-MM-dd', 2, 'D');
 
 $model->PAYMENT_METHOD = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
 $paymentModel->PAYMENT_CHANNEL = \app\helpers\APP_UTILS::PAYMENT_METHOD_MOBILE;
@@ -28,16 +29,19 @@ if ($model->isNewRecord) {
 
 <?= $form->field($model, 'USER_ID')->hiddenInput()->label(false) ?>
 
-<div class="row">
-    <?= $form->field($model, 'PAYMENT_METHOD')->hiddenInput(['readonly' => true])->label(false) ?>
-</div>
+<?= $form->field($model, 'PAYMENT_METHOD')->hiddenInput(['readonly' => true])->label(false) ?>
+
+
+<?= $form->field($model, 'ORDER_TIME', ['template' => $field_template])->dropDownList(\app\models\DeliveryTime::GetDeliveryTime(), [
+    'class' => 'form-control input-lg',
+    'prompt' => 'Please select delivery time'
+]) ?>
 
 <?= $form->field($model, 'LOCATION_ID', ['template' => $field_template])->dropDownList(\app\model_extended\LOCATION_MODEL::GetActiveLocation(), [
     'class' => 'form-control input-lg',
     'prompt' => 'Please select delivery location'
 ]) ?>
 
-<?= $form->field($model, 'ORDER_TIME', ['template' => $field_template])->dropDownList(\app\model_extended\LOCATION_MODEL::GetActiveLocation(), ['class' => 'form-control input-lg']) ?>
 
 <?= DatePicker::widget([
     'model' => $model,
@@ -51,7 +55,7 @@ if ($model->isNewRecord) {
         'todayHighlight' => true,
         'todayBtn' => true,
         'startDate' => date('Y-m-d'), //min date is today
-        //'endDate'=>date('Y-m-d'),
+        'endDate' => $future, //prevent selection past defined duration
         'autoclose' => true,
         'format' => 'yyyy-mm-dd'
     ]
