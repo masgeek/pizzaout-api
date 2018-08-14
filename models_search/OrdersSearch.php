@@ -55,7 +55,8 @@ class OrdersSearch extends ORDER_VIEW_MODEL
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'ORDER_DATE' => SORT_DESC
+                    'CREATED_AT' => SORT_DESC,
+                   // 'ORDER_DATE' => SORT_DESC,
                 ]
             ]
         ]);
