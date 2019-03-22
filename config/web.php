@@ -15,8 +15,8 @@ $formatter = require_once(__DIR__ . '/formatter.php');
 $session = require_once(__DIR__ . '/session.php');
 $log = require_once(__DIR__ . '/logger.php');
 $mailer = require_once(__DIR__ . '/mailer.php');
-//$db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.php');
-$db = require_once(__DIR__ . '/db_2.php');
+$db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.php');
+//$db = require_once(__DIR__ . '/db_2.php');
 
 $config = [
     'id' => 'WEB',
