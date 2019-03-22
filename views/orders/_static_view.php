@@ -62,7 +62,7 @@ $attributes = [
                 'attribute' => 'ORDER_DATE',
                 'displayOnly' => true,
                 //'format' => 'datetime',
-                'value'=>\app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE),
+                'value' => \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE),
                 'valueColOptions' => ['style' => 'width:30%'],
             ],
         ],
@@ -117,12 +117,6 @@ $attributes = [
     'condensed' => true,
     'bordered' => true,
     'hover' => false,
-    'panel' => [
-        'heading' => 'Order Information # ' . $model->ORDER_ID,
-        'type' => DetailView::TYPE_PRIMARY,
-        'headingOptions' => [
-            'template' => '{title}'
-        ]
-    ],
+    'panel' => false,
     'attributes' => $attributes,
 ]) ?>

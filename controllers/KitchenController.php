@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\model_extended\KITCHEN_MODEL;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * KitchenController implements the CRUD actions for KITCHEN_MODEL model.

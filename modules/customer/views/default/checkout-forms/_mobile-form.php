@@ -11,9 +11,9 @@
 
 /* @var array $field_template */
 
-use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 use yii\helpers\Html;
-use kartik\widgets\DatePicker;
+use yii\widgets\ActiveForm;
 
 $future = \app\helpers\APP_UTILS::GetFutureDateTime('yyyy-MM-dd', 2, 'D');
 

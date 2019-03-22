@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use kartik\form\ActiveForm;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models_search\ReportSearch */
@@ -29,12 +29,12 @@ TEMPLATE;
 
     <?= $form->field($model, 'ORDER_DATE', [
         'addon' => ['append' => ['content' => '<i class="glyphicon glyphicon-calendar"></i>']],
-        'options' => ['class' => 'drp-container form-group']
     ])->widget(\kartik\daterange\DateRangePicker::className(), [
         'useWithAddon' => true,
         'convertFormat' => true,
         'startAttribute' => 'START_DATE',
         'endAttribute' => 'END_DATE',
+        'options' => ['class' => 'form-control', 'autocomplete' => 'off'],
         'pluginOptions' => [
             //'timePicker' => true,
             //'timePickerIncrement' => 15,
@@ -44,7 +44,7 @@ TEMPLATE;
                 'separator' => ' TO '
             ],
         ],
-    ])->hint('Orders Date range period'); ?>
+    ])->hint('Orders Date range periods'); ?>
 
     <?php if ($context === \app\model_extended\ReportModel::CONTEXT_GENERAL): ?>
 
@@ -81,9 +81,6 @@ TEMPLATE;
             ]
         ) ?>
     <?php endif; ?>
-
-
-
 
 
     <?php // echo $form->field($model, 'PAYMENT_METHOD') ?>

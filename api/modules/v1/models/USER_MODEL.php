@@ -20,6 +20,7 @@ Password
 User_Type
 
  */
+
 use app\helpers\APP_UTILS;
 use app\model_extended\RIDER_MODEL;
 use app\models\Users;
@@ -116,6 +117,16 @@ class USER_MODEL extends Users
 
         };
 
+        $fields['EMAIL'] = function ($model) {
+            /* @var $model $this */
+            return $this->ccMasking($this->MOBILE,"*");
+        };
+
+        $fields['MOBILE'] = function ($model) {
+            /* @var $model $this */
+            return $this->ccMasking($this->MOBILE,"*");
+        };
+
         $fields['HELPLINE'] = function ($model) {
             /* @var $model $this */
             return \Yii::$app->params['helpLine'];
@@ -127,6 +138,7 @@ class USER_MODEL extends Users
             return \Yii::$app->formatter->asDecimal($min_price,2);
         };
         unset($fields['PASSWORD']); //remove the password field
+      //remove the password field
         //unset($fields['RESET_TOKEN']); //remove the password field
 
         ksort($fields);
@@ -139,5 +151,9 @@ class USER_MODEL extends Users
     public function getApiToken()
     {
         return $this->hasOne(API_TOKEN_MODEL::className(), ['USER_ID' => 'USER_ID']);
+    }
+
+    private function ccMasking($number, $maskingCharacter = 'X') {
+        return substr($number, 0, 4) . str_repeat($maskingCharacter, strlen($number) - 8) . substr($number, -4);
     }
 }

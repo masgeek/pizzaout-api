@@ -4,10 +4,9 @@ namespace app\models_search;
 
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
-use Yii;
+use app\model_extended\ReportModel;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\model_extended\ReportModel;
 
 /**
  * ReportSearch represents the model behind the search form of `app\model_extended\ReportModel`.
@@ -118,8 +117,8 @@ class ReportSearch extends ReportModel
             ->andFilterWhere(['like', 'SURNAME', $this->SURNAME])
             ->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
             ->andFilterWhere(['like', 'LOCATION_NAME', $this->LOCATION_NAME])
-            ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME]);
-        // ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
+            ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME])
+            ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
 
         return $dataProvider;
     }

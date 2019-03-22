@@ -15,8 +15,8 @@ $formatter = require_once(__DIR__ . '/formatter.php');
 $session = require_once(__DIR__ . '/session.php');
 $log = require_once(__DIR__ . '/logger.php');
 $mailer = require_once(__DIR__ . '/mailer.php');
-$db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.php');
-//$db2 = require_once(__DIR__ . '/db_2.php');
+//$db = LOCAL ? require_once(__DIR__ . '/db_2.php') : require_once(__DIR__ . '/db.php');
+$db = require_once(__DIR__ . '/db_2.php');
 
 $config = [
     'id' => 'WEB',
@@ -44,13 +44,13 @@ $config = [
     ],
     'components' => [
         /* CSRF VALIDATION */
-        'request'=> [
+        'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'IAyw-vu_u-ruH_LfDNEFS-LEQR88cAdM',
-            'enableCsrfValidation'=>true,
+            'enableCsrfValidation' => true,
             //'class'=>'HttpRequest',
             'class' => 'app\components\Request',
-            'noCsrfRoutes'=> [
+            'noCsrfRoutes' => [
                 'controller/action1',
                 'controller/action2',
             ],
@@ -61,7 +61,7 @@ $config = [
             'from' => 'Pizza Out',
             'apiKey' => 'xz2b2Fo32fFIBiBz5LhtTzusde9tZc3z',
             'apiToken' => 'B6tU1522871594',
-            'defaultPrefix' =>'252',
+            'defaultPrefix' => '252',
             'baseUrl' => 'http://yooltech.com/sadar/portal',
             'endpoint' => '/smsAPI'
         ],
@@ -94,10 +94,10 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\model_extended\USERS_MODEL',
-            'enableAutoLogin' => false,
-            'authTimeout' => YII_ENV_DEV ? 40000 : 300,
+            'enableAutoLogin' => true,
+            'authTimeout' => 900, //logout after 15 minutes 15*60
             'enableSession' => true,
-            'autoRenewCookie' => false,
+            'autoRenewCookie' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -149,9 +149,9 @@ if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     //$config['bootstrap'][] = 'debug';
     //$config['modules']['debug'] = [
-        //'class' => 'yii\debug\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-       // 'allowedIPs' => ['127.0.0.1', '::1', '41.89.65.170', '192.168.100.14'],
+    //'class' => 'yii\debug\Module',
+    // uncomment the following to add your IP if you are not connecting from localhost.
+    // 'allowedIPs' => ['127.0.0.1', '::1', '41.89.65.170', '192.168.100.14'],
     //];
 
     $config['bootstrap'][] = 'gii';

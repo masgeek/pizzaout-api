@@ -258,4 +258,9 @@ class ORDER_HELPER
 
         return $cart_items;
     }
+    
+    public static function getMinPrice(){
+        $min_price =  \Yii::$app->params['min_price'];
+        return (float)\Yii::$app->formatter->asDecimal($min_price,2);
+    }
 }

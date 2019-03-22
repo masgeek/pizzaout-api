@@ -6,6 +6,7 @@
  * Time: 12:21
  */
 
+$expireAfterSeconds = 7200;
 return [
     'class' => 'yii\web\DbSession',
     // Set the following if you want to use DB component other than
@@ -13,11 +14,11 @@ return [
     // 'db' => 'mydb',
     // To override default session table, set the following
     'sessionTable' => 'my_session',
-    'cookieParams' => [
+    /*'cookieParams' => [
         'httponly' => true,
-        'lifetime' => YII_ENV_DEV ? 40000 : 300,
-    ],
-    'timeout' => YII_ENV_DEV ? 40000 : 300, //session expire
+        'lifetime' => $expireAfterSeconds,
+    ],*/
+    'timeout' => $expireAfterSeconds,
     'useCookies' => true,
     'writeCallback' => function ($session) {
         return [

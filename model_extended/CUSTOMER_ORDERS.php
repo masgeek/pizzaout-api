@@ -10,7 +10,6 @@ namespace app\model_extended;
 
 
 use app\api\modules\v1\models\PAYMENT_MODEL;
-use app\api\modules\v1\models\USER_MODEL;
 use app\helpers\APP_UTILS;
 use app\models\CustomerOrder;
 use app\models\OrderTracking;
@@ -77,8 +76,8 @@ class CUSTOMER_ORDERS extends CustomerOrder
                 $this->CREATED_AT = $date;
             } else {
                 //trigger email sending on every action
-                APP_UTILS::SendOrderEmailWithReceipt($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
-                APP_UTILS::SendSMS($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
+                //APP_UTILS::SendOrderEmailWithReceipt($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
+                //APP_UTILS::SendSMS($this->uSER, $this->ORDER_ID, $this->oRDERSTATUS->STATUS_NAME);
             }
             $this->UPDATED_AT = $date;
 

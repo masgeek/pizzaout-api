@@ -21,6 +21,7 @@ $this->registerJs($script);
 
 <div class="kitchen-queue">
     <h1><?= Html::encode($this->title) ?></h1>
+    <?= Html::a('<< Return', ['//kitchenqueue'], ['class' => 'btn btn-success']) ?>
 
     <?php Pjax::begin(); ?>
     <?= Html::a("Refresh", ['kitchenqueue/display'], ['class' => 'btn btn-md btn-default btn-block', 'id' => 'refreshButton']) ?>

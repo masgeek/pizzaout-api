@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\model_extended\CITY_MODEL;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CityController implements the CRUD actions for CITY_MODEL model.

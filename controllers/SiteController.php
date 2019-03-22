@@ -2,12 +2,8 @@
 
 namespace app\controllers;
 
-use app\api\modules\v1\models\USER_MODEL;
-use app\components\SmsComponent;
 use app\helpers\APP_UTILS;
-use app\model_extended\USERS_MODEL;
 use app\model_extended\WP_CART_MODEL;
-use app\models\ContactForm;
 use app\models\LoginForm;
 use Yii;
 use yii\base\Theme;

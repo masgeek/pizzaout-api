@@ -61,21 +61,15 @@ $attributes = [
 
 ];
 ?>
-
 <div class="col-md-3">
+    <h3><?= 'Order ID #' . $model->ORDER_ID ?></h3>
     <?= DetailView::widget([
         'model' => $model,
         'mode' => DetailView::MODE_VIEW,
         'condensed' => true,
         'bordered' => true,
         'hover' => true,
-        'panel' => [
-            'heading' => 'Order ID # ' . $model->ORDER_ID,
-            'type' => DetailView::TYPE_PRIMARY,
-            'headingOptions' => [
-                'template' => '{title}'
-            ]
-        ],
+        'panel' => false,
         'attributes' => $attributes,
     ]) ?>
 </div>

@@ -26,7 +26,7 @@ class OmniThemeAssets extends AssetBundle
         'css/style.css',
     ];
     public $publishOptions = [
-        'forceCopy' => true,
+        //'forceCopy' => true,
     ];
 
     public $js = [
