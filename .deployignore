@@ -1,0 +1,9 @@
+node_modules/**
+start-server.sh
+.phploy
+.yarnclean
+.yarnrc
+codeception.yml
+index.php
+index-test.php
+api/index.php
