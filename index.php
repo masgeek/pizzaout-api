@@ -6,7 +6,7 @@
 
 //die("Maintenance");
 // comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('LOCAL') or define('LOCAL', false);
 //defined('YII_ENV') or define('YII_ENV', 'dev');
 
