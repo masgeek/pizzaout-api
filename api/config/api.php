@@ -3,7 +3,7 @@
 \Yii::setAlias('@foodimages', 'images/foodimages/');
 
 
-$db = LOCAL ? require_once(__DIR__ . '/../../config/db_2.php') : require_once(__DIR__ . '/../../config/db.php');
+$db = require_once(__DIR__ . '/../../config/db.php');
 $fcm = require_once(__DIR__ . '/../../config/fcm.php');
 $braintree = require_once(__DIR__ . '/../../config/braintree.php');
 $params = require_once(__DIR__ . '/../../config/params.php');
@@ -85,6 +85,7 @@ $config = [
                         'POST {id}/update-cart' => 'update-cart',
                         'GET {user_id}/items' => 'items',
                         'GET ussd' => 'ussd',
+                        'GET payments' => 'payments',
                         'GET,POST {item_type_id}/in-cart/{user_id}' => 'in-cart',
                     ]
                 ],

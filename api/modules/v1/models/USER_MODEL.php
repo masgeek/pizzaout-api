@@ -44,8 +44,8 @@ class USER_MODEL extends Users
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[APP_UTILS::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE','RESET_TOKEN','USER_STATUS'];
-        $scenarios[APP_UTILS::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE','RESET_TOKEN','USER_STATUS'];
+        $scenarios[APP_UTILS::SCENARIO_CREATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE', 'RESET_TOKEN', 'USER_STATUS'];
+        $scenarios[APP_UTILS::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'MOBILE', 'EMAIL', 'LOCATION_ID', 'USER_NAME', 'PASSWORD', 'USER_TYPE', 'RESET_TOKEN', 'USER_STATUS'];
 
         return $scenarios;
     }
@@ -119,12 +119,12 @@ class USER_MODEL extends Users
 
         $fields['EMAIL'] = function ($model) {
             /* @var $model $this */
-            return $this->ccMasking($this->MOBILE,"*");
+            return $this->ccMasking($this->MOBILE, "*");
         };
 
         $fields['MOBILE'] = function ($model) {
             /* @var $model $this */
-            return $this->ccMasking($this->MOBILE,"*");
+            return $this->ccMasking($this->MOBILE, "*");
         };
 
         $fields['HELPLINE'] = function ($model) {
@@ -134,14 +134,14 @@ class USER_MODEL extends Users
 
         $fields['MIN_PRICE'] = function ($model) {
             /* @var $model $this */
-            $min_price =  \Yii::$app->params['min_price'];
-            return \Yii::$app->formatter->asDecimal($min_price,2);
+            $min_price = \Yii::$app->params['min_price'];
+            return \Yii::$app->formatter->asDecimal($min_price, 2);
         };
         unset($fields['PASSWORD']); //remove the password field
-      //remove the password field
+        //remove the password field
         //unset($fields['RESET_TOKEN']); //remove the password field
 
-        ksort($fields);
+        //ksort($fields);
         return $fields;
     }
 
@@ -153,7 +153,11 @@ class USER_MODEL extends Users
         return $this->hasOne(API_TOKEN_MODEL::className(), ['USER_ID' => 'USER_ID']);
     }
 
-    private function ccMasking($number, $maskingCharacter = 'X') {
-        return substr($number, 0, 4) . str_repeat($maskingCharacter, strlen($number) - 8) . substr($number, -4);
+    private function ccMasking($number, $maskingCharacter = 'X')
+    {
+        if (strlen($number) > 8) {
+            return substr($number, 0, 4) . str_repeat($maskingCharacter, strlen($number) - 8) . substr($number, -4);
+        }
+        return "*";
     }
 }
