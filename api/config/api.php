@@ -3,7 +3,7 @@
 \Yii::setAlias('@foodimages', 'images/foodimages/');
 
 
-$db = LOCAL ? require_once(__DIR__ . '/../../config/db_2.php') : require_once(__DIR__ . '/../../config/db.php');
+$db = require_once(__DIR__ . '/../../config/db.php');
 $fcm = require_once(__DIR__ . '/../../config/fcm.php');
 $braintree = require_once(__DIR__ . '/../../config/braintree.php');
 $params = require_once(__DIR__ . '/../../config/params.php');

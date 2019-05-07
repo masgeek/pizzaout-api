@@ -27,6 +27,7 @@ class UserController extends ActiveController
     /**
      * @var object
      */
+    //public $modelClass = 'app\api\modules\v1\models\USER_MODEL';
     public $modelClass = 'app\api\modules\v1\models\USER_MODEL';
 
     /**
