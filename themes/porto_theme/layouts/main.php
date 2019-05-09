@@ -1,9 +1,11 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 
 /* @var $content string */
 
+use app\assetmanager\{AppAsset, BowerAsset, CustomAssets, FontAssets,PortoAssets};
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use kartik\alert\AlertBlock;
 
