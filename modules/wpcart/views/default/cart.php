@@ -1,20 +1,23 @@
 <?php
 /* @var array $cartItems */
 
-/* @var $orderItems \app\model_extended\WP_CART_MODEL */
+/* @var $orderItems WP_CART_MODEL */
 
+use app\model_extended\WP_CART_MODEL;
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use smallbearsoft\ajax\Ajax;
+use yii\web\JqueryAsset;
 use yii\web\JsExpression;
 
-$formatter = \Yii::$app->formatter;
+$formatter = Yii::$app->formatter;
 
 $orderSubTotal = 0.0;
 $vat = 0;
 $deliveryFee = 0;
 
-$this->registerJsFile('@web/css/wpcart/js/update-wp-cart.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('@web/css/wpcart/js/update-wp-cart.js', ['depends' => [JqueryAsset::className()]]);
 ?>
 <hr/>
 <div class="row">
@@ -49,10 +52,10 @@ $this->registerJsFile('@web/css/wpcart/js/update-wp-cart.js', ['depends' => [\yi
                             'type' => 'number',
                             'class' => 'form-control',
                             'onchange' => new JsExpression('
-                                        var MENU_ITEM_ID = ' . \yii\helpers\Json::htmlEncode($orderItems->CART_GUID) . ';
-                                        var ITEM_TYPE_SIZE = ' . \yii\helpers\Json::htmlEncode($orderItems->ITEM_TYPE_SIZE) . ';
-                                        var ITEM_PRICE = ' . \yii\helpers\Json::htmlEncode($orderItems->ITEM_PRICE) . ';
-                                        var ITEM_TYPE_ID = ' . \yii\helpers\Json::htmlEncode($orderItems->ITEM_TYPE_ID) . ';
+                                        var MENU_ITEM_ID = ' . Json::htmlEncode($orderItems->CART_GUID) . ';
+                                        var ITEM_TYPE_SIZE = ' . Json::htmlEncode($orderItems->ITEM_TYPE_SIZE) . ';
+                                        var ITEM_PRICE = ' . Json::htmlEncode($orderItems->ITEM_PRICE) . ';
+                                        var ITEM_TYPE_ID = ' . Json::htmlEncode($orderItems->ITEM_TYPE_ID) . ';
                                         
                                         var qty = $("#QTY_"+ITEM_TYPE_ID).val();
                               
