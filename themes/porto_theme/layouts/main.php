@@ -7,8 +7,8 @@
 use yii\widgets\Breadcrumbs;
 use kartik\alert\AlertBlock;
 
-\app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
+\app\assetmanager\AppAsset::register($this);
 //\app\assetmanager\YarnAssets::register($this);
 \app\assetmanager\CustomAssets::register($this);
 \app\assetmanager\FontAssets::register($this);

@@ -32,7 +32,7 @@ class BowerAsset extends AssetBundle
         //'forceCopy'=>true,
     ];
     public $js = [
-        'modernizer/modernizr.js',
+        'modernizr/src/Modernizr.js',
         'jquery-simply-countable/jquery.simplyCountable.js',
         'bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
         'magnific-popup/dist/jquery.magnific-popup.js',

@@ -9,17 +9,21 @@
 namespace app\helpers;
 
 use app\components\SmsComponent;
+use DateInterval;
+use DateTime;
 use Yii;
 use app\model_extended\CART_MODEL;
 use app\model_extended\USERS_MODEL;
 use PHPMailer\PHPMailer\PHPMailer;
 use yii\base\Exception;
+use yii\base\InvalidConfigException;
 use yii\helpers\Url;
 
 class APP_UTILS
 {
     const PAYMENT_METHOD_MOBILE = 'MOBILE';
     const PAYMENT_METHOD_CARD = 'CARD';
+    const PAYMENT_METHOD_CASH = 'CASH';
 
     const KITCHEN_SCOPE = 'KITCHEN';
     const CHEF_SCOPE = 'CHEF';
@@ -48,18 +52,18 @@ class APP_UTILS
      */
     public static function GetTimeStamp()
     {
-        $date = new \DateTime();
+        $date = new DateTime();
         return $date->getTimestamp();
     }
 
     /**
      * @param int $length
      * @return string
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public static function GenerateToken($length = 32)
     {
-        $randomString = \Yii::$app->getSecurity()->generateRandomString($length);
+        $randomString = Yii::$app->getSecurity()->generateRandomString($length);
         return $randomString;
     }
 
@@ -103,7 +107,7 @@ class APP_UTILS
      * @param string $baseUrl
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public static function SendOrderEmailWithReceipt($userModel, $orderNumber, $orderStatus, $baseUrl = 'http://pizzaout.so/')
     {
@@ -151,7 +155,7 @@ BODY;
      * @param string $baseUrl
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public static function SendRecoveryEmail($userModel, $baseUrl = 'http://pizzaout.so/')
     {
@@ -234,7 +238,7 @@ BODY;
      * @param int $period
      * @param string $durationType
      * @return string
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public static function GetFutureDateTime($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
     {
@@ -246,11 +250,11 @@ BODY;
         $currentDate = date('d-M-Y'); //$this->getCourseFinishDate($regNumber);
 
 
-        $date = new \DateTime($currentDate);
-        $date->add(new \DateInterval('P' . $D . $DC)); //M Y W D
+        $date = new DateTime($currentDate);
+        $date->add(new DateInterval('P' . $D . $DC)); //M Y W D
         $dueDate = $date->format('d-M-Y');
 
-        return \Yii::$app->formatter->asDatetime($dueDate, $format);
+        return Yii::$app->formatter->asDatetime($dueDate, $format);
 
     }
 
@@ -258,22 +262,18 @@ BODY;
     public
     static function FormatDateTime($datetime, $timeOnly = false, $format = 'M d, Y, H:i:s')
     {
-        try {
-            $formatter = \Yii::$app->formatter;
-            $tz = $formatter->timeZone;
+        $formatter = Yii::$app->formatter;
+        $tz = $formatter->timeZone;
 
-            $date = date_create($datetime, timezone_open($tz));
-            return $timeOnly ? date_format($date, $format) : date_format($date, $format);
-        } catch (Exception $ex) {
-            return $datetime;
-        }
+        $date = date_create($datetime, timezone_open($tz));
 
+        return date_format($date, $format);
     }
 
     public
     static function FormatDate($datetime)
     {
-        $formatter = \Yii::$app->formatter;
+        $formatter = Yii::$app->formatter;
         $tz = $formatter->timeZone;
 
         $date = date_create($datetime, timezone_open($tz));
@@ -324,7 +324,7 @@ BODY;
     {
 
         if ($alias != null) {
-            $imageFolder = \Yii::getAlias($alias);
+            $imageFolder = Yii::getAlias($alias);
         }
 
         $baseUrl = Url::to([null], true);
@@ -354,7 +354,7 @@ BODY;
      */
     public static function SendEmail($subject, array $recipient, array $params, $layout = 'layouts/welcome', array $replyTo = ['support@pizzaout.so' => 'Pizza Out'])
     {
-        $mailer = \Yii::$app->mailer->compose($layout, $params)
+        $mailer = Yii::$app->mailer->compose($layout, $params)
             ->setTo($recipient)
             ->setFrom(['noreply@pizzaout.so' => 'Pizza Out'])
             ->setReplyTo($replyTo)

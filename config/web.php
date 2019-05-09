@@ -38,6 +38,9 @@ $config = [
         'reports' => [
             'class' => 'app\modules\reports\Module',
         ],
+        'cash-sale' => [
+            'class' => 'app\modules\cashsale\Module',
+        ],
         'wpcart' => [
             'class' => 'app\modules\wpcart\cart',
         ],

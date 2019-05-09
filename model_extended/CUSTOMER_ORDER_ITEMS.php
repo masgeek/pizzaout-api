@@ -9,10 +9,12 @@
 namespace app\model_extended;
 
 
+use app\helpers\APP_UTILS;
 use app\models\CustomerOrderItem;
 
 class CUSTOMER_ORDER_ITEMS extends CustomerOrderItem
 {
+
     public static function GetOrderTotal($order_id)
     {
         return self::find()->where(['ORDER_ID' => $order_id])->sum('SUBTOTAL');

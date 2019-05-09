@@ -41,7 +41,8 @@
     "kartik-v/yii2-widget-datepicker": "^1.4",
     "kartik-v/yii2-widget-depdrop": "^1.0",
     "mike42/escpos-php": "^2.0",
-    "phpmailer/phpmailer": "^6.0"
+    "phpmailer/phpmailer": "^6.0",
+    "smallbearsoft/yii2-ajax": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
