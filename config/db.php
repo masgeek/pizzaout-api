@@ -1,7 +1,7 @@
 <?php
 
 $token = 'ua49VXlkp8VI';
-$user = 'pizzaout';
+$user = 'pizzaout_client';
 $database = 'pizzaout_db';
 
 
