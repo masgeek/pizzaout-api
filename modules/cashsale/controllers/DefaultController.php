@@ -54,7 +54,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $user_id = Yii::$app->user->id; //use the currenlty logged in user
+        $user_id = Yii::$app->user->id; //use the currently logged in user
         $this->view->title = 'Orders';
 
         $this->view->params['title'] = 'Cash sale orders';

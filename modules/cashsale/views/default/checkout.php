@@ -10,7 +10,11 @@
 /* @var float $orderTotal */
 
 use app\helpers\APP_UTILS;
-use app\model_extended\{CART_MODEL, CUSTOMER_ORDERS, CUSTOMER_PAYMENTS, KITCHEN_MODEL, LOCATION_MODEL};
+use app\model_extended\CART_MODEL;
+use app\model_extended\CUSTOMER_ORDERS;
+use app\model_extended\CUSTOMER_PAYMENTS;
+use app\model_extended\KITCHEN_MODEL;
+use app\model_extended\LOCATION_MODEL;
 use app\models\DeliveryTime;
 use kartik\date\DatePicker;
 use kartik\depdrop\DepDrop;

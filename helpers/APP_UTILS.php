@@ -239,6 +239,7 @@ BODY;
      * @param string $durationType
      * @return string
      * @throws InvalidConfigException
+     * @throws \Exception
      */
     public static function GetFutureDateTime($format = 'yyyy-MM-dd HH:mm:ss', $period = 1, $durationType = 'M')
     {
