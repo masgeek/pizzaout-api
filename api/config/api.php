@@ -85,6 +85,7 @@ $config = [
                         'POST {id}/update-cart' => 'update-cart',
                         'GET {user_id}/items' => 'items',
                         'GET ussd' => 'ussd',
+                        'GET payments' => 'payments',
                         'GET,POST {item_type_id}/in-cart/{user_id}' => 'in-cart',
                     ]
                 ],

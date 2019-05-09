@@ -43,12 +43,15 @@ class DeliveryTime extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function GetDeliveryTime()
+    public static function GetDeliveryTime($currentOnly = false)
     {
-        $deliveryTimes = self::find()
-            ->all();
+        $deliveryTimes = self::find();
+        if($currentOnly) {
+            $deliveryTimes->where(['DELIVERY_TIME' => date('H:00')]);
+        }
 
-        $listData = ArrayHelper::map($deliveryTimes, 'DELIVERY_TIME', 'DELIVERY_TIME');
+
+        $listData = ArrayHelper::map($deliveryTimes->all(), 'DELIVERY_TIME', 'DELIVERY_TIME');
 
         return $listData;
     }

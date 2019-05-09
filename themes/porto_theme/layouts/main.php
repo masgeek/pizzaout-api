@@ -1,22 +1,22 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 
 /* @var $content string */
 
+use app\assetmanager\AppAsset;
+use app\assetmanager\BowerAsset;
+use app\assetmanager\FontAssets;
+use app\assetmanager\PortoAssets;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use kartik\alert\AlertBlock;
 
-\app\assetmanager\AppAsset::register($this);
-\app\assetmanager\BowerAsset::register($this);
+BowerAsset::register($this);
+AppAsset::register($this);
 //\app\assetmanager\YarnAssets::register($this);
-\app\assetmanager\CustomAssets::register($this);
-\app\assetmanager\FontAssets::register($this);
-
-//$this->params['breadcrumbs'][] = ['label' => 'Rider  Models', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '#'];
-//$this->params['breadcrumbs'][] = $this->title;
-
+PortoAssets::register($this);
+FontAssets::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

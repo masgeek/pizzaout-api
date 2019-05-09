@@ -45,7 +45,7 @@ $checkboxTemplate = '<div class="checkbox i-checks">{input}{error}{hint}</div>';
                     'placeholder' => '--- SELECT CHEF ---',
                     'url' => Url::to(['chef/chef-list'])
                 ]
-            ]); ?>'
+            ]); ?>
 
         </div>
 

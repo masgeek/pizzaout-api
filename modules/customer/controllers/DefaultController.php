@@ -162,14 +162,11 @@ class DefaultController extends Controller
                 }
             }
         }
-
-        // return JSON encoded output in the below format
         return json_encode($output);
     }
 
     /**
      * @return string
-     * @throws yii\base\InvalidConfigException
      * @throws yii\db\Exception
      */
     public function actionCheckout()

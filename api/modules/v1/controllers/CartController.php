@@ -123,10 +123,33 @@ class CartController extends ActiveController
 
     }
 
+    /**
+     * @return array
+     * @throws ForbiddenHttpException
+     */
     public function actionUssd()
     {
         $this->checkAccess('ussd');
         return ['USSD_NUMBER' => ORDER_HELPER::getUssdNumber()];
     }
 
+    /**
+     * @return array
+     */
+    public function actionPayments(){
+
+        $options = ORDER_HELPER::getPaymentUssd();
+        $paymentOptions = [];
+        foreach ($options as $key=>$value){
+            $paymentOptions[] = [
+                'serviceName'=>$key,
+                'ussdNumber'=>$value,
+            ];
+        }
+        /*$paymentOptions =  [
+            'paymentOptions' => ORDER_HELPER::getPaymentUssd()
+        ];*/
+
+        return $paymentOptions;
+    }
 }

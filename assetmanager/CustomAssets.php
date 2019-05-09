@@ -29,7 +29,7 @@ class CustomAssets extends AssetBundle
     public $js = [
         'js/jquery-browser-mobile/jquery.browser.mobile.js',
         //'js/liquid-meter/liquid.meter.js',
-        'js/theme/theme.js',
+        //'js/theme/theme.js',
         'js/theme/theme.custom.js',
         'js/theme/theme.init.js',
         //'js/dashboard/examples.dashboard.js',

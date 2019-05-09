@@ -24,8 +24,11 @@ use yii\helpers\Html;
                     </li>
 
                     <li class="nav-parent">
+                        <?= Html::a('<i class="fa fa-users" aria-hidden="true"></i><span>Cash Sale</span>', ['//cash-sale'], ['title' => 'Cash sale']); ?>
+                    </li>
+                    <li class="nav-parent">
                         <a>
-                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <i class="fa fa-email" aria-hidden="true"></i>
                             <span>Emails &amp; SMS</span>
                         </a>
                         <ul class="nav nav-children">

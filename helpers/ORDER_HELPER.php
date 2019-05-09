@@ -134,13 +134,29 @@ class ORDER_HELPER
 
 
     /**
-     * @return mixed
+     * @return
+     * @deprecated
      */
     public static function getUssdNumber()
     {
         return Yii::$app->params['ussdNumber'];
     }
 
+    /**
+     * @return array
+     */
+    public static function getPaymentUssd(){
+        return [
+            'EVC'=>[
+                'provider'=>'EVC(Hormuud Telcom)',
+                'ussd'=>Yii::$app->params['evcUssd']
+            ],
+            'SOMTEL'=>[
+                'provider'=>'eDahab(Somtel)',
+                'ussd'=>Yii::$app->params['somtelUssd']
+            ]
+        ];
+    }
     /**
      * @return int
      */

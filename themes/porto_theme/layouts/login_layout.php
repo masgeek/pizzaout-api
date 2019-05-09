@@ -8,7 +8,7 @@ use yii\widgets\Breadcrumbs;
 
 \app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
-\app\assetmanager\CustomAssets::register($this);
+\app\assetmanager\PortoAssets::register($this);
 \app\assetmanager\FontAssets::register($this);
 
 //$this->params['breadcrumbs'][] = ['label' => 'Rider  Models', 'url' => ['index']];

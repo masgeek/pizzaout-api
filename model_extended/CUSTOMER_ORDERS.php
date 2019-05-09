@@ -13,6 +13,10 @@ use app\api\modules\v1\models\PAYMENT_MODEL;
 use app\helpers\APP_UTILS;
 use app\models\CustomerOrder;
 use app\models\OrderTracking;
+use Yii;
+use yii\base\Exception;
+use yii\base\InvalidConfigException;
+use yii\db\ActiveQuery;
 
 class CUSTOMER_ORDERS extends CustomerOrder
 {
@@ -20,6 +24,9 @@ class CUSTOMER_ORDERS extends CustomerOrder
     public $COMMENTS;
     public $ALERT_USER = true;
     public $PAYMENT_NUMBER;
+    public $AMOUNT_RECEIVED;
+    public $TOTAL_SALES;
+    public $CHANGE_DUE;
 
     public function attributeLabels()
     {
@@ -66,7 +73,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
      * @param bool $insert
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function beforeSave($insert)
     {
@@ -103,7 +110,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
     /**
      * @param bool $formatted
      * @return float|int|string
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function ComputeOrderTotal($formatted = false)
     {
@@ -113,11 +120,11 @@ class CUSTOMER_ORDERS extends CustomerOrder
         foreach ($data as $key => $value) {
             $total = $total + (float)($value->SUBTOTAL);
         }
-        return $formatted ? \Yii::$app->formatter->asCurrency($total) : $total;
+        return $formatted ? Yii::$app->formatter->asCurrency($total) : $total;
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getOrderTrackings()
     {
@@ -126,7 +133,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
 
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getPayment()
     {

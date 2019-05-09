@@ -11,7 +11,7 @@ use kartik\editable\Editable;
 \app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
 //\app\assetmanager\YarnAssets::register($this);
-\app\assetmanager\CustomAssets::register($this);
+\app\assetmanager\PortoAssets::register($this);
 \app\assetmanager\FontAssets::register($this);
 
 
@@ -76,7 +76,9 @@ $formatter = \Yii::$app->formatter;
                             <tbody>
                             <?php
                             /* @var $orderItems \app\model_extended\CART_MODEL */
+                            $class = isset($this->params['class']) ? $this->params['class'] : 'btn-success btn-lg btn-block';
                             $cart_items = isset($this->params['cart_items']) ? $this->params['cart_items'] : [];
+                            $checkout_url = isset($this->params['checkout_url']) ? $this->params['checkout_url'] : '//customer/default/checkout';
                             $orderSubTotal = 0.0;
 
                             foreach ($cart_items as $key => $orderItems):
@@ -92,7 +94,7 @@ $formatter = \Yii::$app->formatter;
                                             'submitOnEnter' => true,
                                             'editableValueOptions' => ['class' => 'text-danger'],
                                             'formOptions' => [
-                                                'action' => ['change-quantity', 'id' => $orderItems->CART_ITEM_ID]
+                                                'action' => ['//customer/default/change-quantity', 'id' => $orderItems->CART_ITEM_ID]
                                             ], 'options' => [
                                                 'id' => "qty_$orderItems->CART_ITEM_ID",
                                                 'format' => Editable::FORMAT_LINK,
@@ -143,8 +145,8 @@ $formatter = \Yii::$app->formatter;
                     <div class="panel-footer">
 
                         <?= Html::a(count($cart_items) > 0 ? 'PROCEED TO CHECKOUT' : 'CART IS EMPTY',
-                            count($cart_items) > 0 ? ['//customer/default/checkout'] : '#',
-                            ['class' => count($cart_items) > 0 ? 'btn btn-success btn-lg btn-block' : 'btn btn-danger btn-lg btn-block']) ?>
+                            count($cart_items) > 0 ? [$checkout_url] : '#',
+                            ['class' => count($cart_items) > 0 ? "btn {$class}" : 'btn btn-danger btn-md btn-block']) ?>
                     </div>
                 </section>
             </div>

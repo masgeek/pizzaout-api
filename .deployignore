@@ -7,3 +7,5 @@ codeception.yml
 index.php
 index-test.php
 api/index.php
+
+vendor/**
