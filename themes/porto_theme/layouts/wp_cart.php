@@ -1,19 +1,24 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 
 /* @var $content string */
 
+use app\assetmanager\AppAsset;
+use app\assetmanager\BowerAsset;
+use app\assetmanager\FontAssets;
+use app\assetmanager\WpCartAssets;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Html;
 
-\app\assetmanager\AppAsset::register($this);
-\app\assetmanager\BowerAsset::register($this);
-\app\assetmanager\WpCartAssets::register($this);
-\app\assetmanager\FontAssets::register($this);
+AppAsset::register($this);
+BowerAsset::register($this);
+WpCartAssets::register($this);
+FontAssets::register($this);
 
 
-$formatter = \Yii::$app->formatter;
+$formatter = Yii::$app->formatter;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

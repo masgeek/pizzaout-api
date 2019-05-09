@@ -10,7 +10,7 @@ use yii\helpers\Html;
 \app\assetmanager\AppAsset::register($this);
 \app\assetmanager\BowerAsset::register($this);
 //\app\assetmanager\YarnAssets::register($this);
-\app\assetmanager\CustomAssets::register($this);
+\app\assetmanager\PortoAssets::register($this);
 \app\assetmanager\FontAssets::register($this);
 
 
