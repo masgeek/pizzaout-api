@@ -16,7 +16,8 @@ $this->registerCssFile("@web/css/wpcart/css/menu-animation.css", [
 </div>
 <br/>
 <div class="row">
-    <?= TabsX::widget([
+    <?=
+    TabsX::widget([
         'position' => TabsX::POS_ABOVE,
         'align' => TabsX::ALIGN_LEFT,
         'items' => [

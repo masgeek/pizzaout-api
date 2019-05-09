@@ -270,7 +270,7 @@ class DefaultController extends Controller
             'cart_items' => $cart_items,
             'model' => $model,
             'paymentModel' => $paymentModel,
-            'order_created' => $order_created
+            'order_created' => true//$order_created
         ]);
     }
 }
