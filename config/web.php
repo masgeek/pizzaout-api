@@ -1,9 +1,11 @@
 <?php
 //date_default_timezone_set('Africa/Nairobi');
-\Yii::setAlias('@foodimageupload', 'images' . DIRECTORY_SEPARATOR . 'foodimages' . DIRECTORY_SEPARATOR);
-\Yii::setAlias('@foodimages', 'images/foodimages/');
-\Yii::setAlias('@appimages', 'images/app_images/');
-\Yii::setAlias('@logsfolder', 'logs');
+use kartik\mpdf\Pdf;
+
+Yii::setAlias('@foodimageupload', 'images' . DIRECTORY_SEPARATOR . 'foodimages' . DIRECTORY_SEPARATOR);
+Yii::setAlias('@foodimages', 'images/foodimages/');
+Yii::setAlias('@appimages', 'images/app_images/');
+Yii::setAlias('@logsfolder', 'logs');
 
 
 $params = require_once(__DIR__ . '/params.php');
@@ -15,7 +17,7 @@ $formatter = require_once(__DIR__ . '/formatter.php');
 $session = require_once(__DIR__ . '/session.php');
 $log = require_once(__DIR__ . '/logger.php');
 $mailer = require_once(__DIR__ . '/mailer.php');
-$db =require_once(__DIR__ . '/db.php');
+$db = require_once(__DIR__ . '/db.php');
 //$db = require_once(__DIR__ . '/db_2.php');
 
 $config = [
@@ -25,10 +27,29 @@ $config = [
     'basePath' => dirname(__DIR__),
     'timeZone' => $timezone,
     'bootstrap' => [
-        'log'
+        'log',
+        'log-viewer'
     ],
     'aliases' => $aliases,
     'modules' => [
+        'log-viewer' => [
+            'class' => 'lancoid\yii2LogViewer\Module',
+            'lang' => 'en',
+            'accessRoles' => ['@'],
+            'moduleUrl' => 'admin/log-viewer',
+            'canDelete' =>true,
+            'appLayout' => '@app/views/layouts/main',
+            'aliases' => [
+                'App logs' => '@logsfolder/404.log',
+                'Requests Log' => '@logsfolder/http-request.log',
+                //'Api Errors' => '@api/runtime/logs/app.log',
+                'Console Info' => '@logsfolder/console_info.log',
+                'Console Warning' => '@logsfolder/console_warning.log',
+                'Console Errors' => '@logsfolder/console_error.log',
+                //'Backend Errors' => '@backend/runtime/logs/app.log',
+                //'Frontend Errors' => '@frontend/runtime/logs/app.log',
+            ]
+        ],
         'gridview' => [
             'class' => 'kartik\grid\Module'
         ],
@@ -82,10 +103,10 @@ $config = [
         'fcm' => $fcm,
         //'braintree' => $braintree,
         'pdf' => [
-            'class' => \kartik\mpdf\Pdf::classname(),
-            'format' => \kartik\mpdf\Pdf::FORMAT_A4,
-            'orientation' => \kartik\mpdf\Pdf::ORIENT_PORTRAIT,
-            'destination' => \kartik\mpdf\Pdf::DEST_BROWSER,
+            'class' => Pdf::classname(),
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
             // refer settings section for all configuration options
         ],
         'cache' => [

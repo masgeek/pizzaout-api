@@ -18,13 +18,13 @@ return [
         ],*/
         'file' => [
             'class' => 'yii\log\FileTarget',
-            'categories' => ['yii\web\HttpException:404'],
+            //'categories' => ['yii\web\HttpException:404'],
             'levels' => ['error', 'warning'],
             'logFile' => '@logsfolder/404.log',
         ],
         [
             'class' => 'yii\log\FileTarget',
-            'logFile' => '@runtime/logs/http-request.log',
+            'logFile' => '@logsfolder/http-request.log',
             'categories' => ['yii\httpclient\*'],
         ],
         /*'email' => [

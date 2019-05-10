@@ -1,7 +1,7 @@
 <?php
-
+Yii::setAlias('@logsfolder', 'logs');
 $params = require(__DIR__ . '/params.php');
-$db = require_once(__DIR__ . '/db_2.php');
+$db = require_once(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic-console',
@@ -16,7 +16,18 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error'],
+                    'logFile' => '@logsfolder/console_error.log',
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => [ 'warning'],
+                    'logFile' => '@logsfolder/console_warning.log',
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['trace'],
+                    'logFile' => '@logsfolder/console_info.log',
                 ],
             ],
         ],
