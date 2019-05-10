@@ -4,7 +4,6 @@ namespace app\modules\wpcart\controllers;
 
 use app\helpers\APP_UTILS;
 use app\helpers\ORDER_HELPER;
-use app\model_extended\CART_MODEL;
 use app\model_extended\CUSTOMER_ORDER_ITEMS;
 use app\model_extended\CUSTOMER_ORDERS;
 use app\model_extended\CUSTOMER_PAYMENTS;
