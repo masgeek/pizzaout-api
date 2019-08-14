@@ -15,7 +15,7 @@
     "easy-pie-chart": "^2.1.7",
     "flot": "flot-charts#^0.8.3",
     "inputmask": "^3.3.10",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.0",
     "jquery-flot-resize": "^1.0.0",
     "jquery-mobile": "^1.4.1",
     "jquery-simply-countable": "https://github.com/fatelord/jquery-simply-countable",
