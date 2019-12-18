@@ -59,6 +59,7 @@ class PayController extends Controller
     public function actionIndex($id)
     {
         $this->layout = 'main';
+        $connection = Yii::$app->db;
         $this->view->title = "Pay for order no #{$id}";
 
         $orderModel = CustomerOrder::findOne($id);
@@ -68,13 +69,18 @@ class PayController extends Controller
         $model = new Payment();
         if ($model->load(Yii::$app->request->post())) {
 
+            $transaction = $connection->beginTransaction();
             $model->generateUuid();
             $model->ORDER_ID = $id;
             $model->PAYMENT_CHANNEL = APP_UTILS::PAYMENT_METHOD_CASH;
-            if ($model->save()) {
+            $model->PAYMENT_STATUS = ORDER_HELPER::STATUS_PAYMENT_CONFIRMED;
+            $orderModel->ORDER_STATUS = ORDER_HELPER::STATUS_PAYMENT_CONFIRMED;
+            if ($model->save() && $orderModel->save()) {
+                $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Payment successfully processed');
                 $this->redirect(['//orders/print', 'id' => $id]);
             }
+            $transaction->rollBack();
             Yii::$app->session->setFlash('error', 'Unable to process payment');
         }
 

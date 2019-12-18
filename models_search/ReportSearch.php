@@ -19,7 +19,7 @@ class ReportSearch extends ReportModel
     public function rules()
     {
         return [
-            [['ORDER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'USER_ID', 'USER_TYPE', 'COUNTRY_ID'], 'integer'],
+            [['ORDER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'USER_ID', 'USER_TYPE'], 'integer'],
             [['ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'ORDER_TIME', 'NOTES', 'CREATED_AT', 'UPDATED_AT', 'USER_NAME', 'SURNAME', 'OTHER_NAMES', 'LOCATION_NAME', 'CHEF_NAME'], 'safe'],
         ];
     }
@@ -48,6 +48,7 @@ class ReportSearch extends ReportModel
             ORDER_HELPER::STATUS_ORDER_CANCELLED,
             ORDER_HELPER::STATUS_ORDER_PENDING,
             ORDER_HELPER::STATUS_PAYMENT_PENDING,
+            ORDER_HELPER::STATUS_ORDER_CONFIRMED,
         ];
         $query = ReportModel::find();
 
@@ -59,7 +60,7 @@ class ReportSearch extends ReportModel
             $dataProvider = new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
-                    'pageSize' => 250
+                    'pageSize' => 100
                 ],
                 'sort' => false
             ]);
@@ -96,19 +97,6 @@ class ReportSearch extends ReportModel
             $this->END_DATE = APP_UTILS::LastDayOfMonth();//$this->LastDayOfMonth(); //date('Y-m-d');
         }
 
-
-// grid filtering conditions
-        $query->andFilterWhere([
-            'ORDER_ID' => $this->ORDER_ID,
-            'LOCATION_ID' => $this->LOCATION_ID,
-            'KITCHEN_ID' => $this->KITCHEN_ID,
-            'CHEF_ID' => $this->CHEF_ID,
-            'RIDER_ID' => $this->RIDER_ID,
-            'USER_ID' => $this->USER_ID,
-            'USER_TYPE' => $this->USER_TYPE,
-            'COUNTRY_ID' => $this->COUNTRY_ID,
-        ]);
-
         $query->andFilterWhere(['like', 'PAYMENT_METHOD', $this->PAYMENT_METHOD])
             ->andFilterWhere(['like', 'ORDER_STATUS', $this->ORDER_STATUS])
             ->andFilterWhere(['like', 'ORDER_TIME', $this->ORDER_TIME])
@@ -116,8 +104,6 @@ class ReportSearch extends ReportModel
             ->andFilterWhere(['like', 'USER_NAME', $this->USER_NAME])
             ->andFilterWhere(['like', 'SURNAME', $this->SURNAME])
             ->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
-            ->andFilterWhere(['like', 'LOCATION_NAME', $this->LOCATION_NAME])
-            ->andFilterWhere(['like', 'CHEF_NAME', $this->CHEF_NAME])
             ->andFilterWhere(['between', 'ORDER_DATE', $this->START_DATE, $this->END_DATE]);
 
         return $dataProvider;

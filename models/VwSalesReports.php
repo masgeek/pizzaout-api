@@ -28,58 +28,22 @@ use Yii;
  * @property string $COUNTRY_ID
  * @property string $CHEF_NAME
  */
-class VwSalesReports extends \yii\db\ActiveRecord
+class VwSalesReports extends \app\models\base\VwSalesReports
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'vw_sales_reports';
-    }
+    public $START_DATE;
+    public $END_DATE;
+    public $ORDER_TOTAL;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['ORDER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'USER_ID', 'USER_TYPE', 'COUNTRY_ID'], 'integer'],
-            [['LOCATION_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS', 'USER_NAME', 'USER_TYPE', 'SURNAME', 'OTHER_NAMES', 'LOCATION_NAME', 'COUNTRY_ID', 'CHEF_NAME'], 'required'],
-            [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
-            [['PAYMENT_METHOD', 'ORDER_TIME'], 'string', 'max' => 20],
-            [['ORDER_STATUS'], 'string', 'max' => 30],
-            [['NOTES', 'LOCATION_NAME'], 'string', 'max' => 255],
-            [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'CHEF_NAME'], 'string', 'max' => 100],
-        ];
-    }
+    const CONTEXT_ORDERS = 'orders-search';
+    const CONTEXT_GENERAL = 'general-search';
+    const CONTEXT_SALES = 'sales-search';
+    const CONTEXT_RIDER = 'rider-search';
+    const CONTEXT_CHEF = 'chef-search';
+    const CONTEXT_KITCHEN = 'kitchen-search';
+    const CONTEXT_LOCATION = 'location-search';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+    public static function primaryKey()
     {
-        return [
-            'ORDER_ID' => 'Order  ID',
-            'LOCATION_ID' => 'Location  ID',
-            'KITCHEN_ID' => 'Kitchen  ID',
-            'CHEF_ID' => 'Chef  ID',
-            'RIDER_ID' => 'Rider  ID',
-            'ORDER_DATE' => 'Order  Date',
-            'PAYMENT_METHOD' => 'Payment  Method',
-            'ORDER_STATUS' => 'Status of the order',
-            'ORDER_TIME' => 'Order  Time',
-            'NOTES' => 'Can contain payment text from mobile transactions etc',
-            'CREATED_AT' => 'Created  At',
-            'UPDATED_AT' => 'Updated  At',
-            'USER_ID' => 'User  ID',
-            'USER_NAME' => 'User  Name',
-            'USER_TYPE' => 'User  Type',
-            'SURNAME' => 'Surname',
-            'OTHER_NAMES' => 'Other  Names',
-            'LOCATION_NAME' => 'Location  Name',
-            'COUNTRY_ID' => 'Country  ID',
-            'CHEF_NAME' => 'Chef  Name',
-        ];
+        return ['ORDER_ID'];
     }
 }

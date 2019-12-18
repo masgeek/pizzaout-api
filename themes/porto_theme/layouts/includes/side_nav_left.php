@@ -72,10 +72,10 @@ use yii\helpers\Html;
                             <li><?= Html::a('Orders Reports', ['//reports/report/order-reports'], []); ?></li>
                             <li><?= Html::a('General & Sales Reports', ['//reports/report/general-reports'], []); ?></li>
                             <li><?= Html::a('Sales Reports', ['//reports/report/sales-reports'], ['class'=>'hidden']); ?></li>
-                            <li><?= Html::a('Chef Reports', ['//reports/report/chef-reports'], []); ?></li>
-                            <li><?= Html::a('Rider Reports', ['//reports/report/rider-reports'], []); ?></li>
-                            <li><?= Html::a('District Reports', ['//reports/report/district-reports'], []); ?></li>
-                            <li><?= Html::a('Pizza Reports', ['//reports/report/pizza-reports'], []); ?></li>
+<!--                            <li>--><?//= Html::a('Chef Reports', ['//reports/report/chef-reports'], []); ?><!--</li>-->
+<!--                            <li>--><?//= Html::a('Rider Reports', ['//reports/report/rider-reports'], []); ?><!--</li>-->
+<!--                            <li>--><?//= Html::a('District Reports', ['//reports/report/district-reports'], []); ?><!--</li>-->
+<!--                            <li>--><?//= Html::a('Pizza Reports', ['//reports/report/pizza-reports'], []); ?><!--</li>-->
                         </ul>
                     </li>
                     <li class="nav-parent">

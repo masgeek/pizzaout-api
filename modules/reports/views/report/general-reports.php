@@ -84,112 +84,12 @@ $gridColumns = [
         'headerOptions' => ['class' => 'text-center'],
         'contentOptions' => ['class' => 'text-center'],
     ],
-    [
-        'class' => 'kartik\grid\DataColumn',
-        'attribute' => 'KITCHEN_ID',
-        'format' => 'raw',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\ReportModel */
-            $kitchen = 'N/A';
-            if ($model->kITCHEN != null) {
-                $kitchenData = $model->kITCHEN;
-                $kitchen = Html::a($kitchenData->KITCHEN_NAME, [
-                    'report/kitchen-reports', 'kitchen_id' => $kitchenData->CITY_ID
-                ], [
-                    'class' => 'btn btn-link disabled'
-                ]);
-                $kitchen = $kitchenData->KITCHEN_NAME;
-            }
-
-            return $kitchen;
-        },
-        //'hiddenFromExport' => true,
-    ],
-    [
-        'class' => 'kartik\grid\DataColumn',
-        'attribute' => 'CHEF_ID',
-        'format' => 'raw',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\ReportModel */
-            //$orderItems = $model->customerOrderItems;
-            $chef = 'N/A';
-            if ($model->cHEF != null) {
-                $chefData = $model->cHEF;
-                $chef = Html::a($chefData->CHEF_NAME, [
-                    'report/chef-reports', 'chef_id' => $chefData->CHEF_ID
-                ], [
-                    'class' => 'btn btn-link'
-                ]);
-                $chef = $chefData->CHEF_NAME;
-            }
-
-            return $chef;
-        },
-        //'hiddenFromExport' => true,
-    ],
-    [
-        'class' => 'kartik\grid\DataColumn',
-        'attribute' => 'LOCATION_ID',
-        'format' => 'raw',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\ReportModel */
-            //$orderItems = $model->customerOrderItems;
-            $location = 'N/A';
-            if ($model->lOCATION != null) {
-                $locationData = $model->lOCATION;
-                $location = Html::a($locationData->LOCATION_NAME, [
-                    'report/district-reports', 'location_id' => $locationData->LOCATION_ID
-                ], [
-                    'class' => 'btn btn-link'
-                ]);
-
-                $location = $locationData->LOCATION_NAME;
-            }
-
-            return $location;
-        },
-        //'hiddenFromExport' => true,
-    ],
-    [
-        'class' => 'kartik\grid\DataColumn',
-        'attribute' => 'RIDER_ID',
-        'format' => 'raw',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\ReportModel */
-            $rider = 'N/A';
-            if ($model->rIDER != null) {
-                $riderData = $model->rIDER;
-                $rider = Html::a($riderData->uSER->SURNAME, [
-                    'report/rider-reports', 'rider_id' => $riderData->RIDER_ID
-                ], [
-                    'class' => 'btn btn-link'
-                ]);
-
-                $rider = $riderData->uSER->SURNAME;
-            }
-
-            return $rider;
-        },
-        //'hiddenFromExport' => true,
-    ],
-    //'ORDER_DATE:datetime',
-    //'ORDER_DATE',
-    [
-        'attribute' => 'ORDER_DATE',
-        //'visible'=>false,
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\ReportModel */
-            return \app\helpers\APP_UTILS::FormatDate($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
-        }
-    ],
+    'ORDER_DATE:datetime',
     'PAYMENT_METHOD',
-    //'ORDER_STATUS',
     [
         'class' => 'kartik\grid\DataColumn',
         'attribute' => 'ORDER_STATUS',
         'header' => 'Status',
-        //'headerOptions'=>['class'=>'noprint'],
-        //'contentOptions'=>['class'=>'noprint'],
         'hiddenFromExport' => true,
     ],
     //'ORDER_TIME',

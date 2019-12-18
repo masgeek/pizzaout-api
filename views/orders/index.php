@@ -17,12 +17,12 @@ $items = [
     [
         'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
-        'active' => false
+        'active' => true
     ],
     [
         'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
         'visible' => true,
-        'active' => true,
+//        'active' => true,
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
     ],
 //    [
