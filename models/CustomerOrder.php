@@ -3,154 +3,27 @@
 namespace app\models;
 
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\behaviors\BlameableBehavior;
+use yii\db\ActiveQuery;
 
-/**
- * This is the model class for table "customer_order".
- *
- * @property int $ORDER_ID
- * @property int $USER_ID
- * @property int $LOCATION_ID
- * @property int $KITCHEN_ID
- * @property int $CHEF_ID
- * @property int $RIDER_ID
- * @property string $ORDER_DATE
- * @property string $PAYMENT_METHOD
- * @property string $ORDER_STATUS Status of the order
- * @property string $ORDER_TIME
- * @property string $NOTES Can contain payment text from mobile transactions etc
- * @property string $CREATED_AT
- * @property string $UPDATED_AT
- *
- * @property Users $uSER
- * @property Riders $rIDER
- * @property Kitchen $kITCHEN
- * @property Status $oRDERSTATUS
- * @property Chef $cHEF
- * @property Location $lOCATION
- * @property CustomerOrderItem[] $customerOrderItems
- * @property OrderTracking[] $orderTrackings
- * @property Status[] $statuses
- * @property Payment[] $payments
- */
-class CustomerOrder extends \yii\db\ActiveRecord
+class CustomerOrder extends base\CustomerOrder
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'customer_order';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+    public function behaviors()
     {
         return [
-            [['USER_ID', 'LOCATION_ID', 'ORDER_DATE', 'PAYMENT_METHOD', 'ORDER_STATUS'], 'required'],
-            [['USER_ID', 'LOCATION_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID'], 'integer'],
-            [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT'], 'safe'],
-            [['PAYMENT_METHOD', 'ORDER_TIME'], 'string', 'max' => 20],
-            [['ORDER_STATUS'], 'string', 'max' => 30],
-            [['NOTES'], 'string', 'max' => 255],
-            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
-            [['RIDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Riders::className(), 'targetAttribute' => ['RIDER_ID' => 'RIDER_ID']],
-            [['KITCHEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Kitchen::className(), 'targetAttribute' => ['KITCHEN_ID' => 'KITCHEN_ID']],
-            [['ORDER_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['ORDER_STATUS' => 'STATUS_NAME']],
-            [['CHEF_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Chef::className(), 'targetAttribute' => ['CHEF_ID' => 'CHEF_ID']],
-            [['LOCATION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['LOCATION_ID' => 'LOCATION_ID']],
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'ORDERED_BY',
+                'updatedByAttribute' => 'UPDATED_BY',
+            ],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'ORDER_ID' => Yii::t('app', 'Order  ID'),
-            'USER_ID' => Yii::t('app', 'User  ID'),
-            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
-            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
-            'CHEF_ID' => Yii::t('app', 'Chef  ID'),
-            'RIDER_ID' => Yii::t('app', 'Rider  ID'),
-            'ORDER_DATE' => Yii::t('app', 'Order  Date'),
-            'PAYMENT_METHOD' => Yii::t('app', 'Payment  Method'),
-            'ORDER_STATUS' => Yii::t('app', 'Status of the order'),
-            'ORDER_TIME' => Yii::t('app', 'Order  Time'),
-            'NOTES' => Yii::t('app', 'Can contain payment text from mobile transactions etc'),
-            'CREATED_AT' => Yii::t('app', 'Created  At'),
-            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
-        ];
-    }
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUSER()
-    {
-        return $this->hasOne(Users::className(), ['USER_ID' => 'USER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRIDER()
-    {
-        return $this->hasOne(Riders::className(), ['RIDER_ID' => 'RIDER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKITCHEN()
-    {
-        return $this->hasOne(Kitchen::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getORDERSTATUS()
-    {
-        return $this->hasOne(Status::className(), ['STATUS_NAME' => 'ORDER_STATUS']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCHEF()
-    {
-        return $this->hasOne(Chef::className(), ['CHEF_ID' => 'CHEF_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLOCATION()
-    {
-        return $this->hasOne(Location::className(), ['LOCATION_ID' => 'LOCATION_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomerOrderItems()
-    {
-        return $this->hasMany(CustomerOrderItem::className(), ['ORDER_ID' => 'ORDER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderTrackings()
-    {
-        return $this->hasMany(OrderTracking::className(), ['ORDER_ID' => 'ORDER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
+     * @throws InvalidConfigException
      */
     public function getStatuses()
     {
@@ -158,7 +31,7 @@ class CustomerOrder extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getPayments()
     {

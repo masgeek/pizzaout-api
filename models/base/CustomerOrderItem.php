@@ -1,9 +1,8 @@
 <?php
 
-namespace app\models;
+namespace app\models\base;
 
 use Yii;
-use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "customer_order_item".
@@ -18,7 +17,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $NOTES
  * @property string $CREATED_AT
  * @property string $UPDATED_AT
- * @property string $TABLE_NUMBER
  *
  * @property MenuItemType $iTEMTYPE
  * @property CustomerOrder $oRDER
@@ -26,14 +24,15 @@ use yii\behaviors\BlameableBehavior;
 class CustomerOrderItem extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'customer_order_item';
     }
+
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -50,21 +49,21 @@ class CustomerOrderItem extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'ORDER_ITEM_ID' => Yii::t('app', 'Order  Item  ID'),
-            'ORDER_ID' => Yii::t('app', 'Order  ID'),
-            'ITEM_TYPE_ID' => Yii::t('app', 'Item  Type  ID'),
+            'ORDER_ITEM_ID' => Yii::t('app', 'Order Item ID'),
+            'ORDER_ID' => Yii::t('app', 'Order ID'),
+            'ITEM_TYPE_ID' => Yii::t('app', 'Item Type ID'),
             'QUANTITY' => Yii::t('app', 'Quantity'),
             'PRICE' => Yii::t('app', 'Price'),
             'SUBTOTAL' => Yii::t('app', 'Subtotal'),
             'OPTIONS' => Yii::t('app', 'Options'),
-            'TABLE_NUMBER' => Yii::t('app', 'Table Number'),
-            'CREATED_AT' => Yii::t('app', 'Created  At'),
-            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
+            'NOTES' => Yii::t('app', 'Notes'),
+            'CREATED_AT' => Yii::t('app', 'Created At'),
+            'UPDATED_AT' => Yii::t('app', 'Updated At'),
         ];
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-$db = require_once(__DIR__ . '/db_2.php');
+$db = require_once(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic-console',

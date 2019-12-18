@@ -50,7 +50,7 @@ class CUSTOMER_ORDERS extends CustomerOrder
     }
 
 
-    public function rules()
+    public function rulesDisabled()
     {
         $rules = parent::rules();
 

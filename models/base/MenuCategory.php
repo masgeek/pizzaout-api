@@ -1,0 +1,63 @@
+<?php
+
+namespace app\models\base;
+
+use Yii;
+
+/**
+ * This is the model class for table "menu_category".
+ *
+ * @property int $MENU_CAT_ID
+ * @property string $MENU_CAT_NAME
+ * @property string $MENU_CAT_IMAGE
+ * @property int $ACTIVE
+ * @property int $RANK
+ *
+ * @property MenuItem[] $menuItems
+ */
+class MenuCategory extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'menu_category';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['MENU_CAT_NAME', 'RANK'], 'required'],
+            [['ACTIVE', 'RANK'], 'integer'],
+            [['MENU_CAT_NAME'], 'string', 'max' => 50],
+            [['MENU_CAT_IMAGE'], 'string', 'max' => 255],
+            [['MENU_CAT_NAME'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'MENU_CAT_ID' => Yii::t('app', 'Menu Cat ID'),
+            'MENU_CAT_NAME' => Yii::t('app', 'Menu Cat Name'),
+            'MENU_CAT_IMAGE' => Yii::t('app', 'Menu Cat Image'),
+            'ACTIVE' => Yii::t('app', 'Active'),
+            'RANK' => Yii::t('app', 'Rank'),
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMenuItems()
+    {
+        return $this->hasMany(MenuItem::className(), ['MENU_CAT_ID' => 'MENU_CAT_ID']);
+    }
+}

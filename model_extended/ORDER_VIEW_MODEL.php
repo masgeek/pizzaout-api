@@ -22,34 +22,7 @@ use app\models\Status;
 use app\models\Users;
 use app\models\VwOrders;
 
-/**
- * This is the model class for table "customer_order".
- *
- * @property string $ORDER_ID
- * @property string $USER_ID
- * @property string $LOCATION_ID
- * @property string $KITCHEN_ID
- * @property string $CHEF_ID
- * @property string $RIDER_ID
- * @property string $ORDER_DATE
- * @property string $PAYMENT_METHOD
- * @property string $ORDER_STATUS Status of the order
- * @property string $NOTES Can contain payment text from mobile transactions etc
- * @property string $CREATED_AT
- * @property string $UPDATED_AT
- *
- * @property Users $uSER
- * @property CustomerAddress $aDDRESS
- * @property Riders $rIDER
- * @property Kitchen $kITCHEN
- * @property Status $oRDERSTATUS
- * @property Chef $cHEF
- * @property CustomerOrderItem[] $customerOrderItems
- * @property OrderTracking[] $orderTrackings
- * @property Status[] $statuses
- * @property Payment[] $payments
- */
-class ORDER_VIEW_MODEL extends VwOrders
+class ORDER_VIEW_MODEL extends \app\models\base\VwOrders
 {
     public $START_DATE;
     public $END_DATE;
@@ -65,8 +38,8 @@ class ORDER_VIEW_MODEL extends VwOrders
         $labels['ORDER_PRICE'] = 'Total';
         $labels['PAYMENT_METHOD'] = 'Payment';
         $labels['ORDER_STATUS'] = 'Status';
-        $labels['ORDER_ID'] = 'Order ID #';
         $labels['ORDER_TIME'] = 'Delivery Time';
+        $labels['ORDER_ID'] = 'Order Number';
 
 
         return $labels;
@@ -83,41 +56,9 @@ class ORDER_VIEW_MODEL extends VwOrders
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLOCATION()
-    {
-        return $this->hasOne(Location::className(), ['LOCATION_ID' => 'LOCATION_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRIDER()
-    {
-        return $this->hasOne(Riders::className(), ['RIDER_ID' => 'RIDER_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKITCHEN()
-    {
-        return $this->hasOne(Kitchen::className(), ['KITCHEN_ID' => 'KITCHEN_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getORDERSTATUS()
     {
         return $this->hasOne(Status::className(), ['STATUS_NAME' => 'ORDER_STATUS']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCHEF()
-    {
-        return $this->hasOne(Chef::className(), ['CHEF_ID' => 'CHEF_ID']);
     }
 
     /**

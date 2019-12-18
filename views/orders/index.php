@@ -21,21 +21,21 @@ $items = [
     ],
     [
         'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
-        'visible' => false,
+        'visible' => true,
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
     ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
-        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
-    ],
+//    [
+//        'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
+//        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
+//    ],
+//    [
+//        'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
+//        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
+//    ],
+//    [
+//        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
+//        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
+//    ],
 ];
 ?>
 

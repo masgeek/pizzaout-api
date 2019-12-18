@@ -19,6 +19,7 @@
 <!-- begin body content here -->
 
 <div class="col-md-12">
+    <?= \app\widgets\Alert::widget() ?>
     <!-- start: page -->
     <?= $content ?>
     <!-- end: page -->

@@ -66,52 +66,16 @@ $gridColumns = [
 
             if ($action === 'update') {
                 switch ($model->ORDER_STATUS) {
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CANCELLED:
-                        $action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
+                        $action = '<i class="fa fa-pencil fa-1x"></i>View';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
                     case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
                     case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
-                        $action = '<i class="fa fa-pencil fa-1x"></i><br/>Confirm';
+                        $action = '<i class="fa fa-pencil fa-1x"></i> Confirm';
                         $class .= 'btn-success';
                         $url = \yii\helpers\Url::toRoute(['orders/confirm-order', 'id' => $model->ORDER_ID]);
-                        break;
-                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
-                        $action = '<i class="fa fa-cutlery fa-1x"></i><br/>Assign Kitchen';
-                        $class .= 'btn-warning';
-                        $url = \yii\helpers\Url::toRoute(['assign-kitchen', 'id' => $model->ORDER_ID]);
-                        break;
-                    case \app\helpers\ORDER_HELPER::STATUS_KITCHEN_ASSIGNED:
-                        $action = '<i class="fa fa-building fa-1x"></i><br/>View';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
-                        break;
-                    case \app\helpers\ORDER_HELPER::STATUS_CHEF_ASSIGNED:
-                    case \app\helpers\ORDER_HELPER::STATUS_UNDER_PREPARATION:
-                        $action = '<i class="fa fa-hourglass-2 fa-1x"></i><br/>View';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
-                        break;
-                        break;
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_READY:
-                        $action = '<i class="fa fa-hourglass fa-1x"></i><br/>View';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
-                        break;
-                    case \app\helpers\ORDER_HELPER::STATUS_AWAITING_RIDER:
-                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_ASSIGNED:
-                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_DISPATCHED:
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_DELIVERED:
-                        $action = '<i class="fa fa-pencil fa-1x"></i><br/>View';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
-                        break;
-                    default:
-                        $action = '<i class="fa fa-cog fa-1x"></i><br/>View';
-                        $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
                 }
 
@@ -121,68 +85,16 @@ $gridColumns = [
         },
     ],
     'ORDER_ID',
-    'SURNAME',
-    'OTHER_NAMES',
-    'MOBILE',
-    //'PAYMENT_NUMBER',
-    //'PAYMENT_AMOUNT',
     [
-        'header' => 'Delivery Location',
-        'attribute' => 'LOCATION_ID',
-        'format' => 'raw',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            $address = "{$model->lOCATION->LOCATION_NAME} {$model->lOCATION->cITY->CITY_NAME}";
-            return ucwords(strtolower($address));
-        }
-    ],
-    [
-        'header' => 'Chef',
-        'filter' => false,
-        'attribute' => 'CHEF_ID',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            return $model->cHEF != null ? $model->cHEF->CHEF_NAME : 'N/A';
-        }
-    ],
-    [
-        'header' => 'Rider',
-        'filter' => false,
-        'attribute' => 'RIDER_ID',
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            return $model->rIDER != null ? $model->rIDER->uSER->SURNAME : 'N/A';
-        }
-    ],
-    [
-
-
-        'filter' => true,
-        //'format' => 'datetime',
         'attribute' => 'ORDER_DATE',
-        //'visible'=>false,
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_DATE);// \app\model_extended\CUSTOMER_ORDER_ITEMS::GetOrderTotal($model->ORDER_ID);
-        }
-    ],
-    [
         'filter' => false,
-        'attribute' => 'ORDER_TIME',
-        //'visible'=>false,
-        'value' => function ($model) {
-            /* @var $model \app\model_extended\CUSTOMER_ORDERS */
-            $validDate = \app\helpers\APP_UTILS::isValidDate($model->ORDER_TIME);
-
-            return \app\helpers\APP_UTILS::FormatDateTime($model->ORDER_TIME, !$validDate);
-        }
+        'format' => 'datetime',
     ],
-    //'ORDER_DATE',
-    //'PAYMENT_METHOD',
+    'TABLE_NUMBER',
     'ORDER_STATUS',
-    //'NOTES'
-    [
-        'class' => '\kartik\grid\ActionColumn',
+    'NOTES',
+
+    ['class' => '\kartik\grid\ActionColumn',
         'template' => '{print}',
 
         'buttons' => [
@@ -192,21 +104,12 @@ $gridColumns = [
         ],
         'urlCreator' => function ($action, $model, $key, $index) {
             $url = '#';
-            $class = 'btn btn-xs ';
+            $class = 'btn btn-sm ';
             if ($action === 'print') {
                 switch ($model->ORDER_STATUS) {
-                    //case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
                     case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
-                    case \app\helpers\ORDER_HELPER::STATUS_KITCHEN_ASSIGNED:
-                    case \app\helpers\ORDER_HELPER::STATUS_CHEF_ASSIGNED:
-                    case \app\helpers\ORDER_HELPER::STATUS_UNDER_PREPARATION:
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_READY:
-                    case \app\helpers\ORDER_HELPER::STATUS_AWAITING_RIDER:
-                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_ASSIGNED:
-                    case \app\helpers\ORDER_HELPER::STATUS_RIDER_DISPATCHED:
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_DELIVERED:
-                        $action = 'Receipt';
+                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
+                        $action = 'Order receipt';
                         $class .= 'btn-primary';
                         $url = \yii\helpers\Url::toRoute(['orders/print', 'id' => $model->ORDER_ID]);
                         break;
@@ -245,15 +148,15 @@ $gridColumns = [
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => $gridColumns,
-    'beforeHeader' => [
-        [
-            'columns' => [
-                ['content' => $this->title, 'options' => ['colspan' => 4, 'class' => 'text-center success']],
-            ],
-            'options' => ['class' => 'skip-export'] // remove this row from export
-        ]
-    ],
-    'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Orders",
+//    'beforeHeader' => [
+//        [
+//            'columns' => [
+//                ['content' => $this->title, 'options' => ['colspan' => 4, 'class' => 'text-center success']],
+//            ],
+//            'options' => ['class' => 'skip-export'] // remove this row from export
+//        ]
+//    ],
+//    'summary' => "Showing <strong>{begin}-{end}</strong> of <strong>{totalCount}</strong> Orders",
     'bordered' => true,
     'striped' => true,
     'condensed' => true,
@@ -262,8 +165,8 @@ $gridColumns = [
     'floatHeader' => false,
     'showPageSummary' => false,
     'panel' => false,
-    'resizableColumns' => true,
-    'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
+//    'resizableColumns' => true,
+//    'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
     'pjax' => false,
     'pjaxSettings' => [
         'neverTimeout' => true,

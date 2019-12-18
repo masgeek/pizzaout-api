@@ -56,6 +56,7 @@ $formatter = \Yii::$app->formatter;
             </header>
 
             <div class="col-md-12">
+                <?= \app\widgets\Alert::widget() ?>
                 <!-- start: page -->
                 <?= $content ?>
                 <!-- end: page -->

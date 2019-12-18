@@ -58,7 +58,7 @@ class DefaultController extends Controller
         $this->view->title = 'Orders';
 
         $this->view->params['title'] = 'Cash sale orders';
-        $this->view->params['checkout_url'] = 'checkout';
+        $this->view->params['checkout_url'] = 'place-order';
         $this->view->params['class'] = 'btn-primary btn-md btn-block';
 
         //get the list of orders
@@ -112,6 +112,77 @@ class DefaultController extends Controller
      * @return string|Response
      * @throws Exception
      */
+    public function actionPlaceOrder()
+    {
+        $connection = Yii::$app->db;
+        $this->layout = 'customer_layout_no_cart';
+        $this->view->title = 'Cash sale checkout';
+        $formatter = Yii::$app->formatter;
+        $user_id = Yii::$app->user->id;
+        $order_created = false;
+        $saveSuccessful = false;
+        $cart_timestamp = 0;
+        $cart_items = ORDER_HELPER::GetCartItems($user_id);
+
+        $paymentModel = new CUSTOMER_PAYMENTS();
+        $model = new CUSTOMER_ORDERS();
+        $model->PAYMENT_METHOD = APP_UTILS::PAYMENT_METHOD_CASH;
+        $customer_order_items = new CUSTOMER_ORDER_ITEMS();
+
+        $model->USER_ID = $user_id;
+        $model->ORDER_STATUS = ORDER_HELPER::STATUS_ORDER_PENDING;
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $transaction = $connection->beginTransaction();
+            if ($model->save()) {
+                foreach ($cart_items as $key => $orderItems):
+                    $customer_order_items->isNewRecord = true;
+                    $customer_order_items->ORDER_ITEM_ID = null;
+                    $customer_order_items->ORDER_ID = $model->ORDER_ID;
+                    $customer_order_items->ITEM_TYPE_ID = $orderItems->ITEM_TYPE_ID;
+                    $customer_order_items->QUANTITY = $orderItems->QUANTITY;
+                    $customer_order_items->PRICE = (int)$orderItems->ITEM_PRICE;
+                    $customer_order_items->SUBTOTAL = (int)$orderItems->ITEM_PRICE * (float)$orderItems->QUANTITY;
+                    $customer_order_items->OPTIONS = 'NA';
+                    $customer_order_items->NOTES = $model->NOTES;
+                    $customer_order_items->CREATED_AT = APP_UTILS::GetCurrentDateTime();
+                    $customer_order_items->UPDATED_AT = APP_UTILS::GetCurrentDateTime();
+
+                    if ($customer_order_items->validate() && $customer_order_items->save()) {
+//                        $order_created = true;
+                        $saveSuccessful = true;
+                    }
+                endforeach;
+//                if ($order_created) {
+//                    CART_MODEL::ClearCart($cart_timestamp);
+//                    $paymentModel->ORDER_ID = $model->ORDER_ID;
+//                    $paymentModel->PAYMENT_DATE = APP_UTILS::GetCurrentDateTime();
+//                    $paymentModel->PAYMENT_REF = strtoupper(uniqid());
+//                    $paymentModel->PAYMENT_STATUS = ORDER_HELPER::STATUS_ORDER_PENDING;
+//                    $paymentModel->PAYMENT_CHANNEL = $model->PAYMENT_METHOD;
+//                    if ($paymentModel->validate() && $paymentModel->save()) {
+//                        $saveSuccessful = true;
+//                    }
+//                }
+            }
+            if ($saveSuccessful) {
+                $transaction->commit();
+                Yii::$app->session->setFlash('success', 'Your order has been placed successfully');
+                return $this->redirect(['///orders']);
+//                return $this->redirect(['///orders/print', 'id' => $model->ORDER_ID]);
+            }
+            $transaction->rollback();
+            Yii::$app->session->setFlash('error', 'Order not placed successfully');
+            $this->refresh();
+        }
+
+        return $this->render('place-order', [
+            'formatter' => $formatter,
+            'cart_items' => $cart_items,
+            'model' => $model]);
+    }
+
     public function actionCheckout()
     {
         $connection = Yii::$app->db;
@@ -153,7 +224,7 @@ class DefaultController extends Controller
                     $customer_order_items->SUBTOTAL = (int)$orderItems->ITEM_PRICE * (float)$orderItems->QUANTITY;
                     $customer_order_items->OPTIONS = 'NA';
                     $customer_order_items->NOTES = $model->NOTES;
-                    $cart_timestamp =$orderItems->CART_TIMESTAMP;
+                    $cart_timestamp = $orderItems->CART_TIMESTAMP;
                     $customer_order_items->CREATED_AT = APP_UTILS::GetCurrentDateTime();
                     $customer_order_items->UPDATED_AT = APP_UTILS::GetCurrentDateTime();
 

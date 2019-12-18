@@ -18,7 +18,7 @@ $prevCat = null;
 ?>
 
 <div class="panel-group">
-    <!--<h3><?= $model->mENUCAT->MENU_CAT_NAME ?></h3>-->
+<!--    <h3>--><?//= $model->mENUCAT->MENU_CAT_NAME ?><!--</h3>-->
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="col-md-2">

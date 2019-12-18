@@ -1,25 +1,32 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 
 /* @var $content string */
 
+use app\assetmanager\AppAsset;
+use app\assetmanager\BowerAsset;
+use app\assetmanager\FontAssets;
+use app\assetmanager\PortoAssets;
+use app\model_extended\CART_MODEL;
+use app\widgets\Alert;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Html;
 use kartik\editable\Editable;
 
-\app\assetmanager\AppAsset::register($this);
-\app\assetmanager\BowerAsset::register($this);
+AppAsset::register($this);
+BowerAsset::register($this);
 //\app\assetmanager\YarnAssets::register($this);
-\app\assetmanager\PortoAssets::register($this);
-\app\assetmanager\FontAssets::register($this);
+PortoAssets::register($this);
+FontAssets::register($this);
 
 
 //$this->params['breadcrumbs'][] = ['label' => 'Rider  Models', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '#'];
 //$this->params['breadcrumbs'][] = $this->title;
 
-$formatter = \Yii::$app->formatter;
+$formatter = Yii::$app->formatter;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -57,6 +64,7 @@ $formatter = \Yii::$app->formatter;
             </header>
             <hr/>
             <div class="col-lg-9 col-md-12 col-sm-12">
+                <?= Alert::widget() ?>
                 <!-- start: page -->
                 <?= $content ?>
                 <!-- end: page -->
@@ -75,7 +83,7 @@ $formatter = \Yii::$app->formatter;
                         <table data-height="auto" class="table table-condensed table-border">
                             <tbody>
                             <?php
-                            /* @var $orderItems \app\model_extended\CART_MODEL */
+                            /* @var $orderItems CART_MODEL */
                             $class = isset($this->params['class']) ? $this->params['class'] : 'btn-success btn-lg btn-block';
                             $cart_items = isset($this->params['cart_items']) ? $this->params['cart_items'] : [];
                             $checkout_url = isset($this->params['checkout_url']) ? $this->params['checkout_url'] : '//customer/default/checkout';
@@ -144,7 +152,7 @@ $formatter = \Yii::$app->formatter;
                     </div>
                     <div class="panel-footer">
 
-                        <?= Html::a(count($cart_items) > 0 ? 'PROCEED TO CHECKOUT' : 'CART IS EMPTY',
+                        <?= Html::a(count($cart_items) > 0 ? 'PLACE ORDER' : 'ORDER IS EMPTY',
                             count($cart_items) > 0 ? [$checkout_url] : '#',
                             ['class' => count($cart_items) > 0 ? "btn {$class}" : 'btn btn-danger btn-md btn-block']) ?>
                     </div>

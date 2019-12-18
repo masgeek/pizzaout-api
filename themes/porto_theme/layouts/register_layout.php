@@ -19,6 +19,7 @@
 <!-- begin body content here -->
 
 <div class="col-md-8 col-md-offset-2">
+    <?= \app\widgets\Alert::widget() ?>
     <!-- start: page -->
     <?= $content ?>
     <!-- end: page -->

@@ -29,6 +29,7 @@ $formatter = Yii::$app->formatter;
 <!-- begin body content here -->
 
 <div class="container">
+    <?= \app\widgets\Alert::widget() ?>
     <!-- start: page -->
     <?= $content ?>
     <!-- end: page -->
