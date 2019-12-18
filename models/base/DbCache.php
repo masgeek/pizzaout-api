@@ -11,7 +11,7 @@ use Yii;
  * @property int $expire
  * @property resource $data
  */
-class DbCache extends \yii\db\ActiveRecord
+class DbCache extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

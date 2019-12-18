@@ -14,7 +14,7 @@ use Yii;
  * @property MenuItem $mENUITEM
  * @property Users $uSER
  */
-class Favs extends \yii\db\ActiveRecord
+class Favs extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

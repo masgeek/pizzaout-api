@@ -18,7 +18,7 @@ use Yii;
  * @property string $MENU_ITEM_IMAGE
  * @property int $USER_ID
  */
-class VwOrderItems extends \yii\db\ActiveRecord
+class VwOrderItems extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

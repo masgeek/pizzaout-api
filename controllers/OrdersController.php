@@ -77,34 +77,6 @@ class OrdersController extends Controller
     }
 
     /**
-     * Updates an existing CUSTOMER_ORDERS model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException
-     */
-    public function actionRider($id)
-    {
-        $model = $this->findModel($id);
-
-        $tracker = new STATUS_TRACKING_MODEL();
-
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $tracker->ORDER_ID = $model->ORDER_ID;
-            $tracker->STATUS = $model->ORDER_STATUS;
-            if ($tracker->save()) {
-                return $this->redirect(['index']);
-            }
-        }
-
-        return $this->render('rider', [
-            'model' => $model,
-            'tracker' => $tracker
-        ]);
-    }
-
-    /**
      * Displays a single CUSTOMER_ORDERS model.
      * @param string $id
      * @return mixed
@@ -191,17 +163,15 @@ class OrdersController extends Controller
 
         $this->view->title = "Order #{$id}";
         $model = $this->findModel($id);
-        $model->scenario = APP_UTILS::SCENARIO_CONFIRM_ORDER;
 
-
-        $orderCancelled = false;
         if ($model->load(Yii::$app->request->post())) {
-            //goto receipt printing
             if ($model->save()) {
                 if ($model->ORDER_STATUS === ORDER_HELPER::STATUS_ORDER_CANCELLED) {
-                    $orderCancelled = true;
+                    Yii::$app->session->setFlash('info', 'Order has been cancelled');
+                } else {
+                    Yii::$app->session->setFlash('success', 'Order confirmed successfully');
                 }
-                return $orderCancelled ? $this->redirect(['orders/index']) : $this->redirect(['orders/print', 'id' => $id]);
+                return $this->redirect(['orders/index']);;
             }
         }
 

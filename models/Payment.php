@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "payment".
@@ -20,64 +22,44 @@ use Yii;
  * @property Status $pAYMENTSTATUS
  * @property CustomerOrder $oRDER
  */
-class Payment extends \yii\db\ActiveRecord
+class Payment extends \app\models\base\Payment
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
+
+    public function behaviors()
     {
-        return 'payment';
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'PAYMENT_DATE',
+                'updatedAtAttribute' => 'UPDATED_AT',
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'CREATED_BY',
+                'updatedByAttribute' => 'UPDATED_BY',
+            ],
+//            'slug' => [
+//                'class' => Slu::class,
+//                // 'attribute' => ['name', 'language.username'],
+//                'attribute' => 'id',
+//                'slugAttribute' => 'slug',
+//                'ensureUnique' => true,
+//                'replacement' => '-',
+//                'lowercase' => true,
+//                'immutable' => false
+//            ],
+        ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
-        return [
-            [['ORDER_ID'], 'integer'],
-            [['PAYMENT_CHANNEL', 'PAYMENT_AMOUNT', 'PAYMENT_REF', 'PAYMENT_DATE'], 'required'],
-            [['PAYMENT_AMOUNT'], 'number'],
-            [['PAYMENT_DATE'], 'safe'],
-            [['PAYMENT_CHANNEL', 'PAYMENT_REF', 'PAYMENT_NOTES'], 'string', 'max' => 255],
-            [['PAYMENT_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
-            [['PAYMENT_STATUS'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['PAYMENT_STATUS' => 'STATUS_NAME']],
-            [['ORDER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerOrder::className(), 'targetAttribute' => ['ORDER_ID' => 'ORDER_ID']],
-        ];
+        $rules = parent::rules();
+//        $rules[] = [['PAYMENT_NUMBER', 'ORDER_ID', 'PAYMENT_STATUS'], 'required'];
+        return $rules;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
+    public function generateUuid()
     {
-        return [
-            'PAYMENT_ID' => Yii::t('app', 'Payment  ID'),
-            'ORDER_ID' => Yii::t('app', 'Order  ID'),
-            'PAYMENT_CHANNEL' => Yii::t('app', 'Payment  Channel'),
-            'PAYMENT_AMOUNT' => Yii::t('app', 'Payment  Amount'),
-            'PAYMENT_REF' => Yii::t('app', 'Payment  Ref'),
-            'PAYMENT_STATUS' => Yii::t('app', 'Payment  Status'),
-            'PAYMENT_DATE' => Yii::t('app', 'Payment  Date'),
-            'PAYMENT_NOTES' => Yii::t('app', 'Payment  Notes'),
-            'PAYMENT_NUMBER' => Yii::t('app', 'Payment  Number'),
-        ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPAYMENTSTATUS()
-    {
-        return $this->hasOne(Status::className(), ['STATUS_NAME' => 'PAYMENT_STATUS']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getORDER()
-    {
-        return $this->hasOne(CustomerOrder::className(), ['ORDER_ID' => 'ORDER_ID']);
+        $this->PAYMENT_REF = parent::generateUuid();
     }
 }

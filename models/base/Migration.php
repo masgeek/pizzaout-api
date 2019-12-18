@@ -10,7 +10,7 @@ use Yii;
  * @property string $version
  * @property int $apply_time
  */
-class Migration extends \yii\db\ActiveRecord
+class Migration extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

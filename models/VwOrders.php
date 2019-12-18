@@ -33,66 +33,6 @@ use Yii;
  * @property string $COUNTRY_NAME
  * @property string $ORDER_TIME
  */
-class VwOrders extends \yii\db\ActiveRecord
+class VwOrders extends \app\models\base\VwOrders
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'vw_orders';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['ORDER_ID', 'USER_ID', 'KITCHEN_ID', 'CHEF_ID', 'RIDER_ID', 'LOCATION_ID', 'CITY_ID', 'COUNRY_ID'], 'integer'],
-            [['USER_ID', 'MOBILE', 'SURNAME', 'OTHER_NAMES', 'ORDER_DATE', 'ORDER_STATUS', 'PAYMENT_METHOD', 'LOCATION_NAME', 'CITY_NAME', 'COUNTRY_NAME'], 'required'],
-            [['ORDER_DATE', 'CREATED_AT', 'UPDATED_AT', 'PAYMENT_DATE'], 'safe'],
-            [['PAYMENT_AMOUNT'], 'number'],
-            [['ADDRESS'], 'string'],
-            [['MOBILE'], 'string', 'max' => 25],
-            [['SURNAME', 'OTHER_NAMES', 'CITY_NAME', 'COUNTRY_NAME'], 'string', 'max' => 100],
-            [['ORDER_STATUS', 'PAYMENT_NUMBER'], 'string', 'max' => 30],
-            [['NOTES', 'LOCATION_NAME'], 'string', 'max' => 255],
-            [['PAYMENT_METHOD', 'ORDER_TIME'], 'string', 'max' => 20],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'ORDER_ID' => Yii::t('app', 'Order  ID'),
-            'USER_ID' => Yii::t('app', 'User  ID'),
-            'KITCHEN_ID' => Yii::t('app', 'Kitchen  ID'),
-            'CHEF_ID' => Yii::t('app', 'Chef  ID'),
-            'RIDER_ID' => Yii::t('app', 'Rider  ID'),
-            'MOBILE' => Yii::t('app', 'Mobile'),
-            'SURNAME' => Yii::t('app', 'Surname'),
-            'OTHER_NAMES' => Yii::t('app', 'Other  Names'),
-            'ORDER_DATE' => Yii::t('app', 'Order  Date'),
-            'ORDER_STATUS' => Yii::t('app', 'Status of the order'),
-            'PAYMENT_AMOUNT' => Yii::t('app', 'Payment  Amount'),
-            'PAYMENT_NUMBER' => Yii::t('app', 'Payment  Number'),
-            'NOTES' => Yii::t('app', 'Can contain payment text from mobile transactions etc'),
-            'PAYMENT_METHOD' => Yii::t('app', 'Payment  Method'),
-            'CREATED_AT' => Yii::t('app', 'Created  At'),
-            'UPDATED_AT' => Yii::t('app', 'Updated  At'),
-            'PAYMENT_DATE' => Yii::t('app', 'Payment  Date'),
-            'LOCATION_ID' => Yii::t('app', 'Location  ID'),
-            'LOCATION_NAME' => Yii::t('app', 'Location  Name'),
-            'ADDRESS' => Yii::t('app', 'Address'),
-            'CITY_NAME' => Yii::t('app', 'City  Name'),
-            'CITY_ID' => Yii::t('app', 'City  ID'),
-            'COUNRY_ID' => Yii::t('app', 'Counry  ID'),
-            'COUNTRY_NAME' => Yii::t('app', 'Country  Name'),
-            'ORDER_TIME' => Yii::t('app', 'Order  Time'),
-        ];
-    }
 }

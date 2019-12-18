@@ -15,7 +15,7 @@ use Yii;
  * @property Kitchen[] $kitchens
  * @property Location[] $locations
  */
-class City extends \yii\db\ActiveRecord
+class City extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

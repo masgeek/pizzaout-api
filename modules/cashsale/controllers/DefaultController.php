@@ -183,6 +183,11 @@ class DefaultController extends Controller
             'model' => $model]);
     }
 
+    public function actionPay($h)
+    {
+        return $h;
+    }
+
     public function actionCheckout()
     {
         $connection = Yii::$app->db;

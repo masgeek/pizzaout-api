@@ -14,7 +14,7 @@ use Yii;
  * @property Kitchen $kITCHEN
  * @property CustomerOrder[] $customerOrders
  */
-class Chef extends \yii\db\ActiveRecord
+class Chef extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

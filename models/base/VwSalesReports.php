@@ -28,7 +28,7 @@ use Yii;
  * @property int $COUNTRY_ID
  * @property string $CHEF_NAME
  */
-class VwSalesReports extends \yii\db\ActiveRecord
+class VwSalesReports extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

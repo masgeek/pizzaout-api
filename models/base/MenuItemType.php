@@ -19,7 +19,7 @@ use Yii;
  * @property Cart[] $carts
  * @property WpCart[] $wpCarts
  */
-class MenuItemType extends \yii\db\ActiveRecord
+class MenuItemType extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

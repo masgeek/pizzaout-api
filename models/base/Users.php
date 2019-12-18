@@ -30,7 +30,7 @@ use Yii;
  * @property Favs[] $favs
  * @property UserType $uSERTYPE
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

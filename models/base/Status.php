@@ -19,7 +19,7 @@ use Yii;
  * @property CustomerOrder[] $oRDERs
  * @property Payment[] $payments
  */
-class Status extends \yii\db\ActiveRecord
+class Status extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

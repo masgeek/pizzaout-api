@@ -20,7 +20,7 @@ use Yii;
  * @property MenuItemType[] $menuItemTypes
  * @property Favs[] $favs
  */
-class MenuItem extends \yii\db\ActiveRecord
+class MenuItem extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

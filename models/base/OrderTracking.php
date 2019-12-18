@@ -17,7 +17,7 @@ use Yii;
  * @property CustomerOrder $oRDER
  * @property Status $sTATUS
  */
-class OrderTracking extends \yii\db\ActiveRecord
+class OrderTracking extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

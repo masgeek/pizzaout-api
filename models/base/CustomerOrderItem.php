@@ -21,7 +21,7 @@ use Yii;
  * @property MenuItemType $iTEMTYPE
  * @property CustomerOrder $oRDER
  */
-class CustomerOrderItem extends \yii\db\ActiveRecord
+class CustomerOrderItem extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

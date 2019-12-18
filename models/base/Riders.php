@@ -16,7 +16,7 @@ use Yii;
  * @property Kitchen $kITCHEN
  * @property Users $uSER
  */
-class Riders extends \yii\db\ActiveRecord
+class Riders extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

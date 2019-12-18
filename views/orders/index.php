@@ -17,11 +17,12 @@ $items = [
     [
         'label' => '<i class="glyphicon glyphicon-book"></i> Pending Orders',
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $pendingOrder]),
-        'active' => true
+        'active' => false
     ],
     [
         'label' => '<i class="glyphicon glyphicon-time"></i> Confirmed Orders',
         'visible' => true,
+        'active' => true,
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
     ],
 //    [
@@ -32,10 +33,10 @@ $items = [
 //        'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
 //        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),
 //    ],
-//    [
-//        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
-//        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
-//    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Cancelled Orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $cancelledOrder]),
+    ],
 ];
 ?>
 
@@ -44,7 +45,7 @@ $items = [
 <?=
 TabsX::widget([
     'items' => $items,
-    'position' => TabsX::POS_ABOVE,
+    'position' => TabsX::ALIGN_LEFT,
     'encodeLabels' => false,
     'bordered' => true,
 ]);

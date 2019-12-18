@@ -12,6 +12,12 @@ namespace app\model_extended;
 use app\helpers\APP_UTILS;
 use app\models\CustomerOrderItem;
 
+/**
+ * Class CUSTOMER_ORDER_ITEMS
+ * @package app\model_extended
+ *
+ * @deprecated
+ */
 class CUSTOMER_ORDER_ITEMS extends CustomerOrderItem
 {
 

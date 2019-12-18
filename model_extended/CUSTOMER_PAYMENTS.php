@@ -11,16 +11,13 @@ namespace app\model_extended;
 
 use app\models\Payment;
 
+/**
+ * Class CUSTOMER_PAYMENTS
+ * @deprecated Remove this class
+ * @package app\model_extended
+ */
 class CUSTOMER_PAYMENTS extends Payment
 {
 
-    public function rules()
-    {
-        $rules = parent::rules();
 
-        $rules[] = [['PAYMENT_NUMBER'], 'required'];
-        $rules[] = [['ORDER_ID'], 'required'];
-        $rules[] = [['PAYMENT_STATUS'], 'required'];
-        return $rules;
-    }
 }

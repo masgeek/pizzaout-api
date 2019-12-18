@@ -21,7 +21,7 @@ use Yii;
  * @property MenuItemType $iTEMTYPE
  * @property Users $uSER
  */
-class Cart extends \yii\db\ActiveRecord
+class Cart extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

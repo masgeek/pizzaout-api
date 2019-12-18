@@ -15,7 +15,7 @@ use Yii;
  *
  * @property Users $uSER
  */
-class ApiToken extends \yii\db\ActiveRecord
+class ApiToken extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

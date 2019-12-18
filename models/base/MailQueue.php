@@ -16,7 +16,7 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class MailQueue extends \yii\db\ActiveRecord
+class MailQueue extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

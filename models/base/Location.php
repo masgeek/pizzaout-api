@@ -16,7 +16,7 @@ use Yii;
  * @property CustomerOrder[] $customerOrders
  * @property City $cITY
  */
-class Location extends \yii\db\ActiveRecord
+class Location extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

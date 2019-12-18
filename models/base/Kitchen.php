@@ -19,7 +19,7 @@ use Yii;
  * @property City $cITY
  * @property Riders[] $riders
  */
-class Kitchen extends \yii\db\ActiveRecord
+class Kitchen extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

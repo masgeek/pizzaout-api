@@ -13,7 +13,7 @@ use Yii;
  *
  * @property MenuItemType[] $menuItemTypes
  */
-class Sizes extends \yii\db\ActiveRecord
+class Sizes extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

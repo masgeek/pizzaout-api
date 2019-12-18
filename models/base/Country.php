@@ -12,7 +12,7 @@ use Yii;
  *
  * @property City[] $cities
  */
-class Country extends \yii\db\ActiveRecord
+class Country extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

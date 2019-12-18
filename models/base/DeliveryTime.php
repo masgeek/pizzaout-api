@@ -10,7 +10,7 @@ use Yii;
  * @property int $TIME_ID
  * @property string $DELIVERY_TIME
  */
-class DeliveryTime extends \yii\db\ActiveRecord
+class DeliveryTime extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

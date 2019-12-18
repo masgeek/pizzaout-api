@@ -15,7 +15,7 @@ use Yii;
  *
  * @property MenuItem[] $menuItems
  */
-class MenuCategory extends \yii\db\ActiveRecord
+class MenuCategory extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

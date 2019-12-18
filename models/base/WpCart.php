@@ -16,7 +16,7 @@ use Yii;
  *
  * @property MenuItemType $iTEMTYPE
  */
-class WpCart extends \yii\db\ActiveRecord
+class WpCart extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

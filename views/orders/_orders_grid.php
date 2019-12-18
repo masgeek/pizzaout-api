@@ -1,8 +1,10 @@
 <?php
 
+use app\helpers\ORDER_HELPER;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models_search\OrdersSearch */
@@ -66,16 +68,16 @@ $gridColumns = [
 
             if ($action === 'update') {
                 switch ($model->ORDER_STATUS) {
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_CONFIRMED:
+                    case ORDER_HELPER::STATUS_ORDER_CONFIRMED:
                         $action = '<i class="fa fa-pencil fa-1x"></i>View';
                         $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['view', 'id' => $model->ORDER_ID]);
+                        $url = Url::toRoute(['view', 'id' => $model->ORDER_ID]);
                         break;
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
-                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_PENDING:
+                    case ORDER_HELPER::STATUS_ORDER_PENDING:
+                    case ORDER_HELPER::STATUS_PAYMENT_PENDING:
                         $action = '<i class="fa fa-pencil fa-1x"></i> Confirm';
                         $class .= 'btn-success';
-                        $url = \yii\helpers\Url::toRoute(['orders/confirm-order', 'id' => $model->ORDER_ID]);
+                        $url = Url::toRoute(['orders/confirm-order', 'id' => $model->ORDER_ID]);
                         break;
                 }
 
@@ -107,11 +109,15 @@ $gridColumns = [
             $class = 'btn btn-sm ';
             if ($action === 'print') {
                 switch ($model->ORDER_STATUS) {
-                    case \app\helpers\ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
-                    case \app\helpers\ORDER_HELPER::STATUS_ORDER_PENDING:
-                        $action = 'Order receipt';
+                    case ORDER_HELPER::STATUS_ORDER_CONFIRMED:
+                        $action = 'Pay';
+                        $class .= 'btn-success';
+                        $url = Url::toRoute(['//cash-sale/pay', 'id' => $model->ORDER_ID]);
+                        break;
+                    case ORDER_HELPER::STATUS_PAYMENT_CONFIRMED:
+                        $action = 'Receipt';
                         $class .= 'btn-primary';
-                        $url = \yii\helpers\Url::toRoute(['orders/print', 'id' => $model->ORDER_ID]);
+                        $url = Url::toRoute(['orders/print', 'id' => $model->ORDER_ID]);
                         break;
                     default:
                         $class .= 'btn-primary hidden';
@@ -119,7 +125,7 @@ $gridColumns = [
                 }
 
             }
-            return Html::a($action, $url, ['class' => $class, 'target' => '_blank']);
+            return Html::a($action, $url, ['class' => $class]);
         }
     ]
 ];

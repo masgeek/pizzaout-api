@@ -12,7 +12,7 @@ use Yii;
  *
  * @property Users[] $users
  */
-class UserType extends \yii\db\ActiveRecord
+class UserType extends \app\common\BaseModel
 {
     /**
      * {@inheritdoc}

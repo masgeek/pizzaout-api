@@ -14,7 +14,6 @@ use kartik\alert\AlertBlock;
 
 BowerAsset::register($this);
 AppAsset::register($this);
-//\app\assetmanager\YarnAssets::register($this);
 PortoAssets::register($this);
 FontAssets::register($this);
 ?>
