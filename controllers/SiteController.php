@@ -24,18 +24,6 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            /*'access' => [
-                 'class' => AccessControl::className(),
-                 'except' => ['index', 'logout', 'login',],
-                 'rules' => [
-                     // allow authenticated users
-                     [
-                         'allow' => true,
-                         'roles' => ['@'],
-                     ],
-                     // everything else is denied
-                 ],
-             ],*/
         ];
     }
 
@@ -87,7 +75,8 @@ class SiteController extends Controller
                 return $this->redirect(['//orders']); //redirect to orders management
             }
         }
-        return $this->render('index');
+//        return $this->render('index');
+        return $this->redirect(['login']);
     }
 
     /**
