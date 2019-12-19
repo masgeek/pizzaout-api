@@ -7,7 +7,7 @@ use kartik\tabs\TabsX;
 /* @var $searchModel app\models_search\OrdersSearch */
 /* @var $confirmedOrder yii\data\ActiveDataProvider */
 /* @var $pendingOrder yii\data\ActiveDataProvider */
-/* @var $preparingOrder yii\data\ActiveDataProvider */
+/* @var $closedOrder yii\data\ActiveDataProvider */
 /* @var $orderReady yii\data\ActiveDataProvider */
 /* @var $cancelledOrder yii\data\ActiveDataProvider */
 
@@ -25,10 +25,10 @@ $items = [
 //        'active' => true,
         'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $confirmedOrder]),
     ],
-//    [
-//        'label' => '<i class="glyphicon glyphicon-time"></i> Under Preparation',
-//        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $preparingOrder]),
-//    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-time"></i> Closed orders',
+        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $closedOrder]),
+    ],
 //    [
 //        'label' => '<i class="glyphicon glyphicon-time"></i> Order Ready',
 //        'content' => $this->render('_orders_grid', ['searchModel' => $searchModel, 'dataProvider' => $orderReady]),

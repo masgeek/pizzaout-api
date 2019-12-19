@@ -60,7 +60,7 @@ class OrdersController extends Controller
 
         $pendingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_PENDING, ORDER_HELPER::STATUS_PAYMENT_PENDING]);
         $confirmedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_CONFIRMED]);
-        $preparingOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_UNDER_PREPARATION, ORDER_HELPER::STATUS_CHEF_ASSIGNED]);
+        $closedOrder = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_PAYMENT_CONFIRMED]);
 
         $orderReady = $searchModel->search(Yii::$app->request->queryParams, [ORDER_HELPER::STATUS_ORDER_READY]);
 
@@ -70,8 +70,7 @@ class OrdersController extends Controller
             'searchModel' => $searchModel,
             'pendingOrder' => $pendingOrder,
             'confirmedOrder' => $confirmedOrder,
-            'preparingOrder' => $preparingOrder,
-            'orderReady' => $orderReady,
+            'closedOrder' => $closedOrder,
             'cancelledOrder' => $cancelledOrder
         ]);
     }
